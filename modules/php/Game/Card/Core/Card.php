@@ -141,7 +141,7 @@ abstract class Card extends Model {
         );
         $classes = explode("\\", strtolower($classname));
 
-        return implode(" card_", $classes);
+        return "card_".implode(" card_", $classes);
     }
 
     /* -------------------------------------------------------------------------

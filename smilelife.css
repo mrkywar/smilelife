@@ -1,7 +1,7 @@
 /**
  *------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * Smile Life implementation : © Jean Portemer <jportemer@mailz.org>
+ * Smile Life implementation : © Jean Portemer <jportemer@mailz.org> & Mr_Kywar <mr_kywar@gmail.com>
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -13,66 +13,13 @@
  *
  */
 
-/*
-    This is the CSS stylesheet of your game User Interface.
-    
-    Styles defined on this file will be applied to the HTML elements you define in your
-    HTML template (smilelife_smilelife.tpl), and to HTML elements you create dynamically
-    (in smilelife.js).
-    
-    Usually, you are using CSS to:
-    
-    1°) define the overall layout of your game
-        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
-
-    2°) create your CSS-sprites:
-        All images of your games should be gathered into a small number of image files. Then, using
-        background-image and background-position CSS properties, you create HTML blocks that can 
-        display these images correctly (see example below).
-    
-    3°) ... anything else:
-        It is really easy to add and remove CSS classes dynamically from your Javascript with
-        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
-        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
-        very often, using CSS classes for the logic of your user interface allow you to do complex
-        thing easily.
-        
-        
-     Note: on the production platform, this file will be compressed and comments will be removed.
-           Consequently, don't hesitate to put as many comments as necessary.
-*/
-
-
-/* Note: you must not use any @import directive */
-
-
-/********* You can start writing your CSS below this line: **********/
-
-
-/*
-    Example of CSS sprites (a black token and a white token, 20x20px each, embedded in the same "tokens.png" 40x20px image):
-
-    .white_token {
-        background-image: url('img/tokens.png');
-        background-position: 0px 0px;
-    }
-    .black_token {
-        background-image: url('img/tokens.png');
-        background-position: -20px 0px;
-    }
-    .token {
-        width: 20px;
-        height: 20px;
-        background-repeat: none;
-    }
-*/
 
 * {
-	/* Ensure that the text in game cannot be highlighted */
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */	
+    /* Ensure that the text in game cannot be highlighted */
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */	
 }
 
 strong {
@@ -80,12 +27,12 @@ strong {
 }
 
 em {
-	font-style: italic;
+    font-style: italic;
 }
 
 .whiteblock {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .player {
@@ -94,26 +41,134 @@ em {
     border-radius: 20px;
     border-style: solid;
     padding: 5px;
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /* Cards */
 .card {
-	display: inline-block;
-	box-shadow: 0 0 0 1px rgb(150, 150, 150);
+    display: inline-block;
+    box-shadow: 0 0 0 1px rgb(150, 150, 150);
 }
 
 .stockitem_selected { /* Selected card */
     border: none !important;
-	box-shadow: 0 0 0 2px rgb(0, 0, 200) !important;
+    box-shadow: 0 0 0 2px rgb(0, 0, 200) !important;
 }
 
 .card_text {
-	position: absolute;
+    position: absolute;
 }
 
 /* Player hand */
 #my_hand_wrap {
-	background-color: #f8f8f8;
+    background-color: #f8f8f8;
     position: relative;
+}
+
+/*--------------------------------------------------------------------------
+                BEGIN - cards size M
+--------------------------------------------------------------------------*/
+.card_m .cardontable {
+    width: 100px;
+    height: 150px;
+    background-image: url('img/cards-2-num.jpg');
+    margin-bottom: 5px; 
+    margin-right: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 0 0 1px rgb(150, 150, 150);
+}
+.card_m .card_title{
+    font-size: 8px;
+    margin-top: 18px;
+}
+.card_m .card_job .card_title{
+    margin-top: 7px;
+}
+.card_m .card_job .card_subtitle{
+    margin-top: 0px;
+}
+
+
+/*--------------------------------------------------------------------------
+                BEGIN - cards display COL 
+--------------------------------------------------------------------------*/
+.card_1, .card_16, .card_31, .card_46, .card_61, .card_76, .card_91{
+    background-position-x: -100px;
+}
+.card_2, .card_17, .card_32, .card_47, .card_62, .card_77, .card_92{
+    background-position-x: -200px;
+}
+.card_3, .card_18, .card_33, .card_48, .card_63, .card_78, .card_93{
+    background-position-x: -300px;
+}
+.card_4, .card_19, .card_34, .card_49, .card_64, .card_79, .card_94{
+    background-position-x: -400px;
+}
+.card_5, .card_20, .card_35, .card_50, .card_65, .card_80, .card_95{
+    background-position-x: -500px;
+}
+.card_6, .card_21, .card_36, .card_51, .card_66, .card_81, .card_96{
+    background-position-x: -600px;
+}
+.card_7, .card_22, .card_37, .card_52, .card_67, .card_82, .card_97{
+    background-position-x: -700px;
+}
+.card_8, .card_23, .card_38, .card_53, .card_68, .card_83, .card_98{
+    background-position-x: -800px;
+}
+.card_9, .card_24, .card_39, .card_54, .card_69, .card_84, .card_99{
+    background-position-x: -900px;
+}
+.card_10, .card_25, .card_40, .card_55, .card_70, .card_85, .card_100{
+    background-position-x: -1000px;
+}
+.card_11, .card_26, .card_41, .card_56, .card_71, .card_86, .card_101{
+    background-position-x: -1100px;
+}
+.card_12, .card_27, .card_42, .card_57, .card_72, .card_87, .card_102{
+    background-position-x: -1200px;
+}
+.card_13, .card_28, .card_43, .card_58, .card_73, .card_88, .card_103{
+    background-position-x: -1300px;
+}
+.card_14, .card_29, .card_44, .card_59, .card_74, .card_89, .card_104{
+    background-position-x: -1400px;
+}
+/*--------------------------------------------------------------------------
+            BEGIN - cards display LINE 
+--------------------------------------------------------------------------*/
+.card_15, .card_16, .card_17, .card_18, .card_19, .card_20, .card_21, .card_22,
+.card_23, .card_24, .card_25, .card_26, .card_27, .card_28, .card_29 {
+    background-position-y: -150px;
+}
+.card_30, .card_31, .card_32, .card_33, .card_34, .card_35, .card_36, .card_37,
+.card_38, .card_39, .card_40, .card_41, .card_42, .card_43, .card_44 {
+    background-position-y: -300px;
+}
+.card_45, .card_46, .card_47, .card_48, .card_49, .card_50, .card_51, .card_52,
+.card_53, .card_54, .card_55, .card_56, .card_57, .card_58, .card_59 {
+    background-position-y: -450px;
+}
+.card_60, .card_61, .card_62, .card_63, .card_64, .card_65, .card_66, .card_67,
+.card_68, .card_69, .card_70, .card_71, .card_72, .card_73, .card_74 {
+    background-position-y: -600px;
+}
+.card_75, .card_76, .card_77, .card_78, .card_79, .card_80, .card_81, .card_82,
+.card_83, .card_84, .card_85, .card_86, .card_87, .card_88, .card_89 {
+    background-position-y: -750px;
+}
+.card_90, .card_91, .card_92, .card_93, .card_94, .card_95, .card_96, .card_97,
+.card_98, .card_99, .card_100, .card_101, .card_102, .card_103, .card_104 {
+    background-position-y: -900px;
+}
+
+/*-----------------------------------------------------------------------------
+            BEGIN - Debug
+------------------------------------------------------------------------------*/
+.debug{
+    min-height: 30px;
+    min-width: 30px;
+    background: greenyellow;
+    border: 3px black solid;
 }

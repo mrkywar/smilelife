@@ -16,6 +16,10 @@ class PinkDoorClassicHouse extends ClassicHouse implements BaseGame {
         return CardType::HOUSE_SMALL_2;
     }
 
+    public function getClass(): string {
+        return self::class;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in House
      * ---------------------------------------------------------------------- */

@@ -1,8 +1,14 @@
 <?php
+
+use Core\Managers\PlayerManager;
+use Core\Models\Player;
+use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Core\CardManager;
+
 /**
- *------
+ * ------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * Smile Life implementation : © Jean Portemer <jportemer@mailz.org>
+ * Smile Life implementation : © Jean Portemer <jportemer@mailz.org> & Mr_Kywar <mr_kywar@gmail.com>
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -23,59 +29,64 @@
  * Note: if the HTML of your game interface is always the same, you don't have to place anything here.
  *
  */
-  
-  require_once( APP_BASE_PATH."view/common/game.view.php" );
-  
-  class view_smilelife_smilelife extends game_view
-  {
+require_once( APP_BASE_PATH . "view/common/game.view.php" );
+require( __DIR__ . '/material.inc.php' );
+
+class view_smilelife_smilelife extends game_view {
+
+    /**
+     * @var PlayerManager
+     */
+    private $playerManager;
+
+    /**
+     * @var CardManager
+     */
+    private $cardManager;
+
+    public function __construct(...$_) {
+        parent::__construct(...$_);
+        $this->cardManager = $this->getGame()->getCardManager();
+        $this->playerManager = $this->getGame()->getPlayerManager();
+    }
+
     function getGameName() {
         return "smilelife";
-    }    
-  	function build_page( $viewArgs )
-  	{	
-		// Id of the client
+    }
+
+    protected function getGame(): SmileLife {
+        return SmileLife::getInstance();
+    }
+
+    function build_page($viewArgs) {
         global $g_user;
-        $my_id = $g_user->get_id();
-	
-  	    // Get players
-        $players = $this->game->loadPlayersBasicInfos();
-        $players_nbr = count( $players );
-		
-		if (array_key_exists($my_id, $players)) { // That is if I'm not a spectator
-			// We have to reorganize players array so that it reflects the real turn order beginning from me
-			$players_with_order = array();
-			foreach($players as $player_id => $player) {
-				$player['player_id'] = $player_id;
-				$players_with_order[] = $player;
-			}
-			
-			while($players_with_order[0]['player_id'] != $my_id)
-			{
-				// Roll the array
-				$player = array_shift($players_with_order);
-				$players_with_order[] = $player;
-			}
-			
-			$players = array();
-			foreach($players_with_order as $player) {
-				$players[$player['player_id']] = $player;
-			}
-		}
+        $this->page->begin_block("klife_klife", "player");
+        $this->page->begin_block("klife_klife", "myhand_card");
 
-        /*********** Place your code below:  ************/
-        
+        $cardSerializer = $this->cardManager->getSerializer();
 
-        $this->page->begin_block( "smilelife_smilelife", "player" );
-        foreach($players as $player_id => $player) {
-            $this->page->insert_block( "player", array( 
-													  "PLAYER_ID" => $player_id,
-                                                      "PLAYER_NAME" => $player['player_name'],
-                                                      "PLAYER_COLOR" => $player['player_color'],
-                                                     ));
+        $this->tpl['MY_HAND'] = self::_("My hand");
+
+        $players = $this->playerManager->findBy();
+        $connectedPlayer = $this->playerManager->findBy([
+            "id" => $g_user->get_id()
+        ]);
+
+        $cardsInHand = $cardSerializer->unserialize(
+                $this->cardManager->getPlayerCards($connectedPlayer)
+        );
+
+        foreach ($players as $player) {
+            $this->buildPlayer($player);
         }
+    }
 
-        /*********** Do not change anything below this line  ************/
-  	}
-  }
-  
+    private function buildPlayer(Player $player) {
+        return $this->page->insert_block("player", [
+                    'id' => $player->getId(),
+                    'color' => $player->getColor(),
+                    'name' => $player->getName(),
+        ]);
+    }
 
+}

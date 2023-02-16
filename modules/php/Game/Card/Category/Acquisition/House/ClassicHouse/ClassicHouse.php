@@ -14,10 +14,6 @@ abstract class ClassicHouse extends House {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function getClass(): string {
-        return self::class;
-    }
-
     public function getPrice(): int {
         return 6;
     }

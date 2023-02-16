@@ -15,9 +15,10 @@ class CardSerializer extends Serializer {
     protected function generateNewModel($rawItem): Model {
         if (isset($rawItem['card_class'])) {
             $className = $rawItem['card_class'];
+            
             return new $className();
         }
         return parent::generateNewModel($rawItem);
     }
-
+    
 }

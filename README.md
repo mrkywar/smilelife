@@ -27,4 +27,4 @@ I will be glad to here from you!
 
 **Owner of the numeric adaptation:** Board Game Arena
 
-**Dev team:** Jean Portemer
+**Dev team:** Jean Portemer & Mr_Kywar
