@@ -12,19 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2.1.0
-      with:
-        fetch-depth: 2
+    - uses: actions/checkout@v3
 
     - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         ftp-server: sftp://1.studio.boardgamearena.com/${{ github.event.repository.name }}
-        ftp-username: ${{ secrets.SFTP_USERNAME }}
+        ftp-username: MrKywar
         ftp-password: ${{ secrets.SFTP_PASSWORD }}
         git-ftp-args: --insecure
         exclude: |
-          .git*
-          .git*/**
-          .vscode/**
+          **/.git*
+          **/.git*/**
           README.md
