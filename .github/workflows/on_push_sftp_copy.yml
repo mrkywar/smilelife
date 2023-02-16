@@ -3,7 +3,7 @@ name: On push sftp copy
 on:
   push:
     branches: 
-    - dev
+    - master
   workflow_dispatch:
   
 jobs:
