@@ -17,10 +17,9 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        ftp-server: sftp://1.studio.boardgamearena.com/${{ github.event.repository.name }}
-        ftp-username: MrKywar
-        ftp-password: ${{ secrets.SFTP_PASSWORD }}
-        git-ftp-args: --insecure
+        server: sftp://1.studio.boardgamearena.com/${{ github.event.repository.name }}
+        username: MrKywar
+        password: ${{ secrets.SFTP_PASSWORD }}
         exclude: |
           **/.git*
           **/.git*/**
