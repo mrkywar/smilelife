@@ -43,7 +43,14 @@ em {
     padding: 5px;
     margin-bottom: 10px;
 }
-
+.playertable{
+    margin-top: 10px;
+    box-shadow: 0px 0px 0px 1px rgb(0 0 0 / 44%);
+    border-radius: 5px;
+}
+.playertable .playertablename{
+    font-weight: bold;
+}
 /* Cards */
 .card {
     display: inline-block;
@@ -76,7 +83,7 @@ em {
     margin-right: 5px;
     border-radius: 5px;
     display: inline-block;
-    box-shadow: 0 0 0 1px rgb(150, 150, 150);
+    box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
 .card_m .card_title{
     font-size: 8px;
