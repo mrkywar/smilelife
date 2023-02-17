@@ -1,40 +1,37 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Acquisition\Pet;
+namespace SmileLife\Game\Card\Category\Pet;
 
-use SmileLife\Game\Card\Category\Acquisition\Acquisition;
+use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of Pet
+ * Description of CatPet
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class Pet extends Acquisition {
+class Cat extends Pet implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Pet'));
+        $this->setText1(clienttranslate('Meow ...'));
+        
     }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function getPrice(): int {
-        return 0;
+    public function getType(): int {
+        return CardType::PET_CAT;
     }
 
-    public function getSmilePoints(): int {
-        return 1;
+    public function getClass(): string {
+        return self::class;
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame (1 card in each type)
+     *                  BEGIN - Implement BaseGame is in Pet 
      * ---------------------------------------------------------------------- */
-
-    public function getBaseCardCount(): int {
-        return 1;
-    }
-
 }

@@ -14,7 +14,7 @@ abstract class House extends Acquisition {
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(lienttranslate('House'))
+        $this->setTitle(clienttranslate('House'))
                 ->setText1(clienttranslate('Minimum Deposit'))
                 ->setText2(clienttranslate('Half price if you’re married'));
     }
