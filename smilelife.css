@@ -57,15 +57,25 @@ em {
     display: block;
     text-align: center;
 }
-
-.card_studies .card_title,
-.card_studies .card_text2{
-    color: red;
+.card_title,
+.card_flirt .card_text1{
     font-weight: bold;
+}
+.card_studies .card_title, .card_studies .card_text2,
+.card_wage .card_title, .card_wage .card_text1
+{
+    color: white;
     text-transform: uppercase;
 }
 
-
+.card_flirt .card_title{
+    color: #c0171c;
+    text-transform: uppercase;
+}
+.card_flirt .card_text1,
+.card_flirt .card_text2{
+    color: #e89d9f;
+}
 
 /*--------------------------------------------------------------------------
                 BEGIN - CARD size M text
@@ -74,9 +84,23 @@ em {
     font-size: 8px;
 }
 .card_m .card_title{
-    margin-top: 18px;
+    margin-top: 20px;
 }
-.card_m .card_studies1 .card_text2{
+.card_m .card_pet .card_title,
+.card_m .card_job .card_title
+{
+    height: 18px;
+    margin-top: 7px;
+}
+.card_m .card_job .card_text1{
+    margin-top: 99px;
+}
+.card_m .card_pet .card_text1{
+    margin-top: 103px;
+}
+.card_m .card_studies1 .card_text2, 
+.card_m .card_wage .card_text1,
+.card_m .card_unicorn .card_text1{
     margin-top: 96px;
 }
 .card_m .card_studies2 .card_text1{
@@ -85,7 +109,9 @@ em {
 .card_m .card_studies2 .card_text2{
     margin-top: 8px;
 }
-
+.card_m .card_flirt .card_text1{
+    margin-top: 86px;
+}
 
 /*--------------------------------------------------------------------------
                 BEGIN - cards size M
@@ -93,7 +119,7 @@ em {
 .card_m .cardontable {
     width: 100px;
     height: 150px;
-    background-image: url('img/cards-2-num.jpg');
+    background-image: url('img/cards-2-num.png');
     margin-bottom: 5px; 
     margin-right: 5px;
     border-radius: 5px;
@@ -180,8 +206,9 @@ em {
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
 .debug{
-    min-height: 30px;
+    display: block;
     min-width: 30px;
     background: greenyellow;
     border: 3px black solid;
+    margin: 5px 0;
 }
