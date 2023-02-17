@@ -1,21 +1,21 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Acquisition\Pet;
+namespace SmileLife\Game\Card\Category\Pet;
 
 use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of RabbitPet
+ * Description of ChickPet
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Dog extends Pet implements BaseGame {
+class Chick extends Pet implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setText1(clienttranslate('Woof woof !!'));
+        $this->setText1(clienttranslate('Piou Piou !'));
     }
 
     /* -------------------------------------------------------------------------
@@ -23,7 +23,7 @@ class Dog extends Pet implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::PET_DOG;
+        return CardType::PET_CHICK;
     }
 
     public function getClass(): string {
