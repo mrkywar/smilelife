@@ -34,7 +34,7 @@ define([
                             <span class="card_text card_subtitle">` + card.subtitle + `</span>
                             <span class="card_text card_text1">` + card.text1 + `</span>
                             <span class="card_text card_text2">` + card.text2 + `</span>
-                            <span class="debug">` + card.type + `</span>
+                            <span class="debug">` + card.type + " - S : " + card.smilePoints + `</span>
                         </div>`;
                 }
 

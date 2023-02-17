@@ -36,6 +36,7 @@ class CardDecorator {
         return [
             "id" => $card->getId(),
             "type" => $card->getType(),
+            "smilePoints" => $card->getSmilePoints(),
             "shortclass" => $card->getVisibleClasses(),
             "location" => $card->getLocation(),
             "title" => $card->getTitle(),

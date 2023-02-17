@@ -35,41 +35,107 @@ em {
     padding: 0;
 }
 
-.player {
-    border-width: 1px;
-    border-color: black;
-    border-radius: 20px;
-    border-style: solid;
-    padding: 5px;
-    margin-bottom: 10px;
-}
+/*--------------------------------------------------------------------------
+                BEGIN - Player Table
+--------------------------------------------------------------------------*/
 .playertable{
     margin-top: 10px;
     box-shadow: 0px 0px 0px 1px rgb(0 0 0 / 44%);
     border-radius: 5px;
 }
-.playertable .playertablename{
+
+
+/*--------------------------------------------------------------------------
+                BEGIN - CARD Standard
+--------------------------------------------------------------------------*/
+.cardontable {
+    display: block;
+    float: left;
+}
+
+.cardontable .card_text{
+    display: block;
+    text-align: center;
+}
+.card_title,
+.card_flirt .card_text1,
+.card_child .card_text1{
     font-weight: bold;
 }
-/* Cards */
-.card {
-    display: inline-block;
-    box-shadow: 0 0 0 1px rgb(150, 150, 150);
+.card_studies .card_title, .card_studies .card_text2,
+.card_wage .card_title, .card_wage .card_text1,
+.card_child .card_text1,
+.card_attack .card_title, .card_attack .card_text1
+{
+    color: white;
+    text-transform: uppercase;
+}
+.card_adultery .card_text{
+    color: white;
+}
+.card_flirt .card_title{
+    color: #c0171c;
+    text-transform: uppercase;
+}
+.card_flirt .card_text1,
+.card_flirt .card_text2{
+    color: #e89d9f;
+}
+.card_wedding .card_title,
+.card_child .card_title{
+    color:#bb5ea9;
 }
 
-.stockitem_selected { /* Selected card */
-    border: none !important;
-    box-shadow: 0 0 0 2px rgb(0, 0, 200) !important;
+/*--------------------------------------------------------------------------
+                BEGIN - CARD size M text
+--------------------------------------------------------------------------*/
+.card_m .card_text{
+    font-size: 8px;
+}
+.card_m .card_title{
+    margin-top: 20px;
+}
+.card_m .card_pet .card_title,
+.card_m .card_job .card_title,
+.card_m .card_house .card_title{
+    height: 18px;
+    margin-top: 7px;
+}
+.card_m .card_attack .card_title{
+    margin-top: 10px;
+}
+.card_m .card_house .card_text1,
+.card_m .card_adultery .card_text1{
+    margin-top: 85px;
+}
+.card_m .card_house .card_text2{
+    margin-top: 14px;
+}
+.card_m .card_wedding .card_text1{
+    margin-top: 18px;
 }
 
-.card_text {
-    position: absolute;
+.card_m .card_job .card_text1,
+.card_m .card_attack .card_text1{
+    margin-top: 99px;
 }
-
-/* Player hand */
-#my_hand_wrap {
-    background-color: #f8f8f8;
-    position: relative;
+.card_m .card_pet .card_text1{
+    margin-top: 103px;
+}
+.card_m .card_studies1 .card_text2, 
+.card_m .card_wage .card_text1,
+.card_m .card_unicorn .card_text1,
+.card_m .card_child .card_text1{
+    margin-top: 96px;
+}
+.card_m .card_studies2 .card_text1{
+    margin-top: 78px;
+}
+.card_m .card_studies2 .card_text2{
+    margin-top: 8px;
+}
+.card_m .card_flirt .card_text1{
+    margin-top: 86px;
 }
 
 /*--------------------------------------------------------------------------
@@ -78,23 +144,14 @@ em {
 .card_m .cardontable {
     width: 100px;
     height: 150px;
-    background-image: url('img/cards-2-num.jpg');
+    background-image: url('img/cards-2-num.png');
     margin-bottom: 5px; 
     margin-right: 5px;
     border-radius: 5px;
-    display: inline-block;
+
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
-.card_m .card_title{
-    font-size: 8px;
-    margin-top: 18px;
-}
-.card_m .card_job .card_title{
-    margin-top: 7px;
-}
-.card_m .card_job .card_subtitle{
-    margin-top: 0px;
-}
+
 
 
 /*--------------------------------------------------------------------------
@@ -174,8 +231,9 @@ em {
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
 .debug{
-    min-height: 30px;
+    display: block;
     min-width: 30px;
     background: greenyellow;
     border: 3px black solid;
+    margin: 5px 0;
 }
