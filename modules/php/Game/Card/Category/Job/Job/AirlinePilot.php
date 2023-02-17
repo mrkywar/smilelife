@@ -12,6 +12,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class AirlinePilot extends Job implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setTitle(clienttranslate('Airline pilot'))
+                ->setText1(clienttranslate('You travel for free'));
+        
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

@@ -11,7 +11,17 @@ use SmileLife\Game\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Dog extends Pet implements BaseGame {
+class Rabbit extends Pet implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('Honk honk !'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
 
     public function getType(): int {
         return CardType::PET_RABBIT;

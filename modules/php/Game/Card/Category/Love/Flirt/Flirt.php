@@ -14,6 +14,16 @@ abstract class Flirt extends Love {
 
     private const SMILE_POINTS = 1;
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Flirt'));
+        
+        if ($this->canGenerateChild()) {
+            $this->setText2(clienttranslate('Possibility to have a child'));
+        }
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -29,6 +39,5 @@ abstract class Flirt extends Love {
     public function getSmilePoints(): int {
         return self::SMILE_POINTS;
     }
-
 
 }

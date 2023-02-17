@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class Sydney extends Travel implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Sydney'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getType(): int {
         return CardType::TRAVEL_SYDNEY;
     }

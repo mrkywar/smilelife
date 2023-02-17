@@ -7,11 +7,19 @@ use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of Bandit
+ * Description of Doctor
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Doctor extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Doctor'))
+                ->setText1(clienttranslate('Never sick and continuous studies'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -31,7 +39,7 @@ class Doctor extends Job implements BaseGame {
     public function getType(): int {
         return CardType::JOB_DOCTOR;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
      * ---------------------------------------------------------------------- */

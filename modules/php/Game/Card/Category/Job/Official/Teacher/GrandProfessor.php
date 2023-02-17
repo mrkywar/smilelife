@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class GrandProfessor extends Teacher implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Grand Professor'))
+                ->setText1(clienttranslate('Career promotion exclusive to '
+                                . 'teachers'))
+                ->setText2(clienttranslate('P'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Override
      * ---------------------------------------------------------------------- */

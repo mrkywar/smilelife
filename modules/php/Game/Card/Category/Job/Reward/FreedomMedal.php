@@ -12,6 +12,17 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class FreedomMedal extends Reward implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Medal of Freedom'))
+                ->setText1(clienttranslate('Can only be attributed to writers, '
+                                . 'researchers and journalists'))
+                ->setText2(clienttranslate('You are awarded by the nation '
+                                . '(bandits excluded)'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

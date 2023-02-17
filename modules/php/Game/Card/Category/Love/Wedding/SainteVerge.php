@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class SainteVerge extends Wedding implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setText1(clienttranslate('Sainte-Verge'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getClass(): string {
         return self::class;
     }

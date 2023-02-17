@@ -11,6 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Stripteaser extends Interim implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setTitle(clienttranslate('Stripper'))
+                ->setText1(clienttranslate('You’re hot'));
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

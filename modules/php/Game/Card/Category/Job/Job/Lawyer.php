@@ -7,11 +7,19 @@ use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of Designer
+ * Description of Lawyer
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Lawyer extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Lawyer'))
+                ->setText1(clienttranslate('No-one can divorce you'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

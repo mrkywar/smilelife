@@ -11,6 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Policeman extends Official implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+     
+        $this->setTitle(clienttranslate('Policemen'))
+                ->setText1(clienttranslate('No gurus or bandits in your presence'));
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

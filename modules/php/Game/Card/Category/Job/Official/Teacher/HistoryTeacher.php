@@ -11,6 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class HistoryTeacher extends Teacher implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setTitle(clienttranslate('History teacher '))
+                ->setText1(clienttranslate('Cortès is your idol'));
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
