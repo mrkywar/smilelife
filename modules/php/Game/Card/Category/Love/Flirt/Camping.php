@@ -11,6 +11,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Camping extends Flirt implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('At a campsite'));
+                
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

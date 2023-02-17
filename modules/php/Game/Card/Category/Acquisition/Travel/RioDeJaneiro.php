@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class RioDeJaneiro extends Travel implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Rio de Janeiro'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getType(): int {
         return CardType::TRAVEL_RIO;
     }

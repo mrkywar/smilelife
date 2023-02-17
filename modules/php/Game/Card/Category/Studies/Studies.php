@@ -13,6 +13,13 @@ use SmileLife\Game\Card\Core\Exception\CardException;
 abstract class Studies extends Card {
 
     private const SMILE_POINT = 1;
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setTitle(clienttranslate('Higher'))
+                ->setText2(clienttranslate('Studies'));
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - new Abstract

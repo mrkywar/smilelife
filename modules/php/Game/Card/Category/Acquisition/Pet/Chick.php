@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class Chick extends Pet implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('Piou Piou !'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getType(): int {
         return CardType::PET_CHICK;
     }

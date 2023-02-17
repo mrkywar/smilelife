@@ -7,11 +7,19 @@ use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of Bandit
+ * Description of Pharmacist
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Pharmacist extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Pharmacist'))
+                ->setText1(clienttranslate('Never sick'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

@@ -11,6 +11,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class FrenchTeacher extends Teacher implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('French teacher'))
+                ->setText1(clienttranslate('Cervantes is your idol'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

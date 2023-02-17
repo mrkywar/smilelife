@@ -12,10 +12,22 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class Cairo extends Travel implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Cairo'));
+        
+        
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getType(): int {
         return CardType::TRAVEL_CAIRO;
     }
-    
+
     public function getClass(): string {
         return self::class;
     }

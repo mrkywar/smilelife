@@ -10,6 +10,13 @@ use SmileLife\Game\Card\Category\Acquisition\Acquisition;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 abstract class Pet extends Acquisition {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Pet'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

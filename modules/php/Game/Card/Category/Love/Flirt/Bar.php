@@ -11,6 +11,12 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Bar extends Flirt implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setText1(clienttranslate('In a Bar'));
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

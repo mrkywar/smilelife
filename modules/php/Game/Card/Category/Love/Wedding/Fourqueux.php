@@ -11,6 +11,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Fourqueux extends Wedding implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setText1(clienttranslate('Fourqueux'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
 
     public function getClass(): string {
         return self::class;

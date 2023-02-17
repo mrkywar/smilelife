@@ -11,6 +11,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Luigi extends Child implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('Luigi'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
 
     public function getType(): int {
         return CardType::CHILD_LUIGI;

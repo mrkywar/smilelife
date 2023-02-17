@@ -7,11 +7,20 @@ use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of Guru
+ * Description of Journalist
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Journalist extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Journalist'))
+                ->setText1(clienttranslate('Entitled to see the other players '
+                                . 'hands'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

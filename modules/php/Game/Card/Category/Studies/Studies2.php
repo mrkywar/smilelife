@@ -11,6 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Studies2 extends Studies implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('You’re a genius!'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -18,11 +25,11 @@ class Studies2 extends Studies implements BaseGame {
     public function getLevel(): int {
         return 2;
     }
-    
+
     public function getClass(): string {
         return self::class;
     }
-    
+
     public function getType(): int {
         return CardType::STUDY_DOUBLE;
     }

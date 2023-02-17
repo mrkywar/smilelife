@@ -13,6 +13,8 @@ abstract class Official extends Job {
 
     public function __construct() {
         parent::__construct();
+
+        $this->setSubtitle(clienttranslate('Official'));
     }
 
     /* -------------------------------------------------------------------------

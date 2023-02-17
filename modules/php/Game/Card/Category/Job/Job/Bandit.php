@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Bandit extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Bandit'))
+                ->setText1(clienttranslate('Bandit: Pays no taxes, is never '
+                        . 'laid off'))
+                ->setText2(clienttranslate('Jail is possible'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -27,11 +37,11 @@ class Bandit extends Job implements BaseGame {
     public function getRequiredStudies(): int {
         return 0;
     }
-    
+
     public function getType(): int {
         return CardType::JOB_BANDIT;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
      * ---------------------------------------------------------------------- */

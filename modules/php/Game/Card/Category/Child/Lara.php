@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class Lara extends Child implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('Lara'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getType(): int {
         return CardType::CHILD_LARA;
     }

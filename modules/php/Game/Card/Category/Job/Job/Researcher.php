@@ -12,6 +12,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Researcher extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Researcher'))
+                ->setText1(clienttranslate('Try a 6-card hand'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

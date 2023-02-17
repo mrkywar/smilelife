@@ -11,6 +11,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class MathTeacher extends Teacher implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Math teacher'))
+                ->setText1(clienttranslate('Pythagoras is your idol'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -26,7 +34,7 @@ class MathTeacher extends Teacher implements BaseGame {
     public function getRequiredStudies(): int {
         return 2;
     }
-    
+
     public function getType(): int {
         return CardType::JOB_MATH_TEACHER;
     }

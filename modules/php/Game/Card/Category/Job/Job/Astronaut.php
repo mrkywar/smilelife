@@ -7,11 +7,19 @@ use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of AirlinePilot
+ * Description of Astronaut
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Astronaut extends Job implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Astronaut'))
+                ->setText1(clienttranslate('Choose a card in the discard pile'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -31,10 +39,8 @@ class Astronaut extends Job implements BaseGame {
     public function getType(): int {
         return CardType::JOB_ASTRONAUT;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
      * ---------------------------------------------------------------------- */
-
-    
 }

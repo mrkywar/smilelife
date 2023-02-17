@@ -11,6 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Web extends Flirt implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('On the internet'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -26,6 +33,7 @@ class Web extends Flirt implements BaseGame {
     public function getType(): int {
         return CardType::FLIRT_WEB;
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
      * ---------------------------------------------------------------------- */
@@ -33,4 +41,5 @@ class Web extends Flirt implements BaseGame {
     public function getBaseCardCount(): int {
         return 2;
     }
+
 }

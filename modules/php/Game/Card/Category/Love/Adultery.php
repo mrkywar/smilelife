@@ -15,6 +15,15 @@ class Adultery extends Love implements BaseGame {
 
     private const SMILE_POINTS = 1;
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Adultery'))
+                ->setText1(clienttranslate('Flirt while married while you keep '
+                                . 'this card put down. Loss of children in the '
+                                . 'case of divorce.'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

@@ -15,7 +15,8 @@ class WageLevel4 extends Wage implements BaseGame {
     public function __construct() {
         parent::__construct();
 
-        $this->setText1(clienttranslate('Level ${level}', ['level' => 4]));
+        $this->setText1(clienttranslate('Level ${level}', ['level' => 4]))
+                ->setText1(clienttranslate('Level')." 4"); //-- TODO remove if I18N work's;
     }
 
     /* -------------------------------------------------------------------------

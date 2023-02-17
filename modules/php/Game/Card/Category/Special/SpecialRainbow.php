@@ -13,6 +13,15 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class SpecialRainbow extends Special implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Rainbow'))
+                ->setText1(clienttranslate('Play up to 3 cards at once then '
+                                . 'pick a new card'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

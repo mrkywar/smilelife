@@ -12,6 +12,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  */
 class BougMadame extends Wedding implements BaseGame {
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('BougMadame'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     public function getClass(): string {
         return self::class;
     }

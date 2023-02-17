@@ -11,6 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Military extends Official implements BaseGame {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setTitle(clienttranslate('Soldier'))
+                ->setText1(clienttranslate('Never victim to terrorist attacks'));
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

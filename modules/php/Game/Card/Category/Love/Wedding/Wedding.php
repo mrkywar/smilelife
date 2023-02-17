@@ -14,6 +14,12 @@ abstract class Wedding extends Love {
 
     private const SMILE_POINTS = 3;
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Marriage'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -37,7 +43,7 @@ abstract class Wedding extends Love {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */
-    
+
     public function getBaseCardCount(): int {
         return 1;
     }

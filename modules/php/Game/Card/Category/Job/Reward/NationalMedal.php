@@ -13,6 +13,17 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class NationalMedal extends Reward implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Grand Prize of Excellence'))
+                ->setText1(clienttranslate('Can only be attributed to writers, '
+                                . 'researchers and journalists'))
+                ->setText2(clienttranslate('You may pocket paychecks from 1 to '
+                                . '4 while you work in the awarded job.'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

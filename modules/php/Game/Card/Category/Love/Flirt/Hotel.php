@@ -15,8 +15,7 @@ class Hotel extends Flirt implements BaseGame {
     public function __construct() {
         parent::__construct();
 
-        $this->setText1(clienttranslate('In a hotel'))
-                ->setText2(clienttranslate('Possibility to have a child'));
+        $this->setText1(clienttranslate('In a hotel'));
     }
 
     /* -------------------------------------------------------------------------

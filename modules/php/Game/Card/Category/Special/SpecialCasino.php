@@ -13,6 +13,16 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class SpecialCasino extends Special implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setTitle(clienttranslate('Casino'))
+                ->setText1(clienttranslate('Bet a paycheck card face down. If '
+                        . 'another player bets the same card, he wins. If they'
+                        . ' bet differently, you win'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
