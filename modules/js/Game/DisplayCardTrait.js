@@ -41,6 +41,7 @@ define([
 
                     var size = this.findActualCardSize();
                     this.debug("DCT", size);
+                    this.applySize(size);
 
                     for (var cardId in gamedatas.myhand) {
 //                        this.debug(cardId, gamedatas.myhand[cardId]);
@@ -68,12 +69,59 @@ define([
                     return Object.keys(object).find(
                             key => object[key] === value
                     );
+                },
+
+                applySize: function (size) {
+
+                    var computedCSS = `
+                    /*----------------------------------------------------------
+                                BEGIN - cards display COL 
+                    ----------------------------------------------------------*/
+                    `;
+                    for (var col = 1; col <= SPRITE_NB_COLUMNS; col++) {
+                        for (var row = 0; row < SPRITE_NB_ROWS; row++) {
+                            computedCSS += `
+                                .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
+                                    background-position-x: -` + (col * WIDTH_S) + `px;
+                                }
+                                `;
+                        }
+                    }
+                    computedCSS += `
+                    /*----------------------------------------------------------
+                                BEGIN - cards display LINE 
+                    ----------------------------------------------------------*/
+                    `;
+                    for (var row = 1; row < SPRITE_NB_ROWS; row++) {
+                        for (var col = 1; col <= SPRITE_NB_COLUMNS; col++) {
+                            computedCSS += `
+                                    .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
+                                    background-position-y: -` + (row * HEIGHT_S) + `px;
+                                }
+                                `;
+                        }
+
+                    }
+//                    for (var row = 0; row < SPRITE_NB_ROWS; row++) {
+//                        for (var col = 1; col <= SPRITE_NB_COLUMNS; col++) {
+//                            cardId = row + col;
+//                            computedCSS += ".card_" + cardId + ` { 
+//                                    ` + ((col !== 1) ? `background-position-y: -` + (col * HEIGHT_S) + `px;` : ``) + `
+//                                    ` + "background-position-x: -" + (row * WIDTH_S) + "px" + `;
+//                            }
+//                            `;
+//
+//                        }
+//                    }
+
+                    this.debug(computedCSS);
+                    this.insertCSS(computedCSS);
+
+
                 }
 
+
             }
-
-
-
 
     );
 });
