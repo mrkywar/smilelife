@@ -1,10 +1,12 @@
 const SPRITE_NB_COLUMNS = 15;
 const SPRITE_NB_ROWS = 7;
 
-const WIDTH_S = 100;
-const HEIGHT_S = 150;
-const RADIUS_S = 5;
-
+//const WIDTH_S = 100;
+//const HEIGHT_S = 150;
+//const RADIUS_S = 5;
+const WIDTH_XXL = 666.67;
+const HEIGHT_XXL = 1000;
+const RADIUS_XXL = 20;
 
 const PREF_CARD_SIZE = 500;
 
@@ -41,7 +43,7 @@ define([
                 displayCards: function (gamedatas) {
 
                     var size = this.findActualCardSize();
-                    this.debug("DCT", size);
+                    this.debug("DCT-DC", size);
                     this.applySize(size);
 
                     for (var cardId in gamedatas.myhand) {
@@ -64,8 +66,11 @@ define([
 
                 findActualCardSize: function () {
                     var object = this.sizeAssoc;
-                    var value = this.getUserPreference(PREF_CARD_SIZE);
+                    var value = parseInt(this.getUserPreference(PREF_CARD_SIZE));
 //                    var prefSize = this.getUserPreference(PREF_CARD_SIZE)
+
+                    this.debug("DCT-FACS");
+                    this.debug(object, value);
 
                     var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value
@@ -76,17 +81,17 @@ define([
                 },
 
                 computePossibleCardDimensions: function () {
-                    var size_ratios = {"XS": .9, "S": 1, "M": 1.2, "L": 1.8, "XL": 2};
-                    var card_dimensions_S = {"width": WIDTH_S, "height": HEIGHT_S, "radius": RADIUS_S};
-                    card_dimensions = {"S": card_dimensions_S};
+                    var size_ratios = {"XS": 6.4, "S": 5, "M": 3.2, "L": 2, "XL": 1.25};
+                    var card_dimensions_XXL = {"width": WIDTH_XXL, "height": HEIGHT_XXL, "radius": RADIUS_XXL};
+                    card_dimensions = {"XXL": card_dimensions_XXL};
 
                     for (var size in size_ratios) {
                         // Compute card dimensions for this size
                         var ratio = size_ratios[size];
 
-                        var width = ratio * card_dimensions_S.width;
-                        var height = ratio * card_dimensions_S.height;
-                        var radius = ratio * card_dimensions_S.radius;
+                        var width = card_dimensions_XXL.width / ratio;
+                        var height = card_dimensions_XXL.height / ratio;
+                        var radius = card_dimensions_XXL.radius / ratio;
 
                         card_dimensions[size] = {"width": width, "height": height, "radius": radius, "name": size};
                     }
