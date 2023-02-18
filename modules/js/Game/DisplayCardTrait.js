@@ -36,6 +36,7 @@ define([
                         "L": PREF_CHOICE_SIZE_L,
                         "XL": PREF_CHOICE_SIZE_XL
                     };
+                    this.cardDimension = this.computePossibleCardDimensions();
                 },
                 displayCards: function (gamedatas) {
 
@@ -66,13 +67,34 @@ define([
                     var value = this.getUserPreference(PREF_CARD_SIZE);
 //                    var prefSize = this.getUserPreference(PREF_CARD_SIZE)
 
-                    return Object.keys(object).find(
+                    var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value
                     );
+
+                    return this.cardDimension[gameOptionSize]
+
+                },
+
+                computePossibleCardDimensions: function () {
+                    var size_ratios = {"XS": .9, "S": 1, "M": 1.2, "L": 1.8, "XL": 2};
+                    var card_dimensions_S = {"width": WIDTH_S, "height": HEIGHT_S, "radius": RADIUS_S};
+                    card_dimensions = {"S": card_dimensions_S};
+
+                    for (var size in size_ratios) {
+                        // Compute card dimensions for this size
+                        var ratio = size_ratios[size];
+
+                        var width = ratio * card_dimensions_S.width;
+                        var height = ratio * card_dimensions_S.height;
+                        var radius = ratio * card_dimensions_S.radius;
+
+                        card_dimensions[size] = {"width": width, "height": height, "radius": radius, "name": size};
+                    }
+                    return card_dimensions;
                 },
 
                 applySize: function (size) {
-
+                    this.debug(size);
                     var computedCSS = `
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
@@ -82,7 +104,7 @@ define([
                         for (var row = 0; row < SPRITE_NB_ROWS; row++) {
                             computedCSS += `
                                 .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
-                                    background-position-x: -` + (col * WIDTH_S) + `px;
+                                    background-position-x: -` + (col * size.width) + `px;
                                 }
                                 `;
                         }
@@ -93,28 +115,16 @@ define([
                     ----------------------------------------------------------*/
                     `;
                     for (var row = 1; row < SPRITE_NB_ROWS; row++) {
-                        for (var col = 1; col <= SPRITE_NB_COLUMNS; col++) {
+                        for (var col = 0; col <= SPRITE_NB_COLUMNS; col++) {
                             computedCSS += `
-                                    .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
-                                    background-position-y: -` + (row * HEIGHT_S) + `px;
+                                .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
+                                    background-position-y: -` + (row * size.height) + `px;
                                 }
                                 `;
                         }
 
                     }
-//                    for (var row = 0; row < SPRITE_NB_ROWS; row++) {
-//                        for (var col = 1; col <= SPRITE_NB_COLUMNS; col++) {
-//                            cardId = row + col;
-//                            computedCSS += ".card_" + cardId + ` { 
-//                                    ` + ((col !== 1) ? `background-position-y: -` + (col * HEIGHT_S) + `px;` : ``) + `
-//                                    ` + "background-position-x: -" + (row * WIDTH_S) + "px" + `;
-//                            }
-//                            `;
-//
-//                        }
-//                    }
 
-                    this.debug(computedCSS);
                     this.insertCSS(computedCSS);
 
 
