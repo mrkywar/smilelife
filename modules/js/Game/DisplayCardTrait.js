@@ -81,7 +81,7 @@ define([
                 },
 
                 computePossibleCardDimensions: function () {
-                    var size_ratios = {"XS": 6.4, "S": 5, "M": 3.2, "L": 2, "XL": 1.25};
+                    var size_ratios = {"XS": 6.4, "S": 5, "M": 4, "L": 3.2, "XL": 2};
                     var card_dimensions_XXL = {"width": WIDTH_XXL, "height": HEIGHT_XXL, "radius": RADIUS_XXL};
                     card_dimensions = {"XXL": card_dimensions_XXL};
 
