@@ -25,20 +25,56 @@
  */
 require_once 'modules/constants.inc.php';
 
-$game_options = array(
-    OP_LENGTH => array(
+$game_options = [
+    OPTION_LENGTH => [
         'name' => totranslate("Game length"),
-        'values' => array(
-            CH_LENGTH_ALL => array('name' => totranslate("Normal"), 'description' => totranslate("Play with the full deck")),
-            CH_LENGTH_QUARTER => array('name' => totranslate("1/4 deck"), 'tm_display' => totranslate("1/4 deck"), 'description' => totranslate("Play with only one quarter of the deck (50 cards)")),
-            CH_LENGTH_THIRD => array('name' => totranslate("1/3 deck"), 'tm_display' => totranslate("1/3 deck"), 'description' => totranslate("Play with only one third of the deck (67 cards)")),
-            CH_LENGTH_HALF => array('name' => totranslate("1/2 deck"), 'tm_display' => totranslate("1/2 deck"), 'description' => totranslate("Play with only one half of the deck (100 cards)")),
-            CH_LENGTH_TWO_THIRDS => array('name' => totranslate("2/3 deck"), 'tm_display' => totranslate("2/3 deck"), 'description' => totranslate("Play with only two thirds of the deck (133 cards)")),
-            CH_LENGTH_THREE_QUARTERS => array('name' => totranslate("3/4 deck"), 'tm_display' => totranslate("3/4 deck"), 'description' => totranslate("Play with only three quarters of the deck (150 cards)")),
-        ),
-        'default' => CH_LENGTH_ALL
-    ),
-);
+        'values' => [
+            CHOICE_LENGTH_ALL => [
+                'name' => totranslate("Normal"),
+                'description' => totranslate("Play with the full deck")
+            ],
+            CHOICE_LENGTH_QUARTER => [
+                'name' => totranslate("1/4 deck"),
+                'tm_display' => totranslate("1/4 deck"),
+                'description' => totranslate("Play with only one quarter of the"
+                        . " deck (50 cards)")
+            ],
+            CHOICE_LENGTH_THIRD => [
+                'name' => totranslate("1/3 deck"),
+                'tm_display' => totranslate("1/3 deck"),
+                'description' => totranslate("Play with only one third of the "
+                        . "deck (67 cards)")
+            ],
+            CHOICE_LENGTH_HALF => [
+                'name' => totranslate("1/2 deck"),
+                'tm_display' => totranslate("1/2 deck"),
+                'description' => totranslate("Play with only one half of the "
+                        . "deck (100 cards)")
+            ],
+            CHOICE_LENGTH_TWO_THIRDS => [
+                'name' => totranslate("2/3 deck"),
+                'tm_display' => totranslate("2/3 deck"),
+                'description' => totranslate("Play with only two thirds of the "
+                        . "deck (133 cards)")
+            ],
+            CHOICE_LENGTH_THREE_QUARTERS => [
+                'name' => totranslate("3/4 deck"),
+                'tm_display' => totranslate("3/4 deck"),
+                'description' => totranslate("Play with only three quarters of "
+                        . "the deck (150 cards)")
+            ]
+        ]
+    ]
+];
+//$game_options = array(
+//    OPTION_LENGTH => array(
+//            CH_LENGTH_HALF => array(),
+//            CH_LENGTH_TWO_THIRDS => array(),
+//            CH_LENGTH_THREE_QUARTERS => array(),
+//        ),
+//        'default' => CH_LENGTH_ALL
+//    ),
+//);
 
 $game_preferences = array(
     100 => array(
