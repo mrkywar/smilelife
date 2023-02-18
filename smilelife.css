@@ -141,13 +141,12 @@ em {
 /*--------------------------------------------------------------------------
                 BEGIN - cards size M
 --------------------------------------------------------------------------*/
-.card_m .cardontable {
-    width: 100px;
-    height: 150px;
+.cardontable {
+/*    width: 100px;
+    height: 150px;*/
     background-image: url('img/cards-2-num.png');
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     margin-right: 5px;
-    border-radius: 5px;
 
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }

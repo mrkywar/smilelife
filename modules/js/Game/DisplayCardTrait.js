@@ -96,6 +96,12 @@ define([
                 applySize: function (size) {
                     this.debug(size);
                     var computedCSS = `
+                    .cardontable {
+                        width: ` + size.width + `px;
+                        height: ` + size.height + `px;
+                        border-radius: ` + size.radius + `px;
+                        background-image: url('` + g_gamethemeurl + `img/cards-` + size.name + `.png');
+                    }
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
                     ----------------------------------------------------------*/
