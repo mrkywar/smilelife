@@ -139,7 +139,7 @@ abstract class Card extends Model {
                 $this->getClass(),
                 strpos($this->getClass(), $searcheString) + strlen($searcheString) + 1
         );
-        $classes = explode("\\", strtolower($classname));
+        $classes = array_unique(explode("\\", strtolower($classname)));
 
         return "card_".implode(" card_", $classes);
     }
