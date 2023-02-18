@@ -4,9 +4,9 @@ const SPRITE_NB_ROWS = 7;
 //const WIDTH_S = 100;
 //const HEIGHT_S = 150;
 //const RADIUS_S = 5;
-const WIDTH_XXL = 666.67;
-const HEIGHT_XXL = 1000;
-const RADIUS_XXL = 20;
+const WIDTH_XXL = 333,335;
+const HEIGHT_XXL = 500;
+const RADIUS_XXL = 10;
 
 const PREF_CARD_SIZE = 500;
 
@@ -81,7 +81,7 @@ define([
                 },
 
                 computePossibleCardDimensions: function () {
-                    var size_ratios = {"XS": 6.4, "S": 5, "M": 4, "L": 3.2, "XL": 2};
+                    var size_ratios = {"XS": 0.3, "S": 0.35, "M": 0.4, "L": 0.5, "XL": 0.6};
                     var card_dimensions_XXL = {"width": WIDTH_XXL, "height": HEIGHT_XXL, "radius": RADIUS_XXL};
                     card_dimensions = {"XXL": card_dimensions_XXL};
 
@@ -89,9 +89,9 @@ define([
                         // Compute card dimensions for this size
                         var ratio = size_ratios[size];
 
-                        var width = card_dimensions_XXL.width / ratio;
-                        var height = card_dimensions_XXL.height / ratio;
-                        var radius = card_dimensions_XXL.radius / ratio;
+                        var width = card_dimensions_XXL.width * ratio;
+                        var height = card_dimensions_XXL.height * ratio;
+                        var radius = card_dimensions_XXL.radius * ratio;
 
                         card_dimensions[size] = {"width": width, "height": height, "radius": radius, "name": size};
                     }
