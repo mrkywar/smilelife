@@ -13,13 +13,13 @@ define('CHOICE_LENGTH_THIRD', 1006);
 /* -------------------------------------------------------------------------
  *                  BEGIN - GAME PREFERENCE - CARD & TOOLTIPS SIZE
  * ---------------------------------------------------------------------- */
-define('PREF_CARD_SIZE', 110);
-define('PREF_TOOLTIP_SIZE', 111);
-define('PREF_CHOICE_SIZE_XS', 1101);
-define('PREF_CHOICE_SIZE_S', 1102);
-define('PREF_CHOICE_SIZE_M', 1103);
-define('PREF_CHOICE_SIZE_L', 1104);
-define('PREF_CHOICE_SIZE_XL', 1105);
+define('PREF_CARD_SIZE', 500);
+define('PREF_TOOLTIP_SIZE', 501);
+define('PREF_CHOICE_SIZE_XS', 5001);
+define('PREF_CHOICE_SIZE_S', 5002);
+define('PREF_CHOICE_SIZE_M', 5003);
+define('PREF_CHOICE_SIZE_L', 5004);
+define('PREF_CHOICE_SIZE_XL', 5005);
 
 /* -------------------------------------------------------------------------
  *                  BEGIN - DEPRECATED

@@ -66,39 +66,30 @@ $game_options = [
         ]
     ]
 ];
-//$game_options = array(
-//    OPTION_LENGTH => array(
-//            CH_LENGTH_HALF => array(),
-//            CH_LENGTH_TWO_THIRDS => array(),
-//            CH_LENGTH_THREE_QUARTERS => array(),
-//        ),
-//        'default' => CH_LENGTH_ALL
-//    ),
-//);
 
-$game_preferences = array(
-    100 => array(
+$game_preferences = [
+    PREF_CARD_SIZE => [
         'name' => totranslate('Card size'),
         'needReload' => true, // after user changes this preference game interface would auto-reload
-        'values' => array(
-            CH_XS => array('name' => totranslate('XS')),
-            CH_S => array('name' => totranslate('S')),
-            CH_M => array('name' => totranslate('M')),
-            CH_L => array('name' => totranslate('L')),
-            CH_XL => array('name' => totranslate('XL')),
-        ),
-        'default' => CH_S
-    ),
-    101 => array(
+        'values' => [
+            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
+            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
+            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
+            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
+            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
+        ],
+        'default' => PREF_CHOICE_SIZE_S
+    ],
+    PREF_TOOLTIP_SIZE => [
         'name' => totranslate('Card size in tooltip'),
         'needReload' => true, // after user changes this preference game interface would auto-reload
-        'values' => array(
-            CH_XS => array('name' => totranslate('XS')),
-            CH_S => array('name' => totranslate('S')),
-            CH_M => array('name' => totranslate('M')),
-            CH_L => array('name' => totranslate('L')),
-            CH_XL => array('name' => totranslate('XL')),
-        ),
-        'default' => CH_XL
-    )
-);
+        'values' => [
+            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
+            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
+            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
+            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
+            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
+        ],
+        'default' => PREF_CHOICE_SIZE_S
+    ]
+];
