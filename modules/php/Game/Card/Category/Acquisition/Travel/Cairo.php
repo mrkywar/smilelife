@@ -15,7 +15,7 @@ class Cairo extends Travel implements BaseGame {
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Cairo'));
+        $this->setSubtitle(clienttranslate('Cairo'));
         
         
     }

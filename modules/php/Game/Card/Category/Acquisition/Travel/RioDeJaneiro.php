@@ -15,7 +15,7 @@ class RioDeJaneiro extends Travel implements BaseGame {
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Rio de Janeiro'));
+        $this->setSubtitle(clienttranslate('Rio de Janeiro'));
     }
 
     /* -------------------------------------------------------------------------

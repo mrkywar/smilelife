@@ -176,7 +176,7 @@ define([
                     .card_house .card_title{
                         font-size: ` + (24 * size.ratio) + `px;
                         margin-top: ` + (40 * size.ratio) + `px;
-                        padding-right: ` + (30 * size.ratio) + `px;
+                        padding-right: ` + (20 * size.ratio) + `px;
                     }
                     .card_house .card_text1{
                         margin: ` + (40 * size.ratio) + `px;
@@ -188,7 +188,74 @@ define([
                         margin-top: ` + (54 * size.ratio) + `px;
                         font-size: ` + (18 * size.ratio) + `px;
                     }
-
+                    /*------              TRAVEL                           ----*/
+                    .card_travel .card_title{
+                        margin-top: ` + (20 * size.ratio) + `px;
+                        font-size: ` + (24 * size.ratio) + `px;
+                    }
+                    .card_travel .card_text1{
+                        margin-top: ` + (340 * size.ratio) + `px;
+                        margin-left: ` + (90 * size.ratio) + `px;
+                        width: ` + (80 * size.ratio) + `px;
+                    }
+                    .card_travel .card_subtitle{
+                        margin-top: ` + (140 * size.ratio) + `px;
+                        width: ` + (320 * size.ratio) + `px;
+                        height: ` + (50 * size.ratio) + `px;
+                        right: -` + (156 * size.ratio) + `px;
+                        font-size: ` + (40 * size.ratio) + `px;
+                        
+                    }
+                    .card_riodejaneiro .card_subtitle{
+                        text-shadow: ` + (2 * size.ratio) + `px 0 0 #9fbf39,
+                                     ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #9fbf39,
+                                     0 ` + (2 * size.ratio) + `px 0 #9fbf39, 
+                                    -` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #9fbf39,
+                                    -` + (2 * size.ratio) + `px 0 0 #9fbf39,
+                                    -` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #9fbf39,
+                                    0 -` + (2 * size.ratio) + `px 0 #9fbf39, 
+                                    ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #9fbf39;
+                    }
+                    .card_london .card_subtitle{
+                        text-shadow: ` + (2 * size.ratio) + `px 0 0 #8b8d8d,
+                                     ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #8b8d8d,
+                                     0 ` + (2 * size.ratio) + `px 0 #8b8d8d, 
+                                    -` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #8b8d8d,
+                                    -` + (2 * size.ratio) + `px 0 0 #8b8d8d,
+                                    -` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #8b8d8d,
+                                    0 -` + (2 * size.ratio) + `px 0 #8b8d8d, 
+                                    ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #8b8d8d;
+                    }
+                    .card_sydney .card_subtitle{
+                        text-shadow: ` + (2 * size.ratio) + `px 0 0 #d6833a,
+                                     ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #d6833a,
+                                     0 ` + (2 * size.ratio) + `px 0 #d6833a, 
+                                    -` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #d6833a,
+                                    -` + (2 * size.ratio) + `px 0 0 #9fbf39,
+                                    -` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #d6833a,
+                                    0 -` + (2 * size.ratio) + `px 0 #d6833a, 
+                                    ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #d6833a;
+                    }
+                    .card_newyork .card_subtitle{
+                        text-shadow: ` + (2 * size.ratio) + `px 0 0 #323755,
+                                     ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #323755,
+                                     0 ` + (2 * size.ratio) + `px 0 #323755, 
+                                    -` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #323755,
+                                    -` + (2 * size.ratio) + `px 0 0 #323755,
+                                    -` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #323755,
+                                    0 -` + (2 * size.ratio) + `px 0 #323755, 
+                                    ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #323755;
+                    }
+                    .card_cairo .card_subtitle{
+                        text-shadow: ` + (2 * size.ratio) + `px 0 0 #f9e000,
+                                     ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #f9e000,
+                                     0 ` + (2 * size.ratio) + `px 0 #f9e000, 
+                                    -` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #f9e000,
+                                    -` + (2 * size.ratio) + `px 0 0 #f9e000,
+                                    -` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #f9e000,
+                                    0 -` + (2 * size.ratio) + `px 0 #f9e000, 
+                                    ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #f9e000;
+                    }
                     `;
 
                     this.insertCSS(computedCSS);

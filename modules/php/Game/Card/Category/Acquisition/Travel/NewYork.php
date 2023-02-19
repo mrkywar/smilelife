@@ -15,7 +15,7 @@ class NewYork extends Travel implements BaseGame {
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('New York'));
+        $this->setSubtitle(clienttranslate('New York'));
     }
 
     /* -------------------------------------------------------------------------

@@ -49,6 +49,7 @@ em {
                 BEGIN - CARD Standard
 --------------------------------------------------------------------------*/
 .cardontable {
+    position: relative;
     display: block;
     float: left;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
@@ -62,7 +63,8 @@ em {
 .card_wage .card_text1,
 .card_flirt .card_text1, .card_flirt .card_text2,
 .card_house .card_text1, .card_house .card_text2,
-.card_child .card_text1{
+.card_child .card_text1,
+.card_travel .card_text1{
     font-weight: bold;
 }
 .card_studies .card_title, .card_studies .card_text2,
@@ -93,8 +95,30 @@ em {
     color:#ca4e23;
     text-align: right;
 }
-.card_text{
-    display: block;
+.card_travel .card_subtitle{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    position: absolute;
+    text-transform: uppercase;
+    white-space : nowrap;
+}
+.card_riodejaneiro .card_subtitle{
+    color: #fcea1e;
+}
+.card_london .card_subtitle{
+    color: #a32026;
+}
+.card_sydney .card_subtitle{
+    color: #fce53c;
+}
+.card_newyork .card_subtitle{
+    color: #f5e933;
+}
+.card_cairo .card_subtitle{
+    color: #e4a600;
 }
 /*--------------------------------------------------------------------------
                 BEGIN - CARD size M text
@@ -171,4 +195,7 @@ em {
     background: greenyellow;
     border: 3px black solid;
     margin: 5px 0;
+    z-index: 99;
+    width: 100%;
+    position: absolute;
 }
