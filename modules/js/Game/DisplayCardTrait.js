@@ -108,25 +108,9 @@ define([
                 applySize: function (size) {
                     this.debug(size);
                     var computedCSS = `
-                    
-                    .card_text{
-                        font-size: ` + (20 * size.ratio) + `px;
-                        padding: ` + (4 * size.ratio) + `px 0;
-                        margin: 0px ` + (32 * size.ratio) + `px;
-                        
-                    }
-                    
-                    .card_wage .card_text{
-                        height: ` + (20 * size.ratio) + `px;
-                    }
-                    .card_wage .card_title{
-                        margin-top: ` + (66 * size.ratio) + `px;
-                    }
-                    .card_wage .card_text1{
-                        margin-top: ` + (296 * size.ratio) + `px;
-                    }
-                    
                     .cardontable {
+                        margin-bottom: ` + (10 * size.ratio) + `px;
+                        margin-right: ` + (10 * size.ratio) + `px;
                         width: ` + size.width + `px;
                         height: ` + size.height + `px;
                         border-radius: ` + size.radius + `px;
@@ -160,6 +144,52 @@ define([
                         }
 
                     }
+
+                    //-- just Cards CSS adjustements and add style to DOM :)
+                    computedCSS += `
+                    .card_text{
+                        font-size: ` + (20 * size.ratio) + `px;
+                        padding: ` + (4 * size.ratio) + `px 0;
+                        margin: 0px ` + (32 * size.ratio) + `px;
+                        
+                    }
+                    /*------              WAGE                            ----*/
+                    .card_wage .card_text1, .card_wage .card_title{
+                        height: ` + (20 * size.ratio) + `px;
+                    }
+                    .card_wage .card_title{
+                        margin-top: ` + (66 * size.ratio) + `px;
+                    }
+                    .card_wage .card_text1{
+                        margin-top: ` + (316 * size.ratio) + `px;
+                    }
+                    /*------              FLIRT                           ----*/
+                    .card_flirt .card_title{
+                        margin-top: ` + (64 * size.ratio) + `px;
+                    }
+                    .card_flirt .card_text1{
+                        margin-top: ` + (300 * size.ratio) + `px;
+                        font-size: ` + (30 * size.ratio) + `px;
+                        padding-bottom:0;
+                    }
+                    /*------              HOUSE                           ----*/
+                    .card_house .card_title{
+                        font-size: ` + (24 * size.ratio) + `px;
+                        margin-top: ` + (40 * size.ratio) + `px;
+                        padding-right: ` + (30 * size.ratio) + `px;
+                    }
+                    .card_house .card_text1{
+                        margin: ` + (40 * size.ratio) + `px;
+                        margin-top: ` + (280 * size.ratio) + `px;
+                        margin-bottom: 0;
+                        height: ` + (20 * size.ratio) + `px;
+                    }
+                    .card_house .card_text2{
+                        margin-top: ` + (54 * size.ratio) + `px;
+                        font-size: ` + (18 * size.ratio) + `px;
+                    }
+
+                    `;
 
                     this.insertCSS(computedCSS);
 

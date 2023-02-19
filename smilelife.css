@@ -51,6 +51,7 @@ em {
 .cardontable {
     display: block;
     float: left;
+    box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
 
 .cardontable .card_text{
@@ -59,7 +60,8 @@ em {
 }
 .card_title,
 .card_wage .card_text1,
-.card_flirt .card_text1,
+.card_flirt .card_text1, .card_flirt .card_text2,
+.card_house .card_text1, .card_house .card_text2,
 .card_child .card_text1{
     font-weight: bold;
 }
@@ -83,8 +85,13 @@ em {
     color: #e89d9f;
 }
 .card_wedding .card_title,
-.card_child .card_title{
+.card_child .card_title,
+.card_house .card_text2{
     color:#bb5ea9;
+}
+.card_house .card_title{
+    color:#ca4e23;
+    text-align: right;
 }
 .card_text{
     display: block;
@@ -152,7 +159,7 @@ em {
     margin-bottom: 5px;
     margin-right: 5px;
 
-    box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
+    
 }
 
 /*-----------------------------------------------------------------------------
