@@ -163,6 +163,22 @@ define([
                     .card_wage .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
                     }
+                    /*------              STUDIES                         ----*/
+                    .card_studies .card_text1, .card_studies .card_title{
+                        height: ` + (20 * size.ratio) + `px;
+                    }
+                    .card_studies .card_title{
+                        margin-top: ` + (66 * size.ratio) + `px;
+                    }
+                    .card_studies .card_text1{
+                        height: ` + (34 * size.ratio) + `px;
+                        margin-left: ` + (40 * size.ratio) + `px;
+                        margin-top: ` + (258 * size.ratio) + `px;
+                        width: ` + (250 * size.ratio) + `px;
+                    }
+                    .card_studies .card_text2{
+                        margin-top: ` + (18 * size.ratio) + `px;
+                    }
                     /*------              FLIRT                           ----*/
                     .card_flirt .card_title{
                         margin-top: ` + (64 * size.ratio) + `px;
@@ -172,6 +188,23 @@ define([
                         font-size: ` + (30 * size.ratio) + `px;
                         padding-bottom:0;
                     }
+                    /*------              SPECIAL                         ----*/
+                    .card_special .card_title{
+                        margin-top: ` + (40 * size.ratio) + `px;
+                    }
+                    .card_special .card_text1{
+                        margin: ` + (40 * size.ratio) + `px;
+                        margin-top: ` + (320 * size.ratio) + `px;
+                        margin-bottom: 0;
+                    }
+                    .card_specialcasino .card_text1{
+                        margin-top: ` + (300 * size.ratio) + `px;
+                        font-size: ` + (16 * size.ratio) + `px;
+                    }
+                    .card_specialinheritance .card_text1{
+                        font-size: ` + (16 * size.ratio) + `px;
+                    }
+                    
                     /*------              HOUSE                           ----*/
                     .card_house .card_title{
                         font-size: ` + (24 * size.ratio) + `px;

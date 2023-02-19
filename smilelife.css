@@ -63,8 +63,11 @@ em {
 .card_wage .card_text1,
 .card_flirt .card_text1, .card_flirt .card_text2,
 .card_house .card_text1, .card_house .card_text2,
+.card_studies .card_text2,
 .card_child .card_text1,
-.card_travel .card_text1{
+.card_travel .card_text1,
+.card_special .card_text1
+{
     font-weight: bold;
 }
 .card_studies .card_title, .card_studies .card_text2,
@@ -75,7 +78,8 @@ em {
     color: white;
     text-transform: uppercase;
 }
-.card_adultery .card_text{
+.card_adultery .card_text,
+.card_special .card_text1, .card_special .card_title{
     color: white;
 }
 .card_flirt .card_title{
@@ -198,4 +202,5 @@ em {
     z-index: 99;
     width: 100%;
     position: absolute;
+    top: -15px;
 }

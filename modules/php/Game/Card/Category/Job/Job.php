@@ -12,7 +12,7 @@ use SmileLife\Game\Card\Core\Exception\CardException;
  */
 abstract class Job extends Card {
 
-    private const SMILE_POINTS = 1;
+    private const SMILE_POINTS = 2;
 
     public function __construct() {
         parent::__construct();
