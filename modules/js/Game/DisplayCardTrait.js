@@ -204,7 +204,35 @@ define([
                     .card_specialinheritance .card_text1{
                         font-size: ` + (16 * size.ratio) + `px;
                     }
-                    
+                    /*------              JOB                             ----*/
+                    .card_job .card_title{
+                        margin-top: ` + (26 * size.ratio) + `px;
+                        padding:0;
+                    }
+                    .card_job .card_subtitle{
+                        font-size: ` + (16 * size.ratio) + `px;
+                        margin-top: 0 ` + (60 * size.ratio) + `px;
+                        padding-top:` + (6 * size.ratio) + `px;
+                    }
+                    .card_job .card_text1{
+                        margin-top: ` + (340 * size.ratio) + `px;
+                    }
+                    /*------              ATTACK                          ----*/
+                    .card_attack .card_title{
+                        margin-top: ` + (32 * size.ratio) + `px;
+                    }
+                    .card_attack .card_text1{
+                        margin-top: ` + (320 * size.ratio) + `px;
+                        height: ` + (64 * size.ratio) + `px;
+                    }
+                    /*------              CHILD                           ----*/
+                    .card_child .card_title{
+                        margin-top: ` + (68 * size.ratio) + `px;
+                    }
+                    .card_child .card_text1{
+                        margin-top: ` + (300 * size.ratio) + `px;
+                        font-size: ` + (36 * size.ratio) + `px;
+                    }
                     /*------              HOUSE                           ----*/
                     .card_house .card_title{
                         font-size: ` + (24 * size.ratio) + `px;

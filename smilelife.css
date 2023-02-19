@@ -66,32 +66,38 @@ em {
 .card_studies .card_text2,
 .card_child .card_text1,
 .card_travel .card_text1,
+.card_job .card_subtitle,.card_job .card_text2,
 .card_special .card_text1
 {
     font-weight: bold;
 }
 .card_studies .card_title, .card_studies .card_text2,
 .card_wage .card_title, .card_wage .card_text1,
-.card_child .card_text1,
+.card_job .card_subtitle,
 .card_attack .card_title, .card_attack .card_text1
 {
     color: white;
     text-transform: uppercase;
 }
 .card_adultery .card_text,
-.card_special .card_text1, .card_special .card_title{
+.card_special .card_text1, .card_special .card_title,
+.card_child .card_text1{
     color: white;
 }
+.card_wedding .card_title,
+.card_child .card_title,
 .card_flirt .card_title{
     color: #c0171c;
+}
+.card_flirt .card_title{
     text-transform: uppercase;
 }
+
 .card_flirt .card_text1,
 .card_flirt .card_text2{
     color: #e89d9f;
 }
-.card_wedding .card_title,
-.card_child .card_title,
+
 .card_house .card_text2{
     color:#bb5ea9;
 }
@@ -202,5 +208,5 @@ em {
     z-index: 99;
     width: 100%;
     position: absolute;
-    top: -15px;
+    bottom: -24px;
 }
