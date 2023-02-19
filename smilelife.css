@@ -58,6 +58,7 @@ em {
     text-align: center;
 }
 .card_title,
+.card_wage .card_text1,
 .card_flirt .card_text1,
 .card_child .card_text1{
     font-weight: bold;
@@ -85,10 +86,13 @@ em {
 .card_child .card_title{
     color:#bb5ea9;
 }
-
+.card_text{
+    display: block;
+}
 /*--------------------------------------------------------------------------
                 BEGIN - CARD size M text
---------------------------------------------------------------------------*/
+--------------------------------------------------------------------------/
+
 .card_m .card_text{
     font-size: 8px;
 }
@@ -140,10 +144,10 @@ em {
 
 /*--------------------------------------------------------------------------
                 BEGIN - cards size M
---------------------------------------------------------------------------*/
+--------------------------------------------------------------------------/
 .cardontable {
 /*    width: 100px;
-    height: 150px;*/
+    height: 150px;/
     background-image: url('img/cards-2-num.png');
     margin-bottom: 5px;
     margin-right: 5px;

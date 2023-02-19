@@ -4,7 +4,7 @@ const SPRITE_NB_ROWS = 7;
 //const WIDTH_S = 100;
 //const HEIGHT_S = 150;
 //const RADIUS_S = 5;
-const WIDTH_XXL = 333,335;
+const WIDTH_XXL = 333.335;
 const HEIGHT_XXL = 500;
 const RADIUS_XXL = 10;
 
@@ -36,9 +36,16 @@ define([
                         "S": PREF_CHOICE_SIZE_S,
                         "M": PREF_CHOICE_SIZE_M,
                         "L": PREF_CHOICE_SIZE_L,
-                        "XL": PREF_CHOICE_SIZE_XL
+                        //"XL": PREF_CHOICE_SIZE_XL
                     };
                     this.cardDimension = this.computePossibleCardDimensions();
+
+                    //this.dontPreloadImage(g_gamethemeurl + 'img/cards-XL.png');
+                    this.dontPreloadImage(g_gamethemeurl + 'img/cards-L.png');
+                    this.dontPreloadImage(g_gamethemeurl + 'img/cards-M.png');
+                    this.dontPreloadImage(g_gamethemeurl + 'img/cards-S.png');
+                    this.dontPreloadImage(g_gamethemeurl + 'img/cards-XS.png');
+
                 },
                 displayCards: function (gamedatas) {
 
@@ -93,7 +100,7 @@ define([
                         var height = card_dimensions_XXL.height * ratio;
                         var radius = card_dimensions_XXL.radius * ratio;
 
-                        card_dimensions[size] = {"width": width, "height": height, "radius": radius, "name": size};
+                        card_dimensions[size] = {"width": width, "height": height, "radius": radius, "name": size, "ratio": ratio};
                     }
                     return card_dimensions;
                 },
@@ -101,6 +108,24 @@ define([
                 applySize: function (size) {
                     this.debug(size);
                     var computedCSS = `
+                    
+                    .card_text{
+                        font-size: ` + (20 * size.ratio) + `px;
+                        padding: ` + (4 * size.ratio) + `px 0;
+                        margin: 0px ` + (32 * size.ratio) + `px;
+                        
+                    }
+                    
+                    .card_wage .card_text{
+                        height: ` + (20 * size.ratio) + `px;
+                    }
+                    .card_wage .card_title{
+                        margin-top: ` + (66 * size.ratio) + `px;
+                    }
+                    .card_wage .card_text1{
+                        margin-top: ` + (296 * size.ratio) + `px;
+                    }
+                    
                     .cardontable {
                         width: ` + size.width + `px;
                         height: ` + size.height + `px;
