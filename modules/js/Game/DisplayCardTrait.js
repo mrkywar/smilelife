@@ -168,7 +168,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_studies .card_title{
-                        margin-top: ` + (30 * size.ratio) + `px;
+                        margin-top: ` + (60 * size.ratio) + `px;
                     }
                     .card_studies .card_text1{
                         height: ` + (34 * size.ratio) + `px;
@@ -204,6 +204,24 @@ define([
                     .card_specialinheritance .card_text1{
                         font-size: ` + (16 * size.ratio) + `px;
                     }
+                    /*------              PET                             ----*/
+                    .card_pet .card_title{
+                        margin-top: ` + (32 * size.ratio) + `px;
+                    }
+                    .card_pet .card_text1{
+                        margin-top: ` + (350 * size.ratio) + `px;
+                    }
+                    /*------              MARRIAGE                        ----*/
+                    .card_wedding .card_title{
+                        margin-top: ` + (60 * size.ratio) + `px;
+                    }
+                    .card_wedding .card_text1{
+                        margin-top: ` + (57 * size.ratio) + `px;
+                        width: ` + (60 * size.ratio) + `px;
+                        font-size: ` + (12 * size.ratio) + `px;
+                        display: none; //TODO see if we I18N cityname
+                    }
+                    
                     /*------              JOB                             ----*/
                     .card_job .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
