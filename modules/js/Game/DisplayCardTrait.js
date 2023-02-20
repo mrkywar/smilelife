@@ -168,7 +168,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_studies .card_title{
-                        margin-top: ` + (66 * size.ratio) + `px;
+                        margin-top: ` + (56 * size.ratio) + `px;
                     }
                     .card_studies .card_text1{
                         height: ` + (34 * size.ratio) + `px;
