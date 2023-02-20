@@ -158,7 +158,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_wage .card_title{
-                        margin-top: ` + (66 * size.ratio) + `px;
+                        margin-top: ` + (60 * size.ratio) + `px;
                     }
                     .card_wage .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
@@ -168,7 +168,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_studies .card_title{
-                        margin-top: ` + (56 * size.ratio) + `px;
+                        margin-top: ` + (30 * size.ratio) + `px;
                     }
                     .card_studies .card_text1{
                         height: ` + (34 * size.ratio) + `px;
@@ -190,7 +190,7 @@ define([
                     }
                     /*------              SPECIAL                         ----*/
                     .card_special .card_title{
-                        margin-top: ` + (40 * size.ratio) + `px;
+                        margin-top: ` + (54 * size.ratio) + `px;
                     }
                     .card_special .card_text1{
                         margin: ` + (40 * size.ratio) + `px;
@@ -206,7 +206,7 @@ define([
                     }
                     /*------              JOB                             ----*/
                     .card_job .card_title{
-                        margin-top: ` + (26 * size.ratio) + `px;
+                        margin-top: ` + (32 * size.ratio) + `px;
                         padding:0;
                     }
                     .card_job .card_subtitle{
@@ -219,7 +219,7 @@ define([
                     }
                     /*------              ATTACK                          ----*/
                     .card_attack .card_title{
-                        margin-top: ` + (32 * size.ratio) + `px;
+                        margin-top: ` + (50 * size.ratio) + `px;
                     }
                     .card_attack .card_text1{
                         margin-top: ` + (320 * size.ratio) + `px;
