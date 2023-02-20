@@ -25,44 +25,71 @@
  */
 require_once 'modules/constants.inc.php';
 
-$game_options = array(
-    OP_LENGTH => array(
+$game_options = [
+    OPTION_LENGTH => [
         'name' => totranslate("Game length"),
-        'values' => array(
-            CH_LENGTH_ALL => array('name' => totranslate("Normal"), 'description' => totranslate("Play with the full deck")),
-            CH_LENGTH_QUARTER => array('name' => totranslate("1/4 deck"), 'tm_display' => totranslate("1/4 deck"), 'description' => totranslate("Play with only one quarter of the deck (50 cards)")),
-            CH_LENGTH_THIRD => array('name' => totranslate("1/3 deck"), 'tm_display' => totranslate("1/3 deck"), 'description' => totranslate("Play with only one third of the deck (67 cards)")),
-            CH_LENGTH_HALF => array('name' => totranslate("1/2 deck"), 'tm_display' => totranslate("1/2 deck"), 'description' => totranslate("Play with only one half of the deck (100 cards)")),
-            CH_LENGTH_TWO_THIRDS => array('name' => totranslate("2/3 deck"), 'tm_display' => totranslate("2/3 deck"), 'description' => totranslate("Play with only two thirds of the deck (133 cards)")),
-            CH_LENGTH_THREE_QUARTERS => array('name' => totranslate("3/4 deck"), 'tm_display' => totranslate("3/4 deck"), 'description' => totranslate("Play with only three quarters of the deck (150 cards)")),
-        ),
-        'default' => CH_LENGTH_ALL
-    ),
-);
+        'values' => [
+            CHOICE_LENGTH_ALL => [
+                'name' => totranslate("Normal"),
+                'description' => totranslate("Play with the full deck")
+            ],
+            CHOICE_LENGTH_QUARTER => [
+                'name' => totranslate("1/4 deck"),
+                'tm_display' => totranslate("1/4 deck"),
+                'description' => totranslate("Play with only one quarter of the"
+                        . " deck (50 cards)")
+            ],
+            CHOICE_LENGTH_THIRD => [
+                'name' => totranslate("1/3 deck"),
+                'tm_display' => totranslate("1/3 deck"),
+                'description' => totranslate("Play with only one third of the "
+                        . "deck (67 cards)")
+            ],
+            CHOICE_LENGTH_HALF => [
+                'name' => totranslate("1/2 deck"),
+                'tm_display' => totranslate("1/2 deck"),
+                'description' => totranslate("Play with only one half of the "
+                        . "deck (100 cards)")
+            ],
+            CHOICE_LENGTH_TWO_THIRDS => [
+                'name' => totranslate("2/3 deck"),
+                'tm_display' => totranslate("2/3 deck"),
+                'description' => totranslate("Play with only two thirds of the "
+                        . "deck (133 cards)")
+            ],
+            CHOICE_LENGTH_THREE_QUARTERS => [
+                'name' => totranslate("3/4 deck"),
+                'tm_display' => totranslate("3/4 deck"),
+                'description' => totranslate("Play with only three quarters of "
+                        . "the deck (150 cards)")
+            ]
+        ]
+    ]
+];
 
-$game_preferences = array(
-    100 => array(
+$game_preferences = [
+    PREF_CARD_SIZE => [
         'name' => totranslate('Card size'),
         'needReload' => true, // after user changes this preference game interface would auto-reload
-        'values' => array(
-            CH_XS => array('name' => totranslate('XS')),
-            CH_S => array('name' => totranslate('S')),
-            CH_M => array('name' => totranslate('M')),
-            CH_L => array('name' => totranslate('L')),
-            CH_XL => array('name' => totranslate('XL')),
-        ),
-        'default' => CH_S
-    ),
-    101 => array(
+        'values' => [
+            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
+            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
+            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
+            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
+//            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
+        ],
+        'default' => PREF_CHOICE_SIZE_S
+    ],
+    PREF_TOOLTIP_SIZE => [
         'name' => totranslate('Card size in tooltip'),
         'needReload' => true, // after user changes this preference game interface would auto-reload
-        'values' => array(
-            CH_XS => array('name' => totranslate('XS')),
-            CH_S => array('name' => totranslate('S')),
-            CH_M => array('name' => totranslate('M')),
-            CH_L => array('name' => totranslate('L')),
-            CH_XL => array('name' => totranslate('XL')),
-        ),
-        'default' => CH_XL
-    )
-);
+        'values' => [
+            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
+            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
+            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
+            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
+            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
+        ],
+        'default' => PREF_CHOICE_SIZE_S
+    ]
+];

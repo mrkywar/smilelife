@@ -13,13 +13,13 @@ define('CHOICE_LENGTH_THIRD', 1006);
 /* -------------------------------------------------------------------------
  *                  BEGIN - GAME PREFERENCE - CARD & TOOLTIPS SIZE
  * ---------------------------------------------------------------------- */
-define('PREF_CARD_SIZE', 110);
-define('PREF_TOOLTIP_SIZE', 111);
-define('PREF_CHOICE_SIZE_XS', 1101);
-define('PREF_CHOICE_SIZE_S', 1102);
-define('PREF_CHOICE_SIZE_M', 1103);
-define('PREF_CHOICE_SIZE_L', 1104);
-define('PREF_CHOICE_SIZE_XL', 1105);
+define('PREF_CARD_SIZE', 500);
+define('PREF_TOOLTIP_SIZE', 501);
+define('PREF_CHOICE_SIZE_XS', 5001);
+define('PREF_CHOICE_SIZE_S', 5002);
+define('PREF_CHOICE_SIZE_M', 5003);
+define('PREF_CHOICE_SIZE_L', 5004);
+define('PREF_CHOICE_SIZE_XL', 5005);
 
 /* -------------------------------------------------------------------------
  *                  BEGIN - DEPRECATED
@@ -34,29 +34,9 @@ define('EXPANSION_GIRL_POWER', 2);
 /*
  * Game options (gameoptions.inc.php)
  */
-define('OP_LENGTH', 100);
-define('CH_LENGTH_ALL', 1);
-define('CH_LENGTH_QUARTER', 2);
-define('CH_LENGTH_THIRD', 3);
-define('CH_LENGTH_HALF', 4);
-define('CH_LENGTH_TWO_THIRDS', 5);
-define('CH_LENGTH_THREE_QUARTERS', 6);
 
 define('OP_MODULES', 101);
 define('CH_MODULES_BASE_GAME', 1);
-
-/*
- * Game preferences (gamepreferences.inc.php)
- */
-define('PR_CARD_SIZE', 100);
-define('PR_TOOLTIP_CARD_SIZE', 101);
-
-define('CH_XS', 1);
-define('CH_S', 2);
-define('CH_M', 3);
-define('CH_L', 4);
-define('CH_XL', 5);
-
 /*
  * Game states (states.inc.php)
  */

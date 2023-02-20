@@ -20,6 +20,17 @@ define(['dojo', 'dojo/_base/declare', 'ebg/core/gamegui'], (dojo, declare) => {
                 console.log.apply(null, arguments);
             }
         },
+
+        /* -------------------------------------------------------------
+         *                  BEGIN - Users TOOL
+         * ---------------------------------------------------------- */
+        getUserPreference: function (user_pref) {
+            if (this.prefs[user_pref]) {
+                return this.prefs[user_pref].value;
+            } else {
+                return null;
+            }
+        },
         /* -------------------------------------------------------------
          *                  BEGIN - CSS Manipulate
          * ---------------------------------------------------------- */

@@ -26,7 +26,7 @@ class BigHouse extends House implements BaseGame {
     }
 
     public function getSmilePoints(): int {
-        return 1;
+        return 3;
     }
 
     /* -------------------------------------------------------------------------
