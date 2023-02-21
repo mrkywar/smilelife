@@ -4,6 +4,7 @@ namespace SmileLife\Game\PlayerAttributes;
 
 use Core\Models\Core\Model;
 use Core\Models\Player;
+use SmileLife;
 
 /**
  * Description of PlayerAttributes
@@ -38,6 +39,20 @@ class PlayerAttributes extends Model {
     }
 
     /* -------------------------------------------------------------------------
+     *                  BEGIN - Shortcut
+     * ---------------------------------------------------------------------- */
+
+    public function setPlayer(Player $player) {
+        return $this->setPlayerId($player->getId());
+    }
+
+    public function getPlayer(): Player {
+        return SmileLife::getInstance()
+                        ->getPlayerManager()
+                        ->findBy(["id" => $this->getPlayerId()]);
+    }
+
+    /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
 
@@ -57,20 +72,6 @@ class PlayerAttributes extends Model {
     public function setMaxCards(int $maxCards) {
         $this->maxCards = $maxCards;
         return $this;
-    }
-
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Shortcut
-     * ---------------------------------------------------------------------- */
-
-    public function setPlayer(Player $player) {
-        return $this->setPlayerId($player->getId());
-    }
-
-    public function getPlayer(): Player {
-        return Desperados::getInstance()
-                        ->getPlayerManager()
-                        ->findBy(["id" => $this->getPlayerId()]);
     }
 
     /* -------------------------------------------------------------------------
