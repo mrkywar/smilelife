@@ -204,6 +204,9 @@ define([
                     .card_specialinheritance .card_text1{
                         font-size: ` + (16 * size.ratio) + `px;
                     }
+                    .card_specialjobboost .card_text1{
+                        margin-top: ` + (308 * size.ratio) + `px;
+                    }
                     /*------              PET                             ----*/
                     .card_pet .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
@@ -234,8 +237,13 @@ define([
                     .card_job .card_text1{
                         margin-top: ` + (360 * size.ratio) + `px;
                     }
+                    .card_interim .card_text1,
+                    .card_teacher .card_text1
+                    {
+                        margin-top: ` + (340 * size.ratio) + `px;
+                    }
                     .card_powered .card_text1{
-                        margin: 0 `+ (64 * size.ratio) +`px;
+                        margin: 0 ` + (64 * size.ratio) + `px;
                         margin-top: ` + (348 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                     }
@@ -247,7 +255,7 @@ define([
                         margin-top: ` + (78 * size.ratio) + `px;
                     }
                     .card_nationalmedal .card_text1{
-                        margin: 0 `+ (24 * size.ratio) +`px;
+                        margin: 0 ` + (24 * size.ratio) + `px;
                         margin-top: ` + (20 * size.ratio) + `px;
                         width: ` + (104 * size.ratio) + `px;
                         float: right;
@@ -261,12 +269,17 @@ define([
                         margin-top: ` + (50 * size.ratio) + `px;
                     }
                     .card_attack .card_text1{
-                        margin-top: ` + (330 * size.ratio) + `px;
+                        margin: 0 ` + (40 * size.ratio) + `px;
+                        margin-top: ` + (324 * size.ratio) + `px;
                         height: ` + (64 * size.ratio) + `px;
+                    }
+                    .card_jail .card_text1,
+                    .card_incometax .card_text1{
+                        font-size: ` + (18 * size.ratio) + `px;
                     }
                     /*------              CHILD                           ----*/
                     .card_child .card_title{
-                        margin-top: ` + (68 * size.ratio) + `px;
+                        margin-top: ` + (62 * size.ratio) + `px;
                     }
                     .card_child .card_text1{
                         margin-top: ` + (300 * size.ratio) + `px;
@@ -303,7 +316,7 @@ define([
                         font-size: ` + (24 * size.ratio) + `px;
                     }
                     .card_travel .card_text1{
-                        margin-top: ` + (340 * size.ratio) + `px;
+                        margin-top: ` + (350 * size.ratio) + `px;
                         margin-left: ` + (90 * size.ratio) + `px;
                         width: ` + (80 * size.ratio) + `px;
                     }
