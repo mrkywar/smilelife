@@ -198,7 +198,7 @@ define([
                         margin-bottom: 0;
                     }
                     .card_specialcasino .card_text1{
-                        margin-top: ` + (300 * size.ratio) + `px;
+                        margin-top: ` + (308 * size.ratio) + `px;
                         font-size: ` + (16 * size.ratio) + `px;
                     }
                     .card_specialinheritance .card_text1{
