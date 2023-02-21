@@ -5,11 +5,12 @@ namespace SmileLife\Game\Card\Core;
 use Core\DB\Fields\DBFieldsRetriver;
 use Core\DB\QueryString;
 use Core\Managers\Core\SuperManager;
+use Core\Managers\PlayerManager;
 use Core\Models\Player;
 use Core\Serializers\Serializer;
-use SmileLife;
 use SmileLife\Game\Card\Core\Exception\CardException;
 use SmileLife\Game\Card\Module\BaseGameCardRetriver;
+use SmileLife\Game\Game\GameManager;
 use const BASE_GAME;
 use const CHOICE_LENGTH_ALL;
 use const CHOICE_LENGTH_HALF;
@@ -28,9 +29,20 @@ class CardManager extends SuperManager {
 
     private const AVIABLE_MODULE = [BASE_GAME];
 
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
+    /**
+     * 
+     * @var PlayerManager
+     */
+    private $playerManager;
+
     public function __construct() {
         //parent::__construct();
-
         $this->setUseSerializerClass(true);
         CardLoader::load();
     }
@@ -40,6 +52,9 @@ class CardManager extends SuperManager {
      * ---------------------------------------------------------------------- */
 
     public function initNewGame(array $options) {
+        $this->cardManager = new CardManager();
+        $this->playerManager = new PlayerManager();
+        
         $cards = BaseGameCardRetriver::retrive();
         $maxCards = $this->getCardToKeepCount($cards, $options);
 
@@ -47,7 +62,7 @@ class CardManager extends SuperManager {
         shuffle($aviablePositions);
         shuffle($cards); //double shuffle
 
-        $gameManager = SmileLife::getInstance()->getGameManager();
+        $gameManager = new GameManager();
         $game = $gameManager->findBy();
         $game->setAviableCards($maxCards);
         $gameManager->update($game);
@@ -87,12 +102,11 @@ class CardManager extends SuperManager {
     }
 
     private function distributeInitialsCards() {
-        $cardManager = SmileLife::getInstance()->getCardManager();
-        $players = SmileLife::getInstance()->getPlayerManager()->findBy();
+        $players = $this->playerManager->findBy();
 
         foreach ($players as $player) {
-            $rawcards = SmileLife::getInstance()->getCardManager()->drawCard(5);
-            $cards = $cardManager->getSerializer()->unserialize($rawcards);
+            $rawcards = $this->cardManager->drawCard(5);
+            $cards = $this->cardManager->getSerializer()->unserialize($rawcards);
 
             $cardsIds = [];
             foreach ($cards as $card) {

@@ -323,4 +323,8 @@ class SmileLife extends Table {
 //
     }
 
+    public static function getInstance(): SmileLife {
+        return self::$instance;
+    }
+
 }
