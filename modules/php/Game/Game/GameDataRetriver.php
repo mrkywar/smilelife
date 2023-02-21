@@ -3,7 +3,6 @@
 namespace SmileLife\Game\Game;
 
 use Core\Managers\PlayerManager;
-use SmileLife;
 use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\Card\Core\CardManager;
 
@@ -32,10 +31,9 @@ class GameDataRetriver {
      */
     private $cardDecorator;
 
-    public function __construct(SmileLife $game) {
-//        $this->game = $game;
-        $this->playerManager = $game->getPlayerManager();
-        $this->cardManager = $game->getCardManager();
+    public function __construct() {
+        $this->playerManager = new PlayerManager();
+        $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
     }
 

@@ -46,8 +46,8 @@ class view_smilelife_smilelife extends game_view {
 
     public function __construct(...$_) {
         parent::__construct(...$_);
-        $this->cardManager = $this->getGame()->getCardManager();
-        $this->playerManager = $this->getGame()->getPlayerManager();
+        $this->cardManager = new CardManager();
+        $this->playerManager = new PlayerManager();
     }
 
     function getGameName() {
