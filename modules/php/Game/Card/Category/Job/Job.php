@@ -16,7 +16,6 @@ abstract class Job extends Card {
 
     public function __construct() {
         parent::__construct();
-
     }
 
     /* -------------------------------------------------------------------------
@@ -28,11 +27,25 @@ abstract class Job extends Card {
     abstract public function getMaxSalary(): int;
 
     /* -------------------------------------------------------------------------
+     *                  BEGIN - Power & Effects (in future)
+     * ---------------------------------------------------------------------- */
+    public function hasPower(): bool {
+        return true;
+    }
+
+    /* -------------------------------------------------------------------------
      *                  BEGIN - Override
      * ---------------------------------------------------------------------- */
 
     public function getClass(): string {
         return self::class;
+    }
+
+    public function getVisibleClasses() {
+        if ($this->hasPower()) {
+            return parent::getVisibleClasses() . " card_powered";
+        }
+        return parent::getVisibleClasses();
     }
 
     /* -------------------------------------------------------------------------

@@ -221,7 +221,6 @@ define([
                         font-size: ` + (12 * size.ratio) + `px;
                         display: none; //TODO see if we I18N cityname
                     }
-                    
                     /*------              JOB                             ----*/
                     .card_job .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
@@ -234,6 +233,20 @@ define([
                     }
                     .card_job .card_text1{
                         margin-top: ` + (340 * size.ratio) + `px;
+                    }
+                    /*------              REWARD                          ----*/
+                    .card_reward .card_title{
+                        margin-top: ` + (72 * size.ratio) + `px;
+                    }
+                    .card_nationalmedal .card_text1{
+                        margin: 0 `+ (24 * size.ratio) +`px;
+                        margin-top: ` + (20 * size.ratio) + `px;
+                        width: ` + (104 * size.ratio) + `px;
+                        float: right;
+                    }
+                    .card_nationalmedal .card_text2{
+                        margin-top: ` + (300 * size.ratio) + `px;
+                        font-size: ` + (19 * size.ratio) + `px;
                     }
                     /*------              ATTACK                          ----*/
                     .card_attack .card_title{

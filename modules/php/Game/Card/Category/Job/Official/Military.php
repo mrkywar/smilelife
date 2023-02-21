@@ -11,13 +11,22 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Military extends Official implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->setTitle(clienttranslate('Soldier'))
                 ->setText1(clienttranslate('Never victim to terrorist attacks'));
     }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Override
+     * ---------------------------------------------------------------------- */
+
+    public function hasPower(): bool {
+        return true;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -37,7 +46,7 @@ class Military extends Official implements BaseGame {
     public function getType(): int {
         return CardType::JOB_MILITARY;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
      * ---------------------------------------------------------------------- */

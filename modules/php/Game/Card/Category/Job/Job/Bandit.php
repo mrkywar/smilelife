@@ -18,8 +18,16 @@ class Bandit extends Job implements BaseGame {
 
         $this->setTitle(clienttranslate('Bandit'))
                 ->setText1(clienttranslate('Bandit: Pays no taxes, is never '
-                        . 'laid off'))
+                                . 'laid off'))
                 ->setText2(clienttranslate('Jail is possible'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Override
+     * ---------------------------------------------------------------------- */
+
+    public function hasPower(): bool {
+        return true;
     }
 
     /* -------------------------------------------------------------------------
