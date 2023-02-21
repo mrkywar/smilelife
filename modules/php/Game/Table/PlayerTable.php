@@ -69,7 +69,7 @@ class PlayerTable extends Model {
     /**
      * 
      * @var array
-     * @ORM\Column{"type":"json", "name":"table_reward"}
+     * @ORM\Column{"type":"json", "name":"table_rewards"}
      */
     private $rewardIds;
 

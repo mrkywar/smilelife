@@ -53,4 +53,17 @@ CREATE TABLE IF NOT EXISTS `card` (
   PRIMARY KEY (`card_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-
+CREATE TABLE IF NOT EXISTS `player_table` (
+    `table_player_id` int(10) unsigned NOT NULL,
+    `table_sudies` text NULL,
+    `table_job` int(10) unsigned NULL,
+    `table_rewards` text NULL,
+    `table_warges` text NULL,
+    `table_flirts` text NULL,
+    `table_marriage` int(10) unsigned NULL,
+    `table_childs` text NULL,
+    `table_adultery` int(10) unsigned NULL,
+    `table_acquisitions` text NULL,
+    `table_attacks` text NULL,
+    PRIMARY KEY (`table_player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
