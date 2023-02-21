@@ -232,11 +232,11 @@ define([
                         padding-top:` + (6 * size.ratio) + `px;
                     }
                     .card_job .card_text1{
-                        margin-top: ` + (340 * size.ratio) + `px;
+                        margin-top: ` + (360 * size.ratio) + `px;
                     }
                     .card_powered .card_text1{
-                        margin: 0 `+ (60 * size.ratio) +`px;
-                        margin-top: ` + (346 * size.ratio) + `px;
+                        margin: 0 `+ (64 * size.ratio) +`px;
+                        margin-top: ` + (348 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                     }
                     /*------              REWARD                          ----*/
@@ -288,7 +288,16 @@ define([
                         margin-top: ` + (54 * size.ratio) + `px;
                         font-size: ` + (18 * size.ratio) + `px;
                     }
-                    /*------              TRAVEL                           ----*/
+                    /*------              Adultery                        ----*/
+                    .card_adultery .card_title{
+                        margin-top: ` + (56 * size.ratio) + `px;
+                    }
+                    .card_adultery .card_text1{
+                        margin: 0 ` + (44 * size.ratio) + `px;
+                        margin-top: ` + (290 * size.ratio) + `px;
+                        font-size: ` + (17 * size.ratio) + `px;
+                    }
+                    /*------              TRAVEL                          ----*/
                     .card_travel .card_title{
                         margin-top: ` + (20 * size.ratio) + `px;
                         font-size: ` + (24 * size.ratio) + `px;
