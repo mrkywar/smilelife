@@ -19,7 +19,15 @@ class Mechanic extends Job implements BaseGame {
         $this->setTitle(clienttranslate('Mechanic'))
                 ->setText1(clienttranslate('You never have accidents'));
     }
-            
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Override
+     * ---------------------------------------------------------------------- */
+
+    public function hasPower(): bool {
+        return true;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

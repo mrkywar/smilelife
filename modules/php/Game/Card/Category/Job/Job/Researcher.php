@@ -19,6 +19,13 @@ class Researcher extends Job implements BaseGame {
         $this->setTitle(clienttranslate('Researcher'))
                 ->setText1(clienttranslate('Try a 6-card hand'));
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Override
+     * ---------------------------------------------------------------------- */
+    public function hasPower(): bool {
+        return true;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract

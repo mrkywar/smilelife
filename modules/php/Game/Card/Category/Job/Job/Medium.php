@@ -12,12 +12,20 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Medium extends Job implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Medium'))
                 ->setText1(clienttranslate('You may read the 13 coming cards'));
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Override
+     * ---------------------------------------------------------------------- */
+
+    public function hasPower(): bool {
+        return true;
     }
 
     /* -------------------------------------------------------------------------

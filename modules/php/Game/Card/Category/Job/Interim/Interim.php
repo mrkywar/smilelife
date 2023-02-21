@@ -13,7 +13,7 @@ abstract class Interim extends Job {
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->setSubtitle(clienttranslate('Temporary employee'));
     }
 

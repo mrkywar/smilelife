@@ -81,7 +81,9 @@ em {
 }
 .card_adultery .card_text,
 .card_special .card_text1, .card_special .card_title,
-.card_child .card_text1{
+.card_child .card_text1,
+.card_powered .card_text1,
+.card_freedommedal .card_title{
     color: white;
 }
 .card_wedding .card_title,
