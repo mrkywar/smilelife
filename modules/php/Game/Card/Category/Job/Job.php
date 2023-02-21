@@ -30,7 +30,7 @@ abstract class Job extends Card {
      *                  BEGIN - Power & Effects (in future)
      * ---------------------------------------------------------------------- */
     public function hasPower(): bool {
-        return true;
+        return false;
     }
 
     /* -------------------------------------------------------------------------

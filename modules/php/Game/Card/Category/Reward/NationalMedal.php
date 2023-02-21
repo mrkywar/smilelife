@@ -1,11 +1,14 @@
 <?php
+namespace SmileLife\Game\Card\Category\Reward;
 
-namespace SmileLife\Game\Card\Category\Job\Reward;
-
-use SmileLife\Game\Card\Category\Job\Job;
+use SmileLife\Game\Card\Category\Job\Job\Journalist;
+use SmileLife\Game\Card\Category\Job\Job\Researcher;
+use SmileLife\Game\Card\Category\Reward\Reward;
 use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Core\Exception\CardException;
 use SmileLife\Game\Card\Module\BaseGame;
+
+
 
 /**
  * Description of NationalMedal
@@ -50,8 +53,8 @@ class NationalMedal extends Reward implements BaseGame {
      */
     public function getCompatibleJobClasses(): ?array {
         return [
-            Job\Journalist::class,
-            Job\Researcher::class,
+            Journalist::class,
+            Researcher::class,
             Job\Author::class
         ];
     }

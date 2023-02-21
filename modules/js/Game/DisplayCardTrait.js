@@ -234,9 +234,17 @@ define([
                     .card_job .card_text1{
                         margin-top: ` + (340 * size.ratio) + `px;
                     }
+                    .card_powered .card_text1{
+                        margin: 0 `+ (60 * size.ratio) +`px;
+                        margin-top: ` + (346 * size.ratio) + `px;
+                        height: ` + (56 * size.ratio) + `px;
+                    }
                     /*------              REWARD                          ----*/
                     .card_reward .card_title{
                         margin-top: ` + (72 * size.ratio) + `px;
+                    }
+                    .card_freedommedal .card_title{
+                        margin-top: ` + (78 * size.ratio) + `px;
                     }
                     .card_nationalmedal .card_text1{
                         margin: 0 `+ (24 * size.ratio) +`px;
@@ -253,7 +261,7 @@ define([
                         margin-top: ` + (50 * size.ratio) + `px;
                     }
                     .card_attack .card_text1{
-                        margin-top: ` + (320 * size.ratio) + `px;
+                        margin-top: ` + (330 * size.ratio) + `px;
                         height: ` + (64 * size.ratio) + `px;
                     }
                     /*------              CHILD                           ----*/

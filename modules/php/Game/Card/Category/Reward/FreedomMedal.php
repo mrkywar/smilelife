@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job\Reward;
+namespace SmileLife\Game\Card\Category\Reward;
 
 use SmileLife\Game\Card\Category\Job\Job;
 use SmileLife\Game\Card\Core\CardType;
@@ -17,9 +17,9 @@ class FreedomMedal extends Reward implements BaseGame {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Medal of Freedom'))
-                ->setText1(clienttranslate('Can only be attributed to writers, '
+                ->setText2(clienttranslate('Can only be attributed to writers, '
                                 . 'researchers and journalists'))
-                ->setText2(clienttranslate('You are awarded by the nation '
+                ->setText1(clienttranslate('You are awarded by the nation '
                                 . '(bandits excluded)'));
     }
 
