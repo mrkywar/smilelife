@@ -32,7 +32,7 @@ class GameInitializer {
      * @var PlayerAttributesManager
      */
     private $playerAttributesManager;
-    
+
     /**
      * 
      * @var PlayerTableManager
@@ -52,14 +52,13 @@ class GameInitializer {
         $this->cardManager = new CardManager();
         $this->playerTableManager = new PlayerTableManager();
     }
-    
-    public function init($players, $options = array()){
+
+    public function init($players, $options = array()) {
         $this->playerManager->initNewGame($players, $options);
         $this->gameManager->initNewGame($options);
         $this->playerAttributesManager->initNewGame();
         $this->cardManager->initNewGame($options);
-        
-        
+        $this->playerTableManager->initNewGame();
     }
 
 }

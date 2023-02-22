@@ -3,8 +3,8 @@
 namespace SmileLife\Game\Table;
 
 use Core\Managers\Core\SuperManager;
+use Core\Managers\PlayerManager;
 use Core\Serializers\Serializer;
-use SmileLife;
 
 /**
  * Description of PlayerTableManager
@@ -12,9 +12,19 @@ use SmileLife;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class PlayerTableManager extends SuperManager {
+    
+    /**
+     * 
+     * @var PlayerManager
+     */
+    private $playerManager;
+    
+    public function __construct() {
+        $this->playerManager = new PlayerManager();
+    }
 
     public function initNewGame() {
-        $players = SmileLife::getInstance()->getPlayerManager()->findBy();
+        $players = $this->playerManager->findBy();
         $tables = [];
 
         foreach ($players as $player) {
