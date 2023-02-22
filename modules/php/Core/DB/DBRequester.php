@@ -18,6 +18,10 @@ class DBRequester extends \APP_DbObject {
      */
     private $isDebug;
 
+    public function __construct() {
+        $this->isDebug = false;
+    }
+
     /**
      * Execute the given QueryBuilder
      * @param QueryBuilder $qb

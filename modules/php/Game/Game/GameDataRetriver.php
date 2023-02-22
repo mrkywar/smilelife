@@ -51,6 +51,8 @@ class GameDataRetriver {
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
         $this->playerTableManager = new PlayerTableManager();
         $this->playerTableDecorator = new PlayerTableDecorator();
+        
+        $this->playerTableManager->setIsDebug(true);
     }
 
     public function retrive(int $playerId) {
@@ -71,11 +73,17 @@ class GameDataRetriver {
             $table = $this->playerTableManager->findBy([
                 "id" => $player->getId()
             ]);
+            if (2351193 == $player->getId()) {
+                echo "<pre>";
+                var_dump($table);
+                die;
+            }
 
             $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
-
         }
-
+        echo "<pre>";
+        var_dump($result);
+        die;
         return $result;
     }
 
