@@ -119,8 +119,7 @@ class PlayerTable extends Model {
      * ---------------------------------------------------------------------- */
 
     public function __construct() {
-        $this->cardManager = SmileLife::getInstance()
-                ->getCardManager();
+        $this->cardManager = new CardManager();
 
         $this->wageIds = [];
         $this->studiesIds = [];

@@ -1,10 +1,8 @@
 <?php
 
-use Core\Managers\PlayerManager;
-use SmileLife\Game\Card\Core\CardManager;
 use SmileLife\Game\Game\GameDataRetriver;
-use SmileLife\Game\Game\GameManager;
-use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
+use SmileLife\Game\Game\GameInitializer;
+use SmileLife\Game\Game\GameProgressionRetriver;
 
 /**
  * ------
@@ -60,21 +58,16 @@ class SmileLife extends Table {
     private static $instance;
 
     /**
-     * @var PlayerManager
+     * 
+     * @var GameInitializer
      */
-    private $playerManager;
+    private $gameInitializer;
 
     /**
      * 
-     * @var CardManager
+     * @var GameProgressionRetriver
      */
-    private $cardManager;
-
-    /**
-     * 
-     * @var GameManager
-     */
-    private $gameManager;
+    private $gameProgressionRetriver;
 
     /**
      * 
@@ -82,22 +75,14 @@ class SmileLife extends Table {
      */
     private $dataRetriver;
 
-    /**
-     * 
-     * @var PlayerAttributesManager
-     */
-    private $playerAttributesManager;
-
     function __construct() {
         parent::__construct();
 
         self::$instance = $this;
 
-        $this->playerManager = new PlayerManager();
-        $this->cardManager = new CardManager();
-        $this->gameManager = new GameManager();
-        $this->playerAttributesManager = new PlayerAttributesManager();
-        $this->dataRetriver = new GameDataRetriver($this);
+        $this->gameInitializer = new GameInitializer();
+        $this->gameProgressionRetriver = new GameProgressionRetriver();
+        $this->dataRetriver = new GameDataRetriver();
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -123,10 +108,7 @@ class SmileLife extends Table {
      */
 
     protected function setupNewGame($players, $options = array()) {
-        $this->playerManager->initNewGame($players, $options);
-        $this->gameManager->initNewGame($options);
-        $this->playerAttributesManager->initNewGame();
-        $this->cardManager->initNewGame($options);
+        $this->gameInitializer->init($players, $options);
 
         //Logger::log("Message", "Test");
 
@@ -164,14 +146,7 @@ class SmileLife extends Table {
      */
 
     function getGameProgression() {
-        $game = $this->getGameManager()->findBy();
-        $remingingCards = count($this->getCardManager()->getAllCardsInDeck());
-
-        $maxCards = $game->getAviableCards();
-
-        return intval(100 * round(
-                        ($maxCards - $remingingCards) / $maxCards
-        ));
+        return $this->gameProgressionRetriver->retrive();
     }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -350,22 +325,6 @@ class SmileLife extends Table {
 
     public static function getInstance(): SmileLife {
         return self::$instance;
-    }
-
-    public function getPlayerManager(): PlayerManager {
-        return $this->playerManager;
-    }
-
-    public function getGameManager(): GameManager {
-        return $this->gameManager;
-    }
-
-    public function getCardManager(): CardManager {
-        return $this->cardManager;
-    }
-
-    public function getPlayerAttributesManager(): PlayerAttributesManager {
-        return $this->playerAttributesManager;
     }
 
 }

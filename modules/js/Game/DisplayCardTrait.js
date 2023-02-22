@@ -247,6 +247,17 @@ define([
                         margin-top: ` + (348 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                     }
+                    .card_bandit .card_text1{
+                        margin-left: ` + (56 * size.ratio) + `px;
+                        margin-right: ` + (80 * size.ratio) + `px;
+                    }
+                    .card_bandit .card_text2{
+                        width: ` + (70 * size.ratio) + `px;
+                        position: absolute;
+                        right: -` + (28 * size.ratio) + `px;
+                        bottom: -` + (8 * size.ratio) + `px;
+                        font-size: ` + (16 * size.ratio) + `px;
+                    }
                     /*------              REWARD                          ----*/
                     .card_reward .card_title{
                         margin-top: ` + (72 * size.ratio) + `px;
@@ -263,6 +274,9 @@ define([
                     .card_nationalmedal .card_text2{
                         margin-top: ` + (300 * size.ratio) + `px;
                         font-size: ` + (19 * size.ratio) + `px;
+                    }
+                    .card_freedommedal .card_text1{
+                        margin-top: ` + (286 * size.ratio) + `px;
                     }
                     /*------              ATTACK                          ----*/
                     .card_attack .card_title{
