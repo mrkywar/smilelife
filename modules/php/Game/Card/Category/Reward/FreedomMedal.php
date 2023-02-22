@@ -17,8 +17,6 @@ class FreedomMedal extends Reward implements BaseGame {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Medal of Freedom'))
-                ->setText2(clienttranslate('Can only be attributed to writers, '
-                                . 'researchers and journalists'))
                 ->setText1(clienttranslate('You are awarded by the nation '
                                 . '(bandits excluded)'));
     }

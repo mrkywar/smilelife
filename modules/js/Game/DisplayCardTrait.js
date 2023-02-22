@@ -275,6 +275,9 @@ define([
                         margin-top: ` + (300 * size.ratio) + `px;
                         font-size: ` + (19 * size.ratio) + `px;
                     }
+                    .card_freedommedal .card_text1{
+                        margin-top: ` + (286 * size.ratio) + `px;
+                    }
                     /*------              ATTACK                          ----*/
                     .card_attack .card_title{
                         margin-top: ` + (50 * size.ratio) + `px;
