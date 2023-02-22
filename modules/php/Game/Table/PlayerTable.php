@@ -184,6 +184,9 @@ class PlayerTable extends Model {
     }
 
     public function getWages() {
+        if (empty($this->getWageIds())) {
+            return [];
+        }
         return $this->cardManager
                         ->findBy(["id" => $this->getWageIds()]);
     }

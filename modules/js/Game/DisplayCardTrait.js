@@ -50,7 +50,6 @@ define([
                 displayCards: function (gamedatas) {
 
                     var size = this.findActualCardSize();
-                    this.debug("DCT-DC", size);
                     this.applySize(size);
 
                     for (var cardId in gamedatas.myhand) {
@@ -74,10 +73,6 @@ define([
                 findActualCardSize: function () {
                     var object = this.sizeAssoc;
                     var value = parseInt(this.getUserPreference(PREF_CARD_SIZE));
-//                    var prefSize = this.getUserPreference(PREF_CARD_SIZE)
-
-                    this.debug("DCT-FACS");
-                    this.debug(object, value);
 
                     var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value

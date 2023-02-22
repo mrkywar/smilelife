@@ -10,6 +10,10 @@ use SmileLife\Game\Game\GameDataRetriverException;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardDecorator {
+    /**
+     * 
+     * @var CardSerializer
+     */
     private $cardSerializer;
     
     public function __construct(CardSerializer $cardSerializer) {

@@ -5,6 +5,8 @@ namespace SmileLife\Game\Game;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\Card\Core\CardManager;
+use SmileLife\Game\Table\PlayerTableDecorator;
+use SmileLife\Game\Table\PlayerTableManager;
 
 /**
  * Description of GameDataRetriver
@@ -27,14 +29,28 @@ class GameDataRetriver {
 
     /**
      * 
+     * @var PlayerTableManager
+     */
+    private $playerTableManager;
+
+    /**
+     * 
      * @var CardDecorator
      */
     private $cardDecorator;
+
+    /**
+     * 
+     * @var PlayerTableDecorator
+     */
+    private $playerTableDecorator;
 
     public function __construct() {
         $this->playerManager = new PlayerManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
+        $this->playerTableManager = new PlayerTableManager();
+        $this->playerTableDecorator = new PlayerTableDecorator();
     }
 
     public function retrive(int $playerId) {
@@ -50,11 +66,15 @@ class GameDataRetriver {
         ];
 
         foreach ($this->playerManager->findBy() as $player) {
-            $result['player'][$player->getId()] = count($this->cardManager->getPlayerCards($player));
+            $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
+
+            $table = $this->playerTableManager->findBy([
+                "id" => $player->getId()
+            ]);
+
+            $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
+
         }
-//        echo "<pre>";
-//        var_dump($result);
-//        die;
 
         return $result;
     }

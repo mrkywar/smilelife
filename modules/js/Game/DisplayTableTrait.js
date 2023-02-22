@@ -17,6 +17,7 @@ define([
                 },
 
                 displayTables: function (gamedatas) {
+                    this.debug(gamedatas);
                     for (var playerId in gamedatas.players) {
 //                        this.debug(playerId, gamedatas.players[playerId]);
                         var player = gamedatas.players[playerId];
