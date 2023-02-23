@@ -55,6 +55,10 @@ class PlayerTableManager extends SuperManager {
         $this->create($tables);
     }
 
+    public function updateTable(PlayerTable $table) {
+        return $this->update($table);
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Define Abstracts Methods 
      * ---------------------------------------------------------------------- */

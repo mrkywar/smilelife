@@ -180,8 +180,6 @@ class PlayerTable extends Model {
 
     public function addWage(Wage $card) {
         $this->wageIds[] = $card->getId();
-        var_dump($card);die;
-
         return $this;
     }
 

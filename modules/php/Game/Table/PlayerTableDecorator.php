@@ -39,9 +39,10 @@ class PlayerTableDecorator {
     }
 
     public function decorateTable(PlayerTable $table) {
-
+//        var_dump($table->getWages());die;
+        
         return [
-            "Wages" => $table->getWages()
+            "wages" => $this->cardDecorator->decorateRawCard($table->getWages())
         ];
 
 //        echo "<pre>";

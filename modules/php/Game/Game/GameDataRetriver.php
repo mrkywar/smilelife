@@ -70,13 +70,6 @@ class GameDataRetriver {
 
         $players = $this->playerManager->findBy();
         $this->cardManager->setIsDebug(true);
-        $wages = $this->cardManager->findBy([
-            "type" => CardType::WAGE_LEVEL_1
-                ], count($players));
-        $i = 0;
-        echo "<pre>";
-        var_dump($wages);
-        die;
 
         foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
@@ -84,12 +77,9 @@ class GameDataRetriver {
             $table = $this->playerTableManager->findBy([
                 "id" => $player->getId()
             ]);
-//            if (2351193 == $player->getId()) {
-//                echo "<pre>";
-//                var_dump($table);
-//                die;
-//            }
-//            $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
+
+            $this->playerTableManager->updateTable($table);
+            $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
         }
 //        echo "<pre>";
 //        var_dump($result);
