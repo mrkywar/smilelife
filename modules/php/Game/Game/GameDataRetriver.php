@@ -5,6 +5,7 @@ namespace SmileLife\Game\Game;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\Card\Core\CardManager;
+use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Table\PlayerTableDecorator;
 use SmileLife\Game\Table\PlayerTableManager;
 
@@ -51,7 +52,7 @@ class GameDataRetriver {
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
         $this->playerTableManager = new PlayerTableManager();
         $this->playerTableDecorator = new PlayerTableDecorator();
-        
+
         $this->playerTableManager->setIsDebug(true);
     }
 
@@ -67,23 +68,32 @@ class GameDataRetriver {
             "deck" => count($this->cardManager->getAllCardsInDeck())
         ];
 
-        foreach ($this->playerManager->findBy() as $player) {
+        $players = $this->playerManager->findBy();
+        $this->cardManager->setIsDebug(true);
+        $wages = $this->cardManager->findBy([
+            "type" => CardType::WAGE_LEVEL_1
+                ], count($players));
+        $i = 0;
+        echo "<pre>";
+        var_dump($wages);
+        die;
+
+        foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
 
             $table = $this->playerTableManager->findBy([
                 "id" => $player->getId()
             ]);
-            if (2351193 == $player->getId()) {
-                echo "<pre>";
-                var_dump($table);
-                die;
-            }
-
-            $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
+//            if (2351193 == $player->getId()) {
+//                echo "<pre>";
+//                var_dump($table);
+//                die;
+//            }
+//            $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
         }
-        echo "<pre>";
-        var_dump($result);
-        die;
+//        echo "<pre>";
+//        var_dump($result);
+//        die;
         return $result;
     }
 

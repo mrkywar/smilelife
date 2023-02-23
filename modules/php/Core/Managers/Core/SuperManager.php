@@ -70,7 +70,7 @@ abstract class SuperManager extends DBRequester {
             if (!$reflection->isAbstract()) {
                 return new $className();
             } else {
-                throw new SuperManagerException("Unsuported call for " . get_class($items) . " - ERROR code : SM-02 ");
+                throw new SuperManagerException("Unsuported call for - ERROR code : SM-02 ");
             }
         }
     }
@@ -179,7 +179,7 @@ abstract class SuperManager extends DBRequester {
                 ->select()
                 ->setFields($fields);
         foreach ($clauses as $clause => $value) {
-            $field = DBFieldsRetriver::retriveFieldByPropertyName($clause, $this->getItems());
+            $field = DBFieldsRetriver::retriveFieldByPropertyName($clause, $this->getSerializer()->getClassModel());
             $qb->addClause($field, $value);
         }
         if (null !== $limit) {
