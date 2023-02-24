@@ -6,6 +6,7 @@ use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
 use SmileLife\Game\Card\Category\Acquisition\Acquisition;
+use SmileLife\Game\Card\Category\Attack\Attack;
 use SmileLife\Game\Card\Category\Child\Child;
 use SmileLife\Game\Card\Category\Job\Job;
 use SmileLife\Game\Card\Category\Job\Reward\Reward;
@@ -179,11 +180,13 @@ class PlayerTable extends Model {
 
     public function addWage(Wage $card) {
         $this->wageIds[] = $card->getId();
-
         return $this;
     }
 
     public function getWages() {
+        if (empty($this->getWageIds())) {
+            return [];
+        }
         return $this->cardManager
                         ->findBy(["id" => $this->getWageIds()]);
     }

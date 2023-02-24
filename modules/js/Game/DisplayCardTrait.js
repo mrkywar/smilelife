@@ -50,7 +50,6 @@ define([
                 displayCards: function (gamedatas) {
 
                     var size = this.findActualCardSize();
-                    this.debug("DCT-DC", size);
                     this.applySize(size);
 
                     for (var cardId in gamedatas.myhand) {
@@ -59,7 +58,19 @@ define([
                         card.id = cardId;
                         dojo.place(this.displayCard(card), 'myhand');
                     }
+
+                    for (var playerId in gamedatas.tables) {
+                        var table = gamedatas.tables[playerId];
+                        
+                        for (var wageId in table.wages) {
+                            var wage = table.wages[wageId];
+                            dojo.place(this.displayCard(wage), 'playertable_' + playerId);
+                        }
+
+                    }
+
                 },
+
                 displayCard: function (card) {
                     return `
                         <div class="cardontable card_` + card.type + ` ` + card.shortclass + `" id="` + card.location + "_card_" + card.id + `" data-id="` + card.id + `">
@@ -74,10 +85,6 @@ define([
                 findActualCardSize: function () {
                     var object = this.sizeAssoc;
                     var value = parseInt(this.getUserPreference(PREF_CARD_SIZE));
-//                    var prefSize = this.getUserPreference(PREF_CARD_SIZE)
-
-                    this.debug("DCT-FACS");
-                    this.debug(object, value);
 
                     var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value

@@ -179,7 +179,7 @@ abstract class SuperManager extends DBRequester {
                 ->select()
                 ->setFields($fields);
         foreach ($clauses as $clause => $value) {
-            $field = DBFieldsRetriver::retriveFieldByPropertyName($clause, $this->getItems());
+            $field = DBFieldsRetriver::retriveFieldByPropertyName($clause, $this->getSerializer()->getClassModel());
             $qb->addClause($field, $value);
         }
         if (null !== $limit) {
