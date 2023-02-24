@@ -58,7 +58,19 @@ define([
                         card.id = cardId;
                         dojo.place(this.displayCard(card), 'myhand');
                     }
+
+                    for (var playerId in gamedatas.tables) {
+                        var table = gamedatas.tables[playerId];
+                        
+                        for (var wageId in table.wages) {
+                            var wage = table.wages[wageId];
+                            dojo.place(this.displayCard(wage), 'playertable_' + playerId);
+                        }
+
+                    }
+
                 },
+
                 displayCard: function (card) {
                     return `
                         <div class="cardontable card_` + card.type + ` ` + card.shortclass + `" id="` + card.location + "_card_" + card.id + `" data-id="` + card.id + `">

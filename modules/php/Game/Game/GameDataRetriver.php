@@ -79,7 +79,7 @@ class GameDataRetriver {
             ]);
 
             $this->playerTableManager->updateTable($table);
-            $result['player'][$player->getId()]["table"] = $this->playerTableDecorator->decorateTable($table);
+            $result['tables'][$player->getId()] = $this->playerTableDecorator->decorateTable($table);
         }
 //        echo "<pre>";
 //        var_dump($result);
