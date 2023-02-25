@@ -240,9 +240,15 @@ class PlayerTable extends Model {
         if (empty($this->getWageIds())) {
             return [];
         }
-        
-        return $this->cardManager
-                        ->findBy(["id" => $this->getWageIds()]);
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getWageIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addChild(Child $card) {
@@ -256,8 +262,14 @@ class PlayerTable extends Model {
             return [];
         }
 
-        return $this->cardManager
-                        ->findBy(["id" => $this->getChildIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getChildIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addStudy(Studies $card) {
@@ -270,9 +282,15 @@ class PlayerTable extends Model {
         if (empty($this->getStudiesIds())) {
             return [];
         }
-        
-        return $this->cardManager
-                        ->findBy(["id" => $this->getStudiesIds()]);
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getStudiesIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addFlirt(Flirt $card) {
@@ -286,8 +304,14 @@ class PlayerTable extends Model {
             return [];
         }
 
-        return $this->cardManager
-                        ->findBy(["id" => $this->getFlirtIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getFlirtIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addReward(Reward $card) {
@@ -297,8 +321,18 @@ class PlayerTable extends Model {
     }
 
     public function getRewards() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getRewardIds()]);
+        if (empty($this->getRewardIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getRewardIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addAcquisition(Acquisition $card) {
@@ -312,8 +346,14 @@ class PlayerTable extends Model {
             return [];
         }
 
-        return $this->cardManager
-                        ->findBy(["id" => $this->getAcquisitionIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getAcquisitionIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addAttack(Attack $card) {
@@ -326,9 +366,15 @@ class PlayerTable extends Model {
         if (empty($this->getAttackIds())) {
             return [];
         }
-        
-        return $this->cardManager
-                        ->findBy(["id" => $this->getAttackIds()]);
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getAttackIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addPet(Pet $card) {
@@ -341,9 +387,15 @@ class PlayerTable extends Model {
         if (empty($this->getPetIds())) {
             return [];
         }
-        
-        return $this->cardManager
-                        ->findBy(["id" => $this->getPetIds()]);
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getPetIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     /* -------------------------------------------------------------------------

@@ -11,7 +11,7 @@ use Core\Serializers\Serializer;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardSerializer extends Serializer {
-
+    
     protected function generateNewModel($rawItem): Model {
         if ($rawItem instanceof Card) {
             return $rawItem;
