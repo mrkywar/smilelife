@@ -26,16 +26,15 @@ class TestGameInitializer extends GameInitializer {
 //        die;
         foreach ($cards as $card) {
             $player = $players[$keys[$i % count($players)]];
-            
+
             $table = $this->playerTableManager->findBy([
                 "id" => $keys[$i % count($players)]
             ]);
-            
-            $i++;
-            var_dump($table);die;
-            var_dump($player);
+
+            $table->addCard($card);
+            $this->playerTableManager->updateTable($table);
         }
-        die;
+        
     }
 
 }

@@ -15,6 +15,7 @@ use SmileLife\Game\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Game\Card\Category\Love\Wedding\Wedding;
 use SmileLife\Game\Card\Category\Studies\Studies;
 use SmileLife\Game\Card\Category\Wage\Wage;
+use SmileLife\Game\Card\Core\Card;
 use SmileLife\Game\Card\Core\CardManager;
 
 /**
@@ -134,6 +135,32 @@ class PlayerTable extends Model {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Shortcut
      * ---------------------------------------------------------------------- */
+
+    public function addCard(Card $card) {
+        if ($card instanceof Studies) {
+            return $this->addStudy($card);
+        } elseif ($card instanceof Wage) {
+            return $this->addWage($card);
+        } elseif ($card instanceof Job) {
+            return $this->setJob($card);
+        } elseif ($card instanceof Wedding) {
+            return $this->setMarriage($card);
+        } elseif ($card instanceof Adultery) {
+            return $this->setAdultery($card);
+        } elseif ($card instanceof Child) {
+            return $this->addChild($card);
+        } elseif ($card instanceof Flirt) {
+            return $this->addFlirt($card);
+        } elseif ($card instanceof Reward) {
+            return $this->addReward($card);
+        } elseif ($card instanceof Acquisition) {
+            return $this->addAcquision($card);
+        } elseif ($card instanceof Attack) {
+            return $this->addAttack($card);
+        } else {
+            throw new PlayerTableException("PTE - 01 - Unsupported Card");
+        }
+    }
 
     public function setPlayer(Player $player) {
         return $this->setId($player->getId());
