@@ -31,10 +31,11 @@ class TestGameInitializer extends GameInitializer {
                 "id" => $keys[$i % count($players)]
             ]);
 
+            $i++;
+            
             $table->addCard($card);
             $this->playerTableManager->updateTable($table);
         }
-        
     }
 
 }

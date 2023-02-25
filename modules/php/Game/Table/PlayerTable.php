@@ -9,11 +9,11 @@ use SmileLife\Game\Card\Category\Acquisition\Acquisition;
 use SmileLife\Game\Card\Category\Attack\Attack;
 use SmileLife\Game\Card\Category\Child\Child;
 use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Category\Job\Reward\Reward;
 use SmileLife\Game\Card\Category\Love\Adultery;
 use SmileLife\Game\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Game\Card\Category\Love\Wedding\Wedding;
 use SmileLife\Game\Card\Category\Pet\Pet;
+use SmileLife\Game\Card\Category\Reward\Reward;
 use SmileLife\Game\Card\Category\Special\Special;
 use SmileLife\Game\Card\Category\Studies\Studies;
 use SmileLife\Game\Card\Category\Wage\Wage;
@@ -172,6 +172,7 @@ class PlayerTable extends Model {
         } elseif ($card instanceof Pet) {
             return $this->addPet($card);
         } else {
+            var_dump($card, $card instanceof Reward);
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
     }
@@ -192,7 +193,7 @@ class PlayerTable extends Model {
         return $this;
     }
 
-    public function getJob($param): ?Job {
+    public function getJob(): ?Job {
         return $this->cardManager
                         ->findBy(["id" => $this->getJobId()]);
     }
