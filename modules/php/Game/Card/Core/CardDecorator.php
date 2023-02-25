@@ -25,7 +25,7 @@ class CardDecorator {
         if (null === $rawCards) {
             return null;
         } elseif ($rawCards instanceof Card) {
-            return [$this->decorateOne($rawCards)];
+            return $this->decorateOne($rawCards);
         } else {
             $cards = $this->cardSerializer->unserialize($rawCards);
             if ($cards instanceof Card) {

@@ -26,6 +26,28 @@ define([
                         dojo.place(this.displayTable(player), 'board');
                     }
 
+                    for (var playerId in gamedatas.tables) {
+                        var table = gamedatas.tables[playerId];
+
+                        //-- Display all cards on table
+                        if(null !== table.job){
+                            dojo.place(this.displayCard(table.job), 'playertable_' + playerId);
+                        }
+                        if(null !== table.marriage){
+                            dojo.place(this.displayCard(table.marriage), 'playertable_' + playerId);
+                        }
+                        
+                        for (var attackId in table.attacks) {
+                            var attack = table.attacks[attackId];
+                            dojo.place(this.displayCard(attack), 'playertable_' + playerId);
+                        }
+                        for (var studyId in table.studies) {
+                            var study = table.studies[studyId];
+                            dojo.place(this.displayCard(study), 'playertable_' + playerId);
+                        }
+
+
+                    }
 
                 },
 
