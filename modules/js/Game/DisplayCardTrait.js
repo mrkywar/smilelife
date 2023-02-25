@@ -242,6 +242,9 @@ define([
                         margin-top: ` + (348 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                     }
+                    .card_official.card_powered .card_text1{
+                        margin-top: ` + (328 * size.ratio) + `px;
+                    }
                     .card_bandit .card_text1{
                         margin-left: ` + (56 * size.ratio) + `px;
                         margin-right: ` + (80 * size.ratio) + `px;
