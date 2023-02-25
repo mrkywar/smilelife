@@ -13,6 +13,7 @@ use SmileLife\Game\Card\Category\Job\Reward\Reward;
 use SmileLife\Game\Card\Category\Love\Adultery;
 use SmileLife\Game\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Game\Card\Category\Love\Wedding\Wedding;
+use SmileLife\Game\Card\Category\Pet\Pet;
 use SmileLife\Game\Card\Category\Special\Special;
 use SmileLife\Game\Card\Category\Studies\Studies;
 use SmileLife\Game\Card\Category\Wage\Wage;

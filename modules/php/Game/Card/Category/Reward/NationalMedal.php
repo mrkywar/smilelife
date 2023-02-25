@@ -1,4 +1,5 @@
 <?php
+
 namespace SmileLife\Game\Card\Category\Reward;
 
 use SmileLife\Game\Card\Category\Job\Job\Journalist;
@@ -7,8 +8,6 @@ use SmileLife\Game\Card\Category\Reward\Reward;
 use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Core\Exception\CardException;
 use SmileLife\Game\Card\Module\BaseGame;
-
-
 
 /**
  * Description of NationalMedal
