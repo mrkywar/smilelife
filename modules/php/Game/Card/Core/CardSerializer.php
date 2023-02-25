@@ -13,12 +13,15 @@ use Core\Serializers\Serializer;
 class CardSerializer extends Serializer {
 
     protected function generateNewModel($rawItem): Model {
-        if (isset($rawItem['card_class'])) {
+        if ($rawItem instanceof Card) {
+            return $rawItem;
+        } elseif (isset($rawItem['card_class'])) {
             $className = $rawItem['card_class'];
-            
+
             return new $className();
+        } else {
+            return parent::generateNewModel($rawItem);
         }
-        return parent::generateNewModel($rawItem);
     }
-    
+
 }
