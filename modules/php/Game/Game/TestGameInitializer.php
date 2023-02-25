@@ -10,6 +10,12 @@ use SmileLife\Game\Card\Core\CardLocation;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class TestGameInitializer extends GameInitializer {
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->playerTableManager->setIsDebug(true);
+    }
 
     public function init($players, $options = []) {
         parent::init($players, $options);

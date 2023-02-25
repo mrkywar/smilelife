@@ -66,7 +66,7 @@ class PlayerTable extends Model {
     /**
      * 
      * @var int|null
-     * @ORM\Column{"type":"int", "name":"table_job"}
+     * @ORM\Column{"type":"int", "name":"table_job", "default":null}
      */
     private $jobId;
 
@@ -80,7 +80,7 @@ class PlayerTable extends Model {
     /**
      * 
      * @var int|null
-     * @ORM\Column{"type":"int", "name":"table_marriage"}
+     * @ORM\Column{"type":"int", "name":"table_marriage", "default":null}
      */
     private $marriageId;
 
@@ -108,7 +108,7 @@ class PlayerTable extends Model {
     /**
      * 
      * @var int|null
-     * @ORM\Column{"type":"int", "name":"table_adultery"}
+     * @ORM\Column{"type":"int", "name":"table_adultery", "default":null}
      */
     private $adulteryId;
 
@@ -140,6 +140,10 @@ class PlayerTable extends Model {
         $this->flirtIds = [];
         $this->rewardIds = [];
         $this->petIds = [];
+
+//        $this->adulteryId = null;
+//        $this->jobId = null;
+//        $this->marriageId = null;
     }
 
     /* -------------------------------------------------------------------------
@@ -164,7 +168,7 @@ class PlayerTable extends Model {
         } elseif ($card instanceof Reward) {
             return $this->addReward($card);
         } elseif ($card instanceof Acquisition) {
-            return $this->addAcquision($card);
+            return $this->addAcquisition($card);
         } elseif ($card instanceof Attack) {
             return $this->addAttack($card);
         } elseif ($card instanceof Special) {
@@ -194,6 +198,7 @@ class PlayerTable extends Model {
     }
 
     public function getJob(): ?Job {
+
         return $this->cardManager
                         ->findBy(["id" => $this->getJobId()]);
     }
@@ -205,6 +210,9 @@ class PlayerTable extends Model {
     }
 
     public function getMarriage(): ?Wedding {
+        if (null === $this->getMarriageId()) {
+            return null;
+        }
         return $this->cardManager
                         ->findBy(["id" => $this->getJobId()]);
     }
@@ -240,6 +248,10 @@ class PlayerTable extends Model {
     }
 
     public function getChilds() {
+        if (empty($this->getChildIds())) {
+            return [];
+        }
+
         return $this->cardManager
                         ->findBy(["id" => $this->getChildIds()]);
     }
@@ -262,6 +274,10 @@ class PlayerTable extends Model {
     }
 
     public function getFlirts() {
+        if (empty($this->getFlirtIds())) {
+            return [];
+        }
+
         return $this->cardManager
                         ->findBy(["id" => $this->getFlirtIds()]);
     }
@@ -277,13 +293,13 @@ class PlayerTable extends Model {
                         ->findBy(["id" => $this->getRewardIds()]);
     }
 
-    public function addAcquision(Acquisition $card) {
+    public function addAcquisition(Acquisition $card) {
         $this->acquisitionIds[] = $card->getId();
 
         return $this;
     }
 
-    public function getAcquisions() {
+    public function getAcquisitions() {
         return $this->cardManager
                         ->findBy(["id" => $this->getAcquisitionIds()]);
     }
