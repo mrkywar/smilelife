@@ -214,7 +214,7 @@ class PlayerTable extends Model {
             return null;
         }
         return $this->cardManager
-                        ->findBy(["id" => $this->getJobId()]);
+                        ->findBy(["id" => $this->getMarriageId()]);
     }
 
     public function setAdultery(Adultery $card) {
@@ -224,8 +224,11 @@ class PlayerTable extends Model {
     }
 
     public function getAdultery(): ?Adultery {
+        if (null === $this->getAdulteryId()) {
+            return null;
+        }
         return $this->cardManager
-                        ->findBy(["id" => $this->getJobId()]);
+                        ->findBy(["id" => $this->getAdulteryId()]);
     }
 
     public function addWage(Wage $card) {
@@ -237,6 +240,7 @@ class PlayerTable extends Model {
         if (empty($this->getWageIds())) {
             return [];
         }
+        
         return $this->cardManager
                         ->findBy(["id" => $this->getWageIds()]);
     }
@@ -263,6 +267,10 @@ class PlayerTable extends Model {
     }
 
     public function getStudies() {
+        if (empty($this->getStudiesIds())) {
+            return [];
+        }
+        
         return $this->cardManager
                         ->findBy(["id" => $this->getStudiesIds()]);
     }
@@ -300,6 +308,10 @@ class PlayerTable extends Model {
     }
 
     public function getAcquisitions() {
+        if (empty($this->getAcquisitionIds())) {
+            return [];
+        }
+
         return $this->cardManager
                         ->findBy(["id" => $this->getAcquisitionIds()]);
     }
@@ -311,6 +323,10 @@ class PlayerTable extends Model {
     }
 
     public function getAttacks() {
+        if (empty($this->getAttackIds())) {
+            return [];
+        }
+        
         return $this->cardManager
                         ->findBy(["id" => $this->getAttackIds()]);
     }
@@ -322,6 +338,10 @@ class PlayerTable extends Model {
     }
 
     public function getPets() {
+        if (empty($this->getPetIds())) {
+            return [];
+        }
+        
         return $this->cardManager
                         ->findBy(["id" => $this->getPetIds()]);
     }
