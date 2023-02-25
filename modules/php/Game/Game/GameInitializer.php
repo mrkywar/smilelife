@@ -19,31 +19,31 @@ class GameInitializer {
      * 
      * @var PlayerManager
      */
-    private $playerManager;
+    protected $playerManager;
 
     /**
      * 
      * @var GameManager
      */
-    private $gameManager;
+    protected $gameManager;
 
     /**
      * 
      * @var PlayerAttributesManager
      */
-    private $playerAttributesManager;
+    protected $playerAttributesManager;
 
     /**
      * 
      * @var PlayerTableManager
      */
-    private $playerTableManager;
+    protected $playerTableManager;
 
     /**
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
 
     public function __construct() {
         $this->playerManager = new PlayerManager();

@@ -11,14 +11,17 @@ use Core\Serializers\Serializer;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardSerializer extends Serializer {
-
-    protected function generateNewModel($rawItem): Model {
-        if (isset($rawItem['card_class'])) {
-            $className = $rawItem['card_class'];
-            
-            return new $className();
-        }
-        return parent::generateNewModel($rawItem);
-    }
     
+    protected function generateNewModel($rawItem): Model {
+        if ($rawItem instanceof Card) {
+            return $rawItem;
+        } elseif (isset($rawItem['card_class'])) {
+            $className = $rawItem['card_class'];
+
+            return new $className();
+        } else {
+            return parent::generateNewModel($rawItem);
+        }
+    }
+
 }

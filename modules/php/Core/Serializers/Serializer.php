@@ -82,7 +82,7 @@ class Serializer {
 
         if (1 === sizeof($rawItems) && !$this->isForcedArray) {
             return $this->unserializeOnce($rawItems[array_keys($rawItems)[0]], $fields);
-        } else if (is_array($rawItems)) {
+        } elseif (is_array($rawItems)) {
             $items = [];
             foreach ($rawItems as $key => $rawItem) {
                 $model = $this->unserializeOnce($rawItem, $fields);
@@ -113,8 +113,11 @@ class Serializer {
      * @return Model
      */
     private function unserializeOnce($rawItem, $fields) {
+        if($rawItem instanceof Model){
+            return $rawItem; //serialization is already done
+        }
         $model = $this->generateNewModel($rawItem);
-
+        
         foreach ($fields as $field) {
             if (isset($rawItem[$field->getDbName()])) {
                 $setter = "set" . ucfirst($field->getProperty());

@@ -2,6 +2,7 @@
 
 use SmileLife\Game\Game\GameDataRetriver;
 use SmileLife\Game\Game\GameInitializer;
+use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
 
 /**
@@ -80,7 +81,7 @@ class SmileLife extends Table {
 
         self::$instance = $this;
 
-        $this->gameInitializer = new GameInitializer();
+        $this->gameInitializer = new TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new GameDataRetriver();
 

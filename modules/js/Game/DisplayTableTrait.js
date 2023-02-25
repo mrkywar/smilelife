@@ -26,6 +26,48 @@ define([
                         dojo.place(this.displayTable(player), 'board');
                     }
 
+                    for (var playerId in gamedatas.tables) {
+                        var table = gamedatas.tables[playerId];
+
+                        //-- Display all cards on table
+                        if(null !== table.job){
+                            dojo.place(this.displayCard(table.job), 'playertable_' + playerId);
+                        }
+                        if(null !== table.marriage){
+                            dojo.place(this.displayCard(table.marriage), 'playertable_' + playerId);
+                        }
+                        if(null !== table.adultery){
+                            dojo.place(this.displayCard(table.adultery), 'playertable_' + playerId);
+                        }
+                        for (var acquisitionId in table.acquisitions) {
+                            var acquisition = table.acquisitions[acquisitionId];
+                            dojo.place(this.displayCard(acquisition), 'playertable_' + playerId);
+                        }
+                        for (var attackId in table.attacks) {
+                            var attack = table.attacks[attackId];
+                            dojo.place(this.displayCard(attack), 'playertable_' + playerId);
+                        }
+                        for (var studyId in table.studies) {
+                            var study = table.studies[studyId];
+                            dojo.place(this.displayCard(study), 'playertable_' + playerId);
+                        }
+                        for (var petId in table.pets) {
+                            var pet = table.pets[petId];
+                            dojo.place(this.displayCard(pet), 'playertable_' + playerId);
+                        }
+                        for (var childId in table.childs) {
+                            var child = table.childs[childId];
+                            dojo.place(this.displayCard(child), 'playertable_' + playerId);
+                        }
+                        for (var flirtId in table.flirts) {
+                            var flirt = table.flirts[flirtId];
+                            dojo.place(this.displayCard(flirt), 'playertable_' + playerId);
+                        }
+                        for (var wageId in table.wages) {
+                            var wage = table.wages[wageId];
+                            dojo.place(this.displayCard(wage), 'playertable_' + playerId);
+                        }
+                    }
 
                 },
 

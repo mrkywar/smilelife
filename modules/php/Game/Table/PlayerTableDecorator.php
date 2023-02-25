@@ -39,15 +39,18 @@ class PlayerTableDecorator {
     }
 
     public function decorateTable(PlayerTable $table) {
-//        var_dump($table->getWages());die;
-        
         return [
-            "wages" => $this->cardDecorator->decorateRawCard($table->getWages())
+            "job" => $this->cardDecorator->decorateRawCard($table->getJob()),
+            "studies" => $this->cardDecorator->decorateRawCard($table->getStudies()),
+            "wages" => $this->cardDecorator->decorateRawCard($table->getWages()),
+            "childs" => $this->cardDecorator->decorateRawCard($table->getChilds()),
+            "flirts" => $this->cardDecorator->decorateRawCard($table->getFlirts()),
+            "marriage" => $this->cardDecorator->decorateRawCard($table->getMarriage()),
+            "adultery" => $this->cardDecorator->decorateRawCard($table->getAdultery()),
+            "pets" => $this->cardDecorator->decorateRawCard($table->getPets()),
+            "acquisitions" => $this->cardDecorator->decorateRawCard($table->getAcquisitions()),
+            "attacks" => $this->cardDecorator->decorateRawCard($table->getAttacks()),
         ];
-
-//        echo "<pre>";
-//        var_dump($table);
-//        die;
     }
 
 }

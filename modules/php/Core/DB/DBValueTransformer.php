@@ -14,6 +14,9 @@ use Core\DB\Fields\DBField;
 abstract class DBValueTransformer {
 
     static public function transform(DBField $field, $value) {
+        if (null === $value) {
+            return "null";
+        }
         switch ($field->getType()) {
             case DBField::STRING_FORMAT:
             case DBField::VARCHAR_FORMAT:

@@ -55,20 +55,8 @@ define([
                     for (var cardId in gamedatas.myhand) {
 //                        this.debug(cardId, gamedatas.myhand[cardId]);
                         var card = gamedatas.myhand[cardId];
-                        card.id = cardId;
                         dojo.place(this.displayCard(card), 'myhand');
                     }
-
-                    for (var playerId in gamedatas.tables) {
-                        var table = gamedatas.tables[playerId];
-                        
-                        for (var wageId in table.wages) {
-                            var wage = table.wages[wageId];
-                            dojo.place(this.displayCard(wage), 'playertable_' + playerId);
-                        }
-
-                    }
-
                 },
 
                 displayCard: function (card) {
@@ -78,7 +66,7 @@ define([
                             <span class="card_text card_subtitle">` + card.subtitle + `</span>
                             <span class="card_text card_text1">` + card.text1 + `</span>
                             <span class="card_text card_text2">` + card.text2 + `</span>
-                            <span class="debug">` + card.type + " - S : " + card.smilePoints + `</span>
+                            <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
                         </div>`;
                 },
 

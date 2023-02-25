@@ -9,12 +9,15 @@ use SmileLife\Game\Card\Category\Acquisition\Acquisition;
 use SmileLife\Game\Card\Category\Attack\Attack;
 use SmileLife\Game\Card\Category\Child\Child;
 use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Category\Job\Reward\Reward;
 use SmileLife\Game\Card\Category\Love\Adultery;
 use SmileLife\Game\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Game\Card\Category\Love\Wedding\Wedding;
+use SmileLife\Game\Card\Category\Pet\Pet;
+use SmileLife\Game\Card\Category\Reward\Reward;
+use SmileLife\Game\Card\Category\Special\Special;
 use SmileLife\Game\Card\Category\Studies\Studies;
 use SmileLife\Game\Card\Category\Wage\Wage;
+use SmileLife\Game\Card\Core\Card;
 use SmileLife\Game\Card\Core\CardManager;
 
 /**
@@ -63,7 +66,7 @@ class PlayerTable extends Model {
     /**
      * 
      * @var int|null
-     * @ORM\Column{"type":"int", "name":"table_job"}
+     * @ORM\Column{"type":"int", "name":"table_job", "default":null}
      */
     private $jobId;
 
@@ -77,7 +80,7 @@ class PlayerTable extends Model {
     /**
      * 
      * @var int|null
-     * @ORM\Column{"type":"int", "name":"table_marriage"}
+     * @ORM\Column{"type":"int", "name":"table_marriage", "default":null}
      */
     private $marriageId;
 
@@ -105,9 +108,16 @@ class PlayerTable extends Model {
     /**
      * 
      * @var int|null
-     * @ORM\Column{"type":"int", "name":"table_adultery"}
+     * @ORM\Column{"type":"int", "name":"table_adultery", "default":null}
      */
     private $adulteryId;
+
+    /**
+     * 
+     * @var array
+     * @ORM\Column{"type":"json", "name":"table_pets"}
+     */
+    private $petIds;
 
     /**
      * 
@@ -129,11 +139,47 @@ class PlayerTable extends Model {
         $this->childIds = [];
         $this->flirtIds = [];
         $this->rewardIds = [];
+        $this->petIds = [];
+
+//        $this->adulteryId = null;
+//        $this->jobId = null;
+//        $this->marriageId = null;
     }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Shortcut
      * ---------------------------------------------------------------------- */
+
+    public function addCard(Card $card) {
+        if ($card instanceof Studies) {
+            return $this->addStudy($card);
+        } elseif ($card instanceof Wage) {
+            return $this->addWage($card);
+        } elseif ($card instanceof Job) {
+            return $this->setJob($card);
+        } elseif ($card instanceof Wedding) {
+            return $this->setMarriage($card);
+        } elseif ($card instanceof Adultery) {
+            return $this->setAdultery($card);
+        } elseif ($card instanceof Child) {
+            return $this->addChild($card);
+        } elseif ($card instanceof Flirt) {
+            return $this->addFlirt($card);
+        } elseif ($card instanceof Reward) {
+            return $this->addReward($card);
+        } elseif ($card instanceof Acquisition) {
+            return $this->addAcquisition($card);
+        } elseif ($card instanceof Attack) {
+            return $this->addAttack($card);
+        } elseif ($card instanceof Special) {
+            return $this; // ignore special (not on table)
+        } elseif ($card instanceof Pet) {
+            return $this->addPet($card);
+        } else {
+            var_dump($card, $card instanceof Reward);
+            throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
+        }
+    }
 
     public function setPlayer(Player $player) {
         return $this->setId($player->getId());
@@ -151,7 +197,8 @@ class PlayerTable extends Model {
         return $this;
     }
 
-    public function getJob($param): ?Job {
+    public function getJob(): ?Job {
+
         return $this->cardManager
                         ->findBy(["id" => $this->getJobId()]);
     }
@@ -163,8 +210,11 @@ class PlayerTable extends Model {
     }
 
     public function getMarriage(): ?Wedding {
+        if (null === $this->getMarriageId()) {
+            return null;
+        }
         return $this->cardManager
-                        ->findBy(["id" => $this->getJobId()]);
+                        ->findBy(["id" => $this->getMarriageId()]);
     }
 
     public function setAdultery(Adultery $card) {
@@ -174,8 +224,11 @@ class PlayerTable extends Model {
     }
 
     public function getAdultery(): ?Adultery {
+        if (null === $this->getAdulteryId()) {
+            return null;
+        }
         return $this->cardManager
-                        ->findBy(["id" => $this->getJobId()]);
+                        ->findBy(["id" => $this->getAdulteryId()]);
     }
 
     public function addWage(Wage $card) {
@@ -187,8 +240,15 @@ class PlayerTable extends Model {
         if (empty($this->getWageIds())) {
             return [];
         }
-        return $this->cardManager
-                        ->findBy(["id" => $this->getWageIds()]);
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getWageIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addChild(Child $card) {
@@ -198,8 +258,18 @@ class PlayerTable extends Model {
     }
 
     public function getChilds() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getChildIds()]);
+        if (empty($this->getChildIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getChildIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addStudy(Studies $card) {
@@ -209,8 +279,18 @@ class PlayerTable extends Model {
     }
 
     public function getStudies() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getStudiesIds()]);
+        if (empty($this->getStudiesIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getStudiesIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addFlirt(Flirt $card) {
@@ -220,8 +300,18 @@ class PlayerTable extends Model {
     }
 
     public function getFlirts() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getFlirtIds()]);
+        if (empty($this->getFlirtIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getFlirtIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addReward(Reward $card) {
@@ -231,19 +321,39 @@ class PlayerTable extends Model {
     }
 
     public function getRewards() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getRewardIds()]);
+        if (empty($this->getRewardIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getRewardIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
-    public function addAcquision(Acquisition $card) {
+    public function addAcquisition(Acquisition $card) {
         $this->acquisitionIds[] = $card->getId();
 
         return $this;
     }
 
-    public function getAcquisions() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getAcquisitionIds()]);
+    public function getAcquisitions() {
+        if (empty($this->getAcquisitionIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getAcquisitionIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     public function addAttack(Attack $card) {
@@ -253,8 +363,39 @@ class PlayerTable extends Model {
     }
 
     public function getAttacks() {
-        return $this->cardManager
-                        ->findBy(["id" => $this->getAttackIds()]);
+        if (empty($this->getAttackIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getAttackIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
+    }
+
+    public function addPet(Pet $card) {
+        $this->petIds[] = $card->getId();
+
+        return $this;
+    }
+
+    public function getPets() {
+        if (empty($this->getPetIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getPetIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
     }
 
     /* -------------------------------------------------------------------------
@@ -303,6 +444,10 @@ class PlayerTable extends Model {
 
     public function getAdulteryId(): ?int {
         return $this->adulteryId;
+    }
+
+    public function getPetIds(): array {
+        return $this->petIds;
     }
 
     public function setId(int $id) {
@@ -357,6 +502,11 @@ class PlayerTable extends Model {
 
     public function setAdulteryId(?int $adulteryId) {
         $this->adulteryId = $adulteryId;
+        return $this;
+    }
+
+    public function setPetIds(array $petIds) {
+        $this->petIds = $petIds;
         return $this;
     }
 
