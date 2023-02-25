@@ -71,7 +71,7 @@ class CardManager extends SuperManager {
             if (!empty($aviablePositions)) {
                 $card->setLocationArg(array_shift($aviablePositions));
             } else {
-                $card->setLocation(CardPosition::TRASH); //card isn't playable
+                $card->setLocation(CardLocation::TRASH); //card isn't playable
             }
         }
 
@@ -114,7 +114,7 @@ class CardManager extends SuperManager {
             }
 
             $qb = $this->prepareUpdate($cards)
-                    ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardPosition::PLAYER_HAND)
+                    ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_HAND)
                     ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $player->getId())
                     ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $cardsIds)
             ;
@@ -128,11 +128,11 @@ class CardManager extends SuperManager {
      * ---------------------------------------------------------------------- */
 
     public function getAllCardsInDeck() {
-        return $this->getAllCardsInLocation(CardPosition::DECK);
+        return $this->getAllCardsInLocation(CardLocation::DECK);
     }
 
     public function drawCard($numberCards = 1) {
-        $cards = $this->getAllCardsInLocation(CardPosition::DECK, null, $numberCards);
+        $cards = $this->getAllCardsInLocation(CardLocation::DECK, null, $numberCards);
         if (sizeof($cards) < $numberCards) {
             throw new CardException("Not enouth cards aviable");
         }
@@ -140,7 +140,7 @@ class CardManager extends SuperManager {
     }
 
     public function getPlayerCards(Player $player) {
-        return $this->getAllCardsInLocation(CardPosition::PLAYER_HAND, $player->getId());
+        return $this->getAllCardsInLocation(CardLocation::PLAYER_HAND, $player->getId());
     }
 
     private function getAllCardsInLocation(string $location, int $locationArg = null, $limit = null) {
