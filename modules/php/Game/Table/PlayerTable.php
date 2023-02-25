@@ -13,6 +13,7 @@ use SmileLife\Game\Card\Category\Job\Reward\Reward;
 use SmileLife\Game\Card\Category\Love\Adultery;
 use SmileLife\Game\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Game\Card\Category\Love\Wedding\Wedding;
+use SmileLife\Game\Card\Category\Special\Special;
 use SmileLife\Game\Card\Category\Studies\Studies;
 use SmileLife\Game\Card\Category\Wage\Wage;
 use SmileLife\Game\Card\Core\Card;
@@ -112,6 +113,13 @@ class PlayerTable extends Model {
 
     /**
      * 
+     * @var array
+     * @ORM\Column{"type":"json", "name":"table_pets"}
+     */
+    private $petIds;
+
+    /**
+     * 
      * @var CardManager
      */
     private $cardManager;
@@ -130,6 +138,7 @@ class PlayerTable extends Model {
         $this->childIds = [];
         $this->flirtIds = [];
         $this->rewardIds = [];
+        $this->petIds = [];
     }
 
     /* -------------------------------------------------------------------------
@@ -157,8 +166,12 @@ class PlayerTable extends Model {
             return $this->addAcquision($card);
         } elseif ($card instanceof Attack) {
             return $this->addAttack($card);
+        } elseif ($card instanceof Special) {
+            return $this; // ignore special (not on table)
+        } elseif ($card instanceof Pet) {
+            return $this->addPet($card);
         } else {
-            throw new PlayerTableException("PTE - 01 - Unsupported Card");
+            throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
     }
 
@@ -284,6 +297,17 @@ class PlayerTable extends Model {
                         ->findBy(["id" => $this->getAttackIds()]);
     }
 
+    public function addPet(Pet $card) {
+        $this->petIds[] = $card->getId();
+
+        return $this;
+    }
+
+    public function getPets() {
+        return $this->cardManager
+                        ->findBy(["id" => $this->getPetIds()]);
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
@@ -330,6 +354,10 @@ class PlayerTable extends Model {
 
     public function getAdulteryId(): ?int {
         return $this->adulteryId;
+    }
+
+    public function getPetIds(): array {
+        return $this->petIds;
     }
 
     public function setId(int $id) {
@@ -384,6 +412,11 @@ class PlayerTable extends Model {
 
     public function setAdulteryId(?int $adulteryId) {
         $this->adulteryId = $adulteryId;
+        return $this;
+    }
+
+    public function setPetIds(array $petIds) {
+        $this->petIds = $petIds;
         return $this;
     }
 
