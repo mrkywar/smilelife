@@ -1,21 +1,17 @@
 const SPRITE_NB_COLUMNS = 15;
 const SPRITE_NB_ROWS = 7;
-
 //const WIDTH_S = 100;
 //const HEIGHT_S = 150;
 //const RADIUS_S = 5;
 const WIDTH_XXL = 333.335;
 const HEIGHT_XXL = 500;
 const RADIUS_XXL = 10;
-
 const PREF_CARD_SIZE = 500;
-
 const PREF_CHOICE_SIZE_XS = 5001;
 const PREF_CHOICE_SIZE_S = 5002;
 const PREF_CHOICE_SIZE_M = 5003;
 const PREF_CHOICE_SIZE_L = 5004;
 const PREF_CHOICE_SIZE_XL = 5005;
-
 define([
     'dojo',
     'dojo/_base/declare',
@@ -39,24 +35,31 @@ define([
                         //"XL": PREF_CHOICE_SIZE_XL
                     };
                     this.cardDimension = this.computePossibleCardDimensions();
-
                     //this.dontPreloadImage(g_gamethemeurl + 'img/cards-XL.png');
                     this.dontPreloadImage(g_gamethemeurl + 'img/cards-L.png');
                     this.dontPreloadImage(g_gamethemeurl + 'img/cards-M.png');
                     this.dontPreloadImage(g_gamethemeurl + 'img/cards-S.png');
                     this.dontPreloadImage(g_gamethemeurl + 'img/cards-XS.png');
-
                 },
-                displayCards: function (gamedatas) {
 
+                displayCards: function (gamedatas) {
+                    dojo.place(this.displayDeck(gamedatas), 'aviableDraw');
                     var size = this.findActualCardSize();
                     this.applySize(size);
-
                     for (var cardId in gamedatas.myhand) {
 //                        this.debug(cardId, gamedatas.myhand[cardId]);
                         var card = gamedatas.myhand[cardId];
                         dojo.place(this.displayCard(card), 'myhand');
                     }
+
+
+                },
+
+                displayDeck: function (gamedata) {
+                    return `
+                        <div class="cardontable card_0 card_deck" id="card_0" data-id="0">
+                            <span class="card_in_deck">` + gamedata.deck + `</span>
+                        </div>`;
                 },
 
                 displayCard: function (card) {
@@ -73,12 +76,10 @@ define([
                 findActualCardSize: function () {
                     var object = this.sizeAssoc;
                     var value = parseInt(this.getUserPreference(PREF_CARD_SIZE));
-
                     var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value
                     );
-
-                    return this.cardDimension[gameOptionSize]
+                    return this.cardDimension[gameOptionSize];
 
                 },
 
@@ -86,15 +87,12 @@ define([
                     var size_ratios = {"XS": 0.3, "S": 0.35, "M": 0.4, "L": 0.5, "XL": 0.6};
                     var card_dimensions_XXL = {"width": WIDTH_XXL, "height": HEIGHT_XXL, "radius": RADIUS_XXL};
                     card_dimensions = {"XXL": card_dimensions_XXL};
-
                     for (var size in size_ratios) {
                         // Compute card dimensions for this size
                         var ratio = size_ratios[size];
-
                         var width = card_dimensions_XXL.width * ratio;
                         var height = card_dimensions_XXL.height * ratio;
                         var radius = card_dimensions_XXL.radius * ratio;
-
                         card_dimensions[size] = {"width": width, "height": height, "radius": radius, "name": size, "ratio": ratio};
                     }
                     return card_dimensions;
@@ -391,10 +389,7 @@ define([
                                     ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #f9e000;
                     }
                     `;
-
                     this.insertCSS(computedCSS);
-
-
                 }
 
 

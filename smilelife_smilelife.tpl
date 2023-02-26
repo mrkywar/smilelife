@@ -2,15 +2,9 @@
 <div id="gamepanel" class="card_m tooltip_xl">
     <div class="container-full">
         <div id="carddeck" >
-            <div class="">
-                <div id="aviableDraw">
-                </div>
-                <div class="clear"></div>
+            <div id="aviableDraw">
             </div>
-            <div class="">
-                <div id="deck">
-                </div>
-                <div class="clear"></div>
+            <div id="discard">
             </div>
             <div class="clear"></div>
         </div>
@@ -26,6 +20,7 @@
             <!-- END myhand -->
 
         </div>
+        <div class="clear"></div>
         <div id="tables">
 
         </div>
