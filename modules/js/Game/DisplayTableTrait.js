@@ -23,20 +23,20 @@ define([
                         var player = gamedatas.players[playerId];
                         player.id = playerId;
 
-                        dojo.place(this.displayTable(player), 'board');
+                        dojo.place(this.displayTable(player), 'tables');
                     }
 
                     for (var playerId in gamedatas.tables) {
                         var table = gamedatas.tables[playerId];
 
                         //-- Display all cards on table
-                        if(null !== table.job){
+                        if (null !== table.job) {
                             dojo.place(this.displayCard(table.job), 'playertable_' + playerId);
                         }
-                        if(null !== table.marriage){
+                        if (null !== table.marriage) {
                             dojo.place(this.displayCard(table.marriage), 'playertable_' + playerId);
                         }
-                        if(null !== table.adultery){
+                        if (null !== table.adultery) {
                             dojo.place(this.displayCard(table.adultery), 'playertable_' + playerId);
                         }
                         for (var acquisitionId in table.acquisitions) {

@@ -23,6 +23,7 @@ define([
     g_gamethemeurl + 'modules/js/Core/ToolsTrait.js',
     g_gamethemeurl + 'modules/js/Game/DisplayCardTrait.js',
     g_gamethemeurl + 'modules/js/Game/DisplayTableTrait.js',
+    g_gamethemeurl + 'modules/js/Game/DisplayDrawAndDiscardTrait.js',
 ], function (dojo, declare) {
     return declare(
             "bgagame.smilelife",
@@ -30,6 +31,7 @@ define([
                 common.ToolsTrait,
                 smilelife.DisplayCardTrait,
                 smilelife.DisplayTableTrait,
+                smilelife.DisplayDrawAndDiscardTrait
             ],
             {
                 //ebg.core.gamegui, {
@@ -60,6 +62,7 @@ define([
 
                     this.displayTables(gamedatas);
                     this.displayCards(gamedatas);
+                    this.displayDeckAndDiscard(gamedatas);
 
 
                     //this.setupCard(gamedatas);
