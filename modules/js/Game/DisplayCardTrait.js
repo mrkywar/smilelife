@@ -56,10 +56,17 @@ define([
                 },
 
                 displayDeck: function (gamedata) {
-                    return `
-                        <div class="cardontable card_0 card_deck" id="card_0" data-id="0">
-                            <span class="card_in_deck">` + gamedata.deck + `</span>
+                    if(0 == gamedata.deck){
+                        return `
+                        <div class="cardontable empty_pile" id="deck" data-id="0">
+                            <span class="card_in_deck">x` + gamedata.deck + `</span>
                         </div>`;
+                    }else{
+                        return `
+                        <div class="cardontable card_0 card_deck" id="card_0" data-id="0">
+                            <span class="card_in_deck">x` + gamedata.deck + `</span>
+                        </div>`;
+                    }
                 },
 
                 displayCard: function (card) {
@@ -140,6 +147,20 @@ define([
 
                     //-- just Cards CSS adjustements and add style to DOM :)
                     computedCSS += `
+                    /*------              Draw                            ----*/
+                    #aviableDraw .cardontable .card_in_deck{
+                        font-size: ` + (40 * size.ratio) + `px;
+                        text-shadow: : ` + (2 * size.ratio) + `px 0 0 white,
+                                     ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 white,
+                                     0 ` + (2 * size.ratio) + `px 0 white, 
+                                    -` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 white,
+                                    -` + (2 * size.ratio) + `px 0 0 white,
+                                    -` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 white,
+                                    0 -` + (2 * size.ratio) + `px 0 white, 
+                                    ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 white;
+                    }
+                    
+                    /*------              Card TEXT                       ----*/
                     .card_text{
                         font-size: ` + (20 * size.ratio) + `px;
                         padding: ` + (4 * size.ratio) + `px 0;
