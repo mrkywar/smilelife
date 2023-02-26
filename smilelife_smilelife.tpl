@@ -1,6 +1,6 @@
 {OVERALL_GAME_HEADER}
 <div id="gamepanel" class="card_m tooltip_xl">
-    <div class="container">
+    <div class="container-full">
         <div id="carddeck" >
             <div class="">
                 <div id="aviableDraw">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-
+            <div class="clear"></div>
         </div>
         <div id="board">
             <!-- BEGIN myhand -->
@@ -24,7 +24,10 @@
                 <div class="clear"></div>
             </div>
             <!-- END myhand -->
-            
+
+        </div>
+        <div id="tables">
+
         </div>
     </div>
     <div class="clear"></div>
@@ -35,9 +38,9 @@
 
 
 <script type="text/javascript">
-    
 
-    
+
+
     var jstpl_deck = `
         <div class="cardontable card_0">
             <div class="count-status">\${deck}</div>

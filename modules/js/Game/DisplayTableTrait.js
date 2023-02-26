@@ -23,7 +23,7 @@ define([
                         var player = gamedatas.players[playerId];
                         player.id = playerId;
 
-                        dojo.place(this.displayTable(player), 'board');
+                        dojo.place(this.displayTable(player), 'tables');
                     }
 
                     for (var playerId in gamedatas.tables) {

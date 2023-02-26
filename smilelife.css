@@ -34,6 +34,32 @@ em {
     margin: 0;
     padding: 0;
 }
+/*--------------------------------------------------------------------------
+                BEGIN - All Panels
+--------------------------------------------------------------------------*/
+#carddeck{
+    float: left;
+    margin: 0;
+    width: 20%;
+}
+#board{
+    float: right;
+    margin: 0;
+    width: 80%;
+}
+@media  (max-width: 1250px){
+    #carddeck{
+        float: left;
+        margin: 0;
+        width: 30%;
+    }
+    #board{
+        float: right;
+        margin: 0;
+        width: 70%;
+    }
+}
+
 
 /*--------------------------------------------------------------------------
                 BEGIN - Player Table
