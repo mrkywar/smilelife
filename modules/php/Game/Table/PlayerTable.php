@@ -198,7 +198,9 @@ class PlayerTable extends Model {
     }
 
     public function getJob(): ?Job {
-
+        if (null === $this->getJobId()) {
+            return null;
+        }
         return $this->cardManager
                         ->findBy(["id" => $this->getJobId()]);
     }

@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Game;
 
+use SmileLife\Game\Card\Core\Card;
 use SmileLife\Game\Card\Core\CardLocation;
 
 /**
@@ -10,10 +11,10 @@ use SmileLife\Game\Card\Core\CardLocation;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class TestGameInitializer extends GameInitializer {
-    
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->playerTableManager->setIsDebug(true);
     }
 
@@ -27,6 +28,9 @@ class TestGameInitializer extends GameInitializer {
         );
 
         $i = 0;
+        $discard = array_shift($cards);
+        $this->cardManager->discardCard($discard);
+
         $keys = array_keys($players);
 //        var_dump($keys);
 //        die;
@@ -38,10 +42,11 @@ class TestGameInitializer extends GameInitializer {
             ]);
 
             $i++;
-            
+
             $table->addCard($card);
             $this->playerTableManager->updateTable($table);
         }
     }
 
+    
 }

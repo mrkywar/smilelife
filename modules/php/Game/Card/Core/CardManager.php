@@ -54,7 +54,7 @@ class CardManager extends SuperManager {
     public function initNewGame(array $options) {
         $this->cardManager = new CardManager();
         $this->playerManager = new PlayerManager();
-        
+
         $cards = BaseGameCardRetriver::retrive();
         $maxCards = $this->getCardToKeepCount($cards, $options);
 
@@ -124,11 +124,30 @@ class CardManager extends SuperManager {
     }
 
     /* -------------------------------------------------------------------------
+     *                  BEGIN - For TestInitilaization
+     * ---------------------------------------------------------------------- */
+
+    public function discardCard(Card $card) {
+        $qb = $this->prepareUpdate($card)
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::DISCARD)
+                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
+        
+        $this->execute($qb);
+    }
+
+    /* -------------------------------------------------------------------------
      *                  BEGIN - Classic calls
      * ---------------------------------------------------------------------- */
 
     public function getAllCardsInDeck() {
         return $this->getAllCardsInLocation(CardLocation::DECK);
+    }
+
+    public function getLastDiscardedCard() {
+        return $this->findBy(
+                        ["location" => CardLocation::DISCARD],
+                        1,
+                        ['locationArg' => QueryString::ORDER_DESC]);
     }
 
     public function drawCard($numberCards = 1) {
