@@ -1,12 +1,8 @@
 {OVERALL_GAME_HEADER}
 <div id="gamepanel" class="card_m tooltip_xl">
     <div class="container-full">
-        <div id="carddeck" >
-            <div id="aviableDraw">
-            </div>
-            <div id="discard">
-            </div>
-            <div class="clear"></div>
+        <div id="deck-and-discard">
+
         </div>
         <div id="board">
             <!-- BEGIN myhand -->

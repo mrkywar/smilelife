@@ -43,7 +43,6 @@ define([
                 },
 
                 displayCards: function (gamedatas) {
-                    dojo.place(this.displayDeck(gamedatas), 'aviableDraw');
                     var size = this.findActualCardSize();
                     this.applySize(size);
                     for (var cardId in gamedatas.myhand) {
@@ -51,23 +50,9 @@ define([
                         var card = gamedatas.myhand[cardId];
                         dojo.place(this.displayCard(card), 'myhand');
                     }
-
-
                 },
 
-                displayDeck: function (gamedata) {
-                    if(0 == gamedata.deck){
-                        return `
-                        <div class="cardontable empty_pile" id="deck" data-id="0">
-                            <span class="card_in_deck">x` + gamedata.deck + `</span>
-                        </div>`;
-                    }else{
-                        return `
-                        <div class="cardontable card_0 card_deck" id="card_0" data-id="0">
-                            <span class="card_in_deck">x` + gamedata.deck + `</span>
-                        </div>`;
-                    }
-                },
+                
 
                 displayCard: function (card) {
                     return `
