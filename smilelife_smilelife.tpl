@@ -1,20 +1,21 @@
 {OVERALL_GAME_HEADER}
 
 <div id="game_container">
-    <div class="centered-table">
-        <div id="deck-and-discard">
+    <div class="centered_table">
+        <div id="deck_and_discard">
 
         </div>
-        <div id="board">
-            <!-- BEGIN myhand -->
-            <div id="myhand_wrap" class="whiteblock">
-                <h3>{MY_HAND}</h3>
+        <div id="myhand_wrap" class="whiteblock">
+
+            <fieldset>
+                <legend>{MY_HAND}</legend>
                 <div id="myhand">
 
                 </div>
-                <div class="clear"></div>
-            </div>
-            <!-- END myhand -->
+            </fieldset>
+        </div>
+        <div id="board">
+
 
         </div>
         <div id="tables">

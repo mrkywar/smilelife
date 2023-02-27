@@ -17,33 +17,54 @@ html{
     display: flex;
     justify-content: center;
 }
-#game_container #centered_table{
+#game_container .centered_table{
     align-items: start;
     display: flex;
     gap: 20px;
     justify-content: center;
     position: relative;
 }
-#deck-and-discard {
+#deck_and_discard {
     align-items: center;
     display: flex;
     justify-content: center;
     background: rgb(160 211 233 / 40%);
     border: 2px solid #a1d7ef;
-    border-radius: 15px;
+    border-radius: 5px;
     flex-direction: row;
     padding: 5px;
     padding-bottom: 20px;
 }
-#deck-and-discard > div{
+#myhand_wrap{
+    margin-top: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: rgb(160 211 233 / 40%);
+    border: 2px solid #a1d7ef;
+    border-radius: 5px;
+    flex-direction: row;
+    padding: 5px;
+    padding-bottom: 20px;
+}
+#deck_and_discard > div{
     display: inline-block;
     margin: 5px;
     position: relative;
 }
+#myhand_wrap #myhand {
+    display: flex;
+}
+#myhand_wrap #myhand > div{
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+}
+
 /*-----------------------------------------------------------------------------
                  BEGIN - Deck & Discard
 ------------------------------------------------------------------------------*/
-.cards-stack .pile-counter {
+.cards_stack .pile_counter {
     bottom: -18px;
     color: #e0ffff;
     font-size: 80%;
@@ -51,6 +72,14 @@ html{
     position: absolute;
     right: 0;
     text-align: center;
+}
+/*-----------------------------------------------------------------------------
+                 BEGIN - My Hand
+------------------------------------------------------------------------------*/
+#myhand_wrap #myhand legend{
+    color: white;
+    text-align: right;
+    margin-right: 5px;   
 }
 
 /*-----------------------------------------------------------------------------
