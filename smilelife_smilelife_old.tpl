@@ -1,7 +1,6 @@
 {OVERALL_GAME_HEADER}
-
-<div id="game_container">
-    <div class="centered-table">
+<div id="gamepanel" class="card_m tooltip_xl">
+    <div class="container-full">
         <div id="deck-and-discard">
 
         </div>
@@ -17,10 +16,28 @@
             <!-- END myhand -->
 
         </div>
+        <div class="clear"></div>
         <div id="tables">
 
         </div>
     </div>
+    <div class="clear"></div>
+
 </div>
+
+
+
+
+<script type="text/javascript">
+
+
+
+    var jstpl_deck = `
+        <div class="cardontable card_0">
+            <div class="count-status">\${deck}</div>
+        </div>
+    `;
+
+</script>  
 
 {OVERALL_GAME_FOOTER}

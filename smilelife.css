@@ -8,3 +8,61 @@ html{
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */	
 }
+
+
+/*--------------------------------------------------------------------------
+                BEGIN - All Panels
+--------------------------------------------------------------------------*/
+#game_container{
+    display: flex;
+    justify-content: center;
+}
+#game_container #centered_table{
+    align-items: start;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+}
+#deck-and-discard {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: rgb(160 211 233 / 40%);
+    border: 2px solid #a1d7ef;
+    border-radius: 15px;
+    flex-direction: row;
+    padding: 5px;
+    padding-bottom: 20px;
+}
+#deck-and-discard > div{
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+}
+/*-----------------------------------------------------------------------------
+                 BEGIN - Deck & Discard
+------------------------------------------------------------------------------*/
+.cards-stack .pile-counter {
+    bottom: -18px;
+    color: #e0ffff;
+    font-size: 80%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+
+/*-----------------------------------------------------------------------------
+            BEGIN - Debug
+------------------------------------------------------------------------------*/
+.debug{
+    display: block;
+    min-width: 30px;
+    background: greenyellow;
+    border: 3px black solid;
+    margin: 5px 0;
+    z-index: 99;
+    width: 100%;
+    position: absolute;
+}
