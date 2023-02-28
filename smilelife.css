@@ -48,10 +48,12 @@ html{
     position: relative;
 }
 #mytable_wrap #myhand,
+#mytable_wrap #mytable,
 #tables{
     display: flex;
 }
 #mytable_wrap #myhand > div,
+#mytable_wrap #mytable > div,
 #tables .playertable .playertablecard > div{
     display: inline-block;
     margin: 5px;
