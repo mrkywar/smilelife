@@ -5,19 +5,14 @@
         <div id="deck_and_discard">
 
         </div>
-        <div id="myhand_wrap" class="whiteblock">
+        <div id="mytable_wrap" class="whiteblock">            
+            <div id="myhand">
 
-            <fieldset>
-                <legend>{MY_HAND}</legend>
-                <div id="myhand">
-
-                </div>
-            </fieldset>
+            </div>
+            <div class="info_table"></div>
         </div>
-        <div id="board">
-
-
-        </div>
+    </div>
+    <div class="centered_table">
         <div id="tables">
 
         </div>

@@ -35,27 +35,25 @@ html{
     padding: 5px;
     padding-bottom: 20px;
 }
-#myhand_wrap{
+#mytable_wrap{
     margin-top: 0;
     align-items: center;
-    display: flex;
-    justify-content: center;
-    background: rgb(160 211 233 / 40%);
-    border: 2px solid #a1d7ef;
+    background: rgb(255 255 255 / 40%);
+    border: 2px solid white;
     border-radius: 5px;
-    flex-direction: row;
-    padding: 5px;
-    padding-bottom: 20px;
+    padding: 0;
 }
 #deck_and_discard > div{
     display: inline-block;
     margin: 5px;
     position: relative;
 }
-#myhand_wrap #myhand {
+#mytable_wrap #myhand,
+#tables{
     display: flex;
 }
-#myhand_wrap #myhand > div{
+#mytable_wrap #myhand > div,
+#tables .playertable .playertablecard > div{
     display: inline-block;
     margin: 5px;
     position: relative;
@@ -76,10 +74,9 @@ html{
 /*-----------------------------------------------------------------------------
                  BEGIN - My Hand
 ------------------------------------------------------------------------------*/
-#myhand_wrap #myhand legend{
-    color: white;
-    text-align: right;
-    margin-right: 5px;   
+#mytable_wrap .info_table{
+    background: white;
+    height: 20px;
 }
 
 /*-----------------------------------------------------------------------------
