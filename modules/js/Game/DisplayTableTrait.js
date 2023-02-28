@@ -16,24 +16,24 @@ define([
 //                    this.handCards = [];
                 },
 
-                displayMyTable: function (gamedatas) {
-
-                },
-
                 displayTables: function (gamedatas) {
                     this.debug(gamedatas);
-                    
-                    //-display player's table cards
+//                    this.debug('ici', this.player_id, );
+                    //Prepare My table Container
+                    dojo.place(this.getMyTableHtml(gamedatas.players[this.player_id]), "tables");
+                    //display player's table cards
                     this.displayTableCards(gamedatas.mytable, "mytable");
+//                    dojo.place(this.getTableHtml(gamedatas.players[this.player_id]), 'mytable');
+//                    this.displayTableCards(gamedatas.mytable, 'playertable_' + playerId);
 
                     for (var playerId in gamedatas.tables) {
                         var player = gamedatas.players[playerId];
                         player.id = playerId;
 
                         dojo.place(this.getTableHtml(player), 'tables');
-                        
+
                         var table = gamedatas.tables[playerId];
-                        
+
                         //-display openents's table cards
                         this.displayTableCards(table, 'playertable_' + playerId);
 
@@ -81,22 +81,48 @@ define([
                     }
                 },
 
-                displayMyTable: function (gamedatas) {
-                    var table = gamedatas.mytable;
+                getMyTableHtml: function (player) {
+                    var textColor = "";
+                    if (this.getHtmlColorLuma(player.color) > 100) {
+                        textColor = "black";
+                    } else {
+                        textColor = "white";
+                    }
 
-                    //-- Display all cards on table
+                    return`
+                        <div id="myhand_container" class="playertable whiteblock" style="border-color:#` + player.color + `;">
+                            <div class="playertablename" style="background-color:#` + player.color + `;color:` + textColor + `">My Hand</div>
+                            <div id="myhand" class="playertablecard">
+
+                            </div>
+                        </div>
+                        <div id="mytable_container" class="playertable whiteblock" style="border-color:#` + player.color + `;">
+                            <div class="playertablename" style="background-color:#` + player.color + `;color:` + textColor + `">` + player.name + `</div>
+                            <div id="mytable" class="playertablecard">
+
+                            </div>
+                        </div>
+                    `;
 
                 },
 
                 getTableHtml: function (player) {
+                    var textColor = "";
+                    if (this.getHtmlColorLuma(player.color) > 100) {
+                        textColor = "black";
+                    } else {
+                        textColor = "white";
+                    }
+
                     return `
-                        <div  class="playertable whiteblock playertable" id="player_board_` + player.id + `" >
-                            <div class="playertablename" style="color:#` + player.color + `">` + player.name + `</div>
+                        <div class="playertable whiteblock" id="player_board_` + player.id + `" style="border-color:#` + player.color + `" >
+                            <div class="playertablename" style="background:#` + player.color + `;color:` + textColor + `">` + player.name + `</div>
                             <div class="playertablecard" id="playertable_` + player.id + `">
                             </div>
                             <div class="clear"></div>
                         </div>
                     `;
+
                 }
 
 

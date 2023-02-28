@@ -71,7 +71,6 @@ class GameDataRetriver {
         ];
 
         $players = $this->playerManager->findBy();
-        $this->cardManager->setIsDebug(true);
 
         foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));

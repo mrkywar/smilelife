@@ -33,17 +33,19 @@ html{
     border: 2px solid white;
     border-radius: 5px;
     padding: 0;
-    max-width: 720px;
+    min-width: 720px;
 }
 
 #mytable_wrap #myhand,
-#mytable_wrap #mytable,
-#tables{
+#mytable_wrap #mytable{
     display: flex;
 }
+
 #mytable_wrap #mytable{
     display: grid;
+    justify-content: center;
 }
+
 #mytable_wrap #myhand > div,
 #mytable_wrap #mytable > div,
 #tables .playertable .playertablecard > div{
@@ -51,6 +53,7 @@ html{
     margin: 5px;
     position: relative;
 }
+
 #mytable_wrap #mytable > div:nth-child(4n+1){
     grid-column: 1;
 }
@@ -66,29 +69,33 @@ html{
     /*grid-row: 2;*/
 }
 
-
-
-
-
-
+#mytable_wrap .info_table{
+    background: white;
+    height: 20px;
+    padding: 5px;
+    text-align: center;
+}
 /*-----------------------------------------------------------------------------
                  BEGIN - Deck & Discard
 ------------------------------------------------------------------------------*/
 #deck_and_discard {
-    align-items: center;
+    /*    align-items: center;
+        
+        justify-content: center;
+    flex-direction: row;*/
     display: flex;
-    justify-content: center;
     background: rgb(160 211 233 / 40%);
     border: 2px solid #a1d7ef;
     border-radius: 5px;
-    flex-direction: row;
     padding: 5px;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
 }
 #deck_and_discard > div{
-    display: inline-block;
     margin: 5px;
     position: relative;
+}
+#deck_and_discard > div:first-child{
+    margin-bottom: 30px;
 }
 .cards_stack .pile_counter {
     bottom: -18px;
@@ -100,13 +107,64 @@ html{
     text-align: center;
 }
 /*-----------------------------------------------------------------------------
-                 BEGIN - My Hand
+                 BEGIN - Tables
 ------------------------------------------------------------------------------*/
-#mytable_wrap .info_table{
+#tables{
+    margin-top:10px;
+    display: grid;
+    align-items: center;
+    gap:20px;
+}
+#tables .playertable{
+    min-width: 580px;;
+    margin: 0;
+    border-radius: 5px;
+    padding: 0;
+    border: 2px solid white;
+}
+@media  (min-width: 1500px){
+    #tables .playertable:nth-child(2n){
+        grid-column: 2;
+    }
+    #tables .playertable:nth-child(2n+1){
+        grid-column: 1;
+    }
+}
+#tables .playertable .playertablecard{
+    display: grid;
+    justify-content: center;
+}
+#tables .playertable .playertablename{
     background: white;
-    height: 20px;
+    text-align: center;
+    border-radius: 0;
+    padding: 5px;
+}
+#tables .playertable .playertablecard > div:nth-child(4n+1){
+    grid-column: 1;
+}
+#tables .playertable .playertablecard > div:nth-child(4n+2){
+    grid-column: 2;
+}
+#tables .playertable .playertablecard > div:nth-child(4n+3){
+    grid-column: 3;
+    /*grid-row: 2;*/
+}
+#tables .playertable .playertablecard > div:nth-child(4n+4){
+    grid-column: 4;
+    /*grid-row: 2;*/
 }
 
+
+#tables .playertable #myhand > div:nth-child(3n+1){
+    grid-column: 1;
+}
+#tables .playertable #myhand > div:nth-child(3n+2){
+    grid-column: 2;
+}
+#tables .playertable #myhand > div:nth-child(3n+3){
+    grid-column: 3;
+}
 /*-----------------------------------------------------------------------------
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
