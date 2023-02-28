@@ -10,6 +10,9 @@
 
             </div>
             <div class="info_table"></div>
+            <div id="mytable" class="sl_table">
+
+            </div>
         </div>
     </div>
     <div class="centered_table">

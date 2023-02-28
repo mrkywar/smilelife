@@ -16,62 +16,79 @@ define([
 //                    this.handCards = [];
                 },
 
+                displayMyTable: function (gamedatas) {
+
+                },
+
                 displayTables: function (gamedatas) {
                     this.debug(gamedatas);
-                    for (var playerId in gamedatas.players) {
-//                        this.debug(playerId, gamedatas.players[playerId]);
+                    
+                    //-display player's table cards
+                    this.displayTableCards(gamedatas.mytable, "mytable");
+
+                    for (var playerId in gamedatas.tables) {
                         var player = gamedatas.players[playerId];
                         player.id = playerId;
 
-                        dojo.place(this.displayTable(player), 'tables');
-                    }
-
-                    for (var playerId in gamedatas.tables) {
+                        dojo.place(this.getTableHtml(player), 'tables');
+                        
                         var table = gamedatas.tables[playerId];
+                        
+                        //-display openents's table cards
+                        this.displayTableCards(table, 'playertable_' + playerId);
 
-                        //-- Display all cards on table
-                        if (null !== table.job) {
-                            dojo.place(this.displayCard(table.job), 'playertable_' + playerId);
-                        }
-                        if (null !== table.marriage) {
-                            dojo.place(this.displayCard(table.marriage), 'playertable_' + playerId);
-                        }
-                        if (null !== table.adultery) {
-                            dojo.place(this.displayCard(table.adultery), 'playertable_' + playerId);
-                        }
-                        for (var acquisitionId in table.acquisitions) {
-                            var acquisition = table.acquisitions[acquisitionId];
-                            dojo.place(this.displayCard(acquisition), 'playertable_' + playerId);
-                        }
-                        for (var attackId in table.attacks) {
-                            var attack = table.attacks[attackId];
-                            dojo.place(this.displayCard(attack), 'playertable_' + playerId);
-                        }
-                        for (var studyId in table.studies) {
-                            var study = table.studies[studyId];
-                            dojo.place(this.displayCard(study), 'playertable_' + playerId);
-                        }
-                        for (var petId in table.pets) {
-                            var pet = table.pets[petId];
-                            dojo.place(this.displayCard(pet), 'playertable_' + playerId);
-                        }
-                        for (var childId in table.childs) {
-                            var child = table.childs[childId];
-                            dojo.place(this.displayCard(child), 'playertable_' + playerId);
-                        }
-                        for (var flirtId in table.flirts) {
-                            var flirt = table.flirts[flirtId];
-                            dojo.place(this.displayCard(flirt), 'playertable_' + playerId);
-                        }
-                        for (var wageId in table.wages) {
-                            var wage = table.wages[wageId];
-                            dojo.place(this.displayCard(wage), 'playertable_' + playerId);
-                        }
                     }
 
                 },
 
-                displayTable: function (player) {
+                displayTableCards: function (table, target) {
+                    if (null !== table.job) {
+                        dojo.place(this.displayCard(table.job), target);
+                    }
+                    if (null !== table.marriage) {
+                        dojo.place(this.displayCard(table.marriage), target);
+                    }
+                    if (null !== table.adultery) {
+                        dojo.place(this.displayCard(table.adultery), target);
+                    }
+                    for (var acquisitionId in table.acquisitions) {
+                        var acquisition = table.acquisitions[acquisitionId];
+                        dojo.place(this.displayCard(acquisition), target);
+                    }
+                    for (var attackId in table.attacks) {
+                        var attack = table.attacks[attackId];
+                        dojo.place(this.displayCard(attack), target);
+                    }
+                    for (var studyId in table.studies) {
+                        var study = table.studies[studyId];
+                        dojo.place(this.displayCard(study), target);
+                    }
+                    for (var petId in table.pets) {
+                        var pet = table.pets[petId];
+                        dojo.place(this.displayCard(pet), target);
+                    }
+                    for (var childId in table.childs) {
+                        var child = table.childs[childId];
+                        dojo.place(this.displayCard(child), target);
+                    }
+                    for (var flirtId in table.flirts) {
+                        var flirt = table.flirts[flirtId];
+                        dojo.place(this.displayCard(flirt), target);
+                    }
+                    for (var wageId in table.wages) {
+                        var wage = table.wages[wageId];
+                        dojo.place(this.displayCard(wage), target);
+                    }
+                },
+
+                displayMyTable: function (gamedatas) {
+                    var table = gamedatas.mytable;
+
+                    //-- Display all cards on table
+
+                },
+
+                getTableHtml: function (player) {
                     return `
                         <div  class="playertable whiteblock playertable" id="player_board_` + player.id + `" >
                             <div class="playertablename" style="color:#` + player.color + `">` + player.name + `</div>
