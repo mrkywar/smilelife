@@ -157,7 +157,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_wage .card_title{
-                        margin-top: ` + (60 * size.ratio) + `px;
+                        margin-top: ` + (64 * size.ratio) + `px;
                     }
                     .card_wage .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
