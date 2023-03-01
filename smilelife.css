@@ -1,19 +1,6 @@
-/**
- *------
- * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * Smile Life implementation : © Jean Portemer <jportemer@mailz.org> & Mr_Kywar <mr_kywar@gmail.com>
- *
- * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
- * See http://en.boardgamearena.com/#!doc/Studio for more information.
- * -----
- *
- * smilelife.css
- *
- * Smile Life stylesheet
- *
- */
-
-
+html{
+    background: #179bd7;
+}
 * {
     /* Ensure that the text in game cannot be highlighted */
     -webkit-user-select: none; /* Safari */        
@@ -22,67 +9,199 @@
     user-select: none; /* Standard */	
 }
 
-strong {
-    font-weight: bold;
-}
 
-em {
-    font-style: italic;
+/*--------------------------------------------------------------------------
+                BEGIN - Global Panels
+--------------------------------------------------------------------------*/
+#game_container{
+    justify-content: center;
 }
-
-.whiteblock {
-    margin: 0;
+#game_container .centered_table{
+    align-items: start;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+}
+/*-----------------------------------------------------------------------------
+                 BEGIN - My Table
+------------------------------------------------------------------------------*/
+#mytable_wrap{
+    margin-top: 0;
+    align-items: center;
+    background: rgb(255 255 255 / 40%);
+    border: 2px solid white;
+    border-radius: 5px;
     padding: 0;
+    min-width: 720px;
 }
-/*--------------------------------------------------------------------------
-                BEGIN - All Panels
---------------------------------------------------------------------------*/
-#carddeck{
-    float: left;
+
+#mytable_wrap #myhand,
+#mytable_wrap #mytable{
+    display: flex;
+}
+
+#mytable_wrap #mytable{
+    display: grid;
+    justify-content: center;
+}
+
+#mytable_wrap #myhand > div,
+#mytable_wrap #mytable > div,
+#tables .playertable .playertablecard > div{
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+}
+
+#mytable_wrap .info_table{
+    background: white;
+    height: 20px;
+    padding: 5px;
+    text-align: center;
+}
+/*-----------------------------------------------------------------------------
+                 BEGIN - Deck & Discard
+------------------------------------------------------------------------------*/
+#deck_and_discard {
+    /*    align-items: center;
+        
+        justify-content: center;
+    flex-direction: row;*/
+    display: flex;
+    background: rgb(160 211 233 / 40%);
+    border: 2px solid #a1d7ef;
+    border-radius: 5px;
+    padding: 5px;
+    /*padding-bottom: 20px;*/
+}
+#deck_and_discard > div{
+    margin: 5px;
+    position: relative;
+}
+#deck_and_discard > div:first-child{
+    margin-bottom: 30px;
+}
+.cards_stack .pile_counter {
+    bottom: -18px;
+    color: #e0ffff;
+    font-size: 80%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+/*-----------------------------------------------------------------------------
+                 BEGIN - Tables
+------------------------------------------------------------------------------*/
+#tables{
+    margin-top:10px;
+    display: grid;
+    align-items: center;
+    gap:20px;
+}
+#tables .playertable{
+    min-width: 580px;;
     margin: 0;
-    width: 30%;
+    border-radius: 5px;
+    padding: 0;
+    border: 2px solid white;
 }
-#board{
-    float: right;
-    margin: 0;
-    width: 70%;
+@media  (min-width: 1500px){
+    #tables .playertable:nth-child(2n){
+        grid-column: 2;
+    }
+    #tables .playertable:nth-child(2n+1){
+        grid-column: 1;
+    }
 }
-/*@media  (max-width: 1250px){
-    #carddeck{
-        float: left;
-        margin: 0;
-        width: 30%;
-    }
-    #board{
-        float: right;
-        margin: 0;
-        width: 70%;
-    }
-}*/
+#tables .playertable .playertablecard{
+    display: grid;
+    justify-content: center;
+}
+#tables .playertable .playertablename{
+    background: white;
+    text-align: center;
+    border-radius: 0;
+    padding: 5px;
+}
+#tables .playertable .playertablecard > div:nth-child(4n+1){
+    grid-column: 1;
+}
+#tables .playertable .playertablecard > div:nth-child(4n+2){
+    grid-column: 2;
+}
+#tables .playertable .playertablecard > div:nth-child(4n+3){
+    grid-column: 3;
+    /*grid-row: 2;*/
+}
+#tables .playertable .playertablecard > div:nth-child(4n+4){
+    grid-column: 4;
+    /*grid-row: 2;*/
+}
 
 
+#tables .playertable #myhand > div:nth-child(3n+1){
+    grid-column: 1;
+}
+#tables .playertable #myhand > div:nth-child(3n+2){
+    grid-column: 2;
+}
+#tables .playertable #myhand > div:nth-child(3n+3){
+    grid-column: 3;
+}
 /*--------------------------------------------------------------------------
-                BEGIN - Player Table
+                BEGIN - Pile
 --------------------------------------------------------------------------*/
-.playertable{
-    margin-top: 10px;
-    box-shadow: 0px 0px 0px 1px rgb(0 0 0 / 44%);
+
+.pile_container .pile{
+    padding: 5px;
+}
+.pile_container .pile_info,
+.pile_container .pile_counter
+{
+    font-size: 12px;
+    text-align: center;
+    color: white;
+}
+.pile_job,
+.pile_wage{
+    border: 2px solid #179bd7;
     border-radius: 5px;
 }
-
-/*--------------------------------------------------------------------------
-                BEGIN - DECK
---------------------------------------------------------------------------*/
-#aviableDraw .cardontable .card_in_deck{
-    width: 100%;
-    display: block;
-    text-align: center;
-    margin-top: 100%;
-    font-weight: bold;
-    /*color: white;*/
-    text-shadow: 1px 0 1px #fff, 0 -1px 1px #fff, 0 1px 1px #fff, -1px 0 1px #fff;
+.pile_love,
+.pile_child{
+    border: 2px solid #c70580;
+    border-radius: 5px;
 }
-
+.pile_aquisition{
+    border: 2px solid #47a736;
+    border-radius: 5px;
+}
+.pile_malus{
+    border: 2px solid #a73636;
+    border-radius: 5px;
+}
+.pile_job .pile_info,
+.pile_job .pile_counter,
+.pile_wage .pile_info,
+.pile_wage .pile_counter{
+    background: #179bd7;
+}
+.pile_love .pile_info,
+.pile_love .pile_counter,
+.pile_child .pile_info,
+.pile_child .pile_counter{
+    background: #c70580;
+}
+.pile_aquisition .pile_info,
+.pile_aquisition .pile_counter{
+    background: #47a736;
+}
+.pile_malus .pile_info,
+.pile_malus .pile_counter{
+    background: #a73636;
+}
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
 --------------------------------------------------------------------------*/
@@ -175,71 +294,6 @@ em {
 .card_cairo .card_subtitle{
     color: #e4a600;
 }
-/*--------------------------------------------------------------------------
-                BEGIN - CARD size M text
---------------------------------------------------------------------------/
-
-.card_m .card_text{
-    font-size: 8px;
-}
-.card_m .card_title{
-    margin-top: 20px;
-}
-.card_m .card_pet .card_title,
-.card_m .card_job .card_title,
-.card_m .card_house .card_title{
-    height: 18px;
-    margin-top: 7px;
-}
-.card_m .card_attack .card_title{
-    margin-top: 10px;
-}
-.card_m .card_house .card_text1,
-.card_m .card_adultery .card_text1{
-    margin-top: 85px;
-}
-.card_m .card_house .card_text2{
-    margin-top: 14px;
-}
-.card_m .card_wedding .card_text1{
-    margin-top: 18px;
-}
-
-.card_m .card_job .card_text1,
-.card_m .card_attack .card_text1{
-    margin-top: 99px;
-}
-.card_m .card_pet .card_text1{
-    margin-top: 103px;
-}
-.card_m .card_studies1 .card_text2, 
-.card_m .card_wage .card_text1,
-.card_m .card_unicorn .card_text1,
-.card_m .card_child .card_text1{
-    margin-top: 96px;
-}
-.card_m .card_studies2 .card_text1{
-    margin-top: 78px;
-}
-.card_m .card_studies2 .card_text2{
-    margin-top: 8px;
-}
-.card_m .card_flirt .card_text1{
-    margin-top: 86px;
-}
-
-/*--------------------------------------------------------------------------
-                BEGIN - cards size M
---------------------------------------------------------------------------/
-.cardontable {
-/*    width: 100px;
-    height: 150px;/
-    background-image: url('img/cards-2-num.png');
-    margin-bottom: 5px;
-    margin-right: 5px;
-
-    
-}
 
 /*-----------------------------------------------------------------------------
             BEGIN - Debug
@@ -253,5 +307,4 @@ em {
     z-index: 99;
     width: 100%;
     position: absolute;
-    bottom: -24px;
 }

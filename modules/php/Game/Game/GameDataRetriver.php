@@ -67,11 +67,10 @@ class GameDataRetriver {
         $result = [
             "myhand" => $this->cardDecorator->decorateRawCard($rawHand),
             "deck" => count($this->cardManager->getAllCardsInDeck()),
-            "discard" => $this->cardDecorator->decorateRawCard($discard)
+            "discard" => (empty($discard)) ? null : $this->cardDecorator->decorateRawCard($discard)
         ];
 
         $players = $this->playerManager->findBy();
-        $this->cardManager->setIsDebug(true);
 
         foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
@@ -83,6 +82,10 @@ class GameDataRetriver {
             $this->playerTableManager->updateTable($table);
             $result['tables'][$player->getId()] = $this->playerTableDecorator->decorateTable($table);
         }
+
+        $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
+        unset($result['tables'][$playerId]);
+
 //        echo "<pre>";
 //        var_dump($result);
 //        die;

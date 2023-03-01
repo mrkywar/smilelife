@@ -29,7 +29,7 @@ class TestGameInitializer extends GameInitializer {
 
         $i = 0;
         $discard = array_shift($cards);
-        $this->cardManager->discardCard($discard);
+//        $this->cardManager->discardCard($discard);
 
         $keys = array_keys($players);
 //        var_dump($keys);

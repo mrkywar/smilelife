@@ -32,6 +32,19 @@ define(['dojo', 'dojo/_base/declare', 'ebg/core/gamegui'], (dojo, declare) => {
             }
         },
         /* -------------------------------------------------------------
+         *                  BEGIN - Color luma
+         * ---------------------------------------------------------- */
+        getHtmlColorLuma(color) {
+            var rgb = parseInt(color, 16);   // convert rrggbb to decimal
+            var r = (rgb >> 16) & 0xff;  // extract red
+            var g = (rgb >> 8) & 0xff;  // extract green
+            var b = (rgb >> 0) & 0xff;  // extract blue
+
+            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+        },
+
+        /* -------------------------------------------------------------
          *                  BEGIN - CSS Manipulate
          * ---------------------------------------------------------- */
         insertCSS: function (css) {

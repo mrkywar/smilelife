@@ -93,11 +93,15 @@ define([
                 applySize: function (size) {
                     this.debug(size);
                     var computedCSS = `
+                    .cardontable,
+                    .pile{
+                        width: ` + size.width + `px;
+                        height: ` + size.height + `px;
+                    }
+                    
                     .cardontable {
                         margin-bottom: ` + (10 * size.ratio) + `px;
                         margin-right: ` + (10 * size.ratio) + `px;
-                        width: ` + size.width + `px;
-                        height: ` + size.height + `px;
                         border-radius: ` + size.radius + `px;
                         background-image: url('` + g_gamethemeurl + `img/cards-` + size.name + `.png');
                     }
@@ -157,7 +161,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_wage .card_title{
-                        margin-top: ` + (60 * size.ratio) + `px;
+                        margin-top: ` + (64 * size.ratio) + `px;
                     }
                     .card_wage .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
