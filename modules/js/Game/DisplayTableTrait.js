@@ -130,45 +130,69 @@ define([
 
                 getTableBoardHtml: function (player) {
                     return `
-                        ` + this.getTablePileHtml(player, "job") + `
-                        ` + this.getTablePileHtml(player, "love") + `
-                        ` + this.getTablePileHtml(player, "aquisition") + `
-                        ` + this.getTablePileHtml(player, "malus") + `
-                        ` + this.getTablePileHtml(player, "wage") + `
-                        ` + this.getTablePileHtml(player, "child") + `
-                        ` + this.getTablePileHtml(player, "bonus1") + `
-                        ` + this.getTablePileHtml(player, "bonus2") + `
-                      `;
-//                    return `
-//                        <div class="pile_container">
-//                            <div class="pile pile_job" id="pile_job_` + player.id + `"></div>
-//                            <div class="pile_counter" id="pile_job_count_` + player.id + `"></div>
-//                        </div>
-//                        <div class="pile_container">
-//                            <div class="pile pile_love" id="pile_love_` + player.id + `"></div>
-//                            <div class="pile_counter" id="pile_love_count_` + player.id + `"></div>
-//                        </div>
-//    
-//                        
-//                        <div class="pile pile_love" id="pile_love_` + player.id + `"></div>
-//                        <div class="pile pile_aquisition" id="pile_aquisition"_` + player.id + `"></div>
-//                        <div class="pile pile_malus" id="pile_malus"_` + player.id + `"></div>
-//                        <div class="pile pile_wage" id="pile_wage_` + player.id + `"></div>
-//                        <div class="pile pile_child" id="pile_child_` + player.id + `"></div>
-//                        <div class="pile pile_bonus" id="pile_bonus1_` + player.id + `"></div>
-//                        <div class="pile pile_bonus" id="pile_bonus2_` + player.id + `"></div>
-//                    `;
-                },
-
-                getTablePileHtml: function (player, category) {
-                    return `
                         <div class="pile_container">
-                            <div class="pile pile_` + category + `" id="pile_` + category + `_` + player.id + `"></div>
-                            <div class="pile_counter" id="pile_` + category + `_count_` + player.id + `"></div>
+                            <div class="pile_info">{Studies Job}</div>
+                            <div class="pile pile_job" id="pile_job_` + player.id + `">
+                                
+                            </div>
+                            <div class="pile_counter" id="pile_job_count_` + player.id + `"></div>
                         </div>
-                    `
-                }
+                        
+                        <div class="pile_container">
+                            <div class="pile_info">{Flirts Marriage}</div>
+                            <div class="pile pile_love" id="pile_love_` + player.id + `">
+                                
+                            </div>
+                            <div class="pile_counter" id="pile_love_count_` + player.id + `"></div>
+                        </div>
 
+                        <div class="pile_container">
+                            <div class="pile_info">{Pets Travels House}</div>
+                            <div class="pile pile_aquisition" id="pile_aquisition_` + player.id + `">
+                                
+                            </div>
+                            <div class="pile_counter" id="pile_aquisition_count_` + player.id + `"></div>
+                        </div>
+
+                        <div class="pile_container">
+                            <div class="pile_info">{Malus}</div>
+                            <div class="pile pile_malus" id="pile_malus_` + player.id + `">
+                                
+                            </div>
+                            <div class="pile_counter" id="pile_malus_count_` + player.id + `"></div>
+                        </div>
+                    
+                        <div class="pile_container">
+                            <div class="pile_info">{Wages}</div>
+                            <div class="pile pile_wage" id="pile_wage_` + player.id + `">
+                                
+                            </div>
+                            <div class="pile_counter" id="pile_wage_count_` + player.id + `"></div>
+                        </div>
+                    
+                        <div class="pile_container">
+                            <div class="pile_info">{Childs}</div>
+                            <div class="pile pile_child" id="pile_child_` + player.id + `">
+                                
+                            </div>
+                            <div class="pile_counter" id="pile_wage_count_` + player.id + `"></div>
+                        </div>
+                    
+                        <div class="pile_container">
+                            <div class="pile_info"></div>
+                            <div class="pile pile_bonus" id="pile_bonus1_` + player.id + `">
+                            </div>
+                            <div class="pile_counter" id="pile_bonus1_count_` + player.id + `"></div>
+                        </div>
+                        
+                        <div class="pile_container">
+                            <div class="pile_info"></div>
+                            <div class="pile pile_bonus" id="pile_bonus2_` + player.id + `">
+                            </div>
+                            <div class="pile_counter" id="pile_bonus2_count_` + player.id + `"></div>
+                        </div>
+                    `;
+                },
 
             }
 
