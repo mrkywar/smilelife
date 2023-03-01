@@ -20,7 +20,9 @@ define([
                     this.debug(gamedatas);
 //                    this.debug('ici', this.player_id, );
                     //Prepare My table Container
-                    dojo.place(this.getMyTableHtml(gamedatas.players[this.player_id]), "tables");
+                    var meAsPlayer = gamedatas.players[this.player_id];
+                    meAsPlayer.id = this.player_id
+                    dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
                     //display player's table cards
                     this.displayTableCards(gamedatas.mytable, "mytable");
 //                    dojo.place(this.getTableHtml(gamedatas.players[this.player_id]), 'mytable');
@@ -99,7 +101,7 @@ define([
                         <div id="mytable_container" class="playertable whiteblock" style="border-color:#` + player.color + `;">
                             <div class="playertablename" style="background-color:#` + player.color + `;color:` + textColor + `">` + player.name + `</div>
                             <div id="mytable" class="playertablecard">
-
+                                ` + this.getTableBoardHtml(player) + `
                             </div>
                         </div>
                     `;
@@ -118,11 +120,53 @@ define([
                         <div class="playertable whiteblock" id="player_board_` + player.id + `" style="border-color:#` + player.color + `" >
                             <div class="playertablename" style="background:#` + player.color + `;color:` + textColor + `">` + player.name + `</div>
                             <div class="playertablecard" id="playertable_` + player.id + `">
+                                ` + this.getTableBoardHtml(player) + `
                             </div>
                             <div class="clear"></div>
                         </div>
                     `;
 
+                },
+
+                getTableBoardHtml: function (player) {
+                    return `
+                        ` + this.getTablePileHtml(player, "job") + `
+                        ` + this.getTablePileHtml(player, "love") + `
+                        ` + this.getTablePileHtml(player, "aquisition") + `
+                        ` + this.getTablePileHtml(player, "malus") + `
+                        ` + this.getTablePileHtml(player, "wage") + `
+                        ` + this.getTablePileHtml(player, "child") + `
+                        ` + this.getTablePileHtml(player, "bonus1") + `
+                        ` + this.getTablePileHtml(player, "bonus2") + `
+                      `;
+//                    return `
+//                        <div class="pile_container">
+//                            <div class="pile pile_job" id="pile_job_` + player.id + `"></div>
+//                            <div class="pile_counter" id="pile_job_count_` + player.id + `"></div>
+//                        </div>
+//                        <div class="pile_container">
+//                            <div class="pile pile_love" id="pile_love_` + player.id + `"></div>
+//                            <div class="pile_counter" id="pile_love_count_` + player.id + `"></div>
+//                        </div>
+//    
+//                        
+//                        <div class="pile pile_love" id="pile_love_` + player.id + `"></div>
+//                        <div class="pile pile_aquisition" id="pile_aquisition"_` + player.id + `"></div>
+//                        <div class="pile pile_malus" id="pile_malus"_` + player.id + `"></div>
+//                        <div class="pile pile_wage" id="pile_wage_` + player.id + `"></div>
+//                        <div class="pile pile_child" id="pile_child_` + player.id + `"></div>
+//                        <div class="pile pile_bonus" id="pile_bonus1_` + player.id + `"></div>
+//                        <div class="pile pile_bonus" id="pile_bonus2_` + player.id + `"></div>
+//                    `;
+                },
+
+                getTablePileHtml: function (player, category) {
+                    return `
+                        <div class="pile_container">
+                            <div class="pile pile_` + category + `" id="pile_` + category + `_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_` + category + `_count_` + player.id + `"></div>
+                        </div>
+                    `
                 }
 
 
