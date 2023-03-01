@@ -153,13 +153,55 @@ html{
 /*--------------------------------------------------------------------------
                 BEGIN - Pile
 --------------------------------------------------------------------------*/
-.pile{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
-}
 
+.pile_container .pile{
+    padding: 5px;
+}
+.pile_container .pile_info,
+.pile_container .pile_counter
+{
+    font-size: 12px;
+    text-align: center;
+    color: white;
+}
+.pile_job,
+.pile_wage{
+    border: 2px solid #179bd7;
+    border-radius: 5px;
+}
+.pile_love,
+.pile_child{
+    border: 2px solid #c70580;
+    border-radius: 5px;
+}
+.pile_aquisition{
+    border: 2px solid #47a736;
+    border-radius: 5px;
+}
+.pile_malus{
+    border: 2px solid #a73636;
+    border-radius: 5px;
+}
+.pile_job .pile_info,
+.pile_job .pile_counter,
+.pile_wage .pile_info,
+.pile_wage .pile_counter{
+    background: #179bd7;
+}
+.pile_love .pile_info,
+.pile_love .pile_counter,
+.pile_child .pile_info,
+.pile_child .pile_counter{
+    background: #c70580;
+}
+.pile_aquisition .pile_info,
+.pile_aquisition .pile_counter{
+    background: #47a736;
+}
+.pile_malus .pile_info,
+.pile_malus .pile_counter{
+    background: #a73636;
+}
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
 --------------------------------------------------------------------------*/

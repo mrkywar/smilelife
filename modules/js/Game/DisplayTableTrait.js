@@ -130,64 +130,64 @@ define([
 
                 getTableBoardHtml: function (player) {
                     return `
-                        <div class="pile_container">
+                        <div class="pile_container pile_job">
                             <div class="pile_info">{Studies Job}</div>
-                            <div class="pile pile_job" id="pile_job_` + player.id + `">
+                            <div class="pile" id="pile_job_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_job_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_job_count_` + player.id + `">0</div>
                         </div>
                         
-                        <div class="pile_container">
+                        <div class="pile_container pile_love">
                             <div class="pile_info">{Flirts Marriage}</div>
-                            <div class="pile pile_love" id="pile_love_` + player.id + `">
+                            <div class="pile" id="pile_love_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_love_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_love_count_` + player.id + `">0</div>
                         </div>
 
-                        <div class="pile_container">
+                        <div class="pile_container pile_aquisition">
                             <div class="pile_info">{Pets Travels House}</div>
-                            <div class="pile pile_aquisition" id="pile_aquisition_` + player.id + `">
+                            <div class="pile" id="pile_aquisition_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_aquisition_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_aquisition_count_` + player.id + `">0</div>
                         </div>
 
-                        <div class="pile_container">
+                        <div class="pile_container pile_malus">
                             <div class="pile_info">{Malus}</div>
-                            <div class="pile pile_malus" id="pile_malus_` + player.id + `">
+                            <div class="pile" id="pile_malus_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_malus_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_malus_count_` + player.id + `">0</div>
                         </div>
                     
-                        <div class="pile_container">
+                        <div class="pile_container pile_wage">
                             <div class="pile_info">{Wages}</div>
-                            <div class="pile pile_wage" id="pile_wage_` + player.id + `">
+                            <div class="pile" id="pile_wage_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_wage_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_wage_count_` + player.id + `">0</div>
                         </div>
                     
-                        <div class="pile_container">
+                        <div class="pile_container pile_child">
                             <div class="pile_info">{Childs}</div>
-                            <div class="pile pile_child" id="pile_child_` + player.id + `">
+                            <div class="pile" id="pile_child_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_wage_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_wage_count_` + player.id + `">0</div>
                         </div>
                     
-                        <div class="pile_container">
+                        <div class="pile_container pile_bonus">
                             <div class="pile_info"></div>
-                            <div class="pile pile_bonus" id="pile_bonus1_` + player.id + `">
+                            <div class="pile" id="pile_bonus1_` + player.id + `">
                             </div>
                             <div class="pile_counter" id="pile_bonus1_count_` + player.id + `"></div>
                         </div>
                         
-                        <div class="pile_container">
+                        <div class="pile_containe pile_bonus">
                             <div class="pile_info"></div>
-                            <div class="pile pile_bonus" id="pile_bonus2_` + player.id + `">
+                            <div class="pile" id="pile_bonus2_` + player.id + `">
                             </div>
                             <div class="pile_counter" id="pile_bonus2_count_` + player.id + `"></div>
                         </div>

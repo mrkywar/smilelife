@@ -67,29 +67,29 @@ $game_options = [
     ]
 ];
 
-$game_preferences = [
-    PREF_CARD_SIZE => [
-        'name' => totranslate('Card size'),
-        'needReload' => true, // after user changes this preference game interface would auto-reload
-        'values' => [
-            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
-            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
-            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
-            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
-//            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
-        ],
-        'default' => PREF_CHOICE_SIZE_M
-    ],
-//    PREF_TOOLTIP_SIZE => [
-//        'name' => totranslate('Card size in tooltip'),
+//$game_preferences = [
+//    PREF_CARD_SIZE => [
+//        'name' => totranslate('Card size'),
 //        'needReload' => true, // after user changes this preference game interface would auto-reload
 //        'values' => [
 //            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
 //            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
 //            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
 //            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
-//            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
+////            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
 //        ],
-//        'default' => PREF_CHOICE_SIZE_S
-//    ]
-];
+//        'default' => PREF_CHOICE_SIZE_M
+//    ],
+////    PREF_TOOLTIP_SIZE => [
+////        'name' => totranslate('Card size in tooltip'),
+////        'needReload' => true, // after user changes this preference game interface would auto-reload
+////        'values' => [
+////            PREF_CHOICE_SIZE_XS => ['name' => totranslate('XS')],
+////            PREF_CHOICE_SIZE_S => ['name' => totranslate('S')],
+////            PREF_CHOICE_SIZE_M => ['name' => totranslate('M')],
+////            PREF_CHOICE_SIZE_L => ['name' => totranslate('L')],
+////            PREF_CHOICE_SIZE_XL => ['name' => totranslate('XL')],
+////        ],
+////        'default' => PREF_CHOICE_SIZE_S
+////    ]
+//];

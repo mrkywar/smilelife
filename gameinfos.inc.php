@@ -99,13 +99,13 @@ $gameinfos = array(
 
 // Colors attributed to players
 'player_colors' => array( // Can use the exact colors in preferences because Smile Life has no game element player color based
-    '0000ff', // Blue
-    'ff0000', // Red
-    '008000', // Green
+    '00618d', // Blue
+    'a73636', // Red
+    '47a736', // Green
     'ffa500', // Yellow
     '000000', // Black
     'ffffff', // White
-    'e94190', // Pink
+    'c70580', // Pink
     '982fff', // Purple
     '72c3b1', // Cyan
     'f07f16', // Orange
