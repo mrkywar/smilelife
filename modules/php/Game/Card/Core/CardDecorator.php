@@ -52,7 +52,8 @@ class CardDecorator {
             "title" => $card->getTitle(),
             "subtitle" => $card->getSubTitle(),
             "text1" => $card->getText1(),
-            "text2" => $card->getText2()
+            "text2" => $card->getText2(),
+            "isFlipped" => $card->getIsFlipped(),
         ];
     }
 
