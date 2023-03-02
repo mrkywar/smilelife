@@ -46,9 +46,22 @@ define([
 
                 displayTableCards: function (table, player) {
                     this.debug(player);
+                    //-- Job & Studies
+                    var count_job = 0;
                     if (null !== table.job) {
-                        dojo.place(this.displayCard(table.job), 'playertable_' + player.id);
+                        dojo.place(this.displayCard(table.job), 'pile_job_' + player.id);
+                        count_job++;
+                    } else if (table.studies.length > 0) {
+                        var lastStudy = table.studies[table.studies.length - 1];
+                        dojo.place(this.displayCard(lastStudy), 'pile_job_' + player.id);
                     }
+                    count_job = count_job + table.studies.length;
+                    $('pile_job_count_' + player.id).innerHTML = count_job;
+
+
+
+
+
                     if (null !== table.marriage) {
                         dojo.place(this.displayCard(table.marriage), 'playertable_' + player.id);
                     }
