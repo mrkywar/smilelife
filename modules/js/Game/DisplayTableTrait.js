@@ -94,7 +94,7 @@ define([
 
                     //----- Pet House & Travel (pet in first)
                     if (table.pets.length > 0) {
-                        var lastPet = table.attacks[table.pets.length - 1];
+                        var lastPet = table.pets[table.pets.length - 1];
                         dojo.place(this.displayCard(lastPet), 'pile_aquisition_' + player.id);
                     } else if (table.acquisitions.length > 0) {
                         var lastAquisition = table.acquisitions[table.acquisitions.length - 1];

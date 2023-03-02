@@ -247,8 +247,9 @@ define([
                     }
                     .card_powered .card_text1{
                         margin: 0 ` + (64 * size.ratio) + `px;
-                        margin-top: ` + (348 * size.ratio) + `px;
+                        margin-top: ` + (352 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
+                        line-height: 1.35em;
                     }
                     .card_official.card_powered .card_text1{
                         margin-top: ` + (328 * size.ratio) + `px;
