@@ -180,9 +180,12 @@ html{
     border: 2px solid #47a736;
     border-radius: 5px;
 }
-.pile_malus{
+.pile_attack{
     border: 2px solid #a73636;
     border-radius: 5px;
+}
+.pile_bonus{
+    border: 2px solid transparent;
 }
 .pile_job .pile_info,
 .pile_job .pile_counter,
@@ -200,8 +203,8 @@ html{
 .pile_aquisition .pile_counter{
     background: #47a736;
 }
-.pile_malus .pile_info,
-.pile_malus .pile_counter{
+.pile_attack .pile_info,
+.pile_attack .pile_counter{
     background: #a73636;
 }
 /*--------------------------------------------------------------------------
