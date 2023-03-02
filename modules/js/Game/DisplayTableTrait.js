@@ -24,9 +24,10 @@ define([
                     meAsPlayer.id = this.player_id
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
                     //display player's table cards
+                    this.debug("P", gamedatas.mytable, meAsPlayer);
 //                    this.displayTableCards(gamedatas.mytable, "mytable");
 //                    dojo.place(this.getTableHtml(gamedatas.players[this.player_id]), 'mytable');
-//                    this.displayTableCards(gamedatas.mytable, 'playertable_' + playerId);
+                    this.displayTableCards(gamedatas.mytable, meAsPlayer);
 
                     for (var playerId in gamedatas.tables) {
                         var player = gamedatas.players[playerId];
@@ -44,6 +45,7 @@ define([
                 },
 
                 displayTableCards: function (table, player) {
+                    this.debug(player);
                     if (null !== table.job) {
                         dojo.place(this.displayCard(table.job), 'playertable_' + player.id);
                     }
@@ -98,13 +100,8 @@ define([
 
                             </div>
                         </div>
-                        <div id="mytable_container" class="playertable whiteblock" style="border-color:#` + player.color + `;">
-                            <div class="playertablename" style="background-color:#` + player.color + `;color:` + textColor + `">` + player.name + `</div>
-                            <div class="playertablecard" id="playertable_` + player.color + `">
-                                ` + this.getTableBoardHtml(player) + `
-                            </div>
-                        </div>
-                    `;
+                        
+                    ` + this.getTableHtml(player);
 
                 },
 
