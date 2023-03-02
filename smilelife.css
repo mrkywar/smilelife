@@ -49,7 +49,6 @@ html{
 #mytable_wrap #myhand > div,
 #mytable_wrap #mytable > div,
 #tables .playertable .playertablecard > div{
-    display: inline-block;
     margin: 5px;
     position: relative;
 }
@@ -99,9 +98,9 @@ html{
     display: grid;
     align-items: center;
     gap:20px;
+    align-items: stretch;
 }
 #tables .playertable{
-    min-width: 580px;;
     margin: 0;
     border-radius: 5px;
     padding: 0;
@@ -117,7 +116,7 @@ html{
 }
 #tables .playertable .playertablecard{
     display: grid;
-    justify-content: center;
+    justify-content: space-around;
 }
 #tables .playertable .playertablename{
     background: white;
@@ -140,8 +139,11 @@ html{
     /*grid-row: 2;*/
 }
 
-
-#tables .playertable #myhand > div:nth-child(3n+1){
+#tables .playertable #myhand{
+    justify-content: space-around;
+    align-content: space-around;
+}
+/*#tables .playertable #myhand > div:nth-child(3n+1){
     grid-column: 1;
 }
 #tables .playertable #myhand > div:nth-child(3n+2){
@@ -149,7 +151,7 @@ html{
 }
 #tables .playertable #myhand > div:nth-child(3n+3){
     grid-column: 3;
-}
+}*/
 /*--------------------------------------------------------------------------
                 BEGIN - Pile
 --------------------------------------------------------------------------*/
