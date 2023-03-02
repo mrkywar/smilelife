@@ -217,6 +217,9 @@ define([
                     .card_pet .card_text1{
                         margin-top: ` + (350 * size.ratio) + `px;
                     }
+                    .card_unicorn .card_text1{
+                        margin-top: ` + (338 * size.ratio) + `px;
+                    }
                     /*------              MARRIAGE                        ----*/
                     .card_wedding .card_title{
                         margin-top: ` + (60 * size.ratio) + `px;
