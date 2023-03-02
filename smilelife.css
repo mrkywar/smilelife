@@ -299,6 +299,19 @@ html{
 .card_cairo .card_subtitle{
     color: #e4a600;
 }
+.card_attack .card_text1{
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.card_grandprofessor .card_text1{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: space-around;
+}
 
 /*-----------------------------------------------------------------------------
             BEGIN - Debug

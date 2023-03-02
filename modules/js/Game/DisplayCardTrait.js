@@ -237,7 +237,7 @@ define([
                     }
                     .card_job .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
-                        margin-top: 0 ` + (60 * size.ratio) + `px;
+                        margin-top: ` + (4 * size.ratio) + `px;
                         padding-top:` + (6 * size.ratio) + `px;
                     }
                     .card_job .card_text1{
@@ -267,6 +267,9 @@ define([
                         right: -` + (28 * size.ratio) + `px;
                         bottom: -` + (8 * size.ratio) + `px;
                         font-size: ` + (16 * size.ratio) + `px;
+                    }
+                    .card_grandprofessor .card_text1{
+                        margin: ` + (332 * size.ratio) + `px ` + (46 * size.ratio) + `px 0 ` + (46 * size.ratio) + `px;
                     }
                     /*------              REWARD                          ----*/
                     .card_reward .card_title{
