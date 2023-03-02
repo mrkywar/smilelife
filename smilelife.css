@@ -49,7 +49,6 @@ html{
 #mytable_wrap #myhand > div,
 #mytable_wrap #mytable > div,
 #tables .playertable .playertablecard > div{
-    display: inline-block;
     margin: 5px;
     position: relative;
 }
@@ -99,9 +98,9 @@ html{
     display: grid;
     align-items: center;
     gap:20px;
+    align-items: stretch;
 }
 #tables .playertable{
-    min-width: 580px;;
     margin: 0;
     border-radius: 5px;
     padding: 0;
@@ -117,7 +116,7 @@ html{
 }
 #tables .playertable .playertablecard{
     display: grid;
-    justify-content: center;
+    justify-content: space-around;
 }
 #tables .playertable .playertablename{
     background: white;
@@ -140,8 +139,11 @@ html{
     /*grid-row: 2;*/
 }
 
-
-#tables .playertable #myhand > div:nth-child(3n+1){
+#tables .playertable #myhand{
+    justify-content: space-around;
+    align-content: space-around;
+}
+/*#tables .playertable #myhand > div:nth-child(3n+1){
     grid-column: 1;
 }
 #tables .playertable #myhand > div:nth-child(3n+2){
@@ -149,7 +151,7 @@ html{
 }
 #tables .playertable #myhand > div:nth-child(3n+3){
     grid-column: 3;
-}
+}*/
 /*--------------------------------------------------------------------------
                 BEGIN - Pile
 --------------------------------------------------------------------------*/
@@ -178,9 +180,12 @@ html{
     border: 2px solid #47a736;
     border-radius: 5px;
 }
-.pile_malus{
+.pile_attack{
     border: 2px solid #a73636;
     border-radius: 5px;
+}
+.pile_bonus{
+    border: 2px solid transparent;
 }
 .pile_job .pile_info,
 .pile_job .pile_counter,
@@ -198,8 +203,8 @@ html{
 .pile_aquisition .pile_counter{
     background: #47a736;
 }
-.pile_malus .pile_info,
-.pile_malus .pile_counter{
+.pile_attack .pile_info,
+.pile_attack .pile_counter{
     background: #a73636;
 }
 /*--------------------------------------------------------------------------
