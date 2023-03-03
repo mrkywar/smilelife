@@ -62,6 +62,7 @@ $machinestates = [
         "name" => "playerTurn",
         "description" => clienttranslate('${actplayer} can draw a card'),
         "descriptionmyturn" => clienttranslate('${you} can draw a card'),
+        "type" => "activeplayer",
         "possibleactions" => [
             "drawFromDraw",
             "drawFromDiscard",
@@ -70,7 +71,7 @@ $machinestates = [
         ],
         "transitions" => [
             "drawn" => ST_PLAYER_TURN,
-            "dismiss" => ST_PLAYER_DISMISS,
+//            "dismiss" => ST_PLAYER_DISMISS,
         ]
     ],
     ST_PLAYER_TURN => [
