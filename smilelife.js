@@ -16,7 +16,8 @@
  */
 
 define([
-    "dojo", "dojo/_base/declare",
+    "dojo", 
+    "dojo/_base/declare",
     "ebg/core/gamegui",
     "ebg/counter",
 
@@ -57,9 +58,9 @@ define([
                 setup: function (gamedatas) {
 //                    this.debug("Setup", gamedatas);
 
-                    this.displayTables(gamedatas);
-                    this.displayCards(gamedatas);
-                    this.displayDeckAndDiscard(gamedatas);
+//                    this.displayTables(gamedatas);
+//                    this.displayCards(gamedatas);
+//                    this.displayDeckAndDiscard(gamedatas);
 
 
                     //this.setupCard(gamedatas);
@@ -67,64 +68,34 @@ define([
 
                 },
 
-                ///////////////////////////////////////////////////
-                //// Utility methods
-
-                /*
-                 
-                 Here, you can defines some utility methods that you can use everywhere in your javascript
-                 script.
-                 
-                 */
-
-
-                ///////////////////////////////////////////////////
-                //// Player's action
-
-                /*
-                 
-                 Here, you are defining methods to handle player's action (ex: results of mouse click on 
-                 game objects).
-                 
-                 Most of the time, these methods:
-                 _ check the action is possible at this game state.
-                 _ make a call to the game server
-                 
-                 */
-
-                /* Example:
-                 
-                 onMyMethodToCall1: function( evt )
-                 {
-                 this.debug( 'onMyMethodToCall1' );
-                 
-                 // Preventing default browser reaction
-                 dojo.stopEvent( evt );
-                 
-                 // Check that this action is possible (see "possibleactions" in states.inc.php)
-                 if( ! this.checkAction( 'myAction' ) )
-                 {   return; }
-                 
-                 this.ajaxcall( "/smilelife/smilelife/myAction.html", { 
-                 lock: true, 
-                 myArgument1: arg1, 
-                 myArgument2: arg2,
-                 ...
-                 }, 
-                 this, function( result ) {
-                 
-                 // What to do after the server call if it succeeded
-                 // (most of the time: nothing)
-                 
-                 }, function( is_error) {
-                 
-                 // What to do after the server call in anyway (success or failure)
-                 // (most of the time: nothing)
-                 
-                 } );        
-                 },        
-                 
-                 */
+//                onEnteringState: function (stateName, args)
+//                {
+//                    this.debug('Entering state: ' + stateName);
+//
+//                    switch (stateName)
+//                    {
+//                        case "playerTurn":
+//                            if (this.isCurrentPlayerActive()) {
+//                                this.addActionButton('doDraw_button', _('Play cards'), 'doDraw', null, false, 'blue');
+//                                this.addActionButton('doDrawFromDiscard_button', _('Reset'), 'doDrawFromDiscard', null, false, 'gray');
+//                            }
+//                            break;
+//
+//                            /* Example:
+//                             
+//                             case 'myGameState':
+//                             
+//                             // Show some HTML block at this game state
+//                             dojo.style( 'my_html_block_id', 'display', 'block' );
+//                             
+//                             break;
+//                             */
+//
+//
+////                        case 'dummmy':
+////                            break;
+//                    }
+//                },
 
 
                 ///////////////////////////////////////////////////

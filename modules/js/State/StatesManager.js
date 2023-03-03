@@ -15,6 +15,7 @@ define([
 
                 constructor: function () {
 //                    this.debug('smilelife.StatesManager constructor');
+                    this.debug("??",this);
                 },
 
                 ///////////////////////////////////////////////////
@@ -29,39 +30,15 @@ define([
 
                     switch (stateName)
                     {
-                        case 'playerTurn':
-                            if (this.isCurrentPlayerActive()) {
-                                this.initalizeDraw();
-                            }
-                            break;
-
-
-//                              this.addActionButton( 'button_confirm', _('Confirm?'), 'onConfirm', null, true, 'red'); 
-//                              
-//                            
-////                            this.addActionButton('drawFromDraw_button', _('Draw From Draw'), 'doDraw', null, false, 'blue');
-////                            this.addActionButton('drawFromDiscard_button', _('Draw From Discard'), 'doDrawFromDiscard', null, false, 'blue');
-//
-////                            dojo.query("#myhand .cardontable").addClass("selectable");
-////                            dojo.connect("#myhand .cardontable", 'onHandClick', (evt) => {
-////                                evt.preventDefault();
-////                                evt.stopPropagation();
-////                                this.onClickCard(this);
-////                            });
-
-
-                            break;
-
-
-                            /* Example:
-                             
-                             case 'myGameState':
-                             
-                             // Show some HTML block at this game state
-                             dojo.style( 'my_html_block_id', 'display', 'block' );
-                             
-                             break;
-                             */
+                        /* Example:
+                         
+                         case 'myGameState':
+                         
+                         // Show some HTML block at this game state
+                         dojo.style( 'my_html_block_id', 'display', 'block' );
+                         
+                         break;
+                         */
 
 
                         case 'dummmy':
@@ -106,18 +83,22 @@ define([
                     {
                         switch (stateName)
                         {
-                            /*               
-                             Example:
-                             
-                             case 'myGameState':
-                             
-                             // Add 3 action buttons in the action status bar:
-                             
-                             this.addActionButton( 'button_1_id', _('Button 1 label'), 'onMyMethodToCall1' ); 
-                             this.addActionButton( 'button_2_id', _('Button 2 label'), 'onMyMethodToCall2' ); 
-                             this.addActionButton( 'button_3_id', _('Button 3 label'), 'onMyMethodToCall3' ); 
-                             break;
-                             */
+                            case "playerTurn":
+                                this.addActionButton('doDraw_button', _('Play cards'), 'doDraw', null, false, 'blue');
+                                this.addActionButton('doDrawFromDiscard_button', _('Reset'), 'doDrawFromDiscard', null, false, 'gray');
+                                break;
+                                /*               
+                                 Example:
+                                 
+                                 case 'myGameState':
+                                 
+                                 // Add 3 action buttons in the action status bar:
+                                 
+                                 this.addActionButton( 'button_1_id', _('Button 1 label'), 'onMyMethodToCall1' ); 
+                                 this.addActionButton( 'button_2_id', _('Button 2 label'), 'onMyMethodToCall2' ); 
+                                 this.addActionButton( 'button_3_id', _('Button 3 label'), 'onMyMethodToCall3' ); 
+                                 break;
+                                 */
                         }
                     }
                 },

@@ -15,17 +15,6 @@ define([
 //                    this.debug('smilelife.StatesManager constructor');
                 },
 
-                initalizeDraw: function () {
-                    this.addActionButton('completeSelection_button', _('Play cards'), 'doDraw', null, false, 'red');
-                    this.addActionButton('unselectSelection_button', _('Reset'), 'doDrawFromDiscard', null, false, 'gray');
-
-                    dojo.connect("#deck_and_discard .cardontable", 'onContainer', (evt) => {
-                        evt.preventDefault();
-                        evt.stopPropagation();
-                        this.onClickCard(this);
-                    });
-                },
-
                 doDraw: function (evt) {
                     this.debug('doDraw',evt);
                 },
