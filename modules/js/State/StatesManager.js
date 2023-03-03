@@ -2,12 +2,14 @@ define([
     'dojo',
     'dojo/_base/declare',
     'ebg/core/gamegui',
-    g_gamethemeurl + 'modules/js/Core/ToolsTrait.js'
+    g_gamethemeurl + 'modules/js/Core/ToolsTrait.js',
+    g_gamethemeurl + 'modules/js/State/DrawStateTrait.js',
 ], function (dojo, declare) {
     return declare(
             'smilelife.StatesManager',
             [
-                common.ToolsTrait
+                common.ToolsTrait,
+                smilelife.state.draw
             ],
             {
 
@@ -28,21 +30,38 @@ define([
                     switch (stateName)
                     {
                         case 'playerTurn':
-                            
-                            
-                            
+                            if (this.isCurrentPlayerActive()) {
+                                this.initalizeDraw();
+                            }
                             break;
 
 
-                        /* Example:
-                         
-                         case 'myGameState':
-                         
-                         // Show some HTML block at this game state
-                         dojo.style( 'my_html_block_id', 'display', 'block' );
-                         
-                         break;
-                         */
+//                              this.addActionButton( 'button_confirm', _('Confirm?'), 'onConfirm', null, true, 'red'); 
+//                              
+//                            
+////                            this.addActionButton('drawFromDraw_button', _('Draw From Draw'), 'doDraw', null, false, 'blue');
+////                            this.addActionButton('drawFromDiscard_button', _('Draw From Discard'), 'doDrawFromDiscard', null, false, 'blue');
+//
+////                            dojo.query("#myhand .cardontable").addClass("selectable");
+////                            dojo.connect("#myhand .cardontable", 'onHandClick', (evt) => {
+////                                evt.preventDefault();
+////                                evt.stopPropagation();
+////                                this.onClickCard(this);
+////                            });
+
+
+                            break;
+
+
+                            /* Example:
+                             
+                             case 'myGameState':
+                             
+                             // Show some HTML block at this game state
+                             dojo.style( 'my_html_block_id', 'display', 'block' );
+                             
+                             break;
+                             */
 
 
                         case 'dummmy':
