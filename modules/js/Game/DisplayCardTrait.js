@@ -26,7 +26,7 @@ define([
             {
 
                 constructor: function () {
-                    this.debug('smilelife.DisplayCardTrait constructor');
+//                    this.debug('smilelife.DisplayCardTrait constructor');
                     this.sizeAssoc = {
                         "XS": PREF_CHOICE_SIZE_XS,
                         "S": PREF_CHOICE_SIZE_S,
@@ -51,8 +51,6 @@ define([
                         dojo.place(this.displayCard(card), 'myhand');
                     }
                 },
-
-                
 
                 displayCard: function (card) {
                     return `
@@ -91,7 +89,7 @@ define([
                 },
 
                 applySize: function (size) {
-                    this.debug(size);
+//                    this.debug("SIZE", size);
                     var computedCSS = `
                     .cardontable,
                     .pile{

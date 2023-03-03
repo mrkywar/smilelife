@@ -13,7 +13,7 @@ define([
             {
 
                 constructor: function () {
-                    this.debug('smilelife.DisplayDrawAndDiscardTrait constructor');
+//                    this.debug('smilelife.DisplayDrawAndDiscardTrait constructor');
 
                 },
 

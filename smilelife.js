@@ -36,13 +36,8 @@ define([
                 smilelife.StatesManager,
             ],
             {
-                //ebg.core.gamegui, {
                 constructor: function () {
-                    this.debug('smilelife constructor');
-
-                    // Here, you can init the global variables of your user interface
-                    // Example:
-                    // this.myGlobalValue = 0;
+//                    this.debug('smilelife constructor');
 
                 },
 
@@ -60,7 +55,7 @@ define([
                  */
 
                 setup: function (gamedatas) {
-                    this.debug("Setup", gamedatas);
+//                    this.debug("Setup", gamedatas);
 
                     this.displayTables(gamedatas);
                     this.displayCards(gamedatas);
@@ -71,29 +66,6 @@ define([
                     //this.displayTable(gamedatas);
 
                 },
-
-//                setup: function (gamedatas)
-//                {
-//                    this.debug("Starting game setup");
-//                    this.debug(gamedatas);
-//                    // Setting up player boards
-//                    for (var player_id in gamedatas.players)
-//                    {
-//                        var player = gamedatas.players[player_id];
-//
-//                        // TODO: Setting up players boards if needed
-//                    }
-//
-//                    // TODO: Set up your game interface here, according to "gamedatas"
-//
-//
-//                    // Setup game notifications to handle (see "setupNotifications" method below)
-//                    this.setupNotifications();
-//
-//                    this.debug("Ending game setup");
-//                },
-
-                
 
                 ///////////////////////////////////////////////////
                 //// Utility methods

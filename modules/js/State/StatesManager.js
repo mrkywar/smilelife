@@ -12,7 +12,7 @@ define([
             {
 
                 constructor: function () {
-                    this.debug('smilelife.StatesManager constructor');
+//                    this.debug('smilelife.StatesManager constructor');
                 },
 
                 ///////////////////////////////////////////////////
