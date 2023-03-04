@@ -38,7 +38,8 @@ class action_smilelife extends APP_GameAction {
         self::setAjaxMode();
         //$cardsId = self::getArg("ids", AT_numberlist, true);
 
-        $this->game->actionResign();
+        $result = $this->game->actionResign();
+//        var_dump($result);die;
         self::ajaxResponse();
     }
     
