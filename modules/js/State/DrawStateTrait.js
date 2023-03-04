@@ -24,7 +24,7 @@ define([
                 },
 
                 doDissmiss: function () {
-
+                    this.debug("dismiss");
                 }
 
             }
