@@ -163,7 +163,10 @@ class SmileLife extends Table {
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
-
+    
+    public function actionResign() {
+        return "actionResign PHP";
+    }
     /*
       Each time a player is doing some game action, one of the methods below is called.
       (note: each method below must match an input method in smile.action.php)
