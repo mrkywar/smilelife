@@ -24,6 +24,8 @@ define([
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
                     //display player's table cards
                     this.displayTableCards(gamedatas.mytable, meAsPlayer);
+                    
+                    this.myTable = gamedatas.mytable;
 
                     for (var playerId in gamedatas.tables) {
                         var player = gamedatas.players[playerId];

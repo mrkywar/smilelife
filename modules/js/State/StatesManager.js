@@ -15,7 +15,7 @@ define([
 
                 constructor: function () {
 //                    this.debug('smilelife.StatesManager constructor');
-                    this.debug("??",this);
+//                    this.debug("??", this);
                 },
 
                 ///////////////////////////////////////////////////
@@ -84,21 +84,8 @@ define([
                         switch (stateName)
                         {
                             case "playerTurn":
-                                this.addActionButton('doDraw_button', _('Play cards'), 'doDraw', null, false, 'blue');
-                                this.addActionButton('doDrawFromDiscard_button', _('Reset'), 'doDrawFromDiscard', null, false, 'gray');
+                                this.displayButton();
                                 break;
-                                /*               
-                                 Example:
-                                 
-                                 case 'myGameState':
-                                 
-                                 // Add 3 action buttons in the action status bar:
-                                 
-                                 this.addActionButton( 'button_1_id', _('Button 1 label'), 'onMyMethodToCall1' ); 
-                                 this.addActionButton( 'button_2_id', _('Button 2 label'), 'onMyMethodToCall2' ); 
-                                 this.addActionButton( 'button_3_id', _('Button 3 label'), 'onMyMethodToCall3' ); 
-                                 break;
-                                 */
                         }
                     }
                 },

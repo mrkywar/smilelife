@@ -15,17 +15,18 @@ define([
 //                    this.debug('smilelife.StatesManager constructor');
                 },
 
-                doDraw: function (evt) {
-                    this.debug('doDraw',evt);
+                displayButton: function () {
+                    if (null !== this.myTable.job) {
+                        this.addActionButton('dismiss_button', _('Dismiss'), 'doDissmiss', null, false, 'red');
+                    }
+                    this.debug('DST', this.myTable);
+
                 },
 
-                doDrawFromDiscard: function (evt) {
-                    this.debug('doDrawFromDiscard',evt);
-                },
+                doDissmiss: function () {
 
-                onContainer: function (evt) {
-                    this.debug('doContainer', evt);
                 }
+
             }
 
 
