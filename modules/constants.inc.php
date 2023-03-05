@@ -43,6 +43,7 @@ define('CH_MODULES_BASE_GAME', 1);
 define('ST_GAME_SETUP', 1);
 define('ST_PLAYER_DRAW', 2);
 define('ST_PLAYER_TURN', 3);
+define('ST_NEXT_PLAYER', 20);
 //define('ST_PLAYER_DISMISS',4);
 define('ST_TURN_END', 40);
 define('ST_GAME_END', 99);

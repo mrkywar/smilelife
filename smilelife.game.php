@@ -8,7 +8,6 @@ use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\ZombieTrait;
 use SmileLife\Game\PlayerAction\PlayerActionManager;
 
-
 /**
  * ------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
@@ -73,7 +72,7 @@ class SmileLife extends Table {
      * @var GameProgressionRetriver
      */
     private $gameProgressionRetriver;
-  
+
     /**
      * 
      * @var PlayerActionManager
@@ -86,6 +85,24 @@ class SmileLife extends Table {
      */
     private $dataRetriver;
 
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    private $tableManager;
+
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
+    /**
+     * 
+     * @var PlayerManager
+     */
+    private $playerManager;
+
     function __construct() {
         parent::__construct();
 
@@ -96,6 +113,9 @@ class SmileLife extends Table {
         $this->dataRetriver = new GameDataRetriver();
         $this->actionManager = new PlayerActionManager($this->dataRetriver);
         
+        $this->tableManager = $this->dataRetriver->getPlayerTableManager();
+        $this->cardManager = $this->dataRetriver->getCardManager();
+        $this->playerManager = $this->dataRetriver->getPlayerManager();
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -167,16 +187,37 @@ class SmileLife extends Table {
 //////////// 
 
     public function actionResign() {
-        $actionRestult = $this->actionManager->actionResign(self::getCurrentPlayerId());
-        return "actionResign PHP" . self::getCurrentPlayerId();
+        $playerId = self::getCurrentPlayerId();
+
+        $player = $this->playerManager->findOne(
+                [
+                    "id" => $playerId
+                ]
+        );
+        $table = $this->tableManager->findOneBy(
+                [
+                    "id" => $playerId
+                ]
+        );
+        $job = $table->getJob();
+
+        $this->cardManager->discardCard($job, $player);
+
+        $table->setJobId(null);
+        $this->tableManager->updateTable($table);
+
+        if ($job->isTemporary()) {
+            $this->gamestate->nextState(ST_PLAYER_DRAW);
+        } else {
+            $this->gamestate->nextState(ST_NEXT_PLAYER);
+        }
+//        var_dump($player,$table);
     }
 
     /*
       Each time a player is doing some game action, one of the methods below is called.
       (note: each method below must match an input method in smile.action.php)
      */
-
-   
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

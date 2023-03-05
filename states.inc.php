@@ -71,7 +71,7 @@ $machinestates = [
         ],
         "transitions" => [
             "drawn" => ST_PLAYER_TURN,
-//            "dismiss" => ST_PLAYER_DISMISS,
+            "dismiss" => ST_NEXT_PLAYER,
         ]
     ],
     ST_PLAYER_TURN => [
@@ -81,6 +81,15 @@ $machinestates = [
         "type" => "activeplayer",
         "possibleactions" => array("play", "discard"),
         "transitions" => array("turnEnd" => ST_TURN_END)
+    ],
+    ST_NEXT_PLAYER => [
+        "name" => "nextPlayer",
+        "description" => "",
+        "type" => "game",
+        "action" => "stNextPlayer",
+        "transitions" => [
+            "newTurn" => ST_PLAYER_DRAW
+        ],
     ],
     ST_TURN_END => [
         "name" => "endTurn",
