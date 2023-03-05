@@ -28,8 +28,15 @@ class PlayerActionManager {
                     "id" => $playerId
                 ]
         );
+        $table = $this->dataRetriver
+                ->getPlayerTableManager()
+                ->findOneBy(
+                [
+                    "id" => $playerId
+                ]
+        );
 
-        var_dump($player);
+        var_dump($player,$table);
     }
 
 }

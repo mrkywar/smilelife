@@ -30,7 +30,7 @@ class PlayerTableManager extends SuperManager {
     public function __construct() {
         $this->playerManager = new PlayerManager();
 
-//        $this->cardManager = new CardManager();
+        $this->cardManager = new CardManager();
     }
 
     public function initNewGame() {
@@ -40,14 +40,6 @@ class PlayerTableManager extends SuperManager {
         foreach ($players as $player) {
             $playerTable = new PlayerTable();
             $playerTable->setPlayer($player);
-//            $playerTable->addWage(
-//                    
-//            );
-//            $card = $this->cardManager->findBy([
-//                "type" => CardType::WAGE_LEVEL_1
-//                    ], 1);
-//            
-//            var_dump($card);die;
 
             $tables[] = $playerTable;
         }
@@ -57,6 +49,11 @@ class PlayerTableManager extends SuperManager {
 
     public function updateTable(PlayerTable $table) {
         return $this->update($table);
+    }
+    
+    
+    public function findOneBy(array $criterias): PlayerTable {
+        return $this->findBy($criterias, 1);
     }
 
     /* -------------------------------------------------------------------------
