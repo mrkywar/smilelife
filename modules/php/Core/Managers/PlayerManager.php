@@ -30,6 +30,13 @@ class PlayerManager extends SuperManager {
         SmileLife::getInstance()->reattributeColorsBasedOnPreferences($rawPlayers, $gameinfos['player_colors']);
         SmileLife::getInstance()->reloadPlayersBasicInfos();
     }
+    
+    
+    public function findOne(array $criterias): ?Player {
+        $player = $this->findBy($criterias, 1);
+        
+        return $player;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Score Methods

@@ -1,10 +1,13 @@
 <?php
 
+use Core\Models\Player;
 use SmileLife\Game\Game\GameDataRetriver;
 use SmileLife\Game\Game\GameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
 use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\ZombieTrait;
+use SmileLife\Game\PlayerAction\PlayerActionManager;
+
 
 /**
  * ------
@@ -70,6 +73,12 @@ class SmileLife extends Table {
      * @var GameProgressionRetriver
      */
     private $gameProgressionRetriver;
+  
+    /**
+     * 
+     * @var PlayerActionManager
+     */
+    private $actionManager;
 
     /**
      * 
@@ -85,6 +94,8 @@ class SmileLife extends Table {
         $this->gameInitializer = new TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new GameDataRetriver();
+        $this->actionManager = new PlayerActionManager($this->dataRetriver);
+        
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -152,53 +163,20 @@ class SmileLife extends Table {
     }
 
 //////////////////////////////////////////////////////////////////////////////
-//////////// Utility functions
-////////////    
-
-    /*
-      In this space, you can put any utility methods useful for your game logic
-     */
-
-
-
-//////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
-    
+
     public function actionResign() {
-        return "actionResign PHP".self::getCurrentPlayerId();
+        $actionRestult = $this->actionManager->actionResign(self::getCurrentPlayerId());
+        return "actionResign PHP" . self::getCurrentPlayerId();
     }
+
     /*
       Each time a player is doing some game action, one of the methods below is called.
       (note: each method below must match an input method in smile.action.php)
      */
 
-    /*
-
-      Example:
-
-      function playCard( $card_id )
-      {
-      // Check that this is the player's turn and that it is a "possible action" at this game state (see states.inc.php)
-      self::checkAction( 'playCard' );
-
-      $player_id = self::getActivePlayerId();
-
-      // Add your game logic to play a card there
-      ...
-
-      // Notify all players about the card played
-      self::notifyAllPlayers( "cardPlayed", clienttranslate( '${player_name} plays ${card_name}' ), array(
-      'player_id' => $player_id,
-      'player_name' => self::getActivePlayerName(),
-      'card_name' => $card_name,
-      'card_id' => $card_id
-      ) );
-
-      }
-
-     */
-
+   
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
@@ -254,6 +232,7 @@ class SmileLife extends Table {
 ////////////
 
     use ZombieTrait;
+
 ///////////////////////////////////////////////////////////////////////////////////:
 ////////// DB upgrade
 //////////

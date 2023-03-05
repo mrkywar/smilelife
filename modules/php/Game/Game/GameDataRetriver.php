@@ -92,4 +92,16 @@ class GameDataRetriver {
         return $result;
     }
 
+    public function getPlayerManager(): PlayerManager {
+        return $this->playerManager;
+    }
+
+    public function getCardManager(): CardManager {
+        return $this->cardManager;
+    }
+
+    public function getPlayerTableManager(): PlayerTableManager {
+        return $this->playerTableManager;
+    }
+
 }
