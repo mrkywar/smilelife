@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Attack;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -17,7 +17,7 @@ class HumanAttack extends Attack implements BaseGame {
 
         $this->setTitle(clienttranslate('Terrorist attack'))
                 ->setText1(clienttranslate('Discard all child cards including '
-                        . 'your own'));
+                                . 'your own'));
     }
 
     /* -------------------------------------------------------------------------

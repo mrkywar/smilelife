@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Acquisition\House\ClassicHouse;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -15,7 +15,7 @@ class GreenDoorClassicHouse extends ClassicHouse implements BaseGame {
     public function getType(): int {
         return CardType::HOUSE_SMALL_1;
     }
-    
+
     public function getClass(): string {
         return self::class;
     }

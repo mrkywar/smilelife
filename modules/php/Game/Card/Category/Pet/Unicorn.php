@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Pet;
 
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -27,7 +28,7 @@ class Unicorn extends Pet implements BaseGame {
     }
 
     public function getType(): int {
-        return 69;
+        return CardType::PET_UNICORN;
     }
 
     /* -------------------------------------------------------------------------

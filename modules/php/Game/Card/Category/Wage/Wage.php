@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Wage;
 
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Core\Exception\CardException;
 
 /**

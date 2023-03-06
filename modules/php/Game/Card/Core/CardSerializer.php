@@ -4,6 +4,7 @@ namespace SmileLife\Game\Card\Core;
 
 use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
+use SmileLife\Game\Card\Card;
 
 /**
  * Description of CardSerializer

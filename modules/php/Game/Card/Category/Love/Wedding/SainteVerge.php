@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Love\Wedding;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -14,7 +14,7 @@ class SainteVerge extends Wedding implements BaseGame {
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->setText1(clienttranslate('Sainte-Verge'));
     }
 

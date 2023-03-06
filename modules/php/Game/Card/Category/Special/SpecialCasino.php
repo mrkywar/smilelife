@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Special;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Core\Exception\CardException;
 use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
@@ -19,8 +19,8 @@ class SpecialCasino extends Special implements BaseGame {
 
         $this->setTitle(clienttranslate('Casino'))
                 ->setText1(clienttranslate('Bet a paycheck card face down. If '
-                        . 'another player bets the same card, he wins. If they'
-                        . ' bet differently, you win'));
+                                . 'another player bets the same card, he wins. If they'
+                                . ' bet differently, you win'));
     }
 
     /* -------------------------------------------------------------------------

@@ -2,9 +2,9 @@
 
 namespace SmileLife\Game\Card\Category\Job;
 
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Category\Job\Interim\Interim;
 use SmileLife\Game\Card\Category\Job\Official\Official;
-use SmileLife\Game\Card\Core\Card;
 use SmileLife\Game\Card\Core\Exception\CardException;
 
 /**
@@ -31,21 +31,22 @@ abstract class Job extends Card {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Power & Effects (in future)
      * ---------------------------------------------------------------------- */
+
     public function hasPower(): bool {
         return false;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Job extra
      * ---------------------------------------------------------------------- */
-    final public function isOfficial():bool{
+
+    final public function isOfficial(): bool {
         return ($this instanceof Official);
     }
-    
-    final public function isTemporary():bool{
+
+    final public function isTemporary(): bool {
         return ($this instanceof Interim);
     }
-
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Override

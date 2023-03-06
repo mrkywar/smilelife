@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card\Core;
+namespace SmileLife\Game\Card;
 
 use Core\DB\Fields\DBFieldsRetriver;
 use Core\DB\QueryString;

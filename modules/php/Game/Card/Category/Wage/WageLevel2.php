@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Wage;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -16,7 +16,7 @@ class WageLevel2 extends Wage implements BaseGame {
         parent::__construct();
 
         $this->setText1(clienttranslate('Level ${level}', ['level' => 2]))
-                ->setText1(clienttranslate('Level')." 2"); //-- TODO remove if I18N work's;
+                ->setText1(clienttranslate('Level') . " 2"); //-- TODO remove if I18N work's;
     }
 
     /* -------------------------------------------------------------------------

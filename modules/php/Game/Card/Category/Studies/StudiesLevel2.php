@@ -2,21 +2,28 @@
 
 namespace SmileLife\Game\Card\Category\Studies;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of Studies1
+ * Description of StudiesLevel2
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Studies1 extends Studies implements BaseGame {
+class StudiesLevel2 extends Studies implements BaseGame {
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->setText1(clienttranslate('You’re a genius!'));
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
     public function getLevel(): int {
-        return 1;
+        return 2;
     }
 
     public function getClass(): string {
@@ -24,7 +31,7 @@ class Studies1 extends Studies implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::STUDY_SINGLE;
+        return CardType::STUDY_DOUBLE;
     }
 
     /* -------------------------------------------------------------------------
@@ -32,7 +39,7 @@ class Studies1 extends Studies implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getBaseCardCount(): int {
-        return 22;
+        return 3;
     }
 
 }

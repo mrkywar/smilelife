@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Card\Category\Reward;
 
-use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
+use SmileLife\Game\Card\Category\Job\Job\Bandit;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -51,7 +51,7 @@ class FreedomMedal extends Reward implements BaseGame {
      */
     public function getUncompatibleJobClasses(): ?array {
         return [
-            Job\Bandit::class
+            Bandit::class
         ];
     }
 

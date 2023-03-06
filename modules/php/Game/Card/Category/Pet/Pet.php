@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Pet;
 
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Card;
 
 /**
  * Description of Pet
