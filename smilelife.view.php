@@ -34,59 +34,49 @@ require( __DIR__ . '/material.inc.php' );
 
 class view_smilelife_smilelife extends game_view {
 
-    /**
-     * @var PlayerManager
-     */
-    private $playerManager;
-
-    /**
-     * @var CardManager
-     */
-    private $cardManager;
-
-    public function __construct(...$_) {
-        parent::__construct(...$_);
-        $this->cardManager = new CardManager();
-        $this->playerManager = new PlayerManager();
-    }
 
     function getGameName() {
         return "smilelife";
     }
 
-    protected function getGame(): SmileLife {
-        return SmileLife::getInstance();
-    }
+//    protected function getGame(): SmileLife {
+//        return SmileLife::getInstance();
+//    }
 
     function build_page($viewArgs) {
-        global $g_user;
-        $this->page->begin_block("klife_klife", "player");
-        $this->page->begin_block("klife_klife", "myhand_card");
-
-        $cardSerializer = $this->cardManager->getSerializer();
-
-        $this->tpl['MY_HAND'] = self::_("My hand");
-
-        $players = $this->playerManager->findBy();
-        $connectedPlayer = $this->playerManager->findBy([
-            "id" => $g_user->get_id()
-        ]);
-
-        $cardsInHand = $cardSerializer->unserialize(
-                $this->cardManager->getPlayerCards($connectedPlayer)
-        );
-
-        foreach ($players as $player) {
-            $this->buildPlayer($player);
-        }
+        // Get players & players number
+        $players = $this->game->loadPlayersBasicInfos();
+        $players_nbr = count($players);
     }
 
-    private function buildPlayer(Player $player) {
-        return $this->page->insert_block("player", [
-                    'id' => $player->getId(),
-                    'color' => $player->getColor(),
-                    'name' => $player->getName(),
-        ]);
-    }
-
+//    function build_page($viewArgs) {
+//        global $g_user;
+//        $this->page->begin_block("klife_klife", "player");
+//        $this->page->begin_block("klife_klife", "myhand_card");
+//
+//        $cardSerializer = $this->cardManager->getSerializer();
+//
+//        $this->tpl['MY_HAND'] = self::_("My hand");
+//
+//        $players = $this->playerManager->findBy();
+//        $connectedPlayer = $this->playerManager->findBy([
+//            "id" => $g_user->get_id()
+//        ]);
+//
+//        $cardsInHand = $cardSerializer->unserialize(
+//                $this->cardManager->getPlayerCards($connectedPlayer)
+//        );
+//
+//        foreach ($players as $player) {
+//            $this->buildPlayer($player);
+//        }
+//    }
+//
+//    private function buildPlayer(Player $player) {
+//        return $this->page->insert_block("player", [
+//                    'id' => $player->getId(),
+//                    'color' => $player->getColor(),
+//                    'name' => $player->getName(),
+//        ]);
+//    }
 }
