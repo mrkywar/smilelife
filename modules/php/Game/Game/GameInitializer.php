@@ -3,8 +3,7 @@
 namespace SmileLife\Game\Game;
 
 use Core\Managers\PlayerManager;
-use SmileLife;
-use SmileLife\Game\Card\Core\CardManager;
+use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Game\Table\PlayerTableManager;
 

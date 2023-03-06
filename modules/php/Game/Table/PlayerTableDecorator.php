@@ -3,9 +3,8 @@
 namespace SmileLife\Game\Table;
 
 use Core\Serializers\Serializer;
+use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Core\CardDecorator;
-use SmileLife\Game\Card\Core\CardManager;
-use SmileLife\Game\Table\PlayerTable;
 
 /**
  * Description of PlayerTableDecorator

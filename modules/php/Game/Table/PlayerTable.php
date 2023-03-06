@@ -5,6 +5,8 @@ namespace SmileLife\Game\Table;
 use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
+use SmileLife\Game\Card\Card;
+use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Category\Acquisition\Acquisition;
 use SmileLife\Game\Card\Category\Attack\Attack;
 use SmileLife\Game\Card\Category\Child\Child;
@@ -17,8 +19,7 @@ use SmileLife\Game\Card\Category\Reward\Reward;
 use SmileLife\Game\Card\Category\Special\Special;
 use SmileLife\Game\Card\Category\Studies\Studies;
 use SmileLife\Game\Card\Category\Wage\Wage;
-use SmileLife\Game\Card\Core\Card;
-use SmileLife\Game\Card\Core\CardManager;
+
 
 /**
  * Description of Game

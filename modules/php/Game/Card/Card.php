@@ -5,6 +5,7 @@ namespace SmileLife\Game\Card;
 use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
+use SmileLife\Game\Card\Core\CardLocation;
 
 /**
  * Description of Card

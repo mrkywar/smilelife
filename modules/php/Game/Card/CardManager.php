@@ -8,6 +8,11 @@ use Core\Managers\Core\SuperManager;
 use Core\Managers\PlayerManager;
 use Core\Models\Player;
 use Core\Serializers\Serializer;
+use SmileLife\Game\Card\Card;
+use SmileLife\Game\Card\CardManager;
+use SmileLife\Game\Card\Core\CardLoader;
+use SmileLife\Game\Card\Core\CardLocation;
+use SmileLife\Game\Card\Core\CardSerializer;
 use SmileLife\Game\Card\Core\Exception\CardException;
 use SmileLife\Game\Card\Module\BaseGameCardRetriver;
 use SmileLife\Game\Game\GameManager;
@@ -181,7 +186,7 @@ class CardManager extends SuperManager {
         if (null !== $locationArg) {
             $criterias["locationArg"] = $locationArg;
         }
-        
+
         return $this->findBy($criterias, $limit, $orderBy);
     }
 

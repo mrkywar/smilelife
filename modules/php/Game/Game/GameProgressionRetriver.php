@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Game;
 
-use SmileLife\Game\Card\Core\CardManager;
+use SmileLife\Game\Card\CardManager;
 
 /**
  * Description of GameProgressionRetriver
