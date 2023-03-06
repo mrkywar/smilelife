@@ -12,22 +12,20 @@ define([
             {
 
                 constructor: function () {
-                    this.debug('smilelife.DisplayTableTrait constructor');
+//                    this.debug('smilelife.DisplayTableTrait constructor');
 //                    this.handCards = [];
                 },
 
                 displayTables: function (gamedatas) {
-                    this.debug(gamedatas);
-//                    this.debug('ici', this.player_id, );
+//                    this.debug(gamedatas);
                     //Prepare My table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
                     //display player's table cards
-                    this.debug("P", gamedatas.mytable, meAsPlayer);
-//                    this.displayTableCards(gamedatas.mytable, "mytable");
-//                    dojo.place(this.getTableHtml(gamedatas.players[this.player_id]), 'mytable');
                     this.displayTableCards(gamedatas.mytable, meAsPlayer);
+                    
+                    this.myTable = gamedatas.mytable;
 
                     for (var playerId in gamedatas.tables) {
                         var player = gamedatas.players[playerId];

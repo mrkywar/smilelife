@@ -1,9 +1,15 @@
 <?php
 
+use Core\Managers\PlayerManager;
+use SmileLife\Game\Card\Core\CardManager;
 use SmileLife\Game\Game\GameDataRetriver;
 use SmileLife\Game\Game\GameInitializer;
-use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
+use SmileLife\Game\Game\TestGameInitializer;
+use SmileLife\Game\GameTrait\NextPlayerTrait;
+use SmileLife\Game\GameTrait\ZombieTrait;
+use SmileLife\Game\PlayerAction\ResignTrait;
+use SmileLife\Game\Table\PlayerTableManager;
 
 /**
  * ------
@@ -76,6 +82,24 @@ class SmileLife extends Table {
      */
     private $dataRetriver;
 
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    private $tableManager;
+
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
+    /**
+     * 
+     * @var PlayerManager
+     */
+    private $playerManager;
+
     function __construct() {
         parent::__construct();
 
@@ -84,6 +108,10 @@ class SmileLife extends Table {
         $this->gameInitializer = new TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new GameDataRetriver();
+
+        $this->tableManager = $this->dataRetriver->getPlayerTableManager();
+        $this->cardManager = $this->dataRetriver->getCardManager();
+        $this->playerManager = $this->dataRetriver->getPlayerManager();
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -151,60 +179,18 @@ class SmileLife extends Table {
     }
 
 //////////////////////////////////////////////////////////////////////////////
-//////////// Utility functions
-////////////    
-
-    /*
-      In this space, you can put any utility methods useful for your game logic
-     */
-
-
-
-//////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
 
-    /*
-      Each time a player is doing some game action, one of the methods below is called.
-      (note: each method below must match an input method in smile.action.php)
-     */
-
-    /*
-
-      Example:
-
-      function playCard( $card_id )
-      {
-      // Check that this is the player's turn and that it is a "possible action" at this game state (see states.inc.php)
-      self::checkAction( 'playCard' );
-
-      $player_id = self::getActivePlayerId();
-
-      // Add your game logic to play a card there
-      ...
-
-      // Notify all players about the card played
-      self::notifyAllPlayers( "cardPlayed", clienttranslate( '${player_name} plays ${card_name}' ), array(
-      'player_id' => $player_id,
-      'player_name' => self::getActivePlayerName(),
-      'card_name' => $card_name,
-      'card_id' => $card_id
-      ) );
-
-      }
-
-     */
-
-
+    use ResignTrait;
+    
+    
+    
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
 ////////////
 
-    /*
-      Here, you can create methods defined as "game state arguments" (see "args" property in states.inc.php).
-      These methods function is to return some additional information that is specific to the current
-      game state.
-     */
+    
 
     /*
 
@@ -226,7 +212,7 @@ class SmileLife extends Table {
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state actions
 ////////////
-
+    use NextPlayerTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
       The action method of state X is called everytime the current game state is set to X.
@@ -249,41 +235,7 @@ class SmileLife extends Table {
 //////////// Zombie
 ////////////
 
-    /*
-      zombieTurn:
-
-      This method is called each time it is the turn of a player who has quit the game (= "zombie" player).
-      You can do whatever you want in order to make sure the turn of this player ends appropriately
-      (ex: pass).
-
-      Important: your zombie code will be called when the player leaves the game. This action is triggered
-      from the main site and propagated to the gameserver from a server, not from a browser.
-      As a consequence, there is no current player associated to this action. In your zombieTurn function,
-      you must _never_ use getCurrentPlayerId() or getCurrentPlayerName(), otherwise it will fail with a "Not logged" error message.
-     */
-
-    function zombieTurn($state, $active_player) {
-        $statename = $state['name'];
-
-        if ($state['type'] === "activeplayer") {
-            switch ($statename) {
-                default:
-                    $this->gamestate->nextState("zombiePass");
-                    break;
-            }
-
-            return;
-        }
-
-        if ($state['type'] === "multipleactiveplayer") {
-            // Make sure player is in a non blocking status for role turn
-            $this->gamestate->setPlayerNonMultiactive($active_player, '');
-
-            return;
-        }
-
-        throw new feException("Zombie mode not supported at this game state: " . $statename);
-    }
+    use ZombieTrait;
 
 ///////////////////////////////////////////////////////////////////////////////////:
 ////////// DB upgrade

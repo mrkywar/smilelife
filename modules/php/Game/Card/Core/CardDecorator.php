@@ -2,6 +2,9 @@
 
 namespace SmileLife\Game\Card\Core;
 
+use SmileLife\Game\Card\Category\Job\Interim\Interim;
+use SmileLife\Game\Card\Category\Job\Job;
+use SmileLife\Game\Card\Category\Job\Official\Official;
 use SmileLife\Game\Game\GameDataRetriverException;
 
 /**
@@ -43,7 +46,7 @@ class CardDecorator {
     }
 
     private function decorateOne(Card $card) {
-        return [
+        $cardInfos = [
             "id" => $card->getId(),
             "type" => $card->getType(),
             "smilePoints" => $card->getSmilePoints(),
@@ -54,6 +57,20 @@ class CardDecorator {
             "text1" => $card->getText1(),
             "text2" => $card->getText2(),
             "isFlipped" => $card->getIsFlipped(),
+        ];
+        if ($card instanceof Job) {
+            $cardInfos = array_merge($cardInfos, $this->decorateJob($card));
+        }
+
+        return $cardInfos;
+    }
+
+    private function decorateJob(Job $card) {
+        return [
+            "isTemporary" => $card->isTemporary(),
+            "isOfficial" => $card->isOfficial(),
+            "requiredStudies" => $card->getRequiredStudies(),
+            "maxSalary" => $card->getMaxSalary()
         ];
     }
 

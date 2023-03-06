@@ -127,9 +127,13 @@ class CardManager extends SuperManager {
      *                  BEGIN - For TestInitilaization
      * ---------------------------------------------------------------------- */
 
-    public function discardCard(Card $card) {
+    public function discardCard(Card $card, Player $player) {
+        $position = count($this->getAllCardsInDiscard()) + 1;
+        
         $qb = $this->prepareUpdate($card)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::DISCARD)
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $position)
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $player->getId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
         
         $this->execute($qb);
@@ -141,6 +145,10 @@ class CardManager extends SuperManager {
 
     public function getAllCardsInDeck() {
         return $this->getAllCardsInLocation(CardLocation::DECK);
+    }
+    
+    public function getAllCardsInDiscard(){
+        return $this->getAllCardsInLocation(CardLocation::DISCARD);
     }
 
     public function getLastDiscardedCard() {

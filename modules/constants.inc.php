@@ -41,10 +41,26 @@ define('CH_MODULES_BASE_GAME', 1);
  * Game states (states.inc.php)
  */
 define('ST_GAME_SETUP', 1);
-define('ST_PLAYER_TURN', 2);
-define('ST_PLAYER_PLAY', 3);
-define('ST_TURN_END', 4);
 define('ST_GAME_END', 99);
+
+define('ST_NEW_ROUND', 10);
+define('ST_END_ROUND', 11);
+
+define('ST_NEXT_PLAYER', 20);
+
+define('ST_PLAYER_TAKE_CARD', 30);
+define('ST_PLAYER_PLAY_CARD', 31);
+
+
+
+
+//define('ST_GAME_SETUP', 1);
+//define('ST_PLAYER_DRAW', 2);
+//define('ST_PLAYER_TURN', 3);
+//define('ST_NEXT_PLAYER', 20);
+////define('ST_PLAYER_DISMISS',4);
+//define('ST_TURN_END', 40);
+//define('ST_GAME_END', 99);
 
 /*
  * Base reference for card size in px

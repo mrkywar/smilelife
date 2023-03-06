@@ -5,7 +5,7 @@
  */
 
 
-define(['dojo', 'dojo/_base/declare', 'ebg/core/gamegui'], (dojo, declare) => {
+define(['dojo', 'dojo/_base/declare'], (dojo, declare) => {
     return declare('common.ToolsTrait', ebg.core.gamegui, {
 
         constructor: function () {

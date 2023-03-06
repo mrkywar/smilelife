@@ -20,7 +20,7 @@ define([
     "dojo/_base/declare",
     "ebg/core/gamegui",
     "ebg/counter",
-
+    "ebg/stock",
     g_gamethemeurl + 'modules/js/Core/ToolsTrait.js',
     g_gamethemeurl + 'modules/js/Game/DisplayCardTrait.js',
     g_gamethemeurl + 'modules/js/Game/DisplayTableTrait.js',
@@ -57,7 +57,7 @@ define([
 
                 setup: function (gamedatas) {
 //                    this.debug("Setup", gamedatas);
-                
+
                     this.displayTables(gamedatas);
                     this.displayCards(gamedatas);
                     this.displayDeckAndDiscard(gamedatas);
