@@ -57,7 +57,7 @@ define([
 
                 setup: function (gamedatas) {
 //                    this.debug("Setup", gamedatas);
-
+                
                     this.displayTables(gamedatas);
                     this.displayCards(gamedatas);
                     this.displayDeckAndDiscard(gamedatas);

@@ -51,6 +51,9 @@ define('ST_NEXT_PLAYER', 20);
 define('ST_PLAYER_TAKE_CARD', 30);
 define('ST_PLAYER_PLAY_CARD', 31);
 
+
+
+
 //define('ST_GAME_SETUP', 1);
 //define('ST_PLAYER_DRAW', 2);
 //define('ST_PLAYER_TURN', 3);
