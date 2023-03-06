@@ -50,58 +50,78 @@
 //    !! It is not a good idea to modify this file when a game is running !!
 
 
-$machinestates = [
+$basicGameStates = [
+    // The initial state. Please do not modify.
     ST_GAME_SETUP => [
         "name" => "gameSetup",
-        "description" => "",
+        "description" => clienttranslate("Game setup"),
         "type" => "manager",
         "action" => "stGameSetup",
-        "transitions" => ["" => ST_PLAYER_DRAW]
+        "transitions" => ["" => ST_PLAYER_TAKE_CARD]
     ],
-    ST_PLAYER_DRAW => [
-        "name" => "playerTurn",
-        "description" => clienttranslate('${actplayer} can draw a card'),
-        "descriptionmyturn" => clienttranslate('${you} can draw a card'),
+    // Final state.
+    // Please do not modify.
+    ST_END_GAME => [
+        "name" => "gameEnd",
+        "description" => clienttranslate("End of game"),
+        "type" => "manager",
+        "action" => "stGameEnd",
+        "args" => "argGameEnd",
+    ],
+];
+
+$playerActionsGameStates = [
+    ST_PLAYER_TAKE_CARD => [
+        "name" => "takeCards",
+        "description" => clienttranslate('${actplayer} must take a cards from deck or discard'),
+        "descriptionmyturn" => clienttranslate('${you} must take a cards from deck or discard'),
         "type" => "activeplayer",
+//        "args" => "argTakeCards",
+        "updateGameProgression" => true,
         "possibleactions" => [
-            "drawFromDraw",
-            "drawFromDiscard",
-            "drawFromRiver",
-            "dismiss"
+            "resignAndPlay",
+            "resignAndPass",
+            "drawCardFormDeck",
+            "drawCardFormDiscard"
         ],
         "transitions" => [
-            "drawn" => ST_PLAYER_TURN,
-            "dismiss" => ST_NEXT_PLAYER,
+            "resignAndPlay" => ST_PLAYER_TAKE_CARD,
+            "resignAndPass" => ST_NEXT_PLAYER,
+            "drawCardFormDeck" => ST_PLAYER_PLAY_CARD,
+            "drawCardFormDiscard" => ST_NEXT_PLAYER,
+            "zombiePass" => ST_NEXT_PLAYER,
         ]
     ],
-    ST_PLAYER_TURN => [
-        "name" => "playerDraw",
-        "description" => clienttranslate('${actplayer} must play or discard a card from their hand'),
-        "descriptionmyturn" => clienttranslate('${you} must play or discard a card from your hand'),
+    ST_PLAYER_PLAY_CARD => [
+        "name" => "playCard",
+        "description" => clienttranslate('${actplayer} must choose a card to play'),
+        "descriptionmyturn" => clienttranslate('${you} must choose a card to play'),
         "type" => "activeplayer",
-        "possibleactions" => array("play", "discard"),
-        "transitions" => array("turnEnd" => ST_TURN_END)
-    ],
+//        "args" => "argChooseCard",  
+        "possibleactions" => [
+            "playCard",
+            "discardCard"
+        ],
+        "transitions" => [
+            "playCard" => ST_NEXT_PLAYER,
+            "zombiePass" => ST_NEXT_PLAYER,
+        ]
+    ]
+];
+
+$gameGameStates = [
     ST_NEXT_PLAYER => [
         "name" => "nextPlayer",
         "description" => "",
         "type" => "game",
         "action" => "stNextPlayer",
         "transitions" => [
-            "newTurn" => ST_PLAYER_DRAW
+            "newTurn" => ST_PLAYER_TAKE_CARD,
         ],
     ],
-    ST_TURN_END => [
-        "name" => "endTurn",
-        "description" => clienttranslate('${actplayer} must play a card or pass'),
-        "descriptionmyturn" => clienttranslate('${you} must play a card or pass'),
-        "type" => "game",
-        "transitions" => [
-            "nextPlayer" => ST_PLAYER_DRAW,
-            "gameEnd" => ST_GAME_END
-        ]
-    ],
 ];
+
+$machinestates = $basicGameStates + $playerActionsGameStates + $gameGameStates;
 
 //$machinestates = array(
 //
