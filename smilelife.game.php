@@ -1,12 +1,14 @@
 <?php
 
-use Core\Models\Player;
+use Core\Managers\PlayerManager;
+use SmileLife\Game\Card\Core\CardManager;
 use SmileLife\Game\Game\GameDataRetriver;
 use SmileLife\Game\Game\GameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
 use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\ZombieTrait;
-use SmileLife\Game\PlayerAction\PlayerActionManager;
+use SmileLife\Game\PlayerAction\ResignTrait;
+use SmileLife\Game\Table\PlayerTableManager;
 
 /**
  * ------
@@ -75,12 +77,6 @@ class SmileLife extends Table {
 
     /**
      * 
-     * @var PlayerActionManager
-     */
-    private $actionManager;
-
-    /**
-     * 
      * @var GameDateRetriver
      */
     private $dataRetriver;
@@ -111,8 +107,7 @@ class SmileLife extends Table {
         $this->gameInitializer = new TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new GameDataRetriver();
-        $this->actionManager = new PlayerActionManager($this->dataRetriver);
-        
+
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
@@ -186,33 +181,9 @@ class SmileLife extends Table {
 //////////// Player actions
 //////////// 
 
-    public function actionResign() {
-        $playerId = self::getCurrentPlayerId();
-
-        $player = $this->playerManager->findOne(
-                [
-                    "id" => $playerId
-                ]
-        );
-        $table = $this->tableManager->findOneBy(
-                [
-                    "id" => $playerId
-                ]
-        );
-        $job = $table->getJob();
-
-        $this->cardManager->discardCard($job, $player);
-
-        $table->setJobId(null);
-        $this->tableManager->updateTable($table);
-
-        if ($job->isTemporary()) {
-            $this->gamestate->nextState(ST_PLAYER_DRAW);
-        } else {
-            $this->gamestate->nextState(ST_NEXT_PLAYER);
-        }
+    use ResignTrait;
 //        var_dump($player,$table);
-    }
+    
 
     /*
       Each time a player is doing some game action, one of the methods below is called.
