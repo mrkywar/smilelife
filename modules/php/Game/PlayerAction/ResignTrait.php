@@ -17,22 +17,25 @@ trait ResignTrait {
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
 
-        $player = $this->playerManager->findOne(
-                [
-                    "id" => $playerId
-                ]
-        );
-        $table = $this->tableManager->findOneBy(
-                [
-                    "id" => $playerId
-                ]
-        );
+        $player = $this->playerManager->findOne([
+            "id" => $playerId
+        ]);
+        $table = $this->tableManager->findOneBy([
+            "id" => $playerId
+        ]);
         $job = $table->getJob();
 
-        $this->cardManager->discardCard($job, $player);
+        //-- TODO reactive this !!
+//        $this->cardManager->discardCard($job, $player);
+//
+//        $table->setJobId(null);
+//        $this->tableManager->updateTable($table);
 
-        $table->setJobId(null);
-        $this->tableManager->updateTable($table);
+        self::notifyAllPlayers('resignNotification', clienttranslate('${player_name} resigns from the job of ${job}'), [
+            'playerId' => $playerId,
+            'player_name' => $player->getName(),
+            'job' => $job->getTitle(),
+        ]);
 
         if ($job->isTemporary()) {
             $this->gamestate->nextState("resignAndPlay");

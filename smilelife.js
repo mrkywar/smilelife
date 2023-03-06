@@ -16,7 +16,7 @@
  */
 
 define([
-    "dojo", 
+    "dojo",
     "dojo/_base/declare",
     "ebg/core/gamegui",
     "ebg/counter",
@@ -57,7 +57,7 @@ define([
 
                 setup: function (gamedatas) {
 //                    this.debug("Setup", gamedatas);
-                
+
                     this.displayTables(gamedatas);
                     this.displayCards(gamedatas);
                     this.displayDeckAndDiscard(gamedatas);
@@ -114,6 +114,19 @@ define([
                 {
                     this.debug('notifications subscriptions setup');
 
+                    var _this = this;
+//                    dojo.connect(this.notifqueue, 'addToLog', function () {
+//                        return _this.addLogClass();
+//                    });
+
+                    var notifs = [
+                        ['resignNotification', 3000]
+                    ]
+                    notifs.forEach(function (notif) {
+                        dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));
+                        _this.notifqueue.setSynchronous(notif[0], notif[1]);
+                    });
+
                     // TODO: here, associate your game notifications with local methods
 
                     // Example 1: standard notification handling
@@ -126,6 +139,22 @@ define([
                     // this.notifqueue.setSynchronous( 'cardPlayed', 3000 );
                     // 
                 },
+//
+//                addLogClass: function () {
+//                    if (this.lastNotif == null) {
+//                        return;
+//                    }
+//                    var notif = this.lastNotif;
+//                    var elem = document.getElementById("log_".concat(notif.logId));
+//                    if (elem) {
+//                        var type = notif.msg.type;
+//                        if (type == 'history_history')
+//                            type = notif.msg.args.originalType;
+//                        if (notif.msg.args.actionPlayerId) {
+//                            elem.dataset.playerId = '' + notif.msg.args.actionPlayerId;
+//                        }
+//                    }
+//                },
 
                 // TODO: from this point and below, you can write your game notifications handling methods
 
@@ -144,4 +173,4 @@ define([
                  
                  */
             });
-});
+        });
