@@ -6,6 +6,7 @@ use SmileLife\Game\Game\GameDataRetriver;
 use SmileLife\Game\Game\GameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
 use SmileLife\Game\Game\TestGameInitializer;
+use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
 use SmileLife\Game\PlayerAction\ResignTrait;
 use SmileLife\Game\Table\PlayerTableManager;
@@ -182,23 +183,14 @@ class SmileLife extends Table {
 //////////// 
 
     use ResignTrait;
-//        var_dump($player,$table);
     
-
-    /*
-      Each time a player is doing some game action, one of the methods below is called.
-      (note: each method below must match an input method in smile.action.php)
-     */
-
+    
+    
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
 ////////////
 
-    /*
-      Here, you can create methods defined as "game state arguments" (see "args" property in states.inc.php).
-      These methods function is to return some additional information that is specific to the current
-      game state.
-     */
+    
 
     /*
 
@@ -220,7 +212,7 @@ class SmileLife extends Table {
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state actions
 ////////////
-
+    use NextPlayerTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
       The action method of state X is called everytime the current game state is set to X.
