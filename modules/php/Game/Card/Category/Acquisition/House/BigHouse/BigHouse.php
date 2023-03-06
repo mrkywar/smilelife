@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Card\Category\Acquisition\House\BigHouse;
 
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Category\Acquisition\House\House;
-use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**

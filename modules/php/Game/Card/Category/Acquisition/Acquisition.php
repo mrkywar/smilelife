@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Acquisition;
 
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Core\Exception\CardException;
 
 /**

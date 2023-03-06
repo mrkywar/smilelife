@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Love\Flirt;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -11,12 +11,13 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Bar extends Flirt implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->setText1(clienttranslate('In a Bar'));
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -32,6 +33,7 @@ class Bar extends Flirt implements BaseGame {
     public function getType(): int {
         return CardType::FLIRT_BAR;
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
      * ---------------------------------------------------------------------- */
@@ -39,4 +41,5 @@ class Bar extends Flirt implements BaseGame {
     public function getBaseCardCount(): int {
         return 2;
     }
+
 }

@@ -3,9 +3,8 @@
 namespace SmileLife\Game\Game;
 
 use Core\Managers\PlayerManager;
+use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Core\CardDecorator;
-use SmileLife\Game\Card\Core\CardManager;
-use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Table\PlayerTableDecorator;
 use SmileLife\Game\Table\PlayerTableManager;
 

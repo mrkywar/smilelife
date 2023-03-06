@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Child;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -11,7 +11,7 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Harry extends Child implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
 

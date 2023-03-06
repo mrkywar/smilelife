@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Pet;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -16,7 +16,6 @@ class Cat extends Pet implements BaseGame {
         parent::__construct();
 
         $this->setText1(clienttranslate('Meow ...'));
-        
     }
 
     /* -------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Special;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Core\Exception\CardException;
 use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
@@ -13,13 +13,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class SpecialLuck extends Special implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->setTitle(clienttranslate('Luck'))
                 ->setText1(clienttranslate('Take three cards, keep one and play'));
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

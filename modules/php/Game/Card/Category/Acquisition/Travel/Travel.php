@@ -13,14 +13,13 @@ abstract class Travel extends Acquisition {
 
     private const TRAVEL_PRICE = 3;
     private const SMILE_POINTS = 1;
-    
-     public function __construct() {
+
+    public function __construct() {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Travel'))
                 ->setText1(clienttranslate('Price'));
     }
-
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
@@ -33,7 +32,7 @@ abstract class Travel extends Acquisition {
     public function getSmilePoints(): int {
         return self::SMILE_POINTS;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

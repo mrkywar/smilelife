@@ -5,8 +5,6 @@ namespace SmileLife\Game\Card\Core;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-//use SmileLife\Game\Card\Core\Exception\CardLoaderException;
-
 /**
  * Description of CardLoader
  *

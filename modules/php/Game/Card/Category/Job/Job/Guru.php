@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Card\Category\Job\Job;
 
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -12,7 +12,7 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Guru extends Job implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
 

@@ -5,8 +5,7 @@ namespace SmileLife\Game\Table;
 use Core\Managers\Core\SuperManager;
 use Core\Managers\PlayerManager;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Card\Core\CardManager;
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardManager;
 
 /**
  * Description of PlayerTableManager
@@ -50,8 +49,7 @@ class PlayerTableManager extends SuperManager {
     public function updateTable(PlayerTable $table) {
         return $this->update($table);
     }
-    
-    
+
     public function findOneBy(array $criterias): PlayerTable {
         return $this->findBy($criterias, 1);
     }

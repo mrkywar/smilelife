@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Job\Interim;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -11,13 +11,14 @@ use SmileLife\Game\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Plumber extends Interim implements BaseGame {
-    
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->setTitle(clienttranslate('Plumber'))
                 ->setText1(clienttranslate('You’re good with your hands'));
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

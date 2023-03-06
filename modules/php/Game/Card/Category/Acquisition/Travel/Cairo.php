@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Acquisition\Travel;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -16,8 +16,6 @@ class Cairo extends Travel implements BaseGame {
         parent::__construct();
 
         $this->setSubtitle(clienttranslate('Cairo'));
-        
-        
     }
 
     /* -------------------------------------------------------------------------

@@ -2,9 +2,8 @@
 
 namespace SmileLife\Game\Card\Core;
 
-use SmileLife\Game\Card\Category\Job\Interim\Interim;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Category\Job\Official\Official;
 use SmileLife\Game\Game\GameDataRetriverException;
 
 /**

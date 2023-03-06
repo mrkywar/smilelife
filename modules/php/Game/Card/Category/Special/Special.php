@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Card\Category\Special;
 
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Effect\CardEffectInterface;
 
 /**
@@ -10,8 +10,7 @@ use SmileLife\Game\Card\Effect\CardEffectInterface;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class Special extends Card implements CardEffectInterface{
-
+abstract class Special extends Card implements CardEffectInterface {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -27,11 +26,11 @@ abstract class Special extends Card implements CardEffectInterface{
     public function getSmilePoints(): int {
         return 0;
     }
-    
+
     public function getRefClass(): string {
         return self::class;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each special card)
      * ---------------------------------------------------------------------- */
@@ -39,6 +38,5 @@ abstract class Special extends Card implements CardEffectInterface{
     public function getBaseCardCount(): int {
         return 1;
     }
-
 
 }

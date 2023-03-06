@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Card\Category\Job\Job;
 
+use SmileLife\Game\Card\CardType;
 use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Core\CardType;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
@@ -19,10 +19,11 @@ class Researcher extends Job implements BaseGame {
         $this->setTitle(clienttranslate('Researcher'))
                 ->setText1(clienttranslate('Try a 6-card hand'));
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Override
      * ---------------------------------------------------------------------- */
+
     public function hasPower(): bool {
         return true;
     }

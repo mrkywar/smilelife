@@ -18,7 +18,7 @@ abstract class Flirt extends Love {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Flirt'));
-        
+
         if ($this->canGenerateChild()) {
             $this->setText2(clienttranslate('Possibility to have a child'));
         }

@@ -1,8 +1,8 @@
 <?php
-
 namespace SmileLife\Game\Card\Category\Acquisition\Travel;
 
-use SmileLife\Game\Card\Core\CardType;
+use SmileLife\Game\Card\CardType;
+use SmileLife\Game\Card\Category\Acquisition\Travel\Travel;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
