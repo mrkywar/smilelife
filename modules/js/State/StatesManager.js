@@ -1,7 +1,6 @@
 define([
     'dojo',
     'dojo/_base/declare',
-    'ebg/core/gamegui',
     g_gamethemeurl + 'modules/js/Core/ToolsTrait.js',
     g_gamethemeurl + 'modules/js/State/DrawStateTrait.js',
 ], function (dojo, declare) {
@@ -83,7 +82,7 @@ define([
                     {
                         switch (stateName)
                         {
-                            case "playerTurn":
+                            case "takeCard":
                                 this.displayButton();
                                 break;
                         }

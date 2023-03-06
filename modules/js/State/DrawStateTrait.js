@@ -16,12 +16,18 @@ define([
                 },
 
                 displayButton: function () {
+                    this.debug(this.myTable);
                     if (null !== this.myTable.job) {
                         if (this.myTable.job.isTemporary) {
                             this.addActionButton('resign_button', _('Resign and Play'), 'doResign', null, false, 'red');
                         } else {
                             this.addActionButton('resign_button', _('Resign and Pass'), 'doResign', null, false, 'red');
                         }
+                    }
+                    
+                    this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
+                    if(null !== this.discard){
+                        this.addActionButton('resign_button', _('Draw and play from discard'), 'doDiscardDraw', null, false, 'gray');
                     }
 //                    this.debug('DST', this.myTable, null !== this.myTable.job, null != this.myTable.job);
 
@@ -38,7 +44,17 @@ define([
                         //--error
                         this.debug("Resign fail:", is_error);
                     });
-                }
+                },
+                
+                doDraw: function(){
+                    this.debug("doDraw");
+                },
+                
+                doDiscardDraw: function(){
+                    this.debug("doDiscardDraw");
+                },
+                
+                
 
             }
 

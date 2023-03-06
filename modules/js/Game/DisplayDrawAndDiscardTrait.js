@@ -18,6 +18,8 @@ define([
                 },
 
                 displayDeckAndDiscard: function (gamedatas) {
+
+
                     dojo.place(this.displayDeck(gamedatas), "deck_and_discard");
                     dojo.place(this.displayDiscard(gamedatas), "deck_and_discard");
                 },
@@ -37,6 +39,7 @@ define([
                 },
 
                 displayDiscard: function (gamedatas) {
+                    this.discard = gamedatas.discard;
                     if (null == gamedatas.discard) {
                         return `
                         <div class="cardontable empty_pile cards-stack" id="deck" data-id="0">
