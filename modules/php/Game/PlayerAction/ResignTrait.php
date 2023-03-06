@@ -34,7 +34,7 @@ trait ResignTrait {
         $table->setJobId(null);
         $this->tableManager->updateTable($table);
 
-        if (!$job->isTemporary()) {
+        if ($job->isTemporary()) {
             $this->gamestate->nextState("resignAndPlay");
         } else {
             $this->gamestate->nextState("resignAndPass");

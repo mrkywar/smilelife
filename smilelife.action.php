@@ -37,13 +37,15 @@ class action_smilelife extends APP_GameAction {
     public function resign() {
         self::setAjaxMode();
         //$cardsId = self::getArg("ids", AT_numberlist, true);
-
-        $result = $this->game->actionResign();
+        try {
+            $result = $this->game->actionResign();
+        } catch (Exception $e) {
+            echo "No Job to resign";
+        }
 //        var_dump($result);die;
         self::ajaxResponse();
     }
-    
-    
+
     // TODO: defines your action entry points there
 
 
