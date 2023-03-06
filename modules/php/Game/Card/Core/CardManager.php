@@ -129,13 +129,13 @@ class CardManager extends SuperManager {
 
     public function discardCard(Card $card, Player $player) {
         $position = count($this->getAllCardsInDiscard()) + 1;
-        
+
         $qb = $this->prepareUpdate($card)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::DISCARD)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $position)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $player->getId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-        
+
         $this->execute($qb);
     }
 
@@ -146,8 +146,8 @@ class CardManager extends SuperManager {
     public function getAllCardsInDeck() {
         return $this->getAllCardsInLocation(CardLocation::DECK);
     }
-    
-    public function getAllCardsInDiscard(){
+
+    public function getAllCardsInDiscard() {
         return $this->getAllCardsInLocation(CardLocation::DISCARD);
     }
 
@@ -171,20 +171,18 @@ class CardManager extends SuperManager {
     }
 
     private function getAllCardsInLocation(string $location, int $locationArg = null, $limit = null) {
-        $qb = $this->prepareFindBy()
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $location)
-                ->addOrderBy(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), QueryString::ORDER_DESC);
+        $criterias = [
+            "location" => $location
+        ];
+        $orderBy = [
+            "locationArg" => QueryString::ORDER_DESC
+        ];
 
         if (null !== $locationArg) {
-            $qb->addClause(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $locationArg);
+            $criterias["locationArg"] = $locationArg;
         }
-        if (null !== $limit) {
-            $qb->setLimit($limit);
-        }
-
-        return $this->execute($qb);
-//        return $this->prepareFindBy()
-//                ->add
+        
+        return $this->findBy($criterias, $limit, $orderBy);
     }
 
     /* -------------------------------------------------------------------------
