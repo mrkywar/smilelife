@@ -19,8 +19,12 @@ class CardDecorator {
      */
     private $cardSerializer;
 
-    public function __construct(CardSerializer $cardSerializer) {
-        $this->cardSerializer = $cardSerializer;
+    public function __construct(?CardSerializer $cardSerializer) {
+        if (null === $cardSerializer) {
+            $this->cardSerializer = new CardSerializer();
+        } else {
+            $this->cardSerializer = $cardSerializer;
+        }
     }
 
     public function decorateRawCard($rawCards) {
