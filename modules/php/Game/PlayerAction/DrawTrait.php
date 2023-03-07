@@ -1,10 +1,8 @@
 <?php
 namespace SmileLife\Game\PlayerAction;
 
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\Category\Attack\Dismissal;
+use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\Card\Core\CardLocation;
-use SmileLife\Game\Table\PlayerTableDecorator;
 
 /**
  *
@@ -14,7 +12,7 @@ trait DrawTrait {
 
     public function actionDraw() {
         $playerId = self::getCurrentPlayerId();
-        $tableDecorator = new PlayerTableDecorator();
+        $cardDecorator = new CardDecorator();
 
         $player = $this->playerManager->findOne([
             "id" => $playerId
@@ -26,7 +24,13 @@ trait DrawTrait {
         
         $this->cardManager->moveCard($card);
         
-        var_dump($card);
+        self::notifyAllPlayers('drawNotification', clienttranslate('${player_name} draw a card from the deck'), [
+            'playerId' => $playerId,
+            'player_name' => $player->getName(),         
+            'card' => $cardDecorator->decorateRawCard($card),
+        ]);
+        
+        $this->gamestate->nextState("drawCardFormDeck");
     }
     
     

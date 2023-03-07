@@ -19,7 +19,7 @@ class CardDecorator {
      */
     private $cardSerializer;
 
-    public function __construct(?CardSerializer $cardSerializer) {
+    public function __construct(CardSerializer $cardSerializer = null) {
         if (null === $cardSerializer) {
             $this->cardSerializer = new CardSerializer();
         } else {
