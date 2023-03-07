@@ -61,42 +61,10 @@ define([
                     this.displayTables(gamedatas);
                     this.displayCards(gamedatas);
                     this.displayDeckAndDiscard(gamedatas);
-
-
-                    //this.setupCard(gamedatas);
-                    //this.displayTable(gamedatas);
+                    
+                    this.setupNotifications();
 
                 },
-
-//                onEnteringState: function (stateName, args)
-//                {
-//                    this.debug('Entering state: ' + stateName);
-//
-//                    switch (stateName)
-//                    {
-//                        case "playerTurn":
-//                            if (this.isCurrentPlayerActive()) {
-//                                this.addActionButton('doDraw_button', _('Play cards'), 'doDraw', null, false, 'blue');
-//                                this.addActionButton('doDrawFromDiscard_button', _('Reset'), 'doDrawFromDiscard', null, false, 'gray');
-//                            }
-//                            break;
-//
-//                            /* Example:
-//                             
-//                             case 'myGameState':
-//                             
-//                             // Show some HTML block at this game state
-//                             dojo.style( 'my_html_block_id', 'display', 'block' );
-//                             
-//                             break;
-//                             */
-//
-//
-////                        case 'dummmy':
-////                            break;
-//                    }
-//                },
-
 
                 ///////////////////////////////////////////////////
                 //// Reaction to cometD notifications
@@ -123,6 +91,7 @@ define([
                         ['resignNotification', 3000]
                     ]
                     notifs.forEach(function (notif) {
+//                        _this.debug(notif[0], "notif_".concat(notif[0]));
                         dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));
                         _this.notifqueue.setSynchronous(notif[0], notif[1]);
                     });
@@ -138,6 +107,10 @@ define([
                     // dojo.subscribe( 'cardPlayed', this, "notif_cardPlayed" );
                     // this.notifqueue.setSynchronous( 'cardPlayed', 3000 );
                     // 
+                },
+
+                notif_resignNotification: function (notif) {
+                    this.debug("callback called", notif);
                 },
 //
 //                addLogClass: function () {
@@ -173,4 +146,4 @@ define([
                  
                  */
             });
-        });
+});
