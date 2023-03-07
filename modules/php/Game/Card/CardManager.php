@@ -141,7 +141,7 @@ class CardManager extends SuperManager {
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $player->getId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
 
-        $this->execute($qb);
+        return $this->execute($qb);
     }
 
     /* -------------------------------------------------------------------------
@@ -165,10 +165,19 @@ class CardManager extends SuperManager {
 
     public function drawCard($numberCards = 1) {
         $cards = $this->getAllCardsInLocation(CardLocation::DECK, null, $numberCards);
-        if (sizeof($cards) < $numberCards) {
+        if (null === $cards || (is_countable($cards) && $numberCards > 1 && sizeof($cards) < $numberCards)) {
             throw new CardException("Not enouth cards aviable");
         }
         return $cards;
+    }
+
+    public function moveCard(Card $card) {
+        $qb = $this->prepareUpdate($card)
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
+                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
+
+        return $this->execute($qb);
     }
 
     public function getPlayerCards(Player $player) {
