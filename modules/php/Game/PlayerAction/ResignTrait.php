@@ -11,7 +11,6 @@ trait ResignTrait {
 
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
-//        $cardDecorator = new CardDecorator();
         $tableDecorator = new PlayerTableDecorator();
 
         $player = $this->playerManager->findOne([

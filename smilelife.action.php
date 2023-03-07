@@ -36,37 +36,17 @@ class action_smilelife extends APP_GameAction {
 
     public function resign() {
         self::setAjaxMode();
-        //$cardsId = self::getArg("ids", AT_numberlist, true);
-        try {
-            $result = $this->game->actionResign();
-        } catch (Exception $e) {
-            echo "No Job to resign";
-        }
-//        var_dump($result);die;
+
+        $this->game->actionResign();
+
         self::ajaxResponse();
     }
 
-    // TODO: defines your action entry points there
+    public function draw(){
+        self::setAjaxMode();
 
+        $this->game->actionDraw();
 
-    /*
-
-      Example:
-
-      public function myAction()
-      {
-      self::setAjaxMode();
-
-      // Retrieve arguments
-      // Note: these arguments correspond to what has been sent through the javascript "ajaxcall" method
-      $arg1 = self::getArg( "myArgument1", AT_posint, true );
-      $arg2 = self::getArg( "myArgument2", AT_posint, true );
-
-      // Then, call the appropriate method in your game logic, like "playCard" or "myAction"
-      $this->game->myAction( $arg1, $arg2 );
-
-      self::ajaxResponse( );
-      }
-
-     */
+        self::ajaxResponse();
+    }
 }

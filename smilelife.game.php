@@ -8,6 +8,7 @@ use SmileLife\Game\Game\GameProgressionRetriver;
 use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
+use SmileLife\Game\PlayerAction\DrawTrait;
 use SmileLife\Game\PlayerAction\ResignTrait;
 use SmileLife\Game\Table\PlayerTableManager;
 
@@ -112,6 +113,8 @@ class SmileLife extends Table {
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
+        
+        
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -183,7 +186,7 @@ class SmileLife extends Table {
 //////////// 
 
     use ResignTrait;
-    
+    use DrawTrait;
     
     
 //////////////////////////////////////////////////////////////////////////////
