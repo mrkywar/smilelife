@@ -32,9 +32,6 @@ define([
                     this.debug('notifications subscriptions setup');
 
                     var _this = this;
-//                    dojo.connect(this.notifqueue, 'addToLog', function () {
-//                        return _this.addLogClass();
-//                    });
 
                     var notifs = [
                         ['resignNotification', 3000],
@@ -45,18 +42,6 @@ define([
                         dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));
                         _this.notifqueue.setSynchronous(notif[0], notif[1]);
                     });
-
-                    // TODO: here, associate your game notifications with local methods
-
-                    // Example 1: standard notification handling
-                    // dojo.subscribe( 'cardPlayed', this, "notif_cardPlayed" );
-
-                    // Example 2: standard notification handling + tell the user interface to wait
-                    //            during 3 seconds after calling the method in order to let the players
-                    //            see what is happening in the game.
-                    // dojo.subscribe( 'cardPlayed', this, "notif_cardPlayed" );
-                    // this.notifqueue.setSynchronous( 'cardPlayed', 3000 );
-                    // 
                 },
 
                 ///////////////////////////////////////////////////
@@ -67,7 +52,37 @@ define([
                 },
 
                 notif_drawNotification: function (notif) {
-                    this.debug("drawcallback called", notif);
+//                    this.debug("drawcallback called", notif);
+                    if (parseInt(notif.args.playerId) === this.player_id) {
+                        
+                        var card = notif.args.card;
+                        dojo.place(this.displayCard(card), 'myhand');
+                    }else{
+                        this.debug("Not Implemented Yet");
+                    }
+                    
+                    
+                    //                    var collection = {
+//                        collection_index: datas.args.collectionIndex,
+//                        player_id: datas.args.playerId
+//                    };
+//
+//                    var collDestination = "playertable_" + datas.args.playerId;
+//                    dojo.place(this.format_block('jstpl_collection', collection), collDestination);
+//                    var collectionDiv = "collection_" + datas.args.playerId + "_" + datas.args.collectionIndex;
+//
+//                    for (var cardId in datas.args.cards) {
+//                        var card = datas.args.cards[cardId];
+//
+//                        var divId = "hand_card_" + card.card_id;
+//                        if (parseInt(datas.args.playerId) === this.player_id) {
+//                            this.slideToObjectAndDestroy(divId, collectionDiv);
+//                        } else {
+//                            this.debug("NPN - NOT IMPLENTED PART");
+//                        }
+//                        dojo.place(this.format_block('jstpl_card', card), collectionDiv);
+//
+//                    }
                 }
             }
 
