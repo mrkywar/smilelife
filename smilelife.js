@@ -1,7 +1,7 @@
 /**
  *------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * smilelife implementation : © <Your name here> <Your email address here>
+ * SmileLife implementation : © Jean Portemer <jportemer@mailz.org> & Mr_Kywar <mr_kywar@gmail.com>
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -88,7 +88,8 @@ define([
 //                    });
 
                     var notifs = [
-                        ['resignNotification', 3000]
+                        ['resignNotification', 3000],
+                        ['drawNotification',3000]
                     ]
                     notifs.forEach(function (notif) {
 //                        _this.debug(notif[0], "notif_".concat(notif[0]));
@@ -112,6 +113,12 @@ define([
                 notif_resignNotification: function (notif) {
                     this.debug("callback called", notif);
                 },
+                
+                notif_drawNotification:function(notif){
+                    this.debug("drawcallback called", notif);
+                }
+                
+                
 //
 //                addLogClass: function () {
 //                    if (this.lastNotif == null) {

@@ -22,7 +22,7 @@ trait DrawTrait {
         $card->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($playerId);
         
-        $this->cardManager->moveCard($card);
+//        $this->cardManager->moveCard($card);
         
         self::notifyAllPlayers('drawNotification', clienttranslate('${player_name} draw a card from the deck'), [
             'playerId' => $playerId,
@@ -30,7 +30,8 @@ trait DrawTrait {
             'card' => $cardDecorator->decorateRawCard($card),
         ]);
         
-        $this->gamestate->nextState("drawCardFormDeck");
+//        $this->gamestate->nextState("drawCardFormDeck");
+        $this->gamestate->nextState("resignAndPlay");//TODO : remove it - it's for test only !
     }
     
     
