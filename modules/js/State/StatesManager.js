@@ -1,20 +1,17 @@
 define([
     'dojo',
     'dojo/_base/declare',
-    g_gamethemeurl + 'modules/js/Core/ToolsTrait.js',
     g_gamethemeurl + 'modules/js/State/DrawStateTrait.js',
 ], function (dojo, declare) {
     return declare(
             'smilelife.StatesManager',
             [
-                common.ToolsTrait,
                 smilelife.state.draw
             ],
             {
 
                 constructor: function () {
-//                    this.debug('smilelife.StatesManager constructor');
-//                    this.debug("??", this);
+                    this.debug('smilelife.StatesManager constructor');
                 },
 
                 ///////////////////////////////////////////////////
