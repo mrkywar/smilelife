@@ -1,12 +1,7 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace SmileLife\Game\PlayerAction;
+
+use SmileLife\Game\Table\PlayerTableDecorator;
 
 /**
  *
@@ -16,6 +11,8 @@ trait ResignTrait {
 
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
+//        $cardDecorator = new CardDecorator();
+        $tableDecorator = new PlayerTableDecorator();
 
         $player = $this->playerManager->findOne([
             "id" => $playerId
@@ -35,6 +32,9 @@ trait ResignTrait {
             'playerId' => $playerId,
             'player_name' => $player->getName(),
             'job' => $job->getTitle(),
+            'table' => $tableDecorator->decorateTable($table)
+//            'card' => $cardDecorator->decorateRawCard($job),
+//            'studies'=> $table->
         ]);
 
         if ($job->isTemporary()) {
