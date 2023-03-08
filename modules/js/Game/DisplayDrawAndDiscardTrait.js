@@ -49,7 +49,7 @@ define([
                         return this.displayCard(gamedatas.discard);
                     }
                 },
-
+                
             }
 
     );

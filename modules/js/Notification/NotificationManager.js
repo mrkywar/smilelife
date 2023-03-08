@@ -53,15 +53,44 @@ define([
 
                 notif_drawNotification: function (notif) {
 //                    this.debug("drawcallback called", notif);
+
+
+                    var cardId = Date.now().toString();
                     if (parseInt(notif.args.playerId) === this.player_id) {
-                        
                         var card = notif.args.card;
-                        dojo.place(this.displayCard(card), 'myhand');
-                    }else{
+
+                        dojo.place(this.displayCard(card), 'card_0');
+                        
+
+                        //slide annimation
+                        var temporary = this.slideToObject("hand_card_" + card.id, "hand_card_5",500);
+                        
+
+//                        var _this = this;
+//                        dojo.connect(temporary, 'onEnd', function () {
+////                            dojo.place(_this.displayCard(card), 'myhand');
+//                            dojo.place(this.displayCard(card), 'myhand');
+//                        });
+
+//                        //place a fake card
+//                        var cardId = Date.now().toString();
+//                        dojo.place(this.getDefaultCardHtml(cardId),"card_0");
+//                        
+//                        //slide annimation
+//                        var drawSlideAnimation = this.slideToObjectAndDestroy("temp_"+cardId,"myhand");
+//                        
+//                        //display
+//                        dojo.connect(animation_id, 'onEnd', ()->{
+//                        var card = notif.args.card;
+//                        dojo.place(this.displayCard(card), 'myhand');
+//                        // do something here
+//});
+                    } else {
                         this.debug("Not Implemented Yet");
                     }
-                    
-                    
+
+
+
                     //                    var collection = {
 //                        collection_index: datas.args.collectionIndex,
 //                        player_id: datas.args.playerId
@@ -83,7 +112,18 @@ define([
 //                        dojo.place(this.format_block('jstpl_card', card), collectionDiv);
 //
 //                    }
+                },
+
+                getDefaultCardHtml: function (id) {
+
+                    return `
+                        <div class="cardontable card_0 card_deck cards_stack" id="temp_` + id + `" data-id="0">
+                            fake ?
+                        </div>
+                    `;
                 }
+
+
             }
 
     );
