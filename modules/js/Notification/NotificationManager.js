@@ -63,7 +63,7 @@ define([
                         
 
                         //slide annimation
-                        var temporary = this.slideToObject("hand_card_" + card.id, "hand_card_5",500);
+//                        this.slideToObject("hand_card_" + card.id, "myhand",500).play();
                         
 
 //                        var _this = this;
