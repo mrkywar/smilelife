@@ -159,7 +159,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_wage .card_title{
-                        margin-top: ` + (64 * size.ratio) + `px;
+                        margin-top: ` + (66 * size.ratio) + `px;
                     }
                     .card_wage .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
@@ -169,7 +169,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .card_studies .card_title{
-                        margin-top: ` + (60 * size.ratio) + `px;
+                        margin-top: ` + (64 * size.ratio) + `px;
                     }
                     .card_studies .card_text1{
                         height: ` + (34 * size.ratio) + `px;
@@ -178,7 +178,8 @@ define([
                         width: ` + (250 * size.ratio) + `px;
                     }
                     .card_studies .card_text2{
-                        margin-top: ` + (18 * size.ratio) + `px;
+                        margin-top: ` + (14 * size.ratio) + `px;
+                        height: ` + (18 * size.ratio) + `px;
                     }
                     /*------              FLIRT                           ----*/
                     .card_flirt .card_title{
@@ -291,7 +292,7 @@ define([
                     }
                     /*------              ATTACK                          ----*/
                     .card_attack .card_title{
-                        margin-top: ` + (50 * size.ratio) + `px;
+                        margin-top: ` + (54 * size.ratio) + `px;
                     }
                     .card_attack .card_text1{
                         margin: 0 ` + (40 * size.ratio) + `px;
@@ -334,6 +335,8 @@ define([
                         margin: 0 ` + (44 * size.ratio) + `px;
                         margin-top: ` + (290 * size.ratio) + `px;
                         font-size: ` + (17 * size.ratio) + `px;
+                        height: ` + (74 * size.ratio) + `px;
+                        
                     }
                     /*------              TRAVEL                          ----*/
                     .card_travel .card_title{

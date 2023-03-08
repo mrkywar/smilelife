@@ -312,6 +312,11 @@ html{
     align-content: flex-end;
     justify-content: space-around;
 }
+.card_adultery .card_text1{
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
 
 /*-----------------------------------------------------------------------------
             BEGIN - Debug
