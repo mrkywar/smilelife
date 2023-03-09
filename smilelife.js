@@ -11,6 +11,7 @@ define([
             "bgagame.smilelife",
             [
                 common.tools,
+                game.smilelife
             ]
     )
 

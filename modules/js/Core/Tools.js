@@ -10,6 +10,7 @@ define(['dojo', 'dojo/_base/declare'], (dojo, declare) => {
 
         constructor: function () {
             this.isDebugEnabled = ('studio.boardgamearena.com' === window.location.host || window.location.hash.indexOf('debug') > -1);
+            this.debug("tools setup");
         },
 
         /* -------------------------------------------------------------
