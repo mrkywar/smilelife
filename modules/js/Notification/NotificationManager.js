@@ -63,8 +63,7 @@ define([
                                 this.displayCard(card),
                                 "card_0",
                                 "hand_card_" + card.id,
-                                "hand_card_5",
-                                500
+                                "hand_card_5"
                                 ).play();
 
 

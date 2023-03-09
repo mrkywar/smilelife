@@ -6,7 +6,7 @@
 
 
 define(['dojo', 'dojo/_base/declare'], (dojo, declare) => {
-    return declare('common.ToolsTrait', ebg.core.gamegui, {
+    return declare('common.tools', ebg.core.gamegui, {
 
         constructor: function () {
             this.isDebugEnabled = ('studio.boardgamearena.com' === window.location.host || window.location.hash.indexOf('debug') > -1);
@@ -53,5 +53,45 @@ define(['dojo', 'dojo/_base/declare'], (dojo, declare) => {
             styleSheet.innerText = css;
             document.head.appendChild(styleSheet);
         },
+        
+        
+//        slideToObjectAndAttach: function(){
+//            
+//        }
+        
+        
+        
+//        function slideToObjectAndAttach(game, object, destinationId, changeSide) {
+//    if (changeSide === void 0) { changeSide = false; }
+//    var destination = document.getElementById(destinationId);
+//    if (destination.contains(object)) {
+//        return;
+//    }
+//    var originBR = object.getBoundingClientRect();
+//    destination.appendChild(object);
+//    if (document.visibilityState !== 'hidden' && !game.instantaneousMode) {
+//        var destinationBR = object.getBoundingClientRect();
+//        var deltaX = destinationBR.left - originBR.left;
+//        var deltaY = destinationBR.top - originBR.top;
+//        object.style.zIndex = '10';
+//        object.style.transform = "translate(".concat(-deltaX, "px, ").concat(-deltaY, "px)");
+//        if (destination.dataset.currentPlayer == 'false') {
+//            object.style.order = null;
+//            object.style.position = 'absolute';
+//        }
+//        setTimeout(function () {
+//            object.style.transition = "transform 0.5s linear";
+//            object.style.transform = null;
+//        });
+//        setTimeout(function () {
+//            object.style.zIndex = null;
+//            object.style.transition = null;
+//            object.style.position = null;
+//        }, 600);
+//    }
+//    else {
+//        object.style.order = null;
+//    }
+//}
     });
 });
