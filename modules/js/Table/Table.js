@@ -72,12 +72,21 @@ define([
                     if (null !== table.job) {
                         professionalPile.push(table.job);
                     }
+                    
+                    var lovePile = table.flirts;
+                    if(null !== table.marriage){
+                        professionalPile.push(table.marriage);
+                    }
 
                     
 
                     return {
                         professionalPile: professionalPile,
+                        lovePile: lovePile,
                         wagePile: table.wages,
+                        childPile: table.childs,
+                        attackPile: table.attacks,
+                        
                     }
                 },
 

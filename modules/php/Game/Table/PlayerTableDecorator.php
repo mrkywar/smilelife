@@ -46,7 +46,6 @@ class PlayerTableDecorator {
             "flirts" => $this->cardDecorator->decorateRawCard($table->getFlirts()),
             "marriage" => $this->cardDecorator->decorateRawCard($table->getMarriage()),
             "adultery" => $this->cardDecorator->decorateRawCard($table->getAdultery()),
-            "pets" => $this->cardDecorator->decorateRawCard($table->getPets()),
             "acquisitions" => $this->cardDecorator->decorateRawCard($table->getAcquisitions()),
             "attacks" => $this->cardDecorator->decorateRawCard($table->getAttacks()),
         ];

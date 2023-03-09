@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `player_table` (
     `table_rewards` text NULL,
     `table_warges` text NULL,
     `table_flirts` text NULL,
-    `table_pets` text NULL,
+    --`table_pets` text NULL,
     `table_marriage` int(10) unsigned NULL,
     `table_childs` text NULL,
     `table_adultery` int(10) unsigned NULL,
