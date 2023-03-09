@@ -55,16 +55,42 @@ define([
 //                    this.debug("drawcallback called", notif);
 
 
-                    var cardId = Date.now().toString();
+//                    var cardId = Date.now().toString();
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         var card = notif.args.card;
 
-                        dojo.place(this.displayCard(card), 'card_0');
-                        
+                        this.slideTemporaryObject(
+                                this.displayCard(card),
+                                "card_0",
+                                "hand_card_" + card.id,
+                                "hand_card_5",
+                                500
+                                ).play();
+
+
+
+
+
+//                        dojo.place(this.displayCard(card), 'card_0');
+
 
                         //slide annimation
+                        //slideTemporaryObject( mobile_obj_html: string, parent: ElementOrId, from: ElementOrId, to: ElementOrId, duration?: number, delay?: number ): Animation
+
+//This method is useful when you want to slide a temporary HTML object from one place to another. As this object does not exists before the animation and won't remain after, it could be complex to create this object (with dojo.place), to place it at its origin (with placeOnObject) to slide it (with slideToObject) and to make it disappear at the end.
+//
+//slideTemporaryObject does all of this for you:
+//
+//mobile_obj_html is a piece of HTML code that represent the object to slide.
+//parent is the ID of an HTML element of your interface that will be the parent of this temporary HTML object.
+//from is the ID of the origin of the slide.
+//to is the ID of the target of the slide.
+//duration/delay works exactly like in "slideToObject"
+//Example:
+//
+//this.slideTemporaryObject( '<div class="token_icon"></div>', 'tokens', 'my_origin_div', 'my_target_div' ).play();
 //                        this.slideToObject("hand_card_" + card.id, "myhand",500).play();
-                        
+
 
 //                        var _this = this;
 //                        dojo.connect(temporary, 'onEnd', function () {
