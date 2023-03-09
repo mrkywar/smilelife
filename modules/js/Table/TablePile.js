@@ -3,14 +3,14 @@ define([
     "dojo/_base/declare",
 ], function (dojo, declare) {
     return declare(
-            "smilelife.card",
+            "smilelife.table.pile",
             [],
             {
                 constructor: function () {
-                    this.debug("smilelife.card constructor");
-
+                    this.debug("smilelife.table.pile constructor");
                 },
-
             }
     );
 });
+
+            

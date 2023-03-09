@@ -1,36 +1,32 @@
 define([
     "dojo",
     "dojo/_base/declare",
+    
+    g_gamethemeurl + 'modules/js/Table/TablePile.js',
 ], function (dojo, declare) {
     return declare(
             "smilelife.table",
-            [],
+            [
+                smilelife.table.pile
+            ],
             {
                 constructor: function () {
-                    this.debug("smilelife.table constructor", this.getGame());
+                    this.debug("smilelife.table constructor");
 
 
                 },
 
                 displayTables: function () {
-                    var gamedatas = this.getGame().gamedatas;
+                    var gamedatas = this.gamedatas;
 
                     this.myTable = gamedatas.mytable;
                     this.myPiles = this.getTablePiles(this.myTable);
-
-
-//                    this.myJob = this.myTable.job;
-//                    this.myStudies = this.myTable.studies;
-
-
-
-
 
                     //Prepare & display this player table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
-
+                    //Display my Tables Piles Content (last played cards)
 
 
 
@@ -78,15 +74,14 @@ define([
                         professionalPile.push(table.marriage);
                     }
 
-                    
-
                     return {
                         professionalPile: professionalPile,
                         lovePile: lovePile,
                         wagePile: table.wages,
                         childPile: table.childs,
                         attackPile: table.attacks,
-                        
+                        acquisitionPile: table.acquisitions,
+                        bonus1Pile: table.adultery,
                     }
                 },
 
