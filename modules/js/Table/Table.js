@@ -14,13 +14,25 @@ define([
 
                 displayTables: function () {
                     var gamedatas = this.getGame().gamedatas;
+
+                    this.myTable = gamedatas.mytable;
+                    this.myPiles = this.getTablePiles(this.myTable);
+
+
+//                    this.myJob = this.myTable.job;
+//                    this.myStudies = this.myTable.studies;
+
+
+
+
+
                     //Prepare & display this player table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
-                    
 
-                    this.myTable = gamedatas.mytable;
+
+
 
 
 
@@ -48,6 +60,25 @@ define([
 //
 //                    }
 
+                },
+
+                /**
+                 * This function get all piles content for a given Table
+                 * @param {object} table
+                 * @returns {String}
+                 */
+                getTablePiles: function (table) {
+                    var professionalPile = table.studies;
+                    if (null !== table.job) {
+                        professionalPile.push(table.job);
+                    }
+
+                    
+
+                    return {
+                        professionalPile: professionalPile,
+                        wagePile: table.wages,
+                    }
                 },
 
                 /**
@@ -100,7 +131,7 @@ define([
                     `;
 
                 },
-                
+
                 /**
                  * This function get HTML of all table components code (include 
                  * connected) for the given player. the components should be in 
