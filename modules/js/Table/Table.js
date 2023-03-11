@@ -1,7 +1,7 @@
 define([
     "dojo",
     "dojo/_base/declare",
-    
+
     g_gamethemeurl + 'modules/js/Table/TablePile.js',
 ], function (dojo, declare) {
     return declare(
@@ -20,27 +20,34 @@ define([
                     var gamedatas = this.gamedatas;
 
                     this.myTable = gamedatas.mytable;
-                    
+
                     //Prepare & display this player table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
-                    
-                    
+
+                    //Prepare & Display this player Hand Cards
+                    this.myHand = gamedatas.myhand;
+                    for (var cardId in gamedatas.myhand) {
+                        var card = gamedatas.myhand[cardId];
+                        dojo.place(this.displayCard(card), 'myhand');
+                    }
+
+
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;
                     for (var playerId in gamedatas.tables) {
                         var player = gamedatas.players[playerId];
                         player.id = playerId;
                         dojo.place(this.getTableHtml(player), 'tables'); //table container
-                        
+
                         var table = gamedatas.tables[playerId];
                     }
-                    
+
 
                     //Prepare & display my Tables Piles Content (last played cards)
                     this.myPiles = this.getTablePiles(this.myTable);
-                    
+
 
 
 
@@ -79,9 +86,9 @@ define([
                     if (null !== table.job) {
                         professionalPile.push(table.job);
                     }
-                    
+
                     var lovePile = table.flirts;
-                    if(null !== table.marriage){
+                    if (null !== table.marriage) {
                         professionalPile.push(table.marriage);
                     }
 
