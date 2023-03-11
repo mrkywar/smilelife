@@ -53,8 +53,7 @@ define([
                         div.classList.add('cardontable');
                         div.dataset.id = '' + card.id;
                         div.dataset.side = '' + side;
-                        div.dataset.type = '' + card.type;
-                        div.dataset.category = '' + card.category;
+
                         div.innerHTML = `
                             <div class="card_sides">
                                 <div class="card-side front" id="front_` + div.id + `"></div>
@@ -70,8 +69,8 @@ define([
 
                 setVisibleInformations: function (div, card) {
                     div.dataset.points = card.smilePoints;
-                    div.dataset.type = card.type;
-                    div.dataset.family = null;
+                    div.dataset.type = '' + card.type;
+                    div.dataset.category = '' + card.category;
                     $("front_card_" + card.id).innerHTML = `
                         <span class="card_text card_title">` + card.title + `</span>
                         <span class="card_text card_subtitle">` + card.subtitle + `</span>

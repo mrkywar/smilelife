@@ -5,7 +5,7 @@ define([
     g_gamethemeurl + 'modules/js/Table/TablePile.js',
 ], function (dojo, declare) {
     return declare(
-            "smilelife.table",
+            "smilelife.playertable",
             [
                 smilelife.table.pile
             ],
@@ -31,12 +31,6 @@ define([
                     for (var cardId in gamedatas.myhand) {
                         var card = gamedatas.myhand[cardId];
                         this.createMoveOrUpdateCard(card, "myhand");
-
-//                        var card = gamedatas.myhand[cardId];
-//                        dojo.place(this.displayCard(card), 'myhand');
-//                        
-//                        var cardBis = gamedatas.myhand[cardId];
-//                        dojo.place(this.displayCard(cardBis), 'myhand');
                     }
 
 

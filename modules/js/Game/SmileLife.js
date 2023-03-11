@@ -4,14 +4,16 @@ define([
     "ebg/counter",
     
     g_gamethemeurl + 'modules/js/Card/Card.js',
-    g_gamethemeurl + 'modules/js/Table/Table.js',
+    g_gamethemeurl + 'modules/js/Table/PlayerTable.js',
+    g_gamethemeurl + 'modules/js/Table/TableDraw.js',
 
 ], function (dojo, declare) {
     return declare(
             "game.smilelife",
             [
-                smilelife.table,
+                smilelife.playertable,
                 smilelife.card,
+                smilelife.table.draw,
             ], {
 
         constructor: function () {
@@ -34,6 +36,7 @@ define([
 
             this.gamedatas = gamedatas;
             
+            this.displayDeckAndDiscard();
             this.displayTables();
             
             this.applyCardSize();
