@@ -20,16 +20,27 @@ define([
                     var gamedatas = this.gamedatas;
 
                     this.myTable = gamedatas.mytable;
-                    this.myPiles = this.getTablePiles(this.myTable);
-
+                    
                     //Prepare & display this player table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
-                    //Display my Tables Piles Content (last played cards)
+                    
+                    
+                    //Display of opponents' game tables
+                    this.otherTabes = gamedatas.tables;
+                    for (var playerId in gamedatas.tables) {
+                        var player = gamedatas.players[playerId];
+                        player.id = playerId;
+                        dojo.place(this.getTableHtml(player), 'tables'); //table container
+                        
+                        var table = gamedatas.tables[playerId];
+                    }
+                    
 
-
-
+                    //Prepare & display my Tables Piles Content (last played cards)
+                    this.myPiles = this.getTablePiles(this.myTable);
+                    
 
 
 

@@ -10,6 +10,8 @@ define([
                     this.debug("smilelife.table.pile constructor");
                 },
             }
+                    
+                    
     );
 });
 

@@ -19,7 +19,7 @@ define([
 
             this.playerTables = [];
             this.handCounters = [];
-            this.cardSize = "M"; //TODO : See if I keep this
+            this.cardDefaultSize = "M"; //TODO : See if I keep this
             this.game = this;
             
 
@@ -35,6 +35,8 @@ define([
             this.gamedatas = gamedatas;
             
             this.displayTables();
+            
+            this.applyCardSize();
             
             this.debug("end Setup try to get myTable", this.myTable);
 
