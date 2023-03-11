@@ -52,6 +52,10 @@ class Adultery extends Love implements BaseGame {
         return CardType::ADULTERY;
     }
 
+    public function getCategory(): string {
+        return "adultery";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
      * ---------------------------------------------------------------------- */

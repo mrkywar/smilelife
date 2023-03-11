@@ -80,6 +80,10 @@ abstract class Job extends Card {
         return self::SMILE_POINTS;
     }
 
+    public function getCategory(): string {
+        return (($this->hasPower()) ? "powered_" : "") + "job";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each job)
      * ---------------------------------------------------------------------- */

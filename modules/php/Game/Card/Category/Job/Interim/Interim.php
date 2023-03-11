@@ -17,4 +17,12 @@ abstract class Interim extends Job {
         $this->setSubtitle(clienttranslate('Temporary employee'));
     }
 
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Override
+     * ---------------------------------------------------------------------- */
+
+    public function getCategory(): string {
+        return "temp_" . parent::getCategory();
+    }
+
 }

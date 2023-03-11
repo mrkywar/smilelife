@@ -40,6 +40,10 @@ abstract class Wedding extends Love {
         return self::SMILE_POINTS;
     }
 
+    public function getCategory(): string {
+        return "marriage";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

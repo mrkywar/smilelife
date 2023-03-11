@@ -33,6 +33,10 @@ abstract class Pet extends Card {
         return true;
     }
 
+    public function getCategory(): string {
+        return "pet";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

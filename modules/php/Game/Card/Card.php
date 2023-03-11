@@ -158,6 +158,8 @@ abstract class Card extends Model {
     abstract public function getType(): int;
 
     abstract public function getClass(): string;
+    
+    abstract public function getCategory(): string;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
