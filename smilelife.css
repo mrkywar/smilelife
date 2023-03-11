@@ -227,10 +227,10 @@ html{
     text-align: center;
 }
 .card_title,
-.card_wage .card_text1,
-.card_flirt .card_text1, .card_flirt .card_text2,
+.cardontable[data-category="wage"] .card_text1,
+.cardontable[data-category="flirt"] .card_text1, .cardontable[data-category="flirt"] .card_text2,
 .card_house .card_text1, .card_house .card_text2,
-.card_studies .card_text2,
+.cardontable[data-category="studies"] .card_text2,
 .card_child .card_text1,
 .card_travel .card_text1,
 .card_job .card_subtitle,.card_job .card_text2,
@@ -238,8 +238,8 @@ html{
 {
     font-weight: bold;
 }
-.card_studies .card_title, .card_studies .card_text2,
-.card_wage .card_title, .card_wage .card_text1,
+.cardontable[data-category="studies"] .card_title, .cardontable[data-category="studies"] .card_text2,
+.cardontable[data-category="wage"] .card_title, .cardontable[data-category="wage"] .card_text1,
 .card_job .card_subtitle,
 .card_attack .card_title, .card_attack .card_text1
 {
@@ -255,15 +255,15 @@ html{
 }
 .card_wedding .card_title,
 .card_child .card_title,
-.card_flirt .card_title{
+.cardontable[data-category="flirt"] .card_title{
     color: #c0171c;
 }
-.card_flirt .card_title{
+.cardontable[data-category="flirt"] .card_title{
     text-transform: uppercase;
 }
 
-.card_flirt .card_text1,
-.card_flirt .card_text2{
+.cardontable[data-category="flirt"] .card_text1,
+.cardontable[data-category="flirt"] .card_text2{
     color: #e89d9f;
 }
 

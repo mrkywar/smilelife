@@ -54,6 +54,7 @@ define([
                         div.dataset.id = '' + card.id;
                         div.dataset.side = '' + side;
                         div.dataset.type = '' + card.type;
+                        div.dataset.category = '' + card.category;
                         div.innerHTML = `
                             <div class="card_sides">
                                 <div class="card-side front" id="front_` + div.id + `"></div>
@@ -211,37 +212,37 @@ define([
                         
                     }
                     /*------              WAGE                            ----*/
-                    .card_wage .card_text1, .card_wage .card_title{
+                    .cardontable[data-category="wage"] .card_text1, .cardontable[data-category="wage"] .card_title{
                         height: ` + (20 * size.ratio) + `px;
                     }
-                    .card_wage .card_title{
+                    .cardontable[data-category="wage"] .card_title{
                         margin-top: ` + (66 * size.ratio) + `px;
                     }
-                    .card_wage .card_text1{
+                    .cardontable[data-category="wage"] .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
                     }
                     /*------              STUDIES                         ----*/
-                    .card_studies .card_text1, .card_studies .card_title{
+                    .cardontable[data-category="studies"] .card_text1, .cardontable[data-category="studies"] .card_title{
                         height: ` + (20 * size.ratio) + `px;
                     }
-                    .card_studies .card_title{
+                    .cardontable[data-category="studies"] .card_title{
                         margin-top: ` + (64 * size.ratio) + `px;
                     }
-                    .card_studies .card_text1{
+                    .cardontable[data-category="studies"] .card_text1{
                         height: ` + (34 * size.ratio) + `px;
                         margin-left: ` + (40 * size.ratio) + `px;
                         margin-top: ` + (258 * size.ratio) + `px;
                         width: ` + (250 * size.ratio) + `px;
                     }
-                    .card_studies .card_text2{
-                        margin-top: ` + (14 * size.ratio) + `px;
+                    .cardontable[data-category="studies"] .card_text2{
+                        margin-top: ` + (20 * size.ratio) + `px;
                         height: ` + (18 * size.ratio) + `px;
                     }
                     /*------              FLIRT                           ----*/
-                    .card_flirt .card_title{
+                    .cardontable[data-category="flirt"] .card_title{
                         margin-top: ` + (64 * size.ratio) + `px;
                     }
-                    .card_flirt .card_text1{
+                    .cardontable[data-category="flirt"] .card_text1{
                         margin-top: ` + (300 * size.ratio) + `px;
                         font-size: ` + (30 * size.ratio) + `px;
                         padding-bottom:0;

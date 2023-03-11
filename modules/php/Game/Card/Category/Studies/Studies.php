@@ -43,6 +43,6 @@ abstract class Studies extends Card {
     }
 
     public function getCategory(): string {
-        return "studie";
+        return "studies";
     }
 }

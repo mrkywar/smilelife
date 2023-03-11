@@ -81,7 +81,7 @@ abstract class Job extends Card {
     }
 
     public function getCategory(): string {
-        return (($this->hasPower()) ? "powered_" : "") + "job";
+        return ((true === $this->hasPower()) ? "powered_" : "") . "job";
     }
 
     /* -------------------------------------------------------------------------
