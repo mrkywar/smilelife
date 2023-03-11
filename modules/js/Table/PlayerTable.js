@@ -32,7 +32,8 @@ define([
                         var card = gamedatas.myhand[cardId];
                         this.createMoveOrUpdateCard(card, "myhand");
                     }
-
+                    //Display this player Table cards
+                    this.displayTablePile(gamedatas.mytable, meAsPlayer);
 
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;
@@ -42,65 +43,11 @@ define([
                         dojo.place(this.getTableHtml(player), 'tables'); //table container
 
                         var table = gamedatas.tables[playerId];
+                        this.displayTablePile(table, player);
                     }
 
 
-                    //Prepare & display my Tables Piles Content (last played cards)
-                    this.myPiles = this.getTablePiles(this.myTable);
 
-
-
-
-
-//                    this.debug(gamedatas);
-
-
-
-//                    //display player's table cards
-//                    this.displayTableCards(gamedatas.mytable, meAsPlayer);
-//                    
-//                    this.myTable = gamedatas.mytable;
-//
-//                    for (var playerId in gamedatas.tables) {
-//                        var player = gamedatas.players[playerId];
-//                        player.id = playerId;
-//
-//                        dojo.place(this.getTableHtml(player), 'tables');
-//
-//                        var table = gamedatas.tables[playerId];
-//
-//                        //-display openents's table cards
-//                        this.displayTableCards(table, player);
-//
-//                    }
-
-                },
-
-                /**
-                 * This function get all piles content for a given Table
-                 * @param {object} table
-                 * @returns {String}
-                 */
-                getTablePiles: function (table) {
-                    var professionalPile = table.studies;
-                    if (null !== table.job) {
-                        professionalPile.push(table.job);
-                    }
-
-                    var lovePile = table.flirts;
-                    if (null !== table.marriage) {
-                        professionalPile.push(table.marriage);
-                    }
-
-                    return {
-                        professionalPile: professionalPile,
-                        lovePile: lovePile,
-                        wagePile: table.wages,
-                        childPile: table.childs,
-                        attackPile: table.attacks,
-                        acquisitionPile: table.acquisitions,
-                        bonus1Pile: table.adultery,
-                    }
                 },
 
                 /**
