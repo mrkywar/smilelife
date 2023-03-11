@@ -22,7 +22,7 @@ define([
                 constructor: function () {
                     this.debug("smilelife.card constructor");
 //                    this.size = null;
-                    
+
                     this.sizeAssoc = {
                         XS: PREF_CHOICE_SIZE_XS,
                         S: PREF_CHOICE_SIZE_S,
@@ -31,21 +31,85 @@ define([
                         //"XL": PREF_CHOICE_SIZE_XL
                     };
                     this.computePossibleCardDimensions();
-                    
-                    
+
+
+                },
+
+                createMoveOrUpdateCard: function (card, destinationId, instant, from) {
+                    if (instant === void 0) {
+                        instant = false;
+                    }
+                    if (from === void 0) {
+                        from = null;
+                    }
+
+                    var existingDiv = $('card_' + card.id);
+                    var side = card.type ? 'front' : 'back';
+                    if (existingDiv) {
+                        //TODO !!
+                    } else {
+                        var div = document.createElement('div');
+                        div.id = "card_".concat(card.id);
+                        div.classList.add('cardontable');
+                        div.dataset.id = '' + card.id;
+                        div.dataset.side = '' + side;
+                        div.dataset.type = '' + card.type;
+                        div.innerHTML = `
+                            <div class="card_sides">
+                                <div class="card-side front" id="front_` + div.id + `"></div>
+                                <div class="card-side back"></div>
+                            </div>
+                        `;
+                        $(destinationId).appendChild(div);
+                        if (card.type) {
+                            this.setVisibleInformations(div, card);
+                        }
+                    }
+                },
+
+                setVisibleInformations: function (div, card) {
+                    div.dataset.points = card.smilePoints;
+                    div.dataset.type = card.type;
+                    div.dataset.family = null;
+                    $("front_card_" + card.id).innerHTML = `
+                        <span class="card_text card_title">` + card.title + `</span>
+                        <span class="card_text card_subtitle">` + card.subtitle + `</span>
+                        <span class="card_text card_text1">` + card.text1 + `</span>
+                        <span class="card_text card_text2">` + card.text2 + `</span>
+                        <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
+                    `
                 },
 
                 displayCard: function (card) {
-                    return `
-                        <div class="cardontable card_` + card.type + ` ` + card.shortclass + `" id="` + card.location + "_card_" + card.id + `" data-id="` + card.id + `">
+                    var existingDiv = $('card_' + card.id);
+                    var side = card.type ? 'front' : 'back';
+                    if (existingDiv) {
+                        existingDiv.dataset.side = '' + side;
+                    } else {
+
+                        return `
+                        <div class="cardontable card_` + card.type + ` ` + card.shortclass + `" id="card_` + card.id + `" data-id="` + card.id + `">
                             <span class="card_text card_title">` + card.title + `</span>
                             <span class="card_text card_subtitle">` + card.subtitle + `</span>
                             <span class="card_text card_text1">` + card.text1 + `</span>
                             <span class="card_text card_text2">` + card.text2 + `</span>
                             <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
                         </div>`;
+
+                    }
+
+
+
+//                    return `
+//                        <div class="cardontable" id="card_` + card.id + `" data-side="front" data-type="` + card.type + `" data-category="">
+//                    
+//                        </div>
+//                    `;
+
+
+
                 },
-                
+
                 computePossibleCardDimensions: function () {
                     var sizeRatios = {XS: 0.3, S: 0.35, M: 0.4, L: 0.5, XL: 0.6};
                     var cardDimensionsXXL = {width: WIDTH_XXL, height: HEIGHT_XXL, radius: RADIUS_XXL};
@@ -60,23 +124,23 @@ define([
                     }
                     this.aviableCardDimensions = cardDimensions;
                 },
-                
+
                 findActualCardSize: function () {
                     var object = this.sizeAssoc;
                     var value = parseInt(this.getUserPreference(PREF_CARD_SIZE));
-                    this.debug("size : (" + value+")")
+//                    this.debug("size : (" + value + ")")
                     var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value
                     );
 //                    this.debug("OPT : ",gameOptionSize);
 //                    this.debug("Avi :",this.aviableCardDimensions);
-            
+
                     return this.aviableCardDimensions[gameOptionSize];
 
                 },
 
                 applyCardSize: function () {
-                    if (null === this.size || undefined === this.size) {
+                    if (undefined === this.size) {
                         this.size = this.findActualCardSize();
                     }
                     this.debug('SIZE OBJ', this.size);
@@ -102,7 +166,7 @@ define([
                     for (var col = 1; col <= SPRITE_NB_COLUMNS; col++) {
                         for (var row = 0; row < SPRITE_NB_ROWS; row++) {
                             computedCSS += `
-                                .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
+                                .cardontable[data-type="` + (col + row * SPRITE_NB_COLUMNS) + `"] {
                                     background-position-x: -` + (col * size.width) + `px;
                                 }
                                 `;
@@ -116,7 +180,7 @@ define([
                     for (var row = 1; row < SPRITE_NB_ROWS; row++) {
                         for (var col = 0; col <= SPRITE_NB_COLUMNS; col++) {
                             computedCSS += `
-                                .card_` + (col + row * SPRITE_NB_COLUMNS) + ` {
+                                .cardontable[data-type="` + (col + row * SPRITE_NB_COLUMNS) + `"] {
                                     background-position-y: -` + (row * size.height) + `px;
                                 }
                                 `;

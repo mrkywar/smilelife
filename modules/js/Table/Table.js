@@ -30,7 +30,13 @@ define([
                     this.myHand = gamedatas.myhand;
                     for (var cardId in gamedatas.myhand) {
                         var card = gamedatas.myhand[cardId];
-                        dojo.place(this.displayCard(card), 'myhand');
+                        this.createMoveOrUpdateCard(card, "myhand");
+
+//                        var card = gamedatas.myhand[cardId];
+//                        dojo.place(this.displayCard(card), 'myhand');
+//                        
+//                        var cardBis = gamedatas.myhand[cardId];
+//                        dojo.place(this.displayCard(cardBis), 'myhand');
                     }
 
 
