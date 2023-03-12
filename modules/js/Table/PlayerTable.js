@@ -11,11 +11,13 @@ define([
             ],
             {
                 constructor: function () {
-                    this.debug("smilelife.table constructor");
-
-
+                    //this.debug("smilelife.table constructor");
                 },
 
+                /**
+                 * This function is the main code for displaying all Tables for 
+                 * dispaying my Hand, my Table and oppponents' tables
+                 */
                 displayTables: function () {
                     var gamedatas = this.gamedatas;
 

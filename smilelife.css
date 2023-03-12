@@ -229,18 +229,22 @@ html{
 .card_title,
 .cardontable[data-category="wage"] .card_text1,
 .cardontable[data-category="flirt"] .card_text1, .cardontable[data-category="flirt"] .card_text2,
-.card_house .card_text1, .card_house .card_text2,
+.cardontable[data-category="house"] .card_text1, .cardontable[data-category="house"] .card_text2,
 .cardontable[data-category="studies"] .card_text2,
-.card_child .card_text1,
-.card_travel .card_text1,
-.card_job .card_subtitle,.card_job .card_text2,
+.cardontable[data-category="child"] .card_text1,
+.cardontable[data-category="travel"] .card_text1,
+.cardontable[data-category="job"] .card_subtitle,.cardontable[data-category="job"] .card_text2,
+.cardontable[data-category="powered_job"] .card_subtitle,.cardontable[data-category="powered_job"] .card_text2,
+.cardontable[data-category="official_job"] .card_subtitle,.cardontable[data-category="official_job"] .card_text2,
 .card_special .card_text1
 {
     font-weight: bold;
 }
 .cardontable[data-category="studies"] .card_title, .cardontable[data-category="studies"] .card_text2,
 .cardontable[data-category="wage"] .card_title, .cardontable[data-category="wage"] .card_text1,
-.card_job .card_subtitle,
+.cardontable[data-category="job"] .card_subtitle,
+.cardontable[data-category="powered_job"] .card_subtitle,
+.cardontable[data-category="official_job"] .card_subtitle,
 .card_attack .card_title, .card_attack .card_text1
 {
     color: white;
@@ -248,13 +252,13 @@ html{
 }
 .card_adultery .card_text,
 .card_special .card_text1, .card_special .card_title,
-.card_child .card_text1,
-.card_powered .card_text1,
+.cardontable[data-category="child"] .card_text1,
+.cardontable[data-category="powered_job"] .card_text1,
 .card_freedommedal .card_title{
     color: white;
 }
 .card_wedding .card_title,
-.card_child .card_title,
+.cardontable[data-category="child"] .card_title,
 .cardontable[data-category="flirt"] .card_title{
     color: #c0171c;
 }
@@ -267,14 +271,14 @@ html{
     color: #e89d9f;
 }
 
-.card_house .card_text2{
+.cardontable[data-category="house"] .card_text2{
     color:#bb5ea9;
 }
-.card_house .card_title{
+.cardontable[data-category="house"] .card_title{
     color:#ca4e23;
     text-align: right;
 }
-.card_travel .card_subtitle{
+.cardontable[data-category="travel"] .card_subtitle{
     transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);

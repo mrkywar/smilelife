@@ -56,13 +56,6 @@ abstract class Job extends Card {
         return self::class;
     }
 
-    public function getVisibleClasses() {
-        if ($this->hasPower()) {
-            return parent::getVisibleClasses() . " card_powered";
-        }
-        return parent::getVisibleClasses();
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

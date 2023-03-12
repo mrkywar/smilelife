@@ -134,7 +134,7 @@ abstract class Card extends Model {
         return $str;
     }
 
-    public function getVisibleClasses() {
+    public function getName() {
         $searcheString = "Card\\Category";
         $classname = substr(
                 $this->getClass(),
@@ -142,7 +142,7 @@ abstract class Card extends Model {
         );
         $classes = array_unique(explode("\\", strtolower($classname)));
 
-        return "card_".implode(" card_", $classes);
+        return end($classes);
     }
 
     /* -------------------------------------------------------------------------
@@ -158,7 +158,7 @@ abstract class Card extends Model {
     abstract public function getType(): int;
 
     abstract public function getClass(): string;
-    
+
     abstract public function getCategory(): string;
 
     /* -------------------------------------------------------------------------

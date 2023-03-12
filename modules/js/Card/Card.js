@@ -71,6 +71,7 @@ define([
                     div.dataset.points = card.smilePoints;
                     div.dataset.type = '' + card.type;
                     div.dataset.category = '' + card.category;
+                    div.dataset.name = '' + card.name;
                     $("front_card_" + card.id).innerHTML = `
                         <span class="card_text card_title">` + card.title + `</span>
                         <span class="card_text card_subtitle">` + card.subtitle + `</span>
@@ -286,16 +287,21 @@ define([
                         display: none; //TODO see if we I18N cityname
                     }
                     /*------              JOB                             ----*/
-                    .card_job .card_title{
+                    .cardontable[data-category="job"] .card_title,
+                    .cardontable[data-category="powered_job"] .card_title,
+                    .cardontable[data-category="official_job"] .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
                         padding:0;
                     }
-                    .card_job .card_subtitle{
+                    .cardontable[data-category="job"] .card_subtitle,
+                    .cardontable[data-category="powered_job"] .card_subtitle,
+                    .cardontable[data-category="official_job"] .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
                         margin-top: ` + (4 * size.ratio) + `px;
                         padding-top:` + (6 * size.ratio) + `px;
                     }
-                    .card_job .card_text1{
+                    .cardontable[data-category="job"] .card_text1
+                    {
                         margin-top: ` + (360 * size.ratio) + `px;
                     }
                     .card_interim .card_text1,
@@ -303,13 +309,13 @@ define([
                     {
                         margin-top: ` + (340 * size.ratio) + `px;
                     }
-                    .card_powered .card_text1{
+                    .cardontable[data-category="powered_job"] .card_text1{
                         margin: 0 ` + (64 * size.ratio) + `px;
                         margin-top: ` + (352 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                         line-height: 1.35em;
                     }
-                    .card_official.card_powered .card_text1{
+                    .card_official.cardontable[data-category="powered_job"] .card_text1{
                         margin-top: ` + (328 * size.ratio) + `px;
                     }
                     .card_bandit .card_text1{
@@ -360,26 +366,26 @@ define([
                         font-size: ` + (18 * size.ratio) + `px;
                     }
                     /*------              CHILD                           ----*/
-                    .card_child .card_title{
-                        margin-top: ` + (62 * size.ratio) + `px;
+                    .cardontable[data-category="child"] .card_title{
+                        margin-top: ` + (68 * size.ratio) + `px;
                     }
-                    .card_child .card_text1{
+                    .cardontable[data-category="child"] .card_text1{
                         margin-top: ` + (300 * size.ratio) + `px;
                         font-size: ` + (36 * size.ratio) + `px;
                     }
                     /*------              HOUSE                           ----*/
-                    .card_house .card_title{
+                    .cardontable[data-category="house"] .card_title{
                         font-size: ` + (24 * size.ratio) + `px;
                         margin-top: ` + (40 * size.ratio) + `px;
                         padding-right: ` + (20 * size.ratio) + `px;
                     }
-                    .card_house .card_text1{
+                    .cardontable[data-category="house"] .card_text1{
                         margin: ` + (40 * size.ratio) + `px;
                         margin-top: ` + (280 * size.ratio) + `px;
                         margin-bottom: 0;
                         height: ` + (20 * size.ratio) + `px;
                     }
-                    .card_house .card_text2{
+                    .cardontable[data-category="house"] .card_text2{
                         margin-top: ` + (54 * size.ratio) + `px;
                         font-size: ` + (18 * size.ratio) + `px;
                     }
@@ -395,16 +401,16 @@ define([
                         
                     }
                     /*------              TRAVEL                          ----*/
-                    .card_travel .card_title{
+                    .cardontable[data-category="travel"] .card_title{
                         margin-top: ` + (20 * size.ratio) + `px;
                         font-size: ` + (24 * size.ratio) + `px;
                     }
-                    .card_travel .card_text1{
+                    .cardontable[data-category="travel"] .card_text1{
                         margin-top: ` + (350 * size.ratio) + `px;
                         margin-left: ` + (90 * size.ratio) + `px;
                         width: ` + (80 * size.ratio) + `px;
                     }
-                    .card_travel .card_subtitle{
+                    .cardontable[data-category="travel"] .card_subtitle{
                         margin-top: ` + (140 * size.ratio) + `px;
                         width: ` + (320 * size.ratio) + `px;
                         height: ` + (50 * size.ratio) + `px;
