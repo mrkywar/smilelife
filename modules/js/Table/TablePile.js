@@ -36,7 +36,12 @@ define([
                         bonus1Pile: table.adultery,
                     }
                 },
-
+                
+                /**
+                 * This function display all piles content (last card) for a given Table
+                 * @param {object} table
+                 * @returns {String} player who owned the table
+                 */
                 displayTablePile: function (table,player) {
                     var tableCards = this.getTablePiles(table);
                     this.debug('Piles of' + player.id, tableCards);
