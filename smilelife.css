@@ -246,19 +246,19 @@ html{
 .cardontable[data-category="powered_job"] .card_subtitle,
 .cardontable[data-category="official_job"] .card_subtitle,
 .cardontable[data-category="temporary_job"] .card_subtitle,
-.card_attack .card_title, .card_attack .card_text1
+.cardontable[data-category="attack"] .card_title, .cardontable[data-category="attack"] .card_text1
 {
     color: white;
     text-transform: uppercase;
 }
-.card_adultery .card_text,
+.cardontable[data-category="adultery"] .card_text,
 .cardontable[data-category="special"] .card_text1, .cardontable[data-category="special"] .card_title,
 .cardontable[data-category="child"] .card_text1,
 .cardontable[data-category="powered_job"] .card_text1,
-.card_freedommedal .card_title{
+.cardontable[data-name="freedommedal"] .card_title{
     color: white;
 }
-.card_wedding .card_title,
+.cardontable[data-category="marriage"] .card_title,
 .cardontable[data-category="child"] .card_title,
 .cardontable[data-category="flirt"] .card_title{
     color: #c0171c;
@@ -289,22 +289,22 @@ html{
     text-transform: uppercase;
     white-space : nowrap;
 }
-.card_riodejaneiro .card_subtitle{
+.cardontable[data-name="riodejaneiro"] .card_subtitle{
     color: #fcea1e;
 }
-.card_london .card_subtitle{
+.cardontable[data-name="london"] .card_subtitle{
     color: #a32026;
 }
-.card_sydney .card_subtitle{
+.cardontable[data-name="sydney"] .card_subtitle{
     color: #fce53c;
 }
-.card_newyork .card_subtitle{
+.cardontable[data-name="newyork"] .card_subtitle{
     color: #f5e933;
 }
-.card_cairo .card_subtitle{
+.cardontable[data-name="cairo"] .card_subtitle{
     color: #e4a600;
 }
-.card_attack .card_text1{
+.cardontable[data-category="attack"] .card_text1{
     display: flex;
     align-content: space-around;
     flex-wrap: wrap;
@@ -317,7 +317,7 @@ html{
     align-content: flex-end;
     justify-content: space-around;
 }
-.card_adultery .card_text1{
+.cardontable[data-category="adultery"] .card_text1{
     display: flex;
     align-content: space-around;
     flex-wrap: wrap;

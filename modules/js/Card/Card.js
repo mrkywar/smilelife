@@ -277,10 +277,10 @@ define([
                         margin-top: ` + (338 * size.ratio) + `px;
                     }
                     /*------              MARRIAGE                        ----*/
-                    .card_wedding .card_title{
-                        margin-top: ` + (60 * size.ratio) + `px;
+                    .cardontable[data-category="marriage"] .card_title{
+                        margin-top: ` + (63 * size.ratio) + `px;
                     }
-                    .card_wedding .card_text1{
+                    .cardontable[data-category="marriage"] .card_text1{
                         margin-top: ` + (57 * size.ratio) + `px;
                         width: ` + (60 * size.ratio) + `px;
                         font-size: ` + (12 * size.ratio) + `px;
@@ -341,36 +341,36 @@ define([
                         font-weight: bold;
                     }
                     /*------              REWARD                          ----*/
-                    .card_reward .card_title{
+                    .cardontable[data-category="reward"] .card_title{
                         margin-top: ` + (72 * size.ratio) + `px;
                     }
-                    .card_freedommedal .card_title{
+                    .cardontable[data-name="freedommedal"] .card_title{
                         margin-top: ` + (78 * size.ratio) + `px;
                     }
-                    .card_nationalmedal .card_text1{
+                    .cardontable[data-name="nationalmedal"] .card_text1{
                         margin: 0 ` + (24 * size.ratio) + `px;
                         margin-top: ` + (20 * size.ratio) + `px;
                         width: ` + (104 * size.ratio) + `px;
                         float: right;
                     }
-                    .card_nationalmedal .card_text2{
+                    .cardontable[data-name="nationalmedal"] .card_text2{
                         margin-top: ` + (300 * size.ratio) + `px;
                         font-size: ` + (19 * size.ratio) + `px;
                     }
-                    .card_freedommedal .card_text1{
+                    .cardontable[data-name="freedommedal"] .card_text1{
                         margin-top: ` + (286 * size.ratio) + `px;
                     }
                     /*------              ATTACK                          ----*/
-                    .card_attack .card_title{
+                    .cardontable[data-category="attack"] .card_title{
                         margin-top: ` + (54 * size.ratio) + `px;
                     }
-                    .card_attack .card_text1{
+                    .cardontable[data-category="attack"] .card_text1{
                         margin: 0 ` + (40 * size.ratio) + `px;
                         margin-top: ` + (324 * size.ratio) + `px;
                         height: ` + (64 * size.ratio) + `px;
                     }
-                    .card_jail .card_text1,
-                    .card_incometax .card_text1{
+                    .cardontable[data-name="jail"] .card_text1,
+                    .cardontable[data-name="incometax"] .card_text1{
                         font-size: ` + (18 * size.ratio) + `px;
                     }
                     /*------              CHILD                           ----*/
@@ -398,10 +398,10 @@ define([
                         font-size: ` + (18 * size.ratio) + `px;
                     }
                     /*------              Adultery                        ----*/
-                    .card_adultery .card_title{
+                    .cardontable[data-category="adultery"] .card_title{
                         margin-top: ` + (56 * size.ratio) + `px;
                     }
-                    .card_adultery .card_text1{
+                    .cardontable[data-category="adultery"] .card_text1{
                         margin: 0 ` + (44 * size.ratio) + `px;
                         margin-top: ` + (290 * size.ratio) + `px;
                         font-size: ` + (17 * size.ratio) + `px;
@@ -426,7 +426,7 @@ define([
                         font-size: ` + (40 * size.ratio) + `px;
                         
                     }
-                    .card_riodejaneiro .card_subtitle{
+                    .cardontable[data-name="riodejaneiro"] .card_subtitle{
                         text-shadow: ` + (2 * size.ratio) + `px 0 0 #9fbf39,
                                      ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #9fbf39,
                                      0 ` + (2 * size.ratio) + `px 0 #9fbf39, 
@@ -436,7 +436,7 @@ define([
                                     0 -` + (2 * size.ratio) + `px 0 #9fbf39, 
                                     ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #9fbf39;
                     }
-                    .card_london .card_subtitle{
+                    .cardontable[data-name="london"] .card_subtitle{
                         text-shadow: ` + (2 * size.ratio) + `px 0 0 #8b8d8d,
                                      ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #8b8d8d,
                                      0 ` + (2 * size.ratio) + `px 0 #8b8d8d, 
@@ -446,7 +446,7 @@ define([
                                     0 -` + (2 * size.ratio) + `px 0 #8b8d8d, 
                                     ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #8b8d8d;
                     }
-                    .card_sydney .card_subtitle{
+                    .cardontable[data-name="sydney"] .card_subtitle{
                         text-shadow: ` + (2 * size.ratio) + `px 0 0 #d6833a,
                                      ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #d6833a,
                                      0 ` + (2 * size.ratio) + `px 0 #d6833a, 
@@ -456,7 +456,7 @@ define([
                                     0 -` + (2 * size.ratio) + `px 0 #d6833a, 
                                     ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #d6833a;
                     }
-                    .card_newyork .card_subtitle{
+                    .cardontable[data-name="newyork"] .card_subtitle{
                         text-shadow: ` + (2 * size.ratio) + `px 0 0 #323755,
                                      ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #323755,
                                      0 ` + (2 * size.ratio) + `px 0 #323755, 
@@ -466,7 +466,7 @@ define([
                                     0 -` + (2 * size.ratio) + `px 0 #323755, 
                                     ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #323755;
                     }
-                    .card_cairo .card_subtitle{
+                    .cardontable[data-name="cairo"] .card_subtitle{
                         text-shadow: ` + (2 * size.ratio) + `px 0 0 #f9e000,
                                      ` + (2 * size.ratio) + `px ` + (2 * size.ratio) + `px 0 #f9e000,
                                      0 ` + (2 * size.ratio) + `px 0 #f9e000, 
