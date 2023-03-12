@@ -22,7 +22,7 @@ abstract class Interim extends Job {
      * ---------------------------------------------------------------------- */
 
     public function getCategory(): string {
-        return "temp_" . parent::getCategory();
+        return "temporary_" . parent::getCategory();
     }
 
 }

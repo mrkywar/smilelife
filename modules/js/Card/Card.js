@@ -267,13 +267,13 @@ define([
                         margin-top: ` + (308 * size.ratio) + `px;
                     }
                     /*------              PET                             ----*/
-                    .card_pet .card_title{
+                    .cardontable[data-category="pet"] .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
                     }
-                    .card_pet .card_text1{
+                    .cardontable[data-category="pet"] .card_text1{
                         margin-top: ` + (350 * size.ratio) + `px;
                     }
-                    .card_unicorn .card_text1{
+                    .cardontable[data-name="unicorn"] .card_text1{
                         margin-top: ` + (338 * size.ratio) + `px;
                     }
                     /*------              MARRIAGE                        ----*/
@@ -289,23 +289,24 @@ define([
                     /*------              JOB                             ----*/
                     .cardontable[data-category="job"] .card_title,
                     .cardontable[data-category="powered_job"] .card_title,
-                    .cardontable[data-category="official_job"] .card_title{
+                    .cardontable[data-category="official_job"] .card_title,
+                    .cardontable[data-category="temporary_job"] .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
                         padding:0;
                     }
                     .cardontable[data-category="job"] .card_subtitle,
                     .cardontable[data-category="powered_job"] .card_subtitle,
-                    .cardontable[data-category="official_job"] .card_subtitle{
+                    .cardontable[data-category="official_job"] .card_subtitle,
+                    .cardontable[data-category="temporary_job"] .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
                         margin-top: ` + (4 * size.ratio) + `px;
                         padding-top:` + (6 * size.ratio) + `px;
                     }
-                    .cardontable[data-category="job"] .card_text1
-                    {
+                    .cardontable[data-category="job"] .card_text1{
                         margin-top: ` + (360 * size.ratio) + `px;
                     }
-                    .card_interim .card_text1,
-                    .card_teacher .card_text1
+                    .cardontable[data-category="temporary_job"] .card_text1,
+                    .cardontable[data-category="official_job"] .card_text1
                     {
                         margin-top: ` + (340 * size.ratio) + `px;
                     }
@@ -315,14 +316,14 @@ define([
                         height: ` + (56 * size.ratio) + `px;
                         line-height: 1.35em;
                     }
-                    .card_official.cardontable[data-category="powered_job"] .card_text1{
+                    .cardontable[data-category="official_job"].cardontable[data-category="powered_job"] .card_text1{
                         margin-top: ` + (328 * size.ratio) + `px;
                     }
-                    .card_bandit .card_text1{
+                    .cardontable[data-name="bandit"] .card_text1{
                         margin-left: ` + (56 * size.ratio) + `px;
                         margin-right: ` + (80 * size.ratio) + `px;
                     }
-                    .card_bandit .card_text2{
+                    .cardontable[data-name="bandit"] .card_text2{
                         width: ` + (70 * size.ratio) + `px;
                         position: absolute;
                         right: -` + (28 * size.ratio) + `px;

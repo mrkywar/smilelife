@@ -245,6 +245,7 @@ html{
 .cardontable[data-category="job"] .card_subtitle,
 .cardontable[data-category="powered_job"] .card_subtitle,
 .cardontable[data-category="official_job"] .card_subtitle,
+.cardontable[data-category="temporary_job"] .card_subtitle,
 .card_attack .card_title, .card_attack .card_text1
 {
     color: white;
