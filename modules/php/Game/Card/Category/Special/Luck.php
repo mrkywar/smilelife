@@ -8,17 +8,17 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialInheritance
+ * Description of Luck
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialInheritance extends Special implements BaseGame {
+class Luck extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Inheritance'))
-                ->setText1(clienttranslate('This money is yours to keep'));
+        $this->setTitle(clienttranslate('Luck'))
+                ->setText1(clienttranslate('Take three cards, keep one and play'));
     }
 
     /* -------------------------------------------------------------------------
@@ -30,11 +30,11 @@ class SpecialInheritance extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialInheritance-01 : Not implemented yet");
+        throw new CardException("C-Luck-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_INHERITANCE;
+        return CardType::SPECIAL_LUCK;
     }
 
     /* -------------------------------------------------------------------------

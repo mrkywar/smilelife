@@ -248,22 +248,22 @@ define([
                         padding-bottom:0;
                     }
                     /*------              SPECIAL                         ----*/
-                    .card_special .card_title{
+                    .cardontable[data-category="special"] .card_title{
                         margin-top: ` + (54 * size.ratio) + `px;
                     }
-                    .card_special .card_text1{
+                    .cardontable[data-category="special"] .card_text1{
                         margin: ` + (40 * size.ratio) + `px;
                         margin-top: ` + (320 * size.ratio) + `px;
                         margin-bottom: 0;
                     }
-                    .card_specialcasino .card_text1{
+                    .cardontable[data-category="special"].cardontable[data-name="casino"] .card_text1{
                         margin-top: ` + (308 * size.ratio) + `px;
                         font-size: ` + (16 * size.ratio) + `px;
                     }
-                    .card_specialinheritance .card_text1{
+                    .cardontable[data-category="special"].cardontable[data-name="inheritance"] .card_text1{
                         font-size: ` + (16 * size.ratio) + `px;
                     }
-                    .card_specialjobboost .card_text1{
+                    .cardontable[data-category="special"].cardontable[data-name="jobboost"] .card_text1{
                         margin-top: ` + (308 * size.ratio) + `px;
                     }
                     /*------              PET                             ----*/
@@ -329,8 +329,15 @@ define([
                         bottom: -` + (8 * size.ratio) + `px;
                         font-size: ` + (16 * size.ratio) + `px;
                     }
-                    .card_grandprofessor .card_text1{
+                    .cardontable[data-name="grandprofessor"] .card_text1{
                         margin: ` + (332 * size.ratio) + `px ` + (46 * size.ratio) + `px 0 ` + (46 * size.ratio) + `px;
+                    }
+                    .cardontable[data-name="grandprofessor"] .card_text2{
+                        position: absolute;
+                        top: ` + (86 * size.ratio) + `px;
+                        left: ` + (6 * size.ratio) + `px;
+                        font-size: ` + (28 * size.ratio) + `px;
+                        font-weight: bold;
                     }
                     /*------              REWARD                          ----*/
                     .card_reward .card_title{

@@ -8,18 +8,17 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialShootingStar
+ * Description of Tsunami
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialShootingStar extends Special implements BaseGame {
+class Tsunami extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Shooting star'))
-                ->setText1(clienttranslate('Take any card from the discard pile'
-                                . ' and play it'));
+        $this->setTitle(clienttranslate('Tsunami'))
+                ->setText1(clienttranslate('Mix and re-distribute all cards held'));
     }
 
     /* -------------------------------------------------------------------------
@@ -31,11 +30,11 @@ class SpecialShootingStar extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialFallingStar-01 : Not implemented yet");
+        throw new CardException("C-Tsunami-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_SHOOTING_STAR;
+        return CardType::SPECIAL_TSUNAMI;
     }
 
     /* -------------------------------------------------------------------------

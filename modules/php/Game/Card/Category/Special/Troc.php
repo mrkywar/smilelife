@@ -8,11 +8,11 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialTroc
+ * Description of Troc
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialTroc extends Special implements BaseGame {
+class Troc extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
@@ -31,7 +31,7 @@ class SpecialTroc extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialTroc-01 : Not implemented yet");
+        throw new CardException("C-Troc-01 : Not implemented yet");
     }
 
     public function getType(): int {
