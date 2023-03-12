@@ -113,12 +113,6 @@ class PlayerTable extends Model {
      */
     private $adulteryId;
 
-    /**
-     * 
-     * @var array
-     * @ORM\Column{"type":"json", "name":"table_pets"}
-     */
-    private $petIds;
 
     /**
      * 
@@ -140,7 +134,6 @@ class PlayerTable extends Model {
         $this->childIds = [];
         $this->flirtIds = [];
         $this->rewardIds = [];
-        $this->petIds = [];
 
 //        $this->adulteryId = null;
 //        $this->jobId = null;
@@ -381,25 +374,11 @@ class PlayerTable extends Model {
     }
 
     public function addPet(Pet $card) {
-        $this->petIds[] = $card->getId();
+        $this->acquisitionIds[] = $card->getId();
 
         return $this;
     }
 
-    public function getPets() {
-        if (empty($this->getPetIds())) {
-            return [];
-        }
-
-        $this->cardManager->getSerializer()
-                ->setIsForcedArray(true);
-        $cards = $this->cardManager
-                ->findBy(["id" => $this->getPetIds()]);
-        $this->cardManager->getSerializer()
-                ->setIsForcedArray(false);
-
-        return $cards;
-    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 

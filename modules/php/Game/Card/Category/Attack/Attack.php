@@ -23,4 +23,8 @@ abstract class Attack extends Card {
         return 0;
     }
 
+    public function getCategory(): string {
+        return "attack";
+    }
+
 }

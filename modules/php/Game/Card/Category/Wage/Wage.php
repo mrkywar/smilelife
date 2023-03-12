@@ -42,4 +42,8 @@ abstract class Wage extends Card {
         return self::SMILE_POINTS;
     }
 
+    public function getCategory(): string {
+        return "wage";
+    }
+
 }

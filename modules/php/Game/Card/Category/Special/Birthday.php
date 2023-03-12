@@ -8,17 +8,18 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialRevenge
+ * Description of Birthday
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialRevenge extends Special implements BaseGame {
+class Birthday extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Revenge'))
-                ->setText1(clienttranslate('Inflict a penalty on another player'));
+        $this->setTitle(clienttranslate('Birthday'))
+                ->setText1(clienttranslate('Each player selects and gives you a'
+                                . ' paycheck card (face down)'));
     }
 
     /* -------------------------------------------------------------------------
@@ -30,11 +31,11 @@ class SpecialRevenge extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialRevenge-01 : Not implemented yet");
+        throw new CardException("C-Birthday-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_REVENGE;
+        return CardType::SPECIAL_BIRTHDAY;
     }
 
     /* -------------------------------------------------------------------------

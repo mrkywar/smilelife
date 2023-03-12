@@ -40,4 +40,8 @@ abstract class Flirt extends Love {
         return self::SMILE_POINTS;
     }
 
+    public function getCategory(): string {
+        return "flirt";
+    }
+
 }

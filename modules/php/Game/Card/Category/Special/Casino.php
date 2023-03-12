@@ -8,18 +8,19 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialRainbow
+ * Description of Casino
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialRainbow extends Special implements BaseGame {
+class Casino extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Rainbow'))
-                ->setText1(clienttranslate('Play up to 3 cards at once then '
-                                . 'pick a new card'));
+        $this->setTitle(clienttranslate('Casino'))
+                ->setText1(clienttranslate('Bet a paycheck card face down. If '
+                                . 'another player bets the same card, he wins. If they'
+                                . ' bet differently, you win'));
     }
 
     /* -------------------------------------------------------------------------
@@ -31,11 +32,11 @@ class SpecialRainbow extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialRainbow-01 : Not implemented yet");
+        throw new CardException("C-Casino-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_RAINBOW;
+        return CardType::SPECIAL_CASINO;
     }
 
     /* -------------------------------------------------------------------------

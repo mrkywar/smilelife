@@ -8,11 +8,11 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialJobBoost
+ * Description of JobBoost
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialJobBoost extends Special implements BaseGame {
+class JobBoost extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
@@ -31,7 +31,7 @@ class SpecialJobBoost extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialJobBoost-01 : Not implemented yet");
+        throw new CardException("C-JobBoost-01 : Not implemented yet");
     }
 
     public function getType(): int {

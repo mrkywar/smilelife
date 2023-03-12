@@ -33,6 +33,10 @@ abstract class Travel extends Acquisition {
         return self::SMILE_POINTS;
     }
 
+    public function getCategory(): string {
+        return "travel";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

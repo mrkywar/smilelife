@@ -210,7 +210,7 @@ html{
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
 --------------------------------------------------------------------------*/
-.empty_pile{
+#card_empty{
     border: 2px dashed black;
     background: none !important;
     box-shadow: none !important;
@@ -227,54 +227,59 @@ html{
     text-align: center;
 }
 .card_title,
-.card_wage .card_text1,
-.card_flirt .card_text1, .card_flirt .card_text2,
-.card_house .card_text1, .card_house .card_text2,
-.card_studies .card_text2,
-.card_child .card_text1,
-.card_travel .card_text1,
-.card_job .card_subtitle,.card_job .card_text2,
-.card_special .card_text1
+.cardontable[data-category="wage"] .card_text1,
+.cardontable[data-category="flirt"] .card_text1, .cardontable[data-category="flirt"] .card_text2,
+.cardontable[data-category="house"] .card_text1, .cardontable[data-category="house"] .card_text2,
+.cardontable[data-category="studies"] .card_text2,
+.cardontable[data-category="child"] .card_text1,
+.cardontable[data-category="travel"] .card_text1,
+.cardontable[data-category="job"] .card_subtitle,.cardontable[data-category="job"] .card_text2,
+.cardontable[data-category="powered_job"] .card_subtitle,.cardontable[data-category="powered_job"] .card_text2,
+.cardontable[data-category="official_job"] .card_subtitle,.cardontable[data-category="official_job"] .card_text2,
+.cardontable[data-category="special"] .card_text1
 {
     font-weight: bold;
 }
-.card_studies .card_title, .card_studies .card_text2,
-.card_wage .card_title, .card_wage .card_text1,
-.card_job .card_subtitle,
-.card_attack .card_title, .card_attack .card_text1
+.cardontable[data-category="studies"] .card_title, .cardontable[data-category="studies"] .card_text2,
+.cardontable[data-category="wage"] .card_title, .cardontable[data-category="wage"] .card_text1,
+.cardontable[data-category="job"] .card_subtitle,
+.cardontable[data-category="powered_job"] .card_subtitle,
+.cardontable[data-category="official_job"] .card_subtitle,
+.cardontable[data-category="temporary_job"] .card_subtitle,
+.cardontable[data-category="attack"] .card_title, .cardontable[data-category="attack"] .card_text1
 {
     color: white;
     text-transform: uppercase;
 }
-.card_adultery .card_text,
-.card_special .card_text1, .card_special .card_title,
-.card_child .card_text1,
-.card_powered .card_text1,
-.card_freedommedal .card_title{
+.cardontable[data-category="adultery"] .card_text,
+.cardontable[data-category="special"] .card_text1, .cardontable[data-category="special"] .card_title,
+.cardontable[data-category="child"] .card_text1,
+.cardontable[data-category="powered_job"] .card_text1,
+.cardontable[data-name="freedommedal"] .card_title{
     color: white;
 }
-.card_wedding .card_title,
-.card_child .card_title,
-.card_flirt .card_title{
+.cardontable[data-category="marriage"] .card_title,
+.cardontable[data-category="child"] .card_title,
+.cardontable[data-category="flirt"] .card_title{
     color: #c0171c;
 }
-.card_flirt .card_title{
+.cardontable[data-category="flirt"] .card_title{
     text-transform: uppercase;
 }
 
-.card_flirt .card_text1,
-.card_flirt .card_text2{
+.cardontable[data-category="flirt"] .card_text1,
+.cardontable[data-category="flirt"] .card_text2{
     color: #e89d9f;
 }
 
-.card_house .card_text2{
+.cardontable[data-category="house"] .card_text2{
     color:#bb5ea9;
 }
-.card_house .card_title{
+.cardontable[data-category="house"] .card_title{
     color:#ca4e23;
     text-align: right;
 }
-.card_travel .card_subtitle{
+.cardontable[data-category="travel"] .card_subtitle{
     transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -284,35 +289,35 @@ html{
     text-transform: uppercase;
     white-space : nowrap;
 }
-.card_riodejaneiro .card_subtitle{
+.cardontable[data-name="riodejaneiro"] .card_subtitle{
     color: #fcea1e;
 }
-.card_london .card_subtitle{
+.cardontable[data-name="london"] .card_subtitle{
     color: #a32026;
 }
-.card_sydney .card_subtitle{
+.cardontable[data-name="sydney"] .card_subtitle{
     color: #fce53c;
 }
-.card_newyork .card_subtitle{
+.cardontable[data-name="newyork"] .card_subtitle{
     color: #f5e933;
 }
-.card_cairo .card_subtitle{
+.cardontable[data-name="cairo"] .card_subtitle{
     color: #e4a600;
 }
-.card_attack .card_text1{
+.cardontable[data-category="attack"] .card_text1{
     display: flex;
     align-content: space-around;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
 }
-.card_grandprofessor .card_text1{
+.cardontable[data-name="grandprofessor"] .card_text1{
     display: flex;
     flex-wrap: wrap;
     align-content: flex-end;
     justify-content: space-around;
 }
-.card_adultery .card_text1{
+.cardontable[data-category="adultery"] .card_text1{
     display: flex;
     align-content: space-around;
     flex-wrap: wrap;

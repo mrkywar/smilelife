@@ -18,6 +18,10 @@ abstract class Reward extends Card {
     public function canBePlayed(): bool {
         throw new CardException("C-Reward-01 : check the rules !");
     }
+    
+    public function getCategory(): string {
+        return "reward";
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - new Abstract

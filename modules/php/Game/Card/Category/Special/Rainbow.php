@@ -8,18 +8,18 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialBirthday
+ * Description of Rainbow
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialBirthday extends Special implements BaseGame {
+class Rainbow extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Birthday'))
-                ->setText1(clienttranslate('Each player selects and gives you a'
-                                . ' paycheck card (face down)'));
+        $this->setTitle(clienttranslate('Rainbow'))
+                ->setText1(clienttranslate('Play up to 3 cards at once then '
+                                . 'pick a new card'));
     }
 
     /* -------------------------------------------------------------------------
@@ -31,11 +31,11 @@ class SpecialBirthday extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialBirthday-01 : Not implemented yet");
+        throw new CardException("C-Rainbow-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_BIRTHDAY;
+        return CardType::SPECIAL_RAINBOW;
     }
 
     /* -------------------------------------------------------------------------
