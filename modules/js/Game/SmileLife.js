@@ -7,6 +7,7 @@ define([
     g_gamethemeurl + 'modules/js/Table/PlayerTable.js',
     g_gamethemeurl + 'modules/js/Table/TableDraw.js',
     g_gamethemeurl + 'modules/js/UserInteraction/Button.js',
+    g_gamethemeurl + 'modules/js/Notification/Notification.js',
 
 ], function (dojo, declare) {
     return declare(
@@ -16,6 +17,7 @@ define([
                 smilelife.card,
                 smilelife.table.draw,
                 smilelife.ui.button,
+                smilelife.notification
             ], {
 
         constructor: function () {
