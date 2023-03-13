@@ -1,12 +1,15 @@
 define([
     'dojo',
     'dojo/_base/declare',
-    'ebg/core/gamegui'
+    'ebg/core/gamegui',
+    
+    g_gamethemeurl + 'modules/js/Core/Mover.js',
 ], function (dojo, declare) {
     return declare(
             'common.tools',
             [
-                ebg.core.gamegui
+                ebg.core.gamegui,
+                common.mover
             ],
             {
                 constructor: function () {
