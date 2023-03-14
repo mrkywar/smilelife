@@ -35,79 +35,53 @@ define([
 
                 },
 
-                createMoveOrUpdateCard: function (card, destinationId, instant, from) {
-                    if (instant === void 0) {
-                        instant = false;
-                    }
-                    if (from === void 0) {
-                        from = null;
-                    }
+                displayCard: function (card, destinationDivId, fromDivId) {
+                    var searchedDiv = $('card_' + card.id);
 
-                    var existingDiv = $('card_' + card.id);
-                    var side = card.type ? 'front' : 'back';
-                    if (existingDiv) {
-                        //TODO !!
+                    if (searchedDiv) { // Already Here
+//                        //TODO !!
                     } else {
-                        var div = document.createElement('div');
-                        div.id = "card_".concat(card.id);
-                        div.classList.add('cardontable');
-                        div.dataset.id = '' + card.id;
-                        div.dataset.side = '' + side;
+                        searchedDiv = document.createElement('div');
+                        searchedDiv.id = "card_".concat(card.id);
+                        searchedDiv.classList.add('cardontable');
+                        searchedDiv.dataset.id = '' + card.id;
 
-                        div.innerHTML = `
+                        searchedDiv.innerHTML = `
                             <div class="card_sides">
-                                <div class="card-side front" id="front_` + div.id + `"></div>
+                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
                                 <div class="card-side back"></div>
                             </div>
                         `;
-                        $(destinationId).appendChild(div);
-                        if (card.type) {
-                            this.setVisibleInformations(div, card);
-                        }
                     }
+
+                    if (fromDivId) {
+                        //TODO !!
+                    }
+                    this.debug(destinationDivId, searchedDiv);
+                    $(destinationDivId).appendChild(searchedDiv);
+
+
+                    if (card.type) {
+                        this.displayCardInformations(searchedDiv, card);
+
+                    }
+
+
                 },
 
-                setVisibleInformations: function (div, card) {
+                displayCardInformations: function (div, card) {
                     div.dataset.points = card.smilePoints;
                     div.dataset.type = '' + card.type;
                     div.dataset.category = '' + card.category;
                     div.dataset.name = '' + card.name;
+
                     $("front_card_" + card.id).innerHTML = `
                         <span class="card_text card_title">` + card.title + `</span>
                         <span class="card_text card_subtitle">` + card.subtitle + `</span>
                         <span class="card_text card_text1">` + card.text1 + `</span>
                         <span class="card_text card_text2">` + card.text2 + `</span>
                         <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
-                    `
-                },
-
-                displayCard: function (card) {
-                    var existingDiv = $('card_' + card.id);
-                    var side = card.type ? 'front' : 'back';
-                    if (existingDiv) {
-                        existingDiv.dataset.side = '' + side;
-                    } else {
-
-                        return `
-                        <div class="cardontable card_` + card.type + ` ` + card.shortclass + `" id="card_` + card.id + `" data-id="` + card.id + `">
-                            <span class="card_text card_title">` + card.title + `</span>
-                            <span class="card_text card_subtitle">` + card.subtitle + `</span>
-                            <span class="card_text card_text1">` + card.text1 + `</span>
-                            <span class="card_text card_text2">` + card.text2 + `</span>
-                            <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
-                        </div>`;
-
-                    }
-
-
-
-//                    return `
-//                        <div class="cardontable" id="card_` + card.id + `" data-side="front" data-type="` + card.type + `" data-category="">
-//                    
-//                        </div>
-//                    `;
-
-
+                    `;
 
                 },
 

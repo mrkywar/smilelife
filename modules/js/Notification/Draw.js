@@ -19,7 +19,7 @@ define([
 //                    var cardId = Date.now().toString();
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         var card = notif.args.card;
-                        this.createMoveOrUpdateCard(card,"myhand",false, "card_deck");
+                        this.displayCard(card, "myhand", "card_deck");
 
 //                        this.slideTemporaryObject(
 //                                this.displayCard(card),

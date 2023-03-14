@@ -32,7 +32,7 @@ define([
                     this.myHand = gamedatas.myhand;
                     for (var cardId in gamedatas.myhand) {
                         var card = gamedatas.myhand[cardId];
-                        this.createMoveOrUpdateCard(card, "myhand");
+                        this.displayCard(card, "myhand");
                     }
                     //Display this player Table cards
                     this.displayTablePile(gamedatas.mytable, meAsPlayer);

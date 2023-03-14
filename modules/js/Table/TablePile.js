@@ -47,31 +47,31 @@ define([
                     this.debug('Piles of' + player.id, tableCards);
                     if (tableCards.professionalPile.length > 0) {
                         var card = tableCards.professionalPile[tableCards.professionalPile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_job_' + player.id);
+                        this.displayCard(card, 'pile_job_' + player.id);
                     }
                     if (tableCards.lovePile.length > 0) {
                         var card = tableCards.lovePile[tableCards.lovePile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_love_' + player.id);
+                        this.displayCard(card, 'pile_love_' + player.id);
                     }
                     if (tableCards.wagePile.length > 0) {
                         var card = tableCards.wagePile[tableCards.wagePile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_wage_' + player.id);
+                        this.displayCard(card, 'pile_wage_' + player.id);
                     }
                     if (tableCards.childPile.length > 0) {
                         var card = tableCards.childPile[tableCards.childPile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_child_' + player.id);
+                        this.displayCard(card, 'pile_child_' + player.id);
                     }
                     if (tableCards.attackPile.length > 0) {
                         var card = tableCards.attackPile[tableCards.attackPile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_attack_' + player.id);
+                        this.displayCard(card, 'pile_attack_' + player.id);
                     }
                     if (tableCards.acquisitionPile.length > 0) {
                         var card = tableCards.acquisitionPile[tableCards.acquisitionPile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_aquisition_' + player.id);
+                        this.displayCard(card, 'pile_aquisition_' + player.id);
                     }
                     if (null !== tableCards.bonus1Pile && tableCards.bonus1Pile.length > 0) {
                         var card = tableCards.acquisitionPile[tableCards.acquisitionPile.length - 1];
-                        this.createMoveOrUpdateCard(card, 'pile_bonus1_' + player.id);
+                        this.displayCard(card, 'pile_bonus1_' + player.id);
                     }
                 }
             }
