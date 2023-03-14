@@ -56,6 +56,23 @@ define([
 
                     if (fromDivId) {
                         //TODO !!
+                        searchedDiv.classList.add('tempory');
+
+                        moveableDiv = document.createElement('div');
+                        moveableDiv.id = "tempory_".concat(card.id);
+                        moveableDiv.classList.add('cardontable');
+                        moveableDiv.dataset.id = '' + card.id;
+                        
+                        moveableDiv.innerHTML = `
+                            <div class="card_sides">
+                                <div class="card-side front" id="front_` + moveableDiv.id + `"></div>
+                                <div class="card-side back"></div>
+                            </div>
+                        `;
+                        $(fromDivId).appendChild(moveableDiv);
+
+                        this.displayCardInformations(moveableDiv, card);
+
                     }
                     this.debug(destinationDivId, searchedDiv);
                     $(destinationDivId).appendChild(searchedDiv);
@@ -75,7 +92,7 @@ define([
                     div.dataset.category = '' + card.category;
                     div.dataset.name = '' + card.name;
 
-                    $("front_card_" + card.id).innerHTML = `
+                    $("front_" + div.id).innerHTML = `
                         <span class="card_text card_title">` + card.title + `</span>
                         <span class="card_text card_subtitle">` + card.subtitle + `</span>
                         <span class="card_text card_text1">` + card.text1 + `</span>
