@@ -81,6 +81,46 @@ define([
                     if (destination.contains(object)) {
                         return;
                     }
+                    
+                    var originBR = object.getBoundingClientRect();
+                    destination.appendChild(object);
+                    var destinationBR = object.getBoundingClientRect();
+                    
+                    var deltaX = destinationBR.left - originBR.left;
+                    var deltaY = destinationBR.top - originBR.top;
+                    
+                    object.style.position = 'relative';
+                    object.style.zIndex = '10';
+                    object.style.top = originBR.top+"px";
+                    object.style.left = originBR.left+"px";
+                    object.style.transform = "translate(".concat(-deltaX, "px, ").concat(-deltaY, "px)");
+//                    
+                    setTimeout(function () {
+                        object.style.transition = "transform 0.5s linear";
+                        object.style.transform = null;
+                    });
+
+//                    var originBR = object.getBoundingClientRect();
+//                    destination.appendChild(object);
+//                    var destinationBR = object.getBoundingClientRect();
+//
+                    
+//                    
+//                    this.debug("translate(".concat(-deltaX, "px, ").concat(-deltaY, "px)"));
+//
+//                    object.style.position = 'absolute';
+//                    object.style.zIndex = '10';
+//                    object.style.transform = "translate(".concat(-deltaX, "px, ").concat(-deltaY, "px)");
+
+//                    setTimeout(function () {
+//                        object.style.transition = "transform 0.5s linear";
+//                        object.style.transform = null;
+//                    });
+                    setTimeout(function () {
+                        object.style.zIndex = null;
+                        object.style.transition = null;
+                        object.style.position = null;
+                    }, 600);
                 },
 
             }

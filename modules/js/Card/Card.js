@@ -55,25 +55,8 @@ define([
                     }
 
                     if (fromDivId) {
-                        //TODO !!
-                        searchedDiv.classList.add('tempory');
-                        
-                        $(destinationDivId).appendChild(searchedDiv);
-
-                        moveableDiv = document.createElement('div');
-                        moveableDiv.id = "tempory_".concat(card.id);
-                        moveableDiv.classList.add('cardontable');
-                        moveableDiv.dataset.id = '' + card.id;
-
-                        moveableDiv.innerHTML = `
-                            <div class="card_sides">
-                                <div class="card-side front" id="front_` + moveableDiv.id + `"></div>
-                                <div class="card-side back"></div>
-                            </div>
-                        `;
-                        $(fromDivId).appendChild(moveableDiv);
-
-                        this.displayCardInformations(moveableDiv, card);
+                        $(fromDivId).appendChild(searchedDiv);
+                        this.objectMove(searchedDiv, destinationDivId);
 
                     } else {
 //                    this.debug(destinationDivId, searchedDiv);
