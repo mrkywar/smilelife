@@ -55,8 +55,46 @@ define([
                     }
 
                     if (fromDivId) {
-                        $(fromDivId).appendChild(searchedDiv);
-                        this.objectMove(searchedDiv, destinationDivId);
+                        //TODO !!
+                        searchedDiv.classList.add('tempory');
+
+                        $(destinationDivId).appendChild(searchedDiv);
+
+                        moveableDiv = document.createElement('div');
+                        moveableDiv.id = "tempory_".concat(card.id);
+                        moveableDiv.classList.add('cardontable');
+                        moveableDiv.dataset.id = '' + card.id;
+
+                        moveableDiv.innerHTML = `
+                            <div class="card_sides">
+                                <div class="card-side front" id="front_` + moveableDiv.id + `"></div>
+                                <div class="card-side back"></div>
+                            </div>
+                        `;
+                        $(fromDivId).appendChild(moveableDiv);
+
+                        this.displayCardInformations(moveableDiv, card);
+
+                        var domDest = searchedDiv.getBoundingClientRect();
+                        var domFrom = moveableDiv.getBoundingClientRect();
+
+                        var deltaX = domDest.left - domFrom.left;
+                        var deltaY = domDest.top - domFrom.top;
+
+                        moveableDiv.style.position = 'absolute';
+                        moveableDiv.style.zIndex = '10';
+                        moveableDiv.style.transform = "translate(".concat(-deltaX, "px, ").concat(-deltaY, "px)");
+
+                        setTimeout(function () {
+                            moveableDiv.style.transition = "transform 0.5s linear";
+                            moveableDiv.style.transform = null;
+                        });
+
+//                        setTimeout(function () {
+//                            $(fromDivId).removeChild(moveableDiv);
+//                        });
+
+
 
                     } else {
 //                    this.debug(destinationDivId, searchedDiv);
