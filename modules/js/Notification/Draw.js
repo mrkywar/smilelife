@@ -21,6 +21,8 @@ define([
                         var card = notif.args.card;
                         this.displayCard(card, "myhand", "card_deck");
 
+                    
+
 //                        this.slideTemporaryObject(
 //                                this.displayCard(card),
 //                                "card_0",
