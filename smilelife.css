@@ -221,7 +221,13 @@ html{
     float: left;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
-
+.card_none.cardontable {
+    background-image: none !important;
+    box-shadow: none;
+}
+.card_none.cardontable *{
+    display: none;
+}
 .cardontable .card_text{
     display: block;
     text-align: center;

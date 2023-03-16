@@ -67,30 +67,25 @@ define([
                             </div>
                         `;
 
-//                        searchedDiv.style.display = "none";
-                        
+                        searchedDiv.classList.add("card_none");
+
                         moveableCard.style.zIndex = 20;
                         $(destinationDivId).appendChild(searchedDiv);
+                        $(fromDivId).appendChild(moveableCard);
 
                         if (card.type) {
                             this.displayCardInformations(searchedDiv, card);
-//                            this.displayCardInformations(moveableCard, card);
-                            this.debug("movable",moveableCard.id);
+                            this.displayCardInformations(moveableCard, card);
+                            this.debug("movable", moveableCard.id);
                         }
 
-                        this.slideTemporaryObject(
-                                moveableCard,
-                                fromDivId,
-                                "tempory_".concat(card.id),
-                                searchedDiv.id,
-                                500
-                                );
-//                        
-                        this.debug("moveto",searchedDiv.id);
-
-//                        setTimeout(function () {
-//                            searchedDiv.style.display = "block";
-//                        }, 500);
+                        this.slideToObject(moveableCard.id, searchedDiv.id,500).play();
+//                        $(mo)
+                        
+                        setTimeout(function () {
+                            searchedDiv.classList.remove("card_none");
+                            $(moveableCard.id).remove();
+                        }, 500);
 
 
                     } else {
