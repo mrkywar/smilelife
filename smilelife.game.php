@@ -8,13 +8,14 @@ use SmileLife\Game\Game\GameProgressionRetriver;
 use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
+use SmileLife\Game\PlayerAction\DrawTrait;
 use SmileLife\Game\PlayerAction\ResignTrait;
 use SmileLife\Game\Table\PlayerTableManager;
 
 /**
  * ------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * Smile Life implementation : © Jean Portemer <jportemer@mailz.org> & Mr_Kywar <mr_kywar@gmail.com>
+ * SmileLife implementation : © Jean Portemer <jportemer@mailz.org> & Mr_Kywar <mr_kywar@gmail.com>
  * 
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -112,6 +113,8 @@ class SmileLife extends Table {
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
+        
+        
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -183,7 +186,7 @@ class SmileLife extends Table {
 //////////// 
 
     use ResignTrait;
-    
+    use DrawTrait;
     
     
 //////////////////////////////////////////////////////////////////////////////

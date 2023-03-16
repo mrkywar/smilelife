@@ -56,13 +56,6 @@ abstract class Job extends Card {
         return self::class;
     }
 
-    public function getVisibleClasses() {
-        if ($this->hasPower()) {
-            return parent::getVisibleClasses() . " card_powered";
-        }
-        return parent::getVisibleClasses();
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -78,6 +71,10 @@ abstract class Job extends Card {
 
     public function getSmilePoints(): int {
         return self::SMILE_POINTS;
+    }
+
+    public function getCategory(): string {
+        return ((true === $this->hasPower()) ? "powered_" : "") . "job";
     }
 
     /* -------------------------------------------------------------------------

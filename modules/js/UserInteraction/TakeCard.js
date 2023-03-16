@@ -1,20 +1,17 @@
 define([
-    'dojo',
-    'dojo/_base/declare',
-    g_gamethemeurl + 'modules/js/Core/ToolsTrait.js'
+    "dojo",
+    "dojo/_base/declare",
 ], function (dojo, declare) {
     return declare(
-            'smilelife.state.draw',
-            [
-                common.ToolsTrait
-            ],
+            "smilelife.ui.takeCard",
+            [],
             {
-
                 constructor: function () {
-//                    this.debug('smilelife.StatesManager constructor');
+                    this.debug("smilelife.ui.takeCard constructor");
                 },
-
-                displayButton: function () {
+                
+                
+                addTakeCardInteraction: function () {
                     this.debug(this.myTable);
                     if (null !== this.myTable.job) {
                         if (this.myTable.job.isTemporary) {
@@ -25,7 +22,8 @@ define([
                     }
 
                     this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
-                    if (null !== this.discard) {
+                    this.debug(this.discard);
+                    if ("empty" !== this.discard.id) {
                         this.addActionButton('resign_button', _('Draw and play from discard'), 'doDiscardDraw', null, false, 'gray');
                     }
 //                    this.debug('DST', this.myTable, null !== this.myTable.job, null != this.myTable.job);
@@ -49,21 +47,18 @@ define([
                     this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/draw.html", {
                         lock: true
                     }, this, function (result) {
-                        this.debug("Resign :", result);
+                        this.debug("Draw :", result);
                     }, function (is_error) {
                         //--error
-                        this.debug("Resign fail:", is_error);
+                        this.debug("Draw fail:", is_error);
                     });
                 },
 
                 doDiscardDraw: function () {
                     this.debug("doDiscardDraw");
                 },
-
             }
-
 
     );
 });
-
 

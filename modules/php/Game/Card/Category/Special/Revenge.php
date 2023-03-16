@@ -8,17 +8,17 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialLuck
+ * Description of Revenge
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialLuck extends Special implements BaseGame {
+class Revenge extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Luck'))
-                ->setText1(clienttranslate('Take three cards, keep one and play'));
+        $this->setTitle(clienttranslate('Revenge'))
+                ->setText1(clienttranslate('Inflict a penalty on another player'));
     }
 
     /* -------------------------------------------------------------------------
@@ -30,11 +30,11 @@ class SpecialLuck extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialLuck-01 : Not implemented yet");
+        throw new CardException("C-Revenge-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_LUCK;
+        return CardType::SPECIAL_REVENGE;
     }
 
     /* -------------------------------------------------------------------------

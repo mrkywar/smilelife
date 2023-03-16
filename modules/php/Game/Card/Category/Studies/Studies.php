@@ -42,4 +42,7 @@ abstract class Studies extends Card {
         return self::SMILE_POINT;
     }
 
+    public function getCategory(): string {
+        return "studies";
+    }
 }

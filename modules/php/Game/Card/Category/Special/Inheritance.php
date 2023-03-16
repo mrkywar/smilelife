@@ -8,19 +8,17 @@ use SmileLife\Game\Card\Effect\Effect;
 use SmileLife\Game\Card\Module\BaseGame;
 
 /**
- * Description of SpecialCasino
+ * Description of Inheritance
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SpecialCasino extends Special implements BaseGame {
+class Inheritance extends Special implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Casino'))
-                ->setText1(clienttranslate('Bet a paycheck card face down. If '
-                                . 'another player bets the same card, he wins. If they'
-                                . ' bet differently, you win'));
+        $this->setTitle(clienttranslate('Inheritance'))
+                ->setText1(clienttranslate('This money is yours to keep'));
     }
 
     /* -------------------------------------------------------------------------
@@ -32,11 +30,11 @@ class SpecialCasino extends Special implements BaseGame {
     }
 
     public function getEffect(): Effect {
-        throw new CardException("C-SpecialCasino-01 : Not implemented yet");
+        throw new CardException("C-Inheritance-01 : Not implemented yet");
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_CASINO;
+        return CardType::SPECIAL_INHERITANCE;
     }
 
     /* -------------------------------------------------------------------------

@@ -1,19 +1,21 @@
 define([
-    'dojo',
-    'dojo/_base/declare',
-    g_gamethemeurl + 'modules/js/State/DrawStateTrait.js',
+    "dojo",
+    "dojo/_base/declare",
+    
+    g_gamethemeurl + 'modules/js/UserInteraction/TakeCard.js',
 ], function (dojo, declare) {
     return declare(
-            'smilelife.StatesManager',
+            "smilelife.ui.button",
             [
-                smilelife.state.draw
+                smilelife.ui.takeCard
             ],
             {
-
                 constructor: function () {
-                    this.debug('smilelife.StatesManager constructor');
+                    this.debug("smilelife.ui.button constructor");
                 },
-
+                
+                
+                
                 ///////////////////////////////////////////////////
                 //// Game & client states
 
@@ -80,13 +82,17 @@ define([
                         switch (stateName)
                         {
                             case "takeCard":
-                                this.displayButton();
+                                this.addTakeCardInteraction();
                                 break;
                         }
                     }
                 },
-
             }
+
 
     );
 });
+
+
+
+
