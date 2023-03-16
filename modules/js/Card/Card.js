@@ -58,6 +58,7 @@ define([
                         var moveableCard = document.createElement('div');
                         moveableCard.id = "tempory_".concat(card.id);
                         moveableCard.classList.add('cardontable');
+//                        moveableCard.classList.add('movableCard');
                         moveableCard.dataset.id = '' + card.id;
                         moveableCard.innerHTML = `
                             <div class="card_sides">
@@ -66,79 +67,43 @@ define([
                             </div>
                         `;
 
+//                        searchedDiv.style.display = "none";
+                        
+                        moveableCard.style.zIndex = 20;
+                        $(destinationDivId).appendChild(searchedDiv);
 
+                        if (card.type) {
+                            this.displayCardInformations(searchedDiv, card);
+//                            this.displayCardInformations(moveableCard, card);
+                            this.debug("movable",moveableCard.id);
+                        }
 
                         this.slideTemporaryObject(
                                 moveableCard,
-                                'card_deck',
+                                fromDivId,
                                 "tempory_".concat(card.id),
-                                'myhand'
-//                                500
+                                searchedDiv.id,
+                                500
                                 );
+//                        
+                        this.debug("moveto",searchedDiv.id);
 
-//                        this.slideTemporaryObject(
-//                                `<div class="debug cardontable" id="card_test">CARD</div>`,
-//                                'card_deck', 
-//                                'card_test', 
-//                                'myhand'
-//                            ).play();
-
-
-
-
-
-
-//                        //TODO !!
-//                        searchedDiv.classList.add('tempory');
-//
-//                        $(destinationDivId).appendChild(searchedDiv);
-//
-//                        moveableDiv = document.createElement('div');
-//                        moveableDiv.id = "tempory_".concat(card.id);
-//                        moveableDiv.classList.add('cardontable');
-//                        moveableDiv.dataset.id = '' + card.id;
-//
-//                        moveableDiv.innerHTML = `
-//                            <div class="card_sides">
-//                                <div class="card-side front" id="front_` + moveableDiv.id + `"></div>
-//                                <div class="card-side back"></div>
-//                            </div>
-//                        `;
-//                        $(fromDivId).appendChild(moveableDiv);
-//
-//                        this.displayCardInformations(moveableDiv, card);
-//
-//                        var domDest = searchedDiv.getBoundingClientRect();
-//                        var domFrom = moveableDiv.getBoundingClientRect();
-//
-//                        var deltaX = domDest.left - domFrom.left;
-//                        var deltaY = domDest.top - domFrom.top;
-//
-//                        moveableDiv.style.position = 'absolute';
-//                        moveableDiv.style.zIndex = '10';
-//                        moveableDiv.style.transform = "translate(".concat(-deltaX, "px, ").concat(-deltaY, "px)");
-//
 //                        setTimeout(function () {
-//                            moveableDiv.style.transition = "transform 0.5s linear";
-//                            moveableDiv.style.transform = null;
-//                        });
-//
-////                        setTimeout(function () {
-////                            $(fromDivId).removeChild(moveableDiv);
-////                        });
-
+//                            searchedDiv.style.display = "block";
+//                        }, 500);
 
 
                     } else {
 //                    this.debug(destinationDivId, searchedDiv);
                         $(destinationDivId).appendChild(searchedDiv);
-                    }
-
-
-                    if (card.type) {
-                        this.displayCardInformations(searchedDiv, card);
+                        if (card.type) {
+                            this.displayCardInformations(searchedDiv, card);
+                        }
 
                     }
+
+
+
 
 
                 },
