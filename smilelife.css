@@ -157,7 +157,7 @@ html{
 --------------------------------------------------------------------------*/
 
 .pile_container .pile{
-    padding: 5px;
+    padding: 0px;
 }
 .pile_container .pile_info,
 .pile_container .pile_counter
@@ -165,6 +165,14 @@ html{
     font-size: 12px;
     text-align: center;
     color: white;
+}
+.player_tables .pile_container .pile{
+    padding-bottom: 20px;
+}
+.player_tables .pile_container .pile_counter{
+    position: absolute;
+    bottom:0;
+    width: 100%;
 }
 .pile_job,
 .pile_wage{
@@ -211,9 +219,9 @@ html{
                 BEGIN - CARD Standard
 --------------------------------------------------------------------------*/
 #card_empty{
-    border: 2px dashed black;
-    background: none !important;
     box-shadow: none !important;
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, black 40px, black 80px);
+    background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
 }
 .cardontable {
     position: relative;

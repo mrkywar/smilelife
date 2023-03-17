@@ -224,7 +224,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .cardontable[data-category="wage"] .card_title{
-                        margin-top: ` + (66 * size.ratio) + `px;
+                        margin-top: ` + (62 * size.ratio) + `px;
                     }
                     .cardontable[data-category="wage"] .card_text1{
                         margin-top: ` + (316 * size.ratio) + `px;
@@ -282,7 +282,7 @@ define([
                         margin-top: ` + (350 * size.ratio) + `px;
                     }
                     .cardontable[data-name="unicorn"] .card_text1{
-                        margin-top: ` + (338 * size.ratio) + `px;
+                        margin-top: ` + (330 * size.ratio) + `px;
                     }
                     /*------              MARRIAGE                        ----*/
                     .cardontable[data-category="marriage"] .card_title{
@@ -320,7 +320,7 @@ define([
                     }
                     .cardontable[data-category="powered_job"] .card_text1{
                         margin: 0 ` + (64 * size.ratio) + `px;
-                        margin-top: ` + (352 * size.ratio) + `px;
+                        margin-top: ` + (346 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                         line-height: 1.35em;
                     }

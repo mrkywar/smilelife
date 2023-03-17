@@ -22,16 +22,13 @@ define([
                     }
 
                     this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
-                    this.debug(this.discard);
-                    if ("empty" !== this.discard.id) {
+                    if ("empty" !== this.lastDiscardedCard.id) {
                         this.addActionButton('resign_button', _('Draw and play from discard'), 'doDiscardDraw', null, false, 'gray');
                     }
-//                    this.debug('DST', this.myTable, null !== this.myTable.job, null != this.myTable.job);
 
                 },
 
                 doResign: function () {
-//                    this.debug("Resign");
                     this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/resign.html", {
                         lock: true
                     }, this, function (result) {
@@ -43,7 +40,6 @@ define([
                 },
 
                 doDraw: function () {
-//                    this.debug("doDraw");
                     this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/draw.html", {
                         lock: true
                     }, this, function (result) {
