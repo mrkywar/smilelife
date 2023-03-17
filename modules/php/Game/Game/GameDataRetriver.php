@@ -61,7 +61,7 @@ class GameDataRetriver {
         ]); // !! We must only return informations visible by this player !!
 
         $rawHand = $this->cardManager->getPlayerCards($currentPlayer);
-        $discard = $this->cardManager->getLastDiscardedCard();
+        $discard = $this->cardManager->getAllCardsInDiscard();
 
         $result = [
             "myhand" => $this->cardDecorator->decorateRawCard($rawHand),
