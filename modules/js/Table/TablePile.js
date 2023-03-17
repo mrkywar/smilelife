@@ -89,11 +89,11 @@ define([
                     $('pile_aquisition_count_' + player.id).innerHTML = tableCards.acquisitionPile.length;
                     
                     //---- Display Bonus1 Pile infos
-                    if (null !== tableCards.bonus1Pile && tableCards.bonus1Pile.length > 0) {
-                        var card = tableCards.bonus1Pile[tableCards.bonus1Pile.length - 1];
-                        this.displayCard(card, 'pile_bonus1_' + player.id);
-                    }
-                    $('pile_bonus1_count_' + player.id).innerHTML = tableCards.bonus1Pile.length;
+//                    if (null !== tableCards.bonus1Pile && tableCards.bonus1Pile.length > 0) {
+//                        var card = tableCards.bonus1Pile[tableCards.bonus1Pile.length - 1];
+//                        this.displayCard(card, 'pile_bonus1_' + player.id);
+//                    }
+//                    $('pile_bonus1_count_' + player.id).innerHTML = tableCards.bonus1Pile.length;
                 }
             }
 

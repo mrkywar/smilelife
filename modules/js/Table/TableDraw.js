@@ -18,14 +18,14 @@ define([
                     var drawCard = {
                         id:"deck"
                     };
-                    this.displayCard(drawCard, "deck_and_discard");
+                    this.displayCard(drawCard, "pile_deck");
                     
                     if(null === this.discard){
                         this.discard = {
                             id:"empty"
                         };
                     }
-                    this.displayCard(this.discard, "deck_and_discard");
+                    this.displayCard(this.discard, "pile_discard");
                 },
                 
                 
