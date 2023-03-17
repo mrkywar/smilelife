@@ -20,9 +20,6 @@ define([
             [],
             {
                 constructor: function () {
-                    this.debug("smilelife.card constructor");
-//                    this.size = null;
-
                     this.sizeAssoc = {
                         XS: PREF_CHOICE_SIZE_XS,
                         S: PREF_CHOICE_SIZE_S,
@@ -76,7 +73,6 @@ define([
                         if (card.type) {
                             this.displayCardInformations(searchedDiv, card);
                             this.displayCardInformations(moveableCard, card);
-                            this.debug("movable", moveableCard.id);
                         }
 
                         this.slideToObject(moveableCard.id, searchedDiv.id,500).play();
@@ -89,7 +85,6 @@ define([
 
 
                     } else {
-//                    this.debug(destinationDivId, searchedDiv);
                         $(destinationDivId).appendChild(searchedDiv);
                         if (card.type) {
                             this.displayCardInformations(searchedDiv, card);
@@ -137,12 +132,9 @@ define([
                 findActualCardSize: function () {
                     var object = this.sizeAssoc;
                     var value = parseInt(this.getUserPreference(PREF_CARD_SIZE));
-//                    this.debug("size : (" + value + ")")
                     var gameOptionSize = Object.keys(object).find(
                             key => object[key] === value
                     );
-//                    this.debug("OPT : ",gameOptionSize);
-//                    this.debug("Avi :",this.aviableCardDimensions);
 
                     return this.aviableCardDimensions[gameOptionSize];
 
@@ -152,7 +144,6 @@ define([
                     if (undefined === this.size) {
                         this.size = this.findActualCardSize();
                     }
-                    this.debug('SIZE OBJ', this.size);
                     var size = this.size;
 
                     var computedCSS = `

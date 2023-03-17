@@ -9,7 +9,7 @@ define([
             ],
             {
                 notif_resignNotification: function (notif) {
-                    this.debug("callback called", notif);
+                    this.debug("notif_resignNotification called", notif);
                 },
             }
     );

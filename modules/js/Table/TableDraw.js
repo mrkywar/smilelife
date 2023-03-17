@@ -7,7 +7,6 @@ define([
             [],
             {
                 constructor: function () {
-                    this.debug("smilelife.table.draw constructor");
                 },
                 
                 

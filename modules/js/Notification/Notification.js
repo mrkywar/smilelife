@@ -1,7 +1,7 @@
 define([
     'dojo',
     'dojo/_base/declare',
-    
+
     g_gamethemeurl + 'modules/js/Notification/Resign.js',
     g_gamethemeurl + 'modules/js/Notification/Draw.js',
 ], function (dojo, declare) {
@@ -13,8 +13,6 @@ define([
             ],
             {
                 constructor: function () {
-                    this.debug('smilelife.NotificationManager constructor');
-
                     this.setupNotifications();
                 },
 
@@ -32,8 +30,6 @@ define([
                  */
                 setupNotifications: function ()
                 {
-                    this.debug('notifications subscriptions setup');
-
                     var _this = this;
 
                     var notifs = [
@@ -41,7 +37,6 @@ define([
                         ['drawNotification', 3000]
                     ]
                     notifs.forEach(function (notif) {
-//                        _this.debug(notif[0], "notif_".concat(notif[0]));
                         dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));
                         _this.notifqueue.setSynchronous(notif[0], notif[1]);
                     });

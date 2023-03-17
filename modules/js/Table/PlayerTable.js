@@ -11,7 +11,6 @@ define([
             ],
             {
                 constructor: function () {
-                    //this.debug("smilelife.table constructor");
                 },
 
                 /**

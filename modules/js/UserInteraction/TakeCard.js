@@ -7,12 +7,10 @@ define([
             [],
             {
                 constructor: function () {
-                    this.debug("smilelife.ui.takeCard constructor");
                 },
                 
                 
                 addTakeCardInteraction: function () {
-                    this.debug(this.myTable);
                     if (null !== this.myTable.job) {
                         if (this.myTable.job.isTemporary) {
                             this.addActionButton('resign_button', _('Resign and Play'), 'doResign', null, false, 'red');

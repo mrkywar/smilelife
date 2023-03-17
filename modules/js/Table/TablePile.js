@@ -7,7 +7,6 @@ define([
             [],
             {
                 constructor: function () {
-                    this.debug("smilelife.table.pile constructor");
                 },
 
                 /**
@@ -44,7 +43,6 @@ define([
                  */
                 displayTablePile: function (table, player) {
                     var tableCards = this.getTablePiles(table);
-                    this.debug('Piles of' + player.id, tableCards);
                     
                     //---- Display professional Pile infos
                     if (tableCards.professionalPile.length > 0) {

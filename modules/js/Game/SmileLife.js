@@ -21,7 +21,6 @@ define([
             ], {
 
         constructor: function () {
-            this.debug("game.smilelife constructor");
 
             this.playerTables = [];
             this.handCounters = [];
@@ -44,9 +43,6 @@ define([
             this.displayTables();
             
             this.applyCardSize();
-            
-            this.debug("end Setup try to get myTable", this.myTable);
-
         }
 
     });
