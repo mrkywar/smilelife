@@ -19,7 +19,7 @@
   
 
     </div>
-    <div class="centered_table">
+    <div class="centered_table player_tables">
         <div id="tables">
 
 
