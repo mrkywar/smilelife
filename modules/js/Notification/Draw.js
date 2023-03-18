@@ -13,15 +13,14 @@ define([
                 },
 
                 notif_drawNotification: function (notif) {
-//                    this.debug("drawcallback called", notif);
-//                    var cardId = Date.now().toString();
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         var card = notif.args.card;
                         this.displayCard(card, "myhand", "card_deck");
-
-                   
                     } else {
-                        this.debug("Not Implemented Yet");
+                        var card = {
+                            id: Date.now(),
+                        };
+                        this.displayCard(card, "playerpanel_" + notif.args.playerId, "card_deck");
                     }
                 },
             }

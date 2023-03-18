@@ -277,7 +277,7 @@ define([
                     }
                     /*------              MARRIAGE                        ----*/
                     .cardontable[data-category="marriage"] .card_title{
-                        margin-top: ` + (63 * size.ratio) + `px;
+                        margin-top: ` + (61 * size.ratio) + `px;
                     }
                     .cardontable[data-category="marriage"] .card_text1{
                         margin-top: ` + (57 * size.ratio) + `px;
@@ -361,7 +361,7 @@ define([
                     }
                     /*------              ATTACK                          ----*/
                     .cardontable[data-category="attack"] .card_title{
-                        margin-top: ` + (54 * size.ratio) + `px;
+                        margin-top: ` + (52 * size.ratio) + `px;
                     }
                     .cardontable[data-category="attack"] .card_text1{
                         margin: 0 ` + (40 * size.ratio) + `px;
@@ -374,7 +374,7 @@ define([
                     }
                     /*------              CHILD                           ----*/
                     .cardontable[data-category="child"] .card_title{
-                        margin-top: ` + (68 * size.ratio) + `px;
+                        margin-top: ` + (62 * size.ratio) + `px;
                     }
                     .cardontable[data-category="child"] .card_text1{
                         margin-top: ` + (300 * size.ratio) + `px;
