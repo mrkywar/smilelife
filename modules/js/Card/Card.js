@@ -75,9 +75,9 @@ define([
                             this.displayCardInformations(moveableCard, card);
                         }
 
-                        this.slideToObject(moveableCard.id, searchedDiv.id,500).play();
+                        this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
 //                        $(mo)
-                        
+
                         setTimeout(function () {
                             searchedDiv.classList.remove("card_none");
                             $(moveableCard.id).remove();
@@ -225,7 +225,7 @@ define([
                         height: ` + (20 * size.ratio) + `px;
                     }
                     .cardontable[data-category="studies"] .card_title{
-                        margin-top: ` + (64 * size.ratio) + `px;
+                        margin-top: ` + (62 * size.ratio) + `px;
                     }
                     .cardontable[data-category="studies"] .card_text1{
                         height: ` + (34 * size.ratio) + `px;
@@ -234,7 +234,7 @@ define([
                         width: ` + (250 * size.ratio) + `px;
                     }
                     .cardontable[data-category="studies"] .card_text2{
-                        margin-top: ` + (20 * size.ratio) + `px;
+                        margin-top: ` + (18 * size.ratio) + `px;
                         height: ` + (18 * size.ratio) + `px;
                     }
                     /*------              FLIRT                           ----*/
@@ -298,7 +298,7 @@ define([
                     .cardontable[data-category="official_job"] .card_subtitle,
                     .cardontable[data-category="temporary_job"] .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
-                        margin-top: ` + (4 * size.ratio) + `px;
+                        margin-top: 0px;
                         padding-top:` + (6 * size.ratio) + `px;
                     }
                     .cardontable[data-category="job"] .card_text1{
@@ -311,9 +311,9 @@ define([
                     }
                     .cardontable[data-category="powered_job"] .card_text1{
                         margin: 0 ` + (64 * size.ratio) + `px;
-                        margin-top: ` + (346 * size.ratio) + `px;
+                        margin-top: ` + (348 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
-                        line-height: 1.35em;
+                        line-height: 1.40em;
                     }
                     .cardontable[data-category="official_job"].cardontable[data-category="powered_job"] .card_text1{
                         margin-top: ` + (328 * size.ratio) + `px;
@@ -330,7 +330,7 @@ define([
                         font-size: ` + (16 * size.ratio) + `px;
                     }
                     .cardontable[data-name="grandprofessor"] .card_text1{
-                        margin: ` + (332 * size.ratio) + `px ` + (46 * size.ratio) + `px 0 ` + (46 * size.ratio) + `px;
+                        margin: ` + (328 * size.ratio) + `px ` + (46 * size.ratio) + `px 0 ` + (46 * size.ratio) + `px;
                     }
                     .cardontable[data-name="grandprofessor"] .card_text2{
                         position: absolute;
@@ -365,7 +365,7 @@ define([
                     }
                     .cardontable[data-category="attack"] .card_text1{
                         margin: 0 ` + (40 * size.ratio) + `px;
-                        margin-top: ` + (324 * size.ratio) + `px;
+                        margin-top: ` + (320 * size.ratio) + `px;
                         height: ` + (64 * size.ratio) + `px;
                     }
                     .cardontable[data-name="jail"] .card_text1,
