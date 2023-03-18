@@ -5,6 +5,8 @@ namespace SmileLife\Game\Game;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Core\CardDecorator;
+use SmileLife\Game\PlayerAttributes\PlayerAttributesDecorator;
+use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Game\Table\PlayerTableDecorator;
 use SmileLife\Game\Table\PlayerTableManager;
 
@@ -45,12 +47,26 @@ class GameDataRetriver {
      */
     private $playerTableDecorator;
 
+    /**
+     * 
+     * @var PlayerAttributesManager
+     */
+    private $playerAttributeManager;
+    
+    /**
+     * 
+     * @var type
+     */
+    private $playerAttributeDecorator;
+
     public function __construct() {
         $this->playerManager = new PlayerManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
         $this->playerTableManager = new PlayerTableManager();
         $this->playerTableDecorator = new PlayerTableDecorator();
+        $this->playerAttributeManager = new PlayerAttributesManager();
+        $this->playerAttributeDecorator = new PlayerAttributesDecorator();
 
         $this->playerTableManager->setIsDebug(true);
     }
@@ -64,20 +80,25 @@ class GameDataRetriver {
         $discard = $this->cardManager->getAllCardsInDiscard();
 
         $result = [
-            "myhand" => $this->cardDecorator->decorateRawCard($rawHand),
+            "myhand" => $this->cardDecorator->decorate($rawHand),
             "deck" => count($this->cardManager->getAllCardsInDeck()),
-            "discard" => (empty($discard)) ? null : $this->cardDecorator->decorateRawCard($discard)
+            "discard" => (empty($discard)) ? null : $this->cardDecorator->decorate($discard)
         ];
 
         $players = $this->playerManager->findBy();
 
         foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
+            
 
             $table = $this->playerTableManager->findBy([
                 "id" => $player->getId()
             ]);
-
+            $attribute = $this->playerAttributeManager->findBy([
+                "id" => $player->getId()
+            ]);
+            
+            $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
             $this->playerTableManager->updateTable($table);
             $result['tables'][$player->getId()] = $this->playerTableDecorator->decorateTable($table);
         }

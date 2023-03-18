@@ -24,6 +24,35 @@ html{
     position: relative;
 }
 /*-----------------------------------------------------------------------------
+                 BEGIN - Players Pannels
+------------------------------------------------------------------------------*/
+.player_counters{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+.player_counters .playerhand_counter:before{
+    content: "";
+    background-image: url("img/icons/cards.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.player_counters .playerhand_counter{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.player_counters .playerhand_counter *{
+    display: flex;    
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+/*-----------------------------------------------------------------------------
                  BEGIN - My Table
 ------------------------------------------------------------------------------*/
 #mytable_wrap{

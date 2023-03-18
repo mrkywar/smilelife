@@ -5,6 +5,7 @@ define([
     
     g_gamethemeurl + 'modules/js/Card/Card.js',
     g_gamethemeurl + 'modules/js/Table/PlayerTable.js',
+    g_gamethemeurl + 'modules/js/Table/PlayerPanel.js',
     g_gamethemeurl + 'modules/js/Table/TableDraw.js',
     g_gamethemeurl + 'modules/js/UserInteraction/Button.js',
     g_gamethemeurl + 'modules/js/Notification/Notification.js',
@@ -14,6 +15,7 @@ define([
             "game.smilelife",
             [
                 smilelife.playertable,
+                smilelife.playerpanel,
                 smilelife.card,
                 smilelife.table.draw,
                 smilelife.ui.button,
@@ -21,7 +23,6 @@ define([
             ], {
 
         constructor: function () {
-            this.debug("game.smilelife constructor");
 
             this.playerTables = [];
             this.handCounters = [];
@@ -42,11 +43,9 @@ define([
             
             this.displayDeckAndDiscard();
             this.displayTables();
+            this.displayPanels();
             
             this.applyCardSize();
-            
-            this.debug("end Setup try to get myTable", this.myTable);
-
         }
 
     });

@@ -11,7 +11,6 @@ define([
             ],
             {
                 constructor: function () {
-                    //this.debug("smilelife.table constructor");
                 },
 
                 /**
@@ -92,7 +91,7 @@ define([
                     }
 
                     return `
-                        <div class="playertable whiteblock" id="player_board_` + player.id + `" style="border-color:#` + player.color + `" >
+                        <div class="playertable whiteblock" id="playertable_container_` + player.id + `" style="border-color:#` + player.color + `" >
                             <div class="playertablename" style="background:#` + player.color + `;color:` + textColor + `">` + player.name + `</div>
                             <div class="playertablecard" id="playertable_` + player.id + `">
                                 ` + this.getTableBoardHtml(player) + `
