@@ -39,15 +39,15 @@ class PlayerTableDecorator {
 
     public function decorateTable(PlayerTable $table) {
         return [
-            "job" => $this->cardDecorator->decorateRawCard($table->getJob()),
-            "studies" => $this->cardDecorator->decorateRawCard($table->getStudies()),
-            "wages" => $this->cardDecorator->decorateRawCard($table->getWages()),
-            "childs" => $this->cardDecorator->decorateRawCard($table->getChilds()),
-            "flirts" => $this->cardDecorator->decorateRawCard($table->getFlirts()),
-            "marriage" => $this->cardDecorator->decorateRawCard($table->getMarriage()),
-            "adultery" => $this->cardDecorator->decorateRawCard($table->getAdultery()),
-            "acquisitions" => $this->cardDecorator->decorateRawCard($table->getAcquisitions()),
-            "attacks" => $this->cardDecorator->decorateRawCard($table->getAttacks()),
+            "job" => $this->cardDecorator->decorate($table->getJob()),
+            "studies" => $this->cardDecorator->decorate($table->getStudies()),
+            "wages" => $this->cardDecorator->decorate($table->getWages()),
+            "childs" => $this->cardDecorator->decorate($table->getChilds()),
+            "flirts" => $this->cardDecorator->decorate($table->getFlirts()),
+            "marriage" => $this->cardDecorator->decorate($table->getMarriage()),
+            "adultery" => $this->cardDecorator->decorate($table->getAdultery()),
+            "acquisitions" => $this->cardDecorator->decorate($table->getAcquisitions()),
+            "attacks" => $this->cardDecorator->decorate($table->getAttacks()),
         ];
     }
 

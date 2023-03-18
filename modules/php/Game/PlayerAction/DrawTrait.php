@@ -27,7 +27,7 @@ trait DrawTrait {
         self::notifyAllPlayers('drawNotification', clienttranslate('${player_name} draw a card from the deck'), [
             'playerId' => $playerId,
             'player_name' => $player->getName(),         
-            'card' => $cardDecorator->decorateRawCard($card),
+            'card' => $cardDecorator->decorate($card),
         ]);
         
 //        $this->gamestate->nextState("drawCardFormDeck");

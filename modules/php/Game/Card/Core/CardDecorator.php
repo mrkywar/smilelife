@@ -27,7 +27,7 @@ class CardDecorator {
         }
     }
 
-    public function decorateRawCard($rawCards) {
+    public function decorate($rawCards) {
         if (null === $rawCards) {
             return null;
         } elseif ($rawCards instanceof Card) {
