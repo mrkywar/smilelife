@@ -12,7 +12,14 @@ define([
                 displayPanels: function () {
                     var gamedatas = this.gamedatas;
                     
-                    
+                    for (var playerId in gamedatas.player) {
+                        var player = gamedatas.player[playerId];
+                        player.id = playerId;
+                        this.debug("PA : "+playerId+" : ",player);
+                        
+                        dojo.place(this.getPlayerPanelHtml(player), "player_board_"+player.id);
+                        
+                    }
                     
                     
                     
@@ -25,6 +32,21 @@ define([
 //            handCounter.create("playerhand-counter-".concat(playerId));
 //            handCounter.setValue(player.handCards.length);
 //            _this.handCounters[playerId] = handCounter;
+                },
+                
+                
+                getPlayerPanelHtml: function (player) {
+                    return `
+                        <div class="counters" id="playerpanel_`+player.id+`">
+                            <div class="playerhand-counter">
+                                <span id="playerhand-counter-wrapper-`+player.id+`"></span>
+                                /
+                                <span id="maxhand-counter-wrapper-`+player.id+`"></span>
+                            </div> 
+                        </div>
+                    `;
+                    
+                    
                 }
                 
                 
