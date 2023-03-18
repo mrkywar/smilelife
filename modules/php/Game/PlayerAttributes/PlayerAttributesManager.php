@@ -4,8 +4,8 @@ namespace SmileLife\Game\PlayerAttributes;
 
 use Core\Managers\Core\SuperManager;
 use Core\Managers\PlayerManager;
+use Core\Models\Player;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Table\PlayerTable;
 
 /**
  * Description of PlayerAttributesManager

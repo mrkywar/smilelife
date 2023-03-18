@@ -20,7 +20,7 @@ class PlayerAttributes extends Model {
      * @ORM\Column{"type":"integer", "name":"attributes_player_id"}
      * @ORM\Id
      */
-    private $playerId;
+    private $id;
 
     /**
      * 
@@ -43,27 +43,18 @@ class PlayerAttributes extends Model {
      * ---------------------------------------------------------------------- */
 
     public function setPlayer(Player $player) {
-        return $this->setPlayerId($player->getId());
+        return $this->setId($player->getId());
     }
 
     public function getPlayer(): Player {
         return SmileLife::getInstance()
                         ->getPlayerManager()
-                        ->findBy(["id" => $this->getPlayerId()]);
+                        ->findBy(["id" => $this->getId()]);
     }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
-
-    public function getPlayerId(): ?int {
-        return $this->playerId;
-    }
-
-    public function setPlayerId(?int $playerId) {
-        $this->playerId = $playerId;
-        return $this;
-    }
 
     public function getMaxCards(): int {
         return $this->maxCards;
@@ -74,16 +65,13 @@ class PlayerAttributes extends Model {
         return $this;
     }
 
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Abstract
-     * ---------------------------------------------------------------------- */
-
     public function getId(): ?int {
-        return $this->getPlayerId();
+        return $this->id;
     }
 
-    public function setId(int $id) {
-        return $this->setPlayerId($id);
+    public function setId(?int $id) {
+        $this->id = $id;
+        return $this;
     }
 
 }

@@ -5,6 +5,7 @@ namespace SmileLife\Game\Game;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Core\CardDecorator;
+use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Game\Table\PlayerTableDecorator;
 use SmileLife\Game\Table\PlayerTableManager;
 
@@ -45,12 +46,19 @@ class GameDataRetriver {
      */
     private $playerTableDecorator;
 
+    /**
+     * 
+     * @var PlayerAttributesManager
+     */
+    private $playerAttributeManager;
+
     public function __construct() {
         $this->playerManager = new PlayerManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
         $this->playerTableManager = new PlayerTableManager();
         $this->playerTableDecorator = new PlayerTableDecorator();
+        $this->playerAttributeManager = new PlayerAttributesManager();
 
         $this->playerTableManager->setIsDebug(true);
     }
@@ -73,8 +81,12 @@ class GameDataRetriver {
 
         foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
+            $result['player'][$player->getId()]["attributes"] = null;
 
             $table = $this->playerTableManager->findBy([
+                "id" => $player->getId()
+            ]);
+            $attribute = $this->playerAttributeManager->findBy([
                 "id" => $player->getId()
             ]);
 
