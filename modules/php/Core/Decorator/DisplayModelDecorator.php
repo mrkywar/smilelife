@@ -13,7 +13,7 @@ abstract class DisplayModelDecorator {
     
     abstract public function getSerializer(): Serializer;
     
-    abstract protected function decorateOne($model): array;
+    abstract protected function decorateOne(Model $model): array;
 
     public function decorate($rawItems){
          if (null === $rawItems) {

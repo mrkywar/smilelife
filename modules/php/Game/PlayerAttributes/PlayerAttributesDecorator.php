@@ -3,6 +3,7 @@
 namespace SmileLife\Game\PlayerAttributes;
 
 use Core\Decorator\DisplayModelDecorator;
+use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
 
 /**
@@ -12,7 +13,7 @@ use Core\Serializers\Serializer;
  */
 class PlayerAttributesDecorator extends DisplayModelDecorator {
 
-    protected function decorateOne($model): array {
+    protected function decorateOne(Model $model): array {
         return $this->doDecorartion($model);
     }
 

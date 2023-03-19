@@ -2,16 +2,18 @@
 
 namespace SmileLife\Game\Card\Core;
 
+use Core\Decorator\DisplayModelDecorator;
+use Core\Models\Core\Model;
+use Core\Serializers\Serializer;
 use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Game\GameDataRetriverException;
 
 /**
  * Description of CardDecorator
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardDecorator {
+class CardDecorator extends DisplayModelDecorator {
 
     /**
      * 
@@ -27,28 +29,15 @@ class CardDecorator {
         }
     }
 
-    public function decorate($rawCards) {
-        if (null === $rawCards) {
-            return null;
-        } elseif ($rawCards instanceof Card) {
-            return $this->decorateOne($rawCards);
-        } else {
-            $cards = $this->cardSerializer->unserialize($rawCards);
-            if ($cards instanceof Card) {
-                return [$this->decorateOne($cards)];
-            } elseif (is_array($cards)) {
-                $results = [];
-                foreach ($cards as $card) {
-                    $results[] = $this->decorateOne($card);
-                }
-                return $results;
-            } else {
-                throw new GameDataRetriverException("Unsupported Arg " . get_class($cards));
-            }
-        }
+    protected function decorateOne(Model $model): array {
+        return $this->doDecorate($model);
     }
 
-    private function decorateOne(Card $card) {
+    public function getSerializer(): Serializer {
+        return $this->cardSerializer;
+    }
+
+    private function doDecorate(Card $card) {
         $cardInfos = [
             "id" => $card->getId(),
             "type" => $card->getType(),
@@ -63,13 +52,13 @@ class CardDecorator {
             "isFlipped" => $card->getIsFlipped(),
         ];
         if ($card instanceof Job) {
-            $cardInfos = array_merge($cardInfos, $this->decorateJob($card));
+            $cardInfos = array_merge($cardInfos, $this->doDecorateJob($card));
         }
 
         return $cardInfos;
     }
 
-    private function decorateJob(Job $card) {
+    private function doDecorateJob(Job $card) {
         return [
             "isTemporary" => $card->isTemporary(),
             "isOfficial" => $card->isOfficial(),
