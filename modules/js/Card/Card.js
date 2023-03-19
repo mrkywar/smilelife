@@ -35,9 +35,7 @@ define([
                 displayCard: function (card, destinationDivId, fromDivId) {
                     var searchedDiv = $('card_' + card.id);
 
-                    if (searchedDiv) { // Already Here
-//                        //TODO !!
-                    } else {
+                    if (!searchedDiv) {
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
                         searchedDiv.classList.add('cardontable');
@@ -81,6 +79,9 @@ define([
                         setTimeout(function () {
                             searchedDiv.classList.remove("card_none");
                             $(moveableCard.id).remove();
+                            if (!card.type) {
+                                $(searchedDiv.id).remove();
+                            }
                         }, 500);
 
 
