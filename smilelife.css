@@ -53,8 +53,9 @@ html{
 }
 
 .player-board .card_none{
-    height: 1px;
-    width: 1px;
+    height: 0px;
+    width: 0px;
+    background: none !important;
 }
 
 /*-----------------------------------------------------------------------------
