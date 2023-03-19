@@ -12,12 +12,14 @@ use Core\Serializers\Serializer;
  */
 class PlayerAttributesDecorator extends DisplayModelDecorator {
 
-    protected function decorateOne(PlayerAttributes $attribute): array {
-        $decorateInfo = [
+    protected function decorateOne($model): array {
+        return $this->doDecorartion($model);
+    }
+
+    private function doDecorartion(PlayerAttributes $attribute) {
+        return [
             "maxCards" => $attribute->getMaxCards()
         ];
-
-        return $decorateInfo;
     }
 
     public function getSerializer(): Serializer {

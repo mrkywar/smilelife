@@ -1,7 +1,9 @@
 <?php
 namespace Core\Decorator;
 
+use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
+use SmileLife\Game\Game\GameDataRetriverException;
 /**
  * Description of DisplayModelDecorator
  *
@@ -11,7 +13,7 @@ abstract class DisplayModelDecorator {
     
     abstract public function getSerializer(): Serializer;
     
-    abstract protected function decorateOne(): array;
+    abstract protected function decorateOne($model): array;
 
     public function decorate($rawItems){
          if (null === $rawItems) {
