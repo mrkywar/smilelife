@@ -2,6 +2,8 @@
 
 namespace SmileLife\Game\Table;
 
+use Core\Decorator\DisplayModelDecorator;
+use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
 use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Core\CardDecorator;
@@ -11,7 +13,7 @@ use SmileLife\Game\Card\Core\CardDecorator;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PlayerTableDecorator {
+class PlayerTableDecorator extends DisplayModelDecorator {
 
     /**
      * 
@@ -37,7 +39,15 @@ class PlayerTableDecorator {
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
     }
 
-    public function decorateTable(PlayerTable $table) {
+    protected function decorateOne(Model $model): array {
+        return $this->doDecorate($model);
+    }
+
+    public function getSerializer(): Serializer {
+        return $this->serializer;
+    }
+
+    public function doDecorate(PlayerTable $table) {
         return [
             "job" => $this->cardDecorator->decorate($table->getJob()),
             "studies" => $this->cardDecorator->decorate($table->getStudies()),
