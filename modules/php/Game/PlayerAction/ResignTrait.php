@@ -31,7 +31,7 @@ trait ResignTrait {
             'playerId' => $playerId,
             'player_name' => $player->getName(),
             'job' => $job->getTitle(),
-            'table' => $tableDecorator->decorateTable($table)
+            'table' => $tableDecorator->decorate($table)
 //            'card' => $cardDecorator->decorate($job),
 //            'studies'=> $table->
         ]);

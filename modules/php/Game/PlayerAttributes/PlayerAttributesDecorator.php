@@ -13,6 +13,16 @@ use Core\Serializers\Serializer;
  */
 class PlayerAttributesDecorator extends DisplayModelDecorator {
 
+    /**
+     * 
+     * @var Serializer
+     */
+    private $serializer;
+
+    public function __construct() {
+        $this->serializer = new Serializer(PlayerAttributes::class);
+    }
+
     protected function decorateOne(Model $model): array {
         return $this->doDecorartion($model);
     }
@@ -24,7 +34,7 @@ class PlayerAttributesDecorator extends DisplayModelDecorator {
     }
 
     public function getSerializer(): Serializer {
-        return new Serializer(PlayerAttributes::class);
+        return $this->serializer;
     }
 
 }

@@ -100,7 +100,7 @@ class GameDataRetriver {
             
             $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
             $this->playerTableManager->updateTable($table);
-            $result['tables'][$player->getId()] = $this->playerTableDecorator->decorateTable($table);
+            $result['tables'][$player->getId()] = $this->playerTableDecorator->decorate($table);
         }
 
         $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
