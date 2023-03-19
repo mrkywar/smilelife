@@ -43,13 +43,20 @@ class GameInitializer {
      * @var CardManager
      */
     protected $cardManager;
+    
+    /**
+     * 
+     * @var ScoreComputer
+     */
+    private $scoreComputer;
 
     public function __construct() {
-        $this->playerManager = new PlayerManager();
         $this->gameManager = new GameManager();
-        $this->playerAttributesManager = new PlayerAttributesManager();
         $this->cardManager = new CardManager();
+        $this->playerManager = new PlayerManager();
+        $this->scoreComputer = new ScoreComputer();
         $this->playerTableManager = new PlayerTableManager();
+        $this->playerAttributesManager = new PlayerAttributesManager();
     }
 
     public function init($players, $options = array()) {
@@ -58,6 +65,11 @@ class GameInitializer {
         $this->playerAttributesManager->initNewGame();
         $this->cardManager->initNewGame($options);
         $this->playerTableManager->initNewGame();
+        
+        
+        var_dump($players);die;
+        
+        
     }
 
 }
