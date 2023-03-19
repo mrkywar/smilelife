@@ -2,43 +2,26 @@
 
 namespace SmileLife\Game\PlayerAttributes;
 
+use Core\Decorator\DisplayModelDecorator;
+use Core\Serializers\Serializer;
+
 /**
  * Description of PlayerAttributesDecorator
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PlayerAttributesDecorator {
-    
-    
-    public function decorate($rawItems){
-         if (null === $rawItems) {
-            return null;
-        } elseif ($rawItems instanceof PlayerAttributes) {
-            return $this->decorateOne($rawItems);
-        } else {
-            $cards = $this->cardSerializer->unserialize($rawItems);
-            if ($rawItems instanceof PlayerAttributes) {
-                return [$this->decorateOne($rawItems)];
-            } elseif (is_array($rawItems)) {
-                $results = [];
-                foreach ($rawItems as $item) {
-                    $results[] = $this->decorateOne($item);
-                }
-                return $results;
-            } else {
-                throw new GameDataRetriverException("Unsupported Arg " . get_class($item));
-            }
-        }
-    }
-    
-    private function decorateOne(PlayerAttributes $attribute) {
+class PlayerAttributesDecorator extends DisplayModelDecorator {
+
+    protected function decorateOne(PlayerAttributes $attribute): array {
         $decorateInfo = [
             "maxCards" => $attribute->getMaxCards()
         ];
-        
 
         return $decorateInfo;
     }
-    
-    
+
+    public function getSerializer(): Serializer {
+        return new Serializer(PlayerAttributes::class);
+    }
+
 }
