@@ -24,6 +24,8 @@ define([
                     if (null !== table.marriage) {
                         lovePile.push(table.marriage);
                     }
+                    
+                    var specialPile = table.rewards.concat(table.specials);
 
                     return {
                         professionalPile: professionalPile,
@@ -32,7 +34,8 @@ define([
                         childPile: table.childs,
                         attackPile: table.attacks,
                         acquisitionPile: table.acquisitions,
-                        bonus1Pile: table.adultery,
+//                        bonus1Pile: table.adultery,
+                        specialPile: specialPile
                     }
                 },
 
@@ -85,6 +88,10 @@ define([
                         this.displayCard(card, 'pile_aquisition_' + player.id);
                     }
                     $('pile_aquisition_count_' + player.id).innerHTML = tableCards.acquisitionPile.length;
+                    
+                    
+                   
+                    
                     
                     //---- Display Bonus1 Pile infos
 //                    if (null !== tableCards.bonus1Pile && tableCards.bonus1Pile.length > 0) {

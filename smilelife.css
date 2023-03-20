@@ -264,6 +264,22 @@ html{
 .pile_attack .pile_counter{
     background: #a73636;
 }
+.pile_special{
+    border: 2px solid #878787;
+    border-radius: 5px;
+}
+.pile_special .pile_info,
+.pile_special .pile_counter{
+    background: #878787;
+}
+.pile_adultery{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.pile_adultery .pile_info,
+.pile_adultery .pile_counter{
+    background: black;
+}
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
 --------------------------------------------------------------------------*/

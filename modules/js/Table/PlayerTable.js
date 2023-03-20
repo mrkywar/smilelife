@@ -160,18 +160,18 @@ define([
                             <div class="pile_counter" id="pile_love_count_` + player.id + `">0</div>
                         </div>
                     
-                        <div class="pile_container pile_bonus">
-                            <div class="pile_info">&nbsp;</div>
-                            <div class="pile" id="pile_bonus1_` + player.id + `">
+                        <div class="pile_container pile_adultery">
+                            <div class="pile_info">{Adultery}</div>
+                            <div class="pile" id="pile_adultery_` + player.id + `">
                             </div>
-                            <div class="pile_counter" id="pile_bonus1_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_adultery_count_` + player.id + `">0</div>
                         </div>
                         
-                        <div class="pile_containe pile_bonus">
-                            <div class="pile_info">&nbsp;</div>
-                            <div class="pile" id="pile_bonus2_` + player.id + `">
+                        <div class="pile_container pile_special">
+                            <div class="pile_info">{Rewards & Specials}</div>
+                            <div class="pile" id="pile_special_` + player.id + `">
                             </div>
-                            <div class="pile_counter" id="pile_bonus2_count_` + player.id + `"></div>
+                            <div class="pile_counter" id="pile_special_count_` + player.id + `">0</div>
                         </div>
                     `;
                 },
