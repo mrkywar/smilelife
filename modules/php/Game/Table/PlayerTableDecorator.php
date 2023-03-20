@@ -58,6 +58,8 @@ class PlayerTableDecorator extends DisplayModelDecorator {
             "adultery" => $this->cardDecorator->decorate($table->getAdultery()),
             "acquisitions" => $this->cardDecorator->decorate($table->getAcquisitions()),
             "attacks" => $this->cardDecorator->decorate($table->getAttacks()),
+            "rewards" => $this->cardDecorator->decorate($table->getRewards()),
+            "specials" => $this->cardDecorator->decorate($table->getSpecials())
         ];
     }
 
