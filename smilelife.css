@@ -385,7 +385,9 @@ html{
     align-content: space-around;
     flex-wrap: wrap;
 }
-
+.cardontable[data-name="researcher"] .card_text1{
+    color: black;
+}
 /*-----------------------------------------------------------------------------
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
