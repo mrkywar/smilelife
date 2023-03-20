@@ -112,6 +112,13 @@ class PlayerTable extends Model {
      * @ORM\Column{"type":"int", "name":"table_adultery", "default":null}
      */
     private $adulteryId;
+    
+    /**
+     * 
+     * @var array
+     * @ORM\Column{"type":"json", "name":"table_specials"}
+     */
+    private $specialsIds;
 
 
     /**
@@ -134,6 +141,7 @@ class PlayerTable extends Model {
         $this->childIds = [];
         $this->flirtIds = [];
         $this->rewardIds = [];
+        $this->specialsIds = [];
 
 //        $this->adulteryId = null;
 //        $this->jobId = null;
@@ -166,7 +174,7 @@ class PlayerTable extends Model {
         } elseif ($card instanceof Attack) {
             return $this->addAttack($card);
         } elseif ($card instanceof Special) {
-            return $this; // ignore special (not on table)
+            return $this->addSpecial($card);
         } elseif ($card instanceof Pet) {
             return $this->addPet($card);
         } else {
@@ -379,6 +387,27 @@ class PlayerTable extends Model {
         return $this;
     }
 
+    public function addSpecial(Special $card){
+        $this->specialsIds[] = $card->getId();
+        
+        return $this;
+    }
+    
+    public function getSpecials() {
+        if (empty($this->getSpecialsIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getSpecialsIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
+    }
+
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
@@ -491,5 +520,16 @@ class PlayerTable extends Model {
         $this->petIds = $petIds;
         return $this;
     }
+    
+    public function getSpecialsIds(): array {
+        return $this->specialsIds;
+    }
+
+    public function setSpecialsIds(array $specialsIds) {
+        $this->specialsIds = $specialsIds;
+        return $this;
+    }
+
+
 
 }
