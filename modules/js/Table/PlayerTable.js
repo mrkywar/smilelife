@@ -111,20 +111,21 @@ define([
                  */
                 getTableBoardHtml: function (player) {
                     return `
-                        <div class="pile_container pile_job">
-                            <div class="pile_info">{Studies Job}</div>
-                            <div class="pile" id="pile_job_` + player.id + `">
+                    
+                        <div class="pile_container pile_wage">
+                            <div class="pile_info">{Wages}</div>
+                            <div class="pile" id="pile_wage_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_job_count_` + player.id + `">0</div>
+                            <div class="pile_counter" id="pile_wage_count_` + player.id + `">0</div>
                         </div>
-                        
-                        <div class="pile_container pile_love">
-                            <div class="pile_info">{Flirts Marriage}</div>
-                            <div class="pile" id="pile_love_` + player.id + `">
+
+                        <div class="pile_container pile_child">
+                            <div class="pile_info">{Childs}</div>
+                            <div class="pile" id="pile_child_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_love_count_` + player.id + `">0</div>
+                            <div class="pile_counter" id="pile_child_count_` + player.id + `">0</div>
                         </div>
 
                         <div class="pile_container pile_aquisition">
@@ -143,20 +144,20 @@ define([
                             <div class="pile_counter" id="pile_attack_count_` + player.id + `">0</div>
                         </div>
                     
-                        <div class="pile_container pile_wage">
-                            <div class="pile_info">{Wages}</div>
-                            <div class="pile" id="pile_wage_` + player.id + `">
+                        <div class="pile_container pile_job">
+                            <div class="pile_info">{Studies Job}</div>
+                            <div class="pile" id="pile_job_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_wage_count_` + player.id + `">0</div>
+                            <div class="pile_counter" id="pile_job_count_` + player.id + `">0</div>
                         </div>
                     
-                        <div class="pile_container pile_child">
-                            <div class="pile_info">{Childs}</div>
-                            <div class="pile" id="pile_child_` + player.id + `">
+                        <div class="pile_container pile_love">
+                            <div class="pile_info">{Flirts Marriage}</div>
+                            <div class="pile" id="pile_love_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_child_count_` + player.id + `">0</div>
+                            <div class="pile_counter" id="pile_love_count_` + player.id + `">0</div>
                         </div>
                     
                         <div class="pile_container pile_bonus">
