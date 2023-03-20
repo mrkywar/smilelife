@@ -16,7 +16,7 @@ class Military extends Official implements BaseGame {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Soldier'))
-                ->setText1(clienttranslate('Never victim to terrorist attacks'));
+                ->setText1(clienttranslate('No bomb in your presence'));
     }
 
     /* -------------------------------------------------------------------------

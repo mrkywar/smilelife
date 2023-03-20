@@ -52,7 +52,7 @@ class GameDataRetriver {
      * @var PlayerAttributesManager
      */
     private $playerAttributeManager;
-    
+
     /**
      * 
      * @var type
@@ -68,7 +68,6 @@ class GameDataRetriver {
         $this->playerAttributeManager = new PlayerAttributesManager();
         $this->playerAttributeDecorator = new PlayerAttributesDecorator();
 
-        $this->playerTableManager->setIsDebug(true);
     }
 
     public function retrive(int $playerId) {
@@ -89,7 +88,6 @@ class GameDataRetriver {
 
         foreach ($players as $player) {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
-            
 
             $table = $this->playerTableManager->findBy([
                 "id" => $player->getId()
@@ -97,7 +95,7 @@ class GameDataRetriver {
             $attribute = $this->playerAttributeManager->findBy([
                 "id" => $player->getId()
             ]);
-            
+
             $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
             $this->playerTableManager->updateTable($table);
             $result['tables'][$player->getId()] = $this->playerTableDecorator->decorate($table);

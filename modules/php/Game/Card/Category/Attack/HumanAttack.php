@@ -15,7 +15,7 @@ class HumanAttack extends Attack implements BaseGame {
     public function __construct() {
         parent::__construct();
 
-        $this->setTitle(clienttranslate('Terrorist attack'))
+        $this->setTitle(clienttranslate('Bomb'))
                 ->setText1(clienttranslate('Discard all child cards including '
                                 . 'your own'));
     }
