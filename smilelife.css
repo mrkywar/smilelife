@@ -61,6 +61,19 @@ html{
 /*-----------------------------------------------------------------------------
                  BEGIN - My Table
 ------------------------------------------------------------------------------*/
+.pile_container.pile_job:before,
+.pile_container.pile_love:before{
+    content: '▲';
+    font-size: 1.4em;
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    margin-left: -0.5em;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.3em;
+    color: white;
+}
 #mytable_wrap{
     margin-top: 0;
     align-items: center;
@@ -85,6 +98,7 @@ html{
 #mytable_wrap #mytable > div,
 #tables .playertable .playertablecard > div{
     margin: 5px;
+    margin-bottom: 10px;
     position: relative;
 }
 
