@@ -4,7 +4,6 @@ namespace SmileLife\Game\Game;
 
 use Core\DB\QueryString;
 use Core\Managers\PlayerManager;
-use SmileLife;
 use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Game\Table\PlayerTableManager;
@@ -45,18 +44,12 @@ class GameInitializer {
      * @var CardManager
      */
     protected $cardManager;
-    
+
     /**
      * 
      * @var ScoreComputer
      */
     private $scoreComputer;
-    
-    /**
-     * 
-     * @var SmileLife
-     */
-    private $game;
 
     public function __construct() {
         $this->gameManager = new GameManager();
@@ -65,7 +58,6 @@ class GameInitializer {
         $this->scoreComputer = new ScoreComputer();
         $this->playerTableManager = new PlayerTableManager();
         $this->playerAttributesManager = new PlayerAttributesManager();
-        $this->game = SmileLife::getInstance();
     }
 
     public function init($players, $options = array()) {
@@ -74,22 +66,21 @@ class GameInitializer {
         $this->playerAttributesManager->initNewGame();
         $this->cardManager->initNewGame($options);
         $this->playerTableManager->initNewGame();
-        
-        
+
         //Define first Player
-        $oPlayers = $this->playerManager->findBy(null,null,[
+        $oPlayers = $this->playerManager->findBy([], null, [
             "no" => QueryString::ORDER_ASC
         ]);
         $scores = [];
-        
-        foreach ($oPlayers as $player){
+
+        foreach ($oPlayers as $player) {
             $cardsInHand = $this->cardManager->getPlayerCards($player);
             $scores[$player->getId()] = $this->scoreComputer->compute($cardsInHand);
         }
+        
         arsort($scores);
-        
-        $this->game->gamestate->changeActivePlayer(array_key_first($scores));
-        
+        return array_key_first($scores);
+
         
     }
 

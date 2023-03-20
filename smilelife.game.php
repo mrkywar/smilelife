@@ -1,11 +1,11 @@
 <?php
 
+use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\Core\CardManager;
 use SmileLife\Game\Game\GameDataRetriver;
 use SmileLife\Game\Game\GameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
-use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
 use SmileLife\Game\PlayerAction\DrawTrait;
@@ -113,8 +113,6 @@ class SmileLife extends Table {
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
-        
-        
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -140,11 +138,12 @@ class SmileLife extends Table {
      */
 
     protected function setupNewGame($players, $options = array()) {
-        $this->gameInitializer->init($players, $options);
+        $firstPlayer = $this->gameInitializer->init($players, $options);
 
-        //Logger::log("Message", "Test");
+        $this->gamestate->changeActivePlayer($firstPlayer);
 
-        $this->activeNextPlayer();
+        Logger::log("Player", "First Player " . $firstPlayer);
+
 
         /*         * ********** End of the game initialization **** */
     }
@@ -187,13 +186,12 @@ class SmileLife extends Table {
 
     use ResignTrait;
     use DrawTrait;
-    
-    
+
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
 ////////////
 
-    
+
 
     /*
 
