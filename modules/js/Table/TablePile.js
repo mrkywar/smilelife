@@ -24,8 +24,14 @@ define([
                     if (null !== table.marriage) {
                         lovePile.push(table.marriage);
                     }
-                    
+
                     var specialPile = table.rewards.concat(table.specials);
+
+                    var adulteryPile = [];
+                    if (null !== table.adultery) {
+                        adulteryPile.push(table.adultery);
+                        //-- TODO add adultery flirts
+                    }
 
                     return {
                         professionalPile: professionalPile,
@@ -34,7 +40,7 @@ define([
                         childPile: table.childs,
                         attackPile: table.attacks,
                         acquisitionPile: table.acquisitions,
-//                        bonus1Pile: table.adultery,
+                        adulteryPile: adulteryPile,
                         specialPile: specialPile
                     }
                 },
@@ -46,7 +52,7 @@ define([
                  */
                 displayTablePile: function (table, player) {
                     var tableCards = this.getTablePiles(table);
-                    
+
                     //---- Display professional Pile infos
                     if (tableCards.professionalPile.length > 0) {
                         var card = tableCards.professionalPile[tableCards.professionalPile.length - 1];
@@ -60,45 +66,49 @@ define([
                         this.displayCard(card, 'pile_love_' + player.id);
                     }
                     $('pile_love_count_' + player.id).innerHTML = tableCards.lovePile.length;
-                    
+
                     //---- Display Wage Pile infos
                     if (tableCards.wagePile.length > 0) {
                         var card = tableCards.wagePile[tableCards.wagePile.length - 1];
                         this.displayCard(card, 'pile_wage_' + player.id);
                     }
                     $('pile_wage_count_' + player.id).innerHTML = tableCards.wagePile.length;
-                    
+
                     //---- Display Child Pile infos
                     if (tableCards.childPile.length > 0) {
                         var card = tableCards.childPile[tableCards.childPile.length - 1];
                         this.displayCard(card, 'pile_child_' + player.id);
                     }
                     $('pile_child_count_' + player.id).innerHTML = tableCards.childPile.length;
-                    
+
                     //---- Display Attack Pile infos
                     if (tableCards.attackPile.length > 0) {
                         var card = tableCards.attackPile[tableCards.attackPile.length - 1];
                         this.displayCard(card, 'pile_attack_' + player.id);
                     }
                     $('pile_attack_count_' + player.id).innerHTML = tableCards.attackPile.length;
-                    
+
                     //---- Display Acquisitions Pile infos
                     if (tableCards.acquisitionPile.length > 0) {
                         var card = tableCards.acquisitionPile[tableCards.acquisitionPile.length - 1];
                         this.displayCard(card, 'pile_aquisition_' + player.id);
                     }
                     $('pile_aquisition_count_' + player.id).innerHTML = tableCards.acquisitionPile.length;
-                    
-                    
-                   
-                    
-                    
-                    //---- Display Bonus1 Pile infos
-//                    if (null !== tableCards.bonus1Pile && tableCards.bonus1Pile.length > 0) {
-//                        var card = tableCards.bonus1Pile[tableCards.bonus1Pile.length - 1];
-//                        this.displayCard(card, 'pile_bonus1_' + player.id);
-//                    }
-//                    $('pile_bonus1_count_' + player.id).innerHTML = tableCards.bonus1Pile.length;
+
+                    //---- Display Adultery Pile infos
+                    if(tableCards.adulteryPile.length >0){
+                        var card = tableCards.adulteryPile[tableCards.adulteryPile.length - 1];
+                        this.displayCard(card, 'pile_adultery_' + player.id);
+                    }
+                    $('pile_adultery_count_' + player.id).innerHTML = tableCards.adulteryPile.length;
+
+
+                    //---- Display Specials Pile infos
+                    if (null !== tableCards.specialPile && tableCards.specialPile.length > 0) {
+                        var card = tableCards.specialPile[tableCards.specialPile.length - 1];
+                        this.displayCard(card, 'pile_special_' + player.id);
+                    }
+                    $('pile_special_count_' + player.id).innerHTML = tableCards.specialPile.length;
                 }
             }
 

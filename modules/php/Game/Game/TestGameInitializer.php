@@ -46,7 +46,8 @@ class TestGameInitializer extends GameInitializer {
             $table->addCard($card);
             $this->playerTableManager->updateTable($table);
         }
+
+        return $keys[0];
     }
 
-    
 }
