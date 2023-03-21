@@ -15,7 +15,7 @@ class TestGameInitializer extends GameInitializer {
     public function __construct() {
         parent::__construct();
 
-        $this->playerTableManager->setIsDebug(true);
+        //$this->playerTableManager->setIsDebug(true);
     }
 
     public function init($players, $options = []) {
@@ -29,9 +29,7 @@ class TestGameInitializer extends GameInitializer {
                 $nbCards
         );
 
-        $nbCardsToDiscard = random_int(0, count($players));
         $i = 0;
-
         foreach ($cards as &$card) {
             $player = $oPlayers[$i % count($players)];
 
@@ -47,7 +45,15 @@ class TestGameInitializer extends GameInitializer {
             $this->playerTableManager->updateTable($table);
         }
 
+        $nbCardsToDiscard = random_int(1, count($players));
+        $cardsToDiscard = $this->cardManager->findBy(
+                ["location" => CardLocation::DECK],
+                $nbCardsToDiscard
+        );
 
+        foreach ($cardsToDiscard as &$card) {
+            $this->cardManager->discardCard($card, $oPlayers[random_int(0, count($oPlayers) - 1)]);
+        }
 
         return $oPlayers[0]->getId();
     }

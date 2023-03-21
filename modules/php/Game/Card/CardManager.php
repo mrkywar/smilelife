@@ -133,7 +133,12 @@ class CardManager extends SuperManager {
      * ---------------------------------------------------------------------- */
 
     public function discardCard(Card $card, Player $player) {
-        $position = count($this->getAllCardsInDiscard()) + 1;
+        $this->getSerializer()->setIsForcedArray(true);
+        $cardInDiscard = $this->getAllCardsInDiscard();
+        $this->getSerializer()->setIsForcedArray(false);
+        $this->setIsDebug(true);
+
+        $position = count($cardInDiscard) + 1;
 
         $qb = $this->prepareUpdate($card)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::DISCARD)
@@ -179,14 +184,14 @@ class CardManager extends SuperManager {
 
         return $this->execute($qb);
     }
-    
-    public function playCard(Player $player, Card $card){
+
+    public function playCard(Player $player, Card $card) {
         $qb = $this->prepareUpdate($card)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_BOARD)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $player->getId())
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $player->getId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-        
+
         return $this->execute($qb);
     }
 
