@@ -261,7 +261,7 @@ define([
                         font-size: ` + (16 * size.ratio) + `px;
                     }
                     .cardontable[data-category="special"].cardontable[data-name="inheritance"] .card_text1{
-                        font-size: ` + (16 * size.ratio) + `px;
+                        font-size: ` + (18 * size.ratio) + `px;
                     }
                     .cardontable[data-category="special"].cardontable[data-name="jobboost"] .card_text1{
                         margin-top: ` + (308 * size.ratio) + `px;
@@ -290,14 +290,16 @@ define([
                     .cardontable[data-category="job"] .card_title,
                     .cardontable[data-category="powered_job"] .card_title,
                     .cardontable[data-category="official_job"] .card_title,
-                    .cardontable[data-category="temporary_job"] .card_title{
+                    .cardontable[data-category="temporary_job"] .card_title,
+                    .cardontable[data-category="official_powered_job"] .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
                         padding:0;
                     }
                     .cardontable[data-category="job"] .card_subtitle,
                     .cardontable[data-category="powered_job"] .card_subtitle,
                     .cardontable[data-category="official_job"] .card_subtitle,
-                    .cardontable[data-category="temporary_job"] .card_subtitle{
+                    .cardontable[data-category="temporary_job"] .card_subtitle,
+                    .cardontable[data-category="official_powered_job"] .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
                         margin-top: 0px;
                         padding-top:` + (6 * size.ratio) + `px;
@@ -310,14 +312,18 @@ define([
                     {
                         margin-top: ` + (340 * size.ratio) + `px;
                     }
-                    .cardontable[data-category="powered_job"] .card_text1{
+                    .cardontable[data-category="powered_job"] .card_text1
+                    {
                         margin: 0 ` + (64 * size.ratio) + `px;
                         margin-top: ` + (348 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
                         line-height: 1.40em;
                     }
-                    .cardontable[data-category="official_job"].cardontable[data-category="powered_job"] .card_text1{
+                    .cardontable[data-category="official_powered_job"] .card_text1{
+                        margin: 0 ` + (64 * size.ratio) + `px;
                         margin-top: ` + (328 * size.ratio) + `px;
+                        height: ` + (56 * size.ratio) + `px;
+                        line-height: 1.40em;
                     }
                     .cardontable[data-name="bandit"] .card_text1{
                         margin-left: ` + (56 * size.ratio) + `px;
@@ -370,8 +376,9 @@ define([
                         height: ` + (64 * size.ratio) + `px;
                     }
                     .cardontable[data-name="jail"] .card_text1,
-                    .cardontable[data-name="incometax"] .card_text1{
-                        font-size: ` + (18 * size.ratio) + `px;
+                    .cardontable[data-name="incometax"] .card_text1,
+                    .cardontable[data-name="graderepetition"] .card_text1{
+                        font-size: ` + (17 * size.ratio) + `px;
                     }
                     /*------              CHILD                           ----*/
                     .cardontable[data-category="child"] .card_title{

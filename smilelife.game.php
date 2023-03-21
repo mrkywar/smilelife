@@ -106,7 +106,8 @@ class SmileLife extends Table {
 
         self::$instance = $this;
 
-        $this->gameInitializer = new GameInitializer();
+//        $this->gameInitializer = new GameInitializer();
+        $this->gameInitializer = new \SmileLife\Game\Game\TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new GameDataRetriver();
 

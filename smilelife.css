@@ -233,7 +233,7 @@ html{
     border: 2px solid #c70580;
     border-radius: 5px;
 }
-.pile_aquisition{
+.pile_acquisition{
     border: 2px solid #47a736;
     border-radius: 5px;
 }
@@ -256,13 +256,29 @@ html{
 .pile_child .pile_counter{
     background: #c70580;
 }
-.pile_aquisition .pile_info,
-.pile_aquisition .pile_counter{
+.pile_acquisition .pile_info,
+.pile_acquisition .pile_counter{
     background: #47a736;
 }
 .pile_attack .pile_info,
 .pile_attack .pile_counter{
     background: #a73636;
+}
+.pile_special{
+    border: 2px solid #878787;
+    border-radius: 5px;
+}
+.pile_special .pile_info,
+.pile_special .pile_counter{
+    background: #878787;
+}
+.pile_adultery{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.pile_adultery .pile_info,
+.pile_adultery .pile_counter{
+    background: black;
 }
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
@@ -387,6 +403,10 @@ html{
 }
 .cardontable[data-name="researcher"] .card_text1{
     color: black;
+}
+.cardontable[data-name="policeman"] .card_subtitle,
+.cardontable[data-name="policeman"] .card_text1{
+    color: white;
 }
 /*-----------------------------------------------------------------------------
             BEGIN - Debug

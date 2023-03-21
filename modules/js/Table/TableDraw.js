@@ -19,7 +19,10 @@ define([
                         id:"deck"
                     };
                     this.displayCard(drawCard, "pile_deck");
-                    $('pile_deck_count').innerHTML = this.gamedatas.deck;
+                    var pileDeckCounter = new ebg.counter();
+                    pileDeckCounter.create('pile_deck_count');
+                    pileDeckCounter.setValue(this.gamedatas.deck);
+                    this.deckCounter = pileDeckCounter;
                     
                     //--- display Discard infos
                     if(null === this.discard){
@@ -28,9 +31,13 @@ define([
                         };
                     }else{
                         this.lastDiscardedCard = this.discard[this.discard.length-1];
-                        $('pile_discard_count').innerHTML = this.discard.length;
+//                        $('pile_discard_count').innerHTML = this.discard.length;
                     }
                     this.displayCard(this.lastDiscardedCard, "pile_discard");
+                    var pileDiscardCounter = new ebg.counter();
+                    pileDiscardCounter.create('pile_discard_count');
+                    pileDiscardCounter.setValue((null === this.discard)?0:this.discard.length);
+                    this.discardCounter = pileDiscardCounter;
                     
                 },
                 

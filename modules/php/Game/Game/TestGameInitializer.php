@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Game;
 
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Core\CardLocation;
 
 /**
@@ -15,11 +15,13 @@ class TestGameInitializer extends GameInitializer {
     public function __construct() {
         parent::__construct();
 
-        $this->playerTableManager->setIsDebug(true);
+        //$this->playerTableManager->setIsDebug(true);
     }
 
     public function init($players, $options = []) {
         parent::init($players, $options);
+
+        $oPlayers = $this->playerManager->findBy();
 
         $nbCards = random_int(count($players) * 5, count($players) * 10);
         $cards = $this->cardManager->findBy(
@@ -28,25 +30,32 @@ class TestGameInitializer extends GameInitializer {
         );
 
         $i = 0;
-        $discard = array_shift($cards);
-//        $this->cardManager->discardCard($discard);
-
-        $keys = array_keys($players);
-//        var_dump($keys);
-//        die;
-        foreach ($cards as $card) {
-            $player = $players[$keys[$i % count($players)]];
+        foreach ($cards as &$card) {
+            $player = $oPlayers[$i % count($players)];
 
             $table = $this->playerTableManager->findBy([
-                "id" => $keys[$i % count($players)]
+                "id" => $player->getId()
             ]);
+
+            $this->cardManager->playCard($player, $card);
 
             $i++;
 
             $table->addCard($card);
             $this->playerTableManager->updateTable($table);
         }
+
+        $nbCardsToDiscard = random_int(0, count($players));
+        $cardsToDiscard = $this->cardManager->findBy(
+                ["location" => CardLocation::DECK],
+                $nbCardsToDiscard
+        );
+
+        foreach ($cardsToDiscard as &$card) {
+            $this->cardManager->discardCard($card, $oPlayers[random_int(0, count($oPlayers) - 1)]);
+        }
+
+        return $oPlayers[0]->getId();
     }
 
-    
 }

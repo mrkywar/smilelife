@@ -60,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `player_table` (
     `table_rewards` text NULL,
     `table_warges` text NULL,
     `table_flirts` text NULL,
-    --`table_pets` text NULL,
     `table_marriage` int(10) unsigned NULL,
     `table_childs` text NULL,
     `table_adultery` int(10) unsigned NULL,
     `table_acquisitions` text NULL,
     `table_attacks` text NULL,
+    `table_specials` text NULL,
     PRIMARY KEY (`table_player_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
