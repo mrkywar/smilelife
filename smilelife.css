@@ -404,6 +404,10 @@ html{
 .cardontable[data-name="researcher"] .card_text1{
     color: black;
 }
+.cardontable[data-name="policeman"] .card_subtitle,
+.cardontable[data-name="policeman"] .card_text1{
+    color: white;
+}
 /*-----------------------------------------------------------------------------
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
