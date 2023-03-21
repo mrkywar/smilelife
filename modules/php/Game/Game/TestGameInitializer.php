@@ -45,7 +45,7 @@ class TestGameInitializer extends GameInitializer {
             $this->playerTableManager->updateTable($table);
         }
 
-        $nbCardsToDiscard = random_int(1, count($players));
+        $nbCardsToDiscard = random_int(0, count($players));
         $cardsToDiscard = $this->cardManager->findBy(
                 ["location" => CardLocation::DECK],
                 $nbCardsToDiscard
