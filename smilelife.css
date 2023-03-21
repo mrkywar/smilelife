@@ -256,8 +256,8 @@ html{
 .pile_child .pile_counter{
     background: #c70580;
 }
-.pile_aquisition .pile_info,
-.pile_aquisition .pile_counter{
+.pile_acquisition .pile_info,
+.pile_acquisition .pile_counter{
     background: #47a736;
 }
 .pile_attack .pile_info,

@@ -128,9 +128,9 @@ define([
                             <div class="pile_counter" id="pile_child_count_` + player.id + `">0</div>
                         </div>
 
-                        <div class="pile_container pile_aquisition">
+                        <div class="pile_container pile_acquisition">
                             <div class="pile_info">{Pets Travels House}</div>
-                            <div class="pile" id="pile_aquisition_` + player.id + `">
+                            <div class="pile" id="pile_acquisition_` + player.id + `">
                                 
                             </div>
                             <div class="pile_counter" id="pile_aquisition_count_` + player.id + `">0</div>
