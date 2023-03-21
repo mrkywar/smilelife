@@ -179,6 +179,16 @@ class CardManager extends SuperManager {
 
         return $this->execute($qb);
     }
+    
+    public function playCard(Player $player, Card $card){
+        $qb = $this->prepareUpdate($card)
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_BOARD)
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $player->getId())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $player->getId())
+                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
+        
+        return $this->execute($qb);
+    }
 
     public function getPlayerCards(Player $player) {
         return $this->getAllCardsInLocation(CardLocation::PLAYER_HAND, $player->getId());

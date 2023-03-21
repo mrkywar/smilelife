@@ -12,4 +12,5 @@ interface CardLocation {
     const TRASH = "trash";
     const PLAYER_HAND = "hand";
     const DISCARD = "discard";
+    const PLAYER_BOARD = "board";
 }

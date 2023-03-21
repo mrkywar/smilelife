@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Game;
 
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Core\CardLocation;
 
 /**
@@ -21,25 +21,25 @@ class TestGameInitializer extends GameInitializer {
     public function init($players, $options = []) {
         parent::init($players, $options);
 
+        $oPlayers = $this->playerManager->findBy();
+
         $nbCards = random_int(count($players) * 5, count($players) * 10);
         $cards = $this->cardManager->findBy(
                 ["location" => CardLocation::DECK],
                 $nbCards
         );
 
+        $nbCardsToDiscard = random_int(0, count($players));
         $i = 0;
-        $discard = array_shift($cards);
-//        $this->cardManager->discardCard($discard);
 
-        $keys = array_keys($players);
-//        var_dump($keys);
-//        die;
-        foreach ($cards as $card) {
-            $player = $players[$keys[$i % count($players)]];
+        foreach ($cards as &$card) {
+            $player = $oPlayers[$i % count($players)];
 
             $table = $this->playerTableManager->findBy([
-                "id" => $keys[$i % count($players)]
+                "id" => $player->getId()
             ]);
+
+            $this->cardManager->playCard($player, $card);
 
             $i++;
 
@@ -47,7 +47,9 @@ class TestGameInitializer extends GameInitializer {
             $this->playerTableManager->updateTable($table);
         }
 
-        return $keys[0];
+
+
+        return $oPlayers[0]->getId();
     }
 
 }
