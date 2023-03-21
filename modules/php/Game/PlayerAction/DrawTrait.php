@@ -30,8 +30,8 @@ trait DrawTrait {
             'card' => $cardDecorator->decorate($card),
         ]);
         
-//        $this->gamestate->nextState("drawCardFormDeck");
-        $this->gamestate->nextState("resignAndPlay");//TODO : remove it - it's for test only !
+        $this->gamestate->nextState("drawCardFormDeck");
+//        $this->gamestate->nextState("resignAndPlay");//TODO : remove it - it's for test only !
     }
     
     
