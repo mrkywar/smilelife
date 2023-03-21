@@ -133,7 +133,7 @@ define([
                             <div class="pile" id="pile_acquisition_` + player.id + `">
                                 
                             </div>
-                            <div class="pile_counter" id="pile_aquisition_count_` + player.id + `">0</div>
+                            <div class="pile_counter" id="pile_acquisition_count_` + player.id + `">0</div>
                         </div>
 
                         <div class="pile_container pile_attack">

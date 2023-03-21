@@ -138,7 +138,7 @@ define([
                         attack: pileAttackCounter,
                         acquisition: pileAcquisitionCounter,
                         adultery: pileAdulteryCounter,
-                        special: specialPile
+                        special: pileSpecialCounter
                     }
                 }
             }
