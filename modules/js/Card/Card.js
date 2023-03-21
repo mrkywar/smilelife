@@ -261,7 +261,7 @@ define([
                         font-size: ` + (16 * size.ratio) + `px;
                     }
                     .cardontable[data-category="special"].cardontable[data-name="inheritance"] .card_text1{
-                        font-size: ` + (16 * size.ratio) + `px;
+                        font-size: ` + (18 * size.ratio) + `px;
                     }
                     .cardontable[data-category="special"].cardontable[data-name="jobboost"] .card_text1{
                         margin-top: ` + (308 * size.ratio) + `px;
