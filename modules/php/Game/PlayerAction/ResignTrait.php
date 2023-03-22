@@ -1,6 +1,8 @@
 <?php
 namespace SmileLife\Game\PlayerAction;
 
+use SmileLife\Game\Card\Core\CardDecorator;
+use SmileLife\Game\Card\Core\CardSerializer;
 use SmileLife\Game\Table\PlayerTableDecorator;
 
 /**
@@ -12,6 +14,7 @@ trait ResignTrait {
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
         $tableDecorator = new PlayerTableDecorator();
+        $cardDecorator = new CardDecorator(new CardSerializer());
 
         $player = $this->playerManager->findOne([
             "id" => $playerId
@@ -31,8 +34,8 @@ trait ResignTrait {
             'playerId' => $playerId,
             'player_name' => $player->getName(),
             'job' => $job->getTitle(),
-            'table' => $tableDecorator->decorate($table)
-//            'card' => $cardDecorator->decorate($job),
+            'table' => $tableDecorator->decorate($table),
+            'card' => $cardDecorator->decorate($job),
 //            'studies'=> $table->
         ]);
 

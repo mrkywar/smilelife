@@ -37,8 +37,18 @@ define([
                     this.debug('Display', searchedDiv);
 
                     if (searchedDiv) {
-                        this.debug("existing card")
-                        this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
+                        this.debug("existing card");
+                        
+                        var targetedCard = document.createElement('div');
+                        targetedCard.id = "temp_".concat(card.id);
+                        targetedCard.classList.add('cardontable');
+                        targetedCard.dataset.id = '' + card.id;
+                        
+                        $(destinationDivId).appendChild(targetedCard);
+                        
+                        this.displayCardInformations(targetedCard, card);
+                        
+                        this.slideToObject(searchedDiv.id, targetedCard.id, 500).play();
                     }else{
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
@@ -56,8 +66,6 @@ define([
                             var moveableCard = document.createElement('div');
                             moveableCard.id = "tempory_".concat(card.id);
                             moveableCard.classList.add('cardontable');
-                            moveableCard.classList.add('debug');
-//                        moveableCard.classList.add('movableCard');
                             moveableCard.dataset.id = '' + card.id;
                             moveableCard.innerHTML = `
                             <div class="card_sides">

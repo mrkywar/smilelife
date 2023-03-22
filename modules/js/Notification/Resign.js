@@ -10,9 +10,9 @@ define([
             {
                 notif_resignNotification: function (notif) {
                     this.debug("notif_resignNotification called ???", notif);
-                    
-                    var card = notif.args.job;
-                    this.displayCard(card, "pile_job_"+notif.args.playerId, "pile_discard");
+
+                    var card = notif.args.card;
+                    this.displayCard(card, "pile_discard", "pile_job_" + notif.args.playerId, );
                 },
             }
     );
