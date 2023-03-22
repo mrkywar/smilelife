@@ -34,8 +34,12 @@ define([
 
                 displayCard: function (card, destinationDivId, fromDivId) {
                     var searchedDiv = $('card_' + card.id);
+                    this.debug('Display', searchedDiv);
 
-                    if (!searchedDiv) {
+                    if (searchedDiv) {
+                        this.debug("existing card")
+                        this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
+                    }else{
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
                         searchedDiv.classList.add('cardontable');
@@ -47,51 +51,54 @@ define([
                                 <div class="card-side back"></div>
                             </div>
                         `;
-                    }
 
-                    if (fromDivId) {
-                        var moveableCard = document.createElement('div');
-                        moveableCard.id = "tempory_".concat(card.id);
-                        moveableCard.classList.add('cardontable');
+                        if (fromDivId) {
+                            var moveableCard = document.createElement('div');
+                            moveableCard.id = "tempory_".concat(card.id);
+                            moveableCard.classList.add('cardontable');
+                            moveableCard.classList.add('debug');
 //                        moveableCard.classList.add('movableCard');
-                        moveableCard.dataset.id = '' + card.id;
-                        moveableCard.innerHTML = `
+                            moveableCard.dataset.id = '' + card.id;
+                            moveableCard.innerHTML = `
                             <div class="card_sides">
                                 <div class="card-side front" id="front_` + moveableCard.id + `"></div>
                                 <div class="card-side back"></div>
                             </div>
                         `;
 
-                        searchedDiv.classList.add("card_none");
+                            searchedDiv.classList.add("card_none");
 
-                        moveableCard.style.zIndex = 20;
-                        $(destinationDivId).appendChild(searchedDiv);
-                        $(fromDivId).appendChild(moveableCard);
+                            moveableCard.style.zIndex = 20;
+                            $(destinationDivId).appendChild(searchedDiv);
+                            $(fromDivId).appendChild(moveableCard);
 
-                        if (card.type) {
-                            this.displayCardInformations(searchedDiv, card);
-                            this.displayCardInformations(moveableCard, card);
-                        }
+                            if (card.type) {
+                                this.displayCardInformations(searchedDiv, card);
+                                this.displayCardInformations(moveableCard, card);
+                            }
 
-                        this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
+                            this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
 //                        $(mo)
 
-                        setTimeout(function () {
-                            searchedDiv.classList.remove("card_none");
-                            $(moveableCard.id).remove();
-                            if (!card.type) {
-                                $(searchedDiv.id).remove();
+                            setTimeout(function () {
+                                searchedDiv.classList.remove("card_none");
+                                $(moveableCard.id).remove();
+                                if (!card.type) {
+                                    $(searchedDiv.id).remove();
+                                }
+                            }, 500);
+
+
+                        } else {
+                            $(destinationDivId).appendChild(searchedDiv);
+                            if (card.type) {
+                                this.displayCardInformations(searchedDiv, card);
                             }
-                        }, 500);
 
-
-                    } else {
-                        $(destinationDivId).appendChild(searchedDiv);
-                        if (card.type) {
-                            this.displayCardInformations(searchedDiv, card);
                         }
-
                     }
+
+
 
 
 

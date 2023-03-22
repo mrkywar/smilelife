@@ -9,7 +9,7 @@ define([
             ],
             {
                 notif_resignNotification: function (notif) {
-                    this.debug("notif_resignNotification called", notif);
+                    this.debug("notif_resignNotification called ???", notif);
                     
                     var card = notif.args.job;
                     this.displayCard(card, "pile_job_"+notif.args.playerId, "pile_discard");

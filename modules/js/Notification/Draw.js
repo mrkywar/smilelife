@@ -8,9 +8,6 @@ define([
                 //smilelife.state.draw
             ],
             {
-                notif_resignNotification: function (notif) {
-                    this.debug("notif_resignNotification called", notif);
-                },
 
                 notif_drawNotification: function (notif) {
                     if (parseInt(notif.args.playerId) === this.player_id) {
