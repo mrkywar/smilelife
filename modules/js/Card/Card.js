@@ -34,14 +34,9 @@ define([
 
                 displayCard: function (card, destinationDivId, fromDivId) {
                     var searchedDiv = $('card_' + card.id);
-                    this.debug('Display', searchedDiv);
 
                     if (searchedDiv) {
-                        this.debug("existing card",destinationDivId);
-                        
                         this.slideToObject(searchedDiv.id,'pile_discard',this.animationTimer).play();
-                        
-//                       
                     }else{
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);

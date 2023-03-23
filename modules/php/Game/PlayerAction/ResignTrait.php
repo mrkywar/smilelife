@@ -24,7 +24,6 @@ trait ResignTrait {
         ]);
         $job = $table->getJob();
 
-        //-- TODO reactive this !!
         $this->cardManager->discardCard($job, $player);
 
         $table->setJobId(null);
