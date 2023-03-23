@@ -25,10 +25,10 @@ trait ResignTrait {
         $job = $table->getJob();
 
         //-- TODO reactive this !!
-//        $this->cardManager->discardCard($job, $player);
-//
-//        $table->setJobId(null);
-//        $this->tableManager->updateTable($table);
+        $this->cardManager->discardCard($job, $player);
+
+        $table->setJobId(null);
+        $this->tableManager->updateTable($table);
 
         self::notifyAllPlayers('resignNotification', clienttranslate('${player_name} resigns from the job of ${job}'), [
             'playerId' => $playerId,
@@ -36,7 +36,6 @@ trait ResignTrait {
             'job' => $job->getTitle(),
             'table' => $tableDecorator->decorate($table),
             'card' => $cardDecorator->decorate($job),
-//            'studies'=> $table->
         ]);
 
         if ($job->isTemporary()) {

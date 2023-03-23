@@ -12,12 +12,16 @@ define([
                     this.debug("notif_resignNotification called ???", notif);
 
                     var card = notif.args.card;
-                    this.displayCard(card, "pile_discard", "pile_job_" + notif.args.playerId, );
-                    
+                    this.displayCard(card, "pile_discard", "pile_job_" + notif.args.playerId);
+                    if (notif.args.table.studies.length > 0) {
+                        var newCard = notif.args.table.studies[notif.args.table.studies.length-1];
+                        this.displayCard(newCard, 'pile_job_' + notif.args.playerId);
+                    }
+
                     var _this = this;
                     setTimeout(function () {
-                        _this.discardCounter.setValue(_this.discardCounter.getValue()+1);
-                        _this.boardCounter[notif.args.playerId].job.setValue(_this.boardCounter[notif.args.playerId].job.getValue()-1);
+                        _this.discardCounter.setValue(_this.discardCounter.getValue() + 1);
+                        _this.boardCounter[notif.args.playerId].job.setValue(_this.boardCounter[notif.args.playerId].job.getValue() - 1);
                     }, this.animationTimer);
                 },
             }
