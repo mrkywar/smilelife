@@ -39,7 +39,7 @@ define([
                     if (searchedDiv) {
                         this.debug("existing card",destinationDivId);
                         
-                        this.slideToObject(searchedDiv.id,'pile_discard',1000).play();
+                        this.slideToObject(searchedDiv.id,'pile_discard',this.animationTimer).play();
                         
 //                       
                     }else{
@@ -78,7 +78,7 @@ define([
                                 this.displayCardInformations(moveableCard, card);
                             }
 
-                            this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
+                            this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
 //                        $(mo)
 
                             setTimeout(function () {
@@ -87,7 +87,7 @@ define([
                                 if (!card.type) {
                                     $(searchedDiv.id).remove();
                                 }
-                            }, 500);
+                            }, this.animationTimer);
 
 
                         } else {
