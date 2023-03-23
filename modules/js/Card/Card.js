@@ -37,18 +37,11 @@ define([
                     this.debug('Display', searchedDiv);
 
                     if (searchedDiv) {
-                        this.debug("existing card");
+                        this.debug("existing card",destinationDivId);
                         
-                        var targetedCard = document.createElement('div');
-                        targetedCard.id = "temp_".concat(card.id);
-                        targetedCard.classList.add('cardontable');
-                        targetedCard.dataset.id = '' + card.id;
+                        this.slideToObject(searchedDiv.id,'pile_discard',1000).play();
                         
-                        $(destinationDivId).appendChild(targetedCard);
-                        
-                        this.displayCardInformations(targetedCard, card);
-                        
-                        this.slideToObject(searchedDiv.id, targetedCard.id, 500).play();
+//                       
                     }else{
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
