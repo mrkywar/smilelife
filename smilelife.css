@@ -324,6 +324,7 @@ html{
 .cardontable[data-category="job"] .card_subtitle,
 .cardontable[data-category="powered_job"] .card_subtitle,
 .cardontable[data-category="official_job"] .card_subtitle,
+.cardontable[data-category="temporary_powered_job"] .card_subtitle,
 .cardontable[data-category="temporary_job"] .card_subtitle,
 .cardontable[data-category="attack"] .card_title, .cardontable[data-category="attack"] .card_text1
 {
@@ -331,9 +332,11 @@ html{
     text-transform: uppercase;
 }
 .cardontable[data-category="adultery"] .card_text,
-.cardontable[data-category="special"] .card_text1, .cardontable[data-category="special"] .card_title,
+.cardontable[data-category="special"] .card_text1, 
+.cardontable[data-category="special"] .card_title,
 .cardontable[data-category="child"] .card_text1,
 .cardontable[data-category="powered_job"] .card_text1,
+.cardontable[data-category="temporary_powered_job"] .card_text1,
 .cardontable[data-name="freedommedal"] .card_title{
     color: white;
 }

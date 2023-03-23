@@ -1,6 +1,8 @@
 <?php
 namespace SmileLife\Game\PlayerAction;
 
+use SmileLife\Game\Card\Core\CardDecorator;
+use SmileLife\Game\Card\Core\CardSerializer;
 use SmileLife\Game\Table\PlayerTableDecorator;
 
 /**
@@ -12,6 +14,7 @@ trait ResignTrait {
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
         $tableDecorator = new PlayerTableDecorator();
+        $cardDecorator = new CardDecorator(new CardSerializer());
 
         $player = $this->playerManager->findOne([
             "id" => $playerId
@@ -21,19 +24,17 @@ trait ResignTrait {
         ]);
         $job = $table->getJob();
 
-        //-- TODO reactive this !!
-//        $this->cardManager->discardCard($job, $player);
-//
-//        $table->setJobId(null);
-//        $this->tableManager->updateTable($table);
+        $this->cardManager->discardCard($job, $player);
+
+        $table->setJobId(null);
+        $this->tableManager->updateTable($table);
 
         self::notifyAllPlayers('resignNotification', clienttranslate('${player_name} resigns from the job of ${job}'), [
             'playerId' => $playerId,
             'player_name' => $player->getName(),
             'job' => $job->getTitle(),
-            'table' => $tableDecorator->decorate($table)
-//            'card' => $cardDecorator->decorate($job),
-//            'studies'=> $table->
+            'table' => $tableDecorator->decorate($table),
+            'card' => $cardDecorator->decorate($job),
         ]);
 
         if ($job->isTemporary()) {

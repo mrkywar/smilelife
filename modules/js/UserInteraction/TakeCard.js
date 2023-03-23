@@ -20,9 +20,9 @@ define([
                     }
 
                     this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
-                    if ("empty" !== this.lastDiscardedCard.id) {
-                        this.addActionButton('resign_button', _('Draw and play from discard'), 'doDiscardDraw', null, false, 'gray');
-                    }
+//                    if ("empty" !== this.lastDiscardedCard.id) {
+//                        this.addActionButton('resign_button', _('Draw and play from discard'), 'doDiscardDraw', null, false, 'gray');
+//                    }
 
                 },
 
@@ -48,9 +48,9 @@ define([
                     });
                 },
 
-                doDiscardDraw: function () {
-                    this.debug("doDiscardDraw");
-                },
+//                doDiscardDraw: function () {
+//                    this.debug("doDiscardDraw");
+//                },
             }
 
     );

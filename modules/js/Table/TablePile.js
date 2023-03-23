@@ -7,7 +7,7 @@ define([
             [],
             {
                 constructor: function () {
-                    this.panelCounter = [];
+                    this.boardCounter = [];
                 },
 
                 /**
@@ -69,8 +69,8 @@ define([
                         this.displayCard(card, 'pile_love_' + player.id);
                     }
                     var pileLoveCounter = new ebg.counter();
-                    pileJobCounter.create("pile_love_count_" + player.id);
-                    pileJobCounter.setValue(tableCards.lovePile.length);
+                    pileLoveCounter.create("pile_love_count_" + player.id);
+                    pileLoveCounter.setValue(tableCards.lovePile.length);
 
                     //---- Display Wage Pile infos
                     if (tableCards.wagePile.length > 0) {
@@ -130,7 +130,7 @@ define([
 
 
                     //---- Save object
-                    this.panelCounter[player.id] = {
+                    this.boardCounter[player.id] = {
                         job: pileJobCounter,
                         love: pileLoveCounter,
                         wage: pileWageCounter,

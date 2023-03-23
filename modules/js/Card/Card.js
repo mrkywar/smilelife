@@ -35,7 +35,9 @@ define([
                 displayCard: function (card, destinationDivId, fromDivId) {
                     var searchedDiv = $('card_' + card.id);
 
-                    if (!searchedDiv) {
+                    if (searchedDiv) {
+                        this.slideToObject(searchedDiv.id,'pile_discard',this.animationTimer).play();
+                    }else{
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
                         searchedDiv.classList.add('cardontable');
@@ -47,51 +49,52 @@ define([
                                 <div class="card-side back"></div>
                             </div>
                         `;
-                    }
 
-                    if (fromDivId) {
-                        var moveableCard = document.createElement('div');
-                        moveableCard.id = "tempory_".concat(card.id);
-                        moveableCard.classList.add('cardontable');
-//                        moveableCard.classList.add('movableCard');
-                        moveableCard.dataset.id = '' + card.id;
-                        moveableCard.innerHTML = `
+                        if (fromDivId) {
+                            var moveableCard = document.createElement('div');
+                            moveableCard.id = "tempory_".concat(card.id);
+                            moveableCard.classList.add('cardontable');
+                            moveableCard.dataset.id = '' + card.id;
+                            moveableCard.innerHTML = `
                             <div class="card_sides">
                                 <div class="card-side front" id="front_` + moveableCard.id + `"></div>
                                 <div class="card-side back"></div>
                             </div>
                         `;
 
-                        searchedDiv.classList.add("card_none");
+                            searchedDiv.classList.add("card_none");
 
-                        moveableCard.style.zIndex = 20;
-                        $(destinationDivId).appendChild(searchedDiv);
-                        $(fromDivId).appendChild(moveableCard);
+                            moveableCard.style.zIndex = 20;
+                            $(destinationDivId).appendChild(searchedDiv);
+                            $(fromDivId).appendChild(moveableCard);
 
-                        if (card.type) {
-                            this.displayCardInformations(searchedDiv, card);
-                            this.displayCardInformations(moveableCard, card);
-                        }
+                            if (card.type) {
+                                this.displayCardInformations(searchedDiv, card);
+                                this.displayCardInformations(moveableCard, card);
+                            }
 
-                        this.slideToObject(moveableCard.id, searchedDiv.id, 500).play();
+                            this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
 //                        $(mo)
 
-                        setTimeout(function () {
-                            searchedDiv.classList.remove("card_none");
-                            $(moveableCard.id).remove();
-                            if (!card.type) {
-                                $(searchedDiv.id).remove();
+                            setTimeout(function () {
+                                searchedDiv.classList.remove("card_none");
+                                $(moveableCard.id).remove();
+                                if (!card.type) {
+                                    $(searchedDiv.id).remove();
+                                }
+                            }, this.animationTimer);
+
+
+                        } else {
+                            $(destinationDivId).appendChild(searchedDiv);
+                            if (card.type) {
+                                this.displayCardInformations(searchedDiv, card);
                             }
-                        }, 500);
 
-
-                    } else {
-                        $(destinationDivId).appendChild(searchedDiv);
-                        if (card.type) {
-                            this.displayCardInformations(searchedDiv, card);
                         }
-
                     }
+
+
 
 
 
@@ -291,7 +294,9 @@ define([
                     .cardontable[data-category="powered_job"] .card_title,
                     .cardontable[data-category="official_job"] .card_title,
                     .cardontable[data-category="temporary_job"] .card_title,
-                    .cardontable[data-category="official_powered_job"] .card_title{
+                    .cardontable[data-category="official_powered_job"] .card_title,
+                    .cardontable[data-category="temporary_powered_job"] .card_title
+                    {
                         margin-top: ` + (32 * size.ratio) + `px;
                         padding:0;
                     }
@@ -299,7 +304,8 @@ define([
                     .cardontable[data-category="powered_job"] .card_subtitle,
                     .cardontable[data-category="official_job"] .card_subtitle,
                     .cardontable[data-category="temporary_job"] .card_subtitle,
-                    .cardontable[data-category="official_powered_job"] .card_subtitle{
+                    .cardontable[data-category="official_powered_job"] .card_subtitle,
+                    .cardontable[data-category="temporary_powered_job"] .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
                         margin-top: 0px;
                         padding-top:` + (6 * size.ratio) + `px;
@@ -319,7 +325,8 @@ define([
                         height: ` + (56 * size.ratio) + `px;
                         line-height: 1.40em;
                     }
-                    .cardontable[data-category="official_powered_job"] .card_text1{
+                    .cardontable[data-category="official_powered_job"] .card_text1,
+                    .cardontable[data-category="temporary_powered_job"] .card_text1{
                         margin: 0 ` + (64 * size.ratio) + `px;
                         margin-top: ` + (328 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
