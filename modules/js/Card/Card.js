@@ -294,7 +294,9 @@ define([
                     .cardontable[data-category="powered_job"] .card_title,
                     .cardontable[data-category="official_job"] .card_title,
                     .cardontable[data-category="temporary_job"] .card_title,
-                    .cardontable[data-category="official_powered_job"] .card_title{
+                    .cardontable[data-category="official_powered_job"] .card_title,
+                    .cardontable[data-category="temporary_powered_job"] .card_title
+                    {
                         margin-top: ` + (32 * size.ratio) + `px;
                         padding:0;
                     }
@@ -302,7 +304,8 @@ define([
                     .cardontable[data-category="powered_job"] .card_subtitle,
                     .cardontable[data-category="official_job"] .card_subtitle,
                     .cardontable[data-category="temporary_job"] .card_subtitle,
-                    .cardontable[data-category="official_powered_job"] .card_subtitle{
+                    .cardontable[data-category="official_powered_job"] .card_subtitle,
+                    .cardontable[data-category="temporary_powered_job"] .card_subtitle{
                         font-size: ` + (16 * size.ratio) + `px;
                         margin-top: 0px;
                         padding-top:` + (6 * size.ratio) + `px;
@@ -322,7 +325,8 @@ define([
                         height: ` + (56 * size.ratio) + `px;
                         line-height: 1.40em;
                     }
-                    .cardontable[data-category="official_powered_job"] .card_text1{
+                    .cardontable[data-category="official_powered_job"] .card_text1,
+                    .cardontable[data-category="temporary_powered_job"] .card_text1{
                         margin: 0 ` + (64 * size.ratio) + `px;
                         margin-top: ` + (328 * size.ratio) + `px;
                         height: ` + (56 * size.ratio) + `px;
