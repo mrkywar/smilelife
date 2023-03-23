@@ -3,6 +3,7 @@
 namespace SmileLife\Game\Game;
 
 use Core\Managers\PlayerManager;
+use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\CardManager;
 use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\PlayerAttributes\PlayerAttributesDecorator;
@@ -77,11 +78,19 @@ class GameDataRetriver {
 
         $rawHand = $this->cardManager->getPlayerCards($currentPlayer);
         $discard = $this->cardManager->getAllCardsInDiscard();
+        
+        $rawDiscard = null;
+        if($discard instanceof Card){
+            $rawDiscard[] = $this->cardDecorator->decorate($discard);
+        }elseif(!empty($discard)){
+            $rawDiscard = $this->cardDecorator->decorate($discard);
+        }
+        
 
         $result = [
             "myhand" => $this->cardDecorator->decorate($rawHand),
             "deck" => count($this->cardManager->getAllCardsInDeck()),
-            "discard" => (empty($discard)) ? null : $this->cardDecorator->decorate($discard)
+            "discard" => $rawDiscard
         ];
 
         $players = $this->playerManager->findBy();
