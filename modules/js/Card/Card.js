@@ -36,8 +36,14 @@ define([
                     var searchedDiv = $('card_' + card.id);
 
                     if (searchedDiv) {
-                        this.slideToObject(searchedDiv.id,'pile_discard',this.animationTimer).play();
-                    }else{
+                        this.slideToObject(searchedDiv.id, 'pile_discard', this.animationTimer).play();
+                        var _this = this;
+                        setTimeout(function () {
+                            document.getElementById( 'pile_discard').innerHTML = '';
+                            _this.attachToNewParent(searchedDiv.id, 'pile_discard');
+                        }, this.animationTimer);
+
+                    } else {
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
                         searchedDiv.classList.add('cardontable');
