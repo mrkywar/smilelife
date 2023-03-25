@@ -3,11 +3,13 @@ define([
     "dojo/_base/declare",
     
     g_gamethemeurl + 'modules/js/UserInteraction/TakeCard.js',
+    g_gamethemeurl + 'modules/js/UserInteraction/PlayCard.js',
 ], function (dojo, declare) {
     return declare(
             "smilelife.ui.button",
             [
-                smilelife.ui.takeCard
+                smilelife.ui.takeCard,
+                smilelife.ui.playCard,
             ],
             {
                 constructor: function () {
@@ -24,23 +26,6 @@ define([
                 onEnteringState: function (stateName, args)
                 {
                     this.debug('Entering state: ' + stateName);
-
-                    switch (stateName)
-                    {
-                        /* Example:
-                         
-                         case 'myGameState':
-                         
-                         // Show some HTML block at this game state
-                         dojo.style( 'my_html_block_id', 'display', 'block' );
-                         
-                         break;
-                         */
-
-
-                        case 'dummmy':
-                            break;
-                    }
                 },
 
                 // onLeavingState: this method is called each time we are leaving a game state.
@@ -49,24 +34,6 @@ define([
                 onLeavingState: function (stateName)
                 {
                     this.debug('Leaving state: ' + stateName);
-
-                    switch (stateName)
-                    {
-
-                        /* Example:
-                         
-                         case 'myGameState':
-                         
-                         // Hide the HTML block we are displaying only during this game state
-                         dojo.style( 'my_html_block_id', 'display', 'none' );
-                         
-                         break;
-                         */
-
-
-                        case 'dummmy':
-                            break;
-                    }
                 },
 
                 // onUpdateActionButtons: in this method you can manage "action buttons" that are displayed in the
@@ -82,6 +49,9 @@ define([
                         {
                             case "takeCard":
                                 this.addTakeCardInteraction();
+                                break;
+                            case "playCard":
+                                this.addPlayCardInteraction();
                                 break;
                         }
                     }
