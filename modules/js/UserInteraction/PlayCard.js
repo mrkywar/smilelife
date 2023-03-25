@@ -30,7 +30,13 @@ define([
                 selectCard: function (target) {
                     if ('' !== target.id && $(target.id).classList.contains("selectable")) {
                         this.debug(dojo.query(target.id), $(target.id));
-                        $(target.id).classList.add("selected");
+                        if ($(target.id).classList.contains("selected")) {
+                            $(target.id).classList.remove("selected");
+                        } else {
+                            //-- TODO remove other !!
+                            dojo.query("#myhand .selected").removeClass("selected");
+                            $(target.id).classList.add("selected");
+                        }
                     } else {
                         this.selectCard(target.parentNode);
                     }

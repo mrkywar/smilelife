@@ -181,26 +181,16 @@ html{
 }
 #tables .playertable .playertablecard > div:nth-child(4n+3){
     grid-column: 3;
-    /*grid-row: 2;*/
 }
 #tables .playertable .playertablecard > div:nth-child(4n+4){
     grid-column: 4;
-    /*grid-row: 2;*/
 }
 
 #tables .playertable #myhand{
     justify-content: space-around;
     align-content: space-around;
 }
-/*#tables .playertable #myhand > div:nth-child(3n+1){
-    grid-column: 1;
-}
-#tables .playertable #myhand > div:nth-child(3n+2){
-    grid-column: 2;
-}
-#tables .playertable #myhand > div:nth-child(3n+3){
-    grid-column: 3;
-}*/
+
 /*--------------------------------------------------------------------------
                 BEGIN - Pile
 --------------------------------------------------------------------------*/
@@ -293,6 +283,15 @@ html{
     display: block;
     float: left;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
+}
+.cardontable.selectable{
+    cursor: pointer;
+    border: 2px solid white;
+}
+.cardontable.selected{
+    cursor: pointer;
+    border: 2px dashed #878787;
+    box-shadow: 2px 4px 2px 2px rgb(0 0 0 / 44%);
 }
 .card_none.cardontable {
     background-image: none !important;
