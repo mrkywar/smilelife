@@ -22,8 +22,9 @@ trait NextPlayerTrait {
 
 //        $this->incStat(1, 'turnsNumber');
 //        $this->incStat(1, 'turnsNumber', $playerId);
-
+        $newPlayerId = $this->activeNextPlayer();
         $this->gamestate->nextState("newTurn");
+        
     }
 
 }

@@ -23,7 +23,7 @@ trait ResignTrait {
             "id" => $playerId
         ]);
         $job = $table->getJob();
-
+        
         $this->cardManager->discardCard($job, $player);
 
         $table->setJobId(null);
@@ -36,7 +36,8 @@ trait ResignTrait {
             'table' => $tableDecorator->decorate($table),
             'card' => $cardDecorator->decorate($job),
         ]);
-
+        
+        
         if ($job->isTemporary()) {
             $this->gamestate->nextState("resignAndPlay");
         } else {
