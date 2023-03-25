@@ -43,7 +43,24 @@ define([
                 },
 
                 doPlay: function () {
-                    this.debug("DoPlay:");
+//                    this.debug("DoPlay:");
+                    var card = dojo.query(".selected");
+                    this.debug("DoPlay:", card);
+                    if(1 !== card.length){
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query("#myhand .selected").removeClass("selected");
+                    }else{
+                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/playCard.html",{
+                            lock: true,
+//                            id: card.
+                        }, this, function (result) {
+                            this.debug("Play :", result);
+                        }, function (is_error) {
+                            //--error
+                            this.debug("Play fail:", is_error);
+                        });
+                    }
+//                    if()
 //                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/resign.html", {
 //                        lock: true
 //                    }, this, function (result) {
