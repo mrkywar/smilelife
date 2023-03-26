@@ -88,3 +88,4 @@ $gameGameStates = [
     ],
 ];
 
+$machinestates = $basicGameStates + $playerActionsGameStates + $gameGameStates;

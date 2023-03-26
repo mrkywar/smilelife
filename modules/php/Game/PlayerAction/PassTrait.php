@@ -19,7 +19,7 @@ trait PassTrait {
         $player = $this->playerManager->findOne([
             "id" => $playerId
         ]);
-        $card = $this->cardManager->findOne([
+        $card = $this->cardManager->findBy([
             "id" => $cardId
         ]);        
         $this->cardManager->discardCard($card, $player);
