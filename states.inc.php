@@ -70,6 +70,7 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "playCard" => ST_NEXT_PLAYER,
+            "playPass" =>  ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
         ]
     ]

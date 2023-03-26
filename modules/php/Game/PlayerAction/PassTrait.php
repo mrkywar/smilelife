@@ -13,11 +13,25 @@ trait PassTrait {
 
     public function actionDiscardAndPass($cardId) {
         $playerId = self::getCurrentPlayerId();
-        
-        $card = $this->cardManager->findBy([
-            "id" => $cardId
+        $tableDecorator = new PlayerTableDecorator();
+        $cardDecorator = new CardDecorator(new CardSerializer());
+
+        $player = $this->playerManager->findOne([
+            "id" => $playerId
         ]);
-        var_dump($card,$cardId);die;
+        $card = $this->cardManager->findOne([
+            "id" => $cardId
+        ]);        
+        $this->cardManager->discardCard($card, $player);
+        
+        self::notifyAllPlayers('passNotification', clienttranslate('${playerName} pass and discard ${cardName}'), [
+            'playerId' => $playerId,
+            'playerName' => $player->getName(),
+            'card' => $cardDecorator->decorate($card),
+            'cardName' => $card->getTitle(),
+        ]);
+        
+        $this->gamestate->nextState("playPass");
         
     }
 
