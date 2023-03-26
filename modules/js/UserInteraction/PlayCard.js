@@ -21,8 +21,6 @@ define([
                         evt.stopPropagation();
 
                         _this.selectCard(evt.target);
-//                        evt.target.addClass("selected");
-
                     });
 
                 },
@@ -42,7 +40,6 @@ define([
                 },
 
                 doPlay: function () {
-//                    this.debug("DoPlay:");
                     var card = dojo.query(".selected");
 
                     if (1 !== card.length) {
@@ -60,19 +57,26 @@ define([
                             this.debug("Play fail:", is_error);
                         });
                     }
-//                    if()
-//                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/resign.html", {
-//                        lock: true
-//                    }, this, function (result) {
-//                        this.debug("Resign :", result);
-//                    }, function (is_error) {
-//                        //--error
-//                        this.debug("Resign fail:", is_error);
-//                    });
                 },
 
                 doPass: function () {
-                    this.debug("DoPass:");
+                    var card = dojo.query(".selected");
+
+                    if (1 !== card.length) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query("#myhand .selected").removeClass("selected");
+                    } else {
+                        this.debug("DoPlay:", card[0]);
+                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/pass.html", {
+                            lock: true,
+                            card: card[0].dataset.id
+                        }, this, function (result) {
+                            this.debug("Pass :", result);
+                        }, function (is_error) {
+                            //--error
+                            this.debug("Pss:", is_error);
+                        });
+                    }
                 },
 
             }

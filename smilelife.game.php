@@ -9,6 +9,7 @@ use SmileLife\Game\Game\GameProgressionRetriver;
 use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
 use SmileLife\Game\PlayerAction\DrawTrait;
+use SmileLife\Game\PlayerAction\PassTrait;
 use SmileLife\Game\PlayerAction\PlayCardTrait;
 use SmileLife\Game\PlayerAction\ResignTrait;
 use SmileLife\Game\Table\PlayerTableManager;
@@ -186,9 +187,12 @@ class SmileLife extends Table {
 //////////// Player actions
 //////////// 
 
+    //-- Traits for Initial Player choices (Resign, Draw) 
     use ResignTrait;
     use DrawTrait;
+    //-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;
+    use PassTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
