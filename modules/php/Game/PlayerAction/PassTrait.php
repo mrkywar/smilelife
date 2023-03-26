@@ -24,9 +24,9 @@ trait PassTrait {
         ]);        
         $this->cardManager->discardCard($card, $player);
         
-        self::notifyAllPlayers('passNotification', clienttranslate('${playerName} pass and discard ${cardName}'), [
+        self::notifyAllPlayers('passNotification', clienttranslate('${player_name} pass and discard ${cardName}'), [
             'playerId' => $playerId,
-            'playerName' => $player->getName(),
+            'player_name' => $player->getName(),
             'card' => $cardDecorator->decorate($card),
             'cardName' => $card->getTitle(),
         ]);
