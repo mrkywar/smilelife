@@ -33,7 +33,6 @@ define([
                         if ($(target.id).classList.contains("selected")) {
                             $(target.id).classList.remove("selected");
                         } else {
-                            //-- TODO remove other !!
                             dojo.query("#myhand .selected").removeClass("selected");
                             $(target.id).classList.add("selected");
                         }
@@ -45,14 +44,15 @@ define([
                 doPlay: function () {
 //                    this.debug("DoPlay:");
                     var card = dojo.query(".selected");
-                    this.debug("DoPlay:", card);
-                    if(1 !== card.length){
+
+                    if (1 !== card.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query("#myhand .selected").removeClass("selected");
-                    }else{
-                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/playCard.html",{
+                    } else {
+                        this.debug("DoPlay:", card[0]);
+                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/playCard.html", {
                             lock: true,
-//                            id: card.
+                            card: card[0].dataset.id
                         }, this, function (result) {
                             this.debug("Play :", result);
                         }, function (is_error) {

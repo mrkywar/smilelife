@@ -17,7 +17,7 @@ trait PlayCardTrait {
         $card = $this->cardManager->findBy([
             "id" => $cardId
         ]);
-        var_dump($card);
+        var_dump($card,$cardId);die;
         
     }
 
