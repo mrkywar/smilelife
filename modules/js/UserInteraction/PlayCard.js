@@ -72,6 +72,8 @@ define([
                             card: card[0].dataset.id
                         }, this, function (result) {
                             this.debug("Pass :", result);
+                            dojo.query("#myhand .selected").removeClass("selected");
+                            dojo.query("#myhand .selectable").removeClass("selectable");
                         }, function (is_error) {
                             //--error
                             this.debug("Pss:", is_error);

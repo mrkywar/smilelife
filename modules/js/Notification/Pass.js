@@ -12,22 +12,15 @@ define([
                 notif_passNotification: function (notif) {
                     this.debug("notif_passNotification called", notif);
                     
+                    var card = notif.args.card;
+
+                    this.displayCard(card, "card_discard", "myhand");
                     
-//                    if (parseInt(notif.args.playerId) === this.player_id) {
-//                        var card = notif.args.card;
-//                        this.displayCard(card, "myhand", "card_deck");
-//                    } else {
-//                        var card = {
-//                            id: Date.now(),
-//                        };
-//                        this.displayCard(card, "playerpanel_" + notif.args.playerId, "card_deck");
-//                    }
-//                    
-//                    var _this = this;
-//                    setTimeout(function () {
-//                        _this.deckCounter.setValue(_this.deckCounter.getValue()-1);
-//                        _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue()+1);
-//                    }, this.animationTimer);
+                    var _this = this;
+                    setTimeout(function () {
+                        _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue()-1);
+                        _this.discardCounter.setValue(_this.discardCounter.getValue()+1);
+                    }, this.animationTimer);
                 },
             }
     );
