@@ -5,6 +5,7 @@ namespace SmileLife\Game\PlayerAction;
 use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\Card\Core\CardSerializer;
 use SmileLife\Game\Table\PlayerTableDecorator;
+use SmileLife\Game\UserEffect\MoveCard\DiscardCardEffect;
 
 /**
  *
@@ -31,7 +32,7 @@ trait PassTrait {
             'card' => $cardDecorator->decorate($card),
             'cardName' => $card->getTitle(),
             'effects' => [
-                
+                (array) new DiscardCardEffect($player, $card)
             ]
         ]);
 

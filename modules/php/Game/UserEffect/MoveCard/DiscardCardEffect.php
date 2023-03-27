@@ -19,14 +19,16 @@ class DiscardCardEffect extends MoveCardEffect {
         $this->setPlayer($player)
                 ->setCard($card)
                 ->setFrom([
-                    self::MOVE_PLAYER => "",
-                    self::MOVE_OPPONENT => "",
+                    self::MOVE_PLAYER => UserLocation::PLAYER_HAND,
+                    self::MOVE_OPPONENT => UserLocation::PLAYER_PANEL . $player->getId(),
                 ])
                 ->setDestination([
-                    self::MOVE_PLAYER => "",
-                    self::MOVE_OPPONENT => "",
+                    self::MOVE_PLAYER => UserLocation::DISCARD,
+                    self::MOVE_OPPONENT => UserLocation::DISCARD,
                 ])
         ;
+        
+        return $this;
     }
 
 }

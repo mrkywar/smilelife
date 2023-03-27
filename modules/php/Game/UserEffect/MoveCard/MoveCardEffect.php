@@ -43,6 +43,7 @@ abstract class MoveCardEffect extends UserEffect {
 
     public function __construct() {
         parent::__construct();
+        
         $this->setType(self::EFFECT_MOVE_TYPE);
         $this->from = [
             self::MOVE_PLAYER => null,
