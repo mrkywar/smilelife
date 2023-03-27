@@ -12,12 +12,12 @@ define([
                 notif_drawNotification: function (notif) {
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         var card = notif.args.card;
-                        this.displayCard(card, "myhand", "card_deck");
+                        this.displayCard(card, "myhand", "pile_deck");
                     } else {
                         var card = {
                             id: Date.now(),
                         };
-                        this.displayCard(card, "playerpanel_" + notif.args.playerId, "card_deck");
+                        this.displayCard(card, "playerpanel_" + notif.args.playerId, "pile_deck");
                     }
                     
                     var _this = this;

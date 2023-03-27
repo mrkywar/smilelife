@@ -17,7 +17,7 @@ define([
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, "pile_discard", "myhand");
                     } else {
-                        this.displayCard(card, "pile_discard", "playerpanel_" + notif.args.playerId);
+                        this.displayCard(card, "pile_discard", "playerpanel_" + notif.args.playerId, true);
                     }
 
                     var _this = this;

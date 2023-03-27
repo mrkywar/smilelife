@@ -208,6 +208,14 @@ html{
 .player_tables .pile_container .pile{
     padding-bottom: 20px;
 }
+.pile_container .pile .cardontable{
+    display: none;
+}
+.pile_container .pile .cardontable:last-child,
+.pile_deck .pile .cardontable:first-child{
+    display: block;
+}
+
 .player_tables .pile_container .pile_counter{
     position: absolute;
     bottom:0;
