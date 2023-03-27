@@ -5,11 +5,11 @@ namespace SmileLife\Game\Game;
 use SmileLife\Game\Card\CardManager;
 
 /**
- * Description of GameProgressionRetriver
+ * Description of ProgressionRetriver
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class GameProgressionRetriver {
+class ProgressionRetriver {
 
     /**
      * 

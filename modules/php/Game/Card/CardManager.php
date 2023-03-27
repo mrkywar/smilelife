@@ -146,7 +146,11 @@ class CardManager extends SuperManager {
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $player->getId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
 
-        return $this->execute($qb);
+        $results = $this->execute($qb);
+
+        $response = null;
+
+        return $response;
     }
 
     /* -------------------------------------------------------------------------

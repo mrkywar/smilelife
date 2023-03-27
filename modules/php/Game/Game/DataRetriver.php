@@ -12,11 +12,11 @@ use SmileLife\Game\Table\PlayerTableDecorator;
 use SmileLife\Game\Table\PlayerTableManager;
 
 /**
- * Description of GameDataRetriver
+ * Description of DataRetriver
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class GameDataRetriver {
+class DataRetriver {
 
     /**
      * 

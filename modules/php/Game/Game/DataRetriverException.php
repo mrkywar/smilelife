@@ -5,10 +5,10 @@ namespace SmileLife\Game\Game;
 use Exception;
 
 /**
- * Description of GameDataRetriverException
+ * Description of DataRetriverException
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class GameDataRetriverException extends Exception {
+class DataRetriverException extends Exception {
     
 }

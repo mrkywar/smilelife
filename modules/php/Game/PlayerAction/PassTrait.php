@@ -4,6 +4,7 @@ namespace SmileLife\Game\PlayerAction;
 
 use SmileLife\Game\Card\Core\CardDecorator;
 use SmileLife\Game\Card\Core\CardSerializer;
+use SmileLife\Game\PlayerResponse\PassRequest;
 use SmileLife\Game\Table\PlayerTableDecorator;
 use SmileLife\Game\UserEffect\MoveCard\DiscardCardEffect;
 
@@ -14,6 +15,19 @@ use SmileLife\Game\UserEffect\MoveCard\DiscardCardEffect;
 trait PassTrait {
 
     public function actionDiscardAndPass($cardId) {
+        $player = $this->playerManager->findOne([
+            "id" => self::getCurrentPlayerId()
+        ]);
+        $card = $this->cardManager->findBy([
+            "id" => $cardId
+        ]);
+
+        $request = new PassRequest();
+        $request->send($player, $card);
+        
+        die('KO');
+        
+        
         $playerId = self::getCurrentPlayerId();
         $tableDecorator = new PlayerTableDecorator();
         $cardDecorator = new CardDecorator(new CardSerializer());

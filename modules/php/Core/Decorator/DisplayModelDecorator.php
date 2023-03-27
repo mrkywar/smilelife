@@ -3,7 +3,7 @@ namespace Core\Decorator;
 
 use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Game\GameDataRetriverException;
+use SmileLife\Game\Game\DataRetriverException;
 /**
  * Description of DisplayModelDecorator
  *
@@ -31,7 +31,7 @@ abstract class DisplayModelDecorator {
                 }
                 return $results;
             } else {
-                throw new GameDataRetriverException("Unsupported Arg " . get_class($item));
+                throw new DataRetriverException("Unsupported Arg " . get_class($item));
             }
         }
     }

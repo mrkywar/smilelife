@@ -3,9 +3,9 @@
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\Core\CardManager;
-use SmileLife\Game\Game\GameDataRetriver;
+use SmileLife\Game\Game\DataRetriver;
 use SmileLife\Game\Game\GameInitializer;
-use SmileLife\Game\Game\GameProgressionRetriver;
+use SmileLife\Game\Game\ProgressionRetriver;
 use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
 use SmileLife\Game\PlayerAction\DrawTrait;
@@ -75,13 +75,13 @@ class SmileLife extends Table {
 
     /**
      * 
-     * @var GameProgressionRetriver
+     * @var ProgressionRetriver
      */
-    private $gameProgressionRetriver;
+    private $progressionRetriver;
 
     /**
      * 
-     * @var GameDateRetriver
+     * @var DateRetriver
      */
     private $dataRetriver;
 
@@ -102,6 +102,11 @@ class SmileLife extends Table {
      * @var PlayerManager
      */
     private $playerManager;
+    
+    /**
+     * EventDispatcher
+     */
+    private $eventDispatcher;
 
     function __construct() {
         parent::__construct();
@@ -110,12 +115,14 @@ class SmileLife extends Table {
 
 //        $this->gameInitializer = new GameInitializer();
         $this->gameInitializer = new \SmileLife\Game\Game\TestGameInitializer();
-        $this->gameProgressionRetriver = new GameProgressionRetriver();
-        $this->dataRetriver = new GameDataRetriver();
+        $this->progressionRetriver = new ProgressionRetriver();
+        $this->dataRetriver = new DataRetriver();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
+        
+        $this->eventDispatcher;
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -180,7 +187,7 @@ class SmileLife extends Table {
      */
 
     function getGameProgression() {
-        return $this->gameProgressionRetriver->retrive();
+        return $this->progressionRetriver->retrive();
     }
 
 //////////////////////////////////////////////////////////////////////////////

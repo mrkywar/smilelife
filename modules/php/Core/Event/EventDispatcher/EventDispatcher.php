@@ -2,6 +2,8 @@
 
 namespace Core\Event\EventDispatcher;
 
+use Core\Event\EventListener\EventListener;
+
 /**
  * Description of EventDispatcher
  *
@@ -24,18 +26,18 @@ class EventDispatcher {
             throw new EventDispatcherException("No listener registered for $name");
         }
 
-        foreach ($this->listeners as $listener) {
+        foreach ($this->listeners[$name] as $listener) {
             if (null === $listener->getMethod()) {
-                $listener->{$listener->getMethod()}($object);
-            } else {
                 $listener->onEvent($object);
+            } else {
+                $listener->{$listener->getMethod()}($object); 
             }
         }
     }
 
     public function addListener(string $eventName, EventListener $listener) {
-        $this->listeners[$eventName][] = $this->listeners;
-        
+        $this->listeners[$eventName][] = $listener;
+
         return $this;
     }
 
