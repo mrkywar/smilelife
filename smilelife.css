@@ -215,7 +215,10 @@ html{
 .pile_deck .pile .cardontable:first-child{
     display: block;
 }
-
+.pile_deck {
+    position: relative;
+    height: 0;
+}
 .player_tables .pile_container .pile_counter{
     position: absolute;
     bottom:0;

@@ -170,6 +170,11 @@ define([
                         border-radius: ` + size.radius + `px;
                         background-image: url('` + g_gamethemeurl + `img/cards-` + size.name + `.png');
                     }
+                    .pile_deck .pile .cardontable:nth-first-child{
+                        position: absolute;
+                        top: -` + size.width + `px;
+                        left: -` + size.height + `px;
+                    }
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
                     ----------------------------------------------------------*/
