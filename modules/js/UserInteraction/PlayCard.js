@@ -65,6 +65,7 @@ define([
                     if (1 !== card.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query("#myhand .selected").removeClass("selected");
+                        
                     } else {
                         this.debug("DoPlay:", card[0]);
                         this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/pass.html", {
@@ -72,11 +73,12 @@ define([
                             card: card[0].dataset.id
                         }, this, function (result) {
                             this.debug("Pass :", result);
-                            dojo.query("#myhand .selected").removeClass("selected");
-                            dojo.query("#myhand .selectable").removeClass("selectable");
+                            dojo.query(".selected").removeClass("selected");
+                            dojo.query(".selectable").removeClass("selectable");
+
                         }, function (is_error) {
                             //--error
-                            this.debug("Pss:", is_error);
+                            this.debug("Pass:", is_error);
                         });
                     }
                 },
