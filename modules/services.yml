@@ -1,0 +1,8 @@
+services:
+    discard:
+        saveDiscard:
+            class: Core\Event\EventListener\EventListener\DiscardListener
+            method: onDiscard
+
+            
+        
