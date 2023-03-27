@@ -3,6 +3,7 @@
 namespace Core\Event\EventDispatcher;
 
 use Core\Event\EventListener\EventListener;
+use Core\Event\ServicesParser;
 
 /**
  * Description of EventDispatcher
@@ -17,8 +18,16 @@ class EventDispatcher {
      */
     private $listeners;
 
-    public function __construct() {
+    public function __construct($servicesPath=null) {
         $this->listeners = [];
+        
+        if(null === $servicesPath){
+            $servicesPath = 'modules/service.yaml';
+        }
+        
+        $serviceParser = new ServicesParser();
+        $listeners = $serviceParser->parse($servicesPath);
+        
     }
 
     public function dispatch(string $name, $object) {

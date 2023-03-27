@@ -1,11 +1,13 @@
 <?php
 
+use Core\Event\EventDispatcher\EventDispatcher;
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\Core\CardManager;
 use SmileLife\Game\Game\DataRetriver;
 use SmileLife\Game\Game\GameInitializer;
 use SmileLife\Game\Game\ProgressionRetriver;
+use SmileLife\Game\Game\TestGameInitializer;
 use SmileLife\Game\GameTrait\NextPlayerTrait;
 use SmileLife\Game\GameTrait\ZombieTrait;
 use SmileLife\Game\PlayerAction\DrawTrait;
@@ -114,7 +116,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Game\TestGameInitializer();
+        $this->gameInitializer = new TestGameInitializer();
         $this->progressionRetriver = new ProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -122,7 +124,7 @@ class SmileLife extends Table {
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
         
-        $this->eventDispatcher;
+        $this->eventDispatcher = new EventDispatcher();
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
