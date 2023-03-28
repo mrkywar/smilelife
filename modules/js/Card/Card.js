@@ -36,11 +36,10 @@ define([
                     var searchedDiv = $('card_' + card.id);
 
                     if (searchedDiv) {
-                        this.slideToObject(searchedDiv.id, 'pile_discard', this.animationTimer).play();
+                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
                         var _this = this;
                         setTimeout(function () {
-                            document.getElementById( 'pile_discard').innerHTML = '';
-                            _this.attachToNewParent(searchedDiv.id, 'pile_discard');
+                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
                         }, this.animationTimer);
 
                     } else {
@@ -81,6 +80,8 @@ define([
 
                             this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
 //                        $(mo)
+
+                            var _this = this;
 
                             setTimeout(function () {
                                 searchedDiv.classList.remove("card_none");
@@ -168,6 +169,11 @@ define([
                         margin-right: ` + (10 * size.ratio) + `px;
                         border-radius: ` + size.radius + `px;
                         background-image: url('` + g_gamethemeurl + `img/cards-` + size.name + `.png');
+                    }
+                    .pile_deck .pile .cardontable:nth-first-child{
+                        position: absolute;
+                        top: -` + size.width + `px;
+                        left: -` + size.height + `px;
                     }
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
