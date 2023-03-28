@@ -34,7 +34,7 @@ define([
                         this.displayCard(card, "myhand");
                     }
                     //Display this player Table cards
-                    this.displayTablePile(gamedatas.mytable, meAsPlayer);
+                    this.displayTablePiles(gamedatas.mytable, meAsPlayer);
 
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;
@@ -44,7 +44,7 @@ define([
                         dojo.place(this.getTableHtml(player), 'tables'); //table container
 
                         var table = gamedatas.tables[playerId];
-                        this.displayTablePile(table, player);
+                        this.displayTablePiles(table, player);
                     }
 
 
