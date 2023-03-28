@@ -29,9 +29,9 @@ trait ResignTrait {
         $table->setJobId(null);
         $this->tableManager->updateTable($table);
 
-        self::notifyAllPlayers('resignNotification', clienttranslate('${playerName} resigns from the job of ${job}'), [
+        self::notifyAllPlayers('resignNotification', clienttranslate('${player_name} resigns from the job of ${job}'), [
             'playerId' => $playerId,
-            'playerName' => $player->getName(),
+            'player_name' => $player->getName(),
             'job' => $job->getTitle(),
             'table' => $tableDecorator->decorate($table),
             'card' => $cardDecorator->decorate($job),

@@ -35,7 +35,7 @@ trait PlayCardTrait {
         $table->addCard($card);
         $this->tableManager->updateTable($table);
         
-        self::notifyAllPlayers('playCardNotification', clienttranslate('${player_name} play ${cardName}'), [
+        self::notifyAllPlayers('playNotification', clienttranslate('${player_name} play ${cardName}'), [
             'playerId' => $playerId,
             'player_name' => $player->getName(),
             'cardName' => $card->getTitle(),
