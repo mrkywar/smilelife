@@ -36,7 +36,7 @@ define([
                     var searchedDiv = $('card_' + card.id);
 
                     if (searchedDiv) {
-                        this.debug("Dis_Param",searchedDiv.id, destinationDivId)
+//                        this.debug("Dis_Param",searchedDiv.id, destinationDivId);
                         this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
                         var _this = this;
                         setTimeout(function () {
