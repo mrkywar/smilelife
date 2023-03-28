@@ -13,10 +13,10 @@ define([
 
                     var card = notif.args.card;
                     this.displayCard(card, "card_empty", "pile_job_" + notif.args.playerId);
-                    if (notif.args.table.studies.length > 0) {
-                        var newCard = notif.args.table.studies[notif.args.table.studies.length-1];
-                        this.displayCard(newCard, 'pile_job_' + notif.args.playerId);
-                    }
+//                    if (notif.args.table.studies.length > 0) {
+//                        var newCard = notif.args.table.studies[notif.args.table.studies.length-1];
+//                        this.displayCard(newCard, 'pile_job_' + notif.args.playerId);
+//                    }
 
                     var _this = this;
                     setTimeout(function () {
