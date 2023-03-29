@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Love;
+namespace SmileLife\Card\Category\Love;
 
-use SmileLife\Game\Card\Card;
+use SmileLife\Card\Card;
 
 /**
  * Description of Love

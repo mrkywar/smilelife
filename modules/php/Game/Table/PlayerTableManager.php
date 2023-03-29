@@ -1,11 +1,11 @@
 <?php
 
-namespace SmileLife\Game\Table;
+namespace SmileLife\Table;
 
 use Core\Managers\Core\SuperManager;
 use Core\Managers\PlayerManager;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Card\CardManager;
+use SmileLife\Card\CardManager;
 
 /**
  * Description of PlayerTableManager

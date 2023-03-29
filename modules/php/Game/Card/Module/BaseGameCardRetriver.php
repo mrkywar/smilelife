@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Module;
+namespace SmileLife\Card\Module;
 
 use ReflectionClass;
-use SmileLife\Game\Card\Core\Card;
+use SmileLife\Card\Core\Card;
 
 /**
  * Description of BaseGameCardRetriver

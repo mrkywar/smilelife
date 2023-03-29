@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game;
 
 use Core\Models\Core\Model;
 

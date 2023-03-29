@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Special;
+namespace SmileLife\Card\Category\Special;
 
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\Effect\CardEffectInterface;
+use SmileLife\Card\Card;
+use SmileLife\Card\Effect\CardEffectInterface;
 
 /**
  * Description of Special

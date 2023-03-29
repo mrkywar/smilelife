@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Wage;
+namespace SmileLife\Card\Category\Wage;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of WageLevel1

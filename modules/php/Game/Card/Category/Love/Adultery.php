@@ -1,10 +1,10 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Love;
+namespace SmileLife\Card\Category\Love;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Core\Exception\CardException;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of Adultery

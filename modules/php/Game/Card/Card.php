@@ -1,11 +1,11 @@
 <?php
 
-namespace SmileLife\Game\Card;
+namespace SmileLife\Card;
 
 use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
-use SmileLife\Game\Card\Core\CardLocation;
+use SmileLife\Card\Core\CardLocation;
 
 /**
  * Description of Card

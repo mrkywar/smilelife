@@ -1,10 +1,10 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Reward;
+namespace SmileLife\Card\Category\Reward;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Category\Job\Job\Bandit;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of FreedomMedal

@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Table;
+namespace SmileLife\Table;
 
 use Exception;
 

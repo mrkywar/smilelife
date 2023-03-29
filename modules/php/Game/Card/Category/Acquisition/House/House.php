@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Acquisition\House;
+namespace SmileLife\Card\Category\Acquisition\House;
 
-use SmileLife\Game\Card\Category\Acquisition\Acquisition;
+use SmileLife\Card\Category\Acquisition\Acquisition;
 
 /**
  * Description of House

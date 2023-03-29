@@ -1,11 +1,11 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job;
+namespace SmileLife\Card\Category\Job;
 
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\Category\Job\Interim\Interim;
-use SmileLife\Game\Card\Category\Job\Official\Official;
-use SmileLife\Game\Card\Core\Exception\CardException;
+use SmileLife\Card\Card;
+use SmileLife\Card\Category\Job\Interim\Interim;
+use SmileLife\Card\Category\Job\Official\Official;
+use SmileLife\Card\Core\Exception\CardException;
 
 /**
  * Description of Job

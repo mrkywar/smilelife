@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game;
 
 use Core\Managers\Core\SuperManager;
 use Core\Serializers\Serializer;

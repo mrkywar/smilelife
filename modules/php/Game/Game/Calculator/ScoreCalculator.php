@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Game\Calculator;
+namespace SmileLife\Game\Calculator;
 
-use SmileLife\Game\Card\Card;
+use SmileLife\Card\Card;
 
 /**
  * Description of ScoreCalculator

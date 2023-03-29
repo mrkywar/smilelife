@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Pet;
+namespace SmileLife\Card\Category\Pet;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of RabbitPet

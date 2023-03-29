@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Game\DataRetriver;
+namespace SmileLife\Game\DataRetriver;
 
 use Exception;
 

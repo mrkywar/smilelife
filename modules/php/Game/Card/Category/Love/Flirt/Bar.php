@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Love\Flirt;
+namespace SmileLife\Card\Category\Love\Flirt;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of BarFlirt

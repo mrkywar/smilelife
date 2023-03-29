@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job\Official;
+namespace SmileLife\Card\Category\Job\Official;
 
-use SmileLife\Game\Card\Category\Job\Job;
+use SmileLife\Card\Category\Job\Job;
 
 /**
  * Description of Offical

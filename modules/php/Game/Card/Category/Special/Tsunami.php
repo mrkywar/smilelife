@@ -1,11 +1,11 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Special;
+namespace SmileLife\Card\Category\Special;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Core\Exception\CardException;
-use SmileLife\Game\Card\Effect\Effect;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Effect\Effect;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of Tsunami

@@ -1,13 +1,13 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Reward;
+namespace SmileLife\Card\Category\Reward;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Category\Job\Job\Journalist;
-use SmileLife\Game\Card\Category\Job\Job\Researcher;
-use SmileLife\Game\Card\Category\Job\Job\Writer;
-use SmileLife\Game\Card\Core\Exception\CardException;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Job\Job\Journalist;
+use SmileLife\Card\Category\Job\Job\Researcher;
+use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of NationalMedal

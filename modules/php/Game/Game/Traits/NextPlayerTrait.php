@@ -1,5 +1,5 @@
 <?php
-namespace SmileLife\Game\Game\Traits;
+namespace SmileLife\Game\Traits;
 
 /**
  *

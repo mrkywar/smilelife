@@ -1,12 +1,12 @@
 <?php
 
-namespace SmileLife\Game\Table;
+namespace SmileLife\Table;
 
 use Core\Decorator\DisplayModelDecorator;
 use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Card\CardManager;
-use SmileLife\Game\Card\Core\CardDecorator;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\Core\CardDecorator;
 
 /**
  * Description of PlayerTableDecorator

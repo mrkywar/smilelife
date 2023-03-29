@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Attack;
+namespace SmileLife\Card\Category\Attack;
 
-use SmileLife\Game\Card\Card;
+use SmileLife\Card\Card;
 
 /**
  * Description of Attack

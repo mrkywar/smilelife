@@ -1,8 +1,8 @@
 <?php
-namespace SmileLife\Game\PlayerAction;
+namespace SmileLife\PlayerAction;
 
-use SmileLife\Game\Card\Core\CardDecorator;
-use SmileLife\Game\Card\Core\CardLocation;
+use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Core\CardLocation;
 
 /**
  *

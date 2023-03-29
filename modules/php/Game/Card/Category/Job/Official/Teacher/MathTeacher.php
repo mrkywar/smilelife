@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job\Official\Teacher;
+namespace SmileLife\Card\Category\Job\Official\Teacher;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of MathTeacher

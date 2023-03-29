@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card\Core;
+namespace SmileLife\Card\Core;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;

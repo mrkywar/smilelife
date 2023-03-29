@@ -1,15 +1,15 @@
 <?php
 
-namespace SmileLife\Game\Game\DataRetriver;
+namespace SmileLife\Game\DataRetriver;
 
 use Core\Managers\PlayerManager;
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\CardManager;
-use SmileLife\Game\Card\Core\CardDecorator;
-use SmileLife\Game\PlayerAttributes\PlayerAttributesDecorator;
-use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
-use SmileLife\Game\Table\PlayerTableDecorator;
-use SmileLife\Game\Table\PlayerTableManager;
+use SmileLife\Card\Card;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\Core\CardDecorator;
+use SmileLife\PlayerAttributes\PlayerAttributesDecorator;
+use SmileLife\PlayerAttributes\PlayerAttributesManager;
+use SmileLife\Table\PlayerTableDecorator;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of DataRetriver
