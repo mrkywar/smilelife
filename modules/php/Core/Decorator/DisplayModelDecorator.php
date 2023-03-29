@@ -31,7 +31,7 @@ abstract class DisplayModelDecorator {
                 }
                 return $results;
             } else {
-                throw new GameDataRetriverException("Unsupported Arg " . get_class($item));
+                throw new DisplayModelDecoratorException("Unsupported Arg " . get_class($item));
             }
         }
     }
