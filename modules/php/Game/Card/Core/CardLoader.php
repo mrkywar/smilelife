@@ -18,6 +18,14 @@ abstract class CardLoader {
         $namespace = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), self::CARD_BASEPATH) + strlen(self::CARD_BASEPATH));
         $namespace .= "";
 
+        foreach (self::getFilesList($namespace) as $file) {
+            require_once ($file->getPathname());
+        }
+    }
+
+    static public function getFilesList($namespace) {
+        $files = [];
+
         $dir_iterator = new RecursiveDirectoryIterator(dirname($namespace));
         $iterator = new RecursiveIteratorIterator($dir_iterator);
         foreach ($iterator as $file) {
@@ -25,8 +33,10 @@ abstract class CardLoader {
                 // Ignore any folders, this folder and parent folder
                 continue;
             }
-            require_once ($file->getPathname());
+            $files[] = $file;
         }
+        return $files;
+        ;
     }
 
 }
