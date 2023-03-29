@@ -3,7 +3,6 @@ namespace Core\Decorator;
 
 use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Game\GameDataRetriverException;
 /**
  * Description of DisplayModelDecorator
  *

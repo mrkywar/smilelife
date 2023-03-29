@@ -5,7 +5,7 @@ namespace SmileLife\Game\Table;
 use Exception;
 
 /**
- * Description of GameDataRetriverException
+ * Description of PlayerTableException
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */

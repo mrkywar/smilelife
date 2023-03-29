@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game\Game\Initializer;
 
 use SmileLife\Game\Card\Card;
 use SmileLife\Game\Card\Core\CardLocation;

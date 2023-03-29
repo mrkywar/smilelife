@@ -3,9 +3,10 @@
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\Core\CardManager;
-use SmileLife\Game\Game\GameDataRetriver;
-use SmileLife\Game\Game\GameInitializer;
+use SmileLife\Game\Game\DataRetriver\DataRetriver;
+use SmileLife\Game\Game\Initializer\GameInitializer;
 use SmileLife\Game\Game\GameProgressionRetriver;
+use SmileLife\Game\Game\Initializer\TestGameInitializer;
 use SmileLife\Game\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Game\Traits\ZombieTrait;
 use SmileLife\Game\PlayerAction\DrawTrait;
@@ -109,9 +110,9 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Game\TestGameInitializer();
+        $this->gameInitializer = new TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
-        $this->dataRetriver = new GameDataRetriver();
+        $this->dataRetriver = new DataRetriver();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();

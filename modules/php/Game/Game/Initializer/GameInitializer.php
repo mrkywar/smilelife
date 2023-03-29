@@ -1,10 +1,12 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game\Game\Initializer;
 
 use Core\DB\QueryString;
 use Core\Managers\PlayerManager;
 use SmileLife\Game\Card\CardManager;
+use SmileLife\Game\Game\GameManager;
+use SmileLife\Game\Game\ScoreComputer;
 use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Game\Table\PlayerTableManager;
 
