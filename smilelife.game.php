@@ -15,7 +15,6 @@ use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\Table\PlayerTableManager;
 
-
 /**
  * ------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
@@ -35,17 +34,18 @@ use SmileLife\Table\PlayerTableManager;
 $swdNamespaceAutoload = function ($class) {
     $classParts = explode('\\', $class);
 
-    if ($classParts[0] == 'SmileLife') {
-        array_shift($classParts);
+    $firstPart = array_shift($classParts);
+
+    if ($firstPart == 'SmileLife') {
+
         //var_dump(dirname(__FILE__) . '/modules/php/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php');die;
-        $file = dirname(__FILE__) . '/modules/php/Game/ ' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
+        $file = dirname(__FILE__) . '/modules/php/Game/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
         if (file_exists($file)) {
             require_once $file;
         } else {
-            var_dump("Impossible to load SmileLife class : $class");
+            var_dump("Impossible to load SmileLife class : $class as $file");
         }
-    } elseif ($classParts[0] == 'Core') {
-        array_shift($classParts);
+    } elseif ($firstPart == 'Core') {
 
         //var_dump(dirname(__FILE__) . '/modules/php/Core/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php');die;
         $file = dirname(__FILE__) . '/modules/php/Core/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
@@ -149,7 +149,6 @@ class SmileLife extends Table {
 
         Logger::log("Player", "First Player " . $firstPlayer);
 
-
         /*         * ********** End of the game initialization **** */
     }
 
@@ -188,11 +187,11 @@ class SmileLife extends Table {
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
-
     //-- Traits for Initial Player choices (Resign, Draw) 
     use ResignTrait;
     use DrawTrait;
-    //-- Traits for Player action (Play, Pass) 
+
+//-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;
     use PassTrait;
 
