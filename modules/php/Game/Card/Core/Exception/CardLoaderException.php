@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card\Core\Exception;
+namespace SmileLife\Card\Core\Exception;
 
 use Exception;
 /**

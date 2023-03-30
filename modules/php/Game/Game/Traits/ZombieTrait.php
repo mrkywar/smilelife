@@ -1,5 +1,5 @@
 <?php
-namespace SmileLife\Game\GameTrait;
+namespace SmileLife\Game\Traits;
 /**
  * Description of ZombieTrait
  *

@@ -1,12 +1,14 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game\Initializer;
 
 use Core\DB\QueryString;
 use Core\Managers\PlayerManager;
-use SmileLife\Game\Card\CardManager;
-use SmileLife\Game\PlayerAttributes\PlayerAttributesManager;
-use SmileLife\Game\Table\PlayerTableManager;
+use SmileLife\Card\CardManager;
+use SmileLife\Game\Calculator\ScoreCalculator;
+use SmileLife\Game\GameManager;
+use SmileLife\PlayerAttributes\PlayerAttributesManager;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of GameInitializer
@@ -47,15 +49,15 @@ class GameInitializer {
 
     /**
      * 
-     * @var ScoreComputer
+     * @var ScoreCalculator
      */
-    private $scoreComputer;
+    private $scoreCalculator;
 
     public function __construct() {
         $this->gameManager = new GameManager();
         $this->cardManager = new CardManager();
         $this->playerManager = new PlayerManager();
-        $this->scoreComputer = new ScoreComputer();
+        $this->scoreCalculator = new ScoreCalculator();
         $this->playerTableManager = new PlayerTableManager();
         $this->playerAttributesManager = new PlayerAttributesManager();
     }
@@ -75,7 +77,7 @@ class GameInitializer {
 
         foreach ($oPlayers as $player) {
             $cardsInHand = $this->cardManager->getPlayerCards($player);
-            $scores[$player->getId()] = $this->scoreComputer->compute($cardsInHand);
+            $scores[$player->getId()] = $this->scoreCalculator->compute($cardsInHand);
         }
         
         arsort($scores);

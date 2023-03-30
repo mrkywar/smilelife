@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card\Module;
+namespace SmileLife\Card\Module;
 
 /**
  *

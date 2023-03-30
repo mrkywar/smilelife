@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card;
+namespace SmileLife\Card;
 
 /**
  * Description of CardType

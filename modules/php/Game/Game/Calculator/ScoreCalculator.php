@@ -1,15 +1,15 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game\Calculator;
 
-use SmileLife\Game\Card\Card;
+use SmileLife\Card\Card;
 
 /**
- * Description of ScoreComputer
+ * Description of ScoreCalculator
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class ScoreComputer {
+class ScoreCalculator {
 
     public function compute($cards): int {
         if ($cards instanceof Card) {

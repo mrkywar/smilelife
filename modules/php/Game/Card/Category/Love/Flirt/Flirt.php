@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Love\Flirt;
+namespace SmileLife\Card\Category\Love\Flirt;
 
-use SmileLife\Game\Card\Category\Love\Love;
-use SmileLife\Game\Card\Core\Exception\CardException;
+use SmileLife\Card\Category\Love\Love;
+use SmileLife\Card\Core\Exception\CardException;
 
 /**
  * Description of Flirt

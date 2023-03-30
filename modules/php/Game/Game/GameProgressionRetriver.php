@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Game;
+namespace SmileLife\Game;
 
-use SmileLife\Game\Card\CardManager;
+use SmileLife\Card\CardManager;
 
 /**
  * Description of GameProgressionRetriver

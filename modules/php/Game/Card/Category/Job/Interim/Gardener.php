@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job\Interim;
+namespace SmileLife\Card\Category\Job\Interim;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of Plumber

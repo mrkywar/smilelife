@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Card\Effect;
+namespace SmileLife\Card\Effect;
 
 /**
  *

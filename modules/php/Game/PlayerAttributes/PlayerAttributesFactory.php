@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\PlayerAttributes;
+namespace SmileLife\PlayerAttributes;
 
 use Core\Models\Player;
 

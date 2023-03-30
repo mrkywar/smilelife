@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job\Interim;
+namespace SmileLife\Card\Category\Job\Interim;
 
-use SmileLife\Game\Card\Category\Job\Job;
+use SmileLife\Card\Category\Job\Job;
 
 /**
  * Description of Interim

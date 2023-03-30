@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Reward;
+namespace SmileLife\Card\Category\Reward;
 
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\Core\Exception\CardException;
+use SmileLife\Card\Card;
+use SmileLife\Card\Core\Exception\CardException;
 
 /**
  * Description of Reward

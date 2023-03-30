@@ -2,17 +2,18 @@
 
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
-use SmileLife\Game\Card\Core\CardManager;
-use SmileLife\Game\Game\GameDataRetriver;
-use SmileLife\Game\Game\GameInitializer;
-use SmileLife\Game\Game\GameProgressionRetriver;
-use SmileLife\Game\GameTrait\NextPlayerTrait;
-use SmileLife\Game\GameTrait\ZombieTrait;
-use SmileLife\Game\PlayerAction\DrawTrait;
-use SmileLife\Game\PlayerAction\PassTrait;
-use SmileLife\Game\PlayerAction\PlayCardTrait;
-use SmileLife\Game\PlayerAction\ResignTrait;
-use SmileLife\Game\Table\PlayerTableManager;
+use SmileLife\Card\CardManager;
+use SmileLife\Game\DataRetriver\DataRetriver;
+use SmileLife\Game\GameProgressionRetriver;
+use SmileLife\Game\Initializer\GameInitializer;
+use SmileLife\Game\Initializer\TestGameInitializer;
+use SmileLife\Game\Traits\NextPlayerTrait;
+use SmileLife\Game\Traits\ZombieTrait;
+use SmileLife\PlayerAction\DrawTrait;
+use SmileLife\PlayerAction\PassTrait;
+use SmileLife\PlayerAction\PlayCardTrait;
+use SmileLife\PlayerAction\ResignTrait;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * ------
@@ -33,17 +34,18 @@ use SmileLife\Game\Table\PlayerTableManager;
 $swdNamespaceAutoload = function ($class) {
     $classParts = explode('\\', $class);
 
-    if ($classParts[0] == 'SmileLife') {
-        array_shift($classParts);
+    $firstPart = array_shift($classParts);
+
+    if ($firstPart == 'SmileLife') {
+
         //var_dump(dirname(__FILE__) . '/modules/php/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php');die;
-        $file = dirname(__FILE__) . '/modules/php/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
+        $file = dirname(__FILE__) . '/modules/php/Game/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
         if (file_exists($file)) {
             require_once $file;
         } else {
-            var_dump("Impossible to load SmileLife class : $class");
+            var_dump("Impossible to load SmileLife class : $class as $file");
         }
-    } elseif ($classParts[0] == 'Core') {
-        array_shift($classParts);
+    } elseif ($firstPart == 'Core') {
 
         //var_dump(dirname(__FILE__) . '/modules/php/Core/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php');die;
         $file = dirname(__FILE__) . '/modules/php/Core/' . implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
@@ -109,9 +111,9 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Game\TestGameInitializer();
+        $this->gameInitializer = new TestGameInitializer();
         $this->gameProgressionRetriver = new GameProgressionRetriver();
-        $this->dataRetriver = new GameDataRetriver();
+        $this->dataRetriver = new DataRetriver();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
@@ -146,7 +148,6 @@ class SmileLife extends Table {
         $this->gamestate->changeActivePlayer($firstPlayer);
 
         Logger::log("Player", "First Player " . $firstPlayer);
-
 
         /*         * ********** End of the game initialization **** */
     }
@@ -186,11 +187,11 @@ class SmileLife extends Table {
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
-
     //-- Traits for Initial Player choices (Resign, Draw) 
     use ResignTrait;
     use DrawTrait;
-    //-- Traits for Player action (Play, Pass) 
+
+//-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;
     use PassTrait;
 

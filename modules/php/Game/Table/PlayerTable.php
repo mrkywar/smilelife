@@ -1,24 +1,24 @@
 <?php
 
-namespace SmileLife\Game\Table;
+namespace SmileLife\Table;
 
 use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\CardManager;
-use SmileLife\Game\Card\Category\Acquisition\Acquisition;
-use SmileLife\Game\Card\Category\Attack\Attack;
-use SmileLife\Game\Card\Category\Child\Child;
-use SmileLife\Game\Card\Category\Job\Job;
-use SmileLife\Game\Card\Category\Love\Adultery;
-use SmileLife\Game\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Game\Card\Category\Love\Wedding\Wedding;
-use SmileLife\Game\Card\Category\Pet\Pet;
-use SmileLife\Game\Card\Category\Reward\Reward;
-use SmileLife\Game\Card\Category\Special\Special;
-use SmileLife\Game\Card\Category\Studies\Studies;
-use SmileLife\Game\Card\Category\Wage\Wage;
+use SmileLife\Card\Card;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Acquisition\Acquisition;
+use SmileLife\Card\Category\Attack\Attack;
+use SmileLife\Card\Category\Child\Child;
+use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Category\Love\Adultery;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Category\Love\Wedding\Wedding;
+use SmileLife\Card\Category\Pet\Pet;
+use SmileLife\Card\Category\Reward\Reward;
+use SmileLife\Card\Category\Special\Special;
+use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Category\Wage\Wage;
 
 
 /**

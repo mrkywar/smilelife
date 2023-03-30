@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Acquisition\Travel;
+namespace SmileLife\Card\Category\Acquisition\Travel;
 
-use SmileLife\Game\Card\Category\Acquisition\Acquisition;
+use SmileLife\Card\Category\Acquisition\Acquisition;
 
 /**
  * Description of Travel

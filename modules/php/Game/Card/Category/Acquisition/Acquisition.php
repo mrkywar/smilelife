@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Acquisition;
+namespace SmileLife\Card\Category\Acquisition;
 
-use SmileLife\Game\Card\Card;
-use SmileLife\Game\Card\Core\Exception\CardException;
+use SmileLife\Card\Card;
+use SmileLife\Card\Core\Exception\CardException;
 
 /**
  * Description of Acquisition

@@ -1,9 +1,9 @@
 <?php
-namespace SmileLife\Game\PlayerAction;
+namespace SmileLife\PlayerAction;
 
-use SmileLife\Game\Card\Core\CardDecorator;
-use SmileLife\Game\Card\Core\CardSerializer;
-use SmileLife\Game\Table\PlayerTableDecorator;
+use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Core\CardSerializer;
+use SmileLife\Table\PlayerTableDecorator;
 
 /**
  *

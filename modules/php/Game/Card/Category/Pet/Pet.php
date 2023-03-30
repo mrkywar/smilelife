@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Pet;
+namespace SmileLife\Card\Category\Pet;
 
-use SmileLife\Game\Card\Card;
+use SmileLife\Card\Card;
 
 /**
  * Description of Pet

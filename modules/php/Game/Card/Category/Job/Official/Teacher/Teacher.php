@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Job\Official\Teacher;
+namespace SmileLife\Card\Category\Job\Official\Teacher;
 
-use SmileLife\Game\Card\Category\Job\Official\Official;
+use SmileLife\Card\Category\Job\Official\Official;
 
 /**
  *

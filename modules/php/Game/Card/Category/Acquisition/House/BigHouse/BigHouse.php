@@ -1,10 +1,10 @@
 <?php
 
-namespace SmileLife\Game\Card\Category\Acquisition\House\BigHouse;
+namespace SmileLife\Card\Category\Acquisition\House\BigHouse;
 
-use SmileLife\Game\Card\CardType;
-use SmileLife\Game\Card\Category\Acquisition\House\House;
-use SmileLife\Game\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Acquisition\House\House;
+use SmileLife\Card\Module\BaseGame;
 
 /**
  * Description of BigHouse

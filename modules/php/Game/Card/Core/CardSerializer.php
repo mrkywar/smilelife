@@ -1,10 +1,10 @@
 <?php
 
-namespace SmileLife\Game\Card\Core;
+namespace SmileLife\Card\Core;
 
 use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
-use SmileLife\Game\Card\Card;
+use SmileLife\Card\Card;
 
 /**
  * Description of CardSerializer

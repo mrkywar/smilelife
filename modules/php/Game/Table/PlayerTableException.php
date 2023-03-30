@@ -1,11 +1,11 @@
 <?php
 
-namespace SmileLife\Game\Table;
+namespace SmileLife\Table;
 
 use Exception;
 
 /**
- * Description of GameDataRetriverException
+ * Description of PlayerTableException
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
