@@ -12,6 +12,19 @@ use SmileLife\Table\PlayerTableDecorator;
 trait PassTrait {
 
     public function actionDiscardAndPass($cardId) {
+        $player = $this->playerManager->findOne([
+            "id" => self::getCurrentPlayerId()
+        ]);
+        $card = $this->cardManager->findBy([
+            "id" => $cardId
+        ]);
+
+        $request = new PassRequest();
+        $request->send($player, $card);
+        
+        die('KO');
+        
+        
         $playerId = self::getCurrentPlayerId();
         $tableDecorator = new PlayerTableDecorator();
         $cardDecorator = new CardDecorator(new CardSerializer());
@@ -21,18 +34,20 @@ trait PassTrait {
         ]);
         $card = $this->cardManager->findBy([
             "id" => $cardId
-        ]);        
+        ]);
         $this->cardManager->discardCard($card, $player);
-        
+
         self::notifyAllPlayers('passNotification', clienttranslate('${player_name} pass and discard ${cardName}'), [
             'playerId' => $playerId,
             'player_name' => $player->getName(),
             'card' => $cardDecorator->decorate($card),
             'cardName' => $card->getTitle(),
+            'effects' => [
+                (array) new DiscardCardEffect($player, $card)
+            ]
         ]);
-        
+
         $this->gamestate->nextState("playPass");
-        
     }
 
 }

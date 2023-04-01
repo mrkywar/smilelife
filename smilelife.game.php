@@ -1,5 +1,6 @@
 <?php
 
+use Core\Event\EventDispatcher\EventDispatcher;
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
 use SmileLife\Card\CardManager;
@@ -77,13 +78,13 @@ class SmileLife extends Table {
 
     /**
      * 
-     * @var GameProgressionRetriver
+     * @var ProgressionRetriver
      */
-    private $gameProgressionRetriver;
+    private $progressionRetriver;
 
     /**
      * 
-     * @var GameDateRetriver
+     * @var DateRetriver
      */
     private $dataRetriver;
 
@@ -104,6 +105,11 @@ class SmileLife extends Table {
      * @var PlayerManager
      */
     private $playerManager;
+    
+    /**
+     * EventDispatcher
+     */
+    private $eventDispatcher;
 
     function __construct() {
         parent::__construct();
@@ -118,6 +124,8 @@ class SmileLife extends Table {
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
+        
+        $this->eventDispatcher = new EventDispatcher();
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -181,7 +189,7 @@ class SmileLife extends Table {
      */
 
     function getGameProgression() {
-        return $this->gameProgressionRetriver->retrive();
+        return $this->progressionRetriver->retrive();
     }
 
 //////////////////////////////////////////////////////////////////////////////
