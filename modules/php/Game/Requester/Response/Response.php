@@ -7,8 +7,6 @@ namespace SmileLife\Requester\Response;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Response extends ParamsContainer{
-    private $request;
-    
-    
+class Response extends ParamsContainer {
+
 }
