@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Requester\Request;
+namespace Core\Requester\Request;
 
-use SmileLife\Requester\Response\ParamsContainer;
+use Core\Requester\Response\ParamsContainer;
 
 /**
  * Description of Request

@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Requester\Response;
+namespace Core\Requester\Response;
 
 /**
  * Description of Response
@@ -9,4 +9,6 @@ namespace SmileLife\Requester\Response;
  */
 class Response extends ParamsContainer {
 
+    
 }
+    

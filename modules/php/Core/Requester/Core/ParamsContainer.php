@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Requester\Response;
+namespace Core\Requester\Response;
 
 /**
  * Description of ParamsContainer

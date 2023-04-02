@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Requester\Request;
+namespace Core\Requester\Request;
 
 /**
  * Description of PlayCardRequest
