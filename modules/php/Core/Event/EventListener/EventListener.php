@@ -11,6 +11,8 @@ abstract class EventListener {
 
     private $method;
 
+    abstract public function eventName(): string;
+
     public function getMethod() {
         return $this->method;
     }
@@ -21,7 +23,11 @@ abstract class EventListener {
     }
 
     public function onEvent($object) {
-        throw new EventListenerException("No method defined for " . get_class($this) . " you can overwrite onEvent method");
+        if (null === $this->getMethod()) {
+            throw new EventListenerException("No method defined for " . get_class($this) . " you can overwrite onEvent method");
+        } else {
+            $this->{$this->getMethod()}($object);
+        }
     }
 
 }

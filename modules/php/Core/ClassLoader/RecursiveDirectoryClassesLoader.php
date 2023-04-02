@@ -20,7 +20,7 @@ abstract class RecursiveDirectoryClassesLoader {
         }
     }
 
-    protected function getFilesList($namespace) {
+    public function getFilesList($namespace) {
         $files = [];
 
         $dir_iterator = new RecursiveDirectoryIterator($namespace);
@@ -33,7 +33,6 @@ abstract class RecursiveDirectoryClassesLoader {
             $files[] = $file;
         }
         return $files;
-        ;
     }
 
 }
