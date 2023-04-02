@@ -2,6 +2,9 @@
 
 namespace Core\ClassLoader;
 
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+
 /**
  * Description of RecursiveDirectoryClassesLoader
  *
@@ -9,7 +12,7 @@ namespace Core\ClassLoader;
  */
 abstract class RecursiveDirectoryClassesLoader {
 
-    abstract public function getNamespace(): string;
+    abstract protected function getNamespace(): string;
 
     public function load() {
         foreach (self::getFilesList($this->getNamespace()) as $file) {

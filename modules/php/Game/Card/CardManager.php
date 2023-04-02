@@ -49,7 +49,9 @@ class CardManager extends SuperManager {
     public function __construct() {
         //parent::__construct();
         $this->setUseSerializerClass(true);
-        CardLoader::load();
+
+        $cardLoader = new CardLoader();
+        $cardLoader->load();
     }
 
     /* -------------------------------------------------------------------------
