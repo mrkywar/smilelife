@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Requester\Response;
+namespace Core\Requester\Core;
 
 /**
  * Description of ParamsContainer

@@ -2,7 +2,10 @@
 
 namespace SmileLife\Game;
 
+use Core\Event\EventListener\EventListener;
 use Core\Requester\Requester;
+use ReflectionClass;
+use SmileLife\GameListener\ListenerLoader;
 
 /**
  * Description of SmileLifeRequester
@@ -10,12 +13,31 @@ use Core\Requester\Requester;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class SmileLifeRequester extends Requester {
+    
+    
 
     public function __construct() {
-        $loader = new GameListener\ListenerLoader();
+        $loader = new ListenerLoader();
+        $files = $loader->load();
+        
+        $listenersToRegister = $this->retriveClasses();
+        
+    }
+    
+    
+    private function retriveClasses() {
 
-        $files = $loader->getFilesList();
-        var_dump($files);die;
+        $firltredClasses = [];
+        $declaredClasses = get_declared_classes();
+
+        foreach ($declaredClasses as $class) {
+            $reflexion = new ReflectionClass($class);
+            if ($reflexion->isSubclassOf(EventListener::class)) {
+                $firltredClasses[] = $class;
+            }
+        }
+
+        return $firltredClasses;
     }
 
 }

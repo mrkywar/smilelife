@@ -7,17 +7,15 @@ namespace Core\Event\EventListener;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class EventListener {
+abstract class EventListener implements EventListenerInterface{
 
     private $method;
 
-    abstract public function eventName(): string;
-
-    public function getMethod() {
+    public function getMethod(): string {
         return $this->method;
     }
 
-    public function setMethod($method) {
+    public function setMethod($method): EventListenerInterface {
         $this->method = $method;
         return $this;
     }

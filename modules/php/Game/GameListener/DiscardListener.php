@@ -26,4 +26,8 @@ class DiscardListener extends EventListener {
         return self::DISCRARD_EVENT;
     }
 
+    public function getPriority(): int {
+        return 1;
+    }
+
 }

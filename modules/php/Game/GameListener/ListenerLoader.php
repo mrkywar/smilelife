@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\GameListener;
+namespace SmileLife\GameListener;
 
 use Core\ClassLoader\RecursiveDirectoryClassesLoader;
 

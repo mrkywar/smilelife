@@ -2,6 +2,8 @@
 
 namespace Core\Requester\Response;
 
+use Core\Requester\Core\ParamsContainer;
+
 /**
  * Description of Response
  *
