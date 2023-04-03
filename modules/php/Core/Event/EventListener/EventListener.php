@@ -7,7 +7,7 @@ namespace Core\Event\EventListener;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class EventListener implements EventListenerInterface{
+abstract class EventListener implements EventListenerInterface {
 
     private $method;
 
@@ -20,11 +20,11 @@ abstract class EventListener implements EventListenerInterface{
         return $this;
     }
 
-    public function onEvent($object) {
+    public function onEvent(...$args) {
         if (null === $this->getMethod()) {
             throw new EventListenerException("No method defined for " . get_class($this) . " you can overwrite onEvent method");
         } else {
-            $this->{$this->getMethod()}($object);
+            $this->{$this->getMethod()}($args);
         }
     }
 

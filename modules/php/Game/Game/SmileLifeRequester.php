@@ -26,9 +26,6 @@ class SmileLifeRequester extends Requester {
             $this->addListener($listener->eventName(), $listener);
         }
         
-        echo "<pre>";
-        var_dump($this->getListeners());die;
-        
     }
     
     

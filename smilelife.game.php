@@ -126,7 +126,7 @@ class SmileLife extends Table {
 
 //        $this->gameInitializer = new GameInitializer();
         $this->gameInitializer = new TestGameInitializer();
-        $this->gameProgressionRetriver = new GameProgressionRetriver();
+        $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();

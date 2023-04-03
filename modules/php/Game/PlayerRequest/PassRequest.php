@@ -26,21 +26,22 @@ class PassRequest {
      */
     private $card;
 
-    /**
-     * @var EventDispatcher
-     */
-    private $eventDispatcher;
-
-    public function __construct() {
-        $this->eventDispatcher = new EventDispatcher();
-        $this->eventDispatcher->addListener("discard", new DiscardListener());
+    public function getPlayer(): Player {
+        return $this->player;
     }
 
-    public function send(Player $player, Card $card) {
+    public function getCard(): Card {
+        return $this->card;
+    }
+
+    public function setPlayer(Player $player): void {
         $this->player = $player;
-        $this->card = $card;
-        
-        $this->eventDispatcher->dispatch("discard", $this);
     }
+
+    public function setCard(Card $card): void {
+        $this->card = $card;
+    }
+
+
 
 }
