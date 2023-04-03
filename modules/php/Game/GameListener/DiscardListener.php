@@ -17,6 +17,7 @@ class DiscardListener extends EventListener {
     }
 
     public function onDiscard($param) {
+        echo '<pre>??';
         var_dump($param);
         die("OK");
     }
