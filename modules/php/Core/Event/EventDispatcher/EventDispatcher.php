@@ -18,18 +18,6 @@ class EventDispatcher {
      */
     private $listeners;
 
-    public function __construct($servicesPath=null) {
-        $this->listeners = [];
-        
-        if(null === $servicesPath){
-            $servicesPath = 'modules/service.yaml';
-        }
-        
-        $serviceParser = new ServicesParser();
-        $listeners = $serviceParser->parse($servicesPath);
-        
-    }
-
     public function dispatch(string $name, $object) {
         if (!isset($this->listeners[$name]) || empty(($this->listeners[$name]))) {
             throw new EventDispatcherException("No listener registered for $name");

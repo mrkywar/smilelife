@@ -9,13 +9,7 @@ namespace Core\Requester;
  */
 abstract class Requester {
 
-    private $request;
-    /**
-     * 
-     * @var array<EventListener>
-     */
-    private $listeners;
-    
+   
     
     
 

@@ -20,7 +20,10 @@ abstract class RecursiveDirectoryClassesLoader {
         }
     }
 
-    public function getFilesList($namespace) {
+    public function getFilesList($namespace = null) {
+        if(null === $namespace){
+            $namespace = $this->getNamespace();
+        }
         $files = [];
 
         $dir_iterator = new RecursiveDirectoryIterator($namespace);
