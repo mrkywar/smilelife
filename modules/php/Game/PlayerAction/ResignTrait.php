@@ -1,4 +1,5 @@
 <?php
+
 namespace SmileLife\PlayerAction;
 
 use SmileLife\Game\Request\ResignRequest;
@@ -11,11 +12,14 @@ trait ResignTrait {
 
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
+
+        $player = $this->playerManager->findOne([
+            "id" => $playerId
+        ]);
         $request = new ResignRequest($player);
-        
+
         $this->requester->send($request);
-        
-        
+
 //        $playerId = self::getCurrentPlayerId();
 //        $tableDecorator = new PlayerTableDecorator();
 //        $cardDecorator = new CardDecorator(new CardSerializer());

@@ -4,6 +4,7 @@ namespace SmileLife\Game\Request;
 
 use Core\Models\Player;
 use Core\Requester\Request\Request;
+use SmileLife\PlayerAction\ActionType;
 
 /**
  * Description of ResignRequest
@@ -20,6 +21,10 @@ class ResignRequest extends Request {
 
     public function getPlayer(): Player {
         return $this->get("player");
+    }
+
+    public function getType(): string {
+        return ActionType::ACTION_DISCRARD;
     }
 
 }

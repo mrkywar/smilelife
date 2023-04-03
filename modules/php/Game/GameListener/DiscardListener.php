@@ -3,6 +3,7 @@
 namespace SmileLife\Game\GameListener;
 
 use Core\Event\EventListener\EventListener;
+use SmileLife\PlayerAction\ActionType;
 
 /**
  * Description of DiscardListener
@@ -10,8 +11,6 @@ use Core\Event\EventListener\EventListener;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class DiscardListener extends EventListener {
-
-    private const DISCRARD_EVENT = "discardCard";
 
     public function __construct() {
         $this->setMethod("onDiscard");
@@ -23,7 +22,7 @@ class DiscardListener extends EventListener {
     }
 
     public function eventName(): string {
-        return self::DISCRARD_EVENT;
+        return ActionType::ACTION_DISCRARD;
     }
 
     public function getPriority(): int {

@@ -9,13 +9,7 @@ use Core\Requester\Core\ParamsContainer;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Request extends ParamsContainer{
-
-    /**
-     * 
-     * @var string
-     */
-    private $type;
+abstract class Request extends ParamsContainer {
 
     /**
      * 
@@ -24,20 +18,8 @@ class Request extends ParamsContainer{
     private $params;
 
     public function __construct() {
-        $this->$params = [];
+        $this->params = [];
     }
 
-    
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Getters & Setters 
-     * ---------------------------------------------------------------------- */
-
-    public function getType(): string {
-        return $this->type;
-    }
-
-    public function setType(string $type): void {
-        $this->type = $type;
-    }
-
+    abstract public function getType(): string;
 }

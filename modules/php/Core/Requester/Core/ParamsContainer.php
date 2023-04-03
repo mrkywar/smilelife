@@ -16,7 +16,7 @@ class ParamsContainer {
     private $params;
 
     public function __construct() {
-        $this->$params = [];
+        $this->params = [];
     }
 
     /* -------------------------------------------------------------------------
@@ -29,7 +29,7 @@ class ParamsContainer {
                             . "overwride param value use set instead");
         }
 
-        $this->params[$name] = $param;
+        $this->params[$name] = $paramValue;
 
         return $this;
     }
@@ -41,7 +41,7 @@ class ParamsContainer {
      * @return $this
      */
     public function set($name, $paramValue) {
-        $this->params[$name] = $param;
+        $this->params[$name] = $paramValue;
 
         return $this;
     }
