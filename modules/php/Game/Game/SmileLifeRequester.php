@@ -21,12 +21,18 @@ class SmileLifeRequester extends Requester {
         $files = $loader->load();
         
         $listenersToRegister = $this->retriveClasses();
+        foreach ($listenersToRegister as $listenerClass) {
+            $listener = $this->generateListener($listenerClass);
+            $this->addListener($listener->eventName(), $listener);
+        }
+        
+        echo "<pre>";
+        var_dump($this->getListeners());die;
         
     }
     
     
     private function retriveClasses() {
-
         $firltredClasses = [];
         $declaredClasses = get_declared_classes();
 
@@ -38,6 +44,13 @@ class SmileLifeRequester extends Requester {
         }
 
         return $firltredClasses;
+    }
+    
+    
+    private function generateListener($listenerClass):EventListener{
+        $listener = new $listenerClass();
+        
+        return $listener;
     }
 
 }

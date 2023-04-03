@@ -23,21 +23,27 @@ class EventDispatcher {
             throw new EventDispatcherException("No listener registered for $name");
         }
 
-        foreach ($this->listeners[$name] as $prioritizedListeners) {
-            foreach ($prioritizedListeners as $listener) {
-                if (null === $listener->getMethod()) {
-                    $listener->onEvent($object);
-                } else {
-                    $listener->{$listener->getMethod()}($object);
-                }
+        foreach ($this->listeners[$name] as $listener) {
+            if (null === $listener->getMethod()) {
+                $listener->onEvent($object);
+            } else {
+                $listener->{$listener->getMethod()}($object);
             }
         }
     }
 
     public function addListener(string $eventName, EventListener $listener) {
-        $this->listeners[$eventName][$listener->getPriority()][] = $listener;
+        if (!isset($this->listeners[$eventName])) {
+            $this->listeners[$eventName] = [];
+        }
+
+        array_splice($this->listeners[$eventName], $listener->getPriority(), 0, $listener);
 
         return $this;
+    }
+
+    public function getListeners() {
+        return $this->listeners;
     }
 
 }
