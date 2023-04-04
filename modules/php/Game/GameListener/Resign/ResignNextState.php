@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\GameListener\Discard;
+namespace SmileLife\Game\GameListener\Resign;
 
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
@@ -9,18 +9,18 @@ use SmileLife\Game\Request\ResignRequest;
 use SmileLife\PlayerAction\ActionType;
 
 /**
- * Description of DiscardNextState
+ * Description of ResignNextState
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DiscardNextState extends EventListener {
+class ResignNextState extends EventListener {
 
     public function __construct() {
-        $this->setMethod("onDiscard");
+        $this->setMethod("onResign");
     }
 
     public function eventName(): string {
-        return ActionType::ACTION_DISCRARD;
+        return ActionType::ACTION_RESIGN;
     }
 
     public function getPriority(): int {
@@ -31,7 +31,7 @@ class DiscardNextState extends EventListener {
         return $response->get("job");
     }
 
-    public function onDiscard(ResignRequest &$request, Response &$response) {
+    public function onResign(ResignRequest &$request, Response &$response) {
         $job = $this->extractJob($response);
         if ($job->isTemporary()) {
             $response->set("nextState", "resignAndPlay");

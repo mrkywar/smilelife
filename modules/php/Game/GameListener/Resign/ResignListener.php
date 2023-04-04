@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\GameListener\Discard;
+namespace SmileLife\Game\GameListener\Resign;
 
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
@@ -10,11 +10,11 @@ use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
 
 /**
- * Description of DiscardListener
+ * Description of ResignListener
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DiscardListener extends EventListener {
+class ResignListener extends EventListener {
 
     /**
      * 
@@ -35,7 +35,7 @@ class DiscardListener extends EventListener {
     private $requestParams;
 
     public function __construct() {
-        $this->setMethod("onDiscard");
+        $this->setMethod("onResign");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
@@ -44,7 +44,7 @@ class DiscardListener extends EventListener {
 
   
 
-    public function onDiscard(ResignRequest &$request, Response &$response) {
+    public function onResign(ResignRequest &$request, Response &$response) {
         $player = $request->getPlayer();
         
         $table = $this->tableManager->findOneBy([
@@ -64,7 +64,7 @@ class DiscardListener extends EventListener {
     }
 
     public function eventName(): string {
-        return ActionType::ACTION_DISCRARD;
+        return ActionType::ACTION_RESIGN;
     }
 
     public function getPriority(): int {
