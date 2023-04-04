@@ -1,12 +1,17 @@
 <?php
 
+use Core\Event\EventDispatcher\EventDispatcher;
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
+use Core\Notification\Notification;
+use Core\Requester\Requester;
+use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Game\DataRetriver\DataRetriver;
 use SmileLife\Game\GameProgressionRetriver;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Game\Initializer\TestGameInitializer;
+use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\DrawTrait;
@@ -14,6 +19,7 @@ use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\Table\PlayerTableManager;
+
 
 /**
  * ------
@@ -77,13 +83,13 @@ class SmileLife extends Table {
 
     /**
      * 
-     * @var GameProgressionRetriver
+     * @var ProgressionRetriver
      */
-    private $gameProgressionRetriver;
+    private $progressionRetriver;
 
     /**
      * 
-     * @var GameDateRetriver
+     * @var DateRetriver
      */
     private $dataRetriver;
 
@@ -105,6 +111,17 @@ class SmileLife extends Table {
      */
     private $playerManager;
 
+    /**
+     * EventDispatcher
+     */
+    private $eventDispatcher;
+
+    /**
+     * 
+     * @var Requester
+     */
+    private $requester;
+
     function __construct() {
         parent::__construct();
 
@@ -112,12 +129,15 @@ class SmileLife extends Table {
 
 //        $this->gameInitializer = new GameInitializer();
         $this->gameInitializer = new TestGameInitializer();
-        $this->gameProgressionRetriver = new GameProgressionRetriver();
+        $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
+
+        $this->eventDispatcher = new EventDispatcher();
+        $this->requester = new SmileLifeRequester();
 
         self::initGameStateLabels(array(
                 //    "my_first_global_variable" => 10,
@@ -132,6 +152,10 @@ class SmileLife extends Table {
     protected function getGameName() {
         // Used for translations and stuff. Please do not modify.
         return "smilelife";
+    }
+
+    protected function retriveNotification(Response $response): Notification {
+        return $response->get('notification');
     }
 
     /*
@@ -181,7 +205,7 @@ class SmileLife extends Table {
      */
 
     function getGameProgression() {
-        return $this->gameProgressionRetriver->retrive();
+        return $this->progressionRetriver->retrive();
     }
 
 //////////////////////////////////////////////////////////////////////////////
