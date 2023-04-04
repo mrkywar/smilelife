@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\GameListener;
+namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
