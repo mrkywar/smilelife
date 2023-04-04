@@ -18,7 +18,7 @@ trait ResignTrait {
         ]);
         $request = new ResignRequest($player);
 
-        $this->requester->send($request);
+        $response = $this->requester->send($request);
 
 //        $playerId = self::getCurrentPlayerId();
 //        $tableDecorator = new PlayerTableDecorator();

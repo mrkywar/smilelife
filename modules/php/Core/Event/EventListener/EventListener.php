@@ -2,6 +2,9 @@
 
 namespace Core\Event\EventListener;
 
+use Core\Requester\Request\Request;
+use Core\Requester\Response\Response;
+
 /**
  * Description of EventListener
  *
@@ -20,11 +23,11 @@ abstract class EventListener implements EventListenerInterface {
         return $this;
     }
 
-    public function onEvent(...$args) {
+    public function onEvent(Request &$request, Response &$response) {
         if (null === $this->getMethod()) {
             throw new EventListenerException("No method defined for " . get_class($this) . " you can overwrite onEvent method");
         } else {
-            $this->{$this->getMethod()}($args);
+            $this->{$this->getMethod()}($request, $response);
         }
     }
 

@@ -3,7 +3,11 @@
 namespace SmileLife\Game\GameListener;
 
 use Core\Event\EventListener\EventListener;
+use Core\Requester\Response\Response;
+use SmileLife\Card\CardManager;
+use SmileLife\Game\Request\ResignRequest;
 use SmileLife\PlayerAction\ActionType;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of DiscardListener
@@ -12,14 +16,51 @@ use SmileLife\PlayerAction\ActionType;
  */
 class DiscardListener extends EventListener {
 
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    private $tableManager;
+
+    /**
+     * 
+     * @var array
+     */
+    private $requestParams;
+
     public function __construct() {
         $this->setMethod("onDiscard");
+
+        $this->cardManager = new CardManager();
+        $this->tableManager = new PlayerTableManager();
+        $this->requestParams = [];
     }
 
-    public function onDiscard($param) {
-        echo '<pre>??';
-        var_dump($param);
-        die("OK");
+  
+
+    public function onDiscard(ResignRequest &$request, Response &$response) {
+        $player = $request->getPlayer();
+        
+        $table = $this->tableManager->findOneBy([
+            "id" => $player->getId()
+        ]);
+
+        $job = $table->getJob();
+        $this->cardManager->discardCard($job, $player);
+        $table->setJobId(null);
+        
+        $response->add("playerTable", $table)
+                ->add("player", $player)
+                ->add("job", $job);
+
+        return $response;
+        
     }
 
     public function eventName(): string {

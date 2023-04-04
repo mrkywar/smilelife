@@ -3,7 +3,8 @@
 namespace Core\Event\EventDispatcher;
 
 use Core\Event\EventListener\EventListener;
-use Core\Event\ServicesParser;
+use Core\Requester\Request\Request;
+use Core\Requester\Response\Response;
 
 /**
  * Description of EventDispatcher
@@ -18,17 +19,17 @@ class EventDispatcher {
      */
     private $listeners;
 
-    public function dispatch(string $name, $object) {
+    public function dispatch(string $name, Request &$request, Response &$response) {
         if (!isset($this->listeners[$name]) || empty(($this->listeners[$name]))) {
             throw new EventDispatcherException("No listener registered for $name");
         }
 
         foreach ($this->listeners[$name] as $sortedListeners) {
-            foreach ($sortedListeners as $listener){
+            foreach ($sortedListeners as $listener) {
                 if (null === $listener->getMethod()) {
-                    $listener->onEvent($object);
+                    $listener->onEvent($request, $response);
                 } else {
-                    $listener->{$listener->getMethod()}($object);
+                    $listener->{$listener->getMethod()}($request, $response);
                 }
             }
         }
