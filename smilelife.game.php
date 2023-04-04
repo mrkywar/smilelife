@@ -3,7 +3,9 @@
 use Core\Event\EventDispatcher\EventDispatcher;
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
+use Core\Notification\Notification;
 use Core\Requester\Requester;
+use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Game\DataRetriver\DataRetriver;
 use SmileLife\Game\GameProgressionRetriver;
@@ -17,6 +19,7 @@ use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\Table\PlayerTableManager;
+
 
 /**
  * ------
@@ -112,7 +115,7 @@ class SmileLife extends Table {
      * EventDispatcher
      */
     private $eventDispatcher;
-    
+
     /**
      * 
      * @var Requester
@@ -149,6 +152,10 @@ class SmileLife extends Table {
     protected function getGameName() {
         // Used for translations and stuff. Please do not modify.
         return "smilelife";
+    }
+
+    protected function retriveNotification(Response $response): Notification {
+        return $response->get('notification');
     }
 
     /*

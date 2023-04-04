@@ -2,6 +2,8 @@
 
 namespace SmileLife\PlayerAction;
 
+use Core\Notification\Notification;
+use Core\Requester\Response\Response;
 use SmileLife\Game\Request\ResignRequest;
 
 /**
@@ -9,6 +11,8 @@ use SmileLife\Game\Request\ResignRequest;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 trait ResignTrait {
+
+    
 
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
@@ -19,6 +23,12 @@ trait ResignTrait {
         $request = new ResignRequest($player);
 
         $response = $this->requester->send($request);
+
+        $notification = $this->retriveNotification($response);
+
+        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
+        
+        
 
 //        $playerId = self::getCurrentPlayerId();
 //        $tableDecorator = new PlayerTableDecorator();
@@ -37,13 +47,6 @@ trait ResignTrait {
 //        $table->setJobId(null);
 //        $this->tableManager->updateTable($table);
 //
-//        self::notifyAllPlayers('resignNotification', clienttranslate('${player_name} resigns from the job of ${job}'), [
-//            'playerId' => $playerId,
-//            'player_name' => $player->getName(),
-//            'job' => $job->getTitle(),
-//            'table' => $tableDecorator->decorate($table),
-//            'card' => $cardDecorator->decorate($job),
-//        ]);
 //        
 //        
 //        if ($job->isTemporary()) {
