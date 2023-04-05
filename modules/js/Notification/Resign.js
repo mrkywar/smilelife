@@ -13,6 +13,10 @@ define([
 
                     var card = notif.args.card;
                     this.displayCard(card, "pile_discard", "pile_job_" + notif.args.playerId);
+                    
+                    if (parseInt(notif.args.playerId) === this.player_id) {
+                        this.myTable = notif.args.table;
+                    }
 
                     var _this = this;
                     setTimeout(function () {

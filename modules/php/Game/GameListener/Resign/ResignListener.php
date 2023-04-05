@@ -55,6 +55,8 @@ class ResignListener extends EventListener {
         $this->cardManager->discardCard($job, $player);
         $table->setJobId(null);
         
+        $this->tableManager->updateTable($table);
+        
         $response->add("playerTable", $table)
                 ->add("player", $player)
                 ->add("job", $job);
