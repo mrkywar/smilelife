@@ -23,7 +23,8 @@ class EventDispatcher {
         if (!isset($this->listeners[$name]) || empty(($this->listeners[$name]))) {
             throw new EventDispatcherException("No listener registered for $name");
         }
-
+        ksort($this->listeners[$name]);
+        
         foreach ($this->listeners[$name] as $sortedListeners) {
             foreach ($sortedListeners as $listener) {
                 if (null === $listener->getMethod()) {

@@ -12,8 +12,6 @@ use SmileLife\Game\Request\ResignRequest;
  */
 trait ResignTrait {
 
-    
-
     public function actionResign() {
         $playerId = self::getCurrentPlayerId();
 
@@ -24,36 +22,7 @@ trait ResignTrait {
 
         $response = $this->requester->send($request);
 
-        $notification = $this->retriveNotification($response);
-
-        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
-        
-        
-
-//        $playerId = self::getCurrentPlayerId();
-//        $tableDecorator = new PlayerTableDecorator();
-//        $cardDecorator = new CardDecorator(new CardSerializer());
-//
-//        $player = $this->playerManager->findOne([
-//            "id" => $playerId
-//        ]);
-//        $table = $this->tableManager->findOneBy([
-//            "id" => $playerId
-//        ]);
-//        $job = $table->getJob();
-//        
-//        $this->cardManager->discardCard($job, $player);
-//
-//        $table->setJobId(null);
-//        $this->tableManager->updateTable($table);
-//
-//        
-//        
-//        if ($job->isTemporary()) {
-//            $this->gamestate->nextState("resignAndPlay");
-//        } else {
-//            $this->gamestate->nextState("resignAndPass");
-//        }
+        $this->applyResponse($response);
     }
 
 }

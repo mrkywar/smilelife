@@ -10,5 +10,7 @@ namespace SmileLife\PlayerAction;
 class ActionType {
 
     const ACTION_DISCRARD = "discardCard";
+    const ACTION_RESIGN = "resign";
+    const ACTION_DECK_DRAW = "drawCardFormDeck";
 
 }

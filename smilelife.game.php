@@ -20,7 +20,6 @@ use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\Table\PlayerTableManager;
 
-
 /**
  * ------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
@@ -154,10 +153,6 @@ class SmileLife extends Table {
         return "smilelife";
     }
 
-    protected function retriveNotification(Response $response): Notification {
-        return $response->get('notification');
-    }
-
     /*
       setupNewGame:
 
@@ -211,11 +206,24 @@ class SmileLife extends Table {
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
+
+    protected function applyResponse(Response $response) {
+        $notification = $this->retriveNotification($response);
+
+        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
+
+        $this->gamestate->nextState($response->get('nextState'));
+    }
+
+    protected function retriveNotification(Response $response): Notification {
+        return $response->get('notification');
+    }
+
     //-- Traits for Initial Player choices (Resign, Draw) 
     use ResignTrait;
     use DrawTrait;
 
-//-- Traits for Player action (Play, Pass) 
+    //-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;
     use PassTrait;
 

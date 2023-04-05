@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\GameListener\Discard;
+namespace SmileLife\Game\GameListener\Resign;
 
 use Core\Event\EventListener\EventListener;
 use Core\Notification\Notification;
@@ -13,11 +13,11 @@ use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 
 /**
- * Description of DiscardNotifier
+ * Description of ResignNotifier
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DiscardNotifier extends EventListener {
+class ResignNotifier extends EventListener {
 
     private const NOTIFICATION_TYPE = "resignNotification";
 
@@ -34,7 +34,7 @@ class DiscardNotifier extends EventListener {
     private $cardDecorator;
 
     public function __construct() {
-        $this->setMethod("onDiscard");
+        $this->setMethod("onResign");
 
         $this->tableDecorator = new PlayerTableDecorator();
         $this->cardDecorator = new CardDecorator();
@@ -48,7 +48,7 @@ class DiscardNotifier extends EventListener {
         return $response->get("playerTable");
     }
 
-    public function onDiscard(ResignRequest &$request, Response &$response) {
+    public function onResign(ResignRequest &$request, Response &$response) {
         $notification = new Notification();
 
         $player = $request->getPlayer();
@@ -70,7 +70,7 @@ class DiscardNotifier extends EventListener {
     }
 
     public function eventName(): string {
-        return ActionType::ACTION_DISCRARD;
+        return ActionType::ACTION_RESIGN;
     }
 
     public function getPriority(): int {
