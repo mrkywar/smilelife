@@ -5,7 +5,8 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Game\Request\ResignRequest;
+use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Request\DrawCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
 
@@ -42,25 +43,20 @@ class DrawListener extends EventListener {
         $this->requestParams = [];
     }
 
-  
-
-    public function onDraw(ResignRequest &$request, Response &$response) {
+    public function onDraw(DrawCardRequest &$request, Response &$response) {
         $player = $request->getPlayer();
-        
-        $table = $this->tableManager->findOneBy([
-            "id" => $player->getId()
-        ]);
 
-        $job = $table->getJob();
-        $this->cardManager->discardCard($job, $player);
-        $table->setJobId(null);
-        
-        $response->add("playerTable", $table)
-                ->add("player", $player)
-                ->add("job", $job);
+        $card = $this->cardManager->drawCard();
+
+        $card->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($player->getId());
+
+        $this->cardManager->moveCard($card);
+
+        $response->add("player", $player)
+                ->add("card", $card);
 
         return $response;
-        
     }
 
     public function eventName(): string {

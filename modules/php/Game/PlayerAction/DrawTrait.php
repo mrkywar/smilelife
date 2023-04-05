@@ -1,8 +1,8 @@
 <?php
+
 namespace SmileLife\PlayerAction;
 
-use SmileLife\Card\Core\CardDecorator;
-use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Request\DrawCardRequest;
 
 /**
  *
@@ -12,29 +12,20 @@ trait DrawTrait {
 
     public function actionDraw() {
         $playerId = self::getCurrentPlayerId();
-        $cardDecorator = new CardDecorator();
-
         $player = $this->playerManager->findOne([
             "id" => $playerId
         ]);
 
-        $card = $this->cardManager->drawCard();
-        $card->setLocation(CardLocation::PLAYER_HAND)
-                ->setLocationArg($playerId);
+        $request = new DrawCardRequest($player);
+
+        $response = $this->requester->send($request);
+        echo '<pre>';
+        var_dump($response);
+        die;
         
-        $this->cardManager->moveCard($card);
-        
-        self::notifyAllPlayers('drawNotification', clienttranslate('${player_name} draw a card from the deck'), [
-            'playerId' => $playerId,
-            'player_name' => $player->getName(),         
-            'card' => $cardDecorator->decorate($card),
-        ]);
-        
-        $this->gamestate->nextState("drawCardFormDeck");
-//        $this->gamestate->nextState("resignAndPlay");//TODO : remove it - it's for test only !
+        $this->applyResponse($response);
+
+//        
     }
-    
-    
-    
 
 }

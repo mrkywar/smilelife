@@ -2,6 +2,8 @@
 
 namespace Core\Requester\Core;
 
+use Core\Requester\Request\RequestException;
+
 /**
  * Description of ParamsContainer
  *
