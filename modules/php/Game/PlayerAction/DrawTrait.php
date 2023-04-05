@@ -19,10 +19,10 @@ trait DrawTrait {
         $request = new DrawCardRequest($player);
 
         $response = $this->requester->send($request);
-        echo '<pre>';
-        var_dump($response);
-        die;
-        
+//        echo '<pre>';
+//        var_dump($response);
+//        die;
+//        
         $this->applyResponse($response);
 
 //        
