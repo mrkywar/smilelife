@@ -134,7 +134,7 @@ class CardManager extends SuperManager {
      *                  BEGIN - For TestInitilaization
      * ---------------------------------------------------------------------- */
 
-    public function discardCard(Card $card, Player $player) {
+    public function discardCard(Card &$card, Player $player) {
         $this->getSerializer()->setIsForcedArray(true);
         $cardInDiscard = $this->getAllCardsInDiscard();
         $this->getSerializer()->setIsForcedArray(false);
@@ -142,10 +142,14 @@ class CardManager extends SuperManager {
 
         $position = count($cardInDiscard) + 1;
 
+        $card->setLocation(CardLocation::DISCARD)
+                ->setLocationArg($position)
+                ->setDiscarderId($player->getId());
+
         $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::DISCARD)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $position)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $player->getId())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $card->getDiscarderId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
 
         $results = $this->execute($qb);
