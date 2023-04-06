@@ -282,6 +282,9 @@ define([
                     .cardontable[data-category="special"].cardontable[data-name="jobboost"] .card_text1{
                         margin-top: ` + (308 * size.ratio) + `px;
                     }
+                    .cardontable[data-category="special"].cardontable[data-name="birthday"] .card_text1{
+                        font-size: ` + (17.4 * size.ratio) + `px;
+                    }
                     /*------              PET                             ----*/
                     .cardontable[data-category="pet"] .card_title{
                         margin-top: ` + (32 * size.ratio) + `px;
