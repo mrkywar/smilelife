@@ -3,6 +3,7 @@ namespace SmileLife\PlayerAction;
 
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardSerializer;
+use SmileLife\Game\Request\PassRequest;
 use SmileLife\Table\PlayerTableDecorator;
 
 /**
@@ -19,9 +20,11 @@ trait PassTrait {
             "id" => $cardId
         ]);
 
-        $request = new PassRequest();
-        $request->send($player, $card);
+        $request = new PassRequest($player, $card);
+        $response = $this->requester->send($request);
         
+        echo "<pre>";
+        var_dump($response);
         die('KO');
         
         
