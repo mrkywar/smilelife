@@ -29,18 +29,11 @@ class DrawListener extends EventListener {
      */
     private $tableManager;
 
-    /**
-     * 
-     * @var array
-     */
-    private $requestParams;
-
     public function __construct() {
         $this->setMethod("onDraw");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
-        $this->requestParams = [];
     }
 
     public function onDraw(DrawCardRequest &$request, Response &$response) {

@@ -19,8 +19,6 @@ use SmileLife\Table\PlayerTableDecorator;
  */
 class ResignNotifier extends EventListener {
 
-    private const NOTIFICATION_TYPE = "resignNotification";
-
     /**
      * 
      * @var PlayerTableDecorator
@@ -55,7 +53,7 @@ class ResignNotifier extends EventListener {
         $card = $this->extractJob($response);
         $table = $this->extractPlayerTable($response);
 
-        $notification->setType(self::NOTIFICATION_TYPE)
+        $notification->setType("resignNotification")
                 ->setText(clienttranslate('${player_name} resigns from the job of ${job}'))
                 ->add('player_name', $player->getName())
                 ->add('job', $card->getTitle())
