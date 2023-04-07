@@ -55,6 +55,10 @@ class Adultery extends Love implements BaseGame {
     public function getCategory(): string {
         return "adultery";
     }
+    
+    public function getPileName(): string {
+        return "adultery";
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
