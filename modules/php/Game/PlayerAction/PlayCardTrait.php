@@ -22,6 +22,7 @@ trait PlayCardTrait {
 
         echo '<pre>';
         $response = $this->requester->send($request);
+        var_dump($response);
         die('END');
 
 //        $playerId = self::getCurrentPlayerId();

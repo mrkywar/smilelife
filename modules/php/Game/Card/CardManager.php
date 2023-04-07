@@ -195,11 +195,15 @@ class CardManager extends SuperManager {
         return $this->execute($qb);
     }
 
-    public function playCard(Player $player, Card $card) {
+    public function playCard(Player $player, Card &$card) {
+        $card->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($player->getId())
+                ->setOwnerId($player->getId());
+
         $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_BOARD)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $player->getId())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $player->getId())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $card->getOwnerId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
 
         return $this->execute($qb);
