@@ -76,6 +76,10 @@ abstract class Job extends Card {
     public function getCategory(): string {
         return ((true === $this->hasPower()) ? "powered_" : "") . "job";
     }
+    
+    public function getPileName(): string {
+        return "job";
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each job)

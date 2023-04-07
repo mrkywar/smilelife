@@ -34,6 +34,10 @@ abstract class Special extends Card implements CardEffectInterface {
     public function getCategory(): string {
         return "special";
     }
+    
+    public function getPileName(): string {
+        return $this->getTitle();
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each special card)
      * ---------------------------------------------------------------------- */

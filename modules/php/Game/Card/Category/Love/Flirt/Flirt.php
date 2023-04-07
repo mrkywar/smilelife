@@ -14,8 +14,15 @@ abstract class Flirt extends Love {
 
     private const SMILE_POINTS = 1;
 
+    /**
+     * 
+     * @var string
+     */
+    private $pileName;
+
     public function __construct() {
         parent::__construct();
+        $this->pileName = "love";
 
         $this->setTitle(clienttranslate('Flirt'));
 
@@ -42,6 +49,19 @@ abstract class Flirt extends Love {
 
     public function getCategory(): string {
         return "flirt";
+    }
+
+    public function getPileName(): string {
+        return $this->pileName;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Getters & Setters
+     * ---------------------------------------------------------------------- */
+
+    public function setPileName(string $pileName) {
+        $this->pileName = $pileName;
+        return $this;
     }
 
 }

@@ -45,4 +45,9 @@ abstract class Studies extends Card {
     public function getCategory(): string {
         return "studies";
     }
+
+    public function getPileName(): string {
+        return 'job';
+    }
+
 }

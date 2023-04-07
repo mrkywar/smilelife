@@ -22,6 +22,10 @@ abstract class Reward extends Card {
     public function getCategory(): string {
         return "reward";
     }
+    
+    public function getPileName(): string {
+        return 'special';
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - new Abstract

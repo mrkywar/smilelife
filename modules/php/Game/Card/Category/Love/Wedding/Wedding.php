@@ -44,6 +44,10 @@ abstract class Wedding extends Love {
         return "marriage";
     }
 
+    public function getPileName(): string {
+        return "love";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */
