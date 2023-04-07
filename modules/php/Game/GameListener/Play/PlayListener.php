@@ -46,10 +46,15 @@ class PlayListener extends EventListener {
 
         if ($card->canBePlayed()) {
             $this->cardManager->playCard($player, $card);
+
+            $table->addCard($card);
+            $this->tableManager->updateTable($table);
+
             $response->set('player', $player)
-                    ->set('card', $card);
+                    ->set('card', $card)
+                    ->set("table", $table);
         } else {
-            $response->set("isPlayerd", false);
+            $response->set("isPlayed", false);
             var_dump($card, $card->canBePlayed());
             throw new Exception("Unplayable Card");
         }
