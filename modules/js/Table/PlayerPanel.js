@@ -9,6 +9,7 @@ define([
                 constructor: function () {
                     this.handCounters = [];
                     this.maxhandCounters = [];
+                    this.studyCounters = [];
                 },
 
                 displayPanels: function () {
@@ -28,6 +29,11 @@ define([
                         maxhandCounter.create("player_maxhand_counter_".concat(player.id));
                         maxhandCounter.setValue(player.attributes.maxCards);
                         this.maxhandCounters[playerId] = maxhandCounter;
+                        
+                        var studyCounter = new ebg.counter();
+                        studyCounter.create("player_studies_counter_".concat(player.id));
+                        studyCounter.setValue(player.studies);
+                        this.studyCounters[playerId] = studyCounter;
                     }
                 },
 
@@ -39,6 +45,9 @@ define([
                                 <span>/</span>
                                 <span id="player_maxhand_counter_` + player.id + `"></span>
                             </div> 
+                            <div class="playerstudies_counter">
+                                <span id="player_studies_counter_` + player.id + `"></span>
+                            </div>
                         </div>
                     `;
 

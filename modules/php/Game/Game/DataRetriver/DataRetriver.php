@@ -6,6 +6,7 @@ use Core\Managers\PlayerManager;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\PlayerAttributes\PlayerAttributesDecorator;
 use SmileLife\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Table\PlayerTableDecorator;
@@ -56,9 +57,15 @@ class DataRetriver {
 
     /**
      * 
-     * @var type
+     * @var PlayerAttributesDecorator
      */
     private $playerAttributeDecorator;
+
+    /**
+     * 
+     * @var StudiesLevelCalculator
+     */
+    private $studiesLevelCalulator;
 
     public function __construct() {
         $this->playerManager = new PlayerManager();
@@ -66,9 +73,9 @@ class DataRetriver {
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
         $this->playerTableManager = new PlayerTableManager();
         $this->playerTableDecorator = new PlayerTableDecorator();
+        $this->studiesLevelCalulator = new StudiesLevelCalculator();
         $this->playerAttributeManager = new PlayerAttributesManager();
         $this->playerAttributeDecorator = new PlayerAttributesDecorator();
-
     }
 
     public function retrive(int $playerId) {
@@ -78,14 +85,13 @@ class DataRetriver {
 
         $rawHand = $this->cardManager->getPlayerCards($currentPlayer);
         $discard = $this->cardManager->getAllCardsInDiscard();
-        
+
         $rawDiscard = null;
-        if($discard instanceof Card){
+        if ($discard instanceof Card) {
             $rawDiscard[] = $this->cardDecorator->decorate($discard);
-        }elseif(!empty($discard)){
+        } elseif (!empty($discard)) {
             $rawDiscard = $this->cardDecorator->decorate($discard);
         }
-        
 
         $result = [
             "myhand" => $this->cardDecorator->decorate($rawHand),
@@ -96,26 +102,23 @@ class DataRetriver {
         $players = $this->playerManager->findBy();
 
         foreach ($players as $player) {
-            $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
-
             $table = $this->playerTableManager->findBy([
                 "id" => $player->getId()
             ]);
             $attribute = $this->playerAttributeManager->findBy([
                 "id" => $player->getId()
             ]);
-
+            
+            $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
             $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
-            $this->playerTableManager->updateTable($table);
+            $result['player'][$player->getId()]["studies"] = $this->studiesLevelCalulator->compute($table->getStudies());
+
             $result['tables'][$player->getId()] = $this->playerTableDecorator->decorate($table);
         }
 
         $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
         unset($result['tables'][$playerId]);
 
-//        echo "<pre>";
-//        var_dump($result);
-//        die;
         return $result;
     }
 
