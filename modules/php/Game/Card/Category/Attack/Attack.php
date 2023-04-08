@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Attack
@@ -15,7 +16,7 @@ abstract class Attack extends Card {
         return false;
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         return true;
     }
 

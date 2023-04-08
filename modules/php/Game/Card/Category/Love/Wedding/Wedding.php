@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Love\Wedding;
 
 use SmileLife\Card\Category\Love\Love;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Wedded
@@ -28,7 +29,7 @@ abstract class Wedding extends Love {
         return true;
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         throw new CardException("C-Wedding01 : Check that the player is not married and has already at least a flirt");
     }
 

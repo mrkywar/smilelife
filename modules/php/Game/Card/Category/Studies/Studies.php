@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Studies;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Game\Calculator\StudiesLevelCalculator;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Studies
@@ -13,9 +15,17 @@ use SmileLife\Card\Core\Exception\CardException;
 abstract class Studies extends Card {
 
     private const SMILE_POINT = 1;
+    
+    /**
+     * 
+     * @var StudiesLevelCalculator
+     */
+    private $studiesLevelCalculator;
 
     public function __construct() {
         parent::__construct();
+        
+        $this->studiesLevelCalculator = new StudiesLevelCalculator();
 
         $this->setTitle(clienttranslate('Higher'))
                 ->setText2(clienttranslate('Studies'));
@@ -34,8 +44,10 @@ abstract class Studies extends Card {
         return true;
     }
 
-    public function canBePlayed(): bool {
-        throw new CardException("C-Studies-01 : check if the max studies are not reached");
+    public function canBePlayed(PlayerTable $table): bool {
+        $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
+        
+        return ($actualLevel + $this->getLevel() <= 6);
     }
 
     public function getSmilePoints(): int {

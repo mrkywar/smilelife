@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Acquisition;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Acquisition
@@ -25,7 +26,7 @@ abstract class Acquisition extends Card {
         throw new CardException("C-Acquisition-01 : check the rules !");
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         throw new CardException("C-Acquisition-02 : check if the price requirements are reached");
     }
     

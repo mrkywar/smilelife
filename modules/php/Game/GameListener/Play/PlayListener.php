@@ -43,8 +43,7 @@ class PlayListener extends EventListener {
             "id" => $player->getId()
         ]);
 //
-
-        if ($card->canBePlayed()) {
+        if ($card->canBePlayed($table)) {
             $this->cardManager->playCard($player, $card);
 
             $table->addCard($card);

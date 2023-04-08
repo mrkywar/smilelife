@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Love\Flirt;
 
 use SmileLife\Card\Category\Love\Love;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Flirt
@@ -39,7 +40,7 @@ abstract class Flirt extends Love {
         return false;
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         throw new CardException("C-Firt01 : Check that the player is not married or has not already asked a flirt in the same place or reached the maximum flirt");
     }
 

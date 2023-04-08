@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Special;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Special
@@ -19,7 +20,7 @@ abstract class Special extends Card implements CardEffectInterface {
         return false;
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         return true;
     }
 

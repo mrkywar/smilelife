@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Child;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Child
@@ -26,7 +27,7 @@ abstract class Child extends Card {
         return true;
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         throw new CardException("C-Child-01 : check if the required job are fulfilled");
     }
 

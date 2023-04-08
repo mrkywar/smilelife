@@ -6,8 +6,8 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
-use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Card\Module\BaseGame;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of NationalMedal
@@ -34,8 +34,13 @@ class NationalMedal extends Reward implements BaseGame {
         return false;
     }
 
-    public function canBePlayed(): bool {
-        throw new CardException("C-ExcellenceReward-01 : check the rules !");
+    public function canBePlayed(PlayerTable $table): bool {
+        $job = $table->getJob();
+        if (null === $job) {
+            return false;
+        } else {
+            return ($job instanceof Writer || $job instanceof Researcher || $job instanceof Journalist);
+        }
     }
 
     public function getClass(): string {
@@ -44,26 +49,6 @@ class NationalMedal extends Reward implements BaseGame {
 
     public function getSmilePoints(): int {
         return 4;
-    }
-
-    /**
-     * Get Compatible Classes (null = no restriction)
-     * @return array|null
-     */
-    public function getCompatibleJobClasses(): ?array {
-        return [
-            Journalist::class,
-            Researcher::class,
-            Writer::class
-        ];
-    }
-
-    /**
-     * Get UnCompatible Classes (null = no restriction)
-     * @return array|null
-     */
-    public function getUncompatibleJobClasses(): ?array {
-        return null;
     }
 
     public function getType(): int {

@@ -5,6 +5,7 @@ namespace SmileLife\Card\Category\Reward;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Module\BaseGame;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of FreedomMedal
@@ -37,26 +38,17 @@ class FreedomMedal extends Reward implements BaseGame {
         return 3;
     }
 
-    /**
-     * Get Compatible Classes (null = no restriction)
-     * @return array|null
-     */
-    public function getCompatibleJobClasses(): ?array {
-        return null;
-    }
-
-    /**
-     * Get UnCompatible Classes (null = no restriction)
-     * @return array|null
-     */
-    public function getUncompatibleJobClasses(): ?array {
-        return [
-            Bandit::class
-        ];
-    }
-
     public function getType(): int {
         return CardType::REWARD_FREEDOM_MEDAL;
+    }
+
+    public function canBePlayed(PlayerTable $table): bool {
+        $job = $table->getJob();
+        if (null === $job) {
+            return false;
+        } else {
+            return (!$job instanceof Bandit);
+        }
     }
 
     /* -------------------------------------------------------------------------

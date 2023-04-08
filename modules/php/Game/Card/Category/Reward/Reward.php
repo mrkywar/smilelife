@@ -14,10 +14,6 @@ abstract class Reward extends Card {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
-
-    public function canBePlayed(): bool {
-        throw new CardException("C-Reward-01 : check the rules !");
-    }
     
     public function getCategory(): string {
         return "reward";
@@ -26,12 +22,4 @@ abstract class Reward extends Card {
     public function getPileName(): string {
         return 'special';
     }
-
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - new Abstract
-     * ---------------------------------------------------------------------- */
-
-    abstract public function getCompatibleJobClasses(): ?array;
-
-    abstract public function getUncompatibleJobClasses(): ?array;
 }

@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Pet;
 
 use SmileLife\Card\Card;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Pet
@@ -29,7 +30,7 @@ abstract class Pet extends Card {
         return false;
     }
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         return true;
     }
 

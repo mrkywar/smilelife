@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Wage;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Wage
@@ -34,8 +35,13 @@ abstract class Wage extends Card {
         return true;
     }
 
-    public function canBePlayed(): bool {
-        throw new CardException("C-Salary-01 : check if the required job are fulfilled");
+    public function canBePlayed(PlayerTable $table): bool {
+        $job = $table->getJob();
+        if (null === $job) {
+            return false;
+        } else {
+            return ($this->getAmount() <= $job->getMaxSalary());
+        }
     }
 
     public function getSmilePoints(): int {
@@ -45,7 +51,7 @@ abstract class Wage extends Card {
     public function getCategory(): string {
         return "wage";
     }
-    
+
     public function getPileName(): string {
         return 'wage';
     }

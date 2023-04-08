@@ -6,6 +6,7 @@ use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Card
@@ -149,7 +150,7 @@ abstract class Card extends Model {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    abstract public function canBePlayed(): bool;
+    abstract public function canBePlayed(PlayerTable $table): bool;
 
     abstract public function canBeAttacked(): bool;
 

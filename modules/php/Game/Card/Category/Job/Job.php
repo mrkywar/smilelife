@@ -6,6 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Interim\Interim;
 use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Job
@@ -60,7 +61,7 @@ abstract class Job extends Card {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBePlayed(): bool {
+    public function canBePlayed(PlayerTable $table): bool {
         throw new CardException("C-Job-01 : check if the required studies are fulfilled");
         //return true;
     }
