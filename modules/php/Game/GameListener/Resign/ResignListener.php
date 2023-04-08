@@ -39,7 +39,6 @@ class ResignListener extends EventListener {
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
-        $this->requestParams = [];
     }
 
   

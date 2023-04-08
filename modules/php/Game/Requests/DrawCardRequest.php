@@ -4,8 +4,8 @@ namespace SmileLife\Game\Request;
 
 use Core\Models\Player;
 use Core\Requester\Request\Request;
+use SmileLife;
 use SmileLife\PlayerAction\ActionType;
-
 
 /**
  * Description of DrawCardRequest
@@ -27,4 +27,5 @@ class DrawCardRequest extends Request {
     public function getType(): string {
         return ActionType::ACTION_DECK_DRAW;
     }
+
 }

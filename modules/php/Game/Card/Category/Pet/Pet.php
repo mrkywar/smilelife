@@ -37,6 +37,10 @@ abstract class Pet extends Card {
         return "pet";
     }
 
+    public function getPileName(): string {
+        return "acquisition";
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

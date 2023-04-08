@@ -37,6 +37,10 @@ abstract class Child extends Card {
     public function getCategory(): string {
         return "child";
     }
+    
+    public function getPileName(): string {
+        return "child";
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)

@@ -42,6 +42,7 @@ class CardDecorator extends DisplayModelDecorator {
             "id" => $card->getId(),
             "type" => $card->getType(),
             "category" => $card->getCategory(),
+            "pile" => $card->getPileName(),
             "name" => $card->getName(),
             "smilePoints" => $card->getSmilePoints(),
             "location" => $card->getLocation(),

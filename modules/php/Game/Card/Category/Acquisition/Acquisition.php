@@ -28,5 +28,9 @@ abstract class Acquisition extends Card {
     public function canBePlayed(): bool {
         throw new CardException("C-Acquisition-02 : check if the price requirements are reached");
     }
+    
+    public function getPileName(): string {
+        return "acquisition";
+    }
 
 }

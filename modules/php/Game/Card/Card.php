@@ -161,6 +161,8 @@ abstract class Card extends Model {
 
     abstract public function getCategory(): string;
 
+    abstract public function getPileName(): string;
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */

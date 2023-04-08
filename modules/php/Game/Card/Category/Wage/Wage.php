@@ -45,5 +45,9 @@ abstract class Wage extends Card {
     public function getCategory(): string {
         return "wage";
     }
+    
+    public function getPileName(): string {
+        return 'wage';
+    }
 
 }
