@@ -45,9 +45,18 @@ abstract class Studies extends Card {
     }
 
     public function canBePlayed(PlayerTable $table): bool {
+        $job = $table->getJob();
+        if(null !== $job){
+            throw new CardException(clienttranslate('You have an active Job'));
+            return false;
+        }
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
         
-        return ($actualLevel + $this->getLevel() <= 6);
+        if($actualLevel + $this->getLevel() > 6){
+            throw new CardException(clienttranslate('You have already reached '));
+        }
+        
+        return true;
     }
 
     public function getSmilePoints(): int {

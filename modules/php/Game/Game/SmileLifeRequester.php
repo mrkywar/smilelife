@@ -3,6 +3,8 @@
 namespace SmileLife\Game;
 
 use Core\Event\EventListener\EventListener;
+use Core\Event\EventListener\EventListenerException;
+use Core\Requester\Request\Request;
 use Core\Requester\Requester;
 use ReflectionClass;
 use SmileLife\GameListener\ListenerLoader;
@@ -28,6 +30,13 @@ class SmileLifeRequester extends Requester {
         
     }
     
+    public function send(Request $request) {
+        try{
+            parent::send($request);
+        } catch (EventListenerException $ex) {
+            echo $ex->getMessage();
+        }
+    }
     
     private function retriveClasses() {
         $firltredClasses = [];

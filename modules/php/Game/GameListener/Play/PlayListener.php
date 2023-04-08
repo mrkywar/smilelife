@@ -3,9 +3,10 @@
 namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
+use Core\Event\EventListener\EventListenerException;
 use Core\Requester\Response\Response;
-use Exception;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -42,9 +43,9 @@ class PlayListener extends EventListener {
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
-//
-        if ($card->canBePlayed($table)) {
-            $this->cardManager->playCard($player, $card);
+
+        try {
+            $card->canBePlayed($table);
 
             $table->addCard($card);
             $this->tableManager->updateTable($table);
@@ -52,17 +53,11 @@ class PlayListener extends EventListener {
             $response->set('player', $player)
                     ->set('card', $card)
                     ->set("table", $table);
-        } else {
-            $response->set("isPlayed", false);
-            var_dump($card, $card->canBePlayed());
-            throw new Exception("Unplayable Card");
-        }
-//        var_dump($card->canBePlayed());
-//        die;
-//        $this->cardManager->discardCard($card, $request->getPlayer());
-//        $response->set('card', $card);
 
-        return $response;
+            return $response;
+        } catch (CardException $ex) {
+            throw new EventListenerException($ex->getMessage());
+        }
     }
 
     public function eventName(): string {
