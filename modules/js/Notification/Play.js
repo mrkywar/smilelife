@@ -13,11 +13,14 @@ define([
                     this.debug("notif_playNotification called", notif);
 
                     var card = notif.args.card;
-                    this.debug("Card",card);
+                    this.debug("Card", card);
 
+                    var cardDest =  "pile_" + card.pile + "_" + notif.args.playerId;
                     if (parseInt(notif.args.playerId) === this.player_id) {
+                        this.displayCard(card, cardDest, "myhand", true);
 //                        this.displayCard(card, "card_empty", "myhand");
                     } else {
+                        this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
 //                        this.displayCard(card, "card_empty", "playerpanel_" + notif.args.playerId, true);
                     }
 
