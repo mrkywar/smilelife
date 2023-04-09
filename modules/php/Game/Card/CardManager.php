@@ -144,12 +144,14 @@ class CardManager extends SuperManager {
 
         $card->setLocation(CardLocation::DISCARD)
                 ->setLocationArg($position)
+                ->setOwnerId(null)
                 ->setDiscarderId($player->getId());
 
         $qb = $this->prepareUpdate($card)
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
                 ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $card->getDiscarderId())
+                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $card->getOwnerId())
                 ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
 
         $results = $this->execute($qb);
