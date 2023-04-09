@@ -15,29 +15,27 @@ use SmileLife\GameListener\ListenerLoader;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class SmileLifeRequester extends Requester {
-    
-    
 
     public function __construct() {
         $loader = new ListenerLoader();
         $files = $loader->load();
-        
+
         $listenersToRegister = $this->retriveClasses();
         foreach ($listenersToRegister as $listenerClass) {
             $listener = $this->generateListener($listenerClass);
             $this->addListener($listener->eventName(), $listener);
         }
-        
     }
-    
+
     public function send(Request $request) {
-        try{
-            parent::send($request);
+        try {
+            $response = parent::send($request);
+            return $response;
         } catch (EventListenerException $ex) {
             echo $ex->getMessage();
         }
     }
-    
+
     private function retriveClasses() {
         $firltredClasses = [];
         $declaredClasses = get_declared_classes();
@@ -51,11 +49,10 @@ class SmileLifeRequester extends Requester {
 
         return $firltredClasses;
     }
-    
-    
-    private function generateListener($listenerClass):EventListener{
+
+    private function generateListener($listenerClass): EventListener {
         $listener = new $listenerClass();
-        
+
         return $listener;
     }
 
