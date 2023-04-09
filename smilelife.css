@@ -29,24 +29,35 @@ html{
 .player_counters{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    gap: 10px;
+    justify-content: space-around;
     align-content: flex-start;
 }
-.player_counters .playerhand_counter:before{
+.player_counters .player_conter_item:before{
     content: "";
-    background-image: url("img/icons/cards.svg");
     background-repeat: no-repeat;
     background-size: contain;
     height: 30px;
     width: 30px;
     display: inline-block;
+}
+
+.player_counters .playerhand_counter:before{
+    background-image: url("img/icons/cards.png");
     margin-right: 5px;
 }
-.player_counters .playerhand_counter{
+.player_counters .playerstudies_counter:before{
+    background-image: url("img/icons/studies.png");
+    margin-right: 5px;
+}
+.player_counters .playerwage_counter:before{
+    background-image: url("img/icons/wages.png");
+}
+.player_counters .player_conter_item{
     display: flex;
     flex-wrap: nowrap;
 }
-.player_counters .playerhand_counter *{
+.player_counters .player_conter_item *{
     display: flex;    
     align-content: space-around;
     flex-wrap: wrap;
@@ -165,7 +176,6 @@ html{
 }
 #tables .playertable .playertablecard{
     display: grid;
-    justify-content: space-around;
 }
 #tables .playertable .playertablename{
     background: white;

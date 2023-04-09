@@ -2,32 +2,31 @@
 
 namespace SmileLife\Game\Calculator;
 
-use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Category\Wage\Wage;
 
 /**
- * Description of StudiesLevelCalculator
+ * Description of TotalWageCalculator
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class StudiesLevelCalculator {
+class TotalWageCalculator {
 
     public function compute($cards): int {
-        if ($cards instanceof Studies) {
+        if ($cards instanceof Wage) {
             return $this->computeOne($cards);
         }
         $level = 0;
 
         foreach ($cards as $card) {
-            if ($card instanceof Studies) {
+            if ($card instanceof Wage) {
                 $level += $this->computeOne($card);
             }
         }
-
         return $level;
     }
 
-    private function computeOne(Studies $card) {
-        return $card->getLevel();
+    private function computeOne(Wage $card) {
+        return $card->getAmount();
     }
 
 }

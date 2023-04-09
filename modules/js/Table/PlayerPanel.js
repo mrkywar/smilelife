@@ -10,6 +10,7 @@ define([
                     this.handCounters = [];
                     this.maxhandCounters = [];
                     this.studyCounters = [];
+                    this.wagesCounters = [];
                 },
 
                 displayPanels: function () {
@@ -34,19 +35,27 @@ define([
                         studyCounter.create("player_studies_counter_".concat(player.id));
                         studyCounter.setValue(player.studies);
                         this.studyCounters[playerId] = studyCounter;
+                        
+                        var wagesCounter = new ebg.counter();
+                        wagesCounter.create("player_wages_counter_".concat(player.id));
+                        wagesCounter.setValue(player.totalWages);
+                        this.wagesCounters[playerId] = wagesCounter;
                     }
                 },
 
                 getPlayerPanelHtml: function (player) {
                     return `
                         <div class="player_counters" id="playerpanel_` + player.id + `">
-                            <div class="playerhand_counter">
+                            <div class="player_conter_item playerhand_counter">
                                 <span id="player_hand_counter_` + player.id + `"></span>
                                 <span>/</span>
                                 <span id="player_maxhand_counter_` + player.id + `"></span>
                             </div> 
-                            <div class="playerstudies_counter">
+                            <div class="player_conter_item playerstudies_counter">
                                 <span id="player_studies_counter_` + player.id + `"></span>
+                            </div>
+                            <div class="player_conter_item playerwage_counter">
+                                <span id="player_wages_counter_` + player.id + `"></span>
                             </div>
                         </div>
                     `;
