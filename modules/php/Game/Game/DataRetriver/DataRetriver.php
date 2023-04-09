@@ -120,8 +120,7 @@ class DataRetriver {
             $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
             $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
             $result['player'][$player->getId()]["studies"] = $this->studiesLevelCalulator->compute($table->getStudies());
-            $result['player'][$player->getId()]["totalWage"] = $this->totalWageCalculator->compute($table->getWages());
-
+            $result['player'][$player->getId()]["totalWages"] = $this->totalWageCalculator->compute($table->getWages());
             $result['tables'][$player->getId()] = $this->playerTableDecorator->decorate($table);
         }
 

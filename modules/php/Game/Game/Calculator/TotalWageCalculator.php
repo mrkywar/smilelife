@@ -18,9 +18,10 @@ class TotalWageCalculator {
         $level = 0;
 
         foreach ($cards as $card) {
-            $level += $this->computeOne($card);
+            if ($card instanceof Wage) {
+                $level += $this->computeOne($card);
+            }
         }
-
         return $level;
     }
 

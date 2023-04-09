@@ -38,7 +38,7 @@ define([
                         
                         var wagesCounter = new ebg.counter();
                         wagesCounter.create("player_wages_counter_".concat(player.id));
-                        wagesCounter.setValue(player.studies);
+                        wagesCounter.setValue(player.totalWages);
                         this.wagesCounters[playerId] = wagesCounter;
                     }
                 },
