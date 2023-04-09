@@ -29,12 +29,13 @@ html{
 .player_counters{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    gap: 10px;
+    justify-content: space-around;
     align-content: flex-start;
 }
 .player_counters .playerhand_counter:before{
     content: "";
-    background-image: url("img/icons/cards.svg");
+    background-image: url("img/icons/cards.png");
     background-repeat: no-repeat;
     background-size: contain;
     height: 30px;
@@ -42,11 +43,24 @@ html{
     display: inline-block;
     margin-right: 5px;
 }
-.player_counters .playerhand_counter{
+
+.player_counters .playerstudies_counter:before{
+    content: "";
+    background-image: url("img/icons/studies.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.player_counters .playerhand_counter,
+.player_counters .playerstudies_counter{
     display: flex;
     flex-wrap: nowrap;
 }
-.player_counters .playerhand_counter *{
+.player_counters .playerhand_counter *,
+.player_counters .playerstudies_counter *{
     display: flex;    
     align-content: space-around;
     flex-wrap: wrap;
@@ -165,7 +179,6 @@ html{
 }
 #tables .playertable .playertablecard{
     display: grid;
-    justify-content: space-around;
 }
 #tables .playertable .playertablename{
     background: white;
