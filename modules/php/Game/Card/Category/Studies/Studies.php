@@ -48,11 +48,11 @@ abstract class Studies extends Card {
 
     public function canBePlayed(PlayerTable $table): bool {
         $job = $table->getJob();
-        if (null !== $job) {
+        if ($job instanceof CardEffectInterface && $this->checkLimitlessStudies($job)) {
+            return true;
+        } elseif (null !== $job) {
             throw new CardException(clienttranslate('You have an active Job'));
             return false;
-        } elseif ($job instanceof CardEffectInterface && $this->checkLimitlessStudies($job)) {
-            return true;
         }
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
 
