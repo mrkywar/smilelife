@@ -11,10 +11,18 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Surgeon extends Job implements BaseGame {
+class Surgeon extends Job implements BaseGame, CardEffectInterface {
+
+    /**
+     * 
+     * @var Effect
+     */
+    private $effect;
 
     public function __construct() {
         parent::__construct();
+
+        $this->effect = new LimitlessStudiesEffect();
 
         $this->setTitle(clienttranslate('Surgeon'))
                 ->setText1(clienttranslate('Never sick and continuous studies'));
@@ -46,6 +54,10 @@ class Surgeon extends Job implements BaseGame {
 
     public function getType(): int {
         return CardType::JOB_SURGEON;
+    }
+
+    public function getEffect(): Effect {
+        return $this->effect;
     }
 
     /* -------------------------------------------------------------------------
