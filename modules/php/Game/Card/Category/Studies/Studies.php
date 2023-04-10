@@ -49,6 +49,7 @@ abstract class Studies extends Card {
     public function canBePlayed(PlayerTable $table): bool {
         $job = $table->getJob();
         if ($job instanceof CardEffectInterface && $this->checkLimitlessStudies($job)) {
+            $this->setIsFlipped(true);
             return true;
         } elseif (null !== $job) {
             throw new CardException(clienttranslate('You have an active Job'));
