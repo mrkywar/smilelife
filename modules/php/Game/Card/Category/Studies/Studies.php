@@ -58,7 +58,8 @@ abstract class Studies extends Card {
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
 
         if ($actualLevel + $this->getLevel() > 6) {
-            throw new CardException(clienttranslate('You have already reached '));
+//            clienttranslate('Level ${level}', ['level' => 2])
+            throw new CardException(clienttranslate('You have already reached level ${level} of studies and you cannot exceed 6', ['level' => $actualLevel]));
         }
 
         return true;

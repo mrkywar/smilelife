@@ -6,6 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Interim\Interim;
 use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -16,9 +17,13 @@ use SmileLife\Table\PlayerTable;
 abstract class Job extends Card {
 
     private const SMILE_POINTS = 2;
+    
+    private $studiesLevelCalculator;
 
     public function __construct() {
         parent::__construct();
+        
+        $this->studiesLevelCalculator = new StudiesLevelCalculator();
     }
 
     /* -------------------------------------------------------------------------
@@ -62,8 +67,12 @@ abstract class Job extends Card {
      * ---------------------------------------------------------------------- */
 
     public function canBePlayed(PlayerTable $table): bool {
-        throw new CardException("C-Job-01 : check if the required studies are fulfilled");
-        //return true;
+        $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
+        if($actualLevel < $this->getRequiredStudies()){
+            throw new CardException("You do not have enough study points to perform this job");
+            return false;
+        }
+        return true;
     }
 
     public function canBeAttacked(): bool {
