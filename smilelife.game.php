@@ -207,7 +207,10 @@ class SmileLife extends Table {
 //////////// Player actions
 //////////// 
 
-    protected function applyResponse(Response $response) {
+    protected function applyResponse(Response $response = null) {
+        if (null === $response) {
+            return;
+        }
         $notification = $this->retriveNotification($response);
 
         self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
@@ -219,11 +222,11 @@ class SmileLife extends Table {
         return $response->get('notification');
     }
 
-    //-- Traits for Initial Player choices (Resign, Draw) 
+//-- Traits for Initial Player choices (Resign, Draw) 
     use ResignTrait;
     use DrawTrait;
 
-    //-- Traits for Player action (Play, Pass) 
+//-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;
     use PassTrait;
 

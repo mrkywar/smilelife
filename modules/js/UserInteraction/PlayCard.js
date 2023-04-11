@@ -7,6 +7,7 @@ define([
             [],
             {
                 constructor: function () {
+                    this.selectables = [];
                 },
 
                 addPlayCardInteraction: function () {
@@ -16,7 +17,8 @@ define([
                     var _this = this;
 
                     dojo.query("#myhand .cardontable").addClass("selectable");
-                    dojo.query(".cardontable.selectable").connect('onclick', this, evt => {
+                    this.selectables = dojo.query(".cardontable.selectable");
+                    this.selectables.connect('onclick', this, evt => {
                         evt.preventDefault();
                         evt.stopPropagation();
 
@@ -44,6 +46,7 @@ define([
 
                     if (1 !== card.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
+                        
                         dojo.query("#myhand .selected").removeClass("selected");
                     } else {
                         this.debug("DoPlay:", card[0]);
@@ -51,6 +54,7 @@ define([
                             lock: true,
                             card: card[0].dataset.id
                         }, this, function (result) {
+                            this.disconnectAll();
                             this.debug("Play :", result);
                         }, function (is_error) {
                             //--error

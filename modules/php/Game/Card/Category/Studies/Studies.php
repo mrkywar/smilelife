@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Studies;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 
@@ -15,7 +17,7 @@ use SmileLife\Table\PlayerTable;
 abstract class Studies extends Card {
 
     private const SMILE_POINT = 1;
-    
+
     /**
      * 
      * @var StudiesLevelCalculator
@@ -24,7 +26,7 @@ abstract class Studies extends Card {
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->studiesLevelCalculator = new StudiesLevelCalculator();
 
         $this->setTitle(clienttranslate('Higher'))
@@ -46,17 +48,25 @@ abstract class Studies extends Card {
 
     public function canBePlayed(PlayerTable $table): bool {
         $job = $table->getJob();
-        if(null !== $job){
+        if ($job instanceof CardEffectInterface && $this->checkLimitlessStudies($job)) {
+            $this->setIsFlipped(true);
+            return true;
+        } elseif (null !== $job) {
             throw new CardException(clienttranslate('You have an active Job'));
             return false;
         }
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
-        
-        if($actualLevel + $this->getLevel() > 6){
-            throw new CardException(clienttranslate('You have already reached '));
+
+        if ($actualLevel + $this->getLevel() > 6) {
+//            clienttranslate('Level ${level}', ['level' => 2])
+            throw new CardException(clienttranslate('You have already reached level ${level} of studies and you cannot exceed 6', ['level' => $actualLevel]));
         }
-        
+
         return true;
+    }
+
+    private function checkLimitlessStudies(CardEffectInterface $job) {
+        return ($job->getEffect() instanceof LimitlessStudiesEffect);
     }
 
     public function getSmilePoints(): int {
