@@ -53,7 +53,7 @@ abstract class Flirt extends Love {
             return true;
         }
 
-        throw new CardException(clienttranslate('You have already done ${number} flirts 5', ['number' => count($table->getFlirts())]));
+        throw new CardException(clienttranslate('You have already done ${number} flirts (5 max)', ['number' => count($table->getFlirts())]));
     }
 
     private function checkLimitlessFlirt(CardEffectInterface $job) {
