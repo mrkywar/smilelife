@@ -56,5 +56,16 @@ abstract class Wedding extends Love {
     public function getBaseCardCount(): int {
         return 1;
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return clienttranslate('${cardTitle} at ${marriageLocation}', [
+            'cardTitle' => $this->getTitle(),
+            'marriageLocation' => $this->getText1()
+        ]);
+    }
 
 }

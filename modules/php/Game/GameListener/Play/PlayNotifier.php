@@ -52,12 +52,11 @@ class PlayNotifier extends EventListener {
                 ->setText(clienttranslate('${player_name} play ${cardName}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cardName', $card->getTitle())
+                ->add('cardName', (string) $card)
                 ->add('table', $this->tableDecorator->decorate($table))
                 ->add('card', $this->cardDecorator->decorate($card));
 
         $response->set('notification', $notification);
-
 
         return $response;
     }

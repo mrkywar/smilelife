@@ -30,15 +30,15 @@ abstract class Child extends Card {
 
     public function canBePlayed(PlayerTable $table): bool {
         $lastFlirt = $table->getLastFlirt();
-        
+
         if ($table->getMarriage() !== null) {
             return true;
         } elseif (null === $lastFlirt) {
             throw new CardException("You didn't have active Marriage or any flirt");
             return false;
-        }elseif ($lastFlirt->canGenerateChild()){
+        } elseif ($lastFlirt->canGenerateChild()) {
             return true;
-        }else{
+        } else {
             throw new CardException("Your last flirtation does not allow you to conceive a child");
             return false;
         }
@@ -62,6 +62,13 @@ abstract class Child extends Card {
 
     public function getBaseCardCount(): int {
         return 1;
+    }
+
+    public function __toString() {
+        return clienttranslate('${cardTitle} nammed ${childName}', [
+            'cardTitle' => $this->getTitle(),
+            'childName' => $this->getText1()
+        ]);
     }
 
 }

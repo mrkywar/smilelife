@@ -98,5 +98,13 @@ abstract class Job extends Card {
     public function getBaseCardCount(): int {
         return 1;
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return $this->getTitle();
+    }
 
 }

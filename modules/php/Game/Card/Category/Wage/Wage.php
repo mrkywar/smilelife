@@ -59,5 +59,16 @@ abstract class Wage extends Card {
     public function getPileName(): string {
         return 'wage';
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return clienttranslate('{wageTitle} value of {wageAmount}',[
+            "wageTitle" => $this->getTitle(),
+            "wageValue" => $this->getAmount()
+        ]);
+    }
 
 }

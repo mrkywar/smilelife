@@ -14,12 +14,21 @@ abstract class Reward extends Card {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
-    
+
     public function getCategory(): string {
         return "reward";
     }
-    
+
     public function getPileName(): string {
         return 'special';
     }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return $this->getTitle();
+    }
+
 }

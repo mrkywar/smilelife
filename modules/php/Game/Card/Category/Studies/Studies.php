@@ -80,5 +80,13 @@ abstract class Studies extends Card {
     public function getPileName(): string {
         return 'job';
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return $this->getTitle()." ".$this->getText2();
+    }
 
 }

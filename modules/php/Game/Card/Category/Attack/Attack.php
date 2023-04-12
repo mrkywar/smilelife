@@ -27,9 +27,17 @@ abstract class Attack extends Card {
     public function getCategory(): string {
         return "attack";
     }
-    
+
     public function getPileName(): string {
         return "attack";
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return $this->getTitle();
     }
 
 }
