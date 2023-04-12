@@ -38,7 +38,7 @@ class PassNotifier extends EventListener {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('card', $this->cardDecorator->decorate($card))
-                ->add('cardName', $card->getTitle())
+                ->add('cardName', (string) $card)
         ;
 
         $response->set('notification', $notification);

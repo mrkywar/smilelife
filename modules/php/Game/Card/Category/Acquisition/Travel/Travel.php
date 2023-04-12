@@ -45,4 +45,15 @@ abstract class Travel extends Acquisition {
         return 1;
     }
 
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display - Overwride
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return clienttranslate('${cardTitle} to ${travelDestination}', [
+            'cardTitle' => $this->getTitle(),
+            'travelDestination' => $this->getSubtitle()
+        ]);
+    }
+
 }

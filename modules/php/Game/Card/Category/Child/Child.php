@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Child;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Table\PlayerTable;
 
@@ -28,7 +29,19 @@ abstract class Child extends Card {
     }
 
     public function canBePlayed(PlayerTable $table): bool {
-        throw new CardException("C-Child-01 : check if the required job are fulfilled");
+        $lastFlirt = $table->getLastFlirt();
+
+        if ($table->getMarriage() !== null) {
+            return true;
+        } elseif (null === $lastFlirt) {
+            throw new CardException("You didn't have active Marriage or any flirt");
+            return false;
+        } elseif ($lastFlirt->canGenerateChild()) {
+            return true;
+        } else {
+            throw new CardException("Your last flirtation does not allow you to conceive a child");
+            return false;
+        }
     }
 
     public function getSmilePoints(): int {
@@ -38,7 +51,7 @@ abstract class Child extends Card {
     public function getCategory(): string {
         return "child";
     }
-    
+
     public function getPileName(): string {
         return "child";
     }
@@ -49,6 +62,13 @@ abstract class Child extends Card {
 
     public function getBaseCardCount(): int {
         return 1;
+    }
+
+    public function __toString() {
+        return clienttranslate('${cardTitle} nammed ${childName}', [
+            'cardTitle' => $this->getTitle(),
+            'childName' => $this->getText1()
+        ]);
     }
 
 }

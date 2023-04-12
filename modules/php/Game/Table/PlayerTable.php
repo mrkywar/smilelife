@@ -20,7 +20,6 @@ use SmileLife\Card\Category\Special\Special;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
 
-
 /**
  * Description of Game
  *
@@ -112,14 +111,13 @@ class PlayerTable extends Model {
      * @ORM\Column{"type":"int", "name":"table_adultery", "default":null}
      */
     private $adulteryId;
-    
+
     /**
      * 
      * @var array
      * @ORM\Column{"type":"json", "name":"table_specials"}
      */
     private $specialsIds;
-
 
     /**
      * 
@@ -318,6 +316,15 @@ class PlayerTable extends Model {
         return $cards;
     }
 
+    public function getLastFlirt(): ?Flirt {
+        $flirts = $this->getFlirts();
+        if (empty($flirts)) {
+            return null;
+        } else {
+            return $flirts[sizeof($flirts) - 1];
+        }
+    }
+
     public function addReward(Reward $card) {
         $this->rewardIds[] = $card->getId();
 
@@ -387,12 +394,12 @@ class PlayerTable extends Model {
         return $this;
     }
 
-    public function addSpecial(Special $card){
+    public function addSpecial(Special $card) {
         $this->specialsIds[] = $card->getId();
-        
+
         return $this;
     }
-    
+
     public function getSpecials() {
         if (empty($this->getSpecialsIds())) {
             return [];
@@ -407,7 +414,6 @@ class PlayerTable extends Model {
 
         return $cards;
     }
-
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
@@ -520,7 +526,7 @@ class PlayerTable extends Model {
         $this->petIds = $petIds;
         return $this;
     }
-    
+
     public function getSpecialsIds(): array {
         return $this->specialsIds;
     }
@@ -529,7 +535,5 @@ class PlayerTable extends Model {
         $this->specialsIds = $specialsIds;
         return $this;
     }
-
-
 
 }

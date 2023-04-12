@@ -56,7 +56,7 @@ class Adultery extends Love implements BaseGame {
     public function getCategory(): string {
         return "adultery";
     }
-    
+
     public function getPileName(): string {
         return "adultery";
     }
@@ -67,6 +67,14 @@ class Adultery extends Love implements BaseGame {
 
     public function getBaseCardCount(): int {
         return 3;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return $this->getTitle();
     }
 
 }
