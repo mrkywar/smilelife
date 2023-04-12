@@ -43,15 +43,19 @@ html{
 }
 
 .player_counters .playerhand_counter:before{
-    background-image: url("img/icons/cards.png");
+    background-image: url("img/icons/cards.svg");
     margin-right: 5px;
 }
 .player_counters .playerstudies_counter:before{
-    background-image: url("img/icons/studies.png");
+    background-image: url("img/icons/studies.svg");
     margin-right: 5px;
+    background-size: 160%;
+    background-position: -10px 50%;
 }
 .player_counters .playerwage_counter:before{
-    background-image: url("img/icons/wages.png");
+    background-image: url("img/icons/wages.svg");
+    background-size: 300%;
+    background-position: -30px 50%;
 }
 .player_counters .player_conter_item{
     display: flex;
