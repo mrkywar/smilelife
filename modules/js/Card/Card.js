@@ -33,6 +33,10 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
+                    this.debug("DC", card, destinationDivId, fromDivId);
+                    
+                    
+                    
                     var searchedDiv = $('card_' + card.id);
 
                     if (searchedDiv) {

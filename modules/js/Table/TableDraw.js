@@ -33,7 +33,6 @@ define([
                         this.lastDiscardedCard = this.discard[this.discard.length-1];
 
                     }
-                    this.debug('ldc',this.lastDiscardedCard);
                     this.displayCard(this.lastDiscardedCard, "pile_discard");
                     var pileDiscardCounter = new ebg.counter();
                     pileDiscardCounter.create('pile_discard_count');
