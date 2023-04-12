@@ -29,22 +29,18 @@ abstract class Child extends Card {
     }
 
     public function canBePlayed(PlayerTable $table): bool {
+        $lastFlirt = $table->getLastFlirt();
+        
         if ($table->getMarriage() !== null) {
             return true;
-        } elseif (null === $table->getFlirts() || empty($table->getFlirts())) {
+        } elseif (null === $lastFlirt) {
             throw new CardException("You didn't have active Marriage or any flirt");
             return false;
-        }
-        $tableFlirts = $table->getFlirts();
-        /**
-         * @var Flirt
-         */
-        $lastFlirt = (Flirt)($tableFlirts[sizeof($value) - 1]);
-        if (!$lastFlirt->canGenerateChild()) {
+        }elseif ($lastFlirt->canGenerateChild()){
+            return true;
+        }else{
             throw new CardException("Your last flirtation does not allow you to conceive a child");
             return false;
-        }else{
-            return true;
         }
     }
 
