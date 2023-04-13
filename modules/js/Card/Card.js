@@ -33,7 +33,11 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card, destinationDivId, fromDivId);
+                    this.debug("DC", card, destinationDivId, fromDivId,card.type);
+                    
+//                    if(card.type)
+                    
+                    
                     
                     
                     

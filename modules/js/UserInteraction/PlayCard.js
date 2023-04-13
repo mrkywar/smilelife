@@ -50,16 +50,23 @@ define([
                         dojo.query("#myhand .selected").removeClass("selected");
                     } else {
                         this.debug("DoPlay:", card[0]);
-                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/playCard.html", {
-                            lock: true,
+                        
+                        var data = {
                             card: card[0].dataset.id
-                        }, this, function (result) {
-                            this.disconnectAll();
-                            this.debug("Play :", result);
-                        }, function (is_error) {
-                            //--error
-                            this.debug("Play fail:", is_error);
-                        });
+                        };
+                        this.takeAction('playCard', data);
+                        
+                        
+//                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/playCard.html", {
+//                            lock: true,
+//                            card: card[0].dataset.id
+//                        }, this, function (result) {
+//                            this.disconnectAll();
+//                            this.debug("Play :", result);
+//                        }, function (is_error) {
+//                            //--error
+//                            this.debug("Play fail:", is_error);
+//                        });
                     }
                 },
 
