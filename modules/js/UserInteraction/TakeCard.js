@@ -27,25 +27,30 @@ define([
                 },
 
                 doResign: function () {
-                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/resign.html", {
-                        lock: true
-                    }, this, function (result) {
-                        this.debug("Resign :", result);
-                    }, function (is_error) {
-                        //--error
-                        this.debug("Resign fail:", is_error);
-                    });
+                    this.takeAction('resign');
+                    
+                    
+                    
+//                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/resign.html", {
+//                        lock: true
+//                    }, this, function (result) {
+//                        this.debug("Resign :", result);
+//                    }, function (is_error) {
+//                        //--error
+//                        this.debug("Resign fail:", is_error);
+//                    });
                 },
 
                 doDraw: function () {
-                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/draw.html", {
-                        lock: true
-                    }, this, function (result) {
-                        this.debug("Draw :", result);
-                    }, function (is_error) {
-                        //--error
-                        this.debug("Draw fail:", is_error);
-                    });
+                    this.takeAction('draw');
+//                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/draw.html", {
+//                        lock: true
+//                    }, this, function (result) {
+//                        this.debug("Draw :", result);
+//                    }, function (is_error) {
+//                        //--error
+//                        this.debug("Draw fail:", is_error);
+//                    });
                 },
 
 //                doDiscardDraw: function () {
