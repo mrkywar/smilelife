@@ -23,6 +23,39 @@ class Notification extends ParamsContainer {
      */
     private $text;
 
+    /**
+     * 
+     * @var bool
+     */
+    private $public;
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->public = true;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Shortcut
+     * ---------------------------------------------------------------------- */
+
+    public function isPublic(): bool {
+        return $this->getPublic();
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Getters & Setters 
+     * ---------------------------------------------------------------------- */
+
+    public function getPublic(): bool {
+        return $this->public;
+    }
+
+    public function setPublic(bool $public) {
+        $this->public = $public;
+        return $this;
+    }
+
     public function getType(): string {
         return $this->type;
     }
