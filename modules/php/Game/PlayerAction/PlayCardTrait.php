@@ -18,6 +18,8 @@ trait PlayCardTrait {
             "id" => $cardId
         ]);
 
+        throw new \BgaVisibleSystemException('You cannot play this card!');
+        
         $request = new PlayCardRequest($player, $card);
         $response = $this->requester->send($request);
 
