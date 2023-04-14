@@ -211,15 +211,22 @@ class SmileLife extends Table {
         if (null === $response) {
             return;
         }
-        $notification = $this->retriveNotification($response);
 
-        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
+        foreach ($response->getNotifications() as $notification) {
+            $this->sendNotification($notification);
+        }
+//        $notification = $this->retriveNotification($response);
+//        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
 
         $this->gamestate->nextState($response->get('nextState'));
     }
 
-    protected function retriveNotification(Response $response): Notification {
-        return $response->get('notification');
+    protected function sendNotification(Notification $notification) {
+        if ($notification->isPublic()) {
+            self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
+        } else {
+            throw new Exception("TODO : Unsupported private Notification");
+        }
     }
 
 //-- Traits for Initial Player choices (Resign, Draw) 

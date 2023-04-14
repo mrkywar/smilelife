@@ -2,7 +2,10 @@
 
 namespace Core\Requester\Response;
 
+use Core\Notification\Notification;
+use Core\Notification\NotificationCollection;
 use Core\Requester\Core\ParamsContainer;
+use Traversable;
 
 /**
  * Description of Response
@@ -27,11 +30,11 @@ class Response extends ParamsContainer {
     }
 
     public function getNotifications(): Traversable {
-        return $this->notification->getIterator();
+        return $this->notifications->getIterator();
     }
 
     public function addNotification(Notification $notification) {
-        return $this->notification->addNotification($notification);
+        return $this->notifications->addNotification($notification);
     }
 
 }
