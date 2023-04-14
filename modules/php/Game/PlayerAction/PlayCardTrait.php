@@ -2,6 +2,7 @@
 
 namespace SmileLife\PlayerAction;
 
+use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Game\Request\PlayCardRequest;
 
 /**
@@ -18,10 +19,18 @@ trait PlayCardTrait {
             "id" => $cardId
         ]);
 
-        $request = new PlayCardRequest($player, $card);
-        $response = $this->requester->send($request);
-
-        $this->applyResponse($response);
+//        throw new \BgaVisibleSystemException('You cannot play this card!');
+        try {
+            $request = new PlayCardRequest($player, $card);
+            $response = $this->requester->send($request);
+            $this->applyResponse($response);
+        } catch (CardException $e) {
+            throw new \BgaVisibleSystemException($e->getMessage());
+        } catch (\Exception $e) {
+            throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
+        }
+//        var_dump("here ?", $response);
+//        die();
     }
 
 }

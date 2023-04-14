@@ -3,11 +3,13 @@
 namespace SmileLife\Game;
 
 use Core\Event\EventListener\EventListener;
-use Core\Event\EventListener\EventListenerException;
+use Core\Notification\Notification;
+use Core\Notification\NotificationCollection;
 use Core\Requester\Request\Request;
 use Core\Requester\Requester;
 use ReflectionClass;
 use SmileLife\GameListener\ListenerLoader;
+use Traversable;
 
 /**
  * Description of SmileLifeRequester
@@ -18,6 +20,7 @@ class SmileLifeRequester extends Requester {
 
     public function __construct() {
         $loader = new ListenerLoader();
+
         $files = $loader->load();
 
         $listenersToRegister = $this->retriveClasses();
@@ -27,14 +30,18 @@ class SmileLifeRequester extends Requester {
         }
     }
 
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Overwride
+     * ---------------------------------------------------------------------- */
+
     public function send(Request $request) {
-        try {
-            $response = parent::send($request);
-            return $response;
-        } catch (EventListenerException $ex) {
-            echo $ex->getMessage();
-        }
+        $response = parent::send($request);
+        return $response;
     }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Private
+     * ---------------------------------------------------------------------- */
 
     private function retriveClasses() {
         $firltredClasses = [];

@@ -62,7 +62,7 @@ class ResignNotifier extends EventListener {
                 ->add('card', $this->cardDecorator->decorate($card))
         ;
 
-        $response->set('notification', $notification);
+        $response->addNotification($notification);
 
         return $response;
     }

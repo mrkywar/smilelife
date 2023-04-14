@@ -41,7 +41,7 @@ class PassNotifier extends EventListener {
                 ->add('cardName', (string) $card)
         ;
 
-        $response->set('notification', $notification);
+        $response->addNotification($notification);
 
         return $response;
     }
