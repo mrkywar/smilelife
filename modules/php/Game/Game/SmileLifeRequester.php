@@ -3,11 +3,13 @@
 namespace SmileLife\Game;
 
 use Core\Event\EventListener\EventListener;
-use Core\Event\EventListener\EventListenerException;
+use Core\Notification\Notification;
+use Core\Notification\NotificationCollection;
 use Core\Requester\Request\Request;
 use Core\Requester\Requester;
 use ReflectionClass;
 use SmileLife\GameListener\ListenerLoader;
+use Traversable;
 
 /**
  * Description of SmileLifeRequester
@@ -16,8 +18,15 @@ use SmileLife\GameListener\ListenerLoader;
  */
 class SmileLifeRequester extends Requester {
 
+    /**
+     * 
+     * @var NotificationCollection
+     */
+    private $notification;
+
     public function __construct() {
         $loader = new ListenerLoader();
+        $this->notifications = new NotificationCollection();
         $files = $loader->load();
 
         $listenersToRegister = $this->retriveClasses();
@@ -27,10 +36,34 @@ class SmileLifeRequester extends Requester {
         }
     }
 
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Overwride
+     * ---------------------------------------------------------------------- */
+
     public function send(Request $request) {
         $response = parent::send($request);
         return $response;
     }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Notification
+     * ---------------------------------------------------------------------- */
+
+    public function hasNextNotifications($param) {
+        return empty($this->notifications);
+    }
+
+    public function getNotifications(): Traversable {
+        return $this->notification->getIterator();
+    }
+
+    public function addNotification(Notification $notification) {
+        return $this->notification->addNotification($notification);
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Private
+     * ---------------------------------------------------------------------- */
 
     private function retriveClasses() {
         $firltredClasses = [];
