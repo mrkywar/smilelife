@@ -236,10 +236,6 @@ abstract class Card extends Model {
         return $this;
     }
 
-    public function getTexts(): array {
-        return $this->texts;
-    }
-
     public function getHelps(): array {
         return $this->helps;
     }

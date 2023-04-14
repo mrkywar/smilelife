@@ -50,16 +50,11 @@ define([
                         dojo.query("#myhand .selected").removeClass("selected");
                     } else {
                         this.debug("DoPlay:", card[0]);
-                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/playCard.html", {
-                            lock: true,
+                        
+                        var data = {
                             card: card[0].dataset.id
-                        }, this, function (result) {
-                            this.disconnectAll();
-                            this.debug("Play :", result);
-                        }, function (is_error) {
-                            //--error
-                            this.debug("Play fail:", is_error);
-                        });
+                        };
+                        this.takeAction('playCard', data);
                     }
                 },
 
@@ -71,19 +66,11 @@ define([
                         dojo.query("#myhand .selected").removeClass("selected");
                         
                     } else {
-                        this.debug("DoPlay:", card[0]);
-                        this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/pass.html", {
-                            lock: true,
+                        this.debug("DoPass", card[0]);
+                        var data = {
                             card: card[0].dataset.id
-                        }, this, function (result) {
-                            this.debug("Pass :", result);
-                            dojo.query(".selected").removeClass("selected");
-                            dojo.query(".selectable").removeClass("selectable");
-
-                        }, function (is_error) {
-                            //--error
-                            this.debug("Pass:", is_error);
-                        });
+                        };
+                        this.takeAction('pass', data);
                     }
                 },
 

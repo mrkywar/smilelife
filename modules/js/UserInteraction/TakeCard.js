@@ -20,37 +20,17 @@ define([
                     }
 
                     this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
-//                    if ("empty" !== this.lastDiscardedCard.id) {
-//                        this.addActionButton('resign_button', _('Draw and play from discard'), 'doDiscardDraw', null, false, 'gray');
-//                    }
 
                 },
 
                 doResign: function () {
-                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/resign.html", {
-                        lock: true
-                    }, this, function (result) {
-                        this.debug("Resign :", result);
-                    }, function (is_error) {
-                        //--error
-                        this.debug("Resign fail:", is_error);
-                    });
+                    this.takeAction('resign');
                 },
 
                 doDraw: function () {
-                    this.ajaxcall("/" + this.game_name + "/" + this.game_name + "/draw.html", {
-                        lock: true
-                    }, this, function (result) {
-                        this.debug("Draw :", result);
-                    }, function (is_error) {
-                        //--error
-                        this.debug("Draw fail:", is_error);
-                    });
+                    this.takeAction('draw');
                 },
 
-//                doDiscardDraw: function () {
-//                    this.debug("doDiscardDraw");
-//                },
             }
 
     );
