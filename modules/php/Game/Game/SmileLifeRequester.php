@@ -28,12 +28,8 @@ class SmileLifeRequester extends Requester {
     }
 
     public function send(Request $request) {
-        try {
-            $response = parent::send($request);
-            return $response;
-        } catch (EventListenerException $ex) {
-            echo $ex->getMessage();
-        }
+        $response = parent::send($request);
+        return $response;
     }
 
     private function retriveClasses() {

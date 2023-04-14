@@ -44,20 +44,16 @@ class PlayListener extends EventListener {
             "id" => $player->getId()
         ]);
 
-        try {
-            $card->canBePlayed($table);
+        $card->canBePlayed($table);
 
-            $table->addCard($card);
-            $this->tableManager->updateTable($table);
+        $table->addCard($card);
+        $this->tableManager->updateTable($table);
 
-            $response->set('player', $player)
-                    ->set('card', $card)
-                    ->set("table", $table);
+        $response->set('player', $player)
+                ->set('card', $card)
+                ->set("table", $table);
 
-            return $response;
-        } catch (CardException $ex) {
-            throw new EventListenerException($ex->getMessage());
-        }
+        return $response;
     }
 
     public function eventName(): string {
