@@ -56,7 +56,7 @@ class PlayNotifier extends EventListener {
                 ->add('table', $this->tableDecorator->decorate($table))
                 ->add('card', $this->cardDecorator->decorate($card));
 
-        $response->set('notification', $notification);
+            $response->addNotification($notification);
 
         return $response;
     }

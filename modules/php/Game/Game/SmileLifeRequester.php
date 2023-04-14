@@ -18,15 +18,9 @@ use Traversable;
  */
 class SmileLifeRequester extends Requester {
 
-    /**
-     * 
-     * @var NotificationCollection
-     */
-    private $notification;
-
     public function __construct() {
         $loader = new ListenerLoader();
-        $this->notifications = new NotificationCollection();
+
         $files = $loader->load();
 
         $listenersToRegister = $this->retriveClasses();
@@ -43,22 +37,6 @@ class SmileLifeRequester extends Requester {
     public function send(Request $request) {
         $response = parent::send($request);
         return $response;
-    }
-
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Notification
-     * ---------------------------------------------------------------------- */
-
-    public function hasNextNotifications($param) {
-        return empty($this->notifications);
-    }
-
-    public function getNotifications(): Traversable {
-        return $this->notification->getIterator();
-    }
-
-    public function addNotification(Notification $notification) {
-        return $this->notification->addNotification($notification);
     }
 
     /* -------------------------------------------------------------------------
