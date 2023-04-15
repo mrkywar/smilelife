@@ -282,19 +282,26 @@ abstract class Card extends Model {
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Array Add Item
+     *                  BEGIN - Array transform (Display)
      * ---------------------------------------------------------------------- */
 
-    public function addText(string $text) {
-        $this->texts[] = $text;
-        return $this;
+    public function __toArray():array{
+        return [
+            "id" => $this->getId(),
+            "type" => $this->getType(),
+            "category" => $this->getCategory(),
+            "pile" => $this->getPileName(),
+            "name" => $this->getName(),
+            "smilePoints" => $this->getSmilePoints(),
+            "location" => $this->getLocation(),
+            "title" => $this->getTitle(),
+            "subtitle" => $this->getSubTitle(),
+            "text1" => $this->getText1(),
+            "text2" => $this->getText2(),
+            "isFlipped" => $this->getIsFlipped(),
+        ];
     }
-
-    public function addHelp(string $help) {
-        $this->helps[] = $help;
-        return $this;
-    }
-
+    
     /* -------------------------------------------------------------------------
      *                  BEGIN - Shortcut
      * ---------------------------------------------------------------------- */

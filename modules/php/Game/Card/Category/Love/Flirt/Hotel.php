@@ -23,7 +23,7 @@ class Hotel extends Flirt implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function canGenerateChild(): bool {
-        return true;
+        return !$this->getIsRotated();
     }
 
     public function getClass(): string {

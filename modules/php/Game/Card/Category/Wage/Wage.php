@@ -70,5 +70,14 @@ abstract class Wage extends Card {
             "wageValue" => $this->getAmount()
         ]);
     }
+    
+    public function __toArray(): array {
+        return array_merge(
+                parent::__toArray(),
+                [
+                    'wageAmount' => $this->getAmount()
+                ]
+        );
+    }
 
 }

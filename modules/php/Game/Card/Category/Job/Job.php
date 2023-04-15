@@ -17,12 +17,12 @@ use SmileLife\Table\PlayerTable;
 abstract class Job extends Card {
 
     private const SMILE_POINTS = 2;
-    
+
     private $studiesLevelCalculator;
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->studiesLevelCalculator = new StudiesLevelCalculator();
     }
 
@@ -68,7 +68,7 @@ abstract class Job extends Card {
 
     public function canBePlayed(PlayerTable $table): bool {
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
-        if($actualLevel < $this->getRequiredStudies()){
+        if ($actualLevel < $this->getRequiredStudies()) {
             throw new CardException("You do not have enough study points to perform this job");
             return false;
         }
@@ -86,7 +86,7 @@ abstract class Job extends Card {
     public function getCategory(): string {
         return ((true === $this->hasPower()) ? "powered_" : "") . "job";
     }
-    
+
     public function getPileName(): string {
         return "job";
     }
@@ -98,13 +98,25 @@ abstract class Job extends Card {
     public function getBaseCardCount(): int {
         return 1;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
 
     public function __toString() {
         return $this->getTitle();
+    }
+
+    public function __toArray(): array {
+        return array_merge(
+                parent::__toArray(),
+                [
+                    "isTemporary" => $this->isTemporary(),
+                    "isOfficial" => $this->isOfficial(),
+                    "requiredStudies" => $this->getRequiredStudies(),
+                    "maxSalary" => $this->getMaxSalary()
+                ]
+        );
     }
 
 }

@@ -35,4 +35,5 @@ abstract class House extends Acquisition {
         return 1;
     }
 
+
 }

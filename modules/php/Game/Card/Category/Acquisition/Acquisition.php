@@ -42,4 +42,13 @@ abstract class Acquisition extends Card {
         return $this->getTitle();
     }
 
+    public function __toArray(): array {
+        return array_merge(
+                parent::__toArray(),
+                [
+                    'price' => $this->getPrice()
+                ]
+        );
+    }
+
 }

@@ -38,34 +38,9 @@ class CardDecorator extends DisplayModelDecorator {
     }
 
     private function doDecorate(Card $card) {
-        $cardInfos = [
-            "id" => $card->getId(),
-            "type" => $card->getType(),
-            "category" => $card->getCategory(),
-            "pile" => $card->getPileName(),
-            "name" => $card->getName(),
-            "smilePoints" => $card->getSmilePoints(),
-            "location" => $card->getLocation(),
-            "title" => $card->getTitle(),
-            "subtitle" => $card->getSubTitle(),
-            "text1" => $card->getText1(),
-            "text2" => $card->getText2(),
-            "isFlipped" => $card->getIsFlipped(),
-        ];
-        if ($card instanceof Job) {
-            $cardInfos = array_merge($cardInfos, $this->doDecorateJob($card));
-        }
+        $cardInfos = $card->__toArray();
 
         return $cardInfos;
-    }
-
-    private function doDecorateJob(Job $card) {
-        return [
-            "isTemporary" => $card->isTemporary(),
-            "isOfficial" => $card->isOfficial(),
-            "requiredStudies" => $card->getRequiredStudies(),
-            "maxSalary" => $card->getMaxSalary()
-        ];
     }
 
 }

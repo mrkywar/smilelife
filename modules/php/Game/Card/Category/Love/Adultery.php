@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Category\Love;
 
+use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Card\Module\BaseGame;
@@ -12,7 +13,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Adultery extends Love implements BaseGame {
+class Adultery extends Card implements BaseGame {
 
     private const SMILE_POINTS = 1;
 
@@ -35,10 +36,6 @@ class Adultery extends Love implements BaseGame {
 
     public function canBePlayed(PlayerTable $table): bool {
         throw new CardException("C-Adultery01 : Check that the player is already married");
-    }
-
-    public function canGenerateChild(): bool {
-        return false;
     }
 
     public function getClass(): string {

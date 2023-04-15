@@ -12,4 +12,14 @@ use SmileLife\Card\Card;
 abstract class Love extends Card {
 
     abstract public function canGenerateChild(): bool;
+
+    public function __toArray(): array {
+        return array_merge(
+                parent::__toArray(),
+                [
+                    'generateChild' => (int) $this->canGenerateChild()
+                ]
+        );
+    }
+
 }
