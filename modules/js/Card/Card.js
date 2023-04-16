@@ -33,28 +33,19 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card, destinationDivId, fromDivId,card.type);
-                    
-//                    if(card.type)
-                    
-                    
-                    
-                    
-                    
+                    this.debug("DC", card, destinationDivId, fromDivId, card.type);
+
                     var searchedDiv = $('card_' + card.id);
 
                     if (searchedDiv) {
-//                        this.debug("Dis_Param",searchedDiv.id, destinationDivId);
-                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
-                        var _this = this;
-                        setTimeout(function () {
-                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
-                        }, this.animationTimer);
-
+                        this.debug("DC Card Already Here !", searchedDiv);
                     } else {
+                        this.debug("DC Card Not Here", searchedDiv);
+
                         searchedDiv = document.createElement('div');
                         searchedDiv.id = "card_".concat(card.id);
                         searchedDiv.classList.add('cardontable');
+                        searchedDiv.classList.add('debug');
                         searchedDiv.dataset.id = '' + card.id;
 
                         searchedDiv.innerHTML = `
@@ -64,55 +55,84 @@ define([
                             </div>
                         `;
 
-                        if (fromDivId) {
-                            var moveableCard = document.createElement('div');
-                            moveableCard.id = "tempory_".concat(card.id);
-                            moveableCard.classList.add('cardontable');
-                            moveableCard.dataset.id = '' + card.id;
-                            moveableCard.innerHTML = `
-                            <div class="card_sides">
-                                <div class="card-side front" id="front_` + moveableCard.id + `"></div>
-                                <div class="card-side back"></div>
-                            </div>
-                        `;
+                    }
 
-                            searchedDiv.classList.add("card_none");
-
-                            moveableCard.style.zIndex = 20;
-                            $(destinationDivId).appendChild(searchedDiv);
-                            $(fromDivId).appendChild(moveableCard);
-
-                            if (card.type) {
-                                this.displayCardInformations(searchedDiv, card);
-                                this.displayCardInformations(moveableCard, card);
-                            }
-
-                            this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
-//                        $(mo)
-
-                            var _this = this;
-
-                            setTimeout(function () {
-                                searchedDiv.classList.remove("card_none");
-                                $(moveableCard.id).remove();
-                                if (!card.type) {
-                                    $(searchedDiv.id).remove();
-                                }
-                            }, this.animationTimer);
-
-
-                        } else {
-                            $(destinationDivId).appendChild(searchedDiv);
-                            if (card.type) {
-                                this.displayCardInformations(searchedDiv, card);
-                            }
-
-                        }
+                    $(destinationDivId).appendChild(searchedDiv);
+                    if (card.type) {
+                        this.displayCardInformations(searchedDiv, card);
                     }
 
 
-
-
+//                    var searchedDiv = $('card_' + card.id);
+//
+//                    if (searchedDiv) {
+//                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
+//                        var _this = this;
+//                        setTimeout(function () {
+//                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
+//                        }, this.animationTimer);
+//
+//                    } else {
+//                        searchedDiv = document.createElement('div');
+//                        searchedDiv.id = "card_".concat(card.id);
+//                        searchedDiv.classList.add('cardontable');
+//                        searchedDiv.dataset.id = '' + card.id;
+//
+//                        searchedDiv.innerHTML = `
+//                            <div class="card_sides">
+//                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
+//                                <div class="card-side back"></div>
+//                            </div>
+//                        `;
+//
+//                        if (fromDivId) {
+//                            var moveableCard = document.createElement('div');
+//                            moveableCard.id = "tempory_".concat(card.id);
+//                            moveableCard.classList.add('cardontable');
+//                            moveableCard.dataset.id = '' + card.id;
+//                            moveableCard.innerHTML = `
+//                            <div class="card_sides">
+//                                <div class="card-side front" id="front_` + moveableCard.id + `"></div>
+//                                <div class="card-side back"></div>
+//                            </div>
+//                        `;
+//
+//                            searchedDiv.classList.add("card_none");
+//
+//                            moveableCard.style.zIndex = 20;
+//                            $(destinationDivId).appendChild(searchedDiv);
+//                            $(fromDivId).appendChild(moveableCard);
+//
+//                            if (card.type) {
+//                                this.displayCardInformations(searchedDiv, card);
+//                                this.displayCardInformations(moveableCard, card);
+//                            }
+//
+//                            this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
+//
+//                            var _this = this;
+//
+//                            setTimeout(function () {
+//                                searchedDiv.classList.remove("card_none");
+//                                $(moveableCard.id).remove();
+//                                if (!card.type) {
+//                                    $(searchedDiv.id).remove();
+//                                }
+//                            }, this.animationTimer);
+//
+//
+//                        } else {
+//                            $(destinationDivId).appendChild(searchedDiv);
+//                            if (card.type) {
+//                                this.displayCardInformations(searchedDiv, card);
+//                            }
+//
+//                        }
+//                    }
+//
+//
+//
+//
 
 
 
