@@ -33,7 +33,7 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card, destinationDivId, fromDivId, card.type);
+                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -57,10 +57,29 @@ define([
 
                     }
 
-                    $(destinationDivId).appendChild(searchedDiv);
-                    if (card.type) {
-                        this.displayCardInformations(searchedDiv, card);
+                    if (fromDivId) {
+//                        var movedCard = $('card_' + card.id);
+
+
+                        this.slideTemporary('jstpl_card', card, 'myhand', fromDivId, 'pile_discard', 1000, 0).then(() => {
+//                                var div = this.addCard(card, 'discard');
+//                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
+//                                dojo.style(div, 'transformStyle', "initial");
+                        });
+
+//                        this.slideToObject(movedCard.id, destinationDivId, this.animationTimer).play();
                     }
+
+                    // last step
+                    $(destinationDivId).appendChild(searchedDiv);
+                    if (card.type && !card.isFlipped) {
+                        this.displayCardInformations(searchedDiv, card);
+
+                    }
+
+//                    if(fromDivId && !card.)
+
+//                    if ()
 
 
 //                    var searchedDiv = $('card_' + card.id);
@@ -136,6 +155,22 @@ define([
 
 
 
+                },
+
+                slideTemporary(template, card, container, sourceId, targetId, duration, delay) {
+                    return new Promise((resolve, reject) => {
+                        var animation = this.slideTemporaryObject(
+                                this.format_block(template, card),
+                                container,
+                                sourceId,
+                                targetId,
+                                1000,
+                                0,
+                                );
+                        setTimeout(() => {
+                            resolve();
+                        }, duration + delay);
+                    });
                 },
 
                 displayCardInformations: function (div, card) {
