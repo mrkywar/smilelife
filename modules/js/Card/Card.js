@@ -33,59 +33,100 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
+//                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
 
                     var searchedDiv = $('card_' + card.id);
 
-                    if (searchedDiv) {
-                        this.debug("DC Card Already Here !", searchedDiv);
+                    if (!card.type || card.isFlipped) {
+                        card.additionalClass = "visibleCard";
+                        card.datas = '';
+                        card.title = "";
+                        card.subtitle = "";
+                        card.text1 = "";
+                        card.text2 = "";
+                        card.smilePoints = "";
+                        card.type=0;
                     } else {
-                        this.debug("DC Card Not Here", searchedDiv);
+                        card.additionalClass = "flipped";
+                        card.datas = 'data-points="' + card.smilePoints + '" ';
+                        card.datas += 'data-type="' + card.type + '" ';
+                        card.datas += 'data-category="' + card.category + '" ';
+                        card.datas += 'data-name="' + card.name + '"';
+                    }
+                    
 
-                        searchedDiv = document.createElement('div');
-                        searchedDiv.id = "card_".concat(card.id);
-                        searchedDiv.classList.add('cardontable');
-                        searchedDiv.classList.add('debug');
-                        searchedDiv.dataset.id = '' + card.id;
+                    if (searchedDiv && fromDivId) {
+                        //-- Move Request
+                        this.debug("DC Move Request", card);
+                        $(searchedDiv.id).remove();
+                    } else if (fromDivId) {
+                        //-- Move a new Card (draw or opponent action)
+                        this.debug("DC New Card Moved", card);
+                    } else if (!searchedDiv) {
+                        //-- display without move
+                        this.debug("DC Classic display", card);
 
-                        searchedDiv.innerHTML = `
-                            <div class="card_sides">
-                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
-                                <div class="card-side back"></div>
-                            </div>
-                        `;
-
+                        dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+//                        $(destinationDivId).appendC hild(searchedDiv);
+//                        if (card.type && !card.isFlipped) {
+//                            this.displayCardInformations(searchedDiv, card);
+//
+//                        }
                     }
 
-                    if (fromDivId) {
-//                        var movedCard = $('card_' + card.id);
-
-                        if (card.type && !card.isFlipped) {
-                            card.additionalClass = "visibleCard";
-                            card.datas = '';
-                        } else {
-                            card.additionalClass = "flipped";
-                            card.datas = 'data-points="' + card.smilePoints + '" ';
-                            card.datas += 'data-type="' + card.type + '" ';
-                            card.datas += 'data-category="' + card.category + '" ';
-                            card.datas += 'data-name="' + card.name + '"';
 
 
-                        }
-                        this.slideTemporary('jstpl_card', card, 'myhand', fromDivId, destinationDivId, 25000, 0).then(() => {
-//                                var div = this.addCard(card, 'discard');
-//                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
-//                                dojo.style(div, 'transformStyle', "initial");
-                        });
-
-//                        this.slideToObject(movedCard.id, destinationDivId, this.animationTimer).play();
-                    } else {
-                        $(destinationDivId).appendChild(searchedDiv);
-                        if (card.type && !card.isFlipped) {
-                            this.displayCardInformations(searchedDiv, card);
-
-                        }
-                    }
+//                    var searchedDiv = $('card_' + card.id);
+//
+//                    if (searchedDiv) {
+//                        this.debug("DC Card Already Here !", searchedDiv);
+//                    } else {
+//                        this.debug("DC Card Not Here", searchedDiv);
+//
+//                        searchedDiv = document.createElement('div');
+//                        searchedDiv.id = "card_".concat(card.id);
+//                        searchedDiv.classList.add('cardontable');
+//                        searchedDiv.classList.add('debug');
+//                        searchedDiv.dataset.id = '' + card.id;
+//
+//                        searchedDiv.innerHTML = `
+//                            <div class="card_sides">
+//                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
+//                                <div class="card-side back"></div>
+//                            </div>
+//                        `;
+//
+//                    }
+//
+//                    if (fromDivId) {
+////                        var movedCard = $('card_' + card.id);
+//
+//                        if (card.type && !card.isFlipped) {
+//                            card.additionalClass = "visibleCard";
+//                            card.datas = '';
+//                        } else {
+//                            card.additionalClass = "flipped";
+//                            card.datas = 'data-points="' + card.smilePoints + '" ';
+//                            card.datas += 'data-type="' + card.type + '" ';
+//                            card.datas += 'data-category="' + card.category + '" ';
+//                            card.datas += 'data-name="' + card.name + '"';
+//
+//
+//                        }
+//                        this.slideTemporary('jstpl_card', card, 'myhand', fromDivId, destinationDivId, 25000, 0).then(() => {
+////                                var div = this.addCard(card, 'discard');
+////                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
+////                                dojo.style(div, 'transformStyle', "initial");
+//                        });
+//
+////                        this.slideToObject(movedCard.id, destinationDivId, this.animationTimer).play();
+//                    } else {
+//                        $(destinationDivId).appendChild(searchedDiv);
+//                        if (card.type && !card.isFlipped) {
+//                            this.displayCardInformations(searchedDiv, card);
+//
+//                        }
+//                    }
 
                     // last step
 
