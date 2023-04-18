@@ -60,8 +60,19 @@ define([
                     if (fromDivId) {
 //                        var movedCard = $('card_' + card.id);
 
+                        if (card.type && !card.isFlipped) {
+                            card.additionalClass = "visibleCard";
+                            card.datas = "";
+                        } else {
+                            card.additionalClass = "flipped";
+                            card.datas = 'data-points="' + card.smilePoints + '" ';
+                            card.datas += 'data-type="' + card.type + '" ';
+                            card.datas += 'data-category="' + card.category + '" ';
+                            card.datas += 'data-name="' + card.name + '"';
+                            
 
-                        this.slideTemporary('jstpl_card', card, 'myhand', fromDivId, 'pile_discard', 1000, 0).then(() => {
+                        }
+                        this.slideTemporary('jstpl_card', card, 'myhand', fromDivId, destinationDivId, 10000, 0).then(() => {
 //                                var div = this.addCard(card, 'discard');
 //                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
 //                                dojo.style(div, 'transformStyle', "initial");
