@@ -33,7 +33,7 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-//                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
+                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -45,7 +45,7 @@ define([
                         card.text1 = "";
                         card.text2 = "";
                         card.smilePoints = "";
-                        card.type=0;
+                        card.type = 0;
                     } else {
                         card.additionalClass = "flipped";
                         card.datas = 'data-points="' + card.smilePoints + '" ';
@@ -53,7 +53,8 @@ define([
                         card.datas += 'data-category="' + card.category + '" ';
                         card.datas += 'data-name="' + card.name + '"';
                     }
-                    
+
+                    var _this = this;
 
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
@@ -61,20 +62,32 @@ define([
                         $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
-                        this.debug("DC New Card Moved", card);
-                    } else if (!searchedDiv) {
-                        //-- display without move
-                        this.debug("DC Classic display", card);
+                        this.debug("DC New Card Moved", card, fromDivId);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
-//                        $(destinationDivId).appendC hild(searchedDiv);
-//                        if (card.type && !card.isFlipped) {
-//                            this.displayCardInformations(searchedDiv, card);
-//
-//                        }
+                        newCardDiv.classList.add('movedcard');
+                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, 2500, 0).then(() => {
+                            this.debug('pass ??');
+                            this.displayCard(card, destinationDivId);
+                            //this.displayCard(card, destinationDivId, null);
+//                                var div = this.addCard(card, 'discard');
+//                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
+//                                dojo.style(div, 'transformStyle', "initial");
+                        });
+
+                    } else if (!searchedDiv) {
+                        //-- display without move
+                        this.debug("DC Classic display", card);
+
+                        var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(newCardDiv, card);
+                        }
+                        
                     }
 
 
@@ -214,10 +227,10 @@ define([
 
                 },
 
-                slideTemporary(template, card, container, sourceId, targetId, duration, delay) {
+                slideTemporary(html, container, sourceId, targetId, duration, delay) {
                     return new Promise((resolve, reject) => {
                         var animation = this.slideTemporaryObject(
-                                this.format_block(template, card),
+                                html,
                                 container,
                                 sourceId,
                                 targetId,
