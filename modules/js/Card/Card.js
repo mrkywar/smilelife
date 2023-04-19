@@ -66,7 +66,10 @@ define([
                         //-- display without move
                         this.debug("DC Classic display", card);
 
-                        dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(newCardDiv, card);
+                        }
 //                        $(destinationDivId).appendC hild(searchedDiv);
 //                        if (card.type && !card.isFlipped) {
 //                            this.displayCardInformations(searchedDiv, card);

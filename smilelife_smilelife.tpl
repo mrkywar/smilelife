@@ -29,14 +29,9 @@
 
 <script type="text/javascript">
     var jstpl_card = `
-        <div id="card_\${id}_temp" class="cardontable \${additionalClass}" \${datas}>
+        <div id="card_\${id}" class="cardontable" >
             <div class="card_sides">
                 <div class="card-side front" id="front_card_\${id}">
-                    <span class="card_text card_title">\${title}</span>
-                    <span class="card_text card_subtitle">\${subtitle}</span>
-                    <span class="card_text card_text1">\${text1}</span>
-                    <span class="card_text card_text2">\${text2}</span>
-                    <span class="debug">\${id} / \${type} " - S : \${smilePoints}</span>
                 </div>
                 <div class="card-side back"></div>
             </div>
