@@ -309,6 +309,9 @@ html{
     float: left;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
+.cardontable.movedcard{
+    z-index: 10;
+}
 .cardontable.selectable{
     cursor: pointer;
     border: 2px solid white;

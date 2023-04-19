@@ -69,13 +69,14 @@ define([
                             this.displayCardInformations(newCardDiv, card);
                         }
                         newCardDiv.classList.add('movedcard');
-                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, 2500, 0).then(() => {
-                            this.debug('pass ??');
+                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, 2500, 1).then(() => {
                             this.displayCard(card, destinationDivId);
-                            //this.displayCard(card, destinationDivId, null);
-//                                var div = this.addCard(card, 'discard');
-//                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
-//                                dojo.style(div, 'transformStyle', "initial");
+//                            if (card.type) {
+//                                this.debug('pass ??');
+//                                this.displayCard(card, destinationDivId);
+//                            }else{
+//                                this.debug('pass XX',card);
+//                            }
                         });
 
                     } else if (!searchedDiv) {
@@ -83,11 +84,14 @@ define([
                         this.debug("DC Classic display", card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-                        
+
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
-                        
+
+                    } else {
+                        this.debug("DC other display", card, searchedDiv);
+                        var newCardDiv = dojo.place(searchedDiv, destinationDivId);
                     }
 
 
