@@ -54,7 +54,7 @@ define([
                         card.datas += 'data-name="' + card.name + '"';
                     }
 
-                    var _this = this;
+//                    var _this = this;
 
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
