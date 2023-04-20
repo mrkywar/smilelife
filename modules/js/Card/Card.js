@@ -39,19 +39,8 @@ define([
 
                     if (!card.type || card.isFlipped) {
                         card.additionalClass = "visibleCard";
-                        card.datas = '';
-                        card.title = "";
-                        card.subtitle = "";
-                        card.text1 = "";
-                        card.text2 = "";
-                        card.smilePoints = "";
-                        card.type = 0;
                     } else {
                         card.additionalClass = "flipped";
-                        card.datas = 'data-points="' + card.smilePoints + '" ';
-                        card.datas += 'data-type="' + card.type + '" ';
-                        card.datas += 'data-category="' + card.category + '" ';
-                        card.datas += 'data-name="' + card.name + '"';
                     }
 
 //                    var _this = this;
@@ -59,7 +48,12 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         this.debug("DC Move Request", card);
-                        $(searchedDiv.id).remove();
+                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
+                        var _this = this;
+                        setTimeout(function () {
+                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
+                        }, this.animationTimer);
+//                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
                         this.debug("DC New Card Moved", card, fromDivId);
@@ -252,6 +246,7 @@ define([
                     div.dataset.type = '' + card.type;
                     div.dataset.category = '' + card.category;
                     div.dataset.name = '' + card.name;
+                    div.dataset.id = '' + card.id;
 
                     $("front_" + div.id).innerHTML = `
                         <span class="card_text card_title">` + card.title + `</span>
