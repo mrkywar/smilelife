@@ -48,7 +48,7 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         this.debug("DC Move Request", card);
-                        this.slideToObjectAndDestroy(searchedDiv.id, destinationDivId, this.animationTimer).play();
+                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer).play();
 //                        var _this = this;
                         setTimeout(function () {
                             this.displayCard(card, destinationDivId);
