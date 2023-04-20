@@ -64,19 +64,19 @@ define([
                         //-- Move a new Card (draw or opponent action)
                         this.debug("DC New Card Moved", card, fromDivId);
 
+                        var initialId = card.id
+                        card.id = 'temp_' + card.id;
+
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
                         newCardDiv.classList.add('movedcard');
-                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, 2500, 1).then(() => {
-                            this.displayCard(card, destinationDivId);
-//                            if (card.type) {
-//                                this.debug('pass ??');
-//                                this.displayCard(card, destinationDivId);
-//                            }else{
-//                                this.debug('pass XX',card);
-//                            }
+                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, 1500, 0).then(() => {
+                            if (card.type) {
+                                card.id = initialId;
+                                this.displayCard(card, destinationDivId);
+                            }
                         });
 
                     } else if (!searchedDiv) {
