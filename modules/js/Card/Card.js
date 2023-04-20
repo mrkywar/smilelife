@@ -48,10 +48,10 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         this.debug("DC Move Request", card);
-                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
-                        var _this = this;
+                        this.slideToObjectAndDestroy(searchedDiv.id, destinationDivId, this.animationTimer).play();
+//                        var _this = this;
                         setTimeout(function () {
-                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
+                            this.displayCard(card, destinationDivId);
                         }, this.animationTimer);
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
