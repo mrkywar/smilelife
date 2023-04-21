@@ -515,7 +515,19 @@ define([
                 },
 
                 onCardClick: function (card) {
-                    this.debug("OCC", card, this.actualState);
+                    this.debug("OCC", card, card.type, this.actualState);
+
+//                    this.isCurrentPlayerActive()
+                    switch (this.actualState) {
+                        case "takeCard":
+                            if (this.isCurrentPlayerActive() && undefined === card.type) {
+                                //draw !
+                                this.doDraw();
+                            } else {
+                                this.debug(this.isCurrentPlayerActive(), undefined === card.type, card.type);
+                            }
+                            break;
+                    }
 
                 }
 
