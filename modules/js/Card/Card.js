@@ -33,7 +33,7 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
+                    //this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -47,7 +47,7 @@ define([
 
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
-                        this.debug("DC Move Request", card);
+                        //this.debug("DC Move Request", card);
                         searchedDiv.id = "temp_" + searchedDiv.id;
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
@@ -57,7 +57,7 @@ define([
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
-                        this.debug("DC New Card Moved", card, fromDivId);
+                        //this.debug("DC New Card Moved", card, fromDivId);
 
                         var initialId = card.id
                         card.id = 'temp_' + card.id;
@@ -79,6 +79,11 @@ define([
                         this.debug("DC Classic display", card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        dojo.connect(newCardDiv, 'onclick', (evt) => {
+                            evt.preventDefault();
+                            evt.stopPropagation();
+                            this.onCardClick(card);
+                        });
 
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
@@ -507,6 +512,11 @@ define([
                     }
                     `;
                     this.insertCSS(computedCSS);
+                },
+
+                onCardClick: function (card) {
+                    this.debug("OCC", card, this.actualState);
+
                 }
 
             }

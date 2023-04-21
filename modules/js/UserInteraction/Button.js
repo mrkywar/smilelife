@@ -1,7 +1,7 @@
 define([
     "dojo",
     "dojo/_base/declare",
-    
+
     g_gamethemeurl + 'modules/js/UserInteraction/TakeCard.js',
     g_gamethemeurl + 'modules/js/UserInteraction/PlayCard.js',
 ], function (dojo, declare) {
@@ -13,10 +13,9 @@ define([
             ],
             {
                 constructor: function () {
+                    this.actualState = null;
                 },
-                
-                
-                
+
                 ///////////////////////////////////////////////////
                 //// Game & client states
 
@@ -26,6 +25,7 @@ define([
                 onEnteringState: function (stateName, args)
                 {
                     this.debug('Entering state: ' + stateName);
+                    this.actualState = stateName;
                 },
 
                 // onLeavingState: this method is called each time we are leaving a game state.
@@ -34,6 +34,7 @@ define([
                 onLeavingState: function (stateName)
                 {
                     this.debug('Leaving state: ' + stateName);
+                    this.actualState = null;
                 },
 
                 // onUpdateActionButtons: in this method you can manage "action buttons" that are displayed in the
