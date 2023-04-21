@@ -176,6 +176,13 @@ define([
                     `;
                 },
 
+                isMyJob: function (card) {
+                    return (
+                            'job' === card.category &&
+                            null !== this.myTable.job &&
+                            card.id === this.myTable.job.id
+                            );
+                },
             }
     );
 });

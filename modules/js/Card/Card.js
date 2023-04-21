@@ -515,7 +515,8 @@ define([
                 },
 
                 onCardClick: function (card) {
-                    this.debug("OCC", card, card.type, this.actualState);
+                    this.debug("OCC", card, this.actualState);
+//                    this.debug("OCC myTable", this.myTable.job);
 
 //                    this.isCurrentPlayerActive()
                     switch (this.actualState) {
@@ -523,10 +524,21 @@ define([
                             if (this.isCurrentPlayerActive() && undefined === card.type) {
                                 //draw !
                                 this.doDraw();
+                            } else if (this.isCurrentPlayerActive() && this.isMyJob(card)) {
+                                //resign
+                                this.doResign();
                             } else {
-                                this.debug(this.isCurrentPlayerActive(), undefined === card.type, card.type);
+                                this.debug("TRY Draw / Resign fail");
                             }
                             break;
+                        case "playCard":
+                            if (this.isCurrentPlayerActive() && 'hand' === card.location) {
+                                var searchedDiv = $('card_' + card.id);
+                                searchedDiv.classList.add('selected');
+                                this.doPlay();
+                            } else {
+                                this.debug("TRY Play fail");
+                            }
                     }
 
                 }
