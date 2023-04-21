@@ -17,6 +17,7 @@ use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\DrawTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
+use SmileLife\PlayerAction\PlayFromDiscardTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\Table\PlayerTableManager;
 
@@ -225,12 +226,13 @@ class SmileLife extends Table {
         if ($notification->isPublic()) {
             self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
         } else {
-            throw new Exception("TODO : Unsupported private Notification");
+            throw new \Exception("TODO : Unsupported private Notification");
         }
     }
 
 //-- Traits for Initial Player choices (Resign, Draw) 
     use ResignTrait;
+    use PlayFromDiscardTrait;
     use DrawTrait;
 
 //-- Traits for Player action (Play, Pass) 
