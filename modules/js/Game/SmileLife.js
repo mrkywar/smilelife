@@ -27,7 +27,7 @@ define([
             this.handCounters = [];
             this.cardDefaultSize = "M"; //TODO : See if I keep this
             this.game = this;
-            this.animationTimer = 500;
+            this.animationTimer = 5000;
 
 
         },

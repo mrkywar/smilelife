@@ -23,7 +23,7 @@ class TestGameInitializer extends GameInitializer {
 
         $oPlayers = $this->playerManager->findBy();
 
-        $nbCards = random_int(count($players) * 5, count($players) * 10);
+        $nbCards = random_int(count($players) * 10, count($players) * 20);
         $cards = $this->cardManager->findBy(
                 ["location" => CardLocation::DECK],
                 $nbCards
@@ -45,7 +45,7 @@ class TestGameInitializer extends GameInitializer {
             $this->playerTableManager->updateTable($table);
         }
 
-        $nbCardsToDiscard = random_int(0, count($players));
+        $nbCardsToDiscard = 0;//random_int(0, count($players));
         $cardsToDiscard = $this->cardManager->findBy(
                 ["location" => CardLocation::DECK],
                 $nbCardsToDiscard

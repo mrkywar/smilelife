@@ -33,89 +33,79 @@ define([
                 },
 
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card, destinationDivId, fromDivId,card.type);
-                    
-//                    if(card.type)
-                    
-                    
-                    
-                    
-                    
+                    this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
+
                     var searchedDiv = $('card_' + card.id);
 
-                    if (searchedDiv) {
-//                        this.debug("Dis_Param",searchedDiv.id, destinationDivId);
-                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
+                    if (!card.type || card.isFlipped) {
+                        card.additionalClass = "visibleCard";
+                    } else {
+                        card.additionalClass = "flipped";
+                    }
+
+//                    var _this = this;
+
+                    if (searchedDiv && fromDivId) {
+                        //-- Move Request
+                        this.debug("DC Move Request", card);
+                        searchedDiv.id = "temp_" + searchedDiv.id;
+                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
                         setTimeout(function () {
-                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
+                            _this.displayCard(card, destinationDivId);
                         }, this.animationTimer);
+//                        $(searchedDiv.id).remove();
+                    } else if (fromDivId) {
+                        //-- Move a new Card (draw or opponent action)
+                        this.debug("DC New Card Moved", card, fromDivId);
+
+                        var initialId = card.id
+                        card.id = 'temp_' + card.id;
+
+                        var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(newCardDiv, card);
+                        }
+                        newCardDiv.classList.add('movedcard');
+                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, this.animationTimer, 0).then(() => {
+                            if (card.type) {
+                                card.id = initialId;
+                                this.displayCard(card, destinationDivId);
+                            }
+                        });
+
+                    } else if (!searchedDiv) {
+                        //-- display without move
+                        this.debug("DC Classic display", card);
+
+                        var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(newCardDiv, card);
+                        }
 
                     } else {
-                        searchedDiv = document.createElement('div');
-                        searchedDiv.id = "card_".concat(card.id);
-                        searchedDiv.classList.add('cardontable');
-                        searchedDiv.dataset.id = '' + card.id;
-
-                        searchedDiv.innerHTML = `
-                            <div class="card_sides">
-                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
-                                <div class="card-side back"></div>
-                            </div>
-                        `;
-
-                        if (fromDivId) {
-                            var moveableCard = document.createElement('div');
-                            moveableCard.id = "tempory_".concat(card.id);
-                            moveableCard.classList.add('cardontable');
-                            moveableCard.dataset.id = '' + card.id;
-                            moveableCard.innerHTML = `
-                            <div class="card_sides">
-                                <div class="card-side front" id="front_` + moveableCard.id + `"></div>
-                                <div class="card-side back"></div>
-                            </div>
-                        `;
-
-                            searchedDiv.classList.add("card_none");
-
-                            moveableCard.style.zIndex = 20;
-                            $(destinationDivId).appendChild(searchedDiv);
-                            $(fromDivId).appendChild(moveableCard);
-
-                            if (card.type) {
-                                this.displayCardInformations(searchedDiv, card);
-                                this.displayCardInformations(moveableCard, card);
-                            }
-
-                            this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
-//                        $(mo)
-
-                            var _this = this;
-
-                            setTimeout(function () {
-                                searchedDiv.classList.remove("card_none");
-                                $(moveableCard.id).remove();
-                                if (!card.type) {
-                                    $(searchedDiv.id).remove();
-                                }
-                            }, this.animationTimer);
-
-
-                        } else {
-                            $(destinationDivId).appendChild(searchedDiv);
-                            if (card.type) {
-                                this.displayCardInformations(searchedDiv, card);
-                            }
-
-                        }
+                        this.debug("DC other display", card, searchedDiv);
+                        var newCardDiv = dojo.place(searchedDiv, destinationDivId);
                     }
 
 
+                },
 
-
-
-
-
+                slideTemporary(html, container, sourceId, targetId, duration, delay) {
+                    return new Promise((resolve, reject) => {
+                        var animation = this.slideTemporaryObject(
+                                html,
+                                container,
+                                sourceId,
+                                targetId,
+                                duration,
+                                0,
+                                );
+                        setTimeout(() => {
+                            resolve();
+                        }, duration + delay);
+                    });
                 },
 
                 displayCardInformations: function (div, card) {
@@ -123,6 +113,7 @@ define([
                     div.dataset.type = '' + card.type;
                     div.dataset.category = '' + card.category;
                     div.dataset.name = '' + card.name;
+                    div.dataset.id = '' + card.id;
 
                     $("front_" + div.id).innerHTML = `
                         <span class="card_text card_title">` + card.title + `</span>
