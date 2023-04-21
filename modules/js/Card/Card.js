@@ -48,10 +48,10 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         this.debug("DC Move Request", card);
-                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer).play();
-//                        var _this = this;
+                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
+                        var _this = this;
                         setTimeout(function () {
-                            this.displayCard(card, destinationDivId);
+                            _this.displayCard(card, destinationDivId);
                         }, this.animationTimer);
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
@@ -66,7 +66,7 @@ define([
                             this.displayCardInformations(newCardDiv, card);
                         }
                         newCardDiv.classList.add('movedcard');
-                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, 1500, 0).then(() => {
+                        this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, this.animationTimer, 0).then(() => {
                             if (card.type) {
                                 card.id = initialId;
                                 this.displayCard(card, destinationDivId);
@@ -87,140 +87,6 @@ define([
                         this.debug("DC other display", card, searchedDiv);
                         var newCardDiv = dojo.place(searchedDiv, destinationDivId);
                     }
-
-
-
-//                    var searchedDiv = $('card_' + card.id);
-//
-//                    if (searchedDiv) {
-//                        this.debug("DC Card Already Here !", searchedDiv);
-//                    } else {
-//                        this.debug("DC Card Not Here", searchedDiv);
-//
-//                        searchedDiv = document.createElement('div');
-//                        searchedDiv.id = "card_".concat(card.id);
-//                        searchedDiv.classList.add('cardontable');
-//                        searchedDiv.classList.add('debug');
-//                        searchedDiv.dataset.id = '' + card.id;
-//
-//                        searchedDiv.innerHTML = `
-//                            <div class="card_sides">
-//                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
-//                                <div class="card-side back"></div>
-//                            </div>
-//                        `;
-//
-//                    }
-//
-//                    if (fromDivId) {
-////                        var movedCard = $('card_' + card.id);
-//
-//                        if (card.type && !card.isFlipped) {
-//                            card.additionalClass = "visibleCard";
-//                            card.datas = '';
-//                        } else {
-//                            card.additionalClass = "flipped";
-//                            card.datas = 'data-points="' + card.smilePoints + '" ';
-//                            card.datas += 'data-type="' + card.type + '" ';
-//                            card.datas += 'data-category="' + card.category + '" ';
-//                            card.datas += 'data-name="' + card.name + '"';
-//
-//
-//                        }
-//                        this.slideTemporary('jstpl_card', card, 'myhand', fromDivId, destinationDivId, 25000, 0).then(() => {
-////                                var div = this.addCard(card, 'discard');
-////                                dojo.style(div, 'zIndex', dojo.query('#discard .bang-card').length);
-////                                dojo.style(div, 'transformStyle', "initial");
-//                        });
-//
-////                        this.slideToObject(movedCard.id, destinationDivId, this.animationTimer).play();
-//                    } else {
-//                        $(destinationDivId).appendChild(searchedDiv);
-//                        if (card.type && !card.isFlipped) {
-//                            this.displayCardInformations(searchedDiv, card);
-//
-//                        }
-//                    }
-
-                    // last step
-
-
-//                    if(fromDivId && !card.)
-
-//                    if ()
-
-
-//                    var searchedDiv = $('card_' + card.id);
-//
-//                    if (searchedDiv) {
-//                        this.slideToObject(searchedDiv.id, destinationDivId, this.animationTimer).play();
-//                        var _this = this;
-//                        setTimeout(function () {
-//                            _this.attachToNewParent(searchedDiv.id, destinationDivId);
-//                        }, this.animationTimer);
-//
-//                    } else {
-//                        searchedDiv = document.createElement('div');
-//                        searchedDiv.id = "card_".concat(card.id);
-//                        searchedDiv.classList.add('cardontable');
-//                        searchedDiv.dataset.id = '' + card.id;
-//
-//                        searchedDiv.innerHTML = `
-//                            <div class="card_sides">
-//                                <div class="card-side front" id="front_` + searchedDiv.id + `"></div>
-//                                <div class="card-side back"></div>
-//                            </div>
-//                        `;
-//
-//                        if (fromDivId) {
-//                            var moveableCard = document.createElement('div');
-//                            moveableCard.id = "tempory_".concat(card.id);
-//                            moveableCard.classList.add('cardontable');
-//                            moveableCard.dataset.id = '' + card.id;
-//                            moveableCard.innerHTML = `
-//                            <div class="card_sides">
-//                                <div class="card-side front" id="front_` + moveableCard.id + `"></div>
-//                                <div class="card-side back"></div>
-//                            </div>
-//                        `;
-//
-//                            searchedDiv.classList.add("card_none");
-//
-//                            moveableCard.style.zIndex = 20;
-//                            $(destinationDivId).appendChild(searchedDiv);
-//                            $(fromDivId).appendChild(moveableCard);
-//
-//                            if (card.type) {
-//                                this.displayCardInformations(searchedDiv, card);
-//                                this.displayCardInformations(moveableCard, card);
-//                            }
-//
-//                            this.slideToObject(moveableCard.id, searchedDiv.id, this.animationTimer).play();
-//
-//                            var _this = this;
-//
-//                            setTimeout(function () {
-//                                searchedDiv.classList.remove("card_none");
-//                                $(moveableCard.id).remove();
-//                                if (!card.type) {
-//                                    $(searchedDiv.id).remove();
-//                                }
-//                            }, this.animationTimer);
-//
-//
-//                        } else {
-//                            $(destinationDivId).appendChild(searchedDiv);
-//                            if (card.type) {
-//                                this.displayCardInformations(searchedDiv, card);
-//                            }
-//
-//                        }
-//                    }
-//
-//
-//
-//
-
 
 
                 },
