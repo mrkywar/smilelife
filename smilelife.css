@@ -224,7 +224,7 @@ html{
 }
 .player_tables .pile_container .pile{
     position: relative;
-    padding-bottom: 17px;
+    padding-bottom: 5px;
 }
 .pile_container .pile .cardontable{
     position: absolute;
