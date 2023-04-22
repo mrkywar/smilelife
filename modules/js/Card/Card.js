@@ -79,15 +79,17 @@ define([
                         this.debug("DC Classic display", card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        this.debug('DC CD T',(card.type && !card.isFlipped), card.type ,card.isFlipped)
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(newCardDiv, card);
+                        }
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
                             this.onCardClick(card);
                         });
 
-                        if (card.type && !card.isFlipped) {
-                            this.displayCardInformations(newCardDiv, card);
-                        }
+                        
 
                     } else {
                         this.debug("DC other display", card, searchedDiv);
