@@ -219,27 +219,21 @@ html{
     text-align: center;
     color: white;
 }
+#deck_and_discard .pile_container .pile_counter{
+    padding-top: 5px;
+}
 .player_tables .pile_container .pile{
-    padding-bottom: 20px;
     position: relative;
+    padding-bottom: 17px;
 }
 .pile_container .pile .cardontable{
     position: absolute;
 }
-/*.pile_container .pile .cardontable{
-    display: none;
-}
-.pile_container .pile .cardontable:last-child,
-.pile_deck .pile .cardontable:first-child{
-    display: block;
-}*/
 .pile_deck {
     position: relative;
     height: 0;
 }
 .player_tables .pile_container .pile_counter{
-    position: absolute;
-    bottom:0;
     width: 100%;
 }
 .pile_job,
@@ -453,7 +447,7 @@ html{
     background: greenyellow;
     border: 3px black solid;
     margin: 5px 0;
-    z-index: 99;
+/*    z-index: 99;*/
     width: 100%;
     position: absolute;
 }
