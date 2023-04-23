@@ -79,7 +79,7 @@ define([
                         this.debug("DC Classic display", card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-                        this.debug('DC CD T',(card.type && !card.isFlipped), card.type ,card.isFlipped)
+                        this.debug('DC CD T', (card.type && !card.isFlipped), card.type, card.isFlipped)
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
@@ -89,7 +89,7 @@ define([
                             this.onCardClick(card);
                         });
 
-                        
+
 
                     } else {
                         this.debug("DC other display", card, searchedDiv);
@@ -529,12 +529,19 @@ define([
                             } else if (this.isCurrentPlayerActive() && this.isMyJob(card)) {
                                 //resign
                                 this.doResign();
+                            } else if ('discard' === card.location) {
+                                //play from discard
+                                var searchedDiv = $('card_' + card.id);
+                                searchedDiv.classList.add('selectable');
+                                searchedDiv.classList.add('selected');
+                                this.doPlayFromDiscard();
                             } else {
                                 this.debug("TRY Draw / Resign fail");
                             }
                             break;
                         case "playCard":
                             if (this.isCurrentPlayerActive() && 'hand' === card.location) {
+                                // play from hand
                                 var searchedDiv = $('card_' + card.id);
                                 searchedDiv.classList.add('selected');
                                 this.doPlay();
