@@ -536,6 +536,7 @@ define([
                                 searchedDiv.classList.add('selected');
                                 this.doPlayFromDiscard();
                             } else {
+                                //this.debug(card.category, this.myTable.job, card.id, this.myTable.job.id);
                                 this.debug("TRY Draw / Resign fail");
                             }
                             break;
