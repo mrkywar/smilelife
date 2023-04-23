@@ -13,6 +13,7 @@ use SmileLife\Game\Request\PlayCardRequest;
 trait PlayFromDiscardTrait {
 
     public function actionPlayFromDiscard() {
+        self::checkAction('playFormDiscard');
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
         ]);

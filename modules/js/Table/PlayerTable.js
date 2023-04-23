@@ -177,7 +177,7 @@ define([
                 },
 
                 isMyJob: function (card) {
-                    this.debug('PT imj',card.category.includes("job"));
+//                    this.debug('PT imj',card.category.includes("job"));
                     
                     return (
                             (card.category.includes("job")) //is card a job ?

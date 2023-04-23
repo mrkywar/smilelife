@@ -45,15 +45,14 @@ $playerActionsGameStates = [
 //        "args" => "argTakeCards",
         "updateGameProgression" => true,
         "possibleactions" => [
-            "resignAndPlay",
-            "resignAndPass",
-            "drawCardFormDeck",
-            "drawCardFormDiscard"
+            "resign",
+            "drawCard",
+            "playFormDiscard"
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
-            "drawCardFormDeck" => ST_PLAYER_PLAY_CARD,
+            "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
         ]

@@ -12,6 +12,7 @@ use SmileLife\Game\Request\PlayCardRequest;
 trait PlayCardTrait {
 
     public function actionPlayCard($cardId) {
+        self::checkAction('playCard');
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
         ]);

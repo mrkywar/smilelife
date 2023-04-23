@@ -13,7 +13,8 @@ use SmileLife\Table\PlayerTableDecorator;
  */
 trait PassTrait {
 
-    public function actionDiscardAndPass($cardId) {
+    public function actionDiscard($cardId) {
+        self::checkAction('discardCard');
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
         ]);

@@ -65,7 +65,7 @@ class action_smilelife extends APP_GameAction {
         
         $cardId = self::getArg("card", AT_posint);
 
-        $this->game->actionDiscardAndPass($cardId);
+        $this->game->actionDiscard($cardId);
 
         self::ajaxResponse();
         

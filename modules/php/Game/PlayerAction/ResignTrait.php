@@ -13,6 +13,7 @@ use SmileLife\Game\Request\ResignRequest;
 trait ResignTrait {
 
     public function actionResign() {
+        self::checkAction('resign');
         $playerId = self::getCurrentPlayerId();
 
         $player = $this->playerManager->findOne([
