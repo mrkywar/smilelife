@@ -54,7 +54,7 @@ $playerActionsGameStates = [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
             "drawCardFormDeck" => ST_PLAYER_PLAY_CARD,
-            "drawCardFormDiscard" => ST_NEXT_PLAYER,
+            "playCard" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
         ]
     ],

@@ -543,8 +543,11 @@ define([
                             if (this.isCurrentPlayerActive() && 'hand' === card.location) {
                                 // play from hand
                                 var searchedDiv = $('card_' + card.id);
-                                searchedDiv.classList.add('selected');
-                                this.doPlay();
+                                if (searchedDiv.classList.contains('selected')) {
+                                    this.doPlay();
+                                } else {
+                                    searchedDiv.classList.add('selected');
+                                }
                             } else {
                                 this.debug("TRY Play fail");
                             }
