@@ -293,14 +293,15 @@ html{
 .pile_adultery .pile_counter{
     background: black;
 }
-/*--------------------------------------------------------------------------
-                BEGIN - CARD Standard
---------------------------------------------------------------------------*/
-#card_empty{
+#pile_discard{
     box-shadow: none !important;
     background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, black 40px, black 80px);
     background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
 }
+/*--------------------------------------------------------------------------
+                BEGIN - CARD Standard
+--------------------------------------------------------------------------*/
+
 .cardontable {
     position: relative;
     display: block;

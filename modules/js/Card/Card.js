@@ -182,6 +182,9 @@ define([
                         top: -` + size.width + `px;
                         left: -` + size.height + `px;
                     }
+                    #pile_discard{
+                        border-radius: ` + size.radius + `px;
+                    }
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
                     ----------------------------------------------------------*/
