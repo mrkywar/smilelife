@@ -177,8 +177,10 @@ define([
                 },
 
                 isMyJob: function (card) {
+                    this.debug('PT imj',card.category.includes("job"));
+                    
                     return (
-                            ('job' === card.category || 'official_job' === card.category || 'temporary_job' === card.category) //is card a job ?
+                            (card.category.includes("job")) //is card a job ?
                             &&
                             null !== this.myTable.job &&                                  //did I have a job 
                             card.id === this.myTable.job.id                               //is this card the same of my job
