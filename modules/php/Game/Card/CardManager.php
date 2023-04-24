@@ -174,10 +174,15 @@ class CardManager extends SuperManager {
     }
 
     public function getLastDiscardedCard() {
-        return $this->findBy(
-                        ["location" => CardLocation::DISCARD],
-                        1,
-                        ['locationArg' => QueryString::ORDER_DESC]);
+        $this->getSerializer()->setIsForcedArray(true);
+        $this->setIsDebug(true);
+        $cards = $this->getAllCardsInDiscard();
+        $this->setIsDebug(false);
+        $this->getSerializer()->setIsForcedArray(false);
+        if (null === $cards) {
+            return null;
+        }
+        return $cards[sizeof($cards) - 1];
     }
 
     public function drawCard($numberCards = 1) {
@@ -220,7 +225,7 @@ class CardManager extends SuperManager {
             "location" => $location
         ];
         $orderBy = [
-            "locationArg" => QueryString::ORDER_DESC
+            "locationArg" => QueryString::ORDER_ASC
         ];
 
         if (null !== $locationArg) {
