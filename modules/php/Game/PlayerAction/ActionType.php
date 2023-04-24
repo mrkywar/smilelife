@@ -13,6 +13,6 @@ class ActionType {
     const ACTION_PLAY = "playCard";
     
     const ACTION_RESIGN = "resign";
-    const ACTION_DECK_DRAW = "drawCardFormDeck";
+    const ACTION_DECK_DRAW = "drawCard";
 
 }
