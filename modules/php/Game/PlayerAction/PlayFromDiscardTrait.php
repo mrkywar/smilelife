@@ -19,7 +19,6 @@ trait PlayFromDiscardTrait {
         ]);
 
         $card = $this->cardManager->getLastDiscardedCard();
-
         if (null === $card) {
             throw new BgaVisibleSystemException("No card in discard");
         } else if ($card->getDiscarderId() === $player->getId()) {

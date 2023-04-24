@@ -138,7 +138,6 @@ class CardManager extends SuperManager {
         $this->getSerializer()->setIsForcedArray(true);
         $cardInDiscard = $this->getAllCardsInDiscard();
         $this->getSerializer()->setIsForcedArray(false);
-        $this->setIsDebug(true);
 
         $position = count($cardInDiscard) + 1;
 
@@ -175,9 +174,7 @@ class CardManager extends SuperManager {
 
     public function getLastDiscardedCard() {
         $this->getSerializer()->setIsForcedArray(true);
-        $this->setIsDebug(true);
         $cards = $this->getAllCardsInDiscard();
-        $this->setIsDebug(false);
         $this->getSerializer()->setIsForcedArray(false);
         if (null === $cards) {
             return null;
