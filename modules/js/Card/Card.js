@@ -79,7 +79,7 @@ define([
                         this.debug("DC Classic display", card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-                        this.debug('DC CD T',(card.type && !card.isFlipped), card.type ,card.isFlipped)
+                        this.debug('DC CD T', (card.type && !card.isFlipped), card.type, card.isFlipped)
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
@@ -89,7 +89,7 @@ define([
                             this.onCardClick(card);
                         });
 
-                        
+
 
                     } else {
                         this.debug("DC other display", card, searchedDiv);
@@ -181,6 +181,9 @@ define([
                         position: absolute;
                         top: -` + size.width + `px;
                         left: -` + size.height + `px;
+                    }
+                    #pile_discard{
+                        border-radius: ` + size.radius + `px;
                     }
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
@@ -529,15 +532,26 @@ define([
                             } else if (this.isCurrentPlayerActive() && this.isMyJob(card)) {
                                 //resign
                                 this.doResign();
+                            } else if ('discard' === card.location) {
+                                //play from discard
+                                var searchedDiv = $('card_' + card.id);
+                                searchedDiv.classList.add('selectable');
+                                searchedDiv.classList.add('selected');
+                                this.doPlayFromDiscard();
                             } else {
+                                //this.debug(card.category, this.myTable.job, card.id, this.myTable.job.id);
                                 this.debug("TRY Draw / Resign fail");
                             }
                             break;
                         case "playCard":
                             if (this.isCurrentPlayerActive() && 'hand' === card.location) {
+                                // play from hand
                                 var searchedDiv = $('card_' + card.id);
-                                searchedDiv.classList.add('selected');
-                                this.doPlay();
+                                if (searchedDiv.classList.contains('selected')) {
+                                    this.doPlay();
+                                } else {
+                                    searchedDiv.classList.add('selected');
+                                }
                             } else {
                                 this.debug("TRY Play fail");
                             }

@@ -182,6 +182,10 @@ abstract class SuperManager extends DBRequester {
             $field = DBFieldsRetriver::retriveFieldByPropertyName($clause, $this->getSerializer()->getClassModel());
             $qb->addClause($field, $value);
         }
+        foreach ($orderBy as $field => $orderDir){
+            $field = DBFieldsRetriver::retriveFieldByPropertyName($field, $this->getSerializer()->getClassModel());
+            $qb->addOrderBy($field, $orderDir);
+        }
         if (null !== $limit) {
             $qb->setLimit($limit);
         }

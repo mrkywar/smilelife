@@ -49,6 +49,9 @@ abstract class Flirt extends Love {
             return true;
         } elseif ($job instanceof CardEffectInterface && $this->checkLimitlessFlirt($job)) {
             return true;
+        } elseif (null !== $table->getMarriage()) {
+            throw new CardException(clienttranslate('You are already married, think about adultery ?'));
+            return false;
         } elseif (count($table->getFlirts()) < 5) {
             return true;
         }
@@ -91,4 +94,5 @@ abstract class Flirt extends Love {
             'flirtLocation' => $this->getText1()
         ]);
     }
+
 }

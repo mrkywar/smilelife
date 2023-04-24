@@ -11,6 +11,7 @@ use SmileLife\Game\Request\DrawCardRequest;
 trait DrawTrait {
 
     public function actionDraw() {
+        self::checkAction('drawCard');
         $playerId = self::getCurrentPlayerId();
         $player = $this->playerManager->findOne([
             "id" => $playerId

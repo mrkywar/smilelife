@@ -25,15 +25,10 @@ define([
                     this.deckCounter = pileDeckCounter;
                     
                     //--- display Discard infos
-                    if(null === this.discard){
-                        this.lastDiscardedCard = {
-                            id:"empty"
-                        };
-                    }else{
+                    if(null !== this.discard){
                         this.lastDiscardedCard = this.discard[this.discard.length-1];
-
+                        this.displayCard(this.lastDiscardedCard, "pile_discard");
                     }
-                    this.displayCard(this.lastDiscardedCard, "pile_discard");
                     var pileDiscardCounter = new ebg.counter();
                     pileDiscardCounter.create('pile_discard_count');
                     pileDiscardCounter.setValue((null === this.discard)?0:this.discard.length);

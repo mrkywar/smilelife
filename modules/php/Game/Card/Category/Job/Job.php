@@ -68,7 +68,10 @@ abstract class Job extends Card {
 
     public function canBePlayed(PlayerTable $table): bool {
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
-        if ($actualLevel < $this->getRequiredStudies()) {
+        if(null !== $table->getJob()){
+            throw new CardException("You have already an active Job, Resign First");
+            return false;
+        }elseif ($actualLevel < $this->getRequiredStudies()) {
             throw new CardException("You do not have enough study points to perform this job");
             return false;
         }

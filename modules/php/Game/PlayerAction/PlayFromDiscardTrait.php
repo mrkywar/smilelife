@@ -2,9 +2,9 @@
 
 namespace SmileLife\PlayerAction;
 
-use Core\Notification\Notification;
-use Core\Requester\Response\Response;
-use SmileLife\Game\Request\ResignRequest;
+use Exception;
+use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Game\Request\PlayCardRequest;
 
 /**
  *
@@ -13,18 +13,28 @@ use SmileLife\Game\Request\ResignRequest;
 trait PlayFromDiscardTrait {
 
     public function actionPlayFromDiscard() {
-        $playerId = self::getCurrentPlayerId();
-        
-        die('TODO Next Dev iteration');
+        self::checkAction('playFormDiscard');
+        $player = $this->playerManager->findOne([
+            "id" => self::getCurrentPlayerId()
+        ]);
 
-//        $player = $this->playerManager->findOne([
-//            "id" => $playerId
-//        ]);
-//        $request = new ResignRequest($player);
-//
-//        $response = $this->requester->send($request);
-//
-//        $this->applyResponse($response);
+        $card = $this->cardManager->getLastDiscardedCard();
+        if (null === $card) {
+            throw new BgaVisibleSystemException("No card in discard");
+        } else if ($card->getDiscarderId() === $player->getId()) {
+            throw new BgaVisibleSystemException("Last card is yours");
+        }
+
+        try {
+            $request = new PlayCardRequest($player, $card);
+            $response = $this->requester->send($request);
+            $this->applyResponse($response);
+        } catch (CardException $e) {
+            throw new \BgaVisibleSystemException($e->getMessage());
+        } catch (Exception $e) {
+            throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
+        }
+//        die('TODO Next Dev iteration');
     }
 
 }
