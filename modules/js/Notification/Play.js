@@ -16,12 +16,12 @@ define([
                     this.debug("Card", card);
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
-                    if("discard" === card.location){
-                        this.debug("PNFD",this.discard);
-//                        card.location = cardDest;
-                    }else{
-                        this.debug("PNOC",this.discard);
-                    }
+//                    if("discard" === card.location){
+//                        this.debug("PNFD",this.discard);
+////                        card.location = cardDest;
+//                    }else{
+//                        this.debug("PNOC",this.discard);
+//                    }
                     
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand", true);
@@ -29,7 +29,7 @@ define([
                     } else {
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }
-
+                    this.discard = notif.args.discard;
 
                     var _this = this;
                     setTimeout(function () {
