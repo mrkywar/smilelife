@@ -5,6 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
+use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -30,11 +31,18 @@ class PlayNotifier extends EventListener {
      */
     private $cardDecorator;
 
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
     public function __construct() {
         $this->setMethod("onPlay");
 
         $this->tableDecorator = new PlayerTableDecorator();
         $this->cardDecorator = new CardDecorator();
+        $this->cardManager = new CardManager();
     }
 
     private function extractPlayerTable(Response $response): PlayerTable {
@@ -48,17 +56,23 @@ class PlayNotifier extends EventListener {
         $card = $request->getCard();
         $table = $this->extractPlayerTable($response);
 
+        $discardedCards = $this->cardManager->getAllCardsInDiscard();
+
+        var_dump($response->get('from'));
+        die;
+
         // from {$fromCard} // $response->get('from');
-        
+
         $notification->setType("playNotification")
                 ->setText(clienttranslate('${player_name} play ${cardName}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('cardName', (string) $card)
                 ->add('table', $this->tableDecorator->decorate($table))
-                ->add('card', $this->cardDecorator->decorate($card));
+                ->add('card', $this->cardDecorator->decorate($card))
+                ->add('discard', $this->cardDecorator->decorate($discardedCards));
 
-            $response->addNotification($notification);
+        $response->addNotification($notification);
 
         return $response;
     }

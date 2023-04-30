@@ -20,9 +20,9 @@ trait PlayFromDiscardTrait {
 
         $card = $this->cardManager->getLastDiscardedCard();
         if (null === $card) {
-            throw new BgaVisibleSystemException("No card in discard");
+            throw new \BgaUserException("No card in discard");
         } else if ($card->getDiscarderId() === $player->getId()) {
-            throw new BgaVisibleSystemException("Last card is yours");
+            throw new \BgaUserException("Last discarded card is yours");
         }
 
         try {
@@ -30,9 +30,9 @@ trait PlayFromDiscardTrait {
             $response = $this->requester->send($request);
             $this->applyResponse($response);
         } catch (CardException $e) {
-            throw new \BgaVisibleSystemException($e->getMessage());
+            throw new \BgaUserException($e->getMessage());
         } catch (Exception $e) {
-            throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
+            throw new \BgaUserException("EXCEPTION" . $e->getMessage());
         }
 //        die('TODO Next Dev iteration');
     }
