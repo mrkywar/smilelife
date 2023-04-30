@@ -62,7 +62,7 @@ class PlayNotifier extends EventListener {
         $from = $response->get('from');
         if (CardLocation::DISCARD === $from || CardLocation::PLAYER_HAND === $from) {
             $notification->setType("playNotification")
-                    ->setText(clienttranslate('${player_name} play ${cardName} from {$from}'))
+                    ->setText(clienttranslate('${player_name} play ${cardName} from ${from}'))
                     ->add('player_name', $player->getName())
                     ->add('playerId', $player->getId())
                     ->add('cardName', (string) $card)
