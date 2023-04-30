@@ -7,6 +7,7 @@ use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTable;
@@ -58,19 +59,26 @@ class PlayNotifier extends EventListener {
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
-        var_dump($response->get('from'));
-        die;
-
+        $from = $response->get('from');
+        if (CardLocation::DISCARD === $from || CardLocation::PLAYER_HAND === $from) {
+            $notification->setType("playNotification")
+                    ->setText(clienttranslate('${player_name} play ${cardName} from {$from}'))
+                    ->add('player_name', $player->getName())
+                    ->add('playerId', $player->getId())
+                    ->add('cardName', (string) $card)
+                    ->add('from', $from)
+                    ->add('table', $this->tableDecorator->decorate($table))
+                    ->add('card', $this->cardDecorator->decorate($card));
+                    //->add('discard', $this->cardDecorator->decorate($discardedCards));
+        } else {
+            var_dump($from);
+            die;
+        }
+//        die;
+//        if (\SmileLife\Card\Core\CardLocation::PLAYER_HAND === $from)
         // from {$fromCard} // $response->get('from');
 
-        $notification->setType("playNotification")
-                ->setText(clienttranslate('${player_name} play ${cardName}'))
-                ->add('player_name', $player->getName())
-                ->add('playerId', $player->getId())
-                ->add('cardName', (string) $card)
-                ->add('table', $this->tableDecorator->decorate($table))
-                ->add('card', $this->cardDecorator->decorate($card))
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+
 
         $response->addNotification($notification);
 
