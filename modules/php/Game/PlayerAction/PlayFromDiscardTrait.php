@@ -31,10 +31,10 @@ trait PlayFromDiscardTrait {
             $this->applyResponse($response);
         } catch (CardException $e) {
             throw new \BgaUserException($e->getMessage());
-        } catch (Exception $e) {
+        } /*catch (Exception $e) {
             throw new \BgaUserException("EXCEPTION" . $e->getMessage());
         }
-//        die('TODO Next Dev iteration');
+//        die('TODO Next Dev iteration');*/
     }
 
 }

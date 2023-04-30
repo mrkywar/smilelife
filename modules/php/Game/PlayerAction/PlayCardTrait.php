@@ -27,11 +27,11 @@ trait PlayCardTrait {
             $this->applyResponse($response);
         } catch (CardException $e) {
             throw new \BgaVisibleSystemException($e->getMessage());
-        } catch (\Exception $e) {
+        } /*catch (\Exception $e) {
             throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
         }
 //        var_dump("here ?", $response);
-//        die();
+//        die();*/
     }
 
 }

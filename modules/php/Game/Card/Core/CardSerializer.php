@@ -12,7 +12,11 @@ use SmileLife\Card\Card;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardSerializer extends Serializer {
-    
+
+    public function __construct(string $classModel = null) {
+        parent::__construct(Card::class);
+    }
+
     protected function generateNewModel($rawItem): Model {
         if ($rawItem instanceof Card) {
             return $rawItem;

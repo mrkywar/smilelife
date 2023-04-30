@@ -57,28 +57,23 @@ class PlayNotifier extends EventListener {
         $card = $request->getCard();
         $table = $this->extractPlayerTable($response);
 
-        $discardedCards = $this->cardManager->getAllCardsInDiscard();
-
         $from = $response->get('from');
-        if (CardLocation::DISCARD === $from || CardLocation::PLAYER_HAND === $from) {
-            $notification->setType("playNotification")
-                    ->setText(clienttranslate('${player_name} play ${cardName} from ${from}'))
-                    ->add('player_name', $player->getName())
-                    ->add('playerId', $player->getId())
-                    ->add('cardName', (string) $card)
-                    ->add('from', $from)
-                    ->add('table', $this->tableDecorator->decorate($table))
-                    ->add('card', $this->cardDecorator->decorate($card));
-                    //->add('discard', $this->cardDecorator->decorate($discardedCards));
-        } else {
-            var_dump($from);
-            die;
-        }
-//        die;
-//        if (\SmileLife\Card\Core\CardLocation::PLAYER_HAND === $from)
-        // from {$fromCard} // $response->get('from');
 
-
+        $discardedCards = $this->cardManager->getAllCardsInDiscard();
+//        if (CardLocation::DISCARD === $from || CardLocation::PLAYER_HAND === $from) {
+        $notification->setType("playNotification")
+                ->setText(clienttranslate('${player_name} play ${cardName} from ${from}'))
+                ->add('player_name', $player->getName())
+                ->add('playerId', $player->getId())
+                ->add('cardName', (string) $card)
+                ->add('from', $from)
+                ->add('table', $this->tableDecorator->decorate($table))
+                ->add('card', $this->cardDecorator->decorate($card))
+                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+//        } else {
+//            var_dump($from);
+//            die;
+//        }
 
         $response->addNotification($notification);
 
