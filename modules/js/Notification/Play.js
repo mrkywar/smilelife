@@ -16,6 +16,13 @@ define([
                     this.debug("Card", card);
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
+                    if("discard" === card.location){
+                        this.debug("PNFD",this.discard);
+//                        card.location = cardDest;
+                    }else{
+                        this.debug("PNOC",this.discard);
+                    }
+                    
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand", true);
                         dojo.query(".selected").removeClass("selected");

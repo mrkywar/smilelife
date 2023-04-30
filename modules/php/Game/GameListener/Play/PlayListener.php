@@ -48,6 +48,8 @@ class PlayListener extends EventListener {
 
         $table->addCard($card);
         $this->tableManager->updateTable($table);
+        
+        $this->cardManager->playCard($player, $card);
 
         $response->set('player', $player)
                 ->set('card', $card)

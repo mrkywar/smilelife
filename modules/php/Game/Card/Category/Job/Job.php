@@ -68,6 +68,7 @@ abstract class Job extends Card {
 
     public function canBePlayed(PlayerTable $table): bool {
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
+//        var_dump($table->getJob());die;
         if(null !== $table->getJob()){
             throw new CardException("You have already an active Job, Resign First");
             return false;
