@@ -48,6 +48,8 @@ class PlayNotifier extends EventListener {
         $card = $request->getCard();
         $table = $this->extractPlayerTable($response);
 
+        // from {$fromCard} // $response->get('from');
+        
         $notification->setType("playNotification")
                 ->setText(clienttranslate('${player_name} play ${cardName}'))
                 ->add('player_name', $player->getName())
