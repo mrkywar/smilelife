@@ -57,7 +57,7 @@ class PlayNotifier extends EventListener {
         $card = $request->getCard();
         $table = $this->extractPlayerTable($response);
 
-//        $from = $response->get('from');
+        $from = $response->get('from');
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 //        if (CardLocation::DISCARD === $from || CardLocation::PLAYER_HAND === $from) {
         $notification->setType("playNotification")
@@ -65,9 +65,10 @@ class PlayNotifier extends EventListener {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('cardName', (string) $card)
-                ->add('from', $response->get('from'))
+                ->add('from', $from)
                 ->add('table', $this->tableDecorator->decorate($table))
                 ->add('card', $this->cardDecorator->decorate($card))
+                ->add('fromHand', CardLocation::PLAYER_HAND === $from)
                 ->add('discard', $this->cardDecorator->decorate($discardedCards));
 //        } else {
 //            var_dump($from);

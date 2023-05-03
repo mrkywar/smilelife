@@ -16,13 +16,7 @@ define([
                     this.debug("Card", card);
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
-//                    if("discard" === card.location){
-//                        this.debug("PNFD",this.discard);
-////                        card.location = cardDest;
-//                    }else{
-//                        this.debug("PNOC",this.discard);
-//                    }
-                    
+
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand", true);
                         dojo.query(".selected").removeClass("selected");
@@ -33,7 +27,12 @@ define([
 
                     var _this = this;
                     setTimeout(function () {
-                        _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue() - 1);
+                        _this.debug("PNFH",notif.args.fromHand);
+                        if (notif.args.fromHand) {
+                            _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue() - 1);
+                        } else {
+                            _this.discardCounter.setValue(_this.discardCounter.getValue() - 1);
+                        }
                     }, this.animationTimer);
                 },
             }
