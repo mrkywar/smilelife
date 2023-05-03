@@ -76,10 +76,10 @@ define([
 
                     } else if (!searchedDiv) {
                         //-- display without move
-                        this.debug("DC Classic display", card);
+//                        this.debug("DC Classic display", card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-                        this.debug('DC CD T', (card.type && !card.isFlipped), card.type, card.isFlipped)
+//                        this.debug('DC CD T', (card.type && !card.isFlipped), card.type, card.isFlipped)
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
@@ -520,7 +520,7 @@ define([
                 },
 
                 onCardClick: function (card) {
-                    this.debug("OCC", card, this.actualState);
+//                    this.debug("OCC", card, this.actualState);
 //                    this.debug("OCC myTable", this.myTable.job);
 
 //                    this.isCurrentPlayerActive()

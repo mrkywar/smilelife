@@ -10,7 +10,7 @@ define([
             {
 
                 notif_passNotification: function (notif) {
-                    this.debug("notif_passNotification called", notif);
+//                    this.debug("notif_passNotification called", notif);
 
                     var card = notif.args.card;
 

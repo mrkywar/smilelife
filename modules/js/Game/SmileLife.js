@@ -49,7 +49,7 @@ define([
         },
 
         takeAction: function (action, data, reEnterStateOnError, checkAction = true) {
-            this.debug('TA', action, data, reEnterStateOnError, checkAction)
+//            this.debug('TA', action, data, reEnterStateOnError, checkAction)
             data = data || {};
             if (data.lock === undefined) {
                 data.lock = true;

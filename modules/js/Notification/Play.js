@@ -10,10 +10,10 @@ define([
             {
 
                 notif_playNotification: function (notif) {
-                    this.debug("notif_playNotification called", notif);
+//                    this.debug("notif_playNotification called", notif);
 
                     var card = notif.args.card;
-                    this.debug("Card", card);
+//                    this.debug("Card", card);
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
 
