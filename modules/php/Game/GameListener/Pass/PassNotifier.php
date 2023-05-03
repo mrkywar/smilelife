@@ -5,6 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
+use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Game\Request\PassRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -22,9 +23,16 @@ class PassNotifier extends EventListener {
      */
     private $cardDecorator;
 
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
     public function __construct() {
         $this->setMethod("onPass");
 
+        $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
     }
 
@@ -33,12 +41,15 @@ class PassNotifier extends EventListener {
         $player = $request->getPlayer();
         $notification = new Notification();
 
+        $discardedCards = $this->cardManager->getAllCardsInDiscard();
+
         $notification->setType("passNotification")
                 ->setText(clienttranslate('${player_name} pass and discard ${cardName}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('card', $this->cardDecorator->decorate($card))
                 ->add('cardName', (string) $card)
+                ->add('discard', $this->cardDecorator->decorate($discardedCards));
         ;
 
         $response->addNotification($notification);

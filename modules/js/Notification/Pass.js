@@ -20,6 +20,7 @@ define([
                     } else {
                         this.displayCard(card, "pile_discard", "playerpanel_" + notif.args.playerId, true);
                     }
+                    this.discard = notif.args.discard;
 
                     var _this = this;
                     setTimeout(function () {
