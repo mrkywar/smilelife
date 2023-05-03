@@ -23,17 +23,14 @@ define([
                     } else {
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }
+
+                    if (notif.args.fromHand) {
+                        this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
+                    } else {
+                        this.discardCounter.setValue(this.discardCounter.getValue() - 1);
+                    }
                     this.discard = notif.args.discard;
 
-                    var _this = this;
-                    setTimeout(function () {
-                        _this.debug("PNFH",notif.args.fromHand);
-                        if (notif.args.fromHand) {
-                            _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue() - 1);
-                        } else {
-                            _this.discardCounter.setValue(_this.discardCounter.getValue() - 1);
-                        }
-                    }, this.animationTimer);
                 },
             }
     );

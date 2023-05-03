@@ -22,11 +22,8 @@ define([
                     }
                     this.discard = notif.args.discard;
 
-                    var _this = this;
-                    setTimeout(function () {
-                        _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue() - 1);
-                        _this.discardCounter.setValue(_this.discardCounter.getValue() + 1);
-                    }, this.animationTimer);
+                    this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
+                    this.discardCounter.setValue(this.discardCounter.getValue() + 1);
                 },
             }
     );
