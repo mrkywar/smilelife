@@ -24,7 +24,7 @@ define([
 
                         dojo.query("#myhand .selected").removeClass("selected");
                     } else {
-                        this.debug("DoPlay:", card[0]);
+//                        this.debug("DoPlay:", card[0]);
 
                         var data = {
                             card: card[0].dataset.id
@@ -41,7 +41,7 @@ define([
                         dojo.query("#myhand .selected").removeClass("selected");
 
                     } else {
-                        this.debug("DoPass", card[0]);
+//                        this.debug("DoPass", card[0]);
                         var data = {
                             card: card[0].dataset.id
                         };

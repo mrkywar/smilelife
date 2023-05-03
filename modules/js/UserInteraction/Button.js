@@ -24,7 +24,7 @@ define([
                 //
                 onEnteringState: function (stateName, args)
                 {
-                    this.debug('Entering state: ' + stateName);
+//                    this.debug('Entering state: ' + stateName);
                     this.actualState = stateName;
                 },
 
@@ -33,7 +33,7 @@ define([
                 //
                 onLeavingState: function (stateName)
                 {
-                    this.debug('Leaving state: ' + stateName);
+//                    this.debug('Leaving state: ' + stateName);
                     this.actualState = null;
                 },
 
@@ -42,7 +42,7 @@ define([
                 //        
                 onUpdateActionButtons: function (stateName, args)
                 {
-                    this.debug('onUpdateActionButtons: ' + stateName);
+//                    this.debug('onUpdateActionButtons: ' + stateName);
 
                     if (this.isCurrentPlayerActive())
                     {

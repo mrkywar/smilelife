@@ -9,20 +9,17 @@ define([
             ],
             {
                 notif_resignNotification: function (notif) {
-                    this.debug("notif_resignNotification called", notif);
+//                    this.debug("notif_resignNotification called", notif);
 
                     var card = notif.args.card;
                     this.displayCard(card, "pile_discard", "pile_job_" + notif.args.playerId);
-                    
+
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.myTable = notif.args.table;
                     }
 
-                    var _this = this;
-                    setTimeout(function () {
-                        _this.discardCounter.setValue(_this.discardCounter.getValue() + 1);
-                        _this.boardCounter[notif.args.playerId].job.setValue(_this.boardCounter[notif.args.playerId].job.getValue() - 1);
-                    }, this.animationTimer);
+                    this.discardCounter.setValue(this.discardCounter.getValue() + 1);
+                    this.boardCounter[notif.args.playerId].job.setValue(this.boardCounter[notif.args.playerId].job.getValue() - 1);
                 },
             }
     );

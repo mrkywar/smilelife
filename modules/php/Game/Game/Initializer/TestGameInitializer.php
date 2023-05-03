@@ -23,7 +23,7 @@ class TestGameInitializer extends GameInitializer {
 
         $oPlayers = $this->playerManager->findBy();
 
-        $nbCards = random_int(count($players) * 10, count($players) * 20);
+        $nbCards = random_int(count($players) * 2, count($players) * 5);
         $cards = $this->cardManager->findBy(
                 ["location" => CardLocation::DECK],
                 $nbCards

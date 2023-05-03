@@ -19,12 +19,8 @@ define([
                         };
                         this.displayCard(card, "playerpanel_" + notif.args.playerId, "card_deck");
                     }
-                    
-                    var _this = this;
-                    setTimeout(function () {
-                        _this.deckCounter.setValue(_this.deckCounter.getValue()-1);
-                        _this.handCounters[notif.args.playerId].setValue(_this.handCounters[notif.args.playerId].getValue()+1);
-                    }, this.animationTimer);
+                    this.deckCounter.setValue(this.deckCounter.getValue() - 1);
+                    this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() + 1);
                 },
             }
     );
