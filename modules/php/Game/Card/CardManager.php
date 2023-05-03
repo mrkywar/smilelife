@@ -169,13 +169,14 @@ class CardManager extends SuperManager {
     }
 
     public function getAllCardsInDiscard() {
-        return $this->getAllCardsInLocation(CardLocation::DISCARD);
+        $this->getSerializer()->setIsForcedArray(true);
+        $discardedCards = $this->getAllCardsInLocation(CardLocation::DISCARD);
+        $this->getSerializer()->setIsForcedArray(false);
+        return $discardedCards;
     }
 
     public function getLastDiscardedCard() {
-        $this->getSerializer()->setIsForcedArray(true);
         $cards = $this->getAllCardsInDiscard();
-        $this->getSerializer()->setIsForcedArray(false);
         if (null === $cards) {
             return null;
         }

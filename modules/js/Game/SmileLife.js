@@ -37,7 +37,7 @@ define([
         },
 
         setup: function (gamedatas) {
-            this.debug("Setup Begin with this gamedatas : ", gamedatas);
+//            this.debug("Setup Begin with this gamedatas : ", gamedatas);
 
             this.gamedatas = gamedatas;
 
@@ -64,7 +64,7 @@ define([
                         this,
                         (data) => resolve(data),
                         (isError, message, code) => {
-                                this.debug(isError, message, code);
+                                this.debug('TAD',isError, message, code);
                                 if (isError) {
                                     reject(message, code);
                                 }
