@@ -11,8 +11,8 @@ use SmileLife\Card\Criterion\CardCriterion\CriterionInterface;
  */
 abstract class Criterion implements CriterionInterface {
 
-    public function isNotFulfilled(...$args) {
-        return !$this->isNotFulfilled($args);
+    final public function isNotValided(): bool {
+        return !$this->isValided();
     }
 
 }
