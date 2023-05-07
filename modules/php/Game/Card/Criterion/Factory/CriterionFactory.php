@@ -5,7 +5,11 @@ namespace SmileLife\Card\Criterion\Factory;
 use Core\Models\Player;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Card\Criterion\PlayerTableCriterion\HaveJobCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -43,20 +47,31 @@ class CriterionFactory {
     /**
      * 
      * @param Card $card
-     * @return CriterionInterface[]
+     * @return ?CriterionInterface
      */
-    public function create(Card $card):array{
+    public function create(Card $card): ?CriterionInterface {
         $criterias = [];
-        
-        switch ($card->getType()){
+
+        switch ($card->getType()) {
             case CardType::ATTACK_BURN_OUT:
                 $criterias [] = new HaveJobCriterion($this->table);
                 break;
-            
-            
-            
-            
+            case CardType::REWARD_FREEDOM_MEDAL:
+                $criterias [] = new CriterionGroup([
+                    new HaveJobCriterion($this->table),
+                    new InversedCriterion(new JobTypeCriterion($this->table, Bandit::class))
+                        ],CriterionGroup::AND_OPERATOR);
+
+                break;
         }
+        
+        
+        if(empty($criterias)){
+            return null;
+        }else{
+            return new CriterionGroup($criterias, CriterionGroup::OR_OPERATOR);
+        }
+        
     }
 
 }
