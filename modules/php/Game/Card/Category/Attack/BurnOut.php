@@ -39,4 +39,6 @@ class BurnOut extends Attack implements BaseGame {
         return 5;
     }
 
+
+
 }

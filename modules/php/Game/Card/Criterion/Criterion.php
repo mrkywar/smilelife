@@ -10,9 +10,6 @@ use SmileLife\Card\Criterion\CardCriterion\CriterionInterface;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 abstract class Criterion implements CriterionInterface {
-
-    final public function isNotValided(): bool {
-        return !$this->isValided();
-    }
+    abstract public function isValided(): bool;
 
 }

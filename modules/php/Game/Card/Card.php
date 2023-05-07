@@ -6,6 +6,7 @@ use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -150,6 +151,11 @@ abstract class Card extends Model {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
+    /**
+     * @return CriterionInterface[]|null
+     */
+    abstract public function getCriteria(): ?array;
+
     abstract public function canBePlayed(PlayerTable $table): bool;
 
     abstract public function canBeAttacked(): bool;
@@ -285,7 +291,7 @@ abstract class Card extends Model {
      *                  BEGIN - Array transform (Display)
      * ---------------------------------------------------------------------- */
 
-    public function __toArray():array{
+    public function __toArray(): array {
         return [
             "id" => $this->getId(),
             "type" => $this->getType(),
@@ -301,7 +307,7 @@ abstract class Card extends Model {
             "isFlipped" => $this->getIsFlipped(),
         ];
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Shortcut
      * ---------------------------------------------------------------------- */
