@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\PlayerTableCriterion;
+namespace SmileLife\Card\Criterion\GenericCriterion;
 
 use SmileLife\Card\Criterion\CriterionException;
 use SmileLife\Card\Criterion\CriterionInterface;

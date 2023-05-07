@@ -151,11 +151,6 @@ abstract class Card extends Model {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    /**
-     * @return CriterionInterface[]|null
-     */
-    abstract public function getCriteria(): ?array;
-
     abstract public function canBePlayed(PlayerTable $table): bool;
 
     abstract public function canBeAttacked(): bool;
