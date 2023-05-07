@@ -44,7 +44,7 @@ class PlayListener extends EventListener {
             "id" => $player->getId()
         ]);
 
-        $card = new FreedomMedal();
+//        $card = new FreedomMedal();
         $criterionFactory = new CriterionFactory($table);
         $criteria = $criterionFactory->create($card);
 
