@@ -20,7 +20,7 @@ class JobTypeCriterion extends JobCriterion {
     }
 
     public function isValided(): bool {
-        var_dump($this->className);
+        return ($this->className === get_class($this->getJob()));
     }
 
 }

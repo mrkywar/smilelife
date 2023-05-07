@@ -9,8 +9,8 @@ use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
-use SmileLife\Card\Criterion\PlayerTableCriterion\HaveJobCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -60,18 +60,19 @@ class CriterionFactory {
                 $criterias [] = new CriterionGroup([
                     new HaveJobCriterion($this->table),
                     new InversedCriterion(new JobTypeCriterion($this->table, Bandit::class))
-                        ],CriterionGroup::AND_OPERATOR);
+                        ], CriterionGroup::AND_OPERATOR);
 
                 break;
         }
-        
-        
-        if(empty($criterias)){
+
+
+        if (empty($criterias)) {
             return null;
-        }else{
+        } elseif (1 === sizeof($criterias)) {
+            return $criterias[0];
+        } else {
             return new CriterionGroup($criterias, CriterionGroup::OR_OPERATOR);
         }
-        
     }
 
 }
