@@ -60,11 +60,27 @@ class CriterionFactory {
     /**
      * 
      * @param Card $card
-     * @return ?CriterionInterface
+     * @return ?CriterionInterface[]
      */
     public function create(Card $card): ?CriterionInterface {
-        $criterias = [];
+        $criterias = array_merge(
+                $this->typeCriteria($card),
+                $this->inheritanceCriteria($card)
+        );
 
+        if (empty($criterias)) {
+            return null;
+        } /*elseif (1 === sizeof($criterias)) {
+            return $criterias[0];
+        } else {
+            return new CriterionGroup($criterias, CriterionGroup::OR_OPERATOR);
+        } */ else{
+            return $criterias;
+        }
+    }
+
+    private function typeCriteria(Card $card) {
+        $criterias = [];
         switch ($card->getType()) {
             case CardType::ATTACK_BURN_OUT:
                 $criterias [] = new HaveJobCriterion($this->table);
@@ -101,22 +117,10 @@ class CriterionFactory {
                 throw new CriterionException("CCF-05 : Not implemented yet");
                 break;
         }
-
-        if (empty($criterias)) {
-            $criterias = $this->inheritanceCriteria($card);
-        }
-
-
-        if (empty($criterias)) {
-            return null;
-        } elseif (1 === sizeof($criterias)) {
-            return $criterias[0];
-        } else {
-            return new CriterionGroup($criterias, CriterionGroup::OR_OPERATOR);
-        }
     }
 
-    private function inheritanceCriteria(Card $card): ?CriterionInterface {
+    private function inheritanceCriteria(Card $card): array {
+        $criterias = [];
         if ($card instanceof Studies) {
             $criterias [] = new CriterionGroup([
                 new HaveJobCriterion($this->table),
@@ -131,11 +135,13 @@ class CriterionFactory {
                 new HaveJobCriterion($table),
                 new WageCriterion($table, $card)
                     ], CriterionGroup::AND_OPERATOR);
-        } elseif($card instanceof House){
+        } elseif ($card instanceof House) {
             throw new CriterionException("CCF-06 : Not implemented yet");
-        } elseif($card instanceof Travel){
+        } elseif ($card instanceof Travel) {
             throw new CriterionException("CCF-07 : Not implemented yet");
         }
+
+        return $criterias;
     }
 
 }
