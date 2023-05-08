@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Category\Love\Wedding;
+namespace SmileLife\Card\Category\Love\Marriage;
 
 use SmileLife\Card\Category\Love\Love;
 use SmileLife\Card\Core\Exception\CardException;
@@ -11,7 +11,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class Wedding extends Love {
+abstract class Marriage extends Love {
 
     private const SMILE_POINTS = 3;
 

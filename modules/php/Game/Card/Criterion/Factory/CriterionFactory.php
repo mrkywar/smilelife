@@ -5,6 +5,8 @@ namespace SmileLife\Card\Criterion\Factory;
 use Core\Models\Player;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Acquisition\House\House;
+use SmileLife\Card\Category\Acquisition\Travel\Travel;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
@@ -96,7 +98,7 @@ class CriterionFactory {
                 throw new CriterionException("CCF-04 : Not implemented yet");
                 break;
             case CardType::ATTACK_DISMISSAL:
-                throw new CriterionException("CCF-04 : Not implemented yet");
+                throw new CriterionException("CCF-05 : Not implemented yet");
                 break;
         }
 
@@ -129,6 +131,10 @@ class CriterionFactory {
                 new HaveJobCriterion($table),
                 new WageCriterion($table, $card)
                     ], CriterionGroup::AND_OPERATOR);
+        } elseif($card instanceof House){
+            throw new CriterionException("CCF-06 : Not implemented yet");
+        } elseif($card instanceof Travel){
+            throw new CriterionException("CCF-07 : Not implemented yet");
         }
     }
 

@@ -73,13 +73,13 @@ abstract class CardType {
     /* -------------------------------------------------------------------------
      *                  BEGIN - WEDDING
      * ---------------------------------------------------------------------- */
-    const WEDDING_BOURG_LA_REINE = 47;
-    const WEDDING_BOURG_MADAME = 48;
-    const WEDDING_CORPS_NUDS = 49;
-    const WEDDING_FOURQUEUX = 50;
-    const WEDDING_MONTCUQ = 51;
-    const WEDDING_MONTETON = 52;
-    const WEDDING_SAINTE_VERGE = 53;
+    const MARRIAGE_BOURG_LA_REINE = 47;
+    const MARRIAGE_BOURG_MADAME = 48;
+    const MARRIAGE_CORPS_NUDS = 49;
+    const MARRIAGE_FOURQUEUX = 50;
+    const MARRIAGE_MONTCUQ = 51;
+    const MARRIAGE_MONTETON = 52;
+    const MARRIAGE_SAINTE_VERGE = 53;
     const ADULTERY = 54;
     /* -------------------------------------------------------------------------
      *                  BEGIN - CHILD
