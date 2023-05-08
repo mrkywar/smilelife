@@ -11,6 +11,7 @@ use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\CriterionException;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -18,6 +19,7 @@ use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Criterion\JobCriterion\WageCriterion;
 use SmileLife\Card\Criterion\StudiesCriterion\StudiesLevelCriterion;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Table\PlayerTable;
@@ -121,6 +123,11 @@ class CriterionFactory {
             $criterias [] = new CriterionGroup([
                 new InversedCriterion(new HaveJobCriterion($table)),
                 new StudiesLevelCriterion($table, $card)
+                    ], CriterionGroup::AND_OPERATOR);
+        } elseif ($card instanceof Wage) {
+            $criterias [] = new CriterionGroup([
+                new HaveJobCriterion($table),
+                new WageCriterion($table, $card)
                     ], CriterionGroup::AND_OPERATOR);
         }
     }
