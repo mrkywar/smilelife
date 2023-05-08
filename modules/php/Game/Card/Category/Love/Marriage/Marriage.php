@@ -7,7 +7,7 @@ use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of Wedded
+ * Description of Marriage
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
@@ -30,7 +30,7 @@ abstract class Marriage extends Love {
     }
 
     public function canBePlayed(PlayerTable $table): bool {
-        throw new CardException("C-Wedding01 : Check that the player is not married and has already at least a flirt");
+        throw new CardException("C-Marriage01 : Check that the player is not married and has already at least a flirt");
     }
 
     public function canGenerateChild(): bool {

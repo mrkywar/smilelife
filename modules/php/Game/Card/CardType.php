@@ -71,7 +71,7 @@ abstract class CardType {
     const FLIRT_THEATER = 45;
     const FLIRT_ZOO = 46;
     /* -------------------------------------------------------------------------
-     *                  BEGIN - WEDDING
+     *                  BEGIN - MARRIAGE
      * ---------------------------------------------------------------------- */
     const MARRIAGE_BOURG_LA_REINE = 47;
     const MARRIAGE_BOURG_MADAME = 48;

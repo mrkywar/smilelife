@@ -13,7 +13,6 @@ use SmileLife\Card\Category\Child\Child;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Category\Love\Wedding\Wedding;
 use SmileLife\Card\Category\Pet\Pet;
 use SmileLife\Card\Category\Reward\Reward;
 use SmileLife\Card\Category\Special\Special;
@@ -157,7 +156,7 @@ class PlayerTable extends Model {
             return $this->addWage($card);
         } elseif ($card instanceof Job) {
             return $this->setJob($card);
-        } elseif ($card instanceof Wedding) {
+        } elseif ($card instanceof Marriage) {
             return $this->setMarriage($card);
         } elseif ($card instanceof Adultery) {
             return $this->setAdultery($card);
@@ -205,13 +204,13 @@ class PlayerTable extends Model {
                         ->findBy(["id" => $this->getJobId()]);
     }
 
-    public function setMarriage(Wedding $card) {
+    public function setMarriage(Marriage $card) {
         $this->setMarriageId($card->getId());
 
         return $this;
     }
 
-    public function getMarriage(): ?Wedding {
+    public function getMarriage(): ?Marriage {
         if (null === $this->getMarriageId()) {
             return null;
         }

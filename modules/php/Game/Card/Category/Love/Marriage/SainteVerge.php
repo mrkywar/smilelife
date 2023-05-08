@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Module\BaseGame;
 
 /**
- * Description of SainteVergeWedding
+ * Description of SainteVerge
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
@@ -32,6 +32,6 @@ class SainteVerge extends Marriage implements BaseGame {
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame is in Wedding 
+     *                  BEGIN - Implement BaseGame is in Marriage 
      * ---------------------------------------------------------------------- */
 }

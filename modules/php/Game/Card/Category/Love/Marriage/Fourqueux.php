@@ -6,7 +6,7 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\Module\BaseGame;
 
 /**
- * Description of FourqueuxWedding
+ * Description of Fourqueux
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
@@ -31,6 +31,6 @@ class Fourqueux extends Marriage implements BaseGame {
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame is in Wedding 
+     *                  BEGIN - Implement BaseGame is in Marriage 
      * ---------------------------------------------------------------------- */
 }
