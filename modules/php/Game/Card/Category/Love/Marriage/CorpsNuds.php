@@ -1,21 +1,21 @@
 <?php
 
-namespace SmileLife\Card\Category\Love\Wedding;
+namespace SmileLife\Card\Category\Love\Marriage;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Module\BaseGame;
 
 /**
- * Description of BougLaReineWedding
+ * Description of CorpsNuds
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class BougLaReine extends Wedding implements BaseGame {
+class CorpsNuds extends Marriage implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setText1(clienttranslate('BougLaReine'));
+        $this->setText1(clienttranslate('CorpsNuds'));
     }
 
     /* -------------------------------------------------------------------------
@@ -27,10 +27,10 @@ class BougLaReine extends Wedding implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::WEDDING_BOURG_LA_REINE;
+        return CardType::MARRIAGE_CORPS_NUDS;
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame is in Wedding 
+     *                  BEGIN - Implement BaseGame is in Marriage 
      * ---------------------------------------------------------------------- */
 }

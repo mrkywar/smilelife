@@ -3,10 +3,10 @@
 namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
-use Core\Event\EventListener\EventListenerException;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Category\Reward\FreedomMedal;
+use SmileLife\Card\Criterion\Factory\CriterionFactory;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -44,13 +44,25 @@ class PlayListener extends EventListener {
             "id" => $player->getId()
         ]);
 
+//        $card = new FreedomMedal();
+        $criterionFactory = new CriterionFactory($table);
+        $criteria = $criterionFactory->create($card);
+
+        echo '<pre>';
+        
+        if (null !== $criteria) {
+            var_dump($criteria->isValided());
+        }
+        var_dump($criteria);
+        die;
+
         $card->canBePlayed($table);
 
         $table->addCard($card);
         $this->tableManager->updateTable($table);
-        
+
         $response->set("from", $card->getLocation());
-        
+
         $this->cardManager->playCard($player, $card);
 
         $response->set('player', $player)

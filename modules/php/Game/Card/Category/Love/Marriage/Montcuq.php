@@ -1,21 +1,21 @@
 <?php
 
-namespace SmileLife\Card\Category\Love\Wedding;
+namespace SmileLife\Card\Category\Love\Marriage;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Module\BaseGame;
 
 /**
- * Description of BougMadameWedding
+ * Description of Montcuq
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class BougMadame extends Wedding implements BaseGame {
+class Montcuq extends Marriage implements BaseGame {
 
     public function __construct() {
         parent::__construct();
 
-        $this->setText1(clienttranslate('BougMadame'));
+        $this->setText1(clienttranslate('Montcuq'));
     }
 
     /* -------------------------------------------------------------------------
@@ -27,10 +27,10 @@ class BougMadame extends Wedding implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::WEDDING_BOURG_MADAME;
+        return CardType::MARRIAGE_MONTCUQ;
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame is in Wedding 
+     *                  BEGIN - Implement BaseGame is in Marriage 
      * ---------------------------------------------------------------------- */
 }
