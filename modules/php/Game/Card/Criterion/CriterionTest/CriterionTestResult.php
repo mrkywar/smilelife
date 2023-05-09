@@ -25,9 +25,23 @@ class CriterionTestResult {
 
     /**
      * 
+     * @var ?CriterionInterface[]
+     */
+    private $criteria;
+
+    /**
+     * 
      * @var array
      */
     private $consequences;
+
+    /**
+     * 
+     * @param ?CriterionInterface[] $criteria
+     */
+    public function __construct(?array $criteria) {
+        $this->criteria = $criteria;
+    }
 
     public function getIsValid(): bool {
         return $this->isValid;
@@ -46,6 +60,14 @@ class CriterionTestResult {
 
     public function getConsequences(): array {
         return $this->consequences;
+    }
+
+    /**
+     * 
+     * @return ?CriterionInterface[]
+     */
+    public function getCriteria(): ?array {
+        return $this->criteria;
     }
 
     public function setIsValid(bool $isValid) {

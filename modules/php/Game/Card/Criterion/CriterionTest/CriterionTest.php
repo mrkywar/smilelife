@@ -38,7 +38,7 @@ class CriterionTest {
     }
 
     public function test() {
-        $testResult = new CriterionTestResult();
+        $testResult = new CriterionTestResult($this->criteria);
         $testResult->setIsValid(false);
 
         foreach ($criteria as $criterion) {
