@@ -7,7 +7,7 @@ namespace SmileLife\Card\Criterion\JobCriterion;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class JobEffectCriteria extends JobCriterion {
+class JobEffectCriteria extends HaveJobCriterion {
 
     /**
      * 
@@ -23,6 +23,7 @@ class JobEffectCriteria extends JobCriterion {
 
     public function isValided(): bool {
         return (
+                parent::isValided() &&
                 $job instanceof CardEffectInterface &&
                 $this->checkLimitlessStudies($job)
                 );

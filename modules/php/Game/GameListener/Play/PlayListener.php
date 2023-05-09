@@ -5,8 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Reward\FreedomMedal;
-use SmileLife\Card\Criterion\Factory\CriterionFactory;
+use SmileLife\Card\Criterion\CriterionTest\CriterionTest;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -44,16 +43,14 @@ class PlayListener extends EventListener {
             "id" => $player->getId()
         ]);
 
-//        $card = new FreedomMedal();
-        $criterionFactory = new CriterionFactory($table);
-        $criteria = $criterionFactory->create($card);
+        $criteriaTest = new CriterionTest($table, $card);
+        $testRestult = $criteriaTest->test();
+////        $card = new FreedomMedal();
+//        $criterionFactory = new CriterionFactory($table);
+//        $criteria = $criterionFactory->create($card);
 
         echo '<pre>';
-        
-        if (null !== $criteria) {
-            var_dump($criteria->isValided());
-        }
-        var_dump($criteria);
+        var_dump($testRestult);
         die;
 
         $card->canBePlayed($table);
