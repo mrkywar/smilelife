@@ -14,7 +14,9 @@ use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
+use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\CriterionException;
@@ -26,6 +28,7 @@ use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Card\Criterion\JobCriterion\WageCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\FlirtCountCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\FlirtPlayedCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\HaveAdulteryCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\LastFlirtGenerateChildCiterion;
@@ -157,9 +160,19 @@ class CriterionFactory {
             $criterias [] = new CriterionGroup([
                 new InversedCriterion(new IsMarriedCriterion($this->table)),
                 new CriterionGroup([
-                    new FlirtCountCriterion($table),
+                    new FlirtCountCriterion($this->table),
                     new JobEffectCriteria($this->table, LimitlessFlirt::class)
                         ], CriterionGroup::OR_OPERATOR)
+                    ], CriterionGroup::AND_OPERATOR);
+        } elseif ($card instanceof Marriage) {
+            $criterias [] = new CriterionGroup([
+                new InversedCriterion(new IsMarriedCriterion($this->table)),
+                new FlirtPlayedCriterion($this->table, $card)
+                    ], CriterionGroup::AND_OPERATOR);
+        }elseif($card instanceof Adultery){
+            $criterias [] = new CriterionGroup([
+                new InversedCriterion(new HaveAdulteryCriterion($this->table)),
+                new IsMarriedCriterion($this->table)
                     ], CriterionGroup::AND_OPERATOR);
         }
 
