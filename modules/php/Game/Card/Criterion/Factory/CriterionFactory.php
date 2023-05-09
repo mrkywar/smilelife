@@ -127,6 +127,30 @@ class CriterionFactory {
             case CardType::ATTACK_DISMISSAL:
                 throw new CriterionException("CCF-05 : Not implemented yet");
                 break;
+            case CardType::ATTACK_GRADE_REPETITION:
+                throw new CriterionException("CCF-08 : Not implemented yet");
+                break;
+            case CardType::ATTACK_INCOME_TAX:
+                throw new CriterionException("CCF-09 : Not implemented yet");
+                break;
+            case CardType::ATTACK_JAIL:
+                throw new CriterionException("CCF-10 : Not implemented yet");
+                break;
+            case CardType::ATTACK_SICKNESS:
+                throw new CriterionException("CCF-11 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_BIRTHDAY:
+                throw new CriterionException("CCF-12 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_JOB_BOOST:
+                throw new CriterionException("CCF-13 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_REVENGE:
+                throw new CriterionException("CCF-14 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_SHOOTING_STAR:
+                throw new CriterionException("CCF-15 : Not implemented yet");
+                break;
         }
     }
 
@@ -169,7 +193,7 @@ class CriterionFactory {
                 new InversedCriterion(new IsMarriedCriterion($this->table)),
                 new FlirtPlayedCriterion($this->table, $card)
                     ], CriterionGroup::AND_OPERATOR);
-        }elseif($card instanceof Adultery){
+        } elseif ($card instanceof Adultery) {
             $criterias [] = new CriterionGroup([
                 new InversedCriterion(new HaveAdulteryCriterion($this->table)),
                 new IsMarriedCriterion($this->table)
