@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
     var jstpl_card = `
-        <div id="card_\${id}" class="cardontable" >
+        <div id="card_\${id}" class="cardontable selectable" >
             <div class="card_sides">
                 <div class="card-side front" id="front_card_\${id}">
                 </div>
