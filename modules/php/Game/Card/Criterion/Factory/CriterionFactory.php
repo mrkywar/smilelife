@@ -7,11 +7,16 @@ use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Acquisition\House\House;
 use SmileLife\Card\Category\Acquisition\Travel\Travel;
+use SmileLife\Card\Category\Child\Child;
+use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
+use SmileLife\Card\Category\Love\Adultery;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\CriterionException;
@@ -22,7 +27,13 @@ use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Card\Criterion\JobCriterion\WageCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\FlirtCountCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\FlirtPlayedCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\HaveAdulteryCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\LastFlirtGenerateChildCiterion;
 use SmileLife\Card\Criterion\StudiesCriterion\StudiesLevelCriterion;
+use SmileLife\Card\Effect\Category\LimitlessFlirt;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Table\PlayerTable;
 
@@ -70,11 +81,11 @@ class CriterionFactory {
 
         if (empty($criterias)) {
             return null;
-        } /*elseif (1 === sizeof($criterias)) {
-            return $criterias[0];
-        } else {
-            return new CriterionGroup($criterias, CriterionGroup::OR_OPERATOR);
-        } */ else{
+        } /* elseif (1 === sizeof($criterias)) {
+          return $criterias[0];
+          } else {
+          return new CriterionGroup($criterias, CriterionGroup::OR_OPERATOR);
+          } */ else {
             return $criterias;
         }
     }
@@ -116,29 +127,77 @@ class CriterionFactory {
             case CardType::ATTACK_DISMISSAL:
                 throw new CriterionException("CCF-05 : Not implemented yet");
                 break;
+            case CardType::ATTACK_GRADE_REPETITION:
+                throw new CriterionException("CCF-08 : Not implemented yet");
+                break;
+            case CardType::ATTACK_INCOME_TAX:
+                throw new CriterionException("CCF-09 : Not implemented yet");
+                break;
+            case CardType::ATTACK_JAIL:
+                throw new CriterionException("CCF-10 : Not implemented yet");
+                break;
+            case CardType::ATTACK_SICKNESS:
+                throw new CriterionException("CCF-11 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_BIRTHDAY:
+                throw new CriterionException("CCF-12 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_JOB_BOOST:
+                throw new CriterionException("CCF-13 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_REVENGE:
+                throw new CriterionException("CCF-14 : Not implemented yet");
+                break;
+            case CardType::SPECIAL_SHOOTING_STAR:
+                throw new CriterionException("CCF-15 : Not implemented yet");
+                break;
         }
     }
 
     private function inheritanceCriteria(Card $card): array {
         $criterias = [];
         if ($card instanceof Studies) {
+            $criterias [] = new JobEffectCriteria($this->table, LimitlessStudiesEffect::class);
             $criterias [] = new CriterionGroup([
-                new HaveJobCriterion($this->table),
-                new JobEffectCriteria($table, LimitlessStudiesEffect::class)
-                    ], CriterionGroup::AND_OPERATOR);
-            $criterias [] = new CriterionGroup([
-                new InversedCriterion(new HaveJobCriterion($table)),
-                new StudiesLevelCriterion($table, $card)
+                new InversedCriterion(new HaveJobCriterion($this->table)),
+                new StudiesLevelCriterion($this->table, $card)
                     ], CriterionGroup::AND_OPERATOR);
         } elseif ($card instanceof Wage) {
             $criterias [] = new CriterionGroup([
-                new HaveJobCriterion($table),
-                new WageCriterion($table, $card)
+                new HaveJobCriterion($this->table),
+                new WageCriterion($this->table, $card)
                     ], CriterionGroup::AND_OPERATOR);
         } elseif ($card instanceof House) {
             throw new CriterionException("CCF-06 : Not implemented yet");
         } elseif ($card instanceof Travel) {
             throw new CriterionException("CCF-07 : Not implemented yet");
+        } elseif ($card instanceof Job) {
+            $criterias [] = new CriterionGroup([
+                new InversedCriterion(new HaveJobCriterion($this->table)),
+                new StudiesLevelCriterion($this->table, $card)
+                    ], CriterionGroup::AND_OPERATOR);
+        } elseif ($card instanceof Child) {
+            $criterias [] = new IsMarriedCriterion($this->table);
+            $criterias [] = new LastFlirtGenerateChildCiterion($this->table);
+        } elseif ($card instanceof Flirt) {
+            $criterias [] = new HaveAdulteryCriterion($this->table);
+            $criterias [] = new CriterionGroup([
+                new InversedCriterion(new IsMarriedCriterion($this->table)),
+                new CriterionGroup([
+                    new FlirtCountCriterion($this->table),
+                    new JobEffectCriteria($this->table, LimitlessFlirt::class)
+                        ], CriterionGroup::OR_OPERATOR)
+                    ], CriterionGroup::AND_OPERATOR);
+        } elseif ($card instanceof Marriage) {
+            $criterias [] = new CriterionGroup([
+                new InversedCriterion(new IsMarriedCriterion($this->table)),
+                new FlirtPlayedCriterion($this->table, $card)
+                    ], CriterionGroup::AND_OPERATOR);
+        } elseif ($card instanceof Adultery) {
+            $criterias [] = new CriterionGroup([
+                new InversedCriterion(new HaveAdulteryCriterion($this->table)),
+                new IsMarriedCriterion($this->table)
+                    ], CriterionGroup::AND_OPERATOR);
         }
 
         return $criterias;
