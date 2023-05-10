@@ -16,7 +16,7 @@ const PREF_CHOICE_SIZE_XL = 5005;
 define([
     "dojo",
     "dojo/_base/declare",
-    
+
     g_gamethemeurl + 'modules/js/Card/CardDisplay.js',
     g_gamethemeurl + 'modules/js/Card/CardSize.js',
 ], function (dojo, declare) {
@@ -64,13 +64,17 @@ define([
                     if (this.isCurrentPlayerActive()) {
                         switch (this.actualState) {
                             case "takeCard":
-                                if (undefined === card.type) {
+                                if (!searchedDiv.classList.contains("selected")) {
+                                    //select card
+                                    if (this.isMyJob(card) || undefined === card.type || 'discard' === card.location) {
+                                        dojo.query(".selected").removeClass("selected");
+                                        searchedDiv.classList.add("selected");
+                                    }else{
+                                        this.debug("OCC-S02 : What case is here ?");
+                                    }
+                                } else if (undefined === card.type) {
                                     //draw !
                                     this.doDraw();
-                                } else if (!searchedDiv.classList.contains("selected")) {
-                                    //select card
-                                    dojo.query(".selected").removeClass("selected");
-                                    searchedDiv.classList.add("selected");
                                 } else if (this.isMyJob(card)) {
                                     //resign
                                     this.doResign();

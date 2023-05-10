@@ -177,13 +177,13 @@ define([
                 },
 
                 isMyJob: function (card) {
-//                    this.debug('PT imj',card.category.includes("job"));
+                    this.debug('PT imj',card.category);
                     
                     return (
-                            (card.category.includes("job")) //is card a job ?
-                            &&
-                            null !== this.myTable.job &&                                  //did I have a job 
-                            card.id === this.myTable.job.id                               //is this card the same of my job
+                            (undefined !== card.category) &&                    //is card category defined
+                            (card.category.includes("job")) &&                  //is card a job ?
+                            null !== this.myTable.job &&                        //did I have a job 
+                            card.id === this.myTable.job.id                     //is this card the same of my job
                             );
                 },
             }
