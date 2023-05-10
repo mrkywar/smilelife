@@ -49,11 +49,11 @@ class PlayListener extends EventListener {
 //        $criterionFactory = new CriterionFactory($table);
 //        $criteria = $criterionFactory->create($card);
 
-        echo '<pre>';
-        var_dump($testRestult);
-        die;
 
-        $card->canBePlayed($table);
+        if (!$testRestult->getIsValid()) {
+            throw new CardException("Not Playable");
+        }
+//        $card->canBePlayed($table);
 
         $table->addCard($card);
         $this->tableManager->updateTable($table);

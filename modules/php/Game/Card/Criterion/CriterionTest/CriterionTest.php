@@ -43,12 +43,15 @@ class CriterionTest {
     public function test() {
         $testResult = new CriterionTestResult($this->criteria);
         $testResult->setIsValid(false);
-
-        foreach ($this->criteria as $criterion) {
-            if (!$criterion->isValided()) {
-                $testResult->addFailedCriterion($criterion);
-            } else {
-                $testResult->setIsValid(true);
+        if (null === $this->criteria) {
+            $testResult->setIsValid(true);
+        } else {
+            foreach ($this->criteria as $criterion) {
+                if (!$criterion->isValided()) {
+                    $testResult->addFailedCriterion($criterion);
+                } else {
+                    $testResult->setIsValid(true);
+                }
             }
         }
 
