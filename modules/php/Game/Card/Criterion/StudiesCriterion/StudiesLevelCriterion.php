@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\StudiesCriterion;
 
 use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Criterion\StudiesCriterion\StudiesCriterion;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 

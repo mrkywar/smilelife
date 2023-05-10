@@ -2,6 +2,10 @@
 
 namespace SmileLife\Card\Criterion\JobCriterion;
 
+use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
+use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Table\PlayerTable;
+
 /**
  * Description of JobEffectCriteria
  *
@@ -24,8 +28,8 @@ class JobEffectCriteria extends HaveJobCriterion {
     public function isValided(): bool {
         return (
                 parent::isValided() &&
-                $job instanceof CardEffectInterface &&
-                $this->checkLimitlessStudies($job)
+                $this->getJob() instanceof CardEffectInterface &&
+                $this->checkLimitlessStudies($this->getJob())
                 );
     }
 

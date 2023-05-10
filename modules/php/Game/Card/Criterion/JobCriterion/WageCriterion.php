@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\JobCriterion;
 
 use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Criterion\JobCriterion\JobCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

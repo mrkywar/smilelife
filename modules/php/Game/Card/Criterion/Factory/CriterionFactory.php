@@ -73,7 +73,7 @@ class CriterionFactory {
      * @param Card $card
      * @return ?CriterionInterface[]
      */
-    public function create(Card $card): ?CriterionInterface {
+    public function create(Card $card): ?array {
         $criterias = array_merge(
                 $this->typeCriteria($card),
                 $this->inheritanceCriteria($card)
@@ -152,6 +152,7 @@ class CriterionFactory {
                 throw new CriterionException("CCF-15 : Not implemented yet");
                 break;
         }
+        return $criterias;
     }
 
     private function inheritanceCriteria(Card $card): array {

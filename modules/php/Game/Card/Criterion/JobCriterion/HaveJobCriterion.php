@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\JobCriterion;
 
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Criterion\JobCriterion\JobCriterion;
 
 /**
  * Description of HaveJobCriterion
