@@ -33,7 +33,7 @@ define([
                 //
                 onLeavingState: function (stateName)
                 {
-//                    this.debug('Leaving state: ' + stateName);
+                    dojo.query(".selected").removeClass("selected");
                     this.actualState = null;
                 },
 

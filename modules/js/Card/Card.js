@@ -69,8 +69,6 @@ define([
                                     if (this.isMyJob(card) || undefined === card.type || 'discard' === card.location) {
                                         dojo.query(".selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
-                                    }else{
-                                        this.debug("OCC-S02 : What case is here ?");
                                     }
                                 } else if (undefined === card.type) {
                                     //draw !
@@ -81,9 +79,25 @@ define([
                                 } else if ('discard' === card.location) {
                                     //Play From Discard
                                     this.doPlayFromDiscard();
-                                } else {
-                                    this.debug("OCC-S01 : What case is here ?");
                                 }
+                                break;
+                            case 'playCard':
+                                if (!searchedDiv.classList.contains("selected")) {
+                                    //select card
+                                    if ('hand' === card.location) {
+                                        dojo.query(".selected").removeClass("selected");
+                                        searchedDiv.classList.add("selected");
+                                    }
+                                    if ('attack' === card.category) {
+                                        this.debug('attack detected');
+                                    } else if (1 === 0) {
+
+                                    }
+                                } else if ('hand' === card.location) {
+                                    // play from hand
+                                    this.doPlay();
+                                }
+                                break;
                         }
 
 
@@ -97,23 +111,7 @@ define([
                     //-- V2 : Disabled temporary
 //                    switch (this.actualState) {
 //                        case "takeCard":
-//                            if (this.isCurrentPlayerActive() && undefined === card.type) {
-//                                //draw !
-//                                this.doDraw();
-//                            } else if (this.isCurrentPlayerActive() && this.isMyJob(card)) {
-//                                //resign
-//                                this.doResign();
-//                            } else if ('discard' === card.location) {
-//                                //play from discard
-//                                var searchedDiv = $('card_' + card.id);
-//                                searchedDiv.classList.add('selectable');
-//                                searchedDiv.classList.add('selected');
-//                                this.doPlayFromDiscard();
-//                            } else {
-//                                //this.debug(card.category, this.myTable.job, card.id, this.myTable.job.id);
-//                                this.debug("TRY Draw / Resign fail");
-//                            }
-//                            break;
+
 //                        case "playCard":
 //                            if (this.isCurrentPlayerActive() && 'hand' === card.location) {
 //                                // play from hand
