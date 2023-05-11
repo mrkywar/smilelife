@@ -56,6 +56,14 @@ define([
                     });
                 },
 
+                playClick: function (card) {
+                    if ('attack' === card.category) {
+                        this.debug('attack detected');
+                    } else if (1 === 0) {
+
+                    }
+                },
+
                 onCardClick: function (card) {
                     this.debug("OCC", card, this.actualState);
                     var searchedDiv = $('card_' + card.id);
@@ -70,6 +78,11 @@ define([
                                         dojo.query(".selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
                                     }
+                                    if ('attack' === card.category) {
+                                        this.debug('attack detected');
+                                    } else if (1 === 0) {
+
+                                    }
                                 } else if (undefined === card.type) {
                                     //draw !
                                     this.doDraw();
@@ -78,6 +91,7 @@ define([
                                     this.doResign();
                                 } else if ('discard' === card.location) {
                                     //Play From Discard
+
                                     this.doPlayFromDiscard();
                                 }
                                 break;
