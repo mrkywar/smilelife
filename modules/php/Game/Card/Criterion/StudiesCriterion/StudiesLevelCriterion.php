@@ -30,7 +30,7 @@ class StudiesLevelCriterion extends StudiesCriterion {
 
     public function isValided(): bool {
         $actualLevel = $this->studiesLevelCalculator->compute($this->getTable()->getStudies());
-        return (self::MAX_STUDIES_LEVEL <= ($actualLevel + $this->getCard()->getLevel()));
+        return (self::MAX_STUDIES_LEVEL >= ($actualLevel + $this->getCard()->getLevel()));
     }
 
 }

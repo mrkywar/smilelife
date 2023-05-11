@@ -15,7 +15,16 @@ class CriterionGroup implements CriterionInterface {
     const AND_OPERATOR = "AND";
     const OR_OPERATOR = "OR";
 
+    /**
+     * 
+     * @var ?CriterionInterface[]
+     */
     private $criteria;
+
+    /**
+     * 
+     * @var string
+     */
     private $operator;
 
     public function __construct(array $criteria, string $operator) {
@@ -45,6 +54,14 @@ class CriterionGroup implements CriterionInterface {
 
     private function resolveCriterion(CriterionInterface $criterion): bool {
         return $criterion->isValided();
+    }
+
+    public function getCriteria(): array {
+        return $this->criteria;
+    }
+
+    public function getOperator(): string {
+        return $this->operator;
     }
 
 }

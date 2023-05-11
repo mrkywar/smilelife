@@ -5,7 +5,9 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Card\Criterion\CriterionTest\CriterionTest;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -51,6 +53,17 @@ class PlayListener extends EventListener {
 
 
         if (!$testRestult->getIsValid()) {
+            echo '<pre>';
+            foreach ($testRestult->getCriteria() as $criterion) {
+                if ($criterion instanceof CriterionGroup) {
+                    foreach ($criterion->getCriteria() as $sCriterion) {
+                        var_dump("GR TEST", $sCriterion->isValided(), get_class($sCriterion), $criterion->getOperator());
+                    }
+                }
+            }
+//            var_dump($testRestult->getCriteria());
+            die;
+
             throw new CardException("Not Playable");
         }
 //        $card->canBePlayed($table);
