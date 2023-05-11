@@ -31,20 +31,29 @@ abstract class Special extends Card implements CardEffectInterface {
     public function getRefClass(): string {
         return self::class;
     }
-    
+
     public function getCategory(): string {
         return "special";
     }
-    
+
     public function getPileName(): string {
         return $this->getTitle();
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each special card)
      * ---------------------------------------------------------------------- */
 
     public function getBaseCardCount(): int {
         return 1;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
+
+    public function __toString() {
+        return $this->getTitle();
     }
 
 }
