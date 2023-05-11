@@ -225,6 +225,7 @@ html{
 .player_tables .pile_container .pile{
     position: relative;
     padding-bottom: 5px;
+    padding-right:5px;
 }
 .pile_container .pile .cardontable{
     position: absolute;
@@ -448,7 +449,8 @@ html{
     background: greenyellow;
     border: 3px black solid;
     margin: 5px 0;
-/*    z-index: 99;*/
+    top:-20px;
+    /*    z-index: 99;*/
     width: 100%;
     position: absolute;
 }

@@ -13,6 +13,7 @@ use SmileLife\Card\Category\Child\Child;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Category\Pet\Pet;
 use SmileLife\Card\Category\Reward\Reward;
 use SmileLife\Card\Category\Special\Special;

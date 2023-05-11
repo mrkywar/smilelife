@@ -11,8 +11,7 @@ use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class HaveAdulteryCriterion extends PlayerTableCriterion {
-    
-    
+
     public function isValided(): bool {
         return $this->getTable()->getAdultery() instanceof Adultery;
     }

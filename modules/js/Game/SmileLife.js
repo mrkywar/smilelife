@@ -37,7 +37,7 @@ define([
         },
 
         setup: function (gamedatas) {
-//            this.debug("Setup Begin with this gamedatas : ", gamedatas);
+            this.debug("Setup Begin with this gamedatas : ", gamedatas);
 
             this.gamedatas = gamedatas;
 

@@ -26,4 +26,8 @@ class InversedCriterion extends Criterion {
         return !$this->criterion->isValided();
     }
 
+    public function getCriterion(): CriterionInterface {
+        return $this->criterion;
+    }
+
 }

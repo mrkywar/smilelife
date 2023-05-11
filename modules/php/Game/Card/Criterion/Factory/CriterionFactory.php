@@ -20,11 +20,11 @@ use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\CriterionException;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Criterion\JobCriterion\JobStudiesCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Card\Criterion\JobCriterion\WageCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\FlirtCountCriterion;
@@ -73,7 +73,7 @@ class CriterionFactory {
      * @param Card $card
      * @return ?CriterionInterface[]
      */
-    public function create(Card $card): ?CriterionInterface {
+    public function create(Card $card): ?array {
         $criterias = array_merge(
                 $this->typeCriteria($card),
                 $this->inheritanceCriteria($card)
@@ -152,6 +152,7 @@ class CriterionFactory {
                 throw new CriterionException("CCF-15 : Not implemented yet");
                 break;
         }
+        return $criterias;
     }
 
     private function inheritanceCriteria(Card $card): array {
@@ -174,7 +175,7 @@ class CriterionFactory {
         } elseif ($card instanceof Job) {
             $criterias [] = new CriterionGroup([
                 new InversedCriterion(new HaveJobCriterion($this->table)),
-                new StudiesLevelCriterion($this->table, $card)
+                new JobStudiesCriterion($this->table, $card)
                     ], CriterionGroup::AND_OPERATOR);
         } elseif ($card instanceof Child) {
             $criterias [] = new IsMarriedCriterion($this->table);

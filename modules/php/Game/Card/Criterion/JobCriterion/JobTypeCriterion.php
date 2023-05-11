@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Criterion\JobCriterion;
 
+use SmileLife\Card\Criterion\JobCriterion\JobCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -10,7 +11,7 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class JobTypeCriterion extends JobCriterion {
-    
+
     /**
      * 
      * @var string

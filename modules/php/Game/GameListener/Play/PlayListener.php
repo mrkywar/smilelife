@@ -5,6 +5,8 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Criterion\CriterionTest\CriterionDebugger;
 use SmileLife\Card\Criterion\CriterionTest\CriterionTest;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -49,11 +51,18 @@ class PlayListener extends EventListener {
 //        $criterionFactory = new CriterionFactory($table);
 //        $criteria = $criterionFactory->create($card);
 
-        echo '<pre>';
-        var_dump($testRestult);
-        die;
 
-        $card->canBePlayed($table);
+        if (!$testRestult->getIsValid()) {
+            echo '<pre>';
+
+//            var_dump($testRestult->getCriteria());
+            $debugger = new CriterionDebugger($testRestult->getCriteria());
+            $debugger->debug();
+            die("DEBUG");
+
+            throw new CardException("Not Playable");
+        }
+//        $card->canBePlayed($table);
 
         $table->addCard($card);
         $this->tableManager->updateTable($table);
