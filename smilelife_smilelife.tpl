@@ -51,7 +51,7 @@
     `;
 
     var jstpl_attack_btn = `
-        <div class="attack_btn" style="background-color:\${color}">{name}</div>
+        <div class="attack_btn" style="background-color:#\${color}">\${name}</div>
     `;
 </script>
 
