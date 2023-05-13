@@ -1,5 +1,14 @@
 {OVERALL_GAME_HEADER}
-
+<div id="attack_victim">
+    <div id="attack_victim_selection">
+        
+    </div>
+    <div id="attack_victim_validation">
+        <a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="attackValid_button">
+            
+        </a>
+    </div>
+</div>
 <div id="game_container">
     <div class="centered_table" id="mytable_container">
         <div id="deck_and_discard">
@@ -36,6 +45,10 @@
                 <div class="card-side back"></div>
             </div>
         </div>
+    `;
+    
+    var jstpl_attack_btn = `
+        <div class="attack_btn" style="background-color:\${color}">{name}</div>
     `;
 </script>
 
