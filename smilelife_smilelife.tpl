@@ -1,15 +1,14 @@
 {OVERALL_GAME_HEADER}
-<div id="attack_victim">
-    <div id="attack_victim_selection">
+<div id="attack_victim" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-close">
+                <a href="#" class="action-button bgabutton bgabutton_gray" onclick="return false;" id="attackCancel_button">X</a>
+            </div>
+        </div>
+        <div id="attack_victim_selection">
 
-    </div>
-    <div id="attack_victim_validation">
-        <a href="#" class="action-button bgabutton bgabutton_red" onclick="return false;" id="attackValid_button">
-            Attack
-        </a>
-        <a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="attackCancel_button">
-            Cancel
-        </a>
+        </div>
     </div>
 </div>
 <div id="game_container">
@@ -48,10 +47,6 @@
                 <div class="card-side back"></div>
             </div>
         </div>
-    `;
-
-    var jstpl_attack_btn = `
-        <div class="attack_btn" style="background-color:#\${color}">\${name}</div>
     `;
 </script>
 
