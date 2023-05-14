@@ -47,6 +47,9 @@ class view_smilelife_smilelife extends game_view {
         // Get players & players number
         $players = $this->game->loadPlayersBasicInfos();
         $players_nbr = count($players);
+        
+        
+        $this->tpl['CHOOSE_TARGET'] = self::_("Choose attack target");
     }
 
 //    function build_page($viewArgs) {

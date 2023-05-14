@@ -170,10 +170,10 @@ html{
     z-index: 9999; 
     text-align: center
 }
-.modal-content {
-    padding: 20px;
+.modal-overlay .modal-content {
+    padding: 0px;
     border-radius: 5px;
-    background: #179bd7;
+    background:#fff;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
 .modal-overlay .bgabutton_gray{
@@ -183,16 +183,34 @@ html{
 .modal-overlay .bgabutton_gray:hover{
     background-color: #d8d8d866;
 }
-.modal-overlay .modal-close{
-    text-align: right;
-}
+
 .modal-overlay .modal-header{
+    border-radius: 5px 5px 0 0;
+    background:#179bd7;
     border-bottom: 1px solid #ffffff33;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.modal-overlay .modal-close a{
+.modal-overlay .modal-header .modal-title{
+    color: #fff;
+    margin-left: 5px;
+}
+.modal-overlay .modal-header .modal-close{
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+.modal-overlay .modal-header .modal-close a{
     border-radius: 50%;
     margin: 0;
     margin-bottom: 5px;
+}
+.modal-overlay .modal-body{
+    padding: 10px 0;
+}
+.modal-overlay .modal-body a{
+    margin: 5px 5px;
 }
 
 /*-----------------------------------------------------------------------------
