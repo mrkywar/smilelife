@@ -131,6 +131,12 @@ class PlayerTable extends Model {
      */
     private $playerManager;
 
+    /**
+     * 
+     * @var Player
+     */
+    private $player;
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Constructor
      * ---------------------------------------------------------------------- */
@@ -189,12 +195,16 @@ class PlayerTable extends Model {
     }
 
     public function setPlayer(Player $player) {
+        $this->player = $player;
         return $this->setId($player->getId());
     }
 
     public function getPlayer(): Player {
-        return $this->playerManager
-                        ->findBy(["id" => $this->getId()]);
+        if (null === $this->player) {
+            $this->player = $this->playerManager
+                    ->findBy(["id" => $this->getId()]);
+        }
+        return $this->player;
     }
 
     public function setJob(Job $card) {

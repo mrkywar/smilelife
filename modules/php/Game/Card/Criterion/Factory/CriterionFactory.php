@@ -58,15 +58,15 @@ class CriterionFactory {
 
     /**
      * 
-     * @var Player|null
+     * @var PlayerTable|null
      */
-    private ?Player $opponent;
+    private ?PlayerTable $opponentTable;
 
-    public function __construct(PlayerTable $table, Card $card, ?Player $opponent = null, ?array $complementaryCards = null) {
+    public function __construct(PlayerTable $table, Card $card, ?PlayerTable $opponentTable = null, ?array $complementaryCards = null) {
         $this->table = $table;
         $this->card = $card;
         $this->complementaryCards = $complementaryCards;
-        $this->opponent = $opponent;
+        $this->opponentTable = $opponentTable;
     }
 
     /**

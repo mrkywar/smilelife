@@ -7,7 +7,7 @@ use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Card\Criterion\CriterionTest\CriterionDebugger;
-use SmileLife\Card\Criterion\CriterionTest\CriterionTest;
+use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
 use SmileLife\Card\Criterion\Factory\CriterionFactory;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -46,9 +46,15 @@ class PlayListener extends EventListener {
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
+        $targetTable = $target;
+        if (null !== $target) {
+            $targetTable = $this->tableManager->findOneBy([
+                "id" => $target->getId()
+            ]);
+            $targetTable->setPlayer($target);
+        }
 
-        
-        $criteriaFactory = new CriterionFactory($table, $card, $target);
+        $criteriaFactory = new CriterionFactory($table, $card, $targetTable);
         $criteria = $criteriaFactory->create();
 
         $criteriaTester = new CriterionTester();
