@@ -2,7 +2,6 @@
 
 namespace SmileLife\Card\Criterion\Factory;
 
-use Core\Models\Player;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Acquisition\House\House;
@@ -13,6 +12,7 @@ use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
@@ -126,7 +126,10 @@ class CriterionFactory {
                 throw new CriterionException("CCF-04 : Not implemented yet");
                 break;
             case CardType::ATTACK_DISMISSAL:
-                throw new CriterionException("CCF-05 : Not implemented yet");
+                $criterias[] = new CriterionGroup([
+                    new HaveJobCriterion($this->opponentTable),
+                    new InversedCriterion(new JobTypeCriterion($this->opponentTable, Official::class))
+                ], CriterionGroup::AND_OPERATOR);
                 break;
             case CardType::ATTACK_GRADE_REPETITION:
                 throw new CriterionException("CCF-08 : Not implemented yet");

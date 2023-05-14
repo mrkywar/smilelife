@@ -6,7 +6,7 @@ use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Criterion\CriterionTest\CriterionDebugger;
+use SmileLife\Card\Criterion\CriterionTester\CriterionDebugger;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
 use SmileLife\Card\Criterion\Factory\CriterionFactory;
 use SmileLife\Game\Request\PlayCardRequest;
@@ -55,6 +55,7 @@ class PlayListener extends EventListener {
         }
 
         $criteriaFactory = new CriterionFactory($table, $card, $targetTable);
+
         $criteria = $criteriaFactory->create();
 
         $criteriaTester = new CriterionTester();
