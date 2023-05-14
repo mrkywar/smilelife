@@ -19,12 +19,17 @@ trait PlayCardTrait {
         $card = $this->cardManager->findBy([
             "id" => $cardId
         ]);
-        var_dump($targetId);
-        die;
+
+        $target = $targetId;
+        if (null !== $targetId) {
+            $target = $this->playerManager->findOne([
+                "id" => $targetId
+            ]);
+        }
 
 //        throw new \BgaVisibleSystemException('You cannot play this card!');
         try {
-            $request = new PlayCardRequest($player, $card);
+            $request = new PlayCardRequest($player, $card, $target);
             $response = $this->requester->send($request);
             $this->applyResponse($response);
         } catch (CardException $e) {

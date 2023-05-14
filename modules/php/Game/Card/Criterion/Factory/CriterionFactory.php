@@ -62,8 +62,9 @@ class CriterionFactory {
      */
     private ?Player $opponent;
 
-    public function __construct(PlayerTable $table, ?array $complementaryCards = null, ?Player $opponent = null) {
+    public function __construct(PlayerTable $table, Card $card, ?Player $opponent = null, ?array $complementaryCards = null) {
         $this->table = $table;
+        $this->card = $card;
         $this->complementaryCards = $complementaryCards;
         $this->opponent = $opponent;
     }
@@ -73,10 +74,10 @@ class CriterionFactory {
      * @param Card $card
      * @return ?CriterionInterface[]
      */
-    public function create(Card $card): ?array {
+    public function create(): ?array {
         $criterias = array_merge(
-                $this->typeCriteria($card),
-                $this->inheritanceCriteria($card)
+                $this->typeCriteria($this->card),
+                $this->inheritanceCriteria($this->card)
         );
 
         if (empty($criterias)) {

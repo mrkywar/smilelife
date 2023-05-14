@@ -14,7 +14,7 @@ use SmileLife\PlayerAction\ActionType;
  */
 class PlayCardRequest extends Request {
 
-    public function __construct(Player $player, Card $card, Card $target = null) {
+    public function __construct(Player $player, Card $card, Player $target = null) {
         parent::__construct();
 
         $this->set("player", $player)
@@ -30,7 +30,7 @@ class PlayCardRequest extends Request {
         return $this->get("card");
     }
 
-    public function getTargetedCard(): ?Card {
+    public function getTargetedPlayer(): ?Player {
         return $this->get("target");
     }
 

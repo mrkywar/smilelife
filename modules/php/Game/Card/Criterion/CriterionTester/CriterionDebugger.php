@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\CriterionTest;
+namespace SmileLife\Card\Criterion\CriterionTester;
 
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
