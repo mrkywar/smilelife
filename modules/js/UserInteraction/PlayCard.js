@@ -12,8 +12,6 @@ define([
                 addPlayCardInteraction: function () {
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
-
-                    dojo.query("#myhand .cardontable").addClass("selectable");
                 },
 
                 doPlay: function () {
@@ -21,7 +19,6 @@ define([
 
                     if (1 !== card.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
-
                         dojo.query("#myhand .selected").removeClass("selected");
                     } else {
 //                        this.debug("DoPlay:", card[0]);

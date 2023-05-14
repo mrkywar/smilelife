@@ -6,19 +6,20 @@ define([
             "smilelife.table.attackModal",
             [],
             {
-                attackModal: function(card){
-                    dojo.place(this.format_block('jstpl_attack_modale'),'modal-container');
-                    
+                attackModal: function (card) {
+                    dojo.place(this.format_block('jstpl_attack_modale'), 'modal-container');
+
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
 //                        var btnHtml = this.format_block('jstpl_attack_btn', player);
                         this.debug('AM-PAM', player);
-                        dojo.place(this.getBtnHtml(player), 'attack_victim_selection');
+                        dojo.place(this.getAttackBtnHtml(player), 'attack_victim_selection');
                     }
-                    
+
+                    dojo.connect($("attackCancel_button"), 'onclick', this, 'onModalCloseClick')
                 },
-                
-                getBtnHtml: function (player) {
+
+                getAttackBtnHtml: function (player) {
                     var textColor = "";
                     if (this.getHtmlColorLuma(player.color) > 100) {
                         textColor = "black";
@@ -33,9 +34,14 @@ define([
                     `;
 
                 },
-                
-                
-                             
+
+                onModalCloseClick: function (el) {
+                    this.debug(el);
+                    $('modal-container').innerHTML = "";
+                }
+
+
+
             }
     );
 });
