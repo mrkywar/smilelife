@@ -14,9 +14,10 @@ define([
 //                        var btnHtml = this.format_block('jstpl_attack_btn', player);
                         this.debug('AM-PAM', player);
                         dojo.place(this.getAttackBtnHtml(player), 'attack_victim_selection');
+                        dojo.connect($("attack" + player.id + "_button"), 'onclick', this, 'onTargetClick');
                     }
 
-                    dojo.connect($("attackCancel_button"), 'onclick', this, 'onModalCloseClick')
+                    dojo.connect($("attackCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
 
                 getAttackBtnHtml: function (player) {
@@ -28,8 +29,13 @@ define([
                     }
 
                     return `
-                        <a href="#" class="action-button bgabutton" onclick="return false;" id="attack` + player.id + `_button" style="background-color:#` + player.color + `;color:` + textColor + `">
-                            ` + player.name + `
+                        <a href="#" 
+                            class="action-button bgabutton" 
+                            onclick="return false;" 
+                            data-player="` + player.id + `" 
+                            id="attack` + player.id + `_button" *
+                            style="background-color:#` + player.color + `;color:` + textColor + `">
+                                ` + player.name + `
                         </a>
                     `;
 
@@ -38,6 +44,10 @@ define([
                 onModalCloseClick: function (el) {
                     this.debug(el);
                     $('modal-container').innerHTML = "";
+                },
+
+                onTargetClick:function(el){
+                    this.debug(el.target.dataset.player);
                 }
 
 
