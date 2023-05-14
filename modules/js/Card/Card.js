@@ -80,6 +80,7 @@ define([
                                     }
                                     if ('attack' === card.category) {
                                         this.debug('attack detected');
+                                        this.attackModal(card);
                                     } else if (1 === 0) {
 
                                     }
@@ -104,6 +105,7 @@ define([
                                     }
                                     if ('attack' === card.category) {
                                         this.debug('attack detected');
+                                        this.attackModal(card);
                                     } else if (1 === 0) {
 
                                     }

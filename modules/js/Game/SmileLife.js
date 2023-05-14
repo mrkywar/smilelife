@@ -46,7 +46,6 @@ define([
             this.displayDeckAndDiscard();
             this.displayTables();
             this.displayPanels();
-            this.prepareAttackModal();
 
             this.applyCardSize();
         },

@@ -6,17 +6,18 @@ define([
             "smilelife.table.attackModal",
             [],
             {
-                prepareAttackModal: function () {
-                    var gamedatas = this.gamedatas;
-
-                    for (var playerId in gamedatas.tables) {
-                        var player = gamedatas.tables[playerId].player;
+                attackModal: function(card){
+                    dojo.place(this.format_block('jstpl_attack_modale'),'modal-container');
+                    
+                    for (var playerId in this.gamedatas.tables) {
+                        var player = this.gamedatas.tables[playerId].player;
 //                        var btnHtml = this.format_block('jstpl_attack_btn', player);
                         this.debug('AM-PAM', player);
                         dojo.place(this.getBtnHtml(player), 'attack_victim_selection');
                     }
+                    
                 },
-
+                
                 getBtnHtml: function (player) {
                     var textColor = "";
                     if (this.getHtmlColorLuma(player.color) > 100) {
@@ -32,7 +33,9 @@ define([
                     `;
 
                 },
-
+                
+                
+                             
             }
     );
 });
