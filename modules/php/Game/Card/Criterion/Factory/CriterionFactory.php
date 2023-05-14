@@ -94,9 +94,6 @@ class CriterionFactory {
     private function typeCriteria(Card $card) {
         $criterias = [];
         switch ($card->getType()) {
-            case CardType::ATTACK_BURN_OUT:
-                $criterias [] = new HaveJobCriterion($this->table);
-                break;
             case CardType::REWARD_FREEDOM_MEDAL:
                 $criterias [] = new CriterionGroup([
                     new HaveJobCriterion($this->table),
@@ -129,7 +126,10 @@ class CriterionFactory {
                 $criterias[] = new CriterionGroup([
                     new HaveJobCriterion($this->opponentTable),
                     new InversedCriterion(new JobTypeCriterion($this->opponentTable, Official::class))
-                ], CriterionGroup::AND_OPERATOR);
+                        ], CriterionGroup::AND_OPERATOR);
+                break;
+            case CardType::ATTACK_BURN_OUT:
+                $criterias[] = new HaveJobCriterion($this->opponentTable);
                 break;
             case CardType::ATTACK_GRADE_REPETITION:
                 throw new CriterionException("CCF-08 : Not implemented yet");
