@@ -11,7 +11,7 @@ use SmileLife\Game\Request\PlayCardRequest;
  */
 trait PlayCardTrait {
 
-    public function actionPlayCard($cardId) {
+    public function actionPlayCard($cardId, $targetId = null) {
         self::checkAction('playCard');
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
@@ -19,6 +19,8 @@ trait PlayCardTrait {
         $card = $this->cardManager->findBy([
             "id" => $cardId
         ]);
+        var_dump($targetId);
+        die;
 
 //        throw new \BgaVisibleSystemException('You cannot play this card!');
         try {
@@ -27,11 +29,11 @@ trait PlayCardTrait {
             $this->applyResponse($response);
         } catch (CardException $e) {
             throw new \BgaVisibleSystemException($e->getMessage());
-        } /*catch (\Exception $e) {
-            throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
-        }
-//        var_dump("here ?", $response);
-//        die();*/
+        } /* catch (\Exception $e) {
+          throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
+          }
+          //        var_dump("here ?", $response);
+          //        die(); */
     }
 
 }

@@ -41,13 +41,27 @@ define([
 
                 },
 
-                onModalCloseClick: function (el) {
-                    this.debug(el);
+                onModalCloseClick: function (element) {
+                    this.debug(element);
                     $('modal-container').innerHTML = "";
                 },
 
-                onTargetClick:function(el){
-                    this.debug(el.target.dataset.player);
+                onTargetClick:function(element){
+                    this.debug(element.target.dataset.player);
+                    var card = dojo.query(".selected");
+
+                    if (1 !== card.length) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query(".selected").removeClass("selected");
+                    } else {
+//                        this.debug("DoPlay:", card[0]);
+
+                        var data = {
+                            card: card[0].dataset.id,
+                            target: element.target.dataset.player
+                        };
+                        this.takeAction('playCard', data);
+                    }
                 }
 
 

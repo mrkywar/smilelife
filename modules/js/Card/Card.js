@@ -82,7 +82,7 @@ define([
                                         this.debug('attack detected');
                                         this.attackModal(card);
                                     } else if (1 === 0) {
-
+                                        this.debug('CC-TC01');
                                     }
                                 } else if (undefined === card.type) {
                                     //draw !
@@ -102,12 +102,13 @@ define([
                                     if ('hand' === card.location) {
                                         dojo.query(".selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
-                                    }
-                                    if ('attack' === card.category) {
-                                        this.debug('attack detected');
-                                        this.attackModal(card);
-                                    } else if (1 === 0) {
 
+                                        if ('attack' === card.category) {
+                                            this.debug('attack detected');
+                                            this.attackModal(card);
+                                        }
+                                    } else if (1 === 0) {
+                                        this.debug('CC-PC01');
                                     }
                                 } else if ('hand' === card.location) {
                                     // play from hand
