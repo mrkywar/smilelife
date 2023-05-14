@@ -5,11 +5,11 @@ namespace SmileLife\Card\Criterion\CriterionTest;
 use SmileLife\Card\Criterion\CriterionInterface;
 
 /**
- * Description of CriterionTestResult
+ * Description of CriterionTesterResult
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CriterionTestResult {
+class CriterionTesterResult {
 
     /**
      * 

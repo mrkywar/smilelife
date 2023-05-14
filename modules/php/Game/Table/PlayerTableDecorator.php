@@ -4,6 +4,7 @@ namespace SmileLife\Table;
 
 use Core\Decorator\DisplayModelDecorator;
 use Core\Models\Core\Model;
+use Core\Models\Player;
 use Core\Serializers\Serializer;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
@@ -59,7 +60,17 @@ class PlayerTableDecorator extends DisplayModelDecorator {
             "acquisitions" => $this->cardDecorator->decorate($table->getAcquisitions()),
             "attacks" => $this->cardDecorator->decorate($table->getAttacks()),
             "rewards" => $this->cardDecorator->decorate($table->getRewards()),
-            "specials" => $this->cardDecorator->decorate($table->getSpecials())
+            "specials" => $this->cardDecorator->decorate($table->getSpecials()),
+            "player" => $this->decoratePlayer($table->getPlayer())
+        ];
+    }
+
+    private function decoratePlayer(Player $player) {
+        return [
+            "id" => $player->getId(),
+            "color" => $player->getColor(),
+            "name" => $player->getName(),
+            "score" => $player->getScore()
         ];
     }
 

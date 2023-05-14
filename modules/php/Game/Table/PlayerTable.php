@@ -2,9 +2,9 @@
 
 namespace SmileLife\Table;
 
+use Core\Managers\PlayerManager;
 use Core\Models\Core\Model;
 use Core\Models\Player;
-use SmileLife;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Acquisition\Acquisition;
@@ -125,12 +125,25 @@ class PlayerTable extends Model {
      */
     private $cardManager;
 
+    /**
+     * 
+     * @var PlayerManager
+     */
+    private $playerManager;
+
+    /**
+     * 
+     * @var Player
+     */
+    private $player;
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Constructor
      * ---------------------------------------------------------------------- */
 
     public function __construct() {
         $this->cardManager = new CardManager();
+        $this->playerManager = new PlayerManager();
 
         $this->wageIds = [];
         $this->studiesIds = [];
@@ -182,13 +195,16 @@ class PlayerTable extends Model {
     }
 
     public function setPlayer(Player $player) {
+        $this->player = $player;
         return $this->setId($player->getId());
     }
 
     public function getPlayer(): Player {
-        return SmileLife::getInstance()
-                        ->getPlayerManager()
-                        ->findBy(["id" => $this->getId()]);
+        if (null === $this->player) {
+            $this->player = $this->playerManager
+                    ->findBy(["id" => $this->getId()]);
+        }
+        return $this->player;
     }
 
     public function setJob(Job $card) {

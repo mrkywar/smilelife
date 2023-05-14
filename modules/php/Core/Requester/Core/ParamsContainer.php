@@ -49,7 +49,7 @@ class ParamsContainer {
     }
 
     public function get($name) {
-        if (!isset($this->params[$name])) {
+        if (!isset($this->params[$name]) && !is_null($this->params[$name])) {
             throw new RequestException("$name Param isn't defined");
         }
 

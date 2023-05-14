@@ -6,8 +6,9 @@ use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Criterion\CriterionTest\CriterionDebugger;
-use SmileLife\Card\Criterion\CriterionTest\CriterionTest;
+use SmileLife\Card\Criterion\CriterionTester\CriterionDebugger;
+use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
+use SmileLife\Card\Criterion\Factory\CriterionFactory;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -41,28 +42,35 @@ class PlayListener extends EventListener {
     public function onPlay(PlayCardRequest &$request, Response &$response) {
         $card = $request->getCard();
         $player = $request->getPlayer();
+        $target = $request->getTargetedPlayer();
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
+        $targetTable = $target;
+        if (null !== $target) {
+            $targetTable = $this->tableManager->findOneBy([
+                "id" => $target->getId()
+            ]);
+            $targetTable->setPlayer($target);
+        }
 
-        $criteriaTest = new CriterionTest($table, $card);
-        $testRestult = $criteriaTest->test();
-////        $card = new FreedomMedal();
-//        $criterionFactory = new CriterionFactory($table);
-//        $criteria = $criterionFactory->create($card);
+        $criteriaFactory = new CriterionFactory($table, $card, $targetTable);
 
+        $criteria = $criteriaFactory->create();
+
+        $criteriaTester = new CriterionTester();
+        $testRestult = $criteriaTester->test($criteria);
 
         if (!$testRestult->getIsValid()) {
             echo '<pre>';
 
-//            var_dump($testRestult->getCriteria());
             $debugger = new CriterionDebugger($testRestult->getCriteria());
             $debugger->debug();
             die("DEBUG");
 
             throw new CardException("Not Playable");
         }
-//        $card->canBePlayed($table);
+
 
         $table->addCard($card);
         $this->tableManager->updateTable($table);

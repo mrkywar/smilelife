@@ -2,7 +2,6 @@
 
 namespace SmileLife\Card\Criterion\Factory;
 
-use Core\Models\Player;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Acquisition\House\House;
@@ -13,6 +12,7 @@ use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
@@ -58,14 +58,15 @@ class CriterionFactory {
 
     /**
      * 
-     * @var Player|null
+     * @var PlayerTable|null
      */
-    private ?Player $opponent;
+    private ?PlayerTable $opponentTable;
 
-    public function __construct(PlayerTable $table, ?array $complementaryCards = null, ?Player $opponent = null) {
+    public function __construct(PlayerTable $table, Card $card, ?PlayerTable $opponentTable = null, ?array $complementaryCards = null) {
         $this->table = $table;
+        $this->card = $card;
         $this->complementaryCards = $complementaryCards;
-        $this->opponent = $opponent;
+        $this->opponentTable = $opponentTable;
     }
 
     /**
@@ -73,10 +74,10 @@ class CriterionFactory {
      * @param Card $card
      * @return ?CriterionInterface[]
      */
-    public function create(Card $card): ?array {
+    public function create(): ?array {
         $criterias = array_merge(
-                $this->typeCriteria($card),
-                $this->inheritanceCriteria($card)
+                $this->typeCriteria($this->card),
+                $this->inheritanceCriteria($this->card)
         );
 
         if (empty($criterias)) {
@@ -93,9 +94,6 @@ class CriterionFactory {
     private function typeCriteria(Card $card) {
         $criterias = [];
         switch ($card->getType()) {
-            case CardType::ATTACK_BURN_OUT:
-                $criterias [] = new HaveJobCriterion($this->table);
-                break;
             case CardType::REWARD_FREEDOM_MEDAL:
                 $criterias [] = new CriterionGroup([
                     new HaveJobCriterion($this->table),
@@ -125,7 +123,13 @@ class CriterionFactory {
                 throw new CriterionException("CCF-04 : Not implemented yet");
                 break;
             case CardType::ATTACK_DISMISSAL:
-                throw new CriterionException("CCF-05 : Not implemented yet");
+                $criterias[] = new CriterionGroup([
+                    new HaveJobCriterion($this->opponentTable),
+                    new InversedCriterion(new JobTypeCriterion($this->opponentTable, Official::class))
+                        ], CriterionGroup::AND_OPERATOR);
+                break;
+            case CardType::ATTACK_BURN_OUT:
+                $criterias[] = new HaveJobCriterion($this->opponentTable);
                 break;
             case CardType::ATTACK_GRADE_REPETITION:
                 throw new CriterionException("CCF-08 : Not implemented yet");

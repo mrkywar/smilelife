@@ -155,6 +155,68 @@ html{
     text-align: center;
 }
 /*-----------------------------------------------------------------------------
+                 BEGIN - Modales
+------------------------------------------------------------------------------*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    text-align: center
+}
+.modal-overlay .modal-content {
+    padding: 0px;
+    border-radius: 5px;
+    background:#fff;
+    min-width: 25%;
+    max-width: 70%;
+    min-height: 30%;
+    max-height: 80%;
+    box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
+}
+.modal-overlay .bgabutton_gray{
+    background-color: #d8d8d833;
+    border:0;
+}
+.modal-overlay .bgabutton_gray:hover{
+    background-color: #d8d8d866;
+}
+
+.modal-overlay .modal-header{
+    border-radius: 5px 5px 0 0;
+    background:#179bd7;
+    border-bottom: 1px solid #ffffff33;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-overlay .modal-header .modal-title{
+    color: #fff;
+    margin-left: 5px;
+}
+.modal-overlay .modal-header .modal-close{
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+.modal-overlay .modal-header .modal-close a{
+    border-radius: 50%;
+    margin: 0;
+    margin-bottom: 5px;
+}
+.modal-overlay .modal-body{
+    padding: 10px 0;
+}
+.modal-overlay .modal-body a{
+    margin: 5px 5px;
+}
+/*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/
 #tables{
