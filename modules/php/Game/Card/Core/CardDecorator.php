@@ -30,14 +30,14 @@ class CardDecorator extends DisplayModelDecorator {
     }
 
     protected function decorateOne(Model $model): array {
-        return $this->doDecorate($model);
+        return $this->decorate($model);
     }
 
     public function getSerializer(): Serializer {
         return $this->cardSerializer;
     }
 
-    private function doDecorate(Card $card) {
+    private function decorate(Card $card) {
         $cardInfos = $card->__toArray();
 
         return $cardInfos;

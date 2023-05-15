@@ -33,11 +33,18 @@ class PlayerTableDecorator extends DisplayModelDecorator {
      * @var CardDecorator
      */
     private $cardDecorator;
+    
+    /**
+     * 
+     * @var PlayerDecorator
+     */
+    private $playerDecorator;
 
     public function __construct() {
         $this->serializer = new Serializer(PlayerTable::class);
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
+        $this->playerDecorator= new PlayerDecorator();
     }
 
     protected function decorateOne(Model $model): array {
@@ -61,16 +68,7 @@ class PlayerTableDecorator extends DisplayModelDecorator {
             "attacks" => $this->cardDecorator->decorate($table->getAttacks()),
             "rewards" => $this->cardDecorator->decorate($table->getRewards()),
             "specials" => $this->cardDecorator->decorate($table->getSpecials()),
-            "player" => $this->decoratePlayer($table->getPlayer())
-        ];
-    }
-
-    private function decoratePlayer(Player $player) {
-        return [
-            "id" => $player->getId(),
-            "color" => $player->getColor(),
-            "name" => $player->getName(),
-            "score" => $player->getScore()
+            "player" => $this->playerDecorator->decorate($table->getPlayer())
         ];
     }
 
