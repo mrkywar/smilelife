@@ -7,7 +7,7 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    //this.debug("DC", card, destinationDivId, fromDivId, card.type, card.isFlipped);
+                    this.debug("DC", card);
 
                     var searchedDiv = $('card_' + card.id);
 

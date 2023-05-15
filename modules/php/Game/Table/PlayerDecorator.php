@@ -68,7 +68,7 @@ class PlayerDecorator {
                 $result[$player->getId()] = $this->decorateOne($player);
             }
         } else {
-            return $this->decorateOne($player);
+            return $this->decorateOne($players);
         }
     }
 

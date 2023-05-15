@@ -39,12 +39,12 @@ define([
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;
                     for (var playerId in gamedatas.tables) {
-                        var player = gamedatas.players[playerId];
+                        var player = gamedatas.tables[playerId].player;
                         player.id = playerId;
                         dojo.place(this.getTableHtml(player), 'tables'); //table container
 
                         var table = gamedatas.tables[playerId];
-                        this.displayTablePiles(table, player);
+                        this.displayTablePiles(table);
                     }
 
 
