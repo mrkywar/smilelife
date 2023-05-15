@@ -2,6 +2,13 @@
 
 namespace SmileLife\Table;
 
+use Core\Models\Player;
+use SmileLife\Card\CardManager;
+use SmileLife\Game\Calculator\StudiesLevelCalculator;
+use SmileLife\Game\Calculator\TotalWageCalculator;
+use SmileLife\PlayerAttributes\PlayerAttributesDecorator;
+use SmileLife\PlayerAttributes\PlayerAttributesManager;
+
 /**
  * Description of PlayerDecorator
  *

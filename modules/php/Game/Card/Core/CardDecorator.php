@@ -29,18 +29,32 @@ class CardDecorator extends DisplayModelDecorator {
         }
     }
 
-    protected function decorateOne(Model $model): array {
-        return $this->decorate($model);
+    public function decorate($rawItems) {
+        if ($rawItems instanceof Card) {
+            return [$this->decorateOne($rawItems)];
+        } elseif (is_array($rawItems)) {
+            $result = array();
+            foreach ($rawItems as $card) {
+                $result[] = $this->decorateOne($card);
+            }
+            return $result;
+        } else {
+            throw new CardDecoratorException("Unsupported CardDecorator arg format " . get_class($rawItems));
+        }
     }
 
     public function getSerializer(): Serializer {
         return $this->cardSerializer;
     }
 
-    private function decorate(Card $card) {
+    private function decorateCard(Card $card): array {
         $cardInfos = $card->__toArray();
 
         return $cardInfos;
+    }
+
+    protected function decorateOne(Model $model): array {
+        return $this->decorateCard($card);
     }
 
 }

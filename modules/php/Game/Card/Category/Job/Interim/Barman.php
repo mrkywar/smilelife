@@ -61,7 +61,7 @@ class Barman extends Interim implements BaseGame, CardEffectInterface {
      * 
      * @return Effect[]
      */
-    public function getEffects() {
+    public function getEffects(): array {
         return $this->effects;
     }
 

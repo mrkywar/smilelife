@@ -5,6 +5,8 @@ namespace SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Card\Effect\Category\SicknessImunueEffect;
+use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -61,7 +63,7 @@ class Pharmacist extends Job implements BaseGame, CardEffectInterface {
      * 
      * @return Effect[]
      */
-    public function getEffects() {
+    public function getEffects(): array {
         return $this->effects;
     }
 
