@@ -50,40 +50,12 @@ class DataRetriver {
      */
     private $playerTableDecorator;
 
-    /**
-     * 
-     * @var PlayerAttributesManager
-     */
-    private $playerAttributeManager;
-
-    /**
-     * 
-     * @var PlayerAttributesDecorator
-     */
-    private $playerAttributeDecorator;
-
-    /**
-     * 
-     * @var StudiesLevelCalculator
-     */
-    private $studiesLevelCalulator;
-    
-    /**
-     * 
-     * @var TotalWageCalculator
-     */
-    private $totalWageCalculator;
-
     public function __construct() {
         $this->playerManager = new PlayerManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator($this->cardManager->getSerializer());
         $this->playerTableManager = new PlayerTableManager();
-        $this->totalWageCalculator = new TotalWageCalculator();
         $this->playerTableDecorator = new PlayerTableDecorator();
-        $this->studiesLevelCalulator = new StudiesLevelCalculator();
-        $this->playerAttributeManager = new PlayerAttributesManager();
-        $this->playerAttributeDecorator = new PlayerAttributesDecorator();
     }
 
     public function retrive(int $playerId) {
@@ -107,22 +79,19 @@ class DataRetriver {
             "discard" => $rawDiscard
         ];
 
-        $players = $this->playerManager->findBy();
-
-        foreach ($players as $player) {
-            $table = $this->playerTableManager->findBy([
-                "id" => $player->getId()
-            ]);
-            $attribute = $this->playerAttributeManager->findBy([
-                "id" => $player->getId()
-            ]);
-            
-            $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
-            $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
-            $result['player'][$player->getId()]["studies"] = $this->studiesLevelCalulator->compute($table->getStudies());
-            $result['player'][$player->getId()]["totalWages"] = $this->totalWageCalculator->compute($table->getWages());
-            $result['tables'][$player->getId()] = $this->playerTableDecorator->decorate($table);
-        }
+        $tables = $this->playerTableManager->findBy();
+        $result['tables'] = $this->playerTableDecorator->decorate($tables);
+//        $players = $this->playerManager->findBy();
+//
+//        foreach ($players as $player) {
+// 
+//            
+//            $result['player'][$player->getId()]["hand"] = count($this->cardManager->getPlayerCards($player));
+//            $result['player'][$player->getId()]["attributes"] = $this->playerAttributeDecorator->decorate($attribute);
+//            $result['player'][$player->getId()]["studies"] = $this->studiesLevelCalulator->compute($table->getStudies());
+//            $result['player'][$player->getId()]["totalWages"] = $this->totalWageCalculator->compute($table->getWages());
+//            $result['tables'][$player->getId()] = $this->playerTableDecorator->decorate($table);
+//        }
 
         $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
         unset($result['tables'][$playerId]);

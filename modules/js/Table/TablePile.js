@@ -52,8 +52,9 @@ define([
                  * @param {object} player who owned the table
                  * @returns {object} ebg counters associated objects to each piles
                  */
-                displayTablePiles: function (table, player) {
+                displayTablePiles: function (table) {
                     var tableCards = this.getTablePiles(table);
+                    var player = table.player;
 
                     //---- Display professional Pile infos
                     var pileJobCounter = this.displayPile(tableCards.professionalPile, 'pile_job_', player);
