@@ -16,14 +16,14 @@ use SmileLife\Card\Module\BaseGame;
 class Barman extends Interim implements BaseGame, CardEffectInterface {
 
     /**
-     * @var Effect
+     * @var Effect[]
      */
-    private $effect;
+    private $effects;
 
     public function __construct() {
         parent::__construct();
 
-        $this->effect = new LimitlessFlirt();
+        $this->effects = [new LimitlessFlirt()];
 
         $this->setTitle(clienttranslate('Barman'))
                 ->setText1(clienttranslate('Unlimited flirts before marriage'));
@@ -57,8 +57,12 @@ class Barman extends Interim implements BaseGame, CardEffectInterface {
         return true;
     }
 
-    public function getEffect(): Effect {
-        return $this->effect;
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects() {
+        return $this->effects;
     }
 
     /* -------------------------------------------------------------------------

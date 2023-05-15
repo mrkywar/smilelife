@@ -8,5 +8,9 @@ namespace SmileLife\Card\Effect;
  */
 interface CardEffectInterface {
 
-    public function getEffect(): Effect;
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects(): array;
 }

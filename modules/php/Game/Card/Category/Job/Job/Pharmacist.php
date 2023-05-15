@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -11,10 +12,18 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Pharmacist extends Job implements BaseGame {
+class Pharmacist extends Job implements BaseGame, CardEffectInterface {
+
+    /**
+     * 
+     * @var Effect
+     */
+    private $effects;
 
     public function __construct() {
         parent::__construct();
+
+        $this->effects = [new SicknessImunueEffect()];
 
         $this->setTitle(clienttranslate('Pharmacist'))
                 ->setText1(clienttranslate('Never sick'));
@@ -46,6 +55,14 @@ class Pharmacist extends Job implements BaseGame {
 
     public function getType(): int {
         return CardType::JOB_PHARMACIST;
+    }
+
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects() {
+        return $this->effects;
     }
 
     /* -------------------------------------------------------------------------

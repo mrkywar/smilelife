@@ -1,4 +1,5 @@
 <?php
+
 namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
@@ -19,12 +20,12 @@ class Surgeon extends Job implements BaseGame, CardEffectInterface {
      * 
      * @var Effect
      */
-    private $effect;
+    private $effects;
 
     public function __construct() {
         parent::__construct();
 
-        $this->effect = new LimitlessStudiesEffect();
+        $this->effects = [new LimitlessStudiesEffect(), new SicknessImunueEffect()];
 
         $this->setTitle(clienttranslate('Surgeon'))
                 ->setText1(clienttranslate('Never sick and continuous studies'));
@@ -58,8 +59,12 @@ class Surgeon extends Job implements BaseGame, CardEffectInterface {
         return CardType::JOB_SURGEON;
     }
 
-    public function getEffect(): Effect {
-        return $this->effect;
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects() {
+        return $this->effects;
     }
 
     /* -------------------------------------------------------------------------

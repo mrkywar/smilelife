@@ -29,12 +29,18 @@ class JobEffectCriteria extends HaveJobCriterion {
         return (
                 parent::isValided() &&
                 $this->getJob() instanceof CardEffectInterface &&
-                $this->checkLimitlessStudies($this->getJob())
+                $this->checkEffect($this->getJob())
                 );
     }
 
-    private function checkLimitlessStudies(CardEffectInterface $job) {
-        return ($job->getEffect() instanceof $this->className);
+    private function checkEffect(CardEffectInterface $job) {
+        foreach ($job->getEffects() as $effect) {
+            if ($effect instanceof $this->className) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

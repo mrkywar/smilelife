@@ -6,6 +6,7 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
+use SmileLife\Card\Effect\Category\SicknessImunueEffect;
 use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
@@ -20,12 +21,12 @@ class Doctor extends Job implements BaseGame, CardEffectInterface {
      * 
      * @var Effect
      */
-    private $effect;
+    private $effects;
 
     public function __construct() {
         parent::__construct();
 
-        $this->effect = new LimitlessStudiesEffect();
+        $this->effects = [new LimitlessStudiesEffect(), new SicknessImunueEffect()];
 
         $this->setTitle(clienttranslate('Doctor'))
                 ->setText1(clienttranslate('Never sick and continuous studies'));
@@ -59,8 +60,12 @@ class Doctor extends Job implements BaseGame, CardEffectInterface {
         return CardType::JOB_DOCTOR;
     }
 
-    public function getEffect(): Effect {
-        return $this->effect;
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects() {
+        return $this->effects;
     }
 
     /* -------------------------------------------------------------------------
