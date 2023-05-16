@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Criterion;
 
+use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 
 /**
@@ -11,5 +12,60 @@ use SmileLife\Card\Criterion\CriterionInterface;
  */
 abstract class Criterion implements CriterionInterface {
 
+    /**
+     * 
+     * @var string
+     */
+    private $errorMessage;
+
+    /**
+     * 
+     * @var Consequence[]
+     */
+    private $consequences;
+
+    public function __construct() {
+        $this->consequences = [];
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
     abstract public function isValided(): bool;
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Consequences Specific
+     * ---------------------------------------------------------------------- */
+
+    final public function hasConsequences(): bool {
+        return (empty($this->consequences));
+    }
+
+    public function addConsequence(Consequence $consequence) {
+        $this->consequences[$consequence->getName()] = $consequence;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Getters & Setters 
+     * ---------------------------------------------------------------------- */
+
+    public function getErrorMessage() {
+        return $this->errorMessage;
+    }
+
+    public function setErrorMessage($errorMessage) {
+        $this->errorMessage = $errorMessage;
+        return $this;
+    }
+
+    public function getConsequences(): array {
+        return $this->consequences;
+    }
+
+    public function setConsequences(array $consequences) {
+        $this->consequences = $consequences;
+        return $this;
+    }
+
 }
