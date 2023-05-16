@@ -72,7 +72,6 @@ class CriterionFactory {
 
     /**
      * 
-     * @param Card $card
      * @return ?CriterionInterface[]
      */
     public function create(): ?array {

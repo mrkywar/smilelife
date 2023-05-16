@@ -26,6 +26,7 @@ abstract class Criterion implements CriterionInterface {
 
     public function __construct() {
         $this->consequences = [];
+        $this->errorMessage = "";
     }
 
     /* -------------------------------------------------------------------------
@@ -59,6 +60,10 @@ abstract class Criterion implements CriterionInterface {
         return $this;
     }
 
+    /**
+     * 
+     * @return Consequence[]
+     */
     public function getConsequences(): array {
         return $this->consequences;
     }

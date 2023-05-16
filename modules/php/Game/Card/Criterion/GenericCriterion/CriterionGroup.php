@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Criterion\GenericCriterion;
 
+use SmileLife\Card\Criterion\Criterion;
 use SmileLife\Card\Criterion\CriterionException;
 use SmileLife\Card\Criterion\CriterionInterface;
 
@@ -10,7 +11,7 @@ use SmileLife\Card\Criterion\CriterionInterface;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CriterionGroup implements CriterionInterface {
+class CriterionGroup extends Criterion {
 
     const AND_OPERATOR = "AND";
     const OR_OPERATOR = "OR";
