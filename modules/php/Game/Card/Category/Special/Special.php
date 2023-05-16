@@ -11,7 +11,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class Special extends Card implements CardEffectInterface {
+abstract class Special extends Card /*implements CardEffectInterface*/ {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */

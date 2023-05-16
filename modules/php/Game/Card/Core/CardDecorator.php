@@ -6,7 +6,7 @@ use Core\Decorator\DisplayModelDecorator;
 use Core\Models\Core\Model;
 use Core\Serializers\Serializer;
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Core\Exception\CardDecoratorException;
 
 /**
  * Description of CardDecorator
@@ -29,18 +29,35 @@ class CardDecorator extends DisplayModelDecorator {
         }
     }
 
-    protected function decorateOne(Model $model): array {
-        return $this->doDecorate($model);
+    public function decorate($rawItems) {
+        if ($rawItems instanceof Card) {
+            return $this->decorateOne($rawItems);
+        } elseif (is_array($rawItems)) {
+            $result = array();
+            foreach ($rawItems as $card) {
+                $result[] = $this->decorateOne($card);
+            }
+            return $result;
+        } elseif (null === $rawItems) {
+            return;
+        } else {
+
+            throw new CardDecoratorException("Unsupported CardDecorator arg format " . get_class($rawItems));
+        }
     }
 
     public function getSerializer(): Serializer {
         return $this->cardSerializer;
     }
 
-    private function doDecorate(Card $card) {
+    private function decorateCard(Card $card): array {
         $cardInfos = $card->__toArray();
 
         return $cardInfos;
+    }
+
+    protected function decorateOne(Model $model): array {
+        return $this->decorateCard($model);
     }
 
 }

@@ -25,6 +25,7 @@ define([
                     //Prepare & display this player table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
+                    
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
 
                     //Prepare & Display this player Hand Cards
@@ -34,17 +35,19 @@ define([
                         this.displayCard(card, "myhand");
                     }
                     //Display this player Table cards
-                    this.displayTablePiles(gamedatas.mytable, meAsPlayer);
+                    //this.displayTablePiles(gamedatas.mytable);
 
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;
                     for (var playerId in gamedatas.tables) {
-                        var player = gamedatas.players[playerId];
+                        this.debug("all table",gamedatas.tables);
+                        var table = gamedatas.tables[playerId];
+                        var player = table.player;
                         player.id = playerId;
                         dojo.place(this.getTableHtml(player), 'tables'); //table container
 
                         var table = gamedatas.tables[playerId];
-                        this.displayTablePiles(table, player);
+                        this.displayTablePiles(table);
                     }
 
 

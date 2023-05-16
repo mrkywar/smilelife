@@ -121,28 +121,6 @@ define([
                     } else {
                         this.debug("OCC-S02 : Not your Turn !");
                     }
-
-
-
-
-                    //-- V2 : Disabled temporary
-//                    switch (this.actualState) {
-//                        case "takeCard":
-
-//                        case "playCard":
-//                            if (this.isCurrentPlayerActive() && 'hand' === card.location) {
-//                                // play from hand
-//                                var searchedDiv = $('card_' + card.id);
-//                                if (searchedDiv.classList.contains('selected')) {
-//                                    this.doPlay();
-//                                } else {
-//                                    searchedDiv.classList.add('selected');
-//                                }
-//                            } else {
-//                                this.debug("TRY Play fail");
-//                            }
-//                    }
-
                 }
 
             }

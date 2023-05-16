@@ -64,7 +64,7 @@ class Doctor extends Job implements BaseGame, CardEffectInterface {
      * 
      * @return Effect[]
      */
-    public function getEffects() {
+    public function getEffects(): array  {
         return $this->effects;
     }
 
