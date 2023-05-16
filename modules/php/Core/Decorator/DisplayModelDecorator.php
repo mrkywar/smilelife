@@ -26,7 +26,7 @@ abstract class DisplayModelDecorator {
             } elseif (is_array($rawItems)) {
                 $results = [];
                 foreach ($rawItems as $item) {
-                    $results[] = $this->decorateOne($item);
+                    $results[$item->getId()] = $this->decorateOne($item);
                 }
                 return $results;
             } else {

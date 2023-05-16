@@ -29,6 +29,23 @@ class CardDecorator extends DisplayModelDecorator {
         }
     }
 
+    public function decorate($rawItems) {
+        if ($rawItems instanceof Card) {
+            return $this->decorateOne($rawItems);
+        } elseif (is_array($rawItems)) {
+            $result = array();
+            foreach ($rawItems as $card) {
+                $result[] = $this->decorateOne($card);
+            }
+            return $result;
+        } elseif (null === $rawItems) {
+            return;
+        } else {
+
+            throw new CardDecoratorException("Unsupported CardDecorator arg format " . get_class($rawItems));
+        }
+    }
+
     public function getSerializer(): Serializer {
         return $this->cardSerializer;
     }
