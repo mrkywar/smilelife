@@ -92,23 +92,45 @@ class CriterionFactory {
     }
 
     private function typeCriteria(Card $card) {
-        $criterias = [];
+        $factory = null;
+
         switch ($card->getType()) {
             case CardType::REWARD_FREEDOM_MEDAL:
-                $criterias [] = new CriterionGroup([
-                    new HaveJobCriterion($this->table),
-                    new InversedCriterion(new JobTypeCriterion($this->table, Bandit::class))
-                        ], CriterionGroup::AND_OPERATOR);
-
+                $factory = new Category\FreedomMedalCriterionFactory($this->table, $card);
                 break;
             case CardType::JOB_GRAND_PROF:
-                $criterias [] = new JobTypeCriterion($this->table, Teacher::class);
+                $factory = new Category\GrandProfCriterionFactory($this->table, $card);
                 break;
             case CardType::REWARD_NATIONAL_MEDAL:
-                $criterias [] = new JobTypeCriterion($this->table, Writer::class);
-                $criterias [] = new JobTypeCriterion($this->table, Researcher::class);
-                $criterias [] = new JobTypeCriterion($this->table, Journalist::class);
+                $factory = new Category\NationalMedalCriterionFactory($this->table, $card);
                 break;
+            case CardType::ATTACK_DISMISSAL:
+                $factory = new Category\DismissalCriterionFactory($this->opponentTable, $card);
+                break;
+        }
+
+
+
+
+        //-- V1 !
+        $criterias = [];
+
+        switch ($card->getType()) {
+//            case CardType::REWARD_FREEDOM_MEDAL:
+//                $criterias [] = new CriterionGroup([
+//                    new HaveJobCriterion($this->table),
+//                    new InversedCriterion(new JobTypeCriterion($this->table, Bandit::class))
+//                        ], CriterionGroup::AND_OPERATOR);
+//
+//                break;
+//            case CardType::JOB_GRAND_PROF:
+//                $criterias [] = new JobTypeCriterion($this->table, Teacher::class);
+//                break;
+//            case CardType::REWARD_NATIONAL_MEDAL:
+//                $criterias [] = new JobTypeCriterion($this->table, Writer::class);
+//                $criterias [] = new JobTypeCriterion($this->table, Researcher::class);
+//                $criterias [] = new JobTypeCriterion($this->table, Journalist::class);
+//                break;
             case CardType::JOB_GURU:
             case CardType::JOB_BANDIT:
                 throw new CriterionException("CCF-01 : Not implemented yet");
@@ -122,15 +144,15 @@ class CriterionFactory {
             case CardType::ATTACK_DIVORCE:
                 throw new CriterionException("CCF-04 : Not implemented yet");
                 break;
-            case CardType::ATTACK_DISMISSAL:
-                $criterias[] = new CriterionGroup([
-                    new HaveJobCriterion($this->opponentTable),
-                    new InversedCriterion(new JobTypeCriterion($this->opponentTable, Official::class))
-                        ], CriterionGroup::AND_OPERATOR);
-                break;
-            case CardType::ATTACK_BURN_OUT:
-                $criterias[] = new HaveJobCriterion($this->opponentTable);
-                break;
+//            case CardType::ATTACK_DISMISSAL:
+//                $criterias[] = new CriterionGroup([
+//                    new HaveJobCriterion($this->opponentTable),
+//                    new InversedCriterion(new JobTypeCriterion($this->opponentTable, Official::class))
+//                        ], CriterionGroup::AND_OPERATOR);
+//                break;
+//            case CardType::ATTACK_BURN_OUT:
+//                $criterias[] = new HaveJobCriterion($this->opponentTable);
+//                break;
             case CardType::ATTACK_GRADE_REPETITION:
                 throw new CriterionException("CCF-08 : Not implemented yet");
                 break;

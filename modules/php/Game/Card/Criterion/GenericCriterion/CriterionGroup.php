@@ -18,7 +18,7 @@ class CriterionGroup extends Criterion {
 
     /**
      * 
-     * @var ?CriterionInterface[]
+     * @var CriterionInterface[]
      */
     private $criteria;
 
@@ -63,6 +63,17 @@ class CriterionGroup extends Criterion {
 
     public function getOperator(): string {
         return $this->operator;
+    }
+
+    public function getErrorMessage() {
+        if (null === parent::getErrorMessage()) {
+            if (self::AND_OPERATOR === $this->operator) {
+                return $this->criteria[0]->getErrorMessage();
+            } else {
+                throw new CriterionException("Unsupported Operator and no Error Message set for '" . $this->operator . "'");
+            }
+        }
+        return;
     }
 
 }
