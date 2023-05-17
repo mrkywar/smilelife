@@ -107,8 +107,21 @@ class CriterionFactory {
             case CardType::ATTACK_DISMISSAL:
                 $factory = new Category\DismissalCriterionFactory($this->opponentTable, $card);
                 break;
+            case CardType::ATTACK_BURN_OUT:
+                $factory = new Category\BurnOutCriterionFactory($this->opponentTable, $card);
+                break;
+            case CardType::ATTACK_DISMISSAL:
+                $factory = new Category\SicknessCriterionFactory($this->opponentTable, $card);
+                break;
+            case CardType::STUDY_DOUBLE:
+            case CardType::STUDY_SINGLE:
+                $factory = new Category\StudieCriterionFactory($this->table, $card);
+                break;
         }
 
+        if (null === $factory) {
+            
+        }
 
 
 
@@ -162,13 +175,13 @@ class CriterionFactory {
             case CardType::ATTACK_JAIL:
                 throw new CriterionException("CCF-10 : Not implemented yet");
                 break;
-            case CardType::ATTACK_SICKNESS:
-                $criterias[] = new InversedCriterion(new HaveJobCriterion($this->opponentTable));
-                $criterias[] = new CriterionGroup([
-                    new HaveJobCriterion($this->opponentTable),
-                    new InversedCriterion(new JobEffectCriteria($this->opponentTable, SicknessImunueEffect::class))
-                        ], CriterionGroup::AND_OPERATOR);
-                break;
+//            case CardType::ATTACK_SICKNESS:
+//                $criterias[] = new InversedCriterion(new HaveJobCriterion($this->opponentTable));
+//                $criterias[] = new CriterionGroup([
+//                    new HaveJobCriterion($this->opponentTable),
+//                    new InversedCriterion(new JobEffectCriteria($this->opponentTable, SicknessImunueEffect::class))
+//                        ], CriterionGroup::AND_OPERATOR);
+//                break;
             case CardType::SPECIAL_BIRTHDAY:
                 throw new CriterionException("CCF-12 : Not implemented yet");
                 break;
@@ -188,11 +201,11 @@ class CriterionFactory {
     private function inheritanceCriteria(Card $card): array {
         $criterias = [];
         if ($card instanceof Studies) {
-            $criterias [] = new JobEffectCriteria($this->table, LimitlessStudiesEffect::class);
-            $criterias [] = new CriterionGroup([
-                new InversedCriterion(new HaveJobCriterion($this->table)),
-                new StudiesLevelCriterion($this->table, $card)
-                    ], CriterionGroup::AND_OPERATOR);
+//            $criterias [] = new JobEffectCriteria($this->table, LimitlessStudiesEffect::class);
+//            $criterias [] = new CriterionGroup([
+//                new InversedCriterion(new HaveJobCriterion($this->table)),
+//                new StudiesLevelCriterion($this->table, $card)
+//                    ], CriterionGroup::AND_OPERATOR);
         } elseif ($card instanceof Wage) {
             $criterias [] = new CriterionGroup([
                 new HaveJobCriterion($this->table),

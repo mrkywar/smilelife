@@ -66,14 +66,13 @@ class CriterionGroup extends Criterion {
     }
 
     public function getErrorMessage() {
-        if (null === parent::getErrorMessage()) {
-            if (self::AND_OPERATOR === $this->operator) {
-                return $this->criteria[0]->getErrorMessage();
-            } else {
-                throw new CriterionException("Unsupported Operator and no Error Message set for '" . $this->operator . "'");
+        foreach ($this->criteria as $criterion) {
+            if (null !== $criterion->getErrorMessage() && !$criterion->isValided()) {
+                return $criterion->getErrorMessage();
             }
         }
-        return;
+
+        return parent::getErrorMessage();
     }
 
 }

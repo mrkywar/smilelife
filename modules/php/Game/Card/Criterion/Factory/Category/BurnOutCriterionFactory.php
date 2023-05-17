@@ -17,7 +17,7 @@ class BurnOutCriterionFactory extends CategoryCriterionFactory {
         $table = $this->getTable();
 
         $criterias = new HaveJobCriterion($table);
-        $criterias->setErrorMessage(clienttranslate("Your target didn't have any Job"));
+        $criterias->setErrorMessage(clienttranslate("Targeted player has no Job"));
         
         $criterias->addConsequence(new AttackDestinationConsequence($this->getCard(), $table->getPlayer()))
                 ->addConsequence(new TurnPassConsequence($table->getPlayer()));

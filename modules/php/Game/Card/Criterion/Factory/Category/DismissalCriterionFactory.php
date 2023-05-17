@@ -21,10 +21,10 @@ class DismissalCriterionFactory extends CategoryCriterionFactory {
         $table = $this->getTable();
 
         $jobCriterion = new HaveJobCriterion($table);
-        $jobCriterion->setErrorMessage(clienttranslate("Your target didn't have any Job"));
+        $jobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
         $officialCriterion = new InversedCriterion(new JobTypeCriterion($table, Official::class));
-        $officialCriterion->setErrorMessage(clienttranslate("Your target works as a civil servant and cannot be fired"));
+        $officialCriterion->setErrorMessage(clienttranslate("The targeted player works as a civil servant and therefore cannot be fired"));
 
         $criteria = new CriterionGroup([
             $jobCriterion,
