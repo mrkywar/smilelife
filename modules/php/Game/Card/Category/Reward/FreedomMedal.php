@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Category\Reward;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\FreedomMedalCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of FreedomMedal
@@ -26,10 +26,6 @@ class FreedomMedal extends Reward implements BaseGame {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return false;
-    }
-
     public function getClass(): string {
         return self::class;
     }
@@ -42,13 +38,8 @@ class FreedomMedal extends Reward implements BaseGame {
         return CardType::REWARD_FREEDOM_MEDAL;
     }
 
-    public function canBePlayed(PlayerTable $table): bool {
-        $job = $table->getJob();
-        if (null === $job) {
-            return false;
-        } else {
-            return (!$job instanceof Bandit);
-        }
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new FreedomMedalCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

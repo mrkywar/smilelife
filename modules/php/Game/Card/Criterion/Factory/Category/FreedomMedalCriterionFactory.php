@@ -4,6 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -15,25 +16,22 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FreedomMedalCriterionFactory extends CategoryCriterionFactory {
+class FreedomMedalCriterionFactory extends CardCriterionFactory {
 
     private $message;
 
-    public function __construct(PlayerTable $table, Card $card) {
-        parent::__construct($table, $card);
+    public function __construct() {
+        parent::__construct($card);
 
         $fakeBandit = new Bandit();
         $this->message = clienttranslate('You must have a Job for this reward and you must not be a ${jobName}', ['jobName' => $fakeBandit->getTitle()]);
     }
 
-    public function create(): ?array {
-
-
+    public function create(Card $card, PlayerTable $table): ?array {
         $criterion = new CriterionGroup([
-            new HaveJobCriterion($this->table),
-            new InversedCriterion(new JobTypeCriterion($this->table, Bandit::class))
+            new HaveJobCriterion($table),
+            new InversedCriterion(new JobTypeCriterion($table, Bandit::class))
                 ], CriterionGroup::AND_OPERATOR);
-//        clienttranslate('You have already reached level ${level} of studies and you cannot exceed 6', ['level' => $actualLevel])
         $criterion->setErrorMessage($this->message);
 
         return [$criterion];

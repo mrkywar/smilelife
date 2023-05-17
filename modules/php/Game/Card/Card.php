@@ -6,7 +6,7 @@ use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Card\Criterion\Factory\CriterionFactoryInterface;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 
 /**
  * Description of Card
@@ -159,8 +159,12 @@ abstract class Card extends Model {
     abstract public function getCategory(): string;
 
     abstract public function getPileName(): string;
-    
-    abstract public function getCriterionFactory(): CriterionFactoryInterface;
+
+//    abstract public function getCriterionFactory(): CardCriterionFactory; //--TODO reactive this and remove below exception
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        throw new CardException("Card-CF166 : Criterion isn't defined");
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
