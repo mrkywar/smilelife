@@ -117,6 +117,12 @@ class CriterionFactory {
             case CardType::STUDY_SINGLE:
                 $factory = new Category\StudieCriterionFactory($this->table, $card);
                 break;
+            case CardType::WAGE_LEVEL_1:
+            case CardType::WAGE_LEVEL_2:
+            case CardType::WAGE_LEVEL_3:
+            case CardType::WAGE_LEVEL_4:
+                $factory = new Category\WageCriterionFactory($this->table, $card);
+                break;
         }
 
         if (null === $factory) {
@@ -207,10 +213,10 @@ class CriterionFactory {
 //                new StudiesLevelCriterion($this->table, $card)
 //                    ], CriterionGroup::AND_OPERATOR);
         } elseif ($card instanceof Wage) {
-            $criterias [] = new CriterionGroup([
-                new HaveJobCriterion($this->table),
-                new WageCriterion($this->table, $card)
-                    ], CriterionGroup::AND_OPERATOR);
+//            $criterias [] = new CriterionGroup([
+//                new HaveJobCriterion($this->table),
+//                new WageCriterion($this->table, $card)
+//                    ], CriterionGroup::AND_OPERATOR);
         } elseif ($card instanceof House) {
             throw new CriterionException("CCF-06 : Not implemented yet");
         } elseif ($card instanceof Travel) {
