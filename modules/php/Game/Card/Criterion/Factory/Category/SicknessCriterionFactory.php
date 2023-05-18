@@ -23,15 +23,14 @@ class SicknessCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable): CriterionInterface {
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
-        $immunityCriterion = new CriterionGroup([
-            new HaveJobCriterion($opponentTable),
-            new InversedCriterion($opponentTable, SicknessImmunityEffect::class)
-                ], CriterionGroup::AND_OPERATOR);
 
         $criteria = new CriterionGroup([
-            $noJobCriterion,
-            $immunityCriterion
-                ], CriterionGroup::OR_OPERATOR);
+                $noJobCriterion,
+                new CriterionGroup([
+                        new HaveJobCriterion($opponentTable),
+                        new InversedCriterion($opponentTable, SicknessImmunityEffect::class)
+                    ], CriterionGroup::AND_OPERATOR)
+            ], CriterionGroup::OR_OPERATOR);
 
         $criteria->setErrorMessage(clienttranslate("Targeted player is immune to disease"))
                 ->addConsequence()

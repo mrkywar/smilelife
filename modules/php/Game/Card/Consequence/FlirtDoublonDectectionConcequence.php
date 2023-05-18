@@ -2,20 +2,15 @@
 
 namespace SmileLife\Card\Consequence;
 
-use Core\Models\Player;
-use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Job\Job;
-
 /**
- * Description of DiscardConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DiscardConsequence extends Consequence {
+class FlirtDoublonDectectionConcequence extends Consequence {
 
     /**
      * 
-     * @var Job
+     * @var Flirt
      */
     private $card;
 
@@ -31,15 +26,14 @@ class DiscardConsequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Job $card, Player $player) {
+    public function __construct(Flirt $card, Player $player) {
         $this->cardManager = new CardManager();
         $this->player = $player;
         $this->card = $card;
     }
 
     public function execute() {
-        $this->cardManager->discardCard($this->card, $this->player);
-        return $this;
+        throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
     }
 
 }

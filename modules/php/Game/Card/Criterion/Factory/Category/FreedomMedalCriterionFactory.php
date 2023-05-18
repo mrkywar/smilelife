@@ -35,9 +35,9 @@ class FreedomMedalCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card): CriterionInterface {
         $criterion = new CriterionGroup([
-            new HaveJobCriterion($table),
-            new InversedCriterion(new JobTypeCriterion($table, Bandit::class))
-                ], CriterionGroup::AND_OPERATOR);
+                new HaveJobCriterion($table),
+                new InversedCriterion(new JobTypeCriterion($table, Bandit::class))
+            ], CriterionGroup::AND_OPERATOR);
         $criterion->setErrorMessage($this->message);
 
         return $criterion;

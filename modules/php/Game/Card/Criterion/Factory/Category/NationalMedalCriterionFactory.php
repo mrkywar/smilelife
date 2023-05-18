@@ -45,10 +45,10 @@ class NationalMedalCriterionFactory extends CardCriterionFactory {
     public function create(PlayerTable $table, Card $card): CriterionInterface {
 
         $criterion = new CriterionGroup([
-            new JobTypeCriterion($table, Writer::class),
-            new JobTypeCriterion($table, Researcher::class),
-            new JobTypeCriterion($table, Journalist::class)
-                ], CriterionGroup::OR_OPERATOR);
+                new JobTypeCriterion($table, Writer::class),
+                new JobTypeCriterion($table, Researcher::class),
+                new JobTypeCriterion($table, Journalist::class)
+            ], CriterionGroup::OR_OPERATOR);
 
         $criterion->setErrorMessage(clienttranslate($this->message));
 

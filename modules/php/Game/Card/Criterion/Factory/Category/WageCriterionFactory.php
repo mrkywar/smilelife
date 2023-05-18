@@ -28,40 +28,23 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $wageCriterion = new WageCriterion($table, $card);
         $wageCriterion->setErrorMessage(clienttranslate('Your current Job only allows you to play salary level ${max} maximum', ['max' => $table->getJob()->getMaxSalary()]));
 
-        $classicGroupCriterion = new CriterionGroup([
-            $jobCriterion,
-            $wageCriterion
-                ], CriterionGroup::AND_OPERATOR);
-
         //-- NationalMedalCriterion
         $nationalJobCriterion = parent::create($table, $card);
         $nationalJobCriterion->setErrorMessage(null); //-- we didn't want see any message in this case
         $nationalMedalCardCriterion = new CardOnTableCriterion($table, NationalMedal::class);
-        $nationalGroupCriterion = new CriterionGroup([
-            $nationalJobCriterion,
-            $nationalMedalCardCriterion
-                ], CriterionGroup::AND_OPERATOR);
 
         return new CriterionGroup([
-            $classicCriterion,
-            $nationalGroupCriterion
-                ], CriterionGroup::OR_OPERATOR);
-
-//                  
-//        $criterias [] = new CriterionGroup([
-//                new HaveJobCriterion($this->table),
-//                new WageCriterion($this->table, $card)
-//                    ], CriterionGroup::AND_OPERATOR);
-//                $job = $table->getJob();
-//        if (null === $job) {
-//            throw new CardException(clienttranslate('You didn\'t have an active Job'));
-//            return false;
-//        } else {
-//            if ($this->getAmount() > $job->getMaxSalary()) {
-//                throw new CardException();
-//            }
-//            return ($this->getAmount() <= $job->getMaxSalary());
-//        }
+                //-- Classic criterion
+                new CriterionGroup([
+                        $jobCriterion,
+                        $wageCriterion
+                    ], CriterionGroup::AND_OPERATOR),
+                //-- NationalMedalCriterion
+                new CriterionGroup([
+                        $nationalJobCriterion,
+                        $nationalMedalCardCriterion
+                    ], CriterionGroup::AND_OPERATOR),
+            ], CriterionGroup::OR_OPERATOR);
     }
 
 }

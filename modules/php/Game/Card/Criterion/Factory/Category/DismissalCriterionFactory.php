@@ -33,9 +33,9 @@ class DismissalCriterionFactory extends \SmileLife\Card\Criterion\Factory\CardCr
         $officialCriterion->setErrorMessage(clienttranslate("The targeted player works as a civil servant and therefore cannot be fired"));
 
         $criteria = new CriterionGroup([
-            $jobCriterion,
-            $officialCriterion
-                ], CriterionGroup::AND_OPERATOR);
+                $jobCriterion,
+                $officialCriterion
+            ], CriterionGroup::AND_OPERATOR);
 
         $criteria->addConsequence(new DiscardConsequence($table->getJob(), $opponentTable->getPlayer()))
                 ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
