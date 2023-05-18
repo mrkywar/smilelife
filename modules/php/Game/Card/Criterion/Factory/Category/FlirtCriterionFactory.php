@@ -17,7 +17,7 @@ use SmileLife\Card\Effect\Category\LimitlessFlirt;
 use SmileLife\Table\PlayerTable;
 
 /**
- *
+ * Description of FlirtCriterionFactory
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class FlirtCriterionFactory extends CardCriterionFactory {
@@ -41,16 +41,20 @@ class FlirtCriterionFactory extends CardCriterionFactory {
         $limitlessCriterion = new JobEffectCriteria($this->table, LimitlessFlirt::class);
 
         $finalCriterion = new CriterionGroup([
+            //-- Adultery Criterion
             $adulteryCriterion,
+            //-- Classic Criterion
             new CriterionGroup([
-                    $notMarriedCriterion,
-                    new CriterionGroup([
-                        $flirtCountCriterion,
-                        $limitlessCriterion,
-                    ], CriterionGroup::OR_OPERATOR)
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
-        
+                //-- Not Married
+                $notMarriedCriterion,
+                //-- Limit Check
+                new CriterionGroup([
+                    $flirtCountCriterion,
+                    $limitlessCriterion,
+                        ], CriterionGroup::OR_OPERATOR)
+                    ], CriterionGroup::AND_OPERATOR)
+                ], CriterionGroup::OR_OPERATOR);
+
         $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $player));
 
         return $finalCriterion;

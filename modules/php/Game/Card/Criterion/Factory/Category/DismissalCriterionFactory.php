@@ -2,20 +2,24 @@
 
 namespace SmileLife\Card\Criterion\Factory\Category;
 
+use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Consequence\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\DiscardConsequence;
+use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of DismissalCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DismissalCriterionFactory extends \SmileLife\Card\Criterion\Factory\CardCriterionFactory{
+class DismissalCriterionFactory extends CardCriterionFactory{
 
     /**
      * 

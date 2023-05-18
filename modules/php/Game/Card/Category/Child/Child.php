@@ -3,9 +3,8 @@
 namespace SmileLife\Card\Category\Child;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\ChildCriterionFactory;
 
 /**
  * Description of Child
@@ -24,26 +23,6 @@ abstract class Child extends Card {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return true;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        $lastFlirt = $table->getLastFlirt();
-
-        if ($table->getMarriage() !== null) {
-            return true;
-        } elseif (null === $lastFlirt) {
-            throw new CardException("You didn't have active Marriage or any flirt");
-            return false;
-        } elseif ($lastFlirt->canGenerateChild()) {
-            return true;
-        } else {
-            throw new CardException("Your last flirtation does not allow you to conceive a child");
-            return false;
-        }
-    }
-
     public function getSmilePoints(): int {
         return 2;
     }
@@ -54,6 +33,10 @@ abstract class Child extends Card {
 
     public function getPileName(): string {
         return "child";
+    }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new ChildCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

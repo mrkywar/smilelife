@@ -25,7 +25,9 @@ class SicknessCriterionFactory extends CardCriterionFactory {
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
 
         $criteria = new CriterionGroup([
+                // no Job
                 $noJobCriterion,
+                // no immunity
                 new CriterionGroup([
                         new HaveJobCriterion($opponentTable),
                         new InversedCriterion($opponentTable, SicknessImmunityEffect::class)

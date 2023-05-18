@@ -5,9 +5,9 @@ namespace SmileLife\Card\Category\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Interim\Interim;
 use SmileLife\Card\Category\Job\Official\Official;
-use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\JobCriterionFactory;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Job
@@ -66,23 +66,6 @@ abstract class Job extends Card {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBePlayed(PlayerTable $table): bool {
-        $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
-//        var_dump($table->getJob());die;
-        if(null !== $table->getJob()){
-            throw new CardException("You have already an active Job, Resign First");
-            return false;
-        }elseif ($actualLevel < $this->getRequiredStudies()) {
-            throw new CardException("You do not have enough study points to perform this job");
-            return false;
-        }
-        return true;
-    }
-
-    public function canBeAttacked(): bool {
-        return true;
-    }
-
     public function getSmilePoints(): int {
         return self::SMILE_POINTS;
     }
@@ -93,6 +76,10 @@ abstract class Job extends Card {
 
     public function getPileName(): string {
         return "job";
+    }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new JobCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

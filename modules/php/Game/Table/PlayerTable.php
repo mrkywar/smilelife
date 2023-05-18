@@ -16,6 +16,7 @@ use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Category\Pet\Pet;
 use SmileLife\Card\Category\Reward\Reward;
+use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Special\Special;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
@@ -429,6 +430,15 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(false);
 
         return $cards;
+    }
+
+    public function getJobBoost(): ?JobBoost {
+        foreach ($this->getSpecials() as $card) {
+            if ($card instanceof JobBoost) {
+                return $card;
+            }
+        }
+        return null;
     }
 
     /* -------------------------------------------------------------------------

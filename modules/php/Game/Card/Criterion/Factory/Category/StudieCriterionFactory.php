@@ -32,8 +32,6 @@ class StudieCriterionFactory extends CardCriterionFactory {
     }
 
     public function create(): array {
-
-
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessStudiesEffect::class);
         $limitlessCriterion->addConsequence(new LimitlessStudieConsequence($card));
 
@@ -46,7 +44,9 @@ class StudieCriterionFactory extends CardCriterionFactory {
         $studieLevelCriterion->setErrorMessage(clienttranslate('You have already reached level ${level} of studies and you cannot exceed 6', ['level' => $actualLevel]));
 
         return new CriterionGroup([
+                //-- Limitless Studie
                 $limitlessCriterion,
+                //-- Classic Criterion
                 new CriterionGroup([
                         $noJobCriterion,
                         $studieLevelCriterion
