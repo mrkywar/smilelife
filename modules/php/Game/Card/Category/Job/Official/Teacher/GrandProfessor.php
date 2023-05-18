@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Category\Job\Official\Teacher;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\GrandProfCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of MathTeacher
@@ -27,17 +27,17 @@ class GrandProfessor extends Teacher implements BaseGame {
      *                  BEGIN - Override
      * ---------------------------------------------------------------------- */
 
-    public function canBePlayed(PlayerTable $table): bool {
-        throw new CardException("C-GreatTeacher-01 : check the rules !");
-    }
-
-    public function getType(): int {
-        return CardType::JOB_GRAND_PROF;
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new GrandProfCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
+
+    public function getType(): int {
+        return CardType::JOB_GRAND_PROF;
+    }
 
     public function getClass(): string {
         return self::class;

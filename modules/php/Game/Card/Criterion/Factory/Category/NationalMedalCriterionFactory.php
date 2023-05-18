@@ -7,7 +7,10 @@ use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -15,13 +18,11 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class NationalMedalCriterionFactory extends CategoryCriterionFactory {
+class NationalMedalCriterionFactory extends CardCriterionFactory {
 
     private $message;
 
-    public function __construct(PlayerTable $table, Card $card) {
-        parent::__construct($table, $card);
-
+    public function __construct() {
         $fakeJobs = [
             new Writer(),
             new Researcher(),
@@ -35,17 +36,23 @@ class NationalMedalCriterionFactory extends CategoryCriterionFactory {
         $this->message = clienttranslate('You must have a Job for this reward and you must be a ${jobNameList}', ['jobName' => implode(', ', $jobNameList)]);
     }
 
-    public function create(): ?array {
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card): CriterionInterface {
 
         $criterion = new CriterionGroup([
-            new JobTypeCriterion($this->table, Writer::class),
-            new JobTypeCriterion($this->table, Researcher::class),
-            new JobTypeCriterion($this->table, Journalist::class)
+            new JobTypeCriterion($table, Writer::class),
+            new JobTypeCriterion($table, Researcher::class),
+            new JobTypeCriterion($table, Journalist::class)
                 ], CriterionGroup::OR_OPERATOR);
 
         $criterion->setErrorMessage(clienttranslate($this->message));
 
-        return [$criterion];
+        return $criterion;
     }
 
 }

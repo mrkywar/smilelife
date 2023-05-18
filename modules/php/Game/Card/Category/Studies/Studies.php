@@ -3,10 +3,8 @@
 namespace SmileLife\Card\Category\Studies;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Effect\CardEffectInterface;
-use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
-use SmileLife\Game\Calculator\StudiesLevelCalculator;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\StudieCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -53,6 +51,11 @@ abstract class Studies extends Card {
     public function getPileName(): string {
         return 'job';
     }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new StudieCriterionFactory();
+    }
+
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display

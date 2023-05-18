@@ -27,14 +27,20 @@ class FreedomMedalCriterionFactory extends CardCriterionFactory {
         $this->message = clienttranslate('You must have a Job for this reward and you must not be a ${jobName}', ['jobName' => $fakeBandit->getTitle()]);
     }
 
-    public function create(Card $card, PlayerTable $table): ?array {
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card): CriterionInterface {
         $criterion = new CriterionGroup([
             new HaveJobCriterion($table),
             new InversedCriterion(new JobTypeCriterion($table, Bandit::class))
                 ], CriterionGroup::AND_OPERATOR);
         $criterion->setErrorMessage($this->message);
 
-        return [$criterion];
+        return $criterion;
     }
 
 }

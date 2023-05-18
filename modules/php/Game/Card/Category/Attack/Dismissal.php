@@ -3,6 +3,8 @@
 namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\DismissalCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -30,6 +32,10 @@ class Dismissal extends Attack implements BaseGame {
 
     public function getType(): int {
         return CardType::ATTACK_DISMISSAL;
+    }
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new DismissalCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Category\Wage;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\WageCriterionFactory;
 
 /**
  * Description of Wage
@@ -31,14 +31,6 @@ abstract class Wage extends Card {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return true;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        throw new CardException("Stop using this !");
-    }
-
     public function getSmilePoints(): int {
         return self::SMILE_POINTS;
     }
@@ -50,18 +42,22 @@ abstract class Wage extends Card {
     public function getPileName(): string {
         return 'wage';
     }
-    
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new WageCriterionFactory();
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
 
     public function __toString() {
-        return clienttranslate('{wageTitle} value of {wageAmount}',[
+        return clienttranslate('{wageTitle} value of {wageAmount}', [
             "wageTitle" => $this->getTitle(),
             "wageValue" => $this->getAmount()
         ]);
     }
-    
+
     public function __toArray(): array {
         return array_merge(
                 parent::__toArray(),

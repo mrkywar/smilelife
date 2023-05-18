@@ -21,10 +21,6 @@ abstract class Official extends Job {
      *                  BEGIN - Override
      * ---------------------------------------------------------------------- */
 
-    final public function canBeAttacked(): bool {
-        return false;
-    }
-
     public function getCategory(): string {
         return "official_" . parent::getCategory();
     }

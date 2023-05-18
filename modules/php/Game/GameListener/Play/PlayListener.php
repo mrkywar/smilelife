@@ -54,9 +54,12 @@ class PlayListener extends EventListener {
             $targetTable->setPlayer($target);
         }
 
-        $criteriaFactory = new CriterionFactory($table, $card, $targetTable);
+        $criteriaFactory = $card->getCriterionFactory();
+        $criteria = $criteriaFactory->create($table, $card, $targetTable);
 
-        $criteria = $criteriaFactory->create();
+        echo '<pre>';
+        var_dump($criteria);
+        die;
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);

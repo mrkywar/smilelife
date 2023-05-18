@@ -15,15 +15,21 @@ use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DismissalCriterionFactory extends CategoryCriterionFactory {
+class DismissalCriterionFactory extends \SmileLife\Card\Criterion\Factory\CardCriterionFactory{
 
-    public function create(): array {
-        $table = $this->getTable();
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @param ?PlayerTable $opponentTable : Game table of player targeted by attack (required here)
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable): CriterionInterface {
 
-        $jobCriterion = new HaveJobCriterion($table);
+        $jobCriterion = new HaveJobCriterion($opponentTable);
         $jobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
-        $officialCriterion = new InversedCriterion(new JobTypeCriterion($table, Official::class));
+        $officialCriterion = new InversedCriterion(new JobTypeCriterion($opponentTable, Official::class));
         $officialCriterion->setErrorMessage(clienttranslate("The targeted player works as a civil servant and therefore cannot be fired"));
 
         $criteria = new CriterionGroup([
@@ -31,8 +37,8 @@ class DismissalCriterionFactory extends CategoryCriterionFactory {
             $officialCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        $criteria->addConsequence(new DiscardConsequence($table->getJob(), $table->getPlayer()))
-                ->addConsequence(new AttackDestinationConsequence($this->getCard(), $table->getPlayer()));
+        $criteria->addConsequence(new DiscardConsequence($table->getJob(), $opponentTable->getPlayer()))
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
 
         return $criteria;
     }

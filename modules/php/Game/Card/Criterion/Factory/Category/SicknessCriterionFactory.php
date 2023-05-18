@@ -12,17 +12,22 @@ use SmileLife\Card\Effect\Category\SicknessImmunityEffect;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SicknessCriterionFactory extends CategoryCriterionFactory {
+class SicknessCriterionFactory extends CardCriterionFactory {
 
-    public function create(): array {
-        $table = $this->getTable();
-
-        $noJobCriterion = new InversedCriterion(new HaveJobCriterion($table));
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @param ?PlayerTable $opponentTable : Game table of player targeted by attack (required here)
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable): CriterionInterface {
+        $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $immunityCriterion = new CriterionGroup([
-            new HaveJobCriterion($table),
-            new InversedCriterion($table, SicknessImmunityEffect::class)
+            new HaveJobCriterion($opponentTable),
+            new InversedCriterion($opponentTable, SicknessImmunityEffect::class)
                 ], CriterionGroup::AND_OPERATOR);
-        
+
         $criteria = new CriterionGroup([
             $noJobCriterion,
             $immunityCriterion
@@ -30,8 +35,7 @@ class SicknessCriterionFactory extends CategoryCriterionFactory {
 
         $criteria->setErrorMessage(clienttranslate("Targeted player is immune to disease"))
                 ->addConsequence()
-                ->addConsequence(new AttackDestinationConsequence($this->getCard(), $table->getPlayer()));
-        
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
 
         return $criteria;
     }

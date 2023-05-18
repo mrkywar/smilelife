@@ -4,6 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category;
 
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Consequence\DiscardConsequence;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 
 /**
@@ -11,9 +12,15 @@ use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class GrandProfCriterionFactory extends CategoryCriterionFactory {
+class GrandProfCriterionFactory extends CardCriterionFactory {
 
-    public function create(): array {
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card): CriterionInterface {
         $table = $this->getTable();
         $criterion = new JobTypeCriterion($table, Teacher::class);
 
@@ -21,7 +28,7 @@ class GrandProfCriterionFactory extends CategoryCriterionFactory {
         $consequence = new DiscardConsequence($table->getJob(), $table->getPlayer());
         $criterion->addConsequence($consequence);
 
-        return [$criterion];
+        return $criterion;
     }
 
 }

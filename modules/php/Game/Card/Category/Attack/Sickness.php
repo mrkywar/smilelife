@@ -3,6 +3,8 @@
 namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\SicknessCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -30,6 +32,11 @@ class Sickness extends Attack implements BaseGame {
     public function getType(): int {
         return CardType::ATTACK_SICKNESS;
     }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new SicknessCriterionFactory();
+    }
+
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame

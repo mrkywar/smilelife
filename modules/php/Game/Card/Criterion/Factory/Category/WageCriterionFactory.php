@@ -15,9 +15,13 @@ use SmileLife\Card\Criterion\PlayerTableCriterion\CardOnTableCriterion;
  */
 class WageCriterionFactory extends NationalMedalCriterionFactory {
 
-    public function create(): ?array {
-        $table = $this->getTable();
-
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card): CriterionInterface {
         $jobCriterion = new HaveJobCriterion($table);
         $jobCriterion->setErrorMessage(clienttranslate('You must have a job to collect a salary'));
 
@@ -30,7 +34,7 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
                 ], CriterionGroup::AND_OPERATOR);
 
         //-- NationalMedalCriterion
-        $nationalJobCriterion = parent::create();
+        $nationalJobCriterion = parent::create($table, $card);
         $nationalJobCriterion->setErrorMessage(null); //-- we didn't want see any message in this case
         $nationalMedalCardCriterion = new CardOnTableCriterion($table, NationalMedal::class);
         $nationalGroupCriterion = new CriterionGroup([
@@ -38,10 +42,10 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
             $nationalMedalCardCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        return [
+        return new CriterionGroup([
             $classicCriterion,
             $nationalGroupCriterion
-        ];
+                ], CriterionGroup::OR_OPERATOR);
 
 //                  
 //        $criterias [] = new CriterionGroup([

@@ -2,8 +2,8 @@
 
 namespace SmileLife\Card\Criterion\Factory\Category;
 
-use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\LimitlessStudieConsequence;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -11,14 +11,13 @@ use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\StudiesCriterion\StudiesLevelCriterion;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of StudieCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class StudieCriterionFactory extends CategoryCriterionFactory {
+class StudieCriterionFactory extends CardCriterionFactory {
 
     /**
      * 
@@ -26,14 +25,14 @@ class StudieCriterionFactory extends CategoryCriterionFactory {
      */
     private $studiesLevelCalculator;
 
-    public function __construct(PlayerTable $table, Card $card) {
-        parent::__construct($table, $card);
+    public function __construct() {
+
 
         $this->studiesLevelCalculator = new StudiesLevelCalculator();
     }
 
     public function create(): array {
-        $table = $this->getTable();
+
 
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessStudiesEffect::class);
         $limitlessCriterion->addConsequence(new LimitlessStudieConsequence($card));
@@ -52,11 +51,11 @@ class StudieCriterionFactory extends CategoryCriterionFactory {
             $studieLevelCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        return [
+        return new CriterionGroup([
             $limitlessCriterion,
             $groupeCriterion
-        ];
-
+                ], CriterionGroup::OR_OPERATOR);
+        ;
     }
 
 }
