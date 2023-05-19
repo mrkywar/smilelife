@@ -11,18 +11,10 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class Special extends Card /*implements CardEffectInterface*/ {
+abstract class Special extends Card  {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
-
-    public function canBeAttacked(): bool {
-        return false;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        return true;
-    }
 
     public function getSmilePoints(): int {
         return 0;

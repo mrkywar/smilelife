@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Special;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
 use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
@@ -35,6 +37,10 @@ class Inheritance extends Special implements BaseGame {
 
     public function getType(): int {
         return CardType::SPECIAL_INHERITANCE;
+    }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new NotImplementedCritertionFactory();
     }
 
     /* -------------------------------------------------------------------------

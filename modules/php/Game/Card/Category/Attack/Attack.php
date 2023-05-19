@@ -12,14 +12,6 @@ use SmileLife\Table\PlayerTable;
  */
 abstract class Attack extends Card {
 
-    public function canBeAttacked(): bool {
-        return false;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        return true;
-    }
-
     public function getSmilePoints(): int {
         return 0;
     }

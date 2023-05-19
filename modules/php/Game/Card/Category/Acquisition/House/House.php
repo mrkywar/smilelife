@@ -3,6 +3,8 @@
 namespace SmileLife\Card\Category\Acquisition\House;
 
 use SmileLife\Card\Category\Acquisition\Acquisition;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
 
 /**
  * Description of House
@@ -27,6 +29,10 @@ abstract class House extends Acquisition {
         return "house";
     }
 
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new NotImplementedCritertionFactory();
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */
@@ -34,6 +40,5 @@ abstract class House extends Acquisition {
     public function getBaseCardCount(): int {
         return 1;
     }
-
 
 }

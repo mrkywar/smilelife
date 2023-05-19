@@ -160,11 +160,7 @@ abstract class Card extends Model {
 
     abstract public function getPileName(): string;
 
-//    abstract public function getCriterionFactory(): CardCriterionFactory; //--TODO reactive this and remove below exception
-
-    public function getCriterionFactory(): CardCriterionFactory {
-        throw new CardException("Card-CF166 : Criterion isn't defined");
-    }
+    abstract public function getCriterionFactory(): CardCriterionFactory;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
