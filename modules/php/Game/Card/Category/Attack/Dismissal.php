@@ -3,8 +3,9 @@
 namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\DismissalCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Attack\DismissalCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**

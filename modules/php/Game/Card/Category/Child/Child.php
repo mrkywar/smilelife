@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Child;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\ChildCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Child\ChildCriterionFactory;
 
 /**
  * Description of Child
@@ -34,7 +34,7 @@ abstract class Child extends Card {
     public function getPileName(): string {
         return "child";
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new ChildCriterionFactory();
     }

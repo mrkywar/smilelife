@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Consequence\DiscardConsequence;

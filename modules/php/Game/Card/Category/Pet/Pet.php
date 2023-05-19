@@ -3,7 +3,8 @@
 namespace SmileLife\Card\Category\Pet;
 
 use SmileLife\Card\Card;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
 
 /**
  * Description of Pet
@@ -26,20 +27,16 @@ abstract class Pet extends Card {
         return 1;
     }
 
-    public function canBeAttacked(): bool {
-        return false;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        return true;
-    }
-
     public function getCategory(): string {
         return "pet";
     }
 
     public function getPileName(): string {
         return "acquisition";
+    }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new NullCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

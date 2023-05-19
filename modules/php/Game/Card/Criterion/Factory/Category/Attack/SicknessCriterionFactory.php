@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;

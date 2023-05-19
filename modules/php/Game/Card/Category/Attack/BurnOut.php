@@ -3,8 +3,9 @@
 namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\BurnOutCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Attack\BurnOutCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -32,11 +33,10 @@ class BurnOut extends Attack implements BaseGame {
     public function getType(): int {
         return CardType::ATTACK_BURN_OUT;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new BurnOutCriterionFactory();
     }
-
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
@@ -45,7 +45,5 @@ class BurnOut extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 5;
     }
-
-
 
 }

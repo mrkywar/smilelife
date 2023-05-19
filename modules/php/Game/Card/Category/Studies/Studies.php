@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Studies;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\StudieCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Studies\StudiesCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -32,14 +32,6 @@ abstract class Studies extends Card {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return true;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        return true;
-    }
-
     public function getSmilePoints(): int {
         return self::SMILE_POINT;
     }
@@ -53,7 +45,7 @@ abstract class Studies extends Card {
     }
     
     public function getCriterionFactory(): CardCriterionFactory {
-        return new StudieCriterionFactory();
+        return new StudiesCriterionFactory();
     }
 
 

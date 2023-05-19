@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Studies;
 
 use SmileLife\Card\Consequence\LimitlessStudieConsequence;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -13,11 +13,11 @@ use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 
 /**
- * Description of StudieCriterionFactory
+ * Description of StudiesCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class StudieCriterionFactory extends CardCriterionFactory {
+class StudiesCriterionFactory extends CardCriterionFactory {
 
     /**
      * 

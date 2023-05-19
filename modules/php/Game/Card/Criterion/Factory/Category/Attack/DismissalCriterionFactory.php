@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Official;

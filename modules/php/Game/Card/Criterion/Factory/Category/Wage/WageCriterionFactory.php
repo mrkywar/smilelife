@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Wage;
 
 use SmileLife\Card\Category\Reward\NationalMedal;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

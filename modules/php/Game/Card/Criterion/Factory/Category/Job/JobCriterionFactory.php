@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Job;
@@ -38,21 +38,20 @@ class JobCriterionFactory extends CardCriterionFactory {
         $jobStudieCriterion->setErrorMessage(clienttranslate('You do not have enough study points to perform this job'));
 
         $criteria = new CriterionGroup([
-                $pistonCriterion,
-                new CriterionGroup([
-                    $noJobCriterion,
-                    $jobStudieCriterion
-                ],CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
+            $pistonCriterion,
+            new CriterionGroup([
+                $noJobCriterion,
+                $jobStudieCriterion
+                    ], CriterionGroup::AND_OPERATOR)
+                ], CriterionGroup::OR_OPERATOR);
 
-        if($card instanceof Guru || $card instanceof Bandit){
+        if ($card instanceof Guru || $card instanceof Bandit) {
 //            return new CriterionGroup([
 //                
 //                
 //                ],CriterionGroup::AND_OPERATOR);
         }
         return $criteria;
-        
     }
 
 }

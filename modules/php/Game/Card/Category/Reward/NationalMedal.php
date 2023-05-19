@@ -3,8 +3,9 @@
 namespace SmileLife\Card\Category\Reward;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Reward\Reward;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NationalMedalCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**

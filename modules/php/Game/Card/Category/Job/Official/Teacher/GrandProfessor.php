@@ -3,8 +3,9 @@
 namespace SmileLife\Card\Category\Job\Official\Teacher;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\GrandProfCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\GrandProfCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**

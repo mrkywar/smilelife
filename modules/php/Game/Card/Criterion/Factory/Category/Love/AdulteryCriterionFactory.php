@@ -1,0 +1,41 @@
+<?php
+
+namespace SmileLife\Card\Criterion\Factory\Category\Love;
+
+use SmileLife\Card\Card;
+use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\HaveAdulteryCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
+use SmileLife\Table\PlayerTable;
+
+/**
+ * Description of AdulteryCriterionFactory
+ *
+ * @author Mr_Kywar mr_kywar@gmail.com
+ */
+class AdulteryCriterionFactory extends CardCriterionFactory {
+
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card): CriterionInterface {
+        $noAdulteryCriterion = new InversedCriterion(new HaveAdulteryCriterion($table));
+        $noAdulteryCriterion->setErrorMessage(clienttranslate('You are already involved in an adulterous relationship'));
+        
+        $marriageAdultery = new IsMarriedCriterion($table);
+        $marriageAdultery->setErrorMessage(clienttranslate('Before starting an adulterous relationship, you must be married.'));
+        
+        return new CriterionGroup([
+                $noAdulteryCriterion,
+                $marriageAdultery
+            ], CriterionGroup::AND_OPERATOR);
+        
+        
+    }
+
+}

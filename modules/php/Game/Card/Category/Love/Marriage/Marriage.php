@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Category\Love\Marriage;
 
 use SmileLife\Card\Category\Love\Love;
-use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\MarriageCriterionFactory;
 
 /**
  * Description of Marriage
@@ -25,14 +25,6 @@ abstract class Marriage extends Love {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return true;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        throw new CardException("C-Marriage01 : Check that the player is not married and has already at least a flirt");
-    }
-
     public function canGenerateChild(): bool {
         return true;
     }
@@ -47,6 +39,10 @@ abstract class Marriage extends Love {
 
     public function getPileName(): string {
         return "love";
+    }
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new MarriageCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

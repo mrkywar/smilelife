@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Wage;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\WageCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Wage\WageCriterionFactory;
 
 /**
  * Description of Wage

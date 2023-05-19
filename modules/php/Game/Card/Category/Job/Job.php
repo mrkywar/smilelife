@@ -6,7 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Interim\Interim;
 use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\JobCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\JobCriterionFactory;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 
 /**
@@ -77,7 +77,7 @@ abstract class Job extends Card {
     public function getPileName(): string {
         return "job";
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new JobCriterionFactory();
     }

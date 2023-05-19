@@ -1,9 +1,10 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Card\Criterion\Factory\Category\Reward;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
@@ -35,9 +36,9 @@ class FreedomMedalCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card): CriterionInterface {
         $criterion = new CriterionGroup([
-                new HaveJobCriterion($table),
-                new InversedCriterion(new JobTypeCriterion($table, Bandit::class))
-            ], CriterionGroup::AND_OPERATOR);
+            new HaveJobCriterion($table),
+            new InversedCriterion(new JobTypeCriterion($table, Bandit::class))
+                ], CriterionGroup::AND_OPERATOR);
         $criterion->setErrorMessage($this->message);
 
         return $criterion;
