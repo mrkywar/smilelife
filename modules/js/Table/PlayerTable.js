@@ -35,7 +35,7 @@ define([
                         this.displayCard(card, "myhand");
                     }
                     //Display this player Table cards
-                    //this.displayTablePiles(gamedatas.mytable);
+                    this.displayTablePiles(gamedatas.mytable);
 
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;

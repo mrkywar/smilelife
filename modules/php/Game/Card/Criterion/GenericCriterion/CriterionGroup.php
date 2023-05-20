@@ -47,6 +47,7 @@ class CriterionGroup extends Criterion {
                     return true;
                 }
             }
+            
             return false;
         } else {
             throw new CriterionException("Unsupported Operator '" . $this->operator . "'");

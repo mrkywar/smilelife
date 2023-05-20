@@ -36,32 +36,7 @@ class CriterionTester {
     public function test($criteria) {
         $this->criteria = $criteria;
         $testResult = new CriterionTesterResult($this->criteria);
-        $testResult->setIsValid(false);
-
-        foreach ($this->criteria as $criterion) {
-            if ($criterion->isValided()) {
-                $testResult->setIsValid(true);
-                if ($criterion->hasConsequences()) {
-                    $this->consequence = array_merge($this->consequence, $criterion->getConsequences());
-                }
-            }
-        }
-
-//        echo "<pre>";
-//        var_dump($this->consequence);die;
-        //-- V1
-//        if (null === $this->criteria) {
-//            $testResult->setIsValid(true);
-//        } else {
-//            foreach ($this->criteria as $criterion) {
-//                if (!$criterion->isValided()) {
-//                    $testResult->addFailedCriterion($criterion);
-//                } else {
-//                    $testResult->setIsValid(true);
-//                    
-//                }
-//            }
-//        }
+        $testResult->setIsValid($this->criteria->isValided());
 
         return $testResult;
     }
