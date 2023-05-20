@@ -46,16 +46,16 @@ class PlayListener extends EventListener {
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
-        $targetTable = $target;
+        $opponentTable = $target;
         if (null !== $target) {
-            $targetTable = $this->tableManager->findOneBy([
+            $opponentTable = $this->tableManager->findOneBy([
                 "id" => $target->getId()
             ]);
-            $targetTable->setPlayer($target);
+            $opponentTable->setPlayer($target);
         }
 
         $criteriaFactory = $card->getCriterionFactory();
-        $criteria = $criteriaFactory->create($table, $card, $targetTable);
+        $criteria = $criteriaFactory->create($table, $card, $opponentTable);
 
         echo '<pre>';
         var_dump($criteria);

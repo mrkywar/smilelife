@@ -44,7 +44,7 @@ abstract class Criterion implements CriterionInterface {
     }
 
     public function addConsequence(Consequence $consequence) {
-        $this->consequences[$consequence->getName()] = $consequence;
+        $this->consequences[get_class($consequence)] = $consequence;
         return $this;
     }
 
