@@ -46,24 +46,22 @@ class PlayListener extends EventListener {
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
-        $targetTable = $target;
+        $opponentTable = $target;
         if (null !== $target) {
-            $targetTable = $this->tableManager->findOneBy([
+            $opponentTable = $this->tableManager->findOneBy([
                 "id" => $target->getId()
             ]);
-            $targetTable->setPlayer($target);
+            $opponentTable->setPlayer($target);
         }
 
-        $criteriaFactory = new CriterionFactory($table, $card, $targetTable);
-
-        $criteria = $criteriaFactory->create();
+        $criteriaFactory = $card->getCriterionFactory();
+        $criteria = $criteriaFactory->create($table, $card, $opponentTable);
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
         if (!$testRestult->getIsValid()) {
-            echo '<pre>';
-
+           
             $debugger = new CriterionDebugger($testRestult->getCriteria());
             $debugger->debug();
             die("DEBUG");
@@ -81,7 +79,12 @@ class PlayListener extends EventListener {
 
         $response->set('player', $player)
                 ->set('card', $card)
-                ->set("table", $table);
+                ->set("table", $table)
+                ->set('consequences', null);
+
+        if ($testRestult->hasConsequences()) {
+            $response->set('consequences', $testRestult->getConsequences());
+        }
 
         return $response;
     }

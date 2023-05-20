@@ -56,18 +56,8 @@ define([
                     });
                 },
 
-                playClick: function (card) {
-                    if ('attack' === card.category) {
-                        this.debug('attack detected');
-                    } else if (1 === 0) {
-
-                    }
-                },
-
                 onCardClick: function (card) {
-                    this.debug("OCC", card, this.actualState);
                     var searchedDiv = $('card_' + card.id);
-                    this.debug("OCC v3", searchedDiv.classList.contains("selected"));
 
                     if (this.isCurrentPlayerActive()) {
                         switch (this.actualState) {
@@ -79,9 +69,8 @@ define([
                                         searchedDiv.classList.add("selected");
                                     }
                                     if ('attack' === card.category) {
-                                        this.debug('attack detected');
                                         this.attackModal(card);
-                                    } else if (1 === 0) {
+                                    } else {
                                         this.debug('CC-TC01');
                                     }
                                 } else if (undefined === card.type) {
@@ -104,10 +93,9 @@ define([
                                         searchedDiv.classList.add("selected");
 
                                         if ('attack' === card.category) {
-                                            this.debug('attack detected');
                                             this.attackModal(card);
                                         }
-                                    } else if (1 === 0) {
+                                    } else {
                                         this.debug('CC-PC01');
                                     }
                                 } else if ('hand' === card.location) {

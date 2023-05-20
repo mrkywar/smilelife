@@ -6,8 +6,7 @@ use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 
 /**
  * Description of Card
@@ -151,10 +150,6 @@ abstract class Card extends Model {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    abstract public function canBePlayed(PlayerTable $table): bool;
-
-    abstract public function canBeAttacked(): bool;
-
     abstract public function getSmilePoints(): int;
 
     abstract public function getType(): int;
@@ -164,6 +159,8 @@ abstract class Card extends Model {
     abstract public function getCategory(): string;
 
     abstract public function getPileName(): string;
+
+    abstract public function getCriterionFactory(): CardCriterionFactory;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 

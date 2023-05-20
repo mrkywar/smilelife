@@ -3,6 +3,8 @@
 namespace SmileLife\Card\Category\Acquisition\Travel;
 
 use SmileLife\Card\Category\Acquisition\Acquisition;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
 
 /**
  * Description of Travel
@@ -35,6 +37,10 @@ abstract class Travel extends Acquisition {
 
     public function getCategory(): string {
         return "travel";
+    }
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new NotImplementedCritertionFactory();
     }
 
     /* -------------------------------------------------------------------------

@@ -15,32 +15,38 @@ define([
 
                 displayPanels: function () {
                     var gamedatas = this.gamedatas;
+                    this.debug("PP-DP : ", gamedatas.player, gamedatas.tables, gamedatas.mytable);
 
-                    for (var playerId in gamedatas.player) {
-                        var player = gamedatas.player[playerId];
-                        player.id = playerId;
+                    //-- Display My Panel
+                    this.displayAPanel(gamedatas.mytable.player);
 
-                        dojo.place(this.getPlayerPanelHtml(player), "player_board_" + player.id);
-                        var handCounter = new ebg.counter();
-                        handCounter.create("player_hand_counter_".concat(player.id));
-                        handCounter.setValue(player.hand);
-                        this.handCounters[playerId] = handCounter;
-
-                        var maxhandCounter = new ebg.counter();
-                        maxhandCounter.create("player_maxhand_counter_".concat(player.id));
-                        maxhandCounter.setValue(player.attributes.maxCards);
-                        this.maxhandCounters[playerId] = maxhandCounter;
-                        
-                        var studyCounter = new ebg.counter();
-                        studyCounter.create("player_studies_counter_".concat(player.id));
-                        studyCounter.setValue(player.studies);
-                        this.studyCounters[playerId] = studyCounter;
-                        
-                        var wagesCounter = new ebg.counter();
-                        wagesCounter.create("player_wages_counter_".concat(player.id));
-                        wagesCounter.setValue(player.totalWages);
-                        this.wagesCounters[playerId] = wagesCounter;
+                    //-- Display Opponent Panel
+                    for (var playerId in gamedatas.tables) {
+                        this.displayAPanel(gamedatas.tables[playerId].player);
                     }
+                },
+
+                displayAPanel: function (player) {
+                    dojo.place(this.getPlayerPanelHtml(player), "player_board_" + player.id);
+                    var handCounter = new ebg.counter();
+                    handCounter.create("player_hand_counter_".concat(player.id));
+                    handCounter.setValue(player.hand);
+                    this.handCounters[player.id] = handCounter;
+
+                    var maxhandCounter = new ebg.counter();
+                    maxhandCounter.create("player_maxhand_counter_".concat(player.id));
+                    maxhandCounter.setValue(player.attributes.maxCards);
+                    this.maxhandCounters[player.id] = maxhandCounter;
+
+                    var studyCounter = new ebg.counter();
+                    studyCounter.create("player_studies_counter_".concat(player.id));
+                    studyCounter.setValue(player.studies);
+                    this.studyCounters[player.id] = studyCounter;
+
+                    var wagesCounter = new ebg.counter();
+                    wagesCounter.create("player_wages_counter_".concat(player.id));
+                    wagesCounter.setValue(player.totalWages);
+                    this.wagesCounters[player.id] = wagesCounter;
                 },
 
                 getPlayerPanelHtml: function (player) {

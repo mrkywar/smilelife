@@ -53,7 +53,6 @@ define([
                  * @returns {object} ebg counters associated objects to each piles
                  */
                 displayTablePiles: function (table) {
-                    this.debug("table",table);
                     var tableCards = this.getTablePiles(table);
                     var player = table.player;
 

@@ -3,10 +3,8 @@
 namespace SmileLife\Card\Category\Love\Flirt;
 
 use SmileLife\Card\Category\Love\Love;
-use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Effect\CardEffectInterface;
-use SmileLife\Card\Effect\Category\LimitlessFlirt;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\FlirtCriterionFactory;
 
 /**
  * Description of Flirt
@@ -38,31 +36,6 @@ abstract class Flirt extends Love {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return false;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        $job = $table->getJob();
-        if (null !== $table->getAdultery()) {
-            $this->setPileName("adultery");
-            return true;
-        } elseif ($job instanceof CardEffectInterface && $this->checkLimitlessFlirt($job)) {
-            return true;
-        } elseif (null !== $table->getMarriage()) {
-            throw new CardException(clienttranslate('You are already married, think about adultery ?'));
-            return false;
-        } elseif (count($table->getFlirts()) < 5) {
-            return true;
-        }
-
-        throw new CardException(clienttranslate('You have already done ${number} flirts (5 max)', ['number' => count($table->getFlirts())]));
-    }
-
-    private function checkLimitlessFlirt(CardEffectInterface $job) {
-        return ($job->getEffect() instanceof LimitlessFlirt);
-    }
-
     public function getSmilePoints(): int {
         return self::SMILE_POINTS;
     }
@@ -73,6 +46,10 @@ abstract class Flirt extends Love {
 
     public function getPileName(): string {
         return $this->pileName;
+    }
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new FlirtCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

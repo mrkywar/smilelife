@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Criterion\GenericCriterion;
 
+use SmileLife\Card\Criterion\Criterion;
 use SmileLife\Card\Criterion\CriterionException;
 use SmileLife\Card\Criterion\CriterionInterface;
 
@@ -10,14 +11,14 @@ use SmileLife\Card\Criterion\CriterionInterface;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CriterionGroup implements CriterionInterface {
+class CriterionGroup extends Criterion {
 
     const AND_OPERATOR = "AND";
     const OR_OPERATOR = "OR";
 
     /**
      * 
-     * @var ?CriterionInterface[]
+     * @var CriterionInterface[]
      */
     private $criteria;
 
@@ -46,6 +47,7 @@ class CriterionGroup implements CriterionInterface {
                     return true;
                 }
             }
+            
             return false;
         } else {
             throw new CriterionException("Unsupported Operator '" . $this->operator . "'");
@@ -62,6 +64,26 @@ class CriterionGroup implements CriterionInterface {
 
     public function getOperator(): string {
         return $this->operator;
+    }
+
+    public function getConsequences(): array  {
+        $consequences = parent::getConsequences();
+        foreach ($this->criteria as $criterion) {
+            if ($criterion->isValided() && $criterion->hasConsequences()) {
+                $consequences = array_merge($consequences, $criterion->getConsequences());
+            }
+        }
+        return $consequences;
+    }
+
+    public function getErrorMessage() {
+        foreach ($this->criteria as $criterion) {
+            if (null !== $criterion->getErrorMessage() && !$criterion->isValided()) {
+                return $criterion->getErrorMessage();
+            }
+        }
+
+        return parent::getErrorMessage();
     }
 
 }

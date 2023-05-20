@@ -4,7 +4,8 @@ namespace SmileLife\Card\Category\Special;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Effect\Effect;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -30,12 +31,12 @@ class JobBoost extends Special implements BaseGame {
         return self::class;
     }
 
-    public function getEffect(): Effect {
-        throw new CardException("C-JobBoost-01 : Not implemented yet");
-    }
-
     public function getType(): int {
         return CardType::SPECIAL_JOB_BOOST;
+    }
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new NotImplementedCritertionFactory();
     }
 
     /* -------------------------------------------------------------------------

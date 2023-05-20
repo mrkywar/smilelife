@@ -35,12 +35,11 @@ define([
                         this.displayCard(card, "myhand");
                     }
                     //Display this player Table cards
-                    //this.displayTablePiles(gamedatas.mytable);
+                    this.displayTablePiles(gamedatas.mytable);
 
                     //Display of opponents' game tables
                     this.otherTabes = gamedatas.tables;
                     for (var playerId in gamedatas.tables) {
-                        this.debug("all table",gamedatas.tables);
                         var table = gamedatas.tables[playerId];
                         var player = table.player;
                         player.id = playerId;
@@ -179,9 +178,7 @@ define([
                     `;
                 },
 
-                isMyJob: function (card) {
-                    this.debug('PT imj',card.category);
-                    
+                isMyJob: function (card) {           
                     return (
                             (undefined !== card.category) &&                    //is card category defined
                             (card.category.includes("job")) &&                  //is card a job ?

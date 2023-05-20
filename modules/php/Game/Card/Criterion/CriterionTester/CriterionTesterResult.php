@@ -21,12 +21,6 @@ class CriterionTesterResult {
      * 
      * @var ?CriterionInterface[]
      */
-    private $failedCriteria;
-
-    /**
-     * 
-     * @var ?CriterionInterface[]
-     */
     private $criteria;
 
     /**
@@ -37,9 +31,9 @@ class CriterionTesterResult {
 
     /**
      * 
-     * @param ?CriterionInterface[] $criteria
+     * @param CriterionInterface $criteria
      */
-    public function __construct(?array $criteria) {
+    public function __construct(CriterionInterface $criteria) {
         $this->criteria = $criteria;
     }
 
@@ -47,15 +41,11 @@ class CriterionTesterResult {
         return $this->isValid;
     }
 
-    public function getFailedCriteria(): ?array {
-        return $this->failedCriteria;
-    }
-
-    public function addFailedCriterion(CriterionInterface $criterion) {
-        if (!$criterion->isValided()) {
-            $this->failedCriteria[] = $criterion;
-        }
-        return $this;
+    public function hasConsequences(): bool {
+        return (
+                null !== $this->consequences &&
+                !empty($this->consequences)
+                );
     }
 
     public function getConsequences(): array {
@@ -64,19 +54,14 @@ class CriterionTesterResult {
 
     /**
      * 
-     * @return ?CriterionInterface[]
+     * @return CriterionInterface
      */
-    public function getCriteria(): ?array {
+    public function getCriteria(): CriterionInterface {
         return $this->criteria;
     }
 
     public function setIsValid(bool $isValid) {
         $this->isValid = $isValid;
-        return $this;
-    }
-
-    public function setFailedCriteria(CriterionInterface $failedCriteria) {
-        $this->failedCriteria = $failedCriteria;
         return $this;
     }
 

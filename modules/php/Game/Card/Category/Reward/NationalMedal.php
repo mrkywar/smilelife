@@ -3,11 +3,10 @@
 namespace SmileLife\Card\Category\Reward;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Job\Job\Journalist;
-use SmileLife\Card\Category\Job\Job\Researcher;
-use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Category\Reward\Reward;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of NationalMedal
@@ -30,19 +29,6 @@ class NationalMedal extends Reward implements BaseGame {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    public function canBeAttacked(): bool {
-        return false;
-    }
-
-    public function canBePlayed(PlayerTable $table): bool {
-        $job = $table->getJob();
-        if (null === $job) {
-            return false;
-        } else {
-            return ($job instanceof Writer || $job instanceof Researcher || $job instanceof Journalist);
-        }
-    }
-
     public function getClass(): string {
         return self::class;
     }
@@ -53,6 +39,10 @@ class NationalMedal extends Reward implements BaseGame {
 
     public function getType(): int {
         return CardType::REWARD_NATIONAL_MEDAL;
+    }
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new NationalMedalCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

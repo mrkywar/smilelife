@@ -21,8 +21,6 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-//                        this.debug("DoPlay:", card[0]);
-
                         var data = {
                             card: card[0].dataset.id
                         };
@@ -38,7 +36,6 @@ define([
                         dojo.query(".selected").removeClass("selected");
 
                     } else {
-//                        this.debug("DoPass", card[0]);
                         var data = {
                             card: card[0].dataset.id
                         };
