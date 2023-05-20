@@ -35,7 +35,6 @@ class CriterionTester {
      */
     public function test($criteria) {
         $this->criteria = $criteria;
-
         $testResult = new CriterionTesterResult($this->criteria);
         $testResult->setIsValid(false);
 

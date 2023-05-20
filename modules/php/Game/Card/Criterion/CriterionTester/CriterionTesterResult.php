@@ -37,9 +37,9 @@ class CriterionTesterResult {
 
     /**
      * 
-     * @param ?CriterionInterface[] $criteria
+     * @param CriterionInterface $criteria
      */
-    public function __construct(?array $criteria) {
+    public function __construct(CriterionInterface $criteria) {
         $this->criteria = $criteria;
     }
 
