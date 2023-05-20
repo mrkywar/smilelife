@@ -57,12 +57,12 @@ class PlayListener extends EventListener {
         $criteriaFactory = $card->getCriterionFactory();
         $criteria = $criteriaFactory->create($table, $card, $opponentTable);
 
+        $criteriaTester = new CriterionTester();
+        $testRestult = $criteriaTester->test($criteria);
+        
         echo '<pre>';
         var_dump($criteria);
         die;
-
-        $criteriaTester = new CriterionTester();
-        $testRestult = $criteriaTester->test($criteria);
 
         if (!$testRestult->getIsValid()) {
             echo '<pre>';
