@@ -24,7 +24,6 @@ define([
                 //
                 onEnteringState: function (stateName, args)
                 {
-//                    this.debug('Entering state: ' + stateName);
                     this.actualState = stateName;
                 },
 
@@ -42,8 +41,6 @@ define([
                 //        
                 onUpdateActionButtons: function (stateName, args)
                 {
-//                    this.debug('onUpdateActionButtons: ' + stateName);
-
                     if (this.isCurrentPlayerActive())
                     {
                         switch (stateName)

@@ -11,8 +11,7 @@ define([
 
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
-//                        var btnHtml = this.format_block('jstpl_attack_btn', player);
-                        this.debug('AM-PAM', player);
+
                         dojo.place(this.getAttackBtnHtml(player), 'attack_victim_selection');
                         dojo.connect($("attack" + player.id + "_button"), 'onclick', this, 'onTargetClick');
                     }
@@ -42,19 +41,16 @@ define([
                 },
 
                 onModalCloseClick: function (element) {
-                    this.debug(element);
                     $('modal-container').innerHTML = "";
                 },
 
                 onTargetClick:function(element){
-                    this.debug(element.target.dataset.player);
                     var card = dojo.query(".selected");
 
                     if (1 !== card.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-//                        this.debug("DoPlay:", card[0]);
 
                         var data = {
                             card: card[0].dataset.id,

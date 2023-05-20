@@ -30,17 +30,21 @@ define([
                         maxhandCounter.create("player_maxhand_counter_".concat(player.id));
                         maxhandCounter.setValue(player.attributes.maxCards);
                         this.maxhandCounters[playerId] = maxhandCounter;
-                        
+
                         var studyCounter = new ebg.counter();
                         studyCounter.create("player_studies_counter_".concat(player.id));
                         studyCounter.setValue(player.studies);
                         this.studyCounters[playerId] = studyCounter;
-                        
+
                         var wagesCounter = new ebg.counter();
                         wagesCounter.create("player_wages_counter_".concat(player.id));
                         wagesCounter.setValue(player.totalWages);
                         this.wagesCounters[playerId] = wagesCounter;
                     }
+                },
+
+                displayAPanel: function () {
+
                 },
 
                 getPlayerPanelHtml: function (player) {

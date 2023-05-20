@@ -10,8 +10,6 @@ define([
             {
 
                 notif_passNotification: function (notif) {
-//                    this.debug("notif_passNotification called", notif);
-
                     var card = notif.args.card;
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
