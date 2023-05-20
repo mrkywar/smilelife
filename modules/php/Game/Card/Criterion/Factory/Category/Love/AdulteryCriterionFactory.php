@@ -21,21 +21,21 @@ class AdulteryCriterionFactory extends CardCriterionFactory {
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
+     * @param ?PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param ?Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card): CriterionInterface {
+    public function create(PlayerTable $table, Card $card, ?PlayerTable $opponentTable = null, ?array $complementaryCards = null): CriterionInterface {
         $noAdulteryCriterion = new InversedCriterion(new HaveAdulteryCriterion($table));
         $noAdulteryCriterion->setErrorMessage(clienttranslate('You are already involved in an adulterous relationship'));
-        
+
         $marriageAdultery = new IsMarriedCriterion($table);
         $marriageAdultery->setErrorMessage(clienttranslate('Before starting an adulterous relationship, you must be married.'));
-        
+
         return new CriterionGroup([
-                $noAdulteryCriterion,
-                $marriageAdultery
-            ], CriterionGroup::AND_OPERATOR);
-        
-        
+            $noAdulteryCriterion,
+            $marriageAdultery
+                ], CriterionGroup::AND_OPERATOR);
     }
 
 }

@@ -8,5 +8,8 @@ namespace SmileLife\Card\Criterion;
 interface CriterionInterface {
     public function isValided(): bool;
     
-    public function getErrorMessage():string;
+    /**
+     * @return string
+     */
+    public function getErrorMessage();
 }

@@ -1,12 +1,12 @@
 <?php
 
+namespace SmileLife\Card\Category\Love;
+
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Love\AdulteryCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
-
-namespace SmileLife\Card\Category\Love;
 
 /**
  * Description of Adultery
@@ -49,7 +49,7 @@ class Adultery extends Card implements BaseGame {
     public function getPileName(): string {
         return "adultery";
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new AdulteryCriterionFactory();
     }

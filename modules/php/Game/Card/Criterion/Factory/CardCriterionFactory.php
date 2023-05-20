@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**
