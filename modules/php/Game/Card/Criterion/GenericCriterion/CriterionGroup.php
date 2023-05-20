@@ -65,6 +65,16 @@ class CriterionGroup extends Criterion {
         return $this->operator;
     }
 
+    public function getConsequences(): array  {
+        $consequences = parent::getConsequences();
+        foreach ($this->criteria as $criterion) {
+            if ($criterion->isValided() && $criterion->hasConsequences()) {
+                $consequences = array_merge($consequences, $criterion->getConsequences());
+            }
+        }
+        return $consequences;
+    }
+
     public function getErrorMessage() {
         foreach ($this->criteria as $criterion) {
             if (null !== $criterion->getErrorMessage() && !$criterion->isValided()) {

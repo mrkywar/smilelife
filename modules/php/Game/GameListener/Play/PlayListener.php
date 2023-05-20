@@ -59,10 +59,6 @@ class PlayListener extends EventListener {
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
-        
-        echo '<pre>';
-        var_dump($criteria);
-        die;
 
         if (!$testRestult->getIsValid()) {
             echo '<pre>';
@@ -84,7 +80,12 @@ class PlayListener extends EventListener {
 
         $response->set('player', $player)
                 ->set('card', $card)
-                ->set("table", $table);
+                ->set("table", $table)
+                ->set('consequences', null);
+
+        if ($testRestult->hasConsequences()) {
+            $response->set('consequences', $testRestult->getConsequences());
+        }
 
         return $response;
     }

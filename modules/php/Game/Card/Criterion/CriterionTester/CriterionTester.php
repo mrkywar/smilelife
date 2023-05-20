@@ -39,9 +39,7 @@ class CriterionTester {
         $testResult->setIsValid(false);
 
         foreach ($this->criteria as $criterion) {
-            if (!$criterion->isValided()) {
-                $testResult->addFailedCriterion($criterion);
-            } else {
+            if ($criterion->isValided()) {
                 $testResult->setIsValid(true);
                 if ($criterion->hasConsequences()) {
                     $this->consequence = array_merge($this->consequence, $criterion->getConsequences());
@@ -49,7 +47,8 @@ class CriterionTester {
             }
         }
 
-
+//        echo "<pre>";
+//        var_dump($this->consequence);die;
         //-- V1
 //        if (null === $this->criteria) {
 //            $testResult->setIsValid(true);

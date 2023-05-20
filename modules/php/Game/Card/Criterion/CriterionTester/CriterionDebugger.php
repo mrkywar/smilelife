@@ -21,14 +21,14 @@ class CriterionDebugger {
 
     /**
      * 
-     * @param ?CriterionInterface[] $criteria
+     * @param CriterionInterface $criteria
      */
-    public function __construct(?array $criteria) {
+    public function __construct(CriterionInterface $criteria) {
         $this->criteria = $criteria;
     }
 
     public function debug() {
-        $this->debugArray($this->criteria);
+        $this->debugOne($this->criteria);
     }
 
     private function debugArray(array $criteria, $level = 0) {
@@ -37,7 +37,7 @@ class CriterionDebugger {
         }
     }
 
-    private function debugOne(CriterionInterface $criterion, $level) {
+    private function debugOne(CriterionInterface $criterion, $level = 0) {
 
         if ($criterion instanceof CriterionGroup) {
             echo " GROUP ( <br/>";
