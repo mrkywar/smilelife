@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Attack\AccidentCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -34,7 +34,7 @@ class Accident extends Attack implements BaseGame {
     }
     
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NotImplementedCritertionFactory();
+        return new AccidentCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

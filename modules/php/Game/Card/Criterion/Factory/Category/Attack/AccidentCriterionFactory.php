@@ -3,10 +3,15 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
+use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Effect\Category\AccidentImuneEffect;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -30,7 +35,21 @@ class AccidentCriterionFactory extends CardCriterionFactory {
         
         //case 2 : No Immunity
         $jobCriterion = new HaveJobCriterion($opponentTable);
-        $jobEffectCriterion = new InversedCriterion();
+        $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));
+        $jobEffectCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
+        
+        $critertia = new CriterionGroup([
+                $noJobCriterion,
+                new CriterionGroup([
+                    $jobCriterion,
+                    $jobEffectCriterion
+                ],CriterionGroup::AND_OPERATOR)
+            ], CriterionGroup::OR_OPERATOR);
+        
+        $critertia->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
+        
+        return $critertia;
     }
 
 }

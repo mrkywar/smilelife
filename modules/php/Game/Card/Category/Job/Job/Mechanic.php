@@ -4,6 +4,9 @@ namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Card\Effect\Category\AccidentImuneEffect;
+use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -11,13 +14,21 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Mechanic extends Job implements BaseGame {
+class Mechanic extends Job implements BaseGame, CardEffectInterface {
+
+    /**
+     * 
+     * @var Effect
+     */
+    private $effects;
 
     public function __construct() {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Mechanic'))
                 ->setText1(clienttranslate('You never have accidents'));
+        
+        $this->effects = [new AccidentImuneEffect()];
     }
 
     /* -------------------------------------------------------------------------
@@ -46,6 +57,14 @@ class Mechanic extends Job implements BaseGame {
 
     public function getType(): int {
         return CardType::JOB_MECHANIC;
+    }
+
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects(): array {
+        return $this->effects;
     }
 
     /* -------------------------------------------------------------------------
