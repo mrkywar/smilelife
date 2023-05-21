@@ -12,7 +12,7 @@ use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\WageCriterion\HaveUnusedWageCriterion;
-use SmileLife\Card\Effect\Category\NoIncomeTaxEffect;
+use SmileLife\Card\Effect\Category\IncomeTaxImuneEffect;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -37,7 +37,7 @@ class IncomeTaxCriterionFactory extends CardCriterionFactory {
         $haveJobCriterion = new HaveJobCriterion($opponentTable);
         $haveJobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
-        $incomeImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, NoIncomeTaxEffect::class));
+        $incomeImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, IncomeTaxImuneEffect::class));
         $incomeImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
 
         $criteria = new CriterionGroup([

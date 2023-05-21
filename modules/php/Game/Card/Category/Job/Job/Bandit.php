@@ -5,8 +5,8 @@ namespace SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Effect\CardEffectInterface;
-use SmileLife\Card\Effect\Category\NoDismissalEffect;
-use SmileLife\Card\Effect\Category\NoIncomeTaxEffect;
+use SmileLife\Card\Effect\Category\DismissalImuneEffect;
+use SmileLife\Card\Effect\Category\IncomeTaxImuneEffect;
 use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
@@ -26,7 +26,7 @@ class Bandit extends Job implements BaseGame, CardEffectInterface {
     public function __construct() {
         parent::__construct();
         
-        $this->effects = [new NoDismissalEffect, new NoIncomeTaxEffect()];
+        $this->effects = [new DismissalImuneEffect(), new IncomeTaxImuneEffect()];
 
         $this->setTitle(clienttranslate('Bandit'))
                 ->setText1(clienttranslate('Bandit: Pays no taxes, is never '
