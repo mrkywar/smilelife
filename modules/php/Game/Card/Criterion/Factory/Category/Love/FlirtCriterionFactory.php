@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\FlirtDoublonDectectionConcequence;
-use SmileLife\Card\Consequence\FlirtOnAdulteryConsequence;
+use SmileLife\Card\Consequence\Category\Love\FlirtDoublonDectectionConcequence;
+use SmileLife\Card\Consequence\Category\Love\FlirtOnAdulteryConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

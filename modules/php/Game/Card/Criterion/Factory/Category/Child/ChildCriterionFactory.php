@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Child;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\CardUsedConsequence;
+use SmileLife\Card\Consequence\Category\Generic\CardUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

@@ -4,7 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
-use SmileLife\Card\Consequence\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
