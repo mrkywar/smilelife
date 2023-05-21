@@ -40,7 +40,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
         $flirtCountCriterion = new FlirtCountCriterion($table);
         $flirtCountCriterion->setErrorMessage(clienttranslate('You have already done ${number} flirts (5 max)', ['number' => count($table->getFlirts())]));
 
-        $limitlessCriterion = new JobEffectCriteria($this->table, LimitlessFlirt::class);
+        $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 
         $finalCriterion = new CriterionGroup([
             //-- Adultery Criterion
@@ -57,7 +57,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $player));
+        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table->getPlayer()));
 
         return $finalCriterion;
     }

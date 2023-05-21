@@ -2,6 +2,12 @@
 
 namespace SmileLife\Card\Consequence;
 
+use Core\Models\Player;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\ConsequenceException;
+
 /**
  *
  * @author Mr_Kywar mr_kywar@gmail.com
