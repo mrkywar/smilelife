@@ -3,6 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardLastWageConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -43,7 +45,8 @@ class IncomeTaxCriterionFactory extends CardCriterionFactory {
                 $haveJobCriterion,
                 $incomeImmuneCriterion
             ], CriterionGroup::AND_OPERATOR);
-        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
+        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+                ->addConsequence(new DiscardLastWageConsequence($opponentTable));
         
         return $criteria;
     }
