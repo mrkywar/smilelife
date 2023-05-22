@@ -3,6 +3,9 @@
 namespace SmileLife\Card\Category\Job\Official;
 
 use SmileLife\Card\CardType;
+use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Card\Effect\Category\AttentatProtectionEffect;
+use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -10,13 +13,21 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Military extends Official implements BaseGame {
+class Military extends Official implements BaseGame, CardEffectInterface {
+
+    /**
+     * 
+     * @var Effect[]
+     */
+    private $effects;
 
     public function __construct() {
         parent::__construct();
 
         $this->setTitle(clienttranslate('Soldier'))
                 ->setText1(clienttranslate('No bomb in your presence'));
+
+        $this->effects[new AttentatProtectionEffect()];
     }
 
     /* -------------------------------------------------------------------------
@@ -45,6 +56,14 @@ class Military extends Official implements BaseGame {
 
     public function getType(): int {
         return CardType::JOB_MILITARY;
+    }
+
+    /**
+     * 
+     * @return Effect[]
+     */
+    public function getEffects(): array {
+        return $this->effects;
     }
 
     /* -------------------------------------------------------------------------

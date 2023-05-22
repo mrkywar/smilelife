@@ -19,7 +19,7 @@ class Bandit extends Job implements BaseGame, CardEffectInterface {
 
     /**
      * 
-     * @var Effect
+     * @var Effect[]
      */
     private $effects;
     
