@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\GuruAndBanditCriterionFactory;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\DismissalImuneEffect;
 use SmileLife\Card\Effect\Category\IncomeTaxImuneEffect;
@@ -22,10 +24,10 @@ class Bandit extends Job implements BaseGame, CardEffectInterface {
      * @var Effect[]
      */
     private $effects;
-    
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->effects = [new DismissalImuneEffect(), new IncomeTaxImuneEffect()];
 
         $this->setTitle(clienttranslate('Bandit'))
@@ -61,13 +63,21 @@ class Bandit extends Job implements BaseGame, CardEffectInterface {
     public function getType(): int {
         return CardType::JOB_BANDIT;
     }
-    
+
     /**
      * 
      * @return Effect[]
      */
-    public function getEffects(): array  {
+    public function getEffects(): array {
         return $this->effects;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display - Overwride
+     * ---------------------------------------------------------------------- */
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new GuruAndBanditCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------
