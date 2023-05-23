@@ -14,11 +14,11 @@ use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of PrisonCriterionFactory
+ * Description of JailCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PrisonCriterionFactory extends CardCriterionFactory {
+class JailCriterionFactory extends CardCriterionFactory {
 
     /**
      * 
