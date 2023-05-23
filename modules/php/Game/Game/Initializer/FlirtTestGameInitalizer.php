@@ -3,6 +3,7 @@
 namespace SmileLife\Game\Initializer;
 
 use SmileLife\Card\CardType;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of FlirtTestGameInitalizer
@@ -15,14 +16,30 @@ class FlirtTestGameInitalizer extends GameInitializer {
         parent::init($players, $options);
 
         $oTables = $this->playerTableManager->findBy();
-        
-        $cardFlirts = $cards = $this->cardManager->findBy(
+
+        $cardFlirts = $this->cardManager->findBy(
                 ["type" => [CardType::FLIRT_BAR, CardType::FLIRT_CAMPING, CardType::FLIRT_HOTEL, CardType::FLIRT_PARC, CardType::FLIRT_CINEMA, CardType::FLIRT_NIGTHCLUB, CardType::FLIRT_RESTAURANT, CardType::FLIRT_THEATER, CardType::FLIRT_WEB, CardType::FLIRT_ZOO]]
         );
-        
-        var_dump($cardFlirts);die;
-        
-        
+
+        //-- Case 1
+        $i = random_int(0, count($oTables) - 1);        
+        $testedTable = $oTables[$i];
+        unset($oTables[$i]);
+        $this->case1($testedTable);
+
+        return $oTables[0]->getId();
+    }
+
+    private function case1(PlayerTable $table) {
+        //add Marriage
+        $mariage = $this->cardManager->findBy(
+                ["type" => CardType::MARRIAGE_MONTCUQ], 1
+        );
+
+        $this->cardManager->playCard($table->getPlayer(), $mariage);
+
+        $table->addCard($mariage);
+        $this->playerTableManager->updateTable($table);
     }
 
 }
