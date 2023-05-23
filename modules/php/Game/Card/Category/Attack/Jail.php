@@ -13,6 +13,7 @@ use SmileLife\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Jail extends Attack implements BaseGame {
+    const TURN_PASSED = 3;
 
     public function __construct() {
         parent::__construct();
