@@ -5,6 +5,7 @@ namespace SmileLife\Card\Consequence\Category\Generic;
 use Core\Models\Player;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Consequence\Consequence;
 
 /**
  * Description of DiscardConsequence

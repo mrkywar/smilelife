@@ -27,7 +27,7 @@ class Military extends Official implements BaseGame, CardEffectInterface {
         $this->setTitle(clienttranslate('Soldier'))
                 ->setText1(clienttranslate('No bomb in your presence'));
 
-        $this->effects[new AttentatProtectionEffect()];
+        $this->effects = [new AttentatProtectionEffect()];
     }
 
     /* -------------------------------------------------------------------------

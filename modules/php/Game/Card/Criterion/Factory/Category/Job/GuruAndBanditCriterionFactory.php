@@ -18,7 +18,15 @@ use SmileLife\Table\PlayerTable;
  */
 class GuruAndBanditCriterionFactory extends JobCriterionFactory {
 
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $policemanCriterion = new InversedCriterion(
                 new AllPlayerTablesCriterion(
                         new JobTypeCriterion($table, $class)
@@ -26,12 +34,12 @@ class GuruAndBanditCriterionFactory extends JobCriterionFactory {
         );
         $policemanCriterion->setErrorMessage(clienttranslate("There's a policman watching, you can't work as ${workName} safely", ['workName' => $card->getTitle()]));
         $parentCriterion = parent::create($table, $card, $opponentTable, $complementaryCards);
-        
+
         $criteria = new CriterionGroup([
             $policemanCriterion,
             $parentCriterion
-        ], CriterionGroup::AND_OPERATOR);
-        
+                ], CriterionGroup::AND_OPERATOR);
+
         return $criteria;
     }
 

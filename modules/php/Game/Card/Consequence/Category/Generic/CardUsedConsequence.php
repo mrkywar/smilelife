@@ -2,13 +2,20 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
+use Core\Models\Player;
+use SmileLife\Card\Card;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\ConsequenceException;
+
 /**
  * Description of CardUsedConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardUsedConsequence extends Consequence {
-    
+
     /**
      * 
      * @var Flirt
@@ -32,8 +39,7 @@ class CardUsedConsequence extends Consequence {
         $this->player = $player;
         $this->card = $card;
     }
-    
-    
+
     public function execute() {
         throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }

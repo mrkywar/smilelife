@@ -2,6 +2,10 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
+use Core\Models\Player;
+use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\ConsequenceException;
+
 /**
  * Description of TurnPassConsequence
  *

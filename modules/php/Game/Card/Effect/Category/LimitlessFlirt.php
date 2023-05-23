@@ -9,5 +9,6 @@ use SmileLife\Card\Effect\Effect;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class LimitlessFlirt extends Effect{
+class LimitlessFlirt extends Effect {
+    
 }
