@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Consequence;
+namespace SmileLife\Card\Consequence\Category\Attack;
 
 /**
  * Description of TurnPassConsequence

@@ -4,20 +4,21 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Effect\Category\SicknessImmunityEffect;
+use SmileLife\Card\Criterion\StudiesCriterion\HaveStudiesCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of SicknessCriterionFactory
+ * Description of GradeRepetitionCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SicknessCriterionFactory extends CardCriterionFactory {
+class GradeRepetitionCriterionFactory extends CardCriterionFactory {
 
     /**
      * 
@@ -29,21 +30,19 @@ class SicknessCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
+        $noJobCriterion->setErrorMessage(clienttranslate("Targeted player has an active Job"));
+
+        $haveStudieCriterion = new HaveStudiesCriterion($opponentTable);
+        $haveStudieCriterion->setErrorMessage(clienttranslate("Targeted player have no studies"));
 
         $criteria = new CriterionGroup([
-                // no Job
                 $noJobCriterion,
-                // no immunity
-                new CriterionGroup([
-                    new HaveJobCriterion($opponentTable),
-                    new InversedCriterion($opponentTable, SicknessImmunityEffect::class)
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
-
-        $criteria->setErrorMessage(clienttranslate("Targeted player is immune to disease"))
-                ->addConsequence()
-                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
-
+                $haveStudieCriterion
+            ], CriterionGroup::AND_OPERATOR);
+        
+        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+                ->addConsequence(new DiscardLastStudieConsequence($opponentTable));
+        
         return $criteria;
     }
 

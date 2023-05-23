@@ -4,7 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
-use SmileLife\Card\Consequence\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
@@ -21,11 +21,11 @@ class GrandProfCriterionFactory extends CardCriterionFactory {
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
-     * @param ?PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
-     * @param ?Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, ?PlayerTable $opponentTable = null, ?array $complementaryCards = null): CriterionInterface {
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $table = $this->getTable();
         $criterion = new JobTypeCriterion($table, Teacher::class);
 

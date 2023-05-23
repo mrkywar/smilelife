@@ -10,7 +10,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class PlayerTableCriterion extends Criterion{
+abstract class PlayerTableCriterion extends Criterion {
 
     /**
      * 
@@ -24,6 +24,11 @@ abstract class PlayerTableCriterion extends Criterion{
 
     public function getTable(): PlayerTable {
         return $this->table;
+    }
+
+    public function setTable(PlayerTable $table) {
+        $this->table = $table;
+        return $this;
     }
 
 }

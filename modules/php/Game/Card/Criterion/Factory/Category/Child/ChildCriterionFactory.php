@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Child;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\CardUsedConsequence;
+use SmileLife\Card\Consequence\Category\Generic\CardUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -22,11 +22,11 @@ class ChildCriterionFactory extends CardCriterionFactory {
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
-     * @param ?PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
-     * @param ?Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, ?PlayerTable $opponentTable = null, ?array $complementaryCards = null): CriterionInterface {
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $isMarriedCriterion = new IsMarriedCriterion($table);
 
         $haveFlirtCriterion = new FlirtPlayedCriterion($table);

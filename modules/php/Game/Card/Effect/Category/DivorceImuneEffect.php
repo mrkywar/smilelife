@@ -3,9 +3,10 @@
 namespace SmileLife\Card\Effect\Category;
 
 /**
- * Description of LimitlessStudiesEffect
+ * Description of DivorceImuneEffect
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class LimitlessStudiesEffect extends Effect {
+class DivorceImuneEffect {
+    //put your code here
 }

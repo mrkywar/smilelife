@@ -1,12 +1,18 @@
 <?php
 
-namespace SmileLife\Card\Consequence;
+namespace SmileLife\Card\Consequence\Category\Love;
+
+use Core\Models\Player;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\ConsequenceException;
 
 /**
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtOnAdulteryConsequence extends Consequence {
+class FlirtDoublonDectectionConcequence extends Consequence {
 
     /**
      * 
@@ -33,7 +39,7 @@ class FlirtOnAdulteryConsequence extends Consequence {
     }
 
     public function execute() {
-        throw new ConsequenceException("Consequence-FOAC : Not Yet implemented");
+        throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
     }
 
 }

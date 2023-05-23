@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Love\Flirt;
 
 use SmileLife\Card\Category\Love\Love;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\FlirtCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Love\FlirtCriterionFactory;
 
 /**
  * Description of Flirt

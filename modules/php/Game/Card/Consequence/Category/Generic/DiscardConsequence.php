@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Consequence;
+namespace SmileLife\Card\Consequence\Category\Generic;
 
 use Core\Models\Player;
 use SmileLife\Card\CardManager;

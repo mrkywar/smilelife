@@ -4,20 +4,22 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Effect\Category\SicknessImmunityEffect;
+use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Effect\Category\AccidentImuneEffect;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of SicknessCriterionFactory
+ * Description of AccidentCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class SicknessCriterionFactory extends CardCriterionFactory {
+class AccidentCriterionFactory extends CardCriterionFactory {
 
     /**
      * 
@@ -28,23 +30,26 @@ class SicknessCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+        //case 1 : No Job
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
-
-        $criteria = new CriterionGroup([
-                // no Job
+        
+        //case 2 : No Immunity
+        $jobCriterion = new HaveJobCriterion($opponentTable);
+        $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));
+        $jobEffectCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
+        
+        $critertia = new CriterionGroup([
                 $noJobCriterion,
-                // no immunity
                 new CriterionGroup([
-                    new HaveJobCriterion($opponentTable),
-                    new InversedCriterion($opponentTable, SicknessImmunityEffect::class)
-                ], CriterionGroup::AND_OPERATOR)
+                    $jobCriterion,
+                    $jobEffectCriterion
+                ],CriterionGroup::AND_OPERATOR)
             ], CriterionGroup::OR_OPERATOR);
-
-        $criteria->setErrorMessage(clienttranslate("Targeted player is immune to disease"))
-                ->addConsequence()
-                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
-
-        return $criteria;
+        
+        $critertia->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
+        
+        return $critertia;
     }
 
 }

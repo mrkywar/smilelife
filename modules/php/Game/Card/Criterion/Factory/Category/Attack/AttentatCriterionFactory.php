@@ -4,18 +4,20 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
+use SmileLife\Card\Consequence\Category\Attack\AttentatConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
+use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Effect\Category\AttentatProtectionEffect;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of BurnOutCriterionFactory
+ * Description of AttentatCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class BurnOutCriterionFactory extends CardCriterionFactory {
+class AttentatCriterionFactory extends CardCriterionFactory {
 
     /**
      * 
@@ -26,13 +28,11 @@ class BurnOutCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterias = new HaveJobCriterion($opponentTable);
-        $criterias->setErrorMessage(clienttranslate("Targeted player has no Job"));
-
-        $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
-
-        return $criteria;
+        $noImmunityInGame = new AllPlayerTablesCriterion(new JobEffectCriteria($table, AttentatProtectionEffect::class));
+        $noImmunityInGame->setErrorMessage(clienttranslate("There's a soldier watching, you can't plant a bomb safely"));
+        $noImmunityInGame->addConsequence(new AttackDestinationConsequence($card, $table))
+                ->addConsequence(new AttentatConsequence());
+        
     }
 
 }

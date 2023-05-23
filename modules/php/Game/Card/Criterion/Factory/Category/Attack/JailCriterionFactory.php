@@ -3,19 +3,22 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Attack\Jail;
+use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
+use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
+use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of BurnOutCriterionFactory
+ * Description of JailCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class BurnOutCriterionFactory extends CardCriterionFactory {
+class JailCriterionFactory extends CardCriterionFactory {
 
     /**
      * 
@@ -26,13 +29,14 @@ class BurnOutCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterias = new HaveJobCriterion($opponentTable);
-        $criterias->setErrorMessage(clienttranslate("Targeted player has no Job"));
-
-        $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
-
-        return $criteria;
+        $banditCriterion = new JobTypeCriterion($opponentTable, Bandit::class);
+        $banditCriterion->setErrorMessage(clienttranslate("Targeted player isn't Bandit"))
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer(), Jail::TURN_PASSED))
+                ->addConsequence(new DiscardConsequence($opponentTable->getJob(), $opponentTable->getPlayer()));
+        
+        return $banditCriterion;
+        
     }
-
+    
 }

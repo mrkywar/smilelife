@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Attack\JailCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -13,6 +13,7 @@ use SmileLife\Card\Module\BaseGame;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Jail extends Attack implements BaseGame {
+    const TURN_PASSED = 3;
 
     public function __construct() {
         parent::__construct();
@@ -35,7 +36,7 @@ class Jail extends Attack implements BaseGame {
     }
 
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NotImplementedCritertionFactory();
+        return new JailCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

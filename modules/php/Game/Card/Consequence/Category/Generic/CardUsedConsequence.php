@@ -1,13 +1,14 @@
 <?php
 
-namespace SmileLife\Card\Consequence;
+namespace SmileLife\Card\Consequence\Category\Generic;
 
 /**
+ * Description of CardUsedConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtDoublonDectectionConcequence extends Consequence {
-
+class CardUsedConsequence extends Consequence {
+    
     /**
      * 
      * @var Flirt
@@ -26,14 +27,15 @@ class FlirtDoublonDectectionConcequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Flirt $card, Player $player) {
+    public function __construct(Card $card, Player $player) {
         $this->cardManager = new CardManager();
         $this->player = $player;
         $this->card = $card;
     }
-
+    
+    
     public function execute() {
-        throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
+        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }
 
 }

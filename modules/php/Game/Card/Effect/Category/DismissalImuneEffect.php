@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Effect\Category;
 
 /**
- * Description of LimitlessStudiesEffect
+ * Description of DismissalImuneEffect
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class LimitlessStudiesEffect extends Effect {
+class DismissalImuneEffect extends Effect {
 }

@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\FlirtDoublonDectectionConcequence;
-use SmileLife\Card\Consequence\FlirtOnAdulteryConsequence;
+use SmileLife\Card\Consequence\Category\Love\FlirtDoublonDectectionConcequence;
+use SmileLife\Card\Consequence\Category\Love\FlirtOnAdulteryConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -26,11 +26,11 @@ class FlirtCriterionFactory extends CardCriterionFactory {
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
-     * @param ?PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
-     * @param ?Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, ?PlayerTable $opponentTable = null, ?array $complementaryCards = null): CriterionInterface {
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $adulteryCriterion = new HaveAdulteryCriterion($table);
         $adulteryCriterion->addConsequence(new FlirtOnAdulteryConsequence($card, $table->getPlayer()));
 
@@ -40,7 +40,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
         $flirtCountCriterion = new FlirtCountCriterion($table);
         $flirtCountCriterion->setErrorMessage(clienttranslate('You have already done ${number} flirts (5 max)', ['number' => count($table->getFlirts())]));
 
-        $limitlessCriterion = new JobEffectCriteria($this->table, LimitlessFlirt::class);
+        $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 
         $finalCriterion = new CriterionGroup([
             //-- Adultery Criterion
@@ -57,7 +57,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $player));
+        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table->getPlayer()));
 
         return $finalCriterion;
     }
