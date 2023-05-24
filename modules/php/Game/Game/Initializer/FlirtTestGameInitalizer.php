@@ -26,19 +26,19 @@ class FlirtTestGameInitalizer extends GameInitializer {
 
         //-- Case 1 Marriage (not playable)
         $i = random_int(0, count($oTables) - 1);
-        $case1Table = $oTables[$i];
+        $case1Table = $oTables[array_keys($oTables)[$i]];;
         unset($oTables[$i]);
         $this->case1($case1Table);
 
         //-- Case 2 Adultery (playable on different destination)
         $i = random_int(0, count($oTables) - 1);
-        $case2Table = $oTables[$i];
+        $case2Table = $oTables[array_keys($oTables)[$i]];;
         unset($oTables[$i]);
         $this->case2($case2Table);
 
         //-- case 3 (max reached)
         $i = random_int(0, count($oTables) - 1);
-        $case3and4Table = $oTables[$i];
+        $case3and4Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->case3($case3and4Table);
 
@@ -47,13 +47,13 @@ class FlirtTestGameInitalizer extends GameInitializer {
 
         //-- case 5 (Doublon)
         $i = random_int(0, count($oTables) - 1);
-        $case5Table = $oTables[$i];
+        $case5Table = $oTables[array_keys($oTables)[$i]];;
         unset($oTables[$i]);
         $this->case5($case5Table, $case1Table);
 
         //-- case 6 (classic) 
         $i = random_int(0, count($oTables) - 1);
-        $case6Table = $oTables[$i];
+        $case6Table = $oTables[array_keys($oTables)[$i]];;
         unset($oTables[$i]);
         $this->case6($case6Table);
         
