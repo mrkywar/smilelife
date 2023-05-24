@@ -6,9 +6,7 @@ use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Criterion\CriterionTester\CriterionDebugger;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
-use SmileLife\Card\Criterion\Factory\CriterionFactory;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -60,14 +58,17 @@ class PlayListener extends EventListener {
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
-        if (!$testRestult->getIsValid()) {
-           
-            $debugger = new CriterionDebugger($testRestult->getCriteria());
-            $debugger->debug();
-            die("DEBUG");
-
-            throw new CardException("Not Playable");
+        if(!$testRestult->isValided()) {
+            throw new \BgaUserException($testRestult->getErrorMessage());
         }
+//        if (!$testRestult->isValided()) {
+//            var_dump($testRestult->getErrorMessage());die;
+//            $debugger = new CriterionDebugger($testRestult->getCriteria());
+//            $debugger->debug();
+//            die("DEBUG");
+//
+//            throw new CardException("Not Playable");
+//        }
 
 
         $table->addCard($card);
