@@ -38,7 +38,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
         $notMarriedCriterion->setErrorMessage(clienttranslate('You are already married, think about adultery ?'));
 
         $flirtCountCriterion = new FlirtCountCriterion($table);
-        $flirtCountCriterion->setErrorMessage(clienttranslate('You have already done ${number} flirts (5 max)', ['number' => count($table->getFlirts())]));
+        $flirtCountCriterion->setErrorMessage(clienttranslate('You\'ve already done the most flirting'));
 
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 

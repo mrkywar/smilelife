@@ -25,16 +25,16 @@ class FlirtTestGameInitalizer extends GameInitializer {
         $oTables = $this->playerTableManager->findBy();
 
 //        //-- Case 1 Marriage (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case1Table = $oTables[array_keys($oTables)[$i]];;
-//        unset($oTables[$i]);
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];;
+        unset($oTables[$i]);
 //        $this->case1($case1Table);
 
-        //-- Case 2 Adultery (playable on different destination)
-        $i = random_int(0, count($oTables) - 1);
-        $case2Table = $oTables[array_keys($oTables)[$i]];;
-        unset($oTables[$i]);
-        $this->case2($case2Table);
+//        //-- Case 2 Adultery (playable on different destination)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case2Table = $oTables[array_keys($oTables)[$i]];;
+//        unset($oTables[$i]);
+//        $this->case2($case2Table);
 
         //-- case 3 (max reached)
         $i = random_int(0, count($oTables) - 1);
@@ -57,7 +57,7 @@ class FlirtTestGameInitalizer extends GameInitializer {
         unset($oTables[$i]);
         $this->case6($case6Table);
         
-        return $case1Table->getId();
+        return $case3and4Table->getId();
     }
 
     private function case1(PlayerTable $table) {
@@ -97,7 +97,7 @@ class FlirtTestGameInitalizer extends GameInitializer {
     private function case3(PlayerTable $table) {
         for ($i = 0; $i < 5; $i++) {
             $flirt = new Cinema();
-            $flirt->setLocation(CardLocation::PLAYER_HAND)
+            $flirt->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($table->getId());
             
             $this->cardManager->add($flirt);
@@ -116,7 +116,7 @@ class FlirtTestGameInitalizer extends GameInitializer {
 
     private function case4(PlayerTable $table) {
         $forcedJob = new Barman();
-        $forcedJob->setLocation(CardLocation::PLAYER_HAND)
+        $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
         $this->cardManager->add($forcedJob);
         
