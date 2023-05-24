@@ -24,11 +24,11 @@ class FlirtTestGameInitalizer extends GameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        //-- Case 1 Marriage (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case1Table = $oTables[array_keys($oTables)[$i]];;
-        unset($oTables[$i]);
-        $this->case1($case1Table);
+//        //-- Case 1 Marriage (not playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case1Table = $oTables[array_keys($oTables)[$i]];;
+//        unset($oTables[$i]);
+//        $this->case1($case1Table);
 
         //-- Case 2 Adultery (playable on different destination)
         $i = random_int(0, count($oTables) - 1);
@@ -99,7 +99,8 @@ class FlirtTestGameInitalizer extends GameInitializer {
             $flirt = new Cinema();
             $flirt->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($table->getId());
-
+            
+            $this->cardManager->add($flirt);
             $this->cardManager->playCard($table->getPlayer(), $flirt);
 
             $table->addCard($flirt);
@@ -117,6 +118,8 @@ class FlirtTestGameInitalizer extends GameInitializer {
         $forcedJob = new Barman();
         $forcedJob->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedJob);
+        
     }
 
     private function case5(PlayerTable $table, PlayerTable $othertable) {

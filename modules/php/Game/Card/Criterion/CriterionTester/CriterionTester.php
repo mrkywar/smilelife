@@ -11,14 +11,13 @@ use SmileLife\Card\Criterion\CriterionInterface;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CriterionTester extends Criterion{
+class CriterionTester extends Criterion {
 
     /**
      * 
      * @var CriterionInterface
      */
     private $criteria;
-    
     private $isValid;
 
     public function __construct() {
@@ -34,10 +33,10 @@ class CriterionTester extends Criterion{
     public function test($criteria) {
         $this->criteria = $criteria;
         $this->isValid = $this->criteria->isValided();
-        if($this->isValid){
-            $this->setConsequences($this->criteria->getConsequences());
-        }else{
+        if (!$this->isValid) {
             $this->setErrorMessage($this->criteria->getErrorMessage());
+        } elseif ($this->criteria->hasConsequences()) {
+            $this->setConsequences($this->criteria->getConsequences());
         }
 //        
 //        $this->consequence = $this->
@@ -46,7 +45,7 @@ class CriterionTester extends Criterion{
     }
 
     public function isValided(): bool {
-        if(null === $this->isValid){
+        if (null === $this->isValid) {
             throw new CriterionException("no test done");
         }
         return $this->isValid;
