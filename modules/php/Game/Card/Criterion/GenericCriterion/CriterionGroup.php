@@ -47,7 +47,7 @@ class CriterionGroup extends Criterion {
                     return true;
                 }
             }
-            
+
             return false;
         } else {
             throw new CriterionException("Unsupported Operator '" . $this->operator . "'");
@@ -66,11 +66,12 @@ class CriterionGroup extends Criterion {
         return $this->operator;
     }
 
-    public function getConsequences(): array  {
+    public function getConsequences(): ?array {
         $consequences = parent::getConsequences();
+
         foreach ($this->criteria as $criterion) {
             if ($criterion->isValided() && $criterion->hasConsequences()) {
-                $consequences = array_merge($consequences, $criterion->getConsequences());
+                $consequences = array_merge($consequences ?? [], $criterion->getConsequences() ?? []);
             }
         }
         return $consequences;
