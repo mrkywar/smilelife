@@ -83,15 +83,9 @@ class PlayListener extends EventListener {
                 ->set("table", $table)
                 ->set('consequences', null);
 
-        if ($testRestult->hasConsequences()) {
-            $response->set('consequences', $testRestult->getConsequences());
+        if ($testRestult->isValided()) {
+            $response->set('consequences', $criteria->getConsequences());
         }
-        $debugger = new CriterionDebugger($criteria);
-        $debugger->debug();
-        die("DEBUG");
-        echo '<pre>';
-        var_dump($testRestult);
-        die;
 
         return $response;
     }

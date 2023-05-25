@@ -11,7 +11,7 @@ use SmileLife\Card\Criterion\CriterionInterface;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CriterionTester extends Criterion {
+class CriterionTester {
 
     /**
      * 
@@ -21,7 +21,6 @@ class CriterionTester extends Criterion {
     private $isValid;
 
     public function __construct() {
-        $this->consequence = [];
         $this->isValid = null;
     }
 
@@ -35,11 +34,7 @@ class CriterionTester extends Criterion {
         $this->isValid = $this->criteria->isValided();
         if (!$this->isValid) {
             $this->setErrorMessage($this->criteria->getErrorMessage());
-        } elseif ($this->criteria->hasConsequences()) {
-            $this->setConsequences($this->criteria->getConsequences());
-        }
-//        
-//        $this->consequence = $this->
+        } 
 
         return $this;
     }
