@@ -2,12 +2,12 @@
 
 namespace SmileLife\Card\Consequence\Category\Love;
 
-use Core\Models\Player;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Table\PlayerTable;
 
 /**
  *
@@ -23,9 +23,9 @@ class FlirtDoublonDectectionConcequence extends Consequence {
 
     /**
      * 
-     * @var Player
+     * @var PlayerTable
      */
-    private $player;
+    private $table;
 
     /**
      * 
@@ -33,9 +33,9 @@ class FlirtDoublonDectectionConcequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Flirt $card, Player $player) {
+    public function __construct(Flirt $card, PlayerTable $table) {
         $this->cardManager = new CardManager();
-        $this->player = $player;
+        $this->table = $table;
         $this->card = $card;
     }
 
@@ -44,16 +44,21 @@ class FlirtDoublonDectectionConcequence extends Consequence {
             "type" => $this->card->getType(),
             "location" => CardLocation::PLAYER_BOARD
         ]);
-        if(is_array($cards)){
-            //doublon !!!
-            foreach ($cards as $card){
-                
-            }
+
+        if ($cards instanceof Card) {
+            return; //no doublon
         }
+        
+        foreach ($cards as $card) {
+            
+        }
+
+
+
 //        echo '<pre>';
 //        var_dump($cards);
 //        die;
-        
+
         throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
     }
 

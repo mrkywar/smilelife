@@ -32,7 +32,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $adulteryCriterion = new HaveAdulteryCriterion($table);
-        $adulteryCriterion->addConsequence(new FlirtOnAdulteryConsequence($card, $table->getPlayer()));
+        $adulteryCriterion->addConsequence(new FlirtOnAdulteryConsequence($card, $table));
 
         $notMarriedCriterion = new InversedCriterion(new IsMarriedCriterion($table));
         $notMarriedCriterion->setErrorMessage(clienttranslate('You are already married, think about adultery ?'));
@@ -57,7 +57,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table->getPlayer()));
+        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table));
 
         return $finalCriterion;
     }

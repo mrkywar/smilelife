@@ -2,11 +2,11 @@
 
 namespace SmileLife\Card\Consequence\Category\Love;
 
-use Core\Models\Player;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
+use SmileLife\Table\PlayerTable;
 
 /**
  *
@@ -22,9 +22,9 @@ class FlirtOnAdulteryConsequence extends Consequence {
 
     /**
      * 
-     * @var Player
+     * @var PlayerTable
      */
-    private $player;
+    private $table;
 
     /**
      * 
@@ -32,9 +32,9 @@ class FlirtOnAdulteryConsequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Flirt $card, Player $player) {
+    public function __construct(Flirt $card, PlayerTable $table) {
         $this->cardManager = new CardManager();
-        $this->player = $player;
+        $this->table = $table;
         $this->card = $card;
     }
 
