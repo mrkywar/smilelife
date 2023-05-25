@@ -30,7 +30,8 @@ class FlirtCountCriterion extends PlayerTableCriterion {
     public function isValided(): bool {
         $flirts = $this->getTable()->getFlirts();
         $actualCount = $this->flirtCounter->compute($flirts);
-        return (self::MAX_COUNT >= $actualCount);
+        
+        return (self::MAX_COUNT > $actualCount);
     }
 
 }

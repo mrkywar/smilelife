@@ -34,7 +34,7 @@ class CardUsedConsequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Card $card, Player $player) {
+    public function __construct(?Card $card = null, Player $player) {
         $this->cardManager = new CardManager();
         $this->player = $player;
         $this->card = $card;

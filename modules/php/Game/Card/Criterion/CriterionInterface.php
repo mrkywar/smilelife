@@ -19,9 +19,9 @@ interface CriterionInterface {
     
     /**
      * 
-     * @return Consequence[]
+     * @return ?Consequence[]
      */
-    public function getConsequences(): array;
+    public function getConsequences(): ?array;
     
     
 }

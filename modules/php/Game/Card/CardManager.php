@@ -240,5 +240,11 @@ class CardManager extends SuperManager {
     protected function initSerializer(): Serializer {
         return new CardSerializer(Card::class);
     }
-
+    
+    /*
+     * --- TODO : Remains delete this (used in test case
+     */
+    public function add($cards) {
+        return $this->create($cards);
+    }
 }
