@@ -2,12 +2,14 @@
 
 namespace SmileLife\Card\Consequence\Category\Love;
 
+use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  *
@@ -33,8 +35,15 @@ class FlirtDoublonDectectionConcequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Flirt $card, PlayerTable $table) {
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    private $tableManager;
+
+    public function __construct(Flirt $card, PlayerTable &$table) {
         $this->cardManager = new CardManager();
+        $this->tableManager = new PlayerTableManager();
         $this->table = $table;
         $this->card = $card;
     }
@@ -48,9 +57,12 @@ class FlirtDoublonDectectionConcequence extends Consequence {
         if ($cards instanceof Card) {
             return; //no doublon
         }
-        
+
         foreach ($cards as $card) {
-            
+            if(!$this->isMyFlirt($card, $this->table)){
+                $this->table->addCard($card);
+                $this->tableManager->updateTable($this->table);
+            }
         }
 
 
@@ -60,6 +72,10 @@ class FlirtDoublonDectectionConcequence extends Consequence {
 //        die;
 
         throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
+    }
+    
+    private function isMyFlirt(Flirt $card, PlayerTable $table) {
+        return($card->getLocationArg() === $table->getPlayer()->getId());
     }
 
 }
