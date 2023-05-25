@@ -5,7 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Criterion\CriterionTester\CriterionDebugger;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -86,6 +86,12 @@ class PlayListener extends EventListener {
         if ($testRestult->hasConsequences()) {
             $response->set('consequences', $testRestult->getConsequences());
         }
+        $debugger = new CriterionDebugger($criteria);
+        $debugger->debug();
+        die("DEBUG");
+        echo '<pre>';
+        var_dump($testRestult);
+        die;
 
         return $response;
     }
