@@ -5,6 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -36,8 +37,18 @@ class PlayConsequence extends EventListener {
     }
 
     public function onPlay(PlayCardRequest &$request, Response &$response) {
-        var_dump($response->get('consequences'));
-        die;
+//        var_dump($response->get('consequences'));
+        $consequences = $response->get('consequences');
+
+        foreach ($consequences as $consequence) {
+            $this->applyConsequence($consequence, $request, $response);
+        }
+//        die;
+    }
+
+    private function applyConsequence(Consequence $consequence, PlayCardRequest &$request, Response &$response) {
+        echo "> C >" . get_class($consequence);
+        $consequence->execute();
     }
 
     public function getPriority(): int {

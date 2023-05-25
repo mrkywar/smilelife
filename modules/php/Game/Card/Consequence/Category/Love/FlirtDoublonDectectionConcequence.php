@@ -7,6 +7,7 @@ use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
+use SmileLife\Card\Core\CardLocation;
 
 /**
  *
@@ -39,6 +40,20 @@ class FlirtDoublonDectectionConcequence extends Consequence {
     }
 
     public function execute() {
+        $cards = $this->cardManager->findBy([
+            "type" => $this->card->getType(),
+            "location" => CardLocation::PLAYER_BOARD
+        ]);
+        if(is_array($cards)){
+            //doublon !!!
+            foreach ($cards as $card){
+                
+            }
+        }
+//        echo '<pre>';
+//        var_dump($cards);
+//        die;
+        
         throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
     }
 
