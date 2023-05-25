@@ -58,7 +58,7 @@ class PlayListener extends EventListener {
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
-        if(!$testRestult->isValided()) {
+        if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
 //        if (!$testRestult->isValided()) {
