@@ -84,6 +84,7 @@ class PlayListener extends EventListener {
                 ->set('consequences', null);
 
         if ($testRestult->isValided()) {
+            //var_dump(get_class($criteria));die;
             $response->set('consequences', $criteria->getConsequences());
         }
 

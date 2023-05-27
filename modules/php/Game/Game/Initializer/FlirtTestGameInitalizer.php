@@ -31,10 +31,10 @@ class FlirtTestGameInitalizer extends GameInitializer {
 //        $this->case1($case1Table);
 //        
         //-- Case 2 Adultery (playable on different destination)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case2Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->case2($case2Table);
+        $i = random_int(0, count($oTables) - 1);
+        $case2Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->case2($case2Table);
 //        
         //-- case 3 (max reached)
 //        $i = random_int(0, count($oTables) - 1);

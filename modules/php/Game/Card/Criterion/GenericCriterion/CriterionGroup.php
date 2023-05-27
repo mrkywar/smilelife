@@ -70,7 +70,7 @@ class CriterionGroup extends Criterion {
         $consequences = parent::getConsequences();
 
         foreach ($this->criteria as $criterion) {
-            if ($criterion->isValided() && $criterion->hasConsequences()) {
+            if ($criterion->isValided()) {
                 $consequences = array_merge($consequences ?? [], $criterion->getConsequences() ?? []);
             }
         }
