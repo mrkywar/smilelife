@@ -330,6 +330,25 @@ class PlayerTable extends Model {
         return $this;
     }
 
+    public function removeFlirt(Flirt $card) {
+        $searchedId = $card->getId();
+        if (null === $this->getAdultery()) {
+            $this->flirtIds = array_values(
+                    array_filter($this->flirtIds, function ($flirtId) use ($searchedId) {
+                        $searchedId !== $flirtId;
+                    })
+            );
+        } else {
+            $this->adulteryFlirtIds = array_values(
+                    array_filter($this->adulteryFlirtIds, function ($flirtId) use ($searchedId) {
+                        $searchedId !== $flirtId;
+                    })
+            );
+        }
+
+        return $this;
+    }
+
     public function getFlirts() {
         if (empty($this->getFlirtIds())) {
             return [];

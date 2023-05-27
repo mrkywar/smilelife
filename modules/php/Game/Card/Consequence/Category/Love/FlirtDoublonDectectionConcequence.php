@@ -86,6 +86,8 @@ class FlirtDoublonDectectionConcequence extends Consequence {
             $this->card->setLocationArg($player->getId());
             $this->cardManager->playCard($player, $this->card);
 
+            $targetTable->removeFlirt($this->card);
+            $this->tableManager->updateTable($targetTable);
             $this->table->addCard($this->card);
             $this->tableManager->updateTable($this->table);
         }
