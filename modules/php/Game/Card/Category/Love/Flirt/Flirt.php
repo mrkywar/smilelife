@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Love\Flirt;
 
 use SmileLife\Card\Category\Love\Love;
+use SmileLife\Card\Core\CardPile;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Love\FlirtCriterionFactory;
 
@@ -23,7 +24,7 @@ abstract class Flirt extends Love {
 
     public function __construct() {
         parent::__construct();
-        $this->pileName = "love";
+        $this->pileName = CardPile::PILE_LOVE;
 
         $this->setTitle(clienttranslate('Flirt'));
 

@@ -32,16 +32,17 @@ class FlirtCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $adulteryCriterion = new HaveAdulteryCriterion($table);
-        $adulteryCriterion->addConsequence(new FlirtOnAdulteryConsequence($card, $table->getPlayer()));
+        $adulteryCriterion->addConsequence(new FlirtOnAdulteryConsequence($card, $table));
 
         $notMarriedCriterion = new InversedCriterion(new IsMarriedCriterion($table));
         $notMarriedCriterion->setErrorMessage(clienttranslate('You are already married, think about adultery ?'));
 
         $flirtCountCriterion = new FlirtCountCriterion($table);
-        $flirtCountCriterion->setErrorMessage(clienttranslate('You\'ve already done the most flirting'));
+        $flirtCountCriterion->setErrorMessage(clienttranslate('You\'ve already done 5 flirts'));
 
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 
+        
         $finalCriterion = new CriterionGroup([
             //-- Adultery Criterion
             $adulteryCriterion,
@@ -57,7 +58,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table->getPlayer()));
+        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table));
 
         return $finalCriterion;
     }

@@ -4,6 +4,7 @@ namespace SmileLife\Card\Category\Love;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
+use SmileLife\Card\Core\CardPile;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Love\AdulteryCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
@@ -47,7 +48,7 @@ class Adultery extends Card implements BaseGame {
     }
 
     public function getPileName(): string {
-        return "adultery";
+        return CardPile::PILE_ADULTERY;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

@@ -17,7 +17,7 @@ class HaveJobBoostReadyCriterion extends PlayerTableCriterion {
         $jobBoost = $this->getTable()->getJobBoost();
         return (
                 null !== $jobBoost &&
-                !$jobBoost->getIsRotated()
+                !$jobBoost->getIsUsed()
                 );
     }
 

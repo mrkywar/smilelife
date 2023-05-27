@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Generic;
 
 use Core\Models\Player;
+use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Consequence\Consequence;
@@ -38,7 +39,7 @@ class DiscardConsequence extends Consequence {
         $this->card = $card;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         $this->cardManager->discardCard($this->card, $this->player);
         return $this;
     }

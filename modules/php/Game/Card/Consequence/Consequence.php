@@ -2,6 +2,8 @@
 
 namespace SmileLife\Card\Consequence;
 
+use Core\Requester\Response\Response;
+
 /**
  * Description of Consequence
  *
@@ -12,5 +14,5 @@ abstract class Consequence {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    abstract public function execute();
+    abstract public function execute(Response &$response);
 }

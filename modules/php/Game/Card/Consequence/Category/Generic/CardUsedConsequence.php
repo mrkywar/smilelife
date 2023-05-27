@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Generic;
 
 use Core\Models\Player;
+use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
@@ -40,7 +41,7 @@ class CardUsedConsequence extends Consequence {
         $this->card = $card;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }
 

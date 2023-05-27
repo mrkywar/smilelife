@@ -31,23 +31,29 @@ class CriterionDebugger {
         $this->debugOne($this->criteria);
     }
 
-    private function debugArray(array $criteria, $level = 0) {
-        foreach ($criteria as $criterion) {
-            $this->debugOne($criterion, $level);
-        }
-    }
-
     private function debugOne(CriterionInterface $criterion, $level = 0) {
 
         if ($criterion instanceof CriterionGroup) {
-            echo " GROUP ( <br/>";
-            $this->debugArray($criterion->getCriteria(), $level + 1);
-            echo " <br/>) OPERATOR :" . $criterion->getOperator();
+            echo " GROUP ( ";
+            $subCriteria = $criterion->getCriteria();
+            for ($i = 0; $i < sizeof($subCriteria); $i++) {
+                $this->debugOne($subCriteria[$i], $level + 1);
+                if ($i < sizeof($subCriteria) - 1) {
+                    echo " " . $criterion->getOperator() . " ";
+                }
+            }
+            echo ") " . $this->displayResult($criterion);
         } elseif ($criterion instanceof InversedCriterion) {
-            echo " " . $level . " INVERSED " . get_class($criterion->getCriterion()) . " -> " . ($criterion->isValided() ? "True" : "False") . "<br/>";
+            echo " " . $level . " INVERSED " . get_class($criterion->getCriterion()) . " " . $this->displayResult($criterion);
+            ;
         } else {
-            echo " " . $level . " " . get_class($criterion) . " -> " . ($criterion->isValided() ? "True" : "False") . "<br/>";
+            echo " " . $level . " " . get_class($criterion) . " " . $this->displayResult($criterion);
+            ;
         }
+    }
+
+    private function displayResult(CriterionInterface $criterion) {
+        return " -> V " . ($criterion->isValided() ? "True" : "False") . " | C " . count($criterion->getConsequences() ?? []);
     }
 
 }

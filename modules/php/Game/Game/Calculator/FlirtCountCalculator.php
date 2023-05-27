@@ -26,7 +26,9 @@ class FlirtCountCalculator {
     }
 
     private function computeOne(Flirt $card) {
-        return ($card->getIsRotated()) ? 0 : 1;
+        //Only Count if not Flipped && not on adultery 
+        // -- TODO missing adlutery logic
+        return ($card->getIsFlipped()) ? 0 : 1;
     }
 
 }
