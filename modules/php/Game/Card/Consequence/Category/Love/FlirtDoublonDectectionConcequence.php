@@ -66,6 +66,7 @@ class FlirtDoublonDectectionConcequence extends Consequence {
                 $targetTable = $table;
             }
         }
+//        var_dump($doublon);die;
 
         if (null !== $doublon && null !== $targetTable) {
             $player = $this->table->getPlayer();
@@ -85,7 +86,7 @@ class FlirtDoublonDectectionConcequence extends Consequence {
             $this->card->setLocationArg($player->getId());
             $this->cardManager->playCard($player, $this->card);
 
-            $this->table->addFlirt($this->card);
+            $this->table->addCard($this->card);
             $this->tableManager->updateTable($this->table);
         }
     }

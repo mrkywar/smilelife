@@ -27,38 +27,37 @@ class FlirtTestGameInitalizer extends GameInitializer {
 //        //-- Case 1 Marriage (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
-        ;
         unset($oTables[$i]);
 //        $this->case1($case1Table);
-//        //-- Case 2 Adultery (playable on different destination)
+//        
+        //-- Case 2 Adultery (playable on different destination)
 //        $i = random_int(0, count($oTables) - 1);
-//        $case2Table = $oTables[array_keys($oTables)[$i]];;
+//        $case2Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->case2($case2Table);
+//        
         //-- case 3 (max reached)
-        $i = random_int(0, count($oTables) - 1);
-        $case3and4Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->case3($case3and4Table);
-
+//        $i = random_int(0, count($oTables) - 1);
+//        $case3and4Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->case3($case3and4Table);
+        
         //-- case 4 (max reached wirh limitless flirt job)
-        $this->case4($case3and4Table);
+//        $this->case4($case3and4Table);
 
         //-- case 5 (Doublon)
         $i = random_int(0, count($oTables) - 1);
         $case5Table = $oTables[array_keys($oTables)[$i]];
-        ;
         unset($oTables[$i]);
         $this->case5($case5Table, $case1Table);
 
         //-- case 6 (classic) 
-        $i = random_int(0, count($oTables) - 1);
-        $case6Table = $oTables[array_keys($oTables)[$i]];
-        ;
-        unset($oTables[$i]);
-        $this->case6($case6Table);
+//        $i = random_int(0, count($oTables) - 1);
+//        $case6Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->case6($case6Table);
 
-        return $case3and4Table->getId();
+        return $case5Table->getId();
     }
 
     private function case1(PlayerTable $table) {
@@ -126,14 +125,19 @@ class FlirtTestGameInitalizer extends GameInitializer {
 
     private function case5(PlayerTable $table, PlayerTable $othertable) {
         $doublonFlirt = new Hotel();
-        $doublonFlirt->setId(300);
+        $doublonFlirt->setId(201)
+                ->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($othertable->getPlayer()->getId());
+           
+        $this->cardManager->add($doublonFlirt);
         $this->cardManager->playCard($othertable->getPlayer(), $doublonFlirt);
 
         $othertable->addCard($doublonFlirt);
         $this->playerTableManager->updateTable($othertable);
 
         $forcedFlirt = new Hotel();
-        $forcedFlirt->setLocation(CardLocation::PLAYER_HAND)
+        $forcedFlirt->setId(202)
+                ->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($table->getId());
 
         $this->cardManager->add($forcedFlirt);

@@ -47,7 +47,7 @@ class PlayConsequence extends EventListener {
     }
 
     private function applyConsequence(Consequence $consequence, PlayCardRequest &$request, Response &$response) {
-        echo "> C >" . get_class($consequence);
+//        echo "> C >" . get_class($consequence);
         $consequence->execute($response);
     }
 
