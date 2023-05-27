@@ -40,7 +40,10 @@ class FlirtOnAdulteryConsequence extends Consequence {
     }
 
     public function execute(Response &$response) {
-        throw new ConsequenceException("Consequence-FOAC : Not Yet implemented");
+//        $card = $response->get("card");
+//        $card->setPile()
+        
+        //throw new ConsequenceException("Consequence-FOAC : Not Yet implemented");
     }
 
 }
