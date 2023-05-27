@@ -31,41 +31,28 @@ class FlirtDoublonDectectionConcequence extends Consequence {
 
     /**
      * 
-     * @var CardManager
-     */
-    private $cardManager;
-
-    /**
-     * 
      * @var PlayerTableManager
      */
     private $tableManager;
 
     public function __construct(Flirt $card, PlayerTable &$table) {
-        $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
         $this->table = $table;
         $this->card = $card;
     }
 
     public function execute() {
-        $cards = $this->cardManager->findBy([
-            "type" => $this->card->getType(),
-            "location" => CardLocation::PLAYER_BOARD
-        ]);
+        $tables = $this->tableManager->findBy();
+        $doublon = null;
 
-        if ($cards instanceof Card) {
-            return; //no doublon
-        }
-
-        foreach ($cards as $card) {
-            if(!$this->isMyFlirt($card, $this->table)){
-                $this->table->addCard($card);
-                $this->tableManager->updateTable($this->table);
+        foreach ($tables as $table) {
+            if ($table->getId() !== $this->table->getId()) {
+                $doublon = $this->checkTableDoublonFlirt($table);
             }
         }
+        var_dump($doublon);
 
-
+        die('NOT FOUND');
 
 //        echo '<pre>';
 //        var_dump($cards);
@@ -73,9 +60,23 @@ class FlirtDoublonDectectionConcequence extends Consequence {
 
         throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
     }
-    
-    private function isMyFlirt(Flirt $card, PlayerTable $table) {
-        return($card->getLocationArg() === $table->getPlayer()->getId());
+
+    private function checkTableDoublonFlirt(PlayerTable $table): ?Flirt {
+        $classic = $this->getDoublonFlirt($table->getLastFlirt());
+        if (null !== $classic) {
+            return $classic;
+        }
+        return $this->getDoublonFlirt($table->getLastAdulteryFlirt());
+    }
+
+    private function getDoublonFlirt(?Flirt $flirt) {
+        // The player have a last Flirt 
+        // AND Flirt the same type as the played Flirt
+        // AND Flirt isn't protected
+        if (null !== $flirt && $flirt->getType() === $this->card->getType() && !$flirt->getIsFlipped()) {
+            return $flirt;
+        }
+        return null;
     }
 
 }

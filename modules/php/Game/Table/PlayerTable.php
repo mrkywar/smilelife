@@ -369,6 +369,15 @@ class PlayerTable extends Model {
         }
     }
 
+    public function getLastAdulteryFlirt(): ?Flirt {
+        $flirts = $this->getAdulteryFlirts();
+        if (empty($flirts)) {
+            return null;
+        } else {
+            return $flirts[sizeof($flirts) - 1];
+        }
+    }
+
     public function addReward(Reward $card) {
         $this->rewardIds[] = $card->getId();
 
