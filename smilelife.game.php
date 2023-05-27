@@ -10,7 +10,6 @@ use SmileLife\Card\CardManager;
 use SmileLife\Game\DataRetriver\DataRetriver;
 use SmileLife\Game\GameProgressionRetriver;
 use SmileLife\Game\Initializer\GameInitializer;
-use SmileLife\Game\Initializer\TestGameInitializer;
 use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Traits\ZombieTrait;
@@ -19,6 +18,7 @@ use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\PlayFromDiscardTrait;
 use SmileLife\PlayerAction\ResignTrait;
+use SmileLife\PlayerAction\VolontaryDivorceTrait;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -128,7 +128,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new SmileLife\Game\Initializer\FlirtTestGameInitalizer();
+        $this->gameInitializer = new SmileLife\Game\Initializer\TestGameInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -226,7 +226,7 @@ class SmileLife extends Table {
         if ($notification->isPublic()) {
             self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
         } else {
-            throw new \Exception("TODO : Unsupported private Notification");
+            throw new Exception("TODO : Unsupported private Notification");
         }
     }
 
@@ -234,6 +234,7 @@ class SmileLife extends Table {
     use ResignTrait;
     use PlayFromDiscardTrait;
     use DrawTrait;
+    use VolontaryDivorceTrait;
 
 //-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;

@@ -79,4 +79,13 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
+    
+    public function divorceVoluntry(){
+        self::setAjaxMode();
+
+        $this->game->actionDivorceVoluntry();
+
+        self::ajaxResponse();
+    }
+    
 }

@@ -52,6 +52,7 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
+            "volontryDivorse" => ST_NEXT_PLAYER,
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
