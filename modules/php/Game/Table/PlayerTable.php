@@ -116,6 +116,13 @@ class PlayerTable extends Model {
     /**
      * 
      * @var array
+     * @ORM\Column{"type":"json", "name":"table_adultery_flirts"}
+     */
+    private $adulteryFlirtIds;
+
+    /**
+     * 
+     * @var array
      * @ORM\Column{"type":"json", "name":"table_specials"}
      */
     private $specialsIds;
@@ -152,6 +159,7 @@ class PlayerTable extends Model {
         $this->attackIds = [];
         $this->childIds = [];
         $this->flirtIds = [];
+        $this->adulteryFlirtIds = [];
         $this->rewardIds = [];
         $this->specialsIds = [];
 
@@ -313,7 +321,11 @@ class PlayerTable extends Model {
     }
 
     public function addFlirt(Flirt $card) {
-        $this->flirtIds[] = $card->getId();
+        if (null === $this->getAdultery()) {
+            $this->flirtIds[] = $card->getId();
+        } else {
+            $this->adulteryFlirtIds[] = $card->getId();
+        }
 
         return $this;
     }
@@ -327,6 +339,21 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getFlirtIds()]);
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(false);
+
+        return $cards;
+    }
+
+    public function getAdulteryFlirts() {
+        if (empty($this->getAdulteryFlirtIds())) {
+            return [];
+        }
+
+        $this->cardManager->getSerializer()
+                ->setIsForcedArray(true);
+        $cards = $this->cardManager
+                ->findBy(["id" => $this->getAdulteryFlirtIds()]);
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -489,6 +516,10 @@ class PlayerTable extends Model {
         return $this->adulteryId;
     }
 
+    public function getAdulteryFlirtIds(): array {
+        return $this->adulteryFlirtIds;
+    }
+
     public function getPetIds(): array {
         return $this->petIds;
     }
@@ -545,6 +576,11 @@ class PlayerTable extends Model {
 
     public function setAdulteryId(?int $adulteryId) {
         $this->adulteryId = $adulteryId;
+        return $this;
+    }
+
+    public function setAdulteryFlirtIds(array $adulteryFlirtIds) {
+        $this->adulteryFlirtIds = $adulteryFlirtIds;
         return $this;
     }
 

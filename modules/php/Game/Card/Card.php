@@ -61,6 +61,13 @@ abstract class Card extends Model {
 
     /**
      * 
+     * @var string|null
+     * @ORM\Column{"type":"string", "name":"card_table_location"}
+     */
+    private $tableLocation = 0;
+
+    /**
+     * 
      * @var int|null
      * @ORM\Column{"type":"integer", "name":"card_discarder_id"}
      */
@@ -76,9 +83,9 @@ abstract class Card extends Model {
     /**
      * 
      * @var bool
-     * @ORM\Column{"type":"bool", "name":"card_is_rotated", "default":"false"}
+     * @ORM\Column{"type":"bool", "name":"card_is_used", "default":"false"}
      */
-    private $isRotated;
+    private $isUsed;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Unpersisted property
@@ -111,7 +118,7 @@ abstract class Card extends Model {
     public function __construct() {
         $this->setLocation(CardLocation::DECK)
                 ->setIsFlipped(false)
-                ->setIsRotated(false)
+                ->setIsUsed(false)
                 ->setTitle("")
                 ->setSubtitle("")
                 ->setText1("")
@@ -190,8 +197,12 @@ abstract class Card extends Model {
         return $this->isFlipped;
     }
 
-    public function getIsRotated(): bool {
-        return $this->isRotated;
+    public function getIsUsed(): bool {
+        return $this->isUsed;
+    }
+
+    public function getTableLocation(): ?string {
+        return $this->tableLocation;
     }
 
     public function setId(?int $id) {
@@ -229,8 +240,13 @@ abstract class Card extends Model {
         return $this;
     }
 
-    public function setIsRotated(bool $isRotated) {
-        $this->isRotated = $isRotated;
+    public function setIsUsed(bool $isUsed) {
+        $this->isUsed = $isUsed;
+        return $this;
+    }
+
+    public function setTableLocation(?string $tableLocation) {
+        $this->tableLocation = $tableLocation;
         return $this;
     }
 

@@ -23,7 +23,7 @@ class Camping extends Flirt implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function canGenerateChild(): bool {
-        return !$this->getIsRotated();
+        return true;
     }
 
     public function getClass(): string {

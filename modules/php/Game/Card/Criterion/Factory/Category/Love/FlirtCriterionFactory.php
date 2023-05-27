@@ -42,6 +42,7 @@ class FlirtCriterionFactory extends CardCriterionFactory {
 
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 
+        
         $finalCriterion = new CriterionGroup([
             //-- Adultery Criterion
             $adulteryCriterion,

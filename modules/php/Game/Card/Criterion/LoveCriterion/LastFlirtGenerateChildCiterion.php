@@ -23,7 +23,7 @@ class LastFlirtGenerateChildCiterion extends PlayerTableCriterion {
         return (
                 $flirt instanceof Flirt &&
                 $flirt->canGenerateChild() && 
-                ! $flirt->getIsRotated()
+                ! $flirt->getIsUsed()
         );
     }
 
