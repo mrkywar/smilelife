@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Love;
 
+use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
@@ -38,7 +39,7 @@ class FlirtOnAdulteryConsequence extends Consequence {
         $this->card = $card;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         throw new ConsequenceException("Consequence-FOAC : Not Yet implemented");
     }
 

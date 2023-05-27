@@ -2,12 +2,12 @@
 
 namespace SmileLife\Card\Consequence\Category\Love;
 
-use SmileLife\Card\Card;
+use Core\Notification\Notification;
+use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
-use SmileLife\Card\Consequence\ConsequenceException;
-use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
@@ -31,34 +31,63 @@ class FlirtDoublonDectectionConcequence extends Consequence {
 
     /**
      * 
+     * @var CardManager
+     */
+    private $cardManager;
+
+    /**
+     * 
      * @var PlayerTableManager
      */
     private $tableManager;
+    
+    /**
+     * 
+     * @var CardDecorator
+     */
+    private $cardDecorator;
 
-    public function __construct(Flirt $card, PlayerTable &$table) {
+    public function __construct(Flirt &$card, PlayerTable $table) {
         $this->tableManager = new PlayerTableManager();
+        $this->cardDecorator = new CardDecorator();
+        $this->cardManager = new CardManager();
         $this->table = $table;
-        $this->card = $card;
+        $this->card = &$card;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         $tables = $this->tableManager->findBy();
         $doublon = null;
+        $targetTable = null;
 
         foreach ($tables as $table) {
             if ($table->getId() !== $this->table->getId()) {
                 $doublon = $this->checkTableDoublonFlirt($table);
+                $targetTable = $table;
             }
         }
-        var_dump($doublon);
 
-        die('NOT FOUND');
+        if (null !== $doublon && null !== $targetTable) {
+            $player = $this->table->getPlayer();
+            $targetPlayer = $targetTable->getPlayer();
+            
+            $notification = new Notification();
+            $notification->setType("doublonFlirt_notification")
+                    ->setText(clienttranslate('${player_name} steal ${cardName} to ${target_name}'))
+                    ->add('player_name', $player->getName())
+                    ->add('playerId', $player->getId())
+                    ->add('target_name',$targetPlayer->getName())
+                    ->add('cardName',$doublon->getName())
+                    ->add('card', $this->cardDecorator->decorate($doublon));
+            
+            $response->addNotification($notification);
 
-//        echo '<pre>';
-//        var_dump($cards);
-//        die;
+            $this->card->setLocationArg($player->getId());
+            $this->cardManager->playCard($player, $this->card);
 
-        throw new ConsequenceException("Consequence-FDDC : Not Yet implemented");
+            $this->table->addFlirt($this->card);
+            $this->tableManager->updateTable($this->table);
+        }
     }
 
     private function checkTableDoublonFlirt(PlayerTable $table): ?Flirt {

@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
+use Core\Requester\Response\Response;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
 
@@ -12,7 +13,7 @@ use SmileLife\Card\Consequence\ConsequenceException;
  */
 class AttentatConsequence extends Consequence {
     
-    public function execute() {
+    public function execute(Response &$response) {
         throw new ConsequenceException("AC-01 - Not Implemented yet");
     }
 

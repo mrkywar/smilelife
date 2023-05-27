@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Attack;
 
 use Core\Models\Player;
+use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Consequence\Consequence;
@@ -39,7 +40,7 @@ class AttackDestinationConsequence extends Consequence {
         $this->card = $card;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         $this->card->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($this->player->getId());
 

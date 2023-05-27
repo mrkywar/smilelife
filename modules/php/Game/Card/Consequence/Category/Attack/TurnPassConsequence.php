@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Attack;
 
 use Core\Models\Player;
+use Core\Requester\Response\Response;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
 
@@ -30,7 +31,7 @@ class TurnPassConsequence extends Consequence {
         $this->turnToPass = $turnToPass;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         throw new ConsequenceException("Consequence-TPC : Not Yet implemented");
     }
 

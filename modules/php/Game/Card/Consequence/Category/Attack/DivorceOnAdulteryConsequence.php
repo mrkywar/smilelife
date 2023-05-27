@@ -2,7 +2,9 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
+use Core\Requester\Response\Response;
 use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -22,7 +24,7 @@ class DivorceOnAdulteryConsequence extends Consequence {
         $this->table = $table;
     }
 
-    public function execute() {
+    public function execute(Response &$response) {
         throw new ConsequenceException("DOAC - Not Implemented yet");
     }
 

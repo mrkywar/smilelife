@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Studies;
 
+use Core\Requester\Response\Response;
 use SmileLife\Card\Consequence\ConsequenceException;
 
 /**
@@ -11,7 +12,7 @@ use SmileLife\Card\Consequence\ConsequenceException;
  */
 class StudieLevelIncriseConsequence extends StudiesConsequence {
 
-    public function execute() {
+    public function execute(Response &$response) {
         throw new ConsequenceException("Consequence-SLIC : Not Yet implemented");
     }
 

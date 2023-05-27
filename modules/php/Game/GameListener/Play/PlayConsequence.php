@@ -48,7 +48,7 @@ class PlayConsequence extends EventListener {
 
     private function applyConsequence(Consequence $consequence, PlayCardRequest &$request, Response &$response) {
         echo "> C >" . get_class($consequence);
-        $consequence->execute();
+        $consequence->execute($response);
     }
 
     public function getPriority(): int {
