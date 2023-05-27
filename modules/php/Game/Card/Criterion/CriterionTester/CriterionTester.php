@@ -18,7 +18,18 @@ class CriterionTester {
      * @var CriterionInterface
      */
     private $criteria;
+
+    /**
+     * 
+     * @var bool
+     */
     private $isValid;
+
+    /**
+     * 
+     * @var string|null
+     */
+    private $errorMessage;
 
     public function __construct() {
         $this->isValid = null;
@@ -34,7 +45,7 @@ class CriterionTester {
         $this->isValid = $this->criteria->isValided();
         if (!$this->isValid) {
             $this->setErrorMessage($this->criteria->getErrorMessage());
-        } 
+        }
 
         return $this;
     }
@@ -44,6 +55,15 @@ class CriterionTester {
             throw new CriterionException("no test done");
         }
         return $this->isValid;
+    }
+
+    public function getErrorMessage(): ?string {
+        return $this->errorMessage;
+    }
+
+    public function setErrorMessage(string $errorMessage) {
+        $this->errorMessage = $errorMessage;
+        return $this;
     }
 
 }
