@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Love\Marriage;
 
 use SmileLife\Card\Category\Love\Love;
+use SmileLife\Card\Core\CardPile;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\MarriageCriterionFactory;
 
@@ -38,7 +39,7 @@ abstract class Marriage extends Love {
     }
 
     public function getPileName(): string {
-        return "love";
+        return CardPile::PILE_LOVE;
     }
     
     public function getCriterionFactory(): CardCriterionFactory {

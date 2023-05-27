@@ -6,7 +6,7 @@ use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
-use SmileLife\Card\Consequence\ConsequenceException;
+use SmileLife\Card\Core\CardPile;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -40,10 +40,9 @@ class FlirtOnAdulteryConsequence extends Consequence {
     }
 
     public function execute(Response &$response) {
-//        $card = $response->get("card");
-//        $card->setPile()
-        
-        //throw new ConsequenceException("Consequence-FOAC : Not Yet implemented");
+        $card = $response->get("card");
+        $card->setPileName(CardPile::PILE_ADULTERY);
+        $card = $response->set("card", $card);
     }
 
 }

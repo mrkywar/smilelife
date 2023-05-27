@@ -31,7 +31,7 @@ define([
                     var adulteryPile = [];
                     if (null !== table.adultery) {
                         adulteryPile.push(table.adultery);
-                        adulteryPile = [...adulteryPile, ...table.adulteryFlirts]//adulteryPile.concact(table.adulteryFlirts);
+                        adulteryPile = [...adulteryPile, ...table.adulteryFlirts]
                     }
 
                     return {

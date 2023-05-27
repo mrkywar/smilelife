@@ -10,7 +10,7 @@ define([
             {
 
                 notif_doublonFlirtNotification: function (notif) {
-                    this.debug(notif);
+                    //this.debug(notif);
 
                     var card = notif.args.card;
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
