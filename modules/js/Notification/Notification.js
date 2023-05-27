@@ -6,6 +6,7 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Draw.js',
     g_gamethemeurl + 'modules/js/Notification/Pass.js',
     g_gamethemeurl + 'modules/js/Notification/Play.js',
+    g_gamethemeurl + 'modules/js/Notification/Consequence.js',
 ], function (dojo, declare) {
     return declare(
             'smilelife.notification',
@@ -13,7 +14,8 @@ define([
                 smilelife.notification.resign,
                 smilelife.notification.draw,
                 smilelife.notification.pass,
-                smilelife.notification.play
+                smilelife.notification.play,
+                smilelife.notification.consequence
             ],
             {
                 constructor: function () {
@@ -41,6 +43,8 @@ define([
                         ['drawNotification', 500],
                         ['passNotification', 500],
                         ['playNotification', 500],
+                        ['doublonFlirtNotification', 500]
+
                     ]
                     notifs.forEach(function (notif) {
                         dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));

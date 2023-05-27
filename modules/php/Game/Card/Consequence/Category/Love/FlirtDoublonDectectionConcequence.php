@@ -73,11 +73,12 @@ class FlirtDoublonDectectionConcequence extends Consequence {
             $targetPlayer = $targetTable->getPlayer();
             
             $notification = new Notification();
-            $notification->setType("doublonFlirt_notification")
+            $notification->setType("doublonFlirtNotification")
                     ->setText(clienttranslate('${player_name} steal ${cardName} to ${target_name}'))
                     ->add('player_name', $player->getName())
                     ->add('playerId', $player->getId())
                     ->add('target_name',$targetPlayer->getName())
+                    ->add('targetId', $targetPlayer->getId())
                     ->add('cardName',$doublon->getName())
                     ->add('card', $this->cardDecorator->decorate($doublon));
             
