@@ -27,7 +27,6 @@ class VolontaryDivorceNextState extends EventListener {
     }
 
     public function onDivorce(VolontaryDivorceRequest &$request, Response &$response) {
-
         $response->set("nextState", "volontryDivorse");
 
         return $response;
