@@ -14,6 +14,31 @@ define([
                 },
 
                 /**
+                 * This function is check if a given card is a job owned by 
+                 * the active player
+                 */
+                isMyJob: function (card) {
+                    return (
+                            (undefined !== card.category) &&                    //is card category defined
+                            (card.category.includes("job")) &&                  //is card a job ?
+                            null !== this.myTable.job &&                        //did I have a job 
+                            card.id === this.myTable.job.id                     //is this card the same of my job
+                            );
+                },
+                /**
+                 * This function is check if a given card is a marriage owned by 
+                 * the active player
+                 */
+                isMyMarriage: function (card) {
+                    return (
+                            (undefined !== card.category) &&                    //is card category defined
+                            (card.category.includes("marriage")) &&             //is card a marriage ?
+                            null !== this.myTable.marriage &&                   //did I have a marriage 
+                            card.id === this.myTable.marriage.id                //is this card the same of my marriage
+                            );
+                },
+                
+                /**
                  * This function is the main code for displaying all Tables for 
                  * dispaying my Hand, my Table and oppponents' tables
                  */
@@ -25,7 +50,7 @@ define([
                     //Prepare & display this player table Container
                     var meAsPlayer = gamedatas.players[this.player_id];
                     meAsPlayer.id = this.player_id
-                    
+
                     dojo.place(this.getMyTableHtml(meAsPlayer), "tables");
 
                     //Prepare & Display this player Hand Cards
@@ -48,9 +73,6 @@ define([
                         var table = gamedatas.tables[playerId];
                         this.displayTablePiles(table);
                     }
-
-
-
                 },
 
                 /**
@@ -178,14 +200,6 @@ define([
                     `;
                 },
 
-                isMyJob: function (card) {           
-                    return (
-                            (undefined !== card.category) &&                    //is card category defined
-                            (card.category.includes("job")) &&                  //is card a job ?
-                            null !== this.myTable.job &&                        //did I have a job 
-                            card.id === this.myTable.job.id                     //is this card the same of my job
-                            );
-                },
             }
     );
 });

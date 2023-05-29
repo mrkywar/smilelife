@@ -64,7 +64,7 @@ define([
                             case "takeCard":
                                 if (!searchedDiv.classList.contains("selected")) {
                                     //select card
-                                    if (this.isMyJob(card) || undefined === card.type || 'discard' === card.location) {
+                                    if (this.isMyJob(card) || this.isMyMarriage(card) || undefined === card.type || 'discard' === card.location) {
                                         dojo.query(".selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
                                     }
@@ -79,9 +79,11 @@ define([
                                 } else if (this.isMyJob(card)) {
                                     //resign
                                     this.doResign();
+                                } else if (this.isMyMarriage(card)) {
+                                    //volontary divorce
+                                    this.doDivorce();
                                 } else if ('discard' === card.location) {
                                     //Play From Discard
-
                                     this.doPlayFromDiscard();
                                 }
                                 break;

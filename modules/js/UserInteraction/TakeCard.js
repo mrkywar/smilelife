@@ -17,6 +17,9 @@ define([
                             this.addActionButton('resign_button', _('Resign and Pass'), 'doResign', null, false, 'red');
                         }
                     }
+                    if (null !== this.myTable.marriage) {
+                        this.addActionButton('divorce_button', _('Voluntary Divorce'), 'doDivorce', null, false, 'red');
+                    }
 
                     this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
 
@@ -36,6 +39,10 @@ define([
 
                 doPlayFromDiscard: function () {
                     this.takeAction('playFromDiscard');
+                },
+
+                doDivorce: function () {
+                    this.takeAction('divorceVoluntry');
                 }
 
             }
