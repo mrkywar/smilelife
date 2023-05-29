@@ -14,5 +14,6 @@ class ActionType {
     
     const ACTION_RESIGN = "resign";
     const ACTION_DECK_DRAW = "drawCard";
+    const ACTION_VOLONTARY_DIVORCE = "volontaryDivorce";
 
 }

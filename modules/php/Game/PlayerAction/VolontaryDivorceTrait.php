@@ -9,6 +9,9 @@ namespace SmileLife\PlayerAction;
 trait VolontaryDivorceTrait {
 
     public function actionDivorceVoluntry() {
+        self::checkAction('vonlontaryDivorce');
+        
+        
         throw new \BgaUserException('VDT : Not Yet implemented');
     }
 

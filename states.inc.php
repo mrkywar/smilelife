@@ -47,6 +47,7 @@ $playerActionsGameStates = [
         "possibleactions" => [
             "resign",
             "drawCard",
+            "vonlontaryDivorce",
             "playFormDiscard"
         ],
         "transitions" => [

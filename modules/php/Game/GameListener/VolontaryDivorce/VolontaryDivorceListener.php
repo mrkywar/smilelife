@@ -5,16 +5,16 @@ namespace SmileLife\Game\GameListener\Resign;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Game\Request\ResignRequest;
+use SmileLife\Game\Request\VolontaryDivorceRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
 
 /**
- * Description of ResignListener
+ * Description of VolontaryDivorceListener
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class ResignListener extends EventListener {
+class VolontaryDivorceListener extends EventListener {
 
     /**
      * 
@@ -29,37 +29,34 @@ class ResignListener extends EventListener {
     private $tableManager;
 
     public function __construct() {
-        $this->setMethod("onResign");
+        $this->setMethod("onDivorce");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
     }
 
-  
-
-    public function onResign(ResignRequest &$request, Response &$response) {
+    public function onDivorce(VolontaryDivorceRequest &$request, Response &$response) {
         $player = $request->getPlayer();
-        
+
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
 
-        $job = $table->getJob();
-        $this->cardManager->discardCard($job, $player);
-        $table->setJobId(null);
-        
+        $marriage = $table->getMarriage();
+        $this->cardManager->discardCard($marriage, $player);
+        $table->setMarriageId(null);
+
         $this->tableManager->updateTable($table);
-        
+
         $response->add("playerTable", $table)
                 ->add("player", $player)
-                ->add("job", $job);
+                ->add("marriage", $marriage);
 
         return $response;
-        
     }
 
     public function eventName(): string {
-        return ActionType::ACTION_RESIGN;
+        return ActionType::ACTION_VOLONTARY_DIVORCE;
     }
 
     public function getPriority(): int {
