@@ -21,15 +21,23 @@ class WagesTestGameInitalizer extends GameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
+        //-- Case 1 No Job (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->noJobCase($case1Table);
 
+        //-- Case 2 Bandit (playable)
         $i = random_int(0, count($oTables) - 1);
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->normalCase($case2Table);
+
+        //-- Case 3 Barman (2 case Playable & Not)
+        $i = random_int(0, count($oTables) - 1);
+        $case3Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->limitedCase($case3Table);
 
         return $case1Table->getId();
     }
@@ -44,7 +52,6 @@ class WagesTestGameInitalizer extends GameInitializer {
     }
 
     private function normalCase(PlayerTable $table) {
-        //Put bandit on table
         $bandit = $this->cardManager->findBy(
                 ["type" => CardType::JOB_BANDIT], 1
         );
@@ -54,6 +61,26 @@ class WagesTestGameInitalizer extends GameInitializer {
         $this->playerTableManager->updateTable($table);
 
         $forcedWage = new WageLevel4();
+        $forcedWage->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add($forcedWage);
+        $forcedWage2 = new WageLevel1();
+        $forcedWage2->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add($forcedWage2);
+    }
+
+    private function limitedCase(PlayerTable $table) {
+        $barman = $this->cardManager->findBy(
+                ["type" => CardType::JOB_BARMAN], 1
+        );
+        $this->cardManager->playCard($table->getPlayer(), $barman);
+        $table->addCard($barman);
+        $this->playerTableManager->updateTable($table);
+
+        $forcedWage = new WageLevel2();
         $forcedWage->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($table->getId());
 
