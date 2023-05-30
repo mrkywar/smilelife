@@ -1,12 +1,13 @@
 <?php
 
-namespace SmileLife\Game\Initializer;
+namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Wage\WageLevel1;
 use SmileLife\Card\Category\Wage\WageLevel2;
 use SmileLife\Card\Category\Wage\WageLevel4;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
 /**

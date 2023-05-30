@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Game\Initializer;
-
-use SmileLife\Card\Card;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Initializer\GameInitializer;
+
+namespace SmileLife\Game\Initializer\Test;
 
 /**
  * Description of TestGameInitializer
