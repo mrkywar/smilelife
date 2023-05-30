@@ -58,17 +58,18 @@ class PlayListener extends EventListener {
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
-        if (!$testRestult->isValided()) {
+        if (!$testRestult->isValided() && 1 === 1) {
+            
+//            var_dump($testRestult->getErrorMessage());die;
+            $debugger = new CriterionDebugger($criteria);
+            $debugger->debug();
+            die("DEBUG");
+
+            throw new CardException("Not Playable");
+        }else if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
-//        if (!$testRestult->isValided()) {
-//            var_dump($testRestult->getErrorMessage());die;
-//            $debugger = new CriterionDebugger($testRestult->getCriteria());
-//            $debugger->debug();
-//            die("DEBUG");
-//
-//            throw new CardException("Not Playable");
-//        }
+//        
 
 
         $table->addCard($card);
