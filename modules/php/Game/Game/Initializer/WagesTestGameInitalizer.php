@@ -51,7 +51,7 @@ class WagesTestGameInitalizer extends GameInitializer {
         unset($oTables[$i]);
         $this->writerCase($case6Table);
 
-        return $case1Table->getId();
+        return $case3Table->getId();
     }
 
     private function noJobCase(PlayerTable $table) {
@@ -85,11 +85,11 @@ class WagesTestGameInitalizer extends GameInitializer {
     }
 
     private function limitedCase(PlayerTable $table) {
-        $barman = $this->cardManager->findBy(
+        $job = $this->cardManager->findBy(
                 ["type" => CardType::JOB_BARMAN], 1
         );
-        $this->cardManager->playCard($table->getPlayer(), $barman);
-        $table->addCard($barman);
+        $this->cardManager->playCard($table->getPlayer(), $job);
+        $table->addCard($job);
         $this->playerTableManager->updateTable($table);
 
         $forcedWage = new WageLevel2();
@@ -132,8 +132,8 @@ class WagesTestGameInitalizer extends GameInitializer {
         $grandPrix = $this->cardManager->findBy(
                 ["type" => CardType::REWARD_NATIONAL_MEDAL], 1
         );
-        $this->cardManager->playCard($table->getPlayer(), $job);
-        $table->addCard($job);
+        $this->cardManager->playCard($table->getPlayer(), $grandPrix);
+        $table->addCard($grandPrix);
         
         $this->playerTableManager->updateTable($table);
 
