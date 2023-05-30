@@ -6,6 +6,7 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Love\Flirt\Bar;
 use SmileLife\Card\Category\Love\Flirt\Theater;
 use SmileLife\Card\Category\Love\Marriage\BougMadame;
+use SmileLife\Card\Category\Love\Marriage\Fourqueux;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
@@ -38,8 +39,14 @@ class MarriageTestsInitializer extends GameInitializer {
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->fiveFlirtCase($case3Table);
+        
+        //-- Case 4 (10 FLirt)
+        $i = random_int(0, count($oTables) - 1);
+        $case4Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->tenFlirtCase($case4Table);
 
-        return $case1Table->getId();
+        return $case4Table->getId();
     }
 
     private function alreadyMarriageCase(PlayerTable $table) {
@@ -89,6 +96,39 @@ class MarriageTestsInitializer extends GameInitializer {
             $table->addCard($flirt);
         }
         $this->playerTableManager->updateTable($table);
+
+        $forcedMarriage = new Fourqueux();
+        $forcedMarriage->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedMarriage);
     }
 
+    
+    private function tenFlirtCase(PlayerTable $table) {
+        $nfilrts = [];
+        for ($i = 0; $i < 10; $i++) {
+            $forcedFlirt = new Theater();
+            $forcedFlirt->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($table->getId());
+            $nfilrts[] = $forcedFlirt;
+        }
+        $this->cardManager->add($nfilrts);
+
+        $flirts = $this->cardManager->findBy([
+            "type" => CardType::FLIRT_THEATER,
+            "location" => CardLocation::PLAYER_HAND,
+            "locationArg" => $table->getId()
+                ], 10);
+
+        foreach ($flirts as $flirt) {
+            $this->cardManager->playCard($table->getPlayer(), $flirt);
+            $table->addCard($flirt);
+        }
+        $this->playerTableManager->updateTable($table);
+
+        $forcedMarriage = new Fourqueux();
+        $forcedMarriage->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedMarriage);
+    }
 }
