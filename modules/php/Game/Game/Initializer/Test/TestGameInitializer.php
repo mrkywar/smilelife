@@ -1,9 +1,9 @@
 <?php
 
+namespace SmileLife\Game\Initializer\Test;
+
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Game\Initializer\GameInitializer;
-
-namespace SmileLife\Game\Initializer\Test;
 
 /**
  * Description of TestGameInitializer
@@ -45,7 +45,7 @@ class TestGameInitializer extends GameInitializer {
             $this->playerTableManager->updateTable($table);
         }
 
-        $nbCardsToDiscard = 0;//random_int(0, count($players));
+        $nbCardsToDiscard = 0; //random_int(0, count($players));
         $cardsToDiscard = $this->cardManager->findBy(
                 ["location" => CardLocation::DECK],
                 $nbCardsToDiscard
