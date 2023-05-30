@@ -32,7 +32,11 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $jobCriterion->setErrorMessage(clienttranslate('You must have a job to collect a salary'));
 
         $wageCriterion = new WageCriterion($table, $card);
-        $wageCriterion->setErrorMessage(clienttranslate('Your current Job only allows you to play salary level ${max} maximum', ['max' => $table->getJob()->getMaxSalary()]));
+        $max = 0;
+        if (null !== $table->getJob()) {
+            $max = $table->getJob()->getMaxSalary();
+        }
+        $wageCriterion->setErrorMessage(clienttranslate('Your current Job only allows you to play salary level ${max} maximum', ['max' => $max]));
 
         //-- NationalMedalCriterion
         $nationalJobCriterion = parent::create($table, $card);
@@ -40,17 +44,17 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $nationalMedalCardCriterion = new CardOnTableCriterion($table, NationalMedal::class);
 
         return new CriterionGroup([
-                //-- Classic criterion
-                new CriterionGroup([
-                        $jobCriterion,
-                        $wageCriterion
+            //-- Classic criterion
+            new CriterionGroup([
+                $jobCriterion,
+                $wageCriterion
                     ], CriterionGroup::AND_OPERATOR),
-                //-- NationalMedalCriterion
-                new CriterionGroup([
-                        $nationalJobCriterion,
-                        $nationalMedalCardCriterion
+            //-- NationalMedalCriterion
+            new CriterionGroup([
+                $nationalJobCriterion,
+                $nationalMedalCardCriterion
                     ], CriterionGroup::AND_OPERATOR),
-            ], CriterionGroup::OR_OPERATOR);
+                ], CriterionGroup::OR_OPERATOR);
     }
 
 }

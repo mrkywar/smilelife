@@ -32,7 +32,8 @@ class CardOnTableCriterion extends PlayerTableCriterion {
     }
 
     public function isValided(): bool {
-        $cards = $this->cardManager->getPlayerCards($this->getTable()->getPlayer());
+        $cards = $this->getTable()->getCards();
+
         foreach ($cards as $card) {
             if ($card instanceof $this->className) {
                 return true;

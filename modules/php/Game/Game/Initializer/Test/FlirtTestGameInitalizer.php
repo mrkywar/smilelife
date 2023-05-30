@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\Initializer;
+namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Interim\Barman;
@@ -10,6 +10,7 @@ use SmileLife\Card\Category\Love\Flirt\Cinema;
 use SmileLife\Card\Category\Love\Flirt\Hotel;
 use SmileLife\Card\Category\Love\Flirt\Restaurant;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
 /**

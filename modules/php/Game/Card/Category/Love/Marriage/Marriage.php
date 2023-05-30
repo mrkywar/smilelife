@@ -5,7 +5,7 @@ namespace SmileLife\Card\Category\Love\Marriage;
 use SmileLife\Card\Category\Love\Love;
 use SmileLife\Card\Core\CardPile;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\MarriageCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Love\MarriageCriterionFactory;
 
 /**
  * Description of Marriage

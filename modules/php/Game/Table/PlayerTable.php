@@ -496,6 +496,35 @@ class PlayerTable extends Model {
         return null;
     }
 
+    protected function getCardsId() {
+        $ids = array_merge(
+                $this->acquisitionIds,
+                $this->attackIds,
+                $this->childIds,
+                $this->flirtIds,
+                $this->adulteryFlirtIds,
+                $this->rewardIds,
+                $this->specialsIds,
+                $this->studiesIds,
+                $this->wageIds,
+                [
+                    $this->adulteryId,
+                    $this->jobId,
+                    $this->marriageId,
+                ]
+        );
+
+        return array_filter($ids, function ($value) {
+            return null !== $value;
+        });
+    }
+
+    public function getCards() {
+        return $this->cardManager->findBy([
+                    "id" => $this->getCardsId()
+        ]);
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
