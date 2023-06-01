@@ -24,6 +24,20 @@ class AdulteryTestsInitializer extends GameInitializer {
         $case1Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->alreadyOnAdulteryCase($case1Table);
+
+        // Case 2 No Marriage in game (not playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case2Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->NoMarriageCase($case2Table);
+
+        // Case 3 A Marriage in game (playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case3Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->OneMarriageCase($case3Table);
+
+        return $case1Table->getId();
     }
 
     private function alreadyOnAdulteryCase(PlayerTable $table) {
@@ -43,6 +57,27 @@ class AdulteryTestsInitializer extends GameInitializer {
 
         $this->cardManager->playCard($table->getPlayer(), $adultery);
         $table->addCard($adultery);
+        $this->playerTableManager->updateTable($table);
+
+        $forcedAdultery2 = new Adultery();
+        $forcedAdultery2->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedAdultery2);
+    }
+
+    private function NoMarriageCase(PlayerTable $table) {
+        $forcedAdultery2 = new Adultery();
+        $forcedAdultery2->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedAdultery2);
+    }
+
+    private function OneMarriageCase(PlayerTable $table) {
+        $marriage = $this->cardManager->findBy(
+                ["type" => CardType::MARRIAGE_BOURG_LA_REINE], 1
+        );
+        $this->cardManager->playCard($table->getPlayer(), $marriage);
+        $table->addCard($marriage);
         $this->playerTableManager->updateTable($table);
 
         $forcedAdultery2 = new Adultery();
