@@ -58,7 +58,7 @@ class PlayListener extends EventListener {
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
-        if (!$testRestult->isValided() && 1 === 1) {
+        if (!$testRestult->isValided() && 1 === 0) {
             
 //            var_dump($testRestult->getErrorMessage());die;
             $debugger = new CriterionDebugger($criteria);
