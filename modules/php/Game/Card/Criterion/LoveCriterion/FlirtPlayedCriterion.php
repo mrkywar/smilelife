@@ -12,7 +12,8 @@ use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
 class FlirtPlayedCriterion extends PlayerTableCriterion {
 
     public function isValided(): bool {
-        return (null !== $this->getTable()->getFlirts());
+        $flirts = $this->getTable()->getFlirts();
+        return (null !== $flirts && !empty($flirts));
     }
 
 }
