@@ -45,7 +45,7 @@ class StudiesCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessStudiesEffect::class);
-        $limitlessCriterion->addConsequence(new LimitlessStudieConsequence($card));
+        $limitlessCriterion->addConsequence(new LimitlessStudieConsequence($card, $table));
 
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($table));
         $noJobCriterion->setErrorMessage(clienttranslate("You have an active Job"));
@@ -65,7 +65,7 @@ class StudiesCriterionFactory extends CardCriterionFactory {
                 ], CriterionGroup::AND_OPERATOR)
             ], CriterionGroup::OR_OPERATOR);
         
-        $criteria->addConsequence(new StudieLevelIncriseConsequence($card));
+        $criteria->addConsequence(new StudieLevelIncriseConsequence($card, $table));
         
         return $criteria;
         

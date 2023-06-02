@@ -5,6 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Love;
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\HaveAdulteryCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
