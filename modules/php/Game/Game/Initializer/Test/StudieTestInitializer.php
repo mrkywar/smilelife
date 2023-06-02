@@ -22,10 +22,10 @@ class StudieTestInitializer extends GameInitializer {
         $oTables = $this->playerTableManager->findBy();
 
         //-- Case 1 Classic Job in game (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case1Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->classicJobCase($case1Table);
+//        $i = random_int(0, count($oTables) - 1);
+//        $case1Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->classicJobCase($case1Table);
 
         //-- Case 2 LimitLessStudies Job in game (playable with consequence)
         $i = random_int(0, count($oTables) - 1);
@@ -57,7 +57,7 @@ class StudieTestInitializer extends GameInitializer {
         unset($oTables[$i]);
         $this->sixPointCase($case6Table);
 
-        return $case1Table->getId();
+        return $case3Table->getId();
     }
 
     private function addStudiesInHand(PlayerTable $table) {

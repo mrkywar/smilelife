@@ -15,19 +15,13 @@ use SmileLife\Table\PlayerTableManager;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtDoublonDectectionConcequence extends Consequence {
+class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\PlayerTableConsequence {
 
     /**
      * 
      * @var Flirt
      */
     private $card;
-
-    /**
-     * 
-     * @var PlayerTable
-     */
-    private $table;
 
     /**
      * 
@@ -40,7 +34,7 @@ class FlirtDoublonDectectionConcequence extends Consequence {
      * @var PlayerTableManager
      */
     private $tableManager;
-    
+
     /**
      * 
      * @var CardDecorator
@@ -48,10 +42,11 @@ class FlirtDoublonDectectionConcequence extends Consequence {
     private $cardDecorator;
 
     public function __construct(Flirt &$card, PlayerTable $table) {
+        parent::__construct($table);
+        
         $this->tableManager = new PlayerTableManager();
         $this->cardDecorator = new CardDecorator();
         $this->cardManager = new CardManager();
-        $this->table = $table;
         $this->card = &$card;
     }
 
@@ -71,25 +66,25 @@ class FlirtDoublonDectectionConcequence extends Consequence {
         if (null !== $doublon && null !== $targetTable) {
             $player = $this->table->getPlayer();
             $targetPlayer = $targetTable->getPlayer();
-            
+
             $notification = new Notification();
             $notification->setType("doublonFlirtNotification")
                     ->setText(clienttranslate('${player_name} steal ${cardName} to ${target_name}'))
                     ->add('player_name', $player->getName())
                     ->add('playerId', $player->getId())
-                    ->add('target_name',$targetPlayer->getName())
+                    ->add('target_name', $targetPlayer->getName())
                     ->add('targetId', $targetPlayer->getId())
-                    ->add('cardName',$doublon->getName())
+                    ->add('cardName', $doublon->getName())
                     ->add('card', $this->cardDecorator->decorate($doublon));
-            
+
             $response->addNotification($notification);
 
             $targetTable->removeFlirt($doublon);
             $this->tableManager->updateTable($targetTable);
-            
+
             $this->card->setLocationArg($player->getId());
             $this->cardManager->playCard($player, $doublon);
-            
+
             $this->table->addCard($doublon);
             $this->tableManager->updateTable($this->table);
         }

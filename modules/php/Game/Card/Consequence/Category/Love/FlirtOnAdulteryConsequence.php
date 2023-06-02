@@ -5,7 +5,7 @@ namespace SmileLife\Card\Consequence\Category\Love;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardPile;
 use SmileLife\Table\PlayerTable;
 
@@ -13,7 +13,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtOnAdulteryConsequence extends Consequence {
+class FlirtOnAdulteryConsequence extends PlayerTableConsequence {
 
     /**
      * 
@@ -23,19 +23,14 @@ class FlirtOnAdulteryConsequence extends Consequence {
 
     /**
      * 
-     * @var PlayerTable
-     */
-    private $table;
-
-    /**
-     * 
      * @var CardManager
      */
     private $cardManager;
 
     public function __construct(Flirt $card, PlayerTable $table) {
+        parent::__construct($table);
+
         $this->cardManager = new CardManager();
-        $this->table = $table;
         $this->card = $card;
     }
 
