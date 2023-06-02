@@ -39,31 +39,28 @@ class StudieTestInitializer extends GameInitializer {
         unset($oTables[$i]);
         $this->noJobCase($case3Table);
 
+        //-- Case 4 No Job & One Studies Point (playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case4Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->onePointCase($case4Table);
+
+        //-- Case 5 No Job & two Studies Point (playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case5Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->twoPointCase($case5Table);
+
+        //-- Case 6 No Job & 6 Studies Point (not playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case6Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->sixPointCase($case6Table);
+
         return $case1Table->getId();
     }
 
-    private function classicJobCase(PlayerTable $table) {
-        $job = $this->cardManager->findBy(
-                ["type" => CardType::JOB_DESIGNER], 1
-        );
-        $this->cardManager->playCard($table->getPlayer(), $job);
-        $table->addCard($job);
-        $this->playerTableManager->updateTable($job);
-
-        $forcedCard = new StudiesLevel1();
-        $forcedCard->setLocation(CardLocation::PLAYER_HAND)
-                ->setLocationArg($table->getId());
-        $this->cardManager->add($forcedCard);
-    }
-
-    private function limitlessJobCase(PlayerTable $table) {
-        $job = $this->cardManager->findBy(
-                ["type" => CardType::JOB_SURGEON], 1
-        );
-        $this->cardManager->playCard($table->getPlayer(), $job);
-        $table->addCard($job);
-        $this->playerTableManager->updateTable($job);
-
+    private function addStudiesInHand(PlayerTable $table) {
         $forcedCard1 = new StudiesLevel1();
         $forcedCard1->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($table->getId());
@@ -74,11 +71,99 @@ class StudieTestInitializer extends GameInitializer {
         $this->cardManager->add([$forcedCard1, $forcedCard2]);
     }
 
+    private function classicJobCase(PlayerTable $table) {
+        $job = $this->cardManager->findBy(
+                ["type" => CardType::JOB_DESIGNER], 1
+        );
+        $this->cardManager->playCard($table->getPlayer(), $job);
+        $table->addCard($job);
+        $this->playerTableManager->updateTable($table);
+
+        $this->addStudiesInHand($table);
+    }
+
+    private function limitlessJobCase(PlayerTable $table) {
+        $job = $this->cardManager->findBy(
+                ["type" => CardType::JOB_SURGEON], 1
+        );
+        $this->cardManager->playCard($table->getPlayer(), $job);
+        $table->addCard($job);
+        $this->playerTableManager->updateTable($table);
+
+        $this->addStudiesInHand($table);
+    }
+
     private function noJobCase(PlayerTable $table) {
         $forcedCard = new StudiesLevel1();
         $forcedCard->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($table->getId());
         $this->cardManager->add($forcedCard);
+    }
+
+    private function onePointCase(PlayerTable $table) {
+        $forcedCard = new StudiesLevel1();
+        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedCard);
+
+        $studie = $this->cardManager->findBy([
+            "type" => CardType::STUDY_SINGLE,
+            "location" => CardLocation::PLAYER_BOARD,
+            "locationArg" => $table->getId()
+                ], 1);
+
+        $this->cardManager->playCard($table->getPlayer(), $studie);
+        $table->addCard($studie);
+
+        $this->playerTableManager->updateTable($table);
+
+        $this->addStudiesInHand($table);
+    }
+
+    private function twoPointCase(PlayerTable $table) {
+        $forcedCard = new StudiesLevel2();
+        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add($forcedCard);
+
+        $studie = $this->cardManager->findBy([
+            "type" => CardType::STUDY_DOUBLE,
+            "location" => CardLocation::PLAYER_BOARD,
+            "locationArg" => $table->getId()
+                ], 1);
+
+        $this->cardManager->playCard($table->getPlayer(), $studie);
+        $table->addCard($studie);
+
+        $this->playerTableManager->updateTable($table);
+
+        $this->addStudiesInHand($table);
+    }
+
+    private function sixPointCase(PlayerTable $table) {
+        $forcedStudies = [];
+        for ($i = 0; $i < 3; $i++) {
+            $newStudie = new StudiesLevel2();
+            $newStudie->setLocation(CardLocation::PLAYER_BOARD)
+                    ->setLocationArg($table->getId());
+            $forcedStudies[] = $newStudie;
+        }
+        $this->cardManager->add($forcedStudies);
+
+        $studies = $this->cardManager->findBy([
+            "type" => CardType::STUDY_SINGLE,
+            "location" => CardLocation::PLAYER_BOARD,
+            "locationArg" => $table->getId()
+        ]);
+
+        foreach ($studies as $studie) {
+            $this->cardManager->playCard($table->getPlayer(), $studie);
+            $table->addCard($studie);
+        }
+
+        $this->playerTableManager->updateTable($table);
+
+        $this->addStudiesInHand($table);
     }
 
 }
