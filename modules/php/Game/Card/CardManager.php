@@ -116,9 +116,16 @@ class CardManager extends SuperManager {
             $cards = $this->cardManager->getSerializer()->unserialize($rawcards);
 
             $cardsIds = [];
-            foreach ($cards as $card) {
+            foreach ($cards as &$card) {
                 $cardsIds[] = $card->getId();
+                
+                $card->setLocation(CardLocation::PLAYER_HAND)
+                        ->setLocationArg($player->getId());
             }
+//            $this->setIsDebug(true);
+////            echo "<pre>";
+////            var_dump($cards);die;
+//            $this->update($cards);
 
             $qb = $this->prepareUpdate($cards)
                     ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_HAND)
@@ -192,26 +199,15 @@ class CardManager extends SuperManager {
     }
 
     public function moveCard(Card $card) {
-        $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-
-        return $this->execute($qb);
+        return $this->update($card);
     }
 
     public function playCard(Player $player, Card &$card) {
         $card->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($player->getId())
                 ->setOwnerId($player->getId());
-
-        $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $card->getOwnerId())
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-
-        return $this->execute($qb);
+        
+        return $this->update($card);
     }
 
     public function getPlayerCards(Player $player) {
