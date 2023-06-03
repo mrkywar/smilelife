@@ -115,17 +115,13 @@ class CardManager extends SuperManager {
             $rawcards = $this->cardManager->drawCard(5);
             $cards = $this->cardManager->getSerializer()->unserialize($rawcards);
 
-            $cardsIds = [];
             foreach ($cards as &$card) {
-                $cardsIds[] = $card->getId();
-
                 $card->setLocation(CardLocation::PLAYER_HAND)
                         ->setLocationArg($player->getId());
                 $this->setIsDebug(true);
-                
             }
 
-            $this->update($cards);         
+            $this->update($cards);
         }
     }
 
@@ -145,18 +141,7 @@ class CardManager extends SuperManager {
                 ->setOwnerId(null)
                 ->setDiscarderId($player->getId());
 
-        $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $card->getDiscarderId())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $card->getOwnerId())
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-
-        $results = $this->execute($qb);
-
-        $response = null;
-
-        return $response;
+        return $this->update($card);
     }
 
     /* -------------------------------------------------------------------------
