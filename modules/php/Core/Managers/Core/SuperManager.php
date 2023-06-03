@@ -93,6 +93,9 @@ abstract class SuperManager extends DBRequester {
     }
 
     final protected function getUpdateFields($items) {
+        if (true === $this->getUseSerializerClass()) {
+            return DBFieldsRetriver::retriveUpdatableFields($this->getSerializer()->getClassModel());
+        }
         return DBFieldsRetriver::retriveUpdatableFields($items);
     }
 
@@ -135,8 +138,8 @@ abstract class SuperManager extends DBRequester {
 
         return $this->execute($qb);
     }
-
-    protected function update($items) {
+    
+    public function update($items) {
         if ($items instanceof Model) {
             $table = $this->getTable($items);
             $primaries = $this->getPrimaryFields($items);
@@ -182,7 +185,7 @@ abstract class SuperManager extends DBRequester {
             $field = DBFieldsRetriver::retriveFieldByPropertyName($clause, $this->getSerializer()->getClassModel());
             $qb->addClause($field, $value);
         }
-        foreach ($orderBy as $field => $orderDir){
+        foreach ($orderBy as $field => $orderDir) {
             $field = DBFieldsRetriver::retriveFieldByPropertyName($field, $this->getSerializer()->getClassModel());
             $qb->addOrderBy($field, $orderDir);
         }

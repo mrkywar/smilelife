@@ -17,6 +17,10 @@ class LimitlessStudieConsequence extends StudiesConsequence {
         $card = $this->getStudies();
         $card->setIsFlipped(true);
         
+        $cm = new \SmileLife\Card\CardManager();
+        $cm->update_v2($card);
+        die('LSC-UP2');
+        
         throw new ConsequenceException("Consequence-LSC : Not Yet implemented");
     }
 

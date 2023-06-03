@@ -1,4 +1,5 @@
 <?php
+
 namespace Core\DB;
 
 use Core\Models\Core\Model;
@@ -167,7 +168,7 @@ class QueryBuilder {
      * @param type $value : Value asked (null | array of value | value)
      * @return $this
      */
-    public function addClause(DBField $field, $value, $forcedCompare= QueryString::COMPARE_EQUAL) {
+    public function addClause(DBField $field, $value, $forcedCompare = QueryString::COMPARE_EQUAL) {
         $clause = "`" . $field->getDbName() . "`";
         if (is_array($value)) {
             $rawValues = [];
@@ -178,7 +179,7 @@ class QueryBuilder {
         } elseif (null === $value) {
             $clause .= " IS NULL ";
         } else {
-            $clause .= " ".$forcedCompare." " . DBFieldTransposer::transpose($field, $value);
+            $clause .= " " . $forcedCompare . " " . DBFieldTransposer::transpose($field, $value);
         }
 
         $this->clauses[] = $clause;
