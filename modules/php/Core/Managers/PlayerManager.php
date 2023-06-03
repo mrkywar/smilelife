@@ -43,12 +43,13 @@ class PlayerManager extends SuperManager {
      * ---------------------------------------------------------------------- */
 
     public function updateScore(Player $player) {
-        $qb = $this->prepareUpdate($player);
-
-        $fieldScore = DBFieldsRetriver::retriveFieldByPropertyName("score", $player);
-        $qb->addSetter($fieldScore, $player->getScore());
-
-        $this->execute($qb);
+//        $qb = $this->prepareUpdate($player);
+//
+//        $fieldScore = DBFieldsRetriver::retriveFieldByPropertyName("score", $player);
+//        $qb->addSetter($fieldScore, $player->getScore());
+//
+//        $this->execute($qb);
+        return $this->update($player);
     }
 
     /* -------------------------------------------------------------------------

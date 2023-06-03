@@ -118,22 +118,14 @@ class CardManager extends SuperManager {
             $cardsIds = [];
             foreach ($cards as &$card) {
                 $cardsIds[] = $card->getId();
-                
+
                 $card->setLocation(CardLocation::PLAYER_HAND)
                         ->setLocationArg($player->getId());
+                $this->setIsDebug(true);
+                
             }
-//            $this->setIsDebug(true);
-////            echo "<pre>";
-////            var_dump($cards);die;
-//            $this->update($cards);
 
-            $qb = $this->prepareUpdate($cards)
-                    ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_HAND)
-                    ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $player->getId())
-                    ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $cardsIds)
-            ;
-
-            $this->execute($qb);
+            $this->update($cards);         
         }
     }
 
@@ -192,6 +184,7 @@ class CardManager extends SuperManager {
 
     public function drawCard($numberCards = 1) {
         $cards = $this->getAllCardsInLocation(CardLocation::DECK, null, $numberCards);
+
         if (null === $cards || (is_countable($cards) && $numberCards > 1 && sizeof($cards) < $numberCards)) {
             throw new CardException("Not enouth cards aviable");
         }
@@ -206,7 +199,7 @@ class CardManager extends SuperManager {
         $card->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($player->getId())
                 ->setOwnerId($player->getId());
-        
+
         return $this->update($card);
     }
 
@@ -236,11 +229,13 @@ class CardManager extends SuperManager {
     protected function initSerializer(): Serializer {
         return new CardSerializer(Card::class);
     }
-    
+
     /*
      * --- TODO : Remains delete this (used in test case
      */
+
     public function add($cards) {
         return $this->create($cards);
     }
+
 }

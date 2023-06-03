@@ -89,6 +89,9 @@ abstract class SuperManager extends DBRequester {
     }
 
     final protected function getPrimaryFields($items) {
+        if (true === $this->getUseSerializerClass()) {
+            return DBFieldsRetriver::retrivePrimaryFields($this->getSerializer()->getClassModel());
+        }
         return DBFieldsRetriver::retrivePrimaryFields($items);
     }
 
@@ -138,7 +141,7 @@ abstract class SuperManager extends DBRequester {
 
         return $this->execute($qb);
     }
-    
+
     public function update($items) {
         if ($items instanceof Model) {
             $table = $this->getTable($items);
