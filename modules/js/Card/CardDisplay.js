@@ -7,7 +7,7 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    //this.debug("DC", card);
+                    this.debug("DC", card);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -43,7 +43,9 @@ define([
                                 this.displayCard(card, destinationDivId);
                             }
                         });
-
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(searchedDiv, card);
+                        }
                     } else if (!searchedDiv) {
                         //-- display without move
 
