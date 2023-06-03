@@ -14,6 +14,9 @@ class LimitlessStudieConsequence extends StudiesConsequence {
     
 
     public function execute(Response &$response) {
+        $card = $this->getStudies();
+        $card->setIsFlipped(true);
+        
         throw new ConsequenceException("Consequence-LSC : Not Yet implemented");
     }
 

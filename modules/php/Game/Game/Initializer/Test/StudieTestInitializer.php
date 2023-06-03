@@ -27,10 +27,10 @@ class StudieTestInitializer extends GameInitializer {
 //        unset($oTables[$i]);
 //        $this->classicJobCase($case1Table);
         //-- Case 2 LimitLessStudies Job in game (playable with consequence)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case2Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->limitlessJobCase($case2Table);
+        $i = random_int(0, count($oTables) - 1);
+        $case2Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->limitlessJobCase($case2Table);
         //-- Case 3 No Job & No Studies (playable)
 //        $i = random_int(0, count($oTables) - 1);
 //        $case3Table = $oTables[array_keys($oTables)[$i]];
@@ -41,7 +41,6 @@ class StudieTestInitializer extends GameInitializer {
 //        $case4Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->onePointCase($case4Table);
-
         //-- Case 5 No Job & two Studies Point (playable)
 //        $i = random_int(0, count($oTables) - 1);
 //        $case5Table = $oTables[array_keys($oTables)[$i]];
@@ -52,14 +51,13 @@ class StudieTestInitializer extends GameInitializer {
 //        $case6Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->sixPointCase($case6Table);
-
         //-- Case 7 No Job & 5 Studies Point (2 case in  one)
         $i = random_int(0, count($oTables) - 1);
         $case7Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->fivePointCase($case7Table);
 //
-        return $case7Table->getId();
+        return $case2Table->getId();
     }
 
     private function addStudiesInHand(PlayerTable $table) {
