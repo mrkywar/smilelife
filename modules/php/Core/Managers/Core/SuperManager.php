@@ -83,8 +83,6 @@ abstract class SuperManager extends DBRequester {
     }
 
     final protected function getSelectFields() {
-//        var_dump(DBFieldsRetriver::retrive($this->getSerializer()->getClassModel()));
-//        die('Sel');
         return DBFieldsRetriver::retriveSelectFields($this->getSerializer()->getClassModel());
     }
 
