@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Studies;
 
 use Core\Requester\Response\Response;
+use SmileLife\Card\CardManager;
 use SmileLife\Card\Consequence\ConsequenceException;
 
 /**
@@ -11,13 +12,15 @@ use SmileLife\Card\Consequence\ConsequenceException;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class LimitlessStudieConsequence extends StudiesConsequence {
-    
 
     public function execute(Response &$response) {
         $card = $this->getStudies();
         $card->setIsFlipped(true);
-        
-        throw new ConsequenceException("Consequence-LSC : Not Yet implemented");
+
+        $cm = new CardManager();
+        $cm->update($card);
+
+        $response->set("card", $card);
     }
 
 }

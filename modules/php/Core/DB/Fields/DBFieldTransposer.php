@@ -21,8 +21,10 @@ abstract class DBFieldTransposer {
             case DBField::JSON_FORMAT:
                 return "'" . json_encode($value) . "'";
             case DBField::BOOLEAN_FORMAT:
+            case DBField::BOOL_FORMAT:
                 return (true === $value) ? 1 : 0;
             case DBField::INTEGER_FORMAT:
+            case DBField::INT_FORMAT:    
                 return "'" . (int) $value . "'";
             case DBField::DATETIME_FORMAT:
                 return "'" . $value->format(DBField::DATETIME_STRING_FORMAT) . "'";

@@ -34,6 +34,7 @@ class DBRequester extends \APP_DbObject {
         $qb->reset();
 
         if ($this->isDebug) {
+            var_dump($queryString);die;
             Logger::log($queryString, "DBRequest");
         }
         try {

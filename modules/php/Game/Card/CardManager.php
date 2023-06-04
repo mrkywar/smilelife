@@ -115,18 +115,13 @@ class CardManager extends SuperManager {
             $rawcards = $this->cardManager->drawCard(5);
             $cards = $this->cardManager->getSerializer()->unserialize($rawcards);
 
-            $cardsIds = [];
-            foreach ($cards as $card) {
-                $cardsIds[] = $card->getId();
+            foreach ($cards as &$card) {
+                $card->setLocation(CardLocation::PLAYER_HAND)
+                        ->setLocationArg($player->getId());
+                $this->setIsDebug(true);
             }
 
-            $qb = $this->prepareUpdate($cards)
-                    ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), CardLocation::PLAYER_HAND)
-                    ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $player->getId())
-                    ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $cardsIds)
-            ;
-
-            $this->execute($qb);
+            $this->update($cards);
         }
     }
 
@@ -146,18 +141,7 @@ class CardManager extends SuperManager {
                 ->setOwnerId(null)
                 ->setDiscarderId($player->getId());
 
-        $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("discarderId", Card::class), $card->getDiscarderId())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $card->getOwnerId())
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-
-        $results = $this->execute($qb);
-
-        $response = null;
-
-        return $response;
+        return $this->update($card);
     }
 
     /* -------------------------------------------------------------------------
@@ -185,6 +169,7 @@ class CardManager extends SuperManager {
 
     public function drawCard($numberCards = 1) {
         $cards = $this->getAllCardsInLocation(CardLocation::DECK, null, $numberCards);
+
         if (null === $cards || (is_countable($cards) && $numberCards > 1 && sizeof($cards) < $numberCards)) {
             throw new CardException("Not enouth cards aviable");
         }
@@ -192,12 +177,7 @@ class CardManager extends SuperManager {
     }
 
     public function moveCard(Card $card) {
-        $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-
-        return $this->execute($qb);
+        return $this->update($card);
     }
 
     public function playCard(Player $player, Card &$card) {
@@ -205,13 +185,7 @@ class CardManager extends SuperManager {
                 ->setLocationArg($player->getId())
                 ->setOwnerId($player->getId());
 
-        $qb = $this->prepareUpdate($card)
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("location", Card::class), $card->getLocation())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("locationArg", Card::class), $card->getLocationArg())
-                ->addSetter(DBFieldsRetriver::retriveFieldByPropertyName("ownerId", Card::class), $card->getOwnerId())
-                ->addClause(DBFieldsRetriver::retriveFieldByPropertyName("id", Card::class), $card->getId());
-
-        return $this->execute($qb);
+        return $this->update($card);
     }
 
     public function getPlayerCards(Player $player) {
@@ -240,11 +214,13 @@ class CardManager extends SuperManager {
     protected function initSerializer(): Serializer {
         return new CardSerializer(Card::class);
     }
-    
+
     /*
      * --- TODO : Remains delete this (used in test case
      */
+
     public function add($cards) {
         return $this->create($cards);
     }
+
 }

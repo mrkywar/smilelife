@@ -7,7 +7,7 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    //this.debug("DC", card);
+//                    this.debug("DC", card);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -20,11 +20,11 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         searchedDiv.id = "temp_" + searchedDiv.id;
-                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
+                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer+1);
                         var _this = this;
                         setTimeout(function () {
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer);
+                        }, this.animationTimer)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
@@ -43,7 +43,7 @@ define([
                                 this.displayCard(card, destinationDivId);
                             }
                         });
-
+                        
                     } else if (!searchedDiv) {
                         //-- display without move
 
@@ -51,6 +51,16 @@ define([
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
+                        if(card.type && card.isFlipped){
+                            var pileContainer = $(destinationDivId);
+                            
+                            var lastCard = pileContainer.lastElementChild;
+                            
+                            // move last card in top for be displayed in first (Bottom of pile).
+                            pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
+                            
+                        }
+                        
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
