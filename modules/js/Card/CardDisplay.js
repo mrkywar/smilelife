@@ -7,7 +7,7 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card);
+//                    this.debug("DC", card);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -43,9 +43,7 @@ define([
                                 this.displayCard(card, destinationDivId);
                             }
                         });
-                        if (card.type && !card.isFlipped) {
-                            this.displayCardInformations(searchedDiv, card);
-                        }
+                        
                     } else if (!searchedDiv) {
                         //-- display without move
 
@@ -60,9 +58,9 @@ define([
                             
                             // move last card in top for be displayed in first (Bottom of pile).
                             pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
-                            this.debug("FLIPP",destinationDivId,pileContainer.lastElementChild);
                             
                         }
+                        
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
