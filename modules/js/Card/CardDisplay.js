@@ -20,11 +20,11 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         searchedDiv.id = "temp_" + searchedDiv.id;
-                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
+                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer+1);
                         var _this = this;
                         setTimeout(function () {
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer);
+                        }, this.animationTimer)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
