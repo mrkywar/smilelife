@@ -53,6 +53,16 @@ define([
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
+                        if(card.type && card.isFlipped){
+                            var pileContainer = $(destinationDivId);
+                            
+                            var lastCard = pileContainer.lastElementChild;
+                            
+                            // move last card in top for be displayed in first (Bottom of pile).
+                            pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
+                            this.debug("FLIPP",destinationDivId,pileContainer.lastElementChild);
+                            
+                        }
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
