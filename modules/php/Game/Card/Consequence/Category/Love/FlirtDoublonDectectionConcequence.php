@@ -43,7 +43,7 @@ class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\Play
 
     public function __construct(Flirt &$card, PlayerTable $table) {
         parent::__construct($table);
-        
+
         $this->tableManager = new PlayerTableManager();
         $this->cardDecorator = new CardDecorator();
         $this->cardManager = new CardManager();
@@ -56,14 +56,14 @@ class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\Play
         $targetTable = null;
 
         foreach ($tables as $table) {
-            if ($table->getId() !== $this->table->getId()) {
+            if ($table->getId() !== $this->table->getId() && null === $doublon) {
                 $doublon = $this->checkTableDoublonFlirt($table);
+                
                 $targetTable = $table;
             }
         }
-//        var_dump($doublon);die;
 
-        if (null !== $doublon && null !== $targetTable) {
+        if (null !== $doublon) {
             $player = $this->table->getPlayer();
             $targetPlayer = $targetTable->getPlayer();
 

@@ -7,7 +7,7 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId) {
-//                    this.debug("DC", card);
+                    this.debug("DC", card);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -19,16 +19,17 @@ define([
 
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
+//                        this.debug("DC-MR");
                         searchedDiv.id = "temp_" + searchedDiv.id;
-                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer+1);
+                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
                         setTimeout(function () {
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer)
+                        }, this.animationTimer + 1)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
-
+//                        this.debug("DC-NC");
                         var initialId = card.id
                         card.id = 'temp_' + card.id;
 
@@ -43,24 +44,26 @@ define([
                                 this.displayCard(card, destinationDivId);
                             }
                         });
-                        
+
                     } else if (!searchedDiv) {
                         //-- display without move
-
+//                        this.debug("DC-WM", card.type, card.isFlipped);
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-                        if (card.type && !card.isFlipped) {
-                            this.displayCardInformations(newCardDiv, card);
-                        }
-                        if(card.type && card.isFlipped){
+
+                        if (card.type && card.isFlipped) {
                             var pileContainer = $(destinationDivId);
-                            
+
                             var lastCard = pileContainer.lastElementChild;
-                            
+
                             // move last card in top for be displayed in first (Bottom of pile).
                             pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
-                            
+
                         }
-                        
+                        if (card.type && !card.isFlipped) {
+                            this.displayCardInformations(newCardDiv, card);
+//                            this.debug('??');
+                        }
+
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
@@ -76,7 +79,7 @@ define([
 
 
                 },
-                
+
                 displayCardInformations: function (div, card) {
                     div.dataset.points = card.smilePoints;
                     div.dataset.type = '' + card.type;
