@@ -26,6 +26,9 @@ define([
                     } else {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
                     }
+                    
+                    this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() + 1);
+               
                     this.discard = notif.args.discard;
 
                 },

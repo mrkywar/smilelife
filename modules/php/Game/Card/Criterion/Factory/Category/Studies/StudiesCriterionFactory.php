@@ -55,20 +55,23 @@ class StudiesCriterionFactory extends CardCriterionFactory {
         $studieLevelCriterion = new StudiesLevelCriterion($table, $card);
         $studieLevelCriterion->setErrorMessage(clienttranslate('You have already reached level ${level} of studies and you cannot exceed 6', ['level' => $actualLevel]));
 
+        //-- Classic Criterion
+        $classicCriterion = new CriterionGroup([
+                $noJobCriterion,
+                $studieLevelCriterion
+            ], CriterionGroup::AND_OPERATOR);
+        $classicCriterion->addConsequence(new StudieLevelIncriseConsequence($card, $table));
+
         $criteria = new CriterionGroup([
-                //-- Limitless Studie
-                $limitlessCriterion,
-                //-- Classic Criterion
-                new CriterionGroup([
-                    $noJobCriterion,
-                    $studieLevelCriterion
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
-        
-        $criteria->addConsequence(new StudieLevelIncriseConsequence($card, $table));
-        
+            //-- Limitless Studie
+            $limitlessCriterion,
+            //-- Classic Criterion
+            $classicCriterion
+                ], CriterionGroup::OR_OPERATOR);
+
+//        $criteria->addConsequence();
+
         return $criteria;
-        
     }
 
 }
