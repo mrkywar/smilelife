@@ -58,7 +58,7 @@ class FlirtTestGameInitalizer extends GameInitializer {
 //        unset($oTables[$i]);
 //        $this->case6($case6Table);
 
-        return $case5Table->getId();
+        return $case2Table->getId();
     }
 
     private function case1(PlayerTable $table) {
