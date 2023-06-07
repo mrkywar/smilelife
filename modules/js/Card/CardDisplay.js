@@ -24,8 +24,9 @@ define([
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
                         setTimeout(function () {
+                            _this.debug("DIS", card);
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer + 1)
+                        }, this.animationTimer + 5)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
@@ -47,7 +48,7 @@ define([
 
                     } else if (!searchedDiv) {
                         //-- display without move
-//                        this.debug("DC-WM", card.type, card.isFlipped);
+                        this.debug("DC-WM", card.type, card.isFlipped);
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
 
                         if (card.type && card.isFlipped) {
@@ -61,7 +62,7 @@ define([
                         }
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
-//                            this.debug('??');
+                            this.debug('??');
                         }
 
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
