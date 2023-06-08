@@ -48,6 +48,12 @@ class ChildTestsInitializer extends GameInitializer {
         unset($oTables[$i]);
         $this->specialFlirtNotLastCase($case4Table);
 
+        //-- Case 5 Flirt allow child but used (not playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case5Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->specialFlirtUsedCase($case5Table);
+
         return $case4Table->getId();
     }
 
@@ -110,11 +116,30 @@ class ChildTestsInitializer extends GameInitializer {
             "type" => [CardType::FLIRT_HOTEL, CardType::FLIRT_ZOO],
             "location" => CardLocation::PLAYER_BOARD,
             "locationArg" => $table->getId()
-                ], 2, ["type"=> QueryString::ORDER_ASC]);
+                ], 2, ["type" => QueryString::ORDER_ASC]);
 
         foreach ($retriveFlirts as $rFlirts) {
             $table->addCard($rFlirts);
         }
+        $this->playerTableManager->updateTable($table);
+    }
+
+    private function specialFlirtUsedCase(PlayerTable $table) {
+        $forcedFlirt = new Hotel();
+        $forcedFlirt->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId())
+                ->setIsUsed(true);
+
+        $this->cardManager->add($forcedFlirt);
+
+        $retriveFlirt = $this->cardManager->findBy([
+            "type" => CardType::FLIRT_HOTEL,
+            "location" => CardLocation::PLAYER_BOARD,
+            "locationArg" => $table->getId()
+                ], 1);
+
+        $table->addCard($retriveFlirt);
+
         $this->playerTableManager->updateTable($table);
     }
 
