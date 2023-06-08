@@ -54,7 +54,7 @@ class ChildTestsInitializer extends GameInitializer {
         unset($oTables[$i]);
         $this->specialFlirtUsedCase($case5Table);
 
-        return $case4Table->getId();
+        return $case5Table->getId();
     }
 
     private function marriageCase(PlayerTable $table) {

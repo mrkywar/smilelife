@@ -11,10 +11,12 @@ define([
 
                     var searchedDiv = $('card_' + card.id);
 
-                    if (!card.type || card.isFlipped) {
-                        card.additionalClass = "visibleCard";
-                    } else {
-                        card.additionalClass = "flipped";
+                    if (searchedDiv && card.isUsed) {
+                        this.displayCard("???");
+                        dojo.addClass(searchedDiv, "usedCard");
+                    }
+                    if (card.id == "208") {
+                        this.debug("did i see ???", searchedDiv, card.isUsed);
                     }
 
                     if (searchedDiv && fromDivId) {
@@ -50,7 +52,9 @@ define([
                         //-- display without move
                         this.debug("DC-WM", card.type, card.isFlipped);
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-
+                        if (card.isUsed) {
+                            dojo.addClass(newCardDiv, "usedcard");
+                        }
                         if (card.type && card.isFlipped) {
                             var pileContainer = $(destinationDivId);
 
@@ -62,7 +66,6 @@ define([
                         }
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
-                            this.debug('??');
                         }
 
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
