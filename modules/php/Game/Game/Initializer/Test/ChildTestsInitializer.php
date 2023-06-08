@@ -102,6 +102,7 @@ class ChildTestsInitializer extends GameInitializer {
     }
 
     private function specialFlirtNotLastCase(PlayerTable $table) {
+        $this->baseCase($table);//add Child
         $forcedFlirt = new Hotel();
         $forcedFlirt->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());

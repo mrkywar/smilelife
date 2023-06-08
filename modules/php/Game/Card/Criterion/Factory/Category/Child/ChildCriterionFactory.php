@@ -32,7 +32,7 @@ class ChildCriterionFactory extends CardCriterionFactory {
         $haveFlirtCriterion = new FlirtPlayedCriterion($table);
         $lastFlirtCriterion = new LastFlirtGenerateChildCiterion($table);
         $lastFlirtCriterion->setErrorMessage(clienttranslate('Your last flirtation does not allow you to conceive a child'))
-                ->addConsequence(new CardUsedConsequence($table->getLastFlirt(), $player));
+                ->addConsequence(new CardUsedConsequence($table->getLastFlirt(), $table));
 
         $criteria = new CriterionGroup([
                 $isMarriedCriterion,
@@ -40,7 +40,7 @@ class ChildCriterionFactory extends CardCriterionFactory {
                     $haveFlirtCriterion,
                     $lastFlirtCriterion
                 ], CriterionGroup::AND_OPERATOR)
-            ]);
+            ],CriterionGroup::OR_OPERATOR);
         $criteria->setErrorMessage("You didn't have active Marriage or any flirt");
 
         return $criteria;

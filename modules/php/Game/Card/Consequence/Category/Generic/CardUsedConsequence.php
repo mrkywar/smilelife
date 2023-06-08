@@ -2,13 +2,13 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
-use Core\Models\Player;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Consequence\ConsequenceException;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of CardUsedConsequence
@@ -25,9 +25,9 @@ class CardUsedConsequence extends Consequence {
 
     /**
      * 
-     * @var Player
+     * @var PlayerTable
      */
-    private $player;
+    private $table;
 
     /**
      * 
@@ -35,9 +35,9 @@ class CardUsedConsequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(?Card $card = null, Player $player) {
+    public function __construct(?Card $card = null, PlayerTable $table) {
         $this->cardManager = new CardManager();
-        $this->player = $player;
+        $this->table = $table;
         $this->card = $card;
     }
 
