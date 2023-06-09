@@ -6,6 +6,7 @@ use Core\DB\QueryString;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Child\Diana;
 use SmileLife\Card\Category\Child\Harry;
+use SmileLife\Card\Category\Child\Hermione;
 use SmileLife\Card\Category\Love\Flirt\Hotel;
 use SmileLife\Card\Category\Love\Flirt\Zoo;
 use SmileLife\Card\Core\CardLocation;
@@ -35,26 +36,26 @@ class ChildTestsInitializer extends GameInitializer {
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->baseCase($case2Table);
-
+//
         //-- Case 3 Flirt allow child (playable)
         $i = random_int(0, count($oTables) - 1);
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->specialFlirtCase($case3Table);
+//
+//        //-- Case 4 Flirt allow child but not last (not playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case4Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->specialFlirtNotLastCase($case4Table);
+//
+//        //-- Case 5 Flirt allow child but used (not playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case5Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->specialFlirtUsedCase($case5Table);
 
-        //-- Case 4 Flirt allow child but not last (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case4Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->specialFlirtNotLastCase($case4Table);
-
-        //-- Case 5 Flirt allow child but used (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case5Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->specialFlirtUsedCase($case5Table);
-
-        return $case5Table->getId();
+        return $case3Table->getId();
     }
 
     private function marriageCase(PlayerTable $table) {
@@ -95,7 +96,7 @@ class ChildTestsInitializer extends GameInitializer {
         $table->addCard($retrivedFlirt);
         $this->playerTableManager->updateTable($table);
 
-        $forcedChild = new Harry();
+        $forcedChild = new Hermione();
         $forcedChild->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($table->getId());
         $this->cardManager->add($forcedChild);

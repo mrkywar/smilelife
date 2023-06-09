@@ -6,8 +6,7 @@ use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Consequence\Consequence;
-use SmileLife\Card\Consequence\ConsequenceException;
+use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -15,34 +14,36 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardUsedConsequence extends Consequence {
-
-    /**
-     * 
-     * @var Flirt
-     */
-    private $card;
-
-    /**
-     * 
-     * @var PlayerTable
-     */
-    private $table;
+class CardUsedConsequence extends PlayerTableConsequence {
 
     /**
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
 
-    public function __construct(?Card $card = null, PlayerTable $table) {
+    /**
+     * 
+     * @var Card
+     */
+    private $usedCard;
+
+    public function __construct(Card $card = null, PlayerTable $table) {
+        parent::__construct($table);
+        
         $this->cardManager = new CardManager();
-        $this->table = $table;
-        $this->card = $card;
+        $this->usedCard = $card;
     }
 
     public function execute(Response &$response) {
-        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
+        $this->usedCard->setIsUsed(true);
+        $this->cardManager->update($this->usedCard);
+
+//        
+    }
+
+    public function getUsedCard(): Card {
+        return $this->usedCard;
     }
 
 }
