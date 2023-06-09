@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Love;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Generic\CardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Love\FlirtDoublonDectectionConcequence;
 use SmileLife\Card\Consequence\Category\Love\FlirtOnAdulteryConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
@@ -58,7 +59,8 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table));
+        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table))
+                ->addConsequence(new CardPlayedConsequence($card, $table));
 
         return $finalCriterion;
     }
