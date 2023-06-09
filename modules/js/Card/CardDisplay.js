@@ -12,11 +12,7 @@ define([
                     var searchedDiv = $('card_' + card.id);
 
                     if (searchedDiv && card.isUsed) {
-                        this.displayCard("???");
                         dojo.addClass(searchedDiv, "usedCard");
-                    }
-                    if (card.id == "208") {
-                        this.debug("did i see ???", searchedDiv, card.isUsed);
                     }
 
                     if (searchedDiv && fromDivId) {
@@ -26,9 +22,8 @@ define([
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
                         setTimeout(function () {
-                            _this.debug("DIS", card);
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer + 5)
+                        }, this.animationTimer + 10)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
