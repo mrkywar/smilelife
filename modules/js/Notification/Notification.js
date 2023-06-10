@@ -8,7 +8,8 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Play.js',
     g_gamethemeurl + 'modules/js/Notification/Consequence.js',
     g_gamethemeurl + 'modules/js/Notification/volontaryDivorce.js',
-    g_gamethemeurl + 'modules/js/Notification/Card/studies.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Studies.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Flirts.js',
 ], function (dojo, declare) {
     return declare(
             'smilelife.notification',
@@ -19,7 +20,8 @@ define([
                 smilelife.notification.play,
                 smilelife.notification.consequence,
                 smilelife.notification.volontaryDivorce,
-                smilelife.notification.card.studies
+                smilelife.notification.card.studies,
+                smilelife.notification.card.flirts
             ],
             {
                 constructor: function () {
@@ -49,7 +51,8 @@ define([
                         ['playNotification', 500],
                         ['doublonFlirtNotification', 500],
                         ['volontaryDivorceNotification', 500],
-                        ['studiesLevelUpdate', 500]
+                        ['studiesLevelUpdate', 500],
+                        ['usedFlirtNotification',500]
 
                     ]
                     notifs.forEach(function (notif) {

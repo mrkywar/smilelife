@@ -50,8 +50,6 @@ class FlirtUsedConsequence extends CardUsedConsequence {
                 ->add('card', $this->cardDecorator->decorate($this->getUsedCard()));
 
         $response->addNotification($notification);
-
-//        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }
 
 }
