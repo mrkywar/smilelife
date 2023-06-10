@@ -4,6 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Wage;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Reward\NationalMedal;
+use SmileLife\Card\Consequence\Category\Wage\WagePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -43,7 +44,7 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $nationalJobCriterion->setErrorMessage(null); //-- we didn't want see any message in this case
         $nationalMedalCardCriterion = new CardOnTableCriterion($table, NationalMedal::class);
 
-        return new CriterionGroup([
+        $criteria = new CriterionGroup([
             //-- Classic criterion
             new CriterionGroup([
                 $jobCriterion,
@@ -55,6 +56,11 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
                 $nationalMedalCardCriterion
                     ], CriterionGroup::AND_OPERATOR),
                 ], CriterionGroup::OR_OPERATOR);
+        
+        $criteria->addConsequence(new WagePlayedConsequence($card, $table));
+        
+        return $criteria;
+        
     }
 
 }

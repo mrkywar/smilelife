@@ -23,25 +23,25 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
      * 
      * @var Card
      */
-    private $card;
+    protected $card;
 
     /**
      * 
      * @var PlayerTableDecorator
      */
-    private $tableDecorator;
+    protected $tableDecorator;
 
     /**
      * 
      * @var CardDecorator
      */
-    private $cardDecorator;
+    protected $cardDecorator;
 
     /**
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
 
     public function __construct(Card $card, PlayerTable $table) {
         parent::__construct($table);
