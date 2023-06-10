@@ -62,15 +62,4 @@ abstract class Flirt extends Love {
         return $this;
     }
 
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Display
-     * ---------------------------------------------------------------------- */
-
-    public function __toString() {
-        return clienttranslate('${cardTitle} at ${flirtLocation}', [
-            'cardTitle' => $this->getTitle(),
-            'flirtLocation' => $this->getText1()
-        ]);
-    }
-
 }

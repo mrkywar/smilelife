@@ -11,10 +11,8 @@ define([
 
                     var searchedDiv = $('card_' + card.id);
 
-                    if (!card.type || card.isFlipped) {
-                        card.additionalClass = "visibleCard";
-                    } else {
-                        card.additionalClass = "flipped";
+                    if (searchedDiv && card.isUsed) {
+                        dojo.addClass(searchedDiv, "usedCard");
                     }
 
                     if (searchedDiv && fromDivId) {
@@ -24,9 +22,8 @@ define([
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
                         setTimeout(function () {
-                            _this.debug("DIS", card);
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer + 5)
+                        }, this.animationTimer + 15)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
@@ -50,7 +47,9 @@ define([
                         //-- display without move
                         this.debug("DC-WM", card.type, card.isFlipped);
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-
+                        if (card.isUsed) {
+                            dojo.addClass(newCardDiv, "usedcard");
+                        }
                         if (card.type && card.isFlipped) {
                             var pileContainer = $(destinationDivId);
 
@@ -62,7 +61,6 @@ define([
                         }
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
-                            this.debug('??');
                         }
 
                         dojo.connect(newCardDiv, 'onclick', (evt) => {

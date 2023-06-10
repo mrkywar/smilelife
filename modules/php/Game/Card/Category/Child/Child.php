@@ -39,6 +39,10 @@ abstract class Child extends Card {
         return new ChildCriterionFactory();
     }
 
+    public function getDisplayedName(): string {
+        return $this->getSubtitle();
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

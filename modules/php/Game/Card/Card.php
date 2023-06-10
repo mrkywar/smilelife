@@ -168,6 +168,12 @@ abstract class Card extends Model {
     abstract public function getPileName(): string;
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
+    
+//    abstract public function getDisplayedName():string;
+    
+    public function __toString(){
+        
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
@@ -313,6 +319,7 @@ abstract class Card extends Model {
             "text1" => $this->getText1(),
             "text2" => $this->getText2(),
             "isFlipped" => $this->getIsFlipped(),
+            "isUsed" => $this->getIsUsed()
         ];
     }
 
