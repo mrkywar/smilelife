@@ -23,7 +23,7 @@ define([
                         var _this = this;
                         setTimeout(function () {
                             _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer + 10)
+                        }, this.animationTimer + 15)
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
