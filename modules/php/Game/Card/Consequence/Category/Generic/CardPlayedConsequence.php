@@ -17,13 +17,13 @@ use SmileLife\Table\PlayerTableDecorator;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardPlayedConsequence extends PlayerTableConsequence {
+abstract class CardPlayedConsequence extends PlayerTableConsequence {
 
     /**
      * 
      * @var Card
      */
-    private $card;
+    protected $card;
 
     /**
      * 
@@ -58,20 +58,33 @@ class CardPlayedConsequence extends PlayerTableConsequence {
 
         $notification = new Notification();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
+        
+        $name = $this->card->__toString();
 
         $notification->setType("playNotification")
-                ->setText(clienttranslate('${player_name} play ${cardName} from ${from}'))
+                ->setText($this->getNotificationText())
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cardName', (string) $this->card)
+                ->add('cardName', (string)$this->card)
                 ->add('from', $from)
                 ->add('table', $this->tableDecorator->decorate($this->table))
                 ->add('card', $this->cardDecorator->decorate($this->card))
+                ->add('cardTitle', strtolower($this->card->getTitle()))
+                ->add('cardSubtitle', strtolower($this->card->getSubtitle()))
+                ->add('cardText1', strtolower($this->card->getText1()))
+                ->add('cardText2', strtolower($this->card->getText2()))
                 ->add('fromHand', CardLocation::PLAYER_HAND === $from)
                 ->add('discard', $this->cardDecorator->decorate($discardedCards));
-        
+
         $response->addNotification($notification);
 //        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+    
+    abstract protected function getNotificationText();
+    
 
 }

@@ -168,6 +168,12 @@ abstract class Card extends Model {
     abstract public function getPileName(): string;
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
+    
+//    abstract public function getDisplayedName():string;
+    
+    public function __toString(){
+        
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
