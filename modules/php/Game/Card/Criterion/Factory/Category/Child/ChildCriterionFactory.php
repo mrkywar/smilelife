@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Child;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Child\ChildPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Love\FlirtUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -41,7 +42,8 @@ class ChildCriterionFactory extends CardCriterionFactory {
                     $lastFlirtCriterion
                 ], CriterionGroup::AND_OPERATOR)
             ],CriterionGroup::OR_OPERATOR);
-        $criteria->setErrorMessage("You didn't have active Marriage or any flirt");
+        $criteria->setErrorMessage("You didn't have active Marriage or any flirt")
+                ->addConsequence(new ChildPlayedConsequence($card, $table));
 
         return $criteria;
     }

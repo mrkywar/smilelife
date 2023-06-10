@@ -46,7 +46,7 @@ class FlirtUsedConsequence extends CardUsedConsequence {
                 ->setText(clienttranslate('${player_name} gave birth to ${cardName} during his flirtation'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cardName', $this->child->getName())
+                ->add('cardName', $this->child->getText1())
                 ->add('card', $this->cardDecorator->decorate($this->getUsedCard()));
 
         $response->addNotification($notification);
