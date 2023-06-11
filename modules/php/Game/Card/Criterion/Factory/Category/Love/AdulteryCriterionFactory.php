@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Love;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Love\AdulteryPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -33,10 +34,14 @@ class AdulteryCriterionFactory extends CardCriterionFactory {
         $marriageAdultery = new IsMarriedCriterion($table);
         $marriageAdultery->setErrorMessage(clienttranslate('Before starting an adulterous relationship, you must be married.'));
 
-        return new CriterionGroup([
+        $criteria = new CriterionGroup([
             $noAdulteryCriterion,
             $marriageAdultery
                 ], CriterionGroup::AND_OPERATOR);
+        
+        $criteria->addConsequence(new AdulteryPlayedConsequence($card, $table));
+        
+        return $criteria;
     }
 
 }

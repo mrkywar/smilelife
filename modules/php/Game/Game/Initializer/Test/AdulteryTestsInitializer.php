@@ -37,7 +37,7 @@ class AdulteryTestsInitializer extends GameInitializer {
         unset($oTables[$i]);
         $this->OneMarriageCase($case3Table);
 
-        return $case1Table->getId();
+        return $case3Table->getId();
     }
 
     private function alreadyOnAdulteryCase(PlayerTable $table) {
