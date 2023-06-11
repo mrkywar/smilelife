@@ -59,8 +59,6 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $notification = new Notification();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
-        $name = $this->card->__toString();
-
         $notification->setType("playNotification")
                 ->setText($this->getNotificationText())
                 ->add('player_name', $player->getName())
