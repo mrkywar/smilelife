@@ -33,7 +33,8 @@ class NationalMedalCriterionFactory extends CardCriterionFactory {
             return $job->getTitle();
         }, $fakeJobs);
 
-        $this->message = clienttranslate('You must have a Job for this reward and you must be a ${jobNameList}', ['jobName' => implode(', ', $jobNameList)]);
+//        var_dump( implode(', ', $jobNameList));die;
+        $this->message = clienttranslate('You must have a Job for this reward and you must be a '. implode(', or ', $jobNameList));
     }
 
     /**
