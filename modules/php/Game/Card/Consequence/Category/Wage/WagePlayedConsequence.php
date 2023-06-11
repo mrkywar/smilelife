@@ -25,7 +25,7 @@ class WagePlayedConsequence extends CardPlayedConsequence {
 
         $name = $this->card->__toString();
 
-        $notification->setType("playNotification")
+        $notification->setType("playWageNotification")
                 ->setText($this->getNotificationText())
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
