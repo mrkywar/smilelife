@@ -53,10 +53,6 @@ abstract class Studies extends Card {
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
 
-    public function __toString() {
-        return $this->getTitle() . " " . $this->getText2();
-    }
-
     public function __toArray(): array {
         return array_merge(
                 parent::__toArray(),

@@ -5,6 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Studies;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Studies\LimitlessStudieConsequence;
 use SmileLife\Card\Consequence\Category\Studies\StudieLevelIncriseConsequence;
+use SmileLife\Card\Consequence\Category\Studies\StudiePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -69,7 +70,7 @@ class StudiesCriterionFactory extends CardCriterionFactory {
             $classicCriterion
                 ], CriterionGroup::OR_OPERATOR);
 
-//        $criteria->addConsequence();
+        $criteria->addConsequence(new StudiePlayedConsequence($card, $table));
 
         return $criteria;
     }

@@ -11,7 +11,6 @@ define([
                     this.notif_playNotification(notif);
 
                     this.wagesCounters[notif.args.playerId].setValue(this.wagesCounters[notif.args.playerId].getValue() + notif.args.wageAmount);
-//                    this.debug('WN', notif.args.wageAmount);
                 }
             }
     );
