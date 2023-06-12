@@ -5,6 +5,7 @@ namespace SmileLife\Game\GameListener\ResignAdultery;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Game\Request\ResignAdulteryRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -46,15 +47,23 @@ class ResignAdulteryListener extends EventListener {
         if (null !== $adultery) {
             $this->cardManager->discardCard($adultery, $player);
             $table->setAdulteryId(null);
-            
-            $response->add("adultery", $adultery);
+
+            $flirts = $table->getAdulteryFlirts();
+
+            $response->add("adultery", $adultery)
+                    ->add("flirts", $flirts);
+
+            foreach ($flirts as $flirt) {
+                $flirt->setIsFlipped(true);
+                $this->cardManager->update($flirt);
+            }
+            $table->resignAdultery();
         }
 
         $this->tableManager->updateTable($table);
 
         $response->add("playerTable", $table)
-                ->add("player", $player)
-                ->add("adultery", $adultery);
+                ->add("player", $player);
 
         return $response;
     }

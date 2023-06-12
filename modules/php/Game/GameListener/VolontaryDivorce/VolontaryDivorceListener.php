@@ -37,9 +37,9 @@ class VolontaryDivorceListener extends ResignAdulteryListener {
 
         $this->tableManager->updateTable($table);
 
-        $response->add("playerTable", $table)
-                ->add("player", $player)
-                ->add("marriage", $marriage);
+        $response->set("playerTable", $table)
+                ->set("player", $player)
+                ->set("marriage", $marriage);
 
         return $response;
     }

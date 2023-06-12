@@ -47,7 +47,11 @@ class ResignAdulteryNotifier extends EventListener {
         $this->cardDecorator = new CardDecorator();
     }
 
-    private function extractPlayerTable(Response $response): PlayerTable {
+    protected function extractMarriage(Response $response): Marriage {
+        return $response->get("marriage");
+    }
+
+    protected function extractPlayerTable(Response $response): PlayerTable {
         return $response->get("playerTable");
     }
 
