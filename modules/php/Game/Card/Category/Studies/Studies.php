@@ -43,11 +43,14 @@ abstract class Studies extends Card {
     public function getPileName(): string {
         return 'job';
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new StudiesCriterionFactory();
     }
 
+    public function __toString() {
+        return $this->getTitle() . " " . $this->getText2();
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display

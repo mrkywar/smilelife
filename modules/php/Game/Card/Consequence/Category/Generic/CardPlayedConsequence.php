@@ -73,6 +73,10 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
                 ->add('fromHand', CardLocation::PLAYER_HAND === $from)
                 ->add('discard', $this->cardDecorator->decorate($discardedCards));
 
+        if (null !== $this->table->getJob()) {
+            $notification->add('jobName', $this->table->getJob()->getTitle());
+        }
+
         $response->addNotification($notification);
 //        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }

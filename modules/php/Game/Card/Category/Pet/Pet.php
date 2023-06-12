@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Pet;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Pet\PetCriterionFactory;
 
 /**
  * Description of Pet
@@ -36,7 +36,7 @@ abstract class Pet extends Card {
     }
     
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NullCriterionFactory();
+        return new PetCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------
