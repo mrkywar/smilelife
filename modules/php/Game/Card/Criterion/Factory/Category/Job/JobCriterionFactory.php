@@ -32,7 +32,7 @@ class JobCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $pistonCriterion = new HaveJobBoostReadyCriterion($table);
-        $pistonCriterion->addConsequence(new CardUsedConsequence($table->getJobBoost(), $table->getPlayer()));
+        $pistonCriterion->addConsequence(new CardUsedConsequence($table->getJobBoost(), $table));
 
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($table));
         $noJobCriterion->setErrorMessage(clienttranslate('You have already an active Job, Resign First'));
