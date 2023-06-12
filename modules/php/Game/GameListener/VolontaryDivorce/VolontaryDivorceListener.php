@@ -46,6 +46,16 @@ class VolontaryDivorceListener extends EventListener {
         $this->cardManager->discardCard($marriage, $player);
         $table->setMarriageId(null);
 
+        $adultery = $table->getAdultery();
+        if (null !== $adultery) {
+            $this->cardManager->discardCard($adultery, $player);
+            $table->setAdulteryId(null);
+
+            $response->add("adultery", $adultery);
+
+            
+        }
+
         $this->tableManager->updateTable($table);
 
         $response->add("playerTable", $table)

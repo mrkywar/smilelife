@@ -32,19 +32,11 @@ class NotificationCollection implements Countable, IteratorAggregate {
     }
 
     public function addNotification(Notification $notification) {
-        if (isset($this->notifcations[$notification->getType()])) {
-            throw new NotificationException("Notification " . $notification->getType() . " is already in use");
-        }
-        $this->notifcations[$notification->getType()] = $notification;
+        $this->notifcations[] = $notification;
 
         return $this;
     }
 
-    public function setNotification(Notification $notification) {
-        $this->notifcations[$notification->getType()] = $notification;
-
-        return $this;
-    }
 
     public function nextNotification(): ?Notification {
         if (0 === $this->count()) {

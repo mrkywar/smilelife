@@ -37,7 +37,7 @@ class AdulteryTestsInitializer extends GameInitializer {
         unset($oTables[$i]);
         $this->OneMarriageCase($case3Table);
 
-        return $case3Table->getId();
+        return $case1Table->getId();
     }
 
     private function alreadyOnAdulteryCase(PlayerTable $table) {
@@ -47,16 +47,23 @@ class AdulteryTestsInitializer extends GameInitializer {
         $forcedAdultery->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $this->cardManager->add($forcedAdultery);
+        $forcedMarriage = new \SmileLife\Card\Category\Love\Marriage\Fourqueux();
+        $forcedMarriage->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
 
-        $adultery = $this->cardManager->findBy([
-            "type" => CardType::ADULTERY,
+        $this->cardManager->add([$forcedAdultery, $forcedMarriage]);
+
+        $cards = $this->cardManager->findBy([
+            "type" => [CardType::ADULTERY, CardType::MARRIAGE_FOURQUEUX],
             "location" => CardLocation::PLAYER_BOARD,
             "locationArg" => $table->getId()
-                ], 1);
+                ], 2);
 
-        $this->cardManager->playCard($table->getPlayer(), $adultery);
-        $table->addCard($adultery);
+        foreach ($cards as $card) {
+            $this->cardManager->playCard($table->getPlayer(), $card);
+            $table->addCard($card);
+        }
+
         $this->playerTableManager->updateTable($table);
 
         $forcedAdultery2 = new Adultery();
