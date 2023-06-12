@@ -20,13 +20,13 @@ class ResignAdulteryListener extends EventListener {
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
 
     /**
      * 
      * @var PlayerTableManager
      */
-    private $tableManager;
+    protected $tableManager;
 
     public function __construct() {
         $this->setMethod("onResignAdultery");
@@ -43,9 +43,12 @@ class ResignAdulteryListener extends EventListener {
         ]);
 
         $adultery = $table->getAdultery();
-
-        $this->cardManager->discardCard($adultery, $player);
-        $table->setAdulteryId(null);
+        if (null !== $adultery) {
+            $this->cardManager->discardCard($adultery, $player);
+            $table->setAdulteryId(null);
+            
+            $response->add("adultery", $adultery);
+        }
 
         $this->tableManager->updateTable($table);
 

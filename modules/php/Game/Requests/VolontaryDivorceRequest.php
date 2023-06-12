@@ -10,12 +10,10 @@ use SmileLife\PlayerAction\ActionType;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class VolontaryDivorceRequest extends Request {
+class VolontaryDivorceRequest extends ResignRequest {
 
     public function __construct(Player $player) {
-        parent::__construct();
-
-        $this->set("player", $player);
+        parent::__construct($player);
     }
 
     public function getPlayer(): Player {

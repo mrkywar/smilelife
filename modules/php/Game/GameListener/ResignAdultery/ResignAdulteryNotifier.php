@@ -25,19 +25,19 @@ class ResignAdulteryNotifier extends EventListener {
      * 
      * @var PlayerTableDecorator
      */
-    private $tableDecorator;
+    protected $tableDecorator;
 
     /**
      * 
      * @var CardDecorator
      */
-    private $cardDecorator;
+    protected $cardDecorator;
 
     /**
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
 
     public function __construct() {
         $this->setMethod("onResignAdultery");
