@@ -171,10 +171,6 @@ abstract class Card extends Model {
     
 //    abstract public function getDisplayedName():string;
     
-    public function __toString(){
-        
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
