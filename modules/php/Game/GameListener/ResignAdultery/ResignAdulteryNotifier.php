@@ -64,7 +64,7 @@ class ResignAdulteryNotifier extends EventListener {
 
         $notificationAdultery = new Notification();
 
-        $notificationAdultery->setType("passNotification")
+        $notificationAdultery->setType("resignNotification")
                 ->setText(clienttranslate('${player_name} renounce his ${cardTitle}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())

@@ -14,8 +14,8 @@ define([
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, "pile_discard", "myhand");
-                        dojo.query(".selected").removeClass("selected");
-                        this.myTable = notif.args.table;
+                        dojo.query(".selected").removeClass("selected");                  
+                        this.myTable = notif.args.table;                     
                     } else {
                         this.displayCard(card, "pile_discard", "playerpanel_" + notif.args.playerId, true);
                     }
