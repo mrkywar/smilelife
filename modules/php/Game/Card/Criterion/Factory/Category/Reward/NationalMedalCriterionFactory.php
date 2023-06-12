@@ -7,6 +7,7 @@ use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -33,7 +34,6 @@ class NationalMedalCriterionFactory extends CardCriterionFactory {
             return $job->getTitle();
         }, $fakeJobs);
 
-//        var_dump( implode(', ', $jobNameList));die;
         $this->message = clienttranslate('You must have a Job for this reward and you must be a '. implode(', or ', $jobNameList));
     }
 
@@ -55,6 +55,8 @@ class NationalMedalCriterionFactory extends CardCriterionFactory {
 
         $criterion->setErrorMessage(clienttranslate($this->message));
 
+        $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
+        
         return $criterion;
     }
 
