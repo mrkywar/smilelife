@@ -59,16 +59,27 @@ class ResignAdulteryNotifier extends EventListener {
         return $response->get("adultery");
     }
 
+    /**
+     * 
+     * @param Response $response
+     * @return Flirts[]|null
+     */
+    private function extractFlirts(Response $response): ?array {
+        return $response->get("flirts");
+        ;
+    }
+
     public function onResignAdultery(ResignAdulteryRequest &$request, Response &$response) {
         $player = $request->getPlayer();
         $table = $this->extractPlayerTable($response);
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
         $adultery = $this->extractAdultery($response);
-
-        $notificationAdultery = new Notification();
+        $flirts = $this->extractFlirts($response);
 
         if (null !== $adultery) {
+            $notificationAdultery = new Notification();
+
             $notificationAdultery->setType("resignNotification")
                     ->setText(clienttranslate('${player_name} renounce his ${cardTitle}'))
                     ->add('player_name', $player->getName())
@@ -80,6 +91,19 @@ class ResignAdulteryNotifier extends EventListener {
             ;
 
             $response->addNotification($notificationAdultery);
+        }
+        if (null !== $flirts) {
+            $notificationFlirt = new Notification();
+
+            $notificationFlirt->setType("flirtsAdultery")
+                    ->setText(clienttranslate('all the adulterous flirtations of ${player_name} are preserved'))
+                    ->add('player_name', $player->getName())
+                    ->add('playerId', $player->getId())
+                    ->add('cards', $this->cardDecorator->decorate($flirts))
+                    ->add('table', $this->tableDecorator->decorate($table))
+            ;
+
+            $response->addNotification($notificationFlirt);
         }
 
         return $response;
