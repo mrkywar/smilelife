@@ -2,7 +2,7 @@
 
 namespace SmileLife\PlayerAction;
 
-use SmileLife\Game\Request\VolontaryDivorceRequest;
+use SmileLife\Game\Request\ResignAdulteryRequest;
 
 /**
  *
@@ -17,10 +17,9 @@ trait ResignAdulteryTrait {
         $player = $this->playerManager->findOne([
             "id" => $playerId
         ]);
-        
-        die("AR-inP");
-//        $request = new VolontaryDivorceRequest($player);
-//        $response = $this->requester->send($request);
+
+        $request = new ResignAdulteryRequest($player);
+        $response = $this->requester->send($request);
 
         $this->applyResponse($response);
     }
