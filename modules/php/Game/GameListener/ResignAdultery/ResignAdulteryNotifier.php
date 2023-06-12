@@ -64,17 +64,19 @@ class ResignAdulteryNotifier extends EventListener {
 
         $notificationAdultery = new Notification();
 
-        $notificationAdultery->setType("resignNotification")
-                ->setText(clienttranslate('${player_name} renounce his ${cardTitle}'))
-                ->add('player_name', $player->getName())
-                ->add('playerId', $player->getId())
-                ->add('card', $this->cardDecorator->decorate($adultery))
-                ->add('cardTitle', $adultery->getTitle())
-                ->add('table', $this->tableDecorator->decorate($table))
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
-        ;
+        if (null !== $adultery) {
+            $notificationAdultery->setType("resignNotification")
+                    ->setText(clienttranslate('${player_name} renounce his ${cardTitle}'))
+                    ->add('player_name', $player->getName())
+                    ->add('playerId', $player->getId())
+                    ->add('card', $this->cardDecorator->decorate($adultery))
+                    ->add('cardTitle', $adultery->getTitle())
+                    ->add('table', $this->tableDecorator->decorate($table))
+                    ->add('discard', $this->cardDecorator->decorate($discardedCards))
+            ;
 
-        $response->addNotification($notificationAdultery);
+            $response->addNotification($notificationAdultery);
+        }
 
         return $response;
     }
