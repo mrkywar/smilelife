@@ -17,6 +17,7 @@ use SmileLife\PlayerAction\DrawTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\PlayFromDiscardTrait;
+use SmileLife\PlayerAction\ResignAdulteryTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\PlayerAction\VolontaryDivorceTrait;
 use SmileLife\Table\PlayerTableManager;
@@ -235,6 +236,7 @@ class SmileLife extends Table {
     use PlayFromDiscardTrait;
     use DrawTrait;
     use VolontaryDivorceTrait;
+    use ResignAdulteryTrait;
 
 //-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;

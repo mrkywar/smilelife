@@ -15,7 +15,6 @@ define([
 
                 displayPanels: function () {
                     var gamedatas = this.gamedatas;
-                    this.debug("PP-DP : ", gamedatas.player, gamedatas.tables, gamedatas.mytable);
 
                     //-- Display My Panel
                     this.displayAPanel(gamedatas.mytable.player);

@@ -7,7 +7,7 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId) {
-                    this.debug("DC", card);
+//                    this.debug("DC", card);
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -17,7 +17,6 @@ define([
 
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
-//                        this.debug("DC-MR");
                         searchedDiv.id = "temp_" + searchedDiv.id;
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         var _this = this;
@@ -27,7 +26,6 @@ define([
 //                        $(searchedDiv.id).remove();
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
-//                        this.debug("DC-NC");
                         var initialId = card.id
                         card.id = 'temp_' + card.id;
 
@@ -45,7 +43,6 @@ define([
 
                     } else if (!searchedDiv) {
                         //-- display without move
-                        this.debug("DC-WM", card.type, card.isFlipped);
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
                         if (card.isUsed) {
                             dojo.addClass(newCardDiv, "usedcard");

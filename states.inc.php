@@ -48,6 +48,7 @@ $playerActionsGameStates = [
             "resign",
             "drawCard",
             "vonlontaryDivorce",
+            "resignAdultery",
             "playFormDiscard"
         ],
         "transitions" => [
@@ -67,9 +68,11 @@ $playerActionsGameStates = [
 //        "args" => "argChooseCard",  
         "possibleactions" => [
             "playCard",
+            "resignAdultery",
             "discardCard"
         ],
         "transitions" => [
+            "resignAndPlay" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" =>  ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,

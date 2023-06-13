@@ -3,16 +3,20 @@
 namespace SmileLife\Game\Request;
 
 use Core\Models\Player;
+use Core\Requester\Request\Request;
 use SmileLife\PlayerAction\ActionType;
 
 /**
+ * Description of ResignAdulteryRequest
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class VolontaryDivorceRequest extends ResignAdulteryRequest {
+class ResignAdulteryRequest extends Request {
 
     public function __construct(Player $player) {
-        parent::__construct($player);
+        parent::__construct();
+
+        $this->set("player", $player);
     }
 
     public function getPlayer(): Player {
@@ -20,6 +24,7 @@ class VolontaryDivorceRequest extends ResignAdulteryRequest {
     }
 
     public function getType(): string {
-        return ActionType::ACTION_VOLONTARY_DIVORCE;
+        return ActionType::ACTION_RESIGN_ADULTERY;
     }
+
 }

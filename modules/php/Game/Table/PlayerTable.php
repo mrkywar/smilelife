@@ -525,6 +525,11 @@ class PlayerTable extends Model {
         ]);
     }
 
+    public function resignAdultery() {
+        $this->flirtIds = array_merge($this->adulteryFlirtIds, $this->flirtIds);
+        $this->adulteryFlirtIds = [];
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */

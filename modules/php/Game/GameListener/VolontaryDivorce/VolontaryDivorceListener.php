@@ -2,9 +2,9 @@
 
 namespace SmileLife\Game\GameListener\Resign;
 
-use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Game\GameListener\ResignAdultery\ResignAdulteryListener;
 use SmileLife\Game\Request\VolontaryDivorceRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -14,25 +14,12 @@ use SmileLife\Table\PlayerTableManager;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class VolontaryDivorceListener extends EventListener {
+class VolontaryDivorceListener extends ResignAdulteryListener {
 
-    /**
-     * 
-     * @var CardManager
-     */
-    private $cardManager;
-
-    /**
-     * 
-     * @var PlayerTableManager
-     */
-    private $tableManager;
 
     public function __construct() {
+        parent::__construct();
         $this->setMethod("onDivorce");
-
-        $this->cardManager = new CardManager();
-        $this->tableManager = new PlayerTableManager();
     }
 
     public function onDivorce(VolontaryDivorceRequest &$request, Response &$response) {
@@ -46,21 +33,13 @@ class VolontaryDivorceListener extends EventListener {
         $this->cardManager->discardCard($marriage, $player);
         $table->setMarriageId(null);
 
-        $adultery = $table->getAdultery();
-        if (null !== $adultery) {
-            $this->cardManager->discardCard($adultery, $player);
-            $table->setAdulteryId(null);
-
-            $response->add("adultery", $adultery);
-
-            
-        }
+        parent::onResignAdultery($request, $response);
 
         $this->tableManager->updateTable($table);
 
-        $response->add("playerTable", $table)
-                ->add("player", $player)
-                ->add("marriage", $marriage);
+        $response->set("playerTable", $table)
+                ->set("player", $player)
+                ->set("marriage", $marriage);
 
         return $response;
     }

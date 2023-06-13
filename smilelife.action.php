@@ -88,4 +88,11 @@ class action_smilelife extends APP_GameAction {
         self::ajaxResponse();
     }
     
+    public function adulteryResign() {
+        self::setAjaxMode();
+
+        $this->game->actionAdulteryResign();
+
+        self::ajaxResponse();
+    }
 }
