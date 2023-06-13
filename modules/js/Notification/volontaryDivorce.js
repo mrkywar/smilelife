@@ -8,16 +8,29 @@ define([
                 //smilelife.state.draw
             ],
             {
-                notif_volontaryDivorceNotification: function (notif) {
-                    var card = notif.args.card;
-                    this.displayCard(card, "pile_discard", "pile_love_" + notif.args.playerId);
 
-                    if (parseInt(notif.args.playerId) === this.player_id) {
-                        this.myTable = notif.args.table;
+                notif_flirtsAdultery: function (notif) {
+                    this.debug("FA", notif.args, notif);
+
+                    for (var cardId in notif.args.cards) {
+                        var card = notif.args.cards[cardId];
+                        this.debug(card);
+                        var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
+                        this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }
 
-                    this.boardCounter[notif.args.playerId].love.setValue(this.boardCounter[notif.args.playerId].love.getValue() - 1);
-                },
+                    var pileSize = notif.args.cards.length;
+                    if (
+                            (parseInt(notif.args.playerId) === this.player_id && null !== this.myTable.marriage)
+                            ||
+                            (parseInt(notif.args.playerId) !== this.player_id && null !== this.otherTabes[notif.args.playerId].marriage)
+                            ) {
+                        pileSize = pileSize + 1;
+                    }
+
+                    this.boardCounter[notif.args.playerId].adultery.setValue(0);
+                    this.boardCounter[notif.args.playerId].love.setValue(pileSize);
+                }
             }
     );
 });

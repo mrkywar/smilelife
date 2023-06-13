@@ -26,15 +26,11 @@ class VolontaryDivorceNotifier extends ResignAdulteryNotifier {
         $this->setMethod("onDivorce");
     }
 
-    
-
     public function onDivorce(VolontaryDivorceRequest &$request, Response &$response) {
         $player = $request->getPlayer();
         $card = $this->extractMarriage($response);
         $table = $this->extractPlayerTable($response);
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
-
-        parent::onResignAdultery($request, $response);
 
         $notification = new Notification();
 
@@ -48,6 +44,8 @@ class VolontaryDivorceNotifier extends ResignAdulteryNotifier {
         ;
 
         $response->addNotification($notification);
+
+        parent::onResignAdultery($request, $response);
 
         return $response;
     }

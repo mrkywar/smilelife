@@ -14,6 +14,8 @@ define([
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.myTable = notif.args.table;
+                    } else {
+                        this.otherTabes[notif.args.playerId] = notif.args.table;
                     }
 
                     this.discardCounter.setValue(this.discardCounter.getValue() + 1);

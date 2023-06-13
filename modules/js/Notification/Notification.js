@@ -47,15 +47,16 @@ define([
                     var _this = this;
 
                     var notifs = [
+                        ['flirtsAdultery', 500],
                         ['drawNotification', 500],
                         ['passNotification', 500],
                         ['playNotification', 500],
                         ['studiesLevelUpdate', 500],
-                        ['resignNotification', 500],
+                        ['resignNotification', 550],
                         ['playWageNotification', 500],
                         ['usedFlirtNotification', 500],
                         ['doublonFlirtNotification', 500],
-                        ['volontaryDivorceNotification', 500],
+                        
                     ]
                     notifs.forEach(function (notif) {
                         dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));

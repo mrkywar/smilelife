@@ -75,7 +75,6 @@ define([
                     var pileAcquisitionCounter = this.displayPile(tableCards.acquisitionPile, 'pile_acquisition_', player);
 
                     //---- Display Adultery Pile infos
-                    this.debug(tableCards.adulteryPile);
                     var pileAdulteryCounter = this.displayPile(tableCards.adulteryPile, 'pile_adultery_', player);
 
                     //---- Display Specials Pile infos
