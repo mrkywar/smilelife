@@ -20,6 +20,9 @@ use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Special\Special;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Effect\CardEffectInterface;
+use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 
 /**
  * Description of Game
@@ -300,8 +303,9 @@ class PlayerTable extends Model {
     }
 
     public function addStudy(Studies $card) {
-        if ($card->getIsFlipped()) {
-            array_unshift($this->studiesIds, $card);
+        $criteria = new JobEffectCriteria($this, LimitlessStudiesEffect::class);
+        if ($criteria->isValided()) {
+            array_unshift($this->studiesIds, $card->getId());
         } else {
             $this->studiesIds[] = $card->getId();
         }
