@@ -300,7 +300,11 @@ class PlayerTable extends Model {
     }
 
     public function addStudy(Studies $card) {
-        $this->studiesIds[] = $card->getId();
+        if ($card->getIsFlipped()) {
+            array_unshift($this->studiesIds, $card);
+        } else {
+            $this->studiesIds[] = $card->getId();
+        }
 
         return $this;
     }
