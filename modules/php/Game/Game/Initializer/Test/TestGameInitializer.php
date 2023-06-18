@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
@@ -22,11 +23,13 @@ class TestGameInitializer extends GameInitializer {
         parent::init($players, $options);
     }
 
-    protected function playWaitingCards(PlayerTable $table) {
+    protected function playWaitingCards(PlayerTable &$table) {
         $cards = $this->cardManager->findBy([
             "location" => CardLocation::PLAYER_BOARD,
             "locationArg" => $table->getId()
         ]);
+        
+//        var_dump($cards);die;
 
         foreach ($cards as $card) {
             $this->cardManager->playCard($table->getPlayer(), $card);

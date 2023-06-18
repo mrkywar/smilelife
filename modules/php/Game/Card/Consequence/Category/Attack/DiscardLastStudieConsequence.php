@@ -2,7 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
-use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Table\PlayerTable;

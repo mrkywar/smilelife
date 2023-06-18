@@ -4,8 +4,8 @@ namespace SmileLife\Card\Consequence\Category\Generic;
 
 use Core\Models\Player;
 use Core\Requester\Response\Response;
+use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Consequence\Consequence;
 
 /**
@@ -17,7 +17,7 @@ class DiscardConsequence extends Consequence {
 
     /**
      * 
-     * @var Job
+     * @var Card
      */
     private $card;
 
@@ -33,7 +33,7 @@ class DiscardConsequence extends Consequence {
      */
     private $cardManager;
 
-    public function __construct(Job $card, Player $player) {
+    public function __construct(Card $card, Player $player) {
         $this->cardManager = new CardManager();
         $this->player = $player;
         $this->card = $card;
