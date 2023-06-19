@@ -20,7 +20,7 @@ class DiscardConsequence extends Consequence {
      * 
      * @var Card
      */
-    private $card;
+    protected $card;
 
     /**
      * 

@@ -27,7 +27,7 @@ class DiscardLastStudieConsequence extends DiscardConsequence {
      */
     private function getLastUnusedStudie($studies): Studies {
         foreach ($studies as $studie) {
-            if ($studie->getIsFlipped()) {
+            if (!$studie->getIsFlipped()) {
                 return $studie;
             }
         }
@@ -36,7 +36,7 @@ class DiscardLastStudieConsequence extends DiscardConsequence {
     }
 
     public function execute(Response &$response) {
-        $this->table->removeCard($studie);
+        $this->table->removeCard($this->card);
         $this->tableManager->update($this->table);
 
         return parent::execute($response);

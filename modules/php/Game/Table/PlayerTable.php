@@ -208,10 +208,10 @@ class PlayerTable extends Model {
     public function removeCard(Card $card) {
         if ($card instanceof Studies) {
             return $this->removeStudy($card);
-        }elseif ($card instanceof Flirt) {
+        } elseif ($card instanceof Flirt) {
             return $this->removeFlirt($card);
-        }else {
-        
+        } else {
+
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
     }
@@ -326,10 +326,11 @@ class PlayerTable extends Model {
     public function removeStudy(Studies $card) {
         $searchedId = $card->getId();
         $this->studiesIds = array_values(
-                array_filter($this->studiesIds, function ($studiesId) use ($searchedId) {
-                    $searchedId !== $this->studiesIds;
+                array_filter($this->studiesIds, function ($studyId) use ($searchedId) {
+                    return $searchedId !== $studyId;
                 })
         );
+
         return $this;
     }
 
@@ -363,13 +364,13 @@ class PlayerTable extends Model {
         if (null === $this->getAdultery()) {
             $this->flirtIds = array_values(
                     array_filter($this->flirtIds, function ($flirtId) use ($searchedId) {
-                        $searchedId !== $flirtId;
+                        return $searchedId !== $flirtId;
                     })
             );
         } else {
             $this->adulteryFlirtIds = array_values(
                     array_filter($this->adulteryFlirtIds, function ($flirtId) use ($searchedId) {
-                        $searchedId !== $flirtId;
+                        return $searchedId !== $flirtId;
                     })
             );
         }
