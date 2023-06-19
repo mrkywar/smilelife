@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
+use Core\Requester\Response\Response;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Consequence\ConsequenceException;
@@ -16,7 +17,7 @@ class DiscardLastStudieConsequence extends DiscardConsequence {
 
     public function __construct(PlayerTable $table) {
         $card = $this->getLastUnusedStudie($table->getStudies());
-        parent::__construct($card, $table->getPlayer());
+        parent::__construct($card, $table);
     }
 
     /**
@@ -32,6 +33,13 @@ class DiscardLastStudieConsequence extends DiscardConsequence {
         }
 
         throw new ConsequenceException("DLSC-01 : No aviable Studies");
+    }
+
+    public function execute(Response &$response) {
+        $this->table->removeCard($studie);
+        $this->tableManager->update($this->table);
+
+        return parent::execute($response);
     }
 
 }

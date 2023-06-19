@@ -2,11 +2,12 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
-use Core\Models\Player;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Table\PlayerTable;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of DiscardConsequence
@@ -23,24 +24,34 @@ class DiscardConsequence extends Consequence {
 
     /**
      * 
-     * @var Player
+     * @var PlayerTable
      */
-    private $player;
+    protected $table;
 
     /**
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
+    
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    protected $tableManager;
 
-    public function __construct(Card $card, Player $player) {
+    
+    
+
+    public function __construct(Card $card, PlayerTable $table) {
         $this->cardManager = new CardManager();
-        $this->player = $player;
+        $this->tableManager = new PlayerTableManager();
+        $this->table = $table;
         $this->card = $card;
     }
 
     public function execute(Response &$response) {
-        $this->cardManager->discardCard($this->card, $this->player);
+        $this->cardManager->discardCard($this->card, $this->table->getPlayer());
         return $this;
     }
 
