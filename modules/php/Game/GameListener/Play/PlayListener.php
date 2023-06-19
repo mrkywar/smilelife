@@ -69,15 +69,13 @@ class PlayListener extends EventListener {
         }else if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
-//        
 
-
-        $table->addCard($card);
-        $this->tableManager->updateTable($table);
-
+//        $table->addCard($card);
+//        $this->tableManager->updateTable($table);
+//
         $response->set("from", $card->getLocation());
-
-        $this->cardManager->playCard($player, $card);
+//
+//        $this->cardManager->playCard($player, $card);
 
         $response->set('player', $player)
                 ->set('card', $card)

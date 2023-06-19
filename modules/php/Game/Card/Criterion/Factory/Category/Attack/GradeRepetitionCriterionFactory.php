@@ -5,6 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -40,8 +41,9 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
                 $haveStudieCriterion
             ], CriterionGroup::AND_OPERATOR);
         
-        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new DiscardLastStudieConsequence($opponentTable));
+        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                ->addConsequence(new DiscardLastStudieConsequence($opponentTable))
+                ->addConsequence(new GenericCardPlayedConsequence($card, $opponentTable));
         
         return $criteria;
     }
