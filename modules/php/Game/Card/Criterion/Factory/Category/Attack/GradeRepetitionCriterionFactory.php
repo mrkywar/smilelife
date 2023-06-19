@@ -3,9 +3,12 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
+use SmileLife\Card\Consequence\Category\Attack\StudieLevelDecreaseConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -37,15 +40,33 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
         $haveStudieCriterion->setErrorMessage(clienttranslate("Targeted player have no studies"));
 
         $criteria = new CriterionGroup([
-                $noJobCriterion,
-                $haveStudieCriterion
-            ], CriterionGroup::AND_OPERATOR);
-        
+            $noJobCriterion,
+            $haveStudieCriterion
+                ], CriterionGroup::AND_OPERATOR);
+
+        $lastStudies = $this->getLastUnusedStudie($table->getStudies());
+
         $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                ->addConsequence(new DiscardLastStudieConsequence($opponentTable))
+                ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
+                ->addConsequence(new StudieLevelDecreaseConsequence($lastStudies, $opponentTable))
                 ->addConsequence(new GenericCardPlayedConsequence($card, $opponentTable));
-        
+
         return $criteria;
+    }
+
+    /**
+     * 
+     * @param Studies[] $studies
+     * @return Studies
+     */
+    private function getLastUnusedStudie($studies): Studies {
+        foreach ($studies as $studie) {
+            if (!$studie->getIsFlipped()) {
+                return $studie;
+            }
+        }
+
+        throw new ConsequenceException("DLSC-01 : No aviable Studies");
     }
 
 }
