@@ -11,6 +11,7 @@ use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of CardPlayedConsequence
@@ -36,6 +37,12 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
+    
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    private $tableManager;
 
     /**
      * 
@@ -48,6 +55,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $this->card = $card;
         $this->tableDecorator = new PlayerTableDecorator();
         $this->cardDecorator = new CardDecorator();
+        $this->tableManager = new PlayerTableManager();
         $this->cardManager = new CardManager();
     }
 
@@ -58,6 +66,10 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
 
         $notification = new Notification();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
+        
+        $this->cardManager->playCard($player, $this->card);
+        $this->table->addCard($this->card);
+        $this->tableManager->updateTable($this->table);
 
         $notification->setType("playNotification")
                 ->setText($this->getNotificationText())
