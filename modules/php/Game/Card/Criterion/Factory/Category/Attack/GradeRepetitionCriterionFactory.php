@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
 use SmileLife\Card\Consequence\Category\Attack\StudieLevelDecreaseConsequence;
-use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -33,6 +33,7 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $noJobCriterion->setErrorMessage(clienttranslate("Targeted player has an active Job"));
 
@@ -49,7 +50,7 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
         $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                 ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
                 ->addConsequence(new StudieLevelDecreaseConsequence($lastStudies, $opponentTable))
-                ->addConsequence(new GenericCardPlayedConsequence($card, $opponentTable));
+                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
 
         return $criteria;
     }
