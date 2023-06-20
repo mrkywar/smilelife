@@ -28,7 +28,7 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
             $forcedCards[] = $card;
         }
         $this->cardManager->add($forcedCards);
-        
+
         reset($oTables);
         //-- case1 : No Sudies (not playable) (nothing to do)
         //-- case2 : One Studie (playable)
@@ -60,7 +60,7 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
         $case6Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->jobCase($case6Table);
-        
+
         return $case6Table->getId();
     }
 
@@ -117,15 +117,27 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
             $card = new StudiesLevel1();
             $card->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($table->getId());
-            
+
             $forcedCard[] = $card;
         }
-        
+        $cardFlirt = new \SmileLife\Card\Category\Love\Flirt\Hotel();
+        $cardFlirt->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId())
+                ->setIsUsed(true);
+
+        $forcedCard[] = $cardFlirt;
+
+        $cardFlirt2 = new \SmileLife\Card\Category\Love\Flirt\Camping();
+        $cardFlirt2->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId())
+                ->setIsUsed(true);
+        $forcedCard[] = $cardFlirt2;
+
         $job = new Medium();
         $job->setLocation(CardLocation::PLAYER_BOARD)
-                    ->setLocationArg($table->getId());
+                ->setLocationArg($table->getId());
         $forcedCard[] = $job;
-        
+
         $this->cardManager->add($forcedCard);
         $this->playWaitingCards($table);
     }
