@@ -172,6 +172,22 @@ class PlayerTable extends Model {
     }
 
     /* -------------------------------------------------------------------------
+     *                  BEGIN - Sorting Pile
+     * ---------------------------------------------------------------------- */
+
+    protected function sortPile(&$cards, $orderedId) {
+        // Fonction de comparaison pour le tri
+        $compareFunction = function ($a, $b) use ($orderedId) {
+            $indexA = array_search($a->getId(), $orderedId);
+            $indexB = array_search($b->getId(), $orderedId);
+            return $indexA - $indexB;
+        };
+
+        // Tri du tableau selon l'ordre des IDs
+        usort($cards, $compareFunction);
+    }
+
+    /* -------------------------------------------------------------------------
      *                  BEGIN - Shortcut
      * ---------------------------------------------------------------------- */
 
@@ -285,6 +301,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getWageIds()]);
+
+        $this->sortPile($cards, $this->getWageIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -306,6 +325,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getChildIds()]);
+
+        $this->sortPile($cards, $this->getChildIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -343,6 +365,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getStudiesIds()]);
+
+        $this->sortPile($cards, $this->getStudiesIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -387,6 +412,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getFlirtIds()]);
+
+        $this->sortPile($cards, $this->getFlirtIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -402,6 +430,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getAdulteryFlirtIds()]);
+
+        $this->sortPile($cards, $this->getAdulteryFlirtIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -441,6 +472,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getRewardIds()]);
+
+        $this->sortPile($cards, $this->getRewardIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -462,6 +496,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getAcquisitionIds()]);
+
+        $this->sortPile($cards, $this->getAcquisitionIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -483,6 +520,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getAttackIds()]);
+
+        $this->sortPile($cards, $this->getAttackIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
@@ -510,6 +550,9 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(true);
         $cards = $this->cardManager
                 ->findBy(["id" => $this->getSpecialsIds()]);
+
+        $this->sortPile($cards, $this->getSpecialsIds());
+
         $this->cardManager->getSerializer()
                 ->setIsForcedArray(false);
 
