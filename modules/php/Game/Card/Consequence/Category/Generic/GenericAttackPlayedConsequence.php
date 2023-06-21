@@ -74,10 +74,6 @@ class GenericAttackPlayedConsequence extends PlayerTableConsequence {
         $notification = new Notification();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
         
-        $this->cardManager->playCard($player, $this->card);
-        $this->table->addCard($this->card);
-        $this->tableManager->updateTable($this->table);
-
         $notification->setType("playNotification")
                 ->setText(clienttranslate('${player_name} attacks ${player_name2} by playing ${cardTitle}'))
                 ->add('player_name', $player->getName())

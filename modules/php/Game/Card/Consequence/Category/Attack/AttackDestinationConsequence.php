@@ -49,8 +49,10 @@ class AttackDestinationConsequence extends Consequence {
     }
 
     public function execute(Response &$response) {
+        $player = $this->table->getPlayer();
+        
         $this->card->setLocation(CardLocation::PLAYER_BOARD)
-                ->setLocationArg($this->table->getPlayer()->getId());
+                ->setLocationArg($player->getId());
 
         $this->cardManager->moveCard($this->card);
         
