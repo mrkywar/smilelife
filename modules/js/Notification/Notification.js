@@ -56,6 +56,7 @@ define([
                         ['playWageNotification', 500],
                         ['usedFlirtNotification', 500],
                         ['doublonFlirtNotification', 500],
+                        ['discardNotification',500]
                         
                     ]
                     notifs.forEach(function (notif) {

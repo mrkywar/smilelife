@@ -45,7 +45,7 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
             $haveStudieCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        $lastStudies = $this->getLastUnusedStudie($table->getStudies());
+        $lastStudies = $this->getLastUnusedStudie($opponentTable->getStudies());
 
         $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                 ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
