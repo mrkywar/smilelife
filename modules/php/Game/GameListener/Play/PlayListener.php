@@ -52,6 +52,7 @@ class PlayListener extends EventListener {
             $opponentTable->setPlayer($target);
         }
 
+        
         $criteriaFactory = $card->getCriterionFactory();
         $criteria = $criteriaFactory->create($table, $card, $opponentTable);
 
@@ -59,25 +60,18 @@ class PlayListener extends EventListener {
         $testRestult = $criteriaTester->test($criteria);
 
         if (!$testRestult->isValided() && 1 === 0) {
-            
+
 //            var_dump($testRestult->getErrorMessage());die;
             $debugger = new CriterionDebugger($criteria);
             $debugger->debug();
             die("DEBUG");
 
             throw new CardException("Not Playable");
-        }else if (!$testRestult->isValided()) {
+        } else if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
-//        
-
-
-        $table->addCard($card);
-        $this->tableManager->updateTable($table);
 
         $response->set("from", $card->getLocation());
-
-        $this->cardManager->playCard($player, $card);
 
         $response->set('player', $player)
                 ->set('card', $card)

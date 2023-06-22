@@ -2,11 +2,14 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
-use Core\Models\Player;
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
+use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Table\PlayerTable;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of DiscardConsequence
@@ -17,30 +20,62 @@ class DiscardConsequence extends Consequence {
 
     /**
      * 
-     * @var Job
+     * @var Card
      */
-    private $card;
+    protected $card;
 
     /**
      * 
-     * @var Player
+     * @var PlayerTable
      */
-    private $player;
+    protected $table;
 
     /**
      * 
      * @var CardManager
      */
-    private $cardManager;
+    protected $cardManager;
 
-    public function __construct(Job $card, Player $player) {
+    /**
+     * 
+     * @var PlayerTableManager
+     */
+    protected $tableManager;
+
+    /**
+     * 
+     * @var CardDecorator
+     */
+    private $cardDecorator;
+
+    public function __construct(Card $card, PlayerTable $table) {
         $this->cardManager = new CardManager();
-        $this->player = $player;
+        $this->tableManager = new PlayerTableManager();
+        $this->cardDecorator = new CardDecorator();
+
+        $this->table = $table;
         $this->card = $card;
     }
 
     public function execute(Response &$response) {
-        $this->cardManager->discardCard($this->card, $this->player);
+        $player = $this->table->getPlayer();
+        $this->cardManager->discardCard($this->card, $player);
+
+        $notification = new Notification();
+
+        $discardedCards = $this->cardManager->getAllCardsInDiscard();
+
+        $notification->setType("discardNotification")
+                ->setText(clienttranslate('${player_name} discard ${cardName}'))
+                ->add('player_name', $player->getName())
+                ->add('playerId', $player->getId())
+                ->add('card', $this->cardDecorator->decorate($this->card))
+                ->add('cardName', (string) $this->card)
+                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+        ;
+
+        $response->addNotification($notification);
+
         return $this;
     }
 

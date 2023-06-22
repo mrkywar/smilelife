@@ -79,7 +79,7 @@ class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\Play
 
             $response->addNotification($notification);
 
-            $targetTable->removeFlirt($doublon);
+            $targetTable->removeCard($doublon);
             $this->tableManager->updateTable($targetTable);
 
             $this->card->setLocationArg($player->getId());

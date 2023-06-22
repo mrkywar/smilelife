@@ -9,6 +9,11 @@ define([
             ],
             {
                 notif_resignNotification: function (notif) {
+                    this.notif_resignNotification(notif);
+                },
+
+                notif_discardNotification: function (notif) {
+                    this.debug("disc", notif);
                     var card = notif.args.card;
                     this.displayCard(card, "pile_discard", "pile_" + card.pile + "_" + notif.args.playerId);
 
@@ -20,7 +25,7 @@ define([
 
                     this.discardCounter.setValue(this.discardCounter.getValue() + 1);
                     this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() - 1);
-                },
+                }
             }
     );
 });

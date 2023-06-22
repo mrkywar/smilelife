@@ -14,11 +14,11 @@ use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
 
 /**
- * Description of CardPlayedConsequence
+ * Description of GenericAttackPlayedConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class CardPlayedConsequence extends PlayerTableConsequence {
+class GenericAttackPlayedConsequence extends PlayerTableConsequence {
 
     /**
      * 
@@ -43,16 +43,23 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
      * @var PlayerTableManager
      */
     private $tableManager;
-
+    
+    /**
+     * 
+     * @var PlayerTable
+     */
+    private $targetedTable;
     /**
      * 
      * @var CardManager
      */
     protected $cardManager;
 
-    public function __construct(Card $card, PlayerTable $table) {
+    public function __construct(Card $card, PlayerTable $table, PlayerTable $targetedTable) {
         parent::__construct($table);
+        
         $this->card = $card;
+        $this->targetedTable = $targetedTable;
         $this->tableDecorator = new PlayerTableDecorator();
         $this->cardDecorator = new CardDecorator();
         $this->tableManager = new PlayerTableManager();
@@ -60,21 +67,19 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
     }
 
     public function execute(Response &$response) {
-
+        $targetPlayer = $this->targetedTable->getPlayer();
         $player = $this->table->getPlayer();
         $from = $response->get('from');
 
         $notification = new Notification();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
         
-        $this->cardManager->playCard($player, $this->card);
-        $this->table->addCard($this->card);
-        $this->tableManager->updateTable($this->table);
-
         $notification->setType("playNotification")
-                ->setText($this->getNotificationText())
+                ->setText(clienttranslate('${player_name} attacks ${player_name2} by playing ${cardTitle}'))
                 ->add('player_name', $player->getName())
-                ->add('playerId', $player->getId())
+                ->add('player_name2', $targetPlayer->getName())
+                ->add('playerId', $targetPlayer->getId())
+//                ->add('targetId',$targetPlayer->getId())
                 ->add('from', $from)
                 ->add('table', $this->tableDecorator->decorate($this->table))
                 ->add('card', $this->cardDecorator->decorate($this->card))
@@ -93,9 +98,4 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
 //        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }
 
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Abstract
-     * ---------------------------------------------------------------------- */
-
-    abstract protected function getNotificationText();
 }

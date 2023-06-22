@@ -5,10 +5,13 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
+use SmileLife\Card\Consequence\Category\Attack\StudieLevelDecreaseConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\StudiesCriterion\HaveStudiesCriterion;
 use SmileLife\Table\PlayerTable;
@@ -29,20 +32,30 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $noJobCriterion->setErrorMessage(clienttranslate("Targeted player has an active Job"));
 
         $haveStudieCriterion = new HaveStudiesCriterion($opponentTable);
         $haveStudieCriterion->setErrorMessage(clienttranslate("Targeted player have no studies"));
 
+        $lastStudies = $opponentTable->getLastStudies();
+        $lastStudieCriterion = new IsNotFlippedCardCriterion($lastStudies);
+        $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is flipped"));
+
         $criteria = new CriterionGroup([
-                $noJobCriterion,
-                $haveStudieCriterion
-            ], CriterionGroup::AND_OPERATOR);
-        
-        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new DiscardLastStudieConsequence($opponentTable));
-        
+            $noJobCriterion,
+            $haveStudieCriterion,
+            $lastStudieCriterion
+                ], CriterionGroup::AND_OPERATOR);
+
+        if(null !== $lastStudies){
+            $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                    ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
+                    ->addConsequence(new StudieLevelDecreaseConsequence($lastStudies, $opponentTable))
+                    ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+        }
+
         return $criteria;
     }
 
