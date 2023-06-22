@@ -38,30 +38,30 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
         $this->oneStudieCase($case2Table);
 
         //-- case3 : One studie flipped (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case3Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->oneFlippedStudieCase($case3Table);
+//        $i = random_int(0, count($oTables) - 1);
+//        $case3Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->oneFlippedStudieCase($case3Table);
 
         //-- case4 : More Than one studie last flipped (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case4Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->lastStudieFlippedCase($case4Table);
-
-        //-- case5 : More Than one studie last visible (playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case5Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->lastStudieVisibleCase($case5Table);
+//        $i = random_int(0, count($oTables) - 1);
+//        $case4Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->lastStudieFlippedCase($case4Table);
+//
+//        //-- case5 : More Than one studie last visible (playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case5Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->lastStudieVisibleCase($case5Table);
 
         //-- case6 : job case (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case6Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->jobCase($case6Table);
+//        $i = random_int(0, count($oTables) - 1);
+//        $case6Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->jobCase($case6Table);
         
-        return $case6Table->getId();
+        return $case2Table->getId();
     }
 
     private function oneStudieCase(PlayerTable $table) {
