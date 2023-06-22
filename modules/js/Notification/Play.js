@@ -20,15 +20,19 @@ define([
                     } else {
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }
+                    
+                    var pileContainer = $(cardDest);
+                    var lastCard = pileContainer.lastElementChild;
+                    pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
 
                     if (notif.args.fromHand) {
                         this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     } else {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
                     }
-                    
+
                     this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() + 1);
-               
+
                     this.discard = notif.args.discard;
 
                 },

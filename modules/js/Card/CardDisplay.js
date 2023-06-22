@@ -47,15 +47,6 @@ define([
                         if (card.isUsed) {
                             dojo.addClass(newCardDiv, "usedcard");
                         }
-                        if (card.type && card.isFlipped) {
-                            var pileContainer = $(destinationDivId);
-
-                            var lastCard = pileContainer.lastElementChild;
-
-                            // move last card in top for be displayed in first (Bottom of pile).
-                            pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
-
-                        }
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
