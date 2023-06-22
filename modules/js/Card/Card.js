@@ -67,9 +67,6 @@ define([
                                     if (this.isMyJob(card) || this.isMyMarriage(card) || undefined === card.type || 'discard' === card.location) {
                                         dojo.query(".selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
-                                    }
-                                    if ('attack' === card.category) {
-                                        this.attackModal(card);
                                     } else {
                                         this.debug('CC-TC01');
                                     }
@@ -82,6 +79,8 @@ define([
                                 } else if (this.isMyMarriage(card)) {
                                     //volontary divorce
                                     this.doDivorce();
+                                } else if ('attack' === card.category) {
+                                    this.attackModal(card);
                                 } else if ('discard' === card.location) {
                                     //Play From Discard
                                     this.doPlayFromDiscard();
@@ -92,17 +91,18 @@ define([
                                     //select card
                                     if ('hand' === card.location) {
                                         dojo.query(".selected").removeClass("selected");
-                                        searchedDiv.classList.add("selected");
+                                        searchedDiv.classList.add("selected")
 
-                                        if ('attack' === card.category) {
-                                            this.attackModal(card);
-                                        }
                                     } else {
                                         this.debug('CC-PC01');
                                     }
                                 } else if ('hand' === card.location) {
-                                    // play from hand
-                                    this.doPlay();
+                                    if ('attack' === card.category) {
+                                        this.attackModal(card);
+                                    } else {
+                                        // play from hand
+                                        this.doPlay();
+                                    }
                                 }
                                 break;
                         }

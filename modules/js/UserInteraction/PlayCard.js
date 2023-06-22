@@ -16,15 +16,19 @@ define([
 
                 doPlay: function () {
                     var card = dojo.query(".selected");
-
                     if (1 !== card.length) {
+                        
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        var data = {
-                            card: card[0].dataset.id
-                        };
-                        this.takeAction('playCard', data);
+                        if ('attack' === card[0].dataset.category) {
+                            this.attackModal(card);
+                        } else {
+                            var data = {
+                                card: card[0].dataset.id
+                            };
+                            this.takeAction('playCard', data);
+                        }
                     }
                 },
 
