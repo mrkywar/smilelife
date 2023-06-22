@@ -21,7 +21,6 @@ use SmileLife\Card\Category\Special\Special;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
-use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 
 /**
@@ -372,6 +371,15 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(false);
 
         return $cards;
+    }
+    
+    public function getLastStudies(): ?Studies {
+        $studies = $this->getStudies();
+        if (empty($studies)) {
+            return null;
+        } else {
+            return $studies[sizeof($studies) - 1];
+        }
     }
 
     public function addFlirt(Flirt $card) {

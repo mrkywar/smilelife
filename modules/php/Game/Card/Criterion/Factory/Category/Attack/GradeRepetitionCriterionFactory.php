@@ -3,16 +3,15 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
 use SmileLife\Card\Consequence\Category\Attack\StudieLevelDecreaseConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\StudiesCriterion\HaveStudiesCriterion;
 use SmileLife\Table\PlayerTable;
@@ -40,34 +39,24 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
         $haveStudieCriterion = new HaveStudiesCriterion($opponentTable);
         $haveStudieCriterion->setErrorMessage(clienttranslate("Targeted player have no studies"));
 
+        $lastStudies = $opponentTable->getLastStudies();
+        $lastStudieCriterion = new IsNotFlippedCardCriterion($lastStudies);
+        $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is flipped"));
+
         $criteria = new CriterionGroup([
             $noJobCriterion,
-            $haveStudieCriterion
+            $haveStudieCriterion,
+            $lastStudieCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        $lastStudies = $this->getLastUnusedStudie($opponentTable->getStudies());
-
-        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
-                ->addConsequence(new StudieLevelDecreaseConsequence($lastStudies, $opponentTable))
-                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
-
-        return $criteria;
-    }
-
-    /**
-     * 
-     * @param Studies[] $studies
-     * @return Studies
-     */
-    private function getLastUnusedStudie($studies): Studies {
-        foreach ($studies as $studie) {
-            if (!$studie->getIsFlipped()) {
-                return $studie;
-            }
+        if(null !== $lastStudies){
+            $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                    ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
+                    ->addConsequence(new StudieLevelDecreaseConsequence($lastStudies, $opponentTable))
+                    ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
         }
 
-        throw new ConsequenceException("DLSC-01 : No aviable Studies");
+        return $criteria;
     }
 
 }
