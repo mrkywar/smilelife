@@ -36,21 +36,23 @@ class IncomeTaxCriterionFactory extends CardCriterionFactory {
         $haveWageCriterion = new HaveUnusedWageCriterion($opponentTable);
         $haveWageCriterion->setErrorMessage(clienttranslate("Targeted player has no Wage"));
 
-        $haveJobCriterion = new HaveJobCriterion($opponentTable);
-        $haveJobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
-        
         $lastWage = $opponentTable->getLastWage();
         $lastWageCriterion = new IsNotFlippedCardCriterion($lastWage);
         $lastWageCriterion->setErrorMessage(clienttranslate("Last player's Wage is flipped"));
-
+        
+        $haveNoJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $incomeImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, IncomeTaxImuneEffect::class));
-        $incomeImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
+        
+        $jobGroupImmuneCriterion = new CriterionGroup([
+                $haveNoJobCriterion,
+                $incomeImmuneCriterion
+            ],CriterionGroup::OR_OPERATOR);
+        $jobGroupImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
 
         $criteria = new CriterionGroup([
                 $haveWageCriterion,
-                $haveJobCriterion,
                 $lastWageCriterion,
-                $incomeImmuneCriterion
+                $jobGroupImmuneCriterion
             ], CriterionGroup::AND_OPERATOR);
         
         if(null !== $lastWage){

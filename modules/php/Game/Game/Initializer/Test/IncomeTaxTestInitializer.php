@@ -68,7 +68,10 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $forcedCard = new WageLevel1();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        $this->cardManager->add($forcedCard);
+        $forcedCard2 = new WageLevel2();
+        $forcedCard2->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+        $this->cardManager->add([$forcedCard,$forcedCard2]);
 
         $this->playWaitingCards($table);
     }

@@ -15,7 +15,7 @@ use SmileLife\Table\PlayerTable;
 class DiscardLastWageConsequence extends DiscardConsequence {
 
     public function __construct(Wage $card, PlayerTable $table) {
-        parent::__construct($card, $table->getPlayer());
+        parent::__construct($card, $table);
     }
 
     public function execute(Response &$response) {
