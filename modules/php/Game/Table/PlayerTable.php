@@ -308,6 +308,15 @@ class PlayerTable extends Model {
 
         return $cards;
     }
+    
+    public function getLastWage(): ?Wage {
+        $wages = $this->getWages();
+        if (empty($wages)) {
+            return null;
+        } else {
+            return $wages[sizeof($wages) - 1];
+        }
+    }
 
     public function addChild(Child $card) {
         $this->childIds[] = $card->getId();
