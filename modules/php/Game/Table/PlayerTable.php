@@ -225,7 +225,9 @@ class PlayerTable extends Model {
             return $this->removeStudy($card);
         } elseif ($card instanceof Flirt) {
             return $this->removeFlirt($card);
-        } else {
+        } elseif($card instanceof Wage){
+            return $this->removeWage($card);
+        }else {
 
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
@@ -288,6 +290,17 @@ class PlayerTable extends Model {
 
     public function addWage(Wage $card) {
         $this->wageIds[] = $card->getId();
+        return $this;
+    }
+    
+    public function removeWage(Wage $card) {
+        $searchedId = $card->getId();
+        $this->wageIds = array_values(
+                array_filter($this->wageIds, function ($wageId) use ($searchedId) {
+                    return $searchedId !== $wageId;
+                })
+        );
+
         return $this;
     }
 
