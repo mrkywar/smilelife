@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Consequence\Category\Attack;
+namespace SmileLife\Card\Consequence\Category\Studies;
 
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
