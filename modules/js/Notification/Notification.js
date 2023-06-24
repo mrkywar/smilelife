@@ -52,8 +52,8 @@ define([
                         ['passNotification', 500],
                         ['playNotification', 500],
                         ['studiesLevelUpdate', 500],
+                        ['wageLevelUpdate', 500],
                         ['resignNotification', 550],
-                        ['playWageNotification', 500],
                         ['usedFlirtNotification', 500],
                         ['doublonFlirtNotification', 500],
                         ['discardNotification',500]
