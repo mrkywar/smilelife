@@ -52,10 +52,7 @@ abstract class Wage extends Card {
      * ---------------------------------------------------------------------- */
 
     public function __toString() {
-        return clienttranslate('{wageTitle} value of {wageAmount}', [
-            "wageTitle" => $this->getTitle(),
-            "wageValue" => $this->getAmount()
-        ]);
+        return $this->getTitle();
     }
 
     public function __toArray(): array {
