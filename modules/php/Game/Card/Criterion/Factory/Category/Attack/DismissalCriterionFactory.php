@@ -6,6 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Official;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -42,8 +43,9 @@ class DismissalCriterionFactory extends CardCriterionFactory{
                 $officialCriterion
             ], CriterionGroup::AND_OPERATOR);
 
-        $criteria->addConsequence(new DiscardConsequence($table->getJob(), $opponentTable))
-                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable));
+        $criteria->addConsequence(new DiscardConsequence($opponentTable->getJob(), $opponentTable))
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
 
         return $criteria;
     }
