@@ -19,7 +19,7 @@ class HaveUnusedWageCriterion extends PlayerTableCriterion {
         }
 
         foreach ($wages as $wage) {
-            if (!$card->getIsFlipped()) {
+            if (!$wage->getIsFlipped()) {
                 return true;
             }
         }

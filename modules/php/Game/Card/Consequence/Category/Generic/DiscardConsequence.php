@@ -46,7 +46,7 @@ class DiscardConsequence extends Consequence {
      * 
      * @var CardDecorator
      */
-    private $cardDecorator;
+    protected $cardDecorator;
 
     public function __construct(Card $card, PlayerTable $table) {
         $this->cardManager = new CardManager();
@@ -61,7 +61,14 @@ class DiscardConsequence extends Consequence {
         $player = $this->table->getPlayer();
         $this->cardManager->discardCard($this->card, $player);
 
+        $this->addNotification($response);
+
+        return $this;
+    }
+
+    protected function addNotification(Response &$response) {
         $notification = new Notification();
+        $player = $this->table->getPlayer();
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
@@ -75,8 +82,6 @@ class DiscardConsequence extends Consequence {
         ;
 
         $response->addNotification($notification);
-
-        return $this;
     }
 
 }

@@ -5,10 +5,13 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastWageConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Wage\WageLevelDecreaseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\WageCriterion\HaveUnusedWageCriterion;
@@ -34,19 +37,31 @@ class IncomeTaxCriterionFactory extends CardCriterionFactory {
         $haveWageCriterion = new HaveUnusedWageCriterion($opponentTable);
         $haveWageCriterion->setErrorMessage(clienttranslate("Targeted player has no Wage"));
 
-        $haveJobCriterion = new HaveJobCriterion($opponentTable);
-        $haveJobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
-
+        $lastWage = $opponentTable->getLastWage();
+        $lastWageCriterion = new IsNotFlippedCardCriterion($lastWage);
+        $lastWageCriterion->setErrorMessage(clienttranslate("Last player's Wage is flipped"));
+        
+        $haveNoJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $incomeImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, IncomeTaxImuneEffect::class));
-        $incomeImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
+        
+        $jobGroupImmuneCriterion = new CriterionGroup([
+                $haveNoJobCriterion,
+                $incomeImmuneCriterion
+            ],CriterionGroup::OR_OPERATOR);
+        $jobGroupImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
 
         $criteria = new CriterionGroup([
                 $haveWageCriterion,
-                $haveJobCriterion,
-                $incomeImmuneCriterion
+                $lastWageCriterion,
+                $jobGroupImmuneCriterion
             ], CriterionGroup::AND_OPERATOR);
-        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new DiscardLastWageConsequence($opponentTable));
+        
+        if(null !== $lastWage){
+            $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                    ->addConsequence(new DiscardLastWageConsequence($lastWage,$opponentTable))
+                    ->addConsequence(new WageLevelDecreaseConsequence($lastWage, $opponentTable))
+                    ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+        }
         
         return $criteria;
     }

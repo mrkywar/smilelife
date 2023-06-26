@@ -4,6 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Wage;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Reward\NationalMedal;
+use SmileLife\Card\Consequence\Category\Wage\WageLevelIncriseConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WagePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;
@@ -57,7 +58,8 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR),
                 ], CriterionGroup::OR_OPERATOR);
         
-        $criteria->addConsequence(new WagePlayedConsequence($card, $table));
+        $criteria->addConsequence(new WagePlayedConsequence($card, $table))
+                ->addConsequence(new WageLevelIncriseConsequence($card, $table));
         
         return $criteria;
         
