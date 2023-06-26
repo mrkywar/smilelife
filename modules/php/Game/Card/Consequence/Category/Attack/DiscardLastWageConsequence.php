@@ -2,9 +2,10 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
+use Core\Notification\Notification;
+use Core\Requester\Response\Response;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
-use SmileLife\Card\Consequence\ConsequenceException;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -13,24 +14,36 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class DiscardLastWageConsequence extends DiscardConsequence {
-    
-    public function __construct(PlayerTable $table) {
-        $card = $this->getLastUnusedWage($table->getWages());
-        parent::__construct($card, $table->getPlayer());
+
+    public function __construct(Wage $card, PlayerTable $table) {
+        parent::__construct($card, $table);
+    }
+
+    public function execute(Response &$response) {
+        $this->table->removeCard($this->card);
+        $this->tableManager->update($this->table);
+
+        return parent::execute($response);
     }
     
-    /**
-     * 
-     * @param Wage[] $wages
-     * @return Wage
-     */
-    private function getLastUnusedWage($wages):Wage{
-        foreach ($wages as $wage){
-            if($wage->getIsFlipped()){
-                return $wage;
-            }
-        }
-        
-        throw new ConsequenceException("DLWC-01 : No aviable Wage");
+    
+    protected function addNotification(Response &$response){
+        $notification = new Notification();
+        $player = $this->table->getPlayer();
+
+        $discardedCards = $this->cardManager->getAllCardsInDiscard();
+
+        $notification->setType("discardNotification")
+                ->setText(clienttranslate('${player_name} discard ${cardName} of value ${cardValue}'))
+                ->add('player_name', $player->getName())
+                ->add('playerId', $player->getId())
+                ->add('card', $this->cardDecorator->decorate($this->card))
+                ->add('cardName', (string) $this->card)
+                ->add('cardValue', $this->card->getAmount())
+                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+        ;
+
+        $response->addNotification($notification);
     }
+
 }

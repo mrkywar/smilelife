@@ -6,11 +6,9 @@ define([
             "smilelife.notification.card.wage",
             [],
             {
-                notif_playWageNotification: function (notif)
+                notif_wageLevelUpdate: function (notif)
                 {
-                    this.notif_playNotification(notif);
-
-                    this.wagesCounters[notif.args.playerId].setValue(this.wagesCounters[notif.args.playerId].getValue() + notif.args.wageAmount);
+                    this.wagesCounters[notif.args.playerId].setValue(this.wagesCounters[notif.args.playerId].getValue() + notif.args.level);
                 }
             }
     );
