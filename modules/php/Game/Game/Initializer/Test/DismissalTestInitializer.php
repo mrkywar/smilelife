@@ -53,7 +53,7 @@ class DismissalTestInitializer extends TestGameInitializer {
         $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $this->cardManager->add([$forcedJob]);
+        $this->cardManager->add($forcedJob);
 
         $this->playWaitingCards($table);
     }
@@ -63,7 +63,7 @@ class DismissalTestInitializer extends TestGameInitializer {
         $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $this->cardManager->add([$forcedJob]);
+        $this->cardManager->add($forcedJob);
         
         $this->playWaitingCards($table);
         

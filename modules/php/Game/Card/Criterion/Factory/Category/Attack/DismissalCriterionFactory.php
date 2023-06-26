@@ -42,8 +42,8 @@ class DismissalCriterionFactory extends CardCriterionFactory{
                 $officialCriterion
             ], CriterionGroup::AND_OPERATOR);
 
-        $criteria->addConsequence(new DiscardConsequence($table->getJob(), $opponentTable->getPlayer()))
-                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
+        $criteria->addConsequence(new DiscardConsequence($table->getJob(), $opponentTable))
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable));
 
         return $criteria;
     }
