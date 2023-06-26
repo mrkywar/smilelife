@@ -37,7 +37,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
-    
+
     /**
      * 
      * @var PlayerTableManager
@@ -60,16 +60,27 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
     }
 
     public function execute(Response &$response) {
-
         $player = $this->table->getPlayer();
-        $from = $response->get('from');
 
-        $notification = new Notification();
-        $discardedCards = $this->cardManager->getAllCardsInDiscard();
-        
+        $this->generateNotification($response);
+
         $this->cardManager->playCard($player, $this->card);
         $this->table->addCard($this->card);
         $this->tableManager->updateTable($this->table);
+
+//        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
+    protected function generateNotification(Response &$response) {
+        $notification = new Notification();
+        $player = $this->table->getPlayer();
+        $from = $response->get('from');
+
+        $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
         $notification->setType("playNotification")
                 ->setText($this->getNotificationText())
@@ -90,12 +101,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         }
 
         $response->addNotification($notification);
-//        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
     }
-
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Abstract
-     * ---------------------------------------------------------------------- */
 
     abstract protected function getNotificationText();
 }

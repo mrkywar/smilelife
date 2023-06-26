@@ -9,8 +9,8 @@ use SmileLife\Card\Category\Love\Flirt\Camping;
 use SmileLife\Card\Category\Love\Flirt\Cinema;
 use SmileLife\Card\Category\Love\Flirt\Hotel;
 use SmileLife\Card\Category\Love\Flirt\Restaurant;
+use SmileLife\Card\Category\Love\Flirt\Web;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -18,16 +18,31 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtTestGameInitalizer extends GameInitializer {
+class FlirtTestGameInitalizer extends TestGameInitializer {
 
     public function init($players, $options = []) {
         parent::init($players, $options);
-
+        
         $oTables = $this->playerTableManager->findBy();
 
+        $forcedCards = [];
+        foreach ($oTables as $oTable) {
+            $card1 = new Web();
+            $card1->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($oTable->getId());
+            $card2 = new Hotel();
+            $card2->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($oTable->getId());
+            $forcedCards[] = $card1;
+            $forcedCards[] = $card2;
+        }
+        $this->cardManager->add($forcedCards);
+
+        $oTables = $this->playerTableManager->findBy();
+        reset($oTables);
 //        //-- Case 1 Marriage (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case1Table = $oTables[array_keys($oTables)[$i]];
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->marriageCase($case1Table);
 //        
@@ -52,19 +67,19 @@ class FlirtTestGameInitalizer extends GameInitializer {
 //        unset($oTables[$i]);
 //        $this->doublonCase($case5Table, $case1Table);
         //-- case 6 (Doublon on Adultery)
-        $i = random_int(0, count($oTables) - 1);
-        $case1Table = $oTables[array_keys($oTables)[$i]];
-        $i = random_int(0, count($oTables) - 1);
-        $case6Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->doublonAdulteryCase($case6Table, $case1Table);
+//        $i = random_int(0, count($oTables) - 1);
+//        $case1Table = $oTables[array_keys($oTables)[$i]];
+//        $i = random_int(0, count($oTables) - 1);
+//        $case6Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->doublonAdulteryCase($case6Table, $case1Table);
         //-- case 7(classic) 
 //        $i = random_int(0, count($oTables) - 1);
 //        $case7Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->classicCase($case7Table);
 
-        return $case6Table->getId();
+        return $case1Table->getId();
     }
 
     private function marriageCase(PlayerTable $table) {
