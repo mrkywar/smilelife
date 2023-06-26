@@ -34,25 +34,25 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $this->cardManager->add($forcedCards);
 
         reset($oTables);
-
-        //-- case1 : No Wages (not playable) (nothing to do)
-        //-- case2 : One Wage (playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case2Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->oneWageCase($case2Table);
-
-        //-- case3 : One Wage + one classic Job ( playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case3Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->classicJobCase($case3Table);
-
-       //-- case4 : One Wage + immune Job (not playable)
-        $i = random_int(0, count($oTables) - 1);
-        $case4Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->immuneJobCase($case4Table);
+//
+//        //-- case1 : No Wages (not playable) (nothing to do)
+//        //-- case2 : One Wage (playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case2Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->oneWageCase($case2Table);
+//
+//        //-- case3 : One Wage + one classic Job ( playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case3Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->classicJobCase($case3Table);
+//
+//       //-- case4 : One Wage + immune Job (not playable)
+//        $i = random_int(0, count($oTables) - 1);
+//        $case4Table = $oTables[array_keys($oTables)[$i]];
+//        unset($oTables[$i]);
+//        $this->immuneJobCase($case4Table);
         
         //-- case5 : One Flipped Wage (not playable)
         $i = random_int(0, count($oTables) - 1);
@@ -61,7 +61,7 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $this->flippedWageCase($case5Table);
         
 
-        return $case2Table->getId();
+        return $case5Table->getId();
     }
 
     private function oneWageCase(PlayerTable $table) {
@@ -111,7 +111,16 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setIsFlipped(true)
                 ->setLocationArg($table->getId());
-        $this->cardManager->add($forcedCard);
+        $forcedCard3 = new WageLevel3();
+        $forcedCard3->setLocation(CardLocation::PLAYER_BOARD)
+                ->setIsFlipped(true)
+                ->setLocationArg($table->getId());
+        $forcedCard2 = new WageLevel1();
+        $forcedCard2->setLocation(CardLocation::PLAYER_BOARD)
+                ->setIsFlipped(true)
+                ->setLocationArg($table->getId());
+        
+        $this->cardManager->add([$forcedCard,$forcedCard2,$forcedCard3]);
 
         $this->playWaitingCards($table);
     }
