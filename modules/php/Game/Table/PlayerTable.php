@@ -227,8 +227,10 @@ class PlayerTable extends Model {
             return $this->removeFlirt($card);
         } elseif($card instanceof Wage){
             return $this->removeWage($card);
+        }elseif($card instanceof Job){
+            $this->jobId = null;
+            return $this;
         }else {
-
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
     }
