@@ -35,7 +35,7 @@ class DivorceCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //-- Case 1 : Adultery
-        $haveAdultery = new HaveAdulteryCriterion($table);
+        $haveAdultery = new HaveAdulteryCriterion($opponentTable);
         $haveAdultery->addConsequence(new DivorceOnAdulteryConsequence($opponentTable));
 
         //-- Case 2 : No Job & Married
