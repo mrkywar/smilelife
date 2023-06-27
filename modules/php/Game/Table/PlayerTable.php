@@ -230,6 +230,9 @@ class PlayerTable extends Model {
         }elseif($card instanceof Job){
             $this->jobId = null;
             return $this;
+        }elseif($card instanceof Marriage){
+            $this->marriageId = null;
+            return $this;
         }else {
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }

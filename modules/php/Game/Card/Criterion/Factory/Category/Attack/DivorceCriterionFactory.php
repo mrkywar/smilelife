@@ -4,8 +4,9 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardMarriageConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryConsequence;
-use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -63,7 +64,8 @@ class DivorceCriterionFactory extends CardCriterionFactory {
         $targetedMarriage = $opponentTable->getMarriage();
         if (null !== $targetedMarriage) {
             $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                    ->addConsequence(new DiscardConsequence($opponentTable->getMarriage(), $opponentTable));
+                    ->addConsequence(new DiscardMarriageConsequence($opponentTable->getMarriage(), $opponentTable))
+                    ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
         }
 
         return $criteria;
