@@ -52,10 +52,7 @@ abstract class Child extends Card {
     }
 
     public function __toString() {
-        return clienttranslate('${cardTitle} nammed ${childName}', [
-            'cardTitle' => $this->getTitle(),
-            'childName' => $this->getText1()
-        ]);
+        return $this->getText1();
     }
 
 }

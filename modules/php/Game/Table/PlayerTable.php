@@ -230,6 +230,14 @@ class PlayerTable extends Model {
         }elseif($card instanceof Job){
             $this->jobId = null;
             return $this;
+        }elseif($card instanceof Marriage){
+            $this->marriageId = null;
+            return $this;
+        }elseif($card instanceof Adultery){
+            $this->adulteryId = null;
+            return $this;
+        }elseif($card instanceof Child){
+            return $this->removeChild($card);
         }else {
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
@@ -335,6 +343,17 @@ class PlayerTable extends Model {
 
     public function addChild(Child $card) {
         $this->childIds[] = $card->getId();
+
+        return $this;
+    }
+    
+    public function removeChild(Child $card) {
+        $searchedId = $card->getId();
+        $this->childIds = array_values(
+                array_filter($this->childIds, function ($childIds) use ($searchedId) {
+                    return $searchedId !== $childIds;
+                })
+        );
 
         return $this;
     }

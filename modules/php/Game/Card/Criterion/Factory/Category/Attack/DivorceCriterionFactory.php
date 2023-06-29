@@ -4,8 +4,12 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardAdulteryConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardChildConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardMarriageConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryConsequence;
-use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryFlirtsConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -34,37 +38,51 @@ class DivorceCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //-- Case 1 : Adultery
-        $haveAdultery = new HaveAdulteryCriterion($table);
-        $haveAdultery->addConsequence(new DivorceOnAdulteryConsequence($opponentTable));
-        
+        $haveAdultery = new HaveAdulteryCriterion($opponentTable);
+
         //-- Case 2 : No Job & Married
         $isMarriedCriterion = new IsMarriedCriterion($opponentTable);
         $isMarriedCriterion->setErrorMessage(clienttranslate("Targeted player isn't married"));
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
-        
+
         //-- Case 3: Job + no Divorse immune Effect & Married
         $jobCriterion = new HaveJobCriterion($opponentTable);
-        $notDivorseImmuneCriterion = new InversedCriterion(new JobEffectCriteria(DivorceImuneEffect::class));
+        $notDivorseImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, DivorceImuneEffect::class));
         $notDivorseImmuneCriterion->setErrorMessage(clienttranslate("Targeted player is immune to divorce"));
 
-        
         $criteria = new CriterionGroup([
             $haveAdultery,
             new CriterionGroup([
-                    $isMarriedCriterion,
-                    $noJobCriterion
-                ], CriterionGroup::AND_OPERATOR),
+                $isMarriedCriterion,
+                $noJobCriterion
+                    ], CriterionGroup::AND_OPERATOR),
             new CriterionGroup([
-                    $isMarriedCriterion,
-                    $jobCriterion,
-                    $notDivorseImmuneCriterion
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
-        
-        $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new DiscardConsequence($opponentTable->getMarriage(), $opponentTable->getPlayer()));
-        
+                $isMarriedCriterion,
+                $jobCriterion,
+                $notDivorseImmuneCriterion
+                    ], CriterionGroup::AND_OPERATOR)
+                ], CriterionGroup::OR_OPERATOR);
+
+        $targetedMarriage = $opponentTable->getMarriage();
+        if (null !== $targetedMarriage) {
+            $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                    ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+
+            $adultery = $opponentTable->getAdultery();
+            if (null !== $adultery) {
+                $criteria->addConsequence(new DiscardAdulteryConsequence($adultery, $opponentTable))
+                        ->addConsequence(new DiscardMarriageConsequence($targetedMarriage, $opponentTable));
+                foreach ($opponentTable->getChilds() as $child) {
+                    $criteria->addConsequence(new DiscardChildConsequence($child, $opponentTable));
+                }
+                if (!empty($opponentTable->getAdulteryFlirtIds())) {
+                    $criteria->addConsequence(new DivorceOnAdulteryFlirtsConsequence($opponentTable));
+                }
+            } else {
+                $criteria->addConsequence(new DiscardMarriageConsequence($opponentTable->getMarriage(), $opponentTable));
+            }
+        }
         return $criteria;
-        
     }
+
 }
