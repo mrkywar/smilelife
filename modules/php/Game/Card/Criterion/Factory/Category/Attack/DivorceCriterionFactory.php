@@ -5,8 +5,10 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardAdulteryConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DiscardChildConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardMarriageConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryConsequence;
+use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryFlirtsConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -37,7 +39,6 @@ class DivorceCriterionFactory extends CardCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //-- Case 1 : Adultery
         $haveAdultery = new HaveAdulteryCriterion($opponentTable);
-        $haveAdultery->addConsequence(new DivorceOnAdulteryConsequence($opponentTable));
 
         //-- Case 2 : No Job & Married
         $isMarriedCriterion = new IsMarriedCriterion($opponentTable);
@@ -65,15 +66,22 @@ class DivorceCriterionFactory extends CardCriterionFactory {
         $targetedMarriage = $opponentTable->getMarriage();
         if (null !== $targetedMarriage) {
             $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                    ->addConsequence(new DiscardMarriageConsequence($opponentTable->getMarriage(), $opponentTable))
                     ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
-        }
-        $adultery = $opponentTable->getAdultery();
-        if(null !== $adultery){
-            $criteria->addConsequence(new DiscardAdulteryConsequence($adultery, $opponentTable));
-        }
-        var_dump($opponentTable->getChilds());die;
 
+            $adultery = $opponentTable->getAdultery();
+            if (null !== $adultery) {
+                $criteria->addConsequence(new DiscardAdulteryConsequence($adultery, $opponentTable))
+                        ->addConsequence(new DiscardMarriageConsequence($targetedMarriage, $opponentTable));
+                foreach ($opponentTable->getChilds() as $child) {
+                    $criteria->addConsequence(new DiscardChildConsequence($child, $opponentTable));
+                }
+                if (!empty($opponentTable->getAdulteryFlirtIds())) {
+                    $criteria->addConsequence(new DivorceOnAdulteryFlirtsConsequence($opponentTable));
+                }
+            } else {
+                $criteria->addConsequence(new DiscardMarriageConsequence($opponentTable->getMarriage(), $opponentTable));
+            }
+        }
         return $criteria;
     }
 
