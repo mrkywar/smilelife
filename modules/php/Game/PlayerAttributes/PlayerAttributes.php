@@ -26,9 +26,17 @@ class PlayerAttributes extends Model {
      * 
      * @var int
      * @ORM\Column{"type":"integer", "name":"attributes_max_cards"}
-     * @ORM\Exclude{"insert":true,"update":true}
+     * @ORM\Exclude{"insert":true}
      */
     private $maxCards;
+
+    /**
+     * 
+     * @var int
+     * @ORM\Column{"type":"integer", "name":"`attributes_pass_turn`"}
+     * @ORM\Exclude{"insert":true}        
+     */
+    private $passTurn;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Constructor
@@ -36,6 +44,7 @@ class PlayerAttributes extends Model {
 
     public function __construct() {
         $this->maxCards = 5;
+        $this->passTurn = 0;
     }
 
     /* -------------------------------------------------------------------------
@@ -71,6 +80,15 @@ class PlayerAttributes extends Model {
 
     public function setId(?int $id) {
         $this->id = $id;
+        return $this;
+    }
+
+    public function getPassTurn(): int {
+        return $this->passTurn;
+    }
+
+    public function setPassTurn(int $passTurn) {
+        $this->passTurn = $passTurn;
         return $this;
     }
 
