@@ -33,7 +33,7 @@ class PlayerAttributes extends Model {
     /**
      * 
      * @var int
-     * @ORM\Column{"type":"integer", "name":"`attributes_pass_turn`"}
+     * @ORM\Column{"type":"integer", "name":"attributes_pass_turn"}
      * @ORM\Exclude{"insert":true}        
      */
     private $passTurn;
