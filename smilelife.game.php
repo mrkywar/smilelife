@@ -20,6 +20,7 @@ use SmileLife\PlayerAction\PlayFromDiscardTrait;
 use SmileLife\PlayerAction\ResignAdulteryTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\PlayerAction\VolontaryDivorceTrait;
+use SmileLife\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -111,6 +112,13 @@ class SmileLife extends Table {
      * @var PlayerManager
      */
     private $playerManager;
+    
+    
+    /**
+     * 
+     * @var PlayerAttributesManager
+     */
+    private $playerAttributesManager;
 
     /**
      * EventDispatcher
@@ -136,6 +144,7 @@ class SmileLife extends Table {
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
         $this->playerManager = $this->dataRetriver->getPlayerManager();
+        $this->playerAttributesManager = new PlayerAttributesManager();
 
         $this->eventDispatcher = new EventDispatcher();
         $this->requester = new SmileLifeRequester();

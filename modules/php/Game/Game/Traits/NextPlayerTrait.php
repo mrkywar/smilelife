@@ -1,5 +1,8 @@
 <?php
+
 namespace SmileLife\Game\Traits;
+
+use Core\Notification\Notification;
 
 /**
  *
@@ -13,11 +16,27 @@ trait NextPlayerTrait {
 
         $this->giveExtraTime($playerId);
 
-//        $this->incStat(1, 'turnsNumber');
-//        $this->incStat(1, 'turnsNumber', $playerId);
         $newPlayerId = $this->activeNextPlayer();
-        $this->gamestate->nextState("newTurn");
+
+        $player = $this->playerManager->findBy(["id" => $newPlayerId]);
+        $playerAttributes = $this->playerAttributesManager->findBy(["id" => $newPlayerId]);
         
+        if ($playerAttributes->getPassTurn() > 0) {
+            $playerAttributes->setPassTurn($playerAttributes->getPassTurn()-1);
+            $this->playerAttributesManager->update($playerAttributes);
+            
+            $notification = new Notification();
+            $notification->setType("turnPassNotification")
+                ->setText(clienttranslate('${player_name} takes a turn'))
+                ->add('player_name', $player->getName())
+            ;
+            
+            $this->sendNotification($notification);
+            
+            $this->gamestate->nextState("playerPass");
+        } else {
+            $this->gamestate->nextState("newTurn");
+        }
     }
 
 }
