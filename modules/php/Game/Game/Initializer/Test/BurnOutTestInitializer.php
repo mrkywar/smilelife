@@ -29,7 +29,13 @@ class BurnOutTestInitializer extends TestGameInitializer {
         }
         $this->cardManager->add($forcedCards);
 //        
-//        reset($oTables);
+        reset($oTables);
+        //-- case1 : No Job (not playable) (nothing to do)
+        
+        
+        
+        
+        
 //        //-- case1 : No Sudies (not playable) (nothing to do)
 //        //-- case2 : One Studie (playable)
         $i = random_int(0, count($oTables) - 1);

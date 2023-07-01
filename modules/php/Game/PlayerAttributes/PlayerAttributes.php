@@ -5,6 +5,7 @@ namespace SmileLife\PlayerAttributes;
 use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
+use SmileLife\Card\Effect\PassTurnInterface;
 
 /**
  * Description of PlayerAttributes
@@ -37,6 +38,14 @@ class PlayerAttributes extends Model {
      * @ORM\Exclude{"insert":true}        
      */
     private $passTurn;
+    
+    /**
+     * 
+     * @var array
+     * @ORM\Column{"type":"json", "name":"attributes_attacks"}
+     * @ORM\Exclude{"insert":true}        
+     */
+    private $attackStatus;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Constructor
@@ -45,6 +54,7 @@ class PlayerAttributes extends Model {
     public function __construct() {
         $this->maxCards = 5;
         $this->passTurn = 0;
+        $this->attackStatus = [];
     }
 
     /* -------------------------------------------------------------------------
@@ -89,6 +99,16 @@ class PlayerAttributes extends Model {
 
     public function setPassTurn(int $passTurn) {
         $this->passTurn = $passTurn;
+        return $this;
+    }
+    
+    public function getAttackStatus(): array {
+        return $this->attackStatus;
+    }
+
+     public function addAttack(PassTurnInterface $card) {
+        $this->attackStatus[$card->getId()] = $card->getTurnsToPass();
+
         return $this;
     }
 

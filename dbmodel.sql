@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `player_attributes`(
     `attributes_player_id` int(10) UNSIGNED NOT NULL,
     `attributes_max_cards` int(1) UNSIGNED NOT NULL,
     `attributes_pass_turn` int(2) UNSIGNED NOT NULL DEFAULT '0',
+    `attributes_attacks` text, 
     PRIMARY KEY(`attributes_player_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
