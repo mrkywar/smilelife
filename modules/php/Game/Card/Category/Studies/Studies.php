@@ -48,8 +48,8 @@ abstract class Studies extends Card {
         return new StudiesCriterionFactory();
     }
 
-    public function __toString() {
-        return $this->getTitle() . " " . $this->getText2();
+    protected function getDefaultPassTurn(): int {
+        return 0;
     }
 
     /* -------------------------------------------------------------------------
@@ -63,6 +63,10 @@ abstract class Studies extends Card {
                     'studiesLevel' => $this->getLevel()
                 ]
         );
+    }
+
+    public function __toString() {
+        return $this->getTitle() . " " . $this->getText2();
     }
 
 }

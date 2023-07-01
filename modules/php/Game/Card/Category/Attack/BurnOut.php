@@ -14,7 +14,7 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class BurnOut extends Attack implements BaseGame, PassTurnInterface {
+class BurnOut extends Attack implements BaseGame {
 
     public function __construct() {
         parent::__construct();
@@ -39,12 +39,8 @@ class BurnOut extends Attack implements BaseGame, PassTurnInterface {
         return new BurnOutCriterionFactory();
     }
 
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Interfaces
-     * ---------------------------------------------------------------------- */
-
-    public function getTurnsToPass(): int {
-        return 1;
+    protected function getDefaultPassTurn(): int {
+        return 0;
     }
 
     /* -------------------------------------------------------------------------

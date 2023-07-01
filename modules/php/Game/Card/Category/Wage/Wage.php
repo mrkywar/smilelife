@@ -47,6 +47,10 @@ abstract class Wage extends Card {
         return new WageCriterionFactory();
     }
 
+    protected function getDefaultPassTurn(): int {
+        return 0;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

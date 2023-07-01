@@ -24,6 +24,10 @@ abstract class Acquisition extends Card {
         return "acquisition";
     }
 
+    protected function getDefaultPassTurn(): int {
+        return 0;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

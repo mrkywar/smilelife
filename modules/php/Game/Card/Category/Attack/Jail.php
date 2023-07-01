@@ -13,7 +13,7 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Jail extends Attack implements BaseGame, PassTurnInterface {
+class Jail extends Attack implements BaseGame {
 
     const TURN_PASSED = 3;
 
@@ -40,13 +40,9 @@ class Jail extends Attack implements BaseGame, PassTurnInterface {
     public function getCriterionFactory(): CardCriterionFactory {
         return new JailCriterionFactory();
     }
-
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Interfaces
-     * ---------------------------------------------------------------------- */
-
-    public function getTurnsToPass(): int {
-        return 3;
+    
+    protected function getDefaultPassTurn(): int {
+        return self::TURN_PASSED;
     }
 
     /* -------------------------------------------------------------------------

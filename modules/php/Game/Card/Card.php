@@ -87,6 +87,13 @@ abstract class Card extends Model {
      */
     private $isUsed;
 
+    /**
+     * 
+     * @var int
+     * @ORM\Column{"type":"int", "name":"card_pass_turn"}
+     */
+    private $passTurn;
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Unpersisted property
      * ---------------------------------------------------------------------- */
@@ -122,7 +129,8 @@ abstract class Card extends Model {
                 ->setTitle("")
                 ->setSubtitle("")
                 ->setText1("")
-                ->setText2("");
+                ->setText2("")
+                ->setPassTurn($this->getDefaultPassTurn());
     }
 
     public function __toString() {
@@ -167,10 +175,12 @@ abstract class Card extends Model {
 
     abstract public function getPileName(): string;
 
+    abstract protected function getDefaultPassTurn(): int;
+
     abstract public function getCriterionFactory(): CardCriterionFactory;
-    
+
 //    abstract public function getDisplayedName():string;
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
@@ -294,6 +304,15 @@ abstract class Card extends Model {
 
     public function setText2(string $text2) {
         $this->text2 = $text2;
+        return $this;
+    }
+
+    public function getPassTurn(): int {
+        return $this->passTurn;
+    }
+
+    public function setPassTurn(int $passTurn) {
+        $this->passTurn = $passTurn;
         return $this;
     }
 

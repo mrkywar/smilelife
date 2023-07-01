@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `card` (
   `card_discarder_id` int(10) NULL COMMENT 'The id of the player who discarded the card, only if the card is in discard location. That player cannot take this card back. 0 otherwise',
   `card_is_flipped` BOOLEAN NOT NULL COMMENT 'FALSE if the card is face up, TRUE if the card is flipped (ie. in deck or protected in player location)',
   `card_is_used` BOOLEAN NOT NULL COMMENT 'FALSE if the card is ready to be use, TRUE if the card is used (used for flirts enabling children, when that card was used to have a child)',
+  `card_pass_turn` int(2) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'For cards that pass (0 : no more, >0 : number of turn to pass)',
   PRIMARY KEY (`card_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 

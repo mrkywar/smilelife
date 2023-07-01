@@ -23,6 +23,10 @@ abstract class Reward extends Card {
         return 'special';
     }
 
+    protected function getDefaultPassTurn(): int {
+        return 0;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

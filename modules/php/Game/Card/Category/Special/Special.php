@@ -11,7 +11,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class Special extends Card  {
+abstract class Special extends Card {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
@@ -30,6 +30,10 @@ abstract class Special extends Card  {
 
     public function getPileName(): string {
         return $this->getTitle();
+    }
+
+    protected function getDefaultPassTurn(): int {
+        return 0;
     }
 
     /* -------------------------------------------------------------------------

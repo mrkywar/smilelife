@@ -37,6 +37,10 @@ class HumanAttack extends Attack implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new NotImplementedCritertionFactory();
     }
+    
+    protected function getDefaultPassTurn(): int {
+        return 0;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame

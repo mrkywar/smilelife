@@ -14,7 +14,7 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Sickness extends Attack implements BaseGame, PassTurnInterface {
+class Sickness extends Attack implements BaseGame {
 
     public function __construct() {
         parent::__construct();
@@ -39,11 +39,7 @@ class Sickness extends Attack implements BaseGame, PassTurnInterface {
         return new SicknessCriterionFactory();
     }
 
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Interfaces
-     * ---------------------------------------------------------------------- */
-
-    public function getTurnsToPass(): int {
+    protected function getDefaultPassTurn(): int {
         return 1;
     }
 

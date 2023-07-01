@@ -81,6 +81,10 @@ abstract class Job extends Card {
     public function getCriterionFactory(): CardCriterionFactory {
         return new JobCriterionFactory();
     }
+    
+    protected function getDefaultPassTurn(): int {
+        return 0;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each job)
