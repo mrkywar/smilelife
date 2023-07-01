@@ -31,21 +31,6 @@ class PlayerAttributes extends Model {
      */
     private $maxCards;
 
-    /**
-     * 
-     * @var int
-     * @ORM\Column{"type":"integer", "name":"attributes_pass_turn"}
-     * @ORM\Exclude{"insert":true}        
-     */
-    private $passTurn;
-    
-    /**
-     * 
-     * @var array
-     * @ORM\Column{"type":"json", "name":"attributes_attacks"}
-     * @ORM\Exclude{"insert":true}        
-     */
-    private $attackStatus;
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Constructor
@@ -101,15 +86,6 @@ class PlayerAttributes extends Model {
         $this->passTurn = $passTurn;
         return $this;
     }
-    
-    public function getAttackStatus(): array {
-        return $this->attackStatus;
-    }
 
-     public function addAttack(PassTurnInterface $card) {
-        $this->attackStatus[$card->getId()] = $card->getTurnsToPass();
-
-        return $this;
-    }
 
 }
