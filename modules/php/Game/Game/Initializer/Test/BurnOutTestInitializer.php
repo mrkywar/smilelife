@@ -41,6 +41,12 @@ class BurnOutTestInitializer extends TestGameInitializer {
         $i = random_int(0, count($oTables) - 1);
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
+        
+        
+        
+        
+        
+        
 //        $this->oneStudieCase($case2Table);
         //-- case3 : One studie flipped (not playable)
 //        $i = random_int(0, count($oTables) - 1);

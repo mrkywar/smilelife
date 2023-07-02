@@ -40,7 +40,7 @@ class BurnOut extends Attack implements BaseGame {
     }
 
     public function getDefaultPassTurn(): int {
-        return 0;
+        return 1;
     }
 
     /* -------------------------------------------------------------------------
