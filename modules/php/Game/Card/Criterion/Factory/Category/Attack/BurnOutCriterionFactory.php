@@ -31,8 +31,7 @@ class BurnOutCriterionFactory extends CardCriterionFactory {
         $criterias->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
         $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new PassTurnConsequence($card))
-                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
+                ->addConsequence(new PassTurnConsequence($card));
 
         return $criteria;
     }
