@@ -82,7 +82,7 @@ abstract class Job extends Card {
         return new JobCriterionFactory();
     }
     
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

@@ -37,7 +37,7 @@ class Divorce extends Attack implements BaseGame {
         return new DivorceCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

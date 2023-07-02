@@ -39,7 +39,7 @@ class Dismissal extends Attack implements BaseGame {
         return new DismissalCriterionFactory();
     }
     
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

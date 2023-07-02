@@ -43,7 +43,7 @@ abstract class Child extends Card {
         return $this->getSubtitle();
     }
     
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

@@ -39,7 +39,7 @@ class BurnOut extends Attack implements BaseGame {
         return new BurnOutCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

@@ -48,7 +48,7 @@ abstract class Studies extends Card {
         return new StudiesCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

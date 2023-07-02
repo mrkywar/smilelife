@@ -38,7 +38,7 @@ class HumanAttack extends Attack implements BaseGame {
         return new NotImplementedCritertionFactory();
     }
     
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

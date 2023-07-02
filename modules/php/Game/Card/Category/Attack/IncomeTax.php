@@ -38,7 +38,7 @@ class IncomeTax extends Attack implements BaseGame {
         return new IncomeTaxCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
     /* -------------------------------------------------------------------------

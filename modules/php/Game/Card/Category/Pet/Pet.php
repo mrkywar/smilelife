@@ -39,7 +39,7 @@ abstract class Pet extends Card {
         return new PetCriterionFactory();
     }
     
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

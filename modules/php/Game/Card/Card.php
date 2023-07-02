@@ -175,7 +175,7 @@ abstract class Card extends Model {
 
     abstract public function getPileName(): string;
 
-    abstract protected function getDefaultPassTurn(): int;
+    abstract public function getDefaultPassTurn(): int;
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
 

@@ -32,7 +32,7 @@ abstract class Special extends Card {
         return $this->getTitle();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

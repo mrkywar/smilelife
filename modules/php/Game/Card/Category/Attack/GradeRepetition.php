@@ -38,7 +38,7 @@ class GradeRepetition extends Attack implements BaseGame {
         return new GradeRepetitionCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

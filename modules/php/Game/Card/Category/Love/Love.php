@@ -20,7 +20,7 @@ abstract class Love extends Card {
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 0;
     }
 

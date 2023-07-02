@@ -38,7 +38,7 @@ class Accident extends Attack implements BaseGame {
         return new AccidentCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 1;
     }
 

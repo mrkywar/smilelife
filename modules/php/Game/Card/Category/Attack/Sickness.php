@@ -39,7 +39,7 @@ class Sickness extends Attack implements BaseGame {
         return new SicknessCriterionFactory();
     }
 
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return 1;
     }
 

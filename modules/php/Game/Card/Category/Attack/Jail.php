@@ -41,7 +41,7 @@ class Jail extends Attack implements BaseGame {
         return new JailCriterionFactory();
     }
     
-    protected function getDefaultPassTurn(): int {
+    public function getDefaultPassTurn(): int {
         return self::TURN_PASSED;
     }
 
