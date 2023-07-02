@@ -4,6 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Attack\PassTurnConsequence;
 use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -30,6 +31,7 @@ class BurnOutCriterionFactory extends CardCriterionFactory {
         $criterias->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
         $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+                ->addConsequence(new PassTurnConsequence($card))
                 ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
 
         return $criteria;
