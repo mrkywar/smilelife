@@ -8,7 +8,11 @@ define([
                 //smilelife.state.draw
             ],
             {
+                notif_turnpassNotification: function (notif) {
+                    this.notif_playNotification(notif);
 
+                },
+                
                 notif_playNotification: function (notif) {
                     var card = notif.args.card;
 
@@ -20,7 +24,7 @@ define([
                     } else {
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }
-                    
+
                     var pileContainer = $(cardDest);
                     var lastCard = pileContainer.lastElementChild;
                     pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
