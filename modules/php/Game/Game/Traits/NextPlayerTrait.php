@@ -33,7 +33,8 @@ trait NextPlayerTrait {
             $passCard->setPassTurn($passCard->getPassTurn() - 1);
             if ($passCard->getPassTurn() < 1) {
                 $passCard->setIsUsed(true)
-                        ->setIsFlipped(true);
+//                        ->setIsFlipped(true)
+                ;
             }
             $this->cardManager->update($passCard);
 
@@ -47,7 +48,7 @@ trait NextPlayerTrait {
                     ->add('card', (string) $passCard)
                     ->add('table', $tableDecorator->decorate($playerTable))
                     ->add('discard', $cardDecorator->decorate($discardedCards));
-            ;           
+            ;
 
             $this->gamestate->nextState("playerPass");
             $this->sendNotification($notification);
