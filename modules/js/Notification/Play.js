@@ -10,9 +10,10 @@ define([
             {
                 notif_turnpassNotification: function (notif) {
                     this.notif_playNotification(notif);
+//                    this.debug(notif.args);
 
                 },
-                
+
                 notif_playNotification: function (notif) {
                     var card = notif.args.card;
 
@@ -25,9 +26,14 @@ define([
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }
 
-                    var pileContainer = $(cardDest);
-                    var lastCard = pileContainer.lastElementChild;
-                    pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
+//                    var pileContainer = $(cardDest);
+//                    var lastCard = pileContainer.lastElementChild;
+//                    this.debug(lastCard, pileContainer, cardDest);
+//                    if (null !== lastCard) {
+//                        pileContainer.insertBefore(lastCard, pileContainer.firstElementChild);
+//                    } else {
+//
+//                    }
 
                     if (notif.args.fromHand) {
                         this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
