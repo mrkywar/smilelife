@@ -16,8 +16,8 @@ class HaveDoublonAttackActiveCriterion extends PlayerTableCriterion{
      */
     private $className;
 
-    public function __construct(PlayerTable $table, string $effectClass) {
-        $this->className = $effectClass;
+    public function __construct(PlayerTable $table, string $className) {
+        $this->className = $className;
 
         parent::__construct($table);
     }
@@ -32,7 +32,7 @@ class HaveDoublonAttackActiveCriterion extends PlayerTableCriterion{
     }
     
     private function checkAttack(Attack $card) {
-        return $card->getIsUsed();
+        return !$card->getIsUsed();
     }
 
 }
