@@ -59,10 +59,7 @@ abstract class Marriage extends Love {
      * ---------------------------------------------------------------------- */
 
     public function __toString() {
-        return clienttranslate('${cardTitle} at ${marriageLocation}', [
-            'cardTitle' => $this->getTitle(),
-            'marriageLocation' => $this->getText1()
-        ]);
+        return $this->getTitle();
     }
 
 }

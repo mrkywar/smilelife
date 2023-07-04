@@ -3,10 +3,14 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Attack\BurnOut;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Card\Criterion\Attack\HaveDoublonAttackActiveCriterion;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -26,13 +30,21 @@ class BurnOutCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterias = new HaveJobCriterion($opponentTable);
-        $criterias->setErrorMessage(clienttranslate("Targeted player has no Job"));
+        $jobCriterion = new HaveJobCriterion($opponentTable);
+        $jobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
-        $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
+        $doublonCriterion = new InversedCriterion(new HaveDoublonAttackActiveCriterion($opponentTable, BurnOut::class));
+        $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
 
-        return $criteria;
+        $criterias = new CriterionGroup([
+            $jobCriterion,
+            $doublonCriterion
+        ], CriterionGroup::AND_OPERATOR);
+
+        $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+
+        return $criterias;
     }
 
 }

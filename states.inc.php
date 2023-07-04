@@ -88,6 +88,7 @@ $gameGameStates = [
         "action" => "stNextPlayer",
         "transitions" => [
             "newTurn" => ST_PLAYER_TAKE_CARD,
+            "playerPass" => ST_NEXT_PLAYER
         ],
     ],
 ];

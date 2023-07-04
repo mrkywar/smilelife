@@ -54,6 +54,10 @@ class Adultery extends Card implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new AdulteryCriterionFactory();
     }
+    
+    public function getDefaultPassTurn(): int {
+        return 0;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame

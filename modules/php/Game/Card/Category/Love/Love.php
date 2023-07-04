@@ -10,8 +10,23 @@ use SmileLife\Card\Card;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 abstract class Love extends Card {
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - new Abstract
+     * ---------------------------------------------------------------------- */
 
     abstract public function canGenerateChild(): bool;
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+
+    public function getDefaultPassTurn(): int {
+        return 0;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Display
+     * ---------------------------------------------------------------------- */
 
     public function __toArray(): array {
         return array_merge(

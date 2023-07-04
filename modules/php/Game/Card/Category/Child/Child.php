@@ -42,6 +42,10 @@ abstract class Child extends Card {
     public function getDisplayedName(): string {
         return $this->getSubtitle();
     }
+    
+    public function getDefaultPassTurn(): int {
+        return 0;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
@@ -52,10 +56,7 @@ abstract class Child extends Card {
     }
 
     public function __toString() {
-        return clienttranslate('${cardTitle} nammed ${childName}', [
-            'cardTitle' => $this->getTitle(),
-            'childName' => $this->getText1()
-        ]);
+        return $this->getText1();
     }
 
 }

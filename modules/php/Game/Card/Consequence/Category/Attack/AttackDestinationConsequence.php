@@ -5,7 +5,7 @@ namespace SmileLife\Card\Consequence\Category\Attack;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Attack\Attack;
-use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
@@ -15,7 +15,7 @@ use SmileLife\Table\PlayerTableManager;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class AttackDestinationConsequence extends Consequence {
+class AttackDestinationConsequence extends PlayerTableConsequence {
 
     /**
      * 
@@ -23,12 +23,6 @@ class AttackDestinationConsequence extends Consequence {
      */
     private $card;
 
-    /**
-     * 
-     * @var PlayerTable
-     */
-    private $table;
-    
     /**
      * 
      * @var PlayerTableManager
@@ -42,9 +36,10 @@ class AttackDestinationConsequence extends Consequence {
     private $cardManager;
 
     public function __construct(Attack $card, PlayerTable $table) {
+        parent::__construct($table);
+        
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
-        $this->table = $table;
         $this->card = $card;
     }
 
@@ -52,7 +47,8 @@ class AttackDestinationConsequence extends Consequence {
         $player = $this->table->getPlayer();
         
         $this->card->setLocation(CardLocation::PLAYER_BOARD)
-                ->setLocationArg($player->getId());
+                ->setLocationArg($player->getId())
+                ->setPassTurn($this->card->getDefaultPassTurn());
 
         $this->cardManager->moveCard($this->card);
         

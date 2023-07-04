@@ -38,6 +38,10 @@ class Dismissal extends Attack implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new DismissalCriterionFactory();
     }
+    
+    public function getDefaultPassTurn(): int {
+        return 0;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
