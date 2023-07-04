@@ -24,19 +24,21 @@ class TestGameInitializer extends GameInitializer {
     }
 
     protected function playWaitingCards(PlayerTable &$table) {
+        $this->cardManager->getSerializer()->setIsForcedArray(true);
         $cards = $this->cardManager->findBy([
             "location" => CardLocation::PLAYER_BOARD,
             "locationArg" => $table->getId()
         ]);
-        
-//        var_dump($cards);die;
+        $this->cardManager->getSerializer()->setIsForcedArray(false);
 
         foreach ($cards as $card) {
             $this->cardManager->playCard($table->getPlayer(), $card);
             $table->addCard($card);
         }
 
+        $this->playerTableManager->setIsDebug(true);
         $this->playerTableManager->updateTable($table);
+        $this->playerTableManager->setIsDebug(false);
     }
 
 }
