@@ -47,16 +47,17 @@ define([
                     var _this = this;
 
                     var notifs = [
-                        ['flirtsAdultery', 500],
-                        ['drawNotification', 500],
-                        ['passNotification', 500],
-                        ['playNotification', 500],
-                        ['studiesLevelUpdate', 500],
-                        ['wageLevelUpdate', 500],
-                        ['resignNotification', 550],
-                        ['usedFlirtNotification', 500],
-                        ['doublonFlirtNotification', 500],
-                        ['discardNotification',500]
+                        ['flirtsAdultery', 200],
+                        ['drawNotification', 200],
+                        ['passNotification', 200],
+                        ['playNotification', 200],
+                        ['studiesLevelUpdate', 200],
+                        ['wageLevelUpdate', 200],
+                        ['resignNotification', 200],
+                        ['usedFlirtNotification', 200],
+                        ['doublonFlirtNotification', 200],
+                        ['discardNotification',200],
+                        ['turnpassNotification',200]
                         
                     ]
                     notifs.forEach(function (notif) {

@@ -32,9 +32,13 @@ class Divorce extends Attack implements BaseGame {
     public function getType(): int {
         return CardType::ATTACK_DIVORCE;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new DivorceCriterionFactory();
+    }
+
+    public function getDefaultPassTurn(): int {
+        return 0;
     }
 
     /* -------------------------------------------------------------------------

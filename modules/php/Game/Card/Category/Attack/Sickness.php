@@ -6,6 +6,7 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Attack\SicknessCriterionFactory;
+use SmileLife\Card\Effect\PassTurnInterface;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -36,6 +37,10 @@ class Sickness extends Attack implements BaseGame {
 
     public function getCriterionFactory(): CardCriterionFactory {
         return new SicknessCriterionFactory();
+    }
+
+    public function getDefaultPassTurn(): int {
+        return 1;
     }
 
     /* -------------------------------------------------------------------------

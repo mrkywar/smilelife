@@ -5,6 +5,7 @@ namespace SmileLife\Card\Category\Attack;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Attack\AccidentCriterionFactory;
+use SmileLife\Card\Effect\PassTurnInterface;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -32,9 +33,13 @@ class Accident extends Attack implements BaseGame {
     public function getType(): int {
         return CardType::ATTACK_ACCIDENT;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new AccidentCriterionFactory();
+    }
+
+    public function getDefaultPassTurn(): int {
+        return 1;
     }
 
     /* -------------------------------------------------------------------------
