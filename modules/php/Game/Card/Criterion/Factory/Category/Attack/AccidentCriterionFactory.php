@@ -32,31 +32,30 @@ class AccidentCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        //case 1-1 : No Job
-        $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
-
-        //case 1-2 : No Immunity
+        //case 1-1 : No immune Job
         $havejobCriterion = new HaveJobCriterion($opponentTable);
         $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));
-        $jobEffectCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
         $jobImmuneCriterion = new CriterionGroup([
                     $havejobCriterion,
-                    $jobEffectCriterion,
+                    $jobEffectCriterion
                 ], CriterionGroup::AND_OPERATOR);
-        
-        //Fusion all job criteria
+        $jobImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
+        //case 1-1 : No Job
+        $nojobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
+
+        //case 1 : Job criterion
         $jobCriterion = new CriterionGroup([
-                    $havejobCriterion,
+                    $nojobCriterion,
                     $jobImmuneCriterion
                 ], CriterionGroup::OR_OPERATOR);
 
         //case 2 : No Doublon
         $doublonCriterion = new InversedCriterion(new HaveDoublonAttackActiveCriterion($opponentTable, Accident::class));
         $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
-        
+//        
         $criteria = new CriterionGroup([
-                    $jobCriterion,
-                    $doublonCriterion,
+            $jobCriterion,
+            $doublonCriterion,
                 ], CriterionGroup::AND_OPERATOR);
 
         $criteria = $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))

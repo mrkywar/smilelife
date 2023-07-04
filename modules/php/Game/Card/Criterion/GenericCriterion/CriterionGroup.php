@@ -80,6 +80,7 @@ class CriterionGroup extends Criterion {
     public function getErrorMessage() {
         foreach ($this->criteria as $criterion) {
             if (null !== $criterion->getErrorMessage() && !$criterion->isValided()) {
+//                echo"<br/>";var_dump($criterion);echo"<br/>";
                 return $criterion->getErrorMessage();
             }
         }
