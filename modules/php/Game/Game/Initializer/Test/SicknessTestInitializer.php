@@ -2,18 +2,18 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Accident;
-use SmileLife\Card\Category\Job\Job\Mechanic;
+use SmileLife\Card\Category\Attack\Sickness;
+use SmileLife\Card\Category\Job\Job\Doctor;
 use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of AccidentTestInitializer
+ * Description of SicknessTestInitializer
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class AccidentTestInitializer extends TestGameInitializer {
+class SicknessTestInitializer extends TestGameInitializer {
 
     public function init($players, $options = []) {
         parent::init($players, $options);
@@ -22,7 +22,7 @@ class AccidentTestInitializer extends TestGameInitializer {
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new Accident();
+            $card = new Sickness();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -32,13 +32,13 @@ class AccidentTestInitializer extends TestGameInitializer {
         reset($oTables);
 
         //-- case1 : No Job (playable) (nothing to do)
-        //-- case2 : No Job + Used Accident in place (playable)
+        //-- case2 : No Job + Used Sickness in place (playable)
         $i = random_int(0, count($oTables) - 1);
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->doublonUsedCase($case2Table);
 
-        //-- case3 : No Job + Active Accident in place (not playable)
+        //-- case3 : No Job + Active Sickness in place (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
@@ -49,8 +49,8 @@ class AccidentTestInitializer extends TestGameInitializer {
         $case4Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->classicjobCase($case4Table);
-        
-        //-- case5 : immune job (not playable)
+//        
+//        //-- case5 : immune job (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
@@ -60,7 +60,7 @@ class AccidentTestInitializer extends TestGameInitializer {
     }
 
     private function doublonCase(PlayerTable $table) {
-        $forcedAttack = new Accident();
+        $forcedAttack = new Sickness();
         $forcedAttack->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
@@ -70,7 +70,7 @@ class AccidentTestInitializer extends TestGameInitializer {
     }
 
     private function doublonUsedCase(PlayerTable $table) {
-        $forcedAttack = new Accident();
+        $forcedAttack = new Sickness();
         $forcedAttack->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId())
                 ->setIsUsed(true)
@@ -92,7 +92,7 @@ class AccidentTestInitializer extends TestGameInitializer {
     }
     
     private function immunejobCase(PlayerTable $table) {
-        $forcedCard = new Mechanic();
+        $forcedCard = new Doctor();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
