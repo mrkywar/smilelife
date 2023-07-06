@@ -58,6 +58,7 @@ class BurnOutTestInitializer extends TestGameInitializer {
         $forcedCard = new EnglishTeacher();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
+        
         $this->cardManager->add($forcedCard);
 
         $this->playWaitingCards($table);

@@ -3,8 +3,10 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Attack\Accident;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Card\Criterion\Attack\HaveDoublonAttackActiveCriterion;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -30,26 +32,36 @@ class AccidentCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        //case 1 : No Job
-        $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
-        
-        //case 2 : No Immunity
-        $jobCriterion = new HaveJobCriterion($opponentTable);
+        //case 1-1 : No immune Job
+        $havejobCriterion = new HaveJobCriterion($opponentTable);
         $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));
-        $jobEffectCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
-        
-        $critertia = new CriterionGroup([
-                $noJobCriterion,
-                new CriterionGroup([
-                    $jobCriterion,
+        $jobImmuneCriterion = new CriterionGroup([
+                    $havejobCriterion,
                     $jobEffectCriterion
-                ],CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
-        
-        $critertia->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer()));
-        
-        return $critertia;
+                ], CriterionGroup::AND_OPERATOR);
+        $jobImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
+        //case 1-1 : No Job
+        $nojobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
+
+        //case 1 : Job criterion
+        $jobCriterion = new CriterionGroup([
+                    $nojobCriterion,
+                    $jobImmuneCriterion
+                ], CriterionGroup::OR_OPERATOR);
+
+        //case 2 : No Doublon
+        $doublonCriterion = new InversedCriterion(new HaveDoublonAttackActiveCriterion($opponentTable, Accident::class));
+        $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
+//        
+        $criteria = new CriterionGroup([
+            $jobCriterion,
+            $doublonCriterion,
+                ], CriterionGroup::AND_OPERATOR);
+
+        $criteria = $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+
+        return $criteria;
     }
 
 }
