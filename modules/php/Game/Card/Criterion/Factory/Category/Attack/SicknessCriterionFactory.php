@@ -13,7 +13,7 @@ use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
-use SmileLife\Card\Effect\Category\SicknessImmunityEffect;
+use SmileLife\Card\Effect\Category\SicknessImunueEffect;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -35,7 +35,7 @@ class SicknessCriterionFactory extends CardCriterionFactory {
         
         //case 1-1 : No immune Job
         $havejobCriterion = new HaveJobCriterion($opponentTable);
-        $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, SicknessImmunityEffect::class));
+        $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, SicknessImunueEffect::class));
         $jobImmuneCriterion = new CriterionGroup([
                     $havejobCriterion,
                     $jobEffectCriterion
