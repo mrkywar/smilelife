@@ -3,7 +3,12 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\Category\Attack\HumanAttack;
+use SmileLife\Card\Category\Child\Diana;
+use SmileLife\Card\Category\Child\Hermione;
+use SmileLife\Card\Category\Child\Zelda;
+use SmileLife\Card\Category\Job\Official\Military;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Table\PlayerTable;
 
 /**
  * Description of AttentatTestInitializer
@@ -28,74 +33,80 @@ class AttentatTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 
-//        //-- case1 : No Job (playable) (nothing to do)
-//        //-- case2 : No Job + Used Accident in place (playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case2Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->doublonUsedCase($case2Table);
-//
-//        //-- case3 : No Job + Active Accident in place (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case3Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->doublonCase($case3Table);
-//
-//        //-- case4 : Classic job (playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case4Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->classicjobCase($case4Table);
-//        
-//        //-- case5 : immune job (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case5Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->immunejobCase($case5Table);
-//
-//        return $case2Table->getId(); 
+        $casesGroup = rand(1, 2, 3, 4);
+
+        switch ($casesGroup) {
+            //----------------------------------- Groupe 1 : No Childs
+            case 1:
+                //-- case1 : No Child (not playable) (nothing to do)
+                $i = random_int(0, count($oTables) - 1);
+                $case1Table = $oTables[array_keys($oTables)[$i]];
+
+                return $case1Table->getId();
+                break;
+
+            //----------------------------------- Groupe 2 : One or More Childs
+            case 2:
+                //-- case2 : One Child (playable)
+                $i = random_int(0, count($oTables) - 1);
+                $case2Table = $oTables[array_keys($oTables)[$i]];
+                unset($oTables[$i]);
+                $this->OneOrMoreChildCase($case2Table);
+
+                return $case2Table->getId();
+                break;
+            //----------------------------------- Groupe 3 : One Child for each
+            case 3:
+                //-- case3 : One Child foreach player (playable)
+                foreach ($oTables as $oTable) {
+                    $this->OneOrMoreChildCase($oTable);
+                }
+
+                $i = random_int(0, count($oTables) - 1);
+                $case3Table = $oTables[array_keys($oTables)[$i]];
+
+                return $case3Table->getId();
+                break;
+            //----------------------------------- Groupe 4 : immunity
+            case 4:
+                //-- case4 : One Child but immunity in game (not playable)
+                $i = random_int(0, count($oTables) - 1);
+                $case4Table = $oTables[array_keys($oTables)[$i]];
+                unset($oTables[$i]);
+                $this->immuneCase($case4Table);
+                break;
+            default:
+                die("Unsupported Case $casesGroup");
+        }
     }
+
 //
-//    private function doublonCase(PlayerTable $table) {
-//        $forcedAttack = new Accident();
-//        $forcedAttack->setLocation(CardLocation::PLAYER_BOARD)
-//                ->setLocationArg($table->getId());
-//
-//        $this->cardManager->add([$forcedAttack]);
-//
-//        $this->playWaitingCards($table);
-//    }
-//
-//    private function doublonUsedCase(PlayerTable $table) {
-//        $forcedAttack = new Accident();
-//        $forcedAttack->setLocation(CardLocation::PLAYER_BOARD)
-//                ->setLocationArg($table->getId())
-//                ->setIsUsed(true)
-//                ->setPassTurn(0);
-//
-//        $this->cardManager->add([$forcedAttack]);
-//
-//        $this->playWaitingCards($table);
-//    }
-//
-//    private function classicjobCase(PlayerTable $table) {
-//        $forcedCard = new EnglishTeacher();
-//        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
-//                ->setLocationArg($table->getId());
-//
-//        $this->cardManager->add([$forcedCard]);
-//
-//        $this->playWaitingCards($table);
-//    }
-//    
-//    private function immunejobCase(PlayerTable $table) {
-//        $forcedCard = new Mechanic();
-//        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
-//                ->setLocationArg($table->getId());
-//
-//        $this->cardManager->add([$forcedCard]);
-//
-//        $this->playWaitingCards($table);
-//    }
+    private function OneOrMoreChildCase(PlayerTable $table) {
+        $forcedChild = new Hermione();
+        $forcedChild->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $forcedChild2 = new Diana();
+        $forcedChild2->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add([$forcedChild, $forcedChild2]);
+
+        $this->playWaitingCards($table);
+    }
+
+    private function immuneCase(PlayerTable $table) {
+        $forcedCard = new Military();
+        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $forcedChild = new Zelda();
+        $forcedChild->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add([$forcedCard, $forcedChild]);
+
+        $this->playWaitingCards($table);
+    }
 
 }
