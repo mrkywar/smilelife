@@ -44,7 +44,7 @@ define([
                     $('modal-container').innerHTML = "";
                 },
 
-                onTargetClick:function(element){
+                onTargetClick: function (element) {
                     var card = dojo.query(".selected");
 
                     if (1 !== card.length) {
@@ -56,7 +56,11 @@ define([
                             card: card[0].dataset.id,
                             target: element.target.dataset.player
                         };
-                        this.takeAction('playCard', data);
+                        if ('takeCard' === this.actualState) {
+                            this.takeAction('playFromDiscard', data);
+                        } else {
+                            this.takeAction('playCard', data);
+                        }
                     }
                 }
 

@@ -16,6 +16,12 @@
                 </div>
                 <div class="pile_counter" id="pile_discard_count">0</div>
             </div>
+             <div class="pile_container pile_offside">
+                <div class="pile" id="pile_offside">
+
+                </div>
+                <div class="pile_counter" id="pile_offside_count">0</div>
+            </div>
         </div>
 
 

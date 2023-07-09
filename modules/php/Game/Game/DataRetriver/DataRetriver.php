@@ -69,10 +69,17 @@ class DataRetriver {
             $rawDiscard = $this->cardDecorator->decorate($discard);
         }
 
+        $offside = $this->cardManager->getAllCardsInOffside();
+        $rawOffside = null;
+        if (!empty($offside)) {
+            $rawOffside = $this->cardDecorator->decorate($offside);
+        }
+
         $result = [
             "myhand" => $this->cardDecorator->decorate($rawHand),
             "deck" => count($this->cardManager->getAllCardsInDeck()),
-            "discard" => $rawDiscard
+            "discard" => $rawDiscard,
+            "offside" => $rawOffside
         ];
 
         $tables = $this->playerTableManager->findBy();
