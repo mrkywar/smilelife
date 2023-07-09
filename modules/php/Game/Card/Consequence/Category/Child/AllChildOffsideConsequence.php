@@ -44,32 +44,36 @@ class AllChildOffsideConsequence extends Consequence {
     public function execute(Response &$response) {
         $tables = $this->tableManager->findBy();
         foreach ($tables as $table) {
-            $this->offsideTableChilds($table);
+            $this->offsideTableChilds($table, $response);
         }
     }
 
-    private function offsideTableChilds(PlayerTable &$table) {
+    private function offsideTableChilds(PlayerTable &$table, Response &$response) {
         $childs = $table->getChilds();
+        $player = $table->getPlayer();
         $ids = [];
         foreach ($childs as &$child) {
             $table->removeCard($child);
-            $this->cardManager->offsideCard($this->card, $player);
+            $this->cardManager->offsideCard($child, $player);
             $ids[] = $child->getId();
         }
+        $this->tableManager->update($table);
+        
         if (!empty($ids)) {
             $notification = new Notification();
-            $player = $this->table->getPlayer();
 
-            $discardedCards = $this->cardManager->getAllCardsInDiscard();
+            $discardedCards = $this->cardManager->getAllCardsInOffside();
 
             $notification->setType("offsideNotification")
                     ->setText(clienttranslate('${player_name} offside ${cardcount} child(s)'))
                     ->add('player_name', $player->getName())
                     ->add('playerId', $player->getId())
-                    ->add('childs', $this->cardDecorator->decorate($childs))
+                    ->add('cards', $ids)
                     ->add('cardcount', count($ids))
                     ->add('offside', $this->cardDecorator->decorate($discardedCards));
             ;
+            
+            $response->addNotification($notification);
         }
     }
 

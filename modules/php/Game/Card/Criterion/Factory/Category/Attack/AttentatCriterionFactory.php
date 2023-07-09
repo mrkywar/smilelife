@@ -10,6 +10,7 @@ use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
 use SmileLife\Card\Criterion\PlayerTableCriterion\CardOnTableCriterion;
 use SmileLife\Card\Effect\Category\AttentatProtectionEffect;
@@ -34,7 +35,11 @@ class AttentatCriterionFactory extends CardCriterionFactory {
         $cardOnTableCiterion = new AllPlayerTablesCriterion(new CardOnTableCriterion($table, Child::class));
         $cardOnTableCiterion->setErrorMessage(clienttranslate("No child on game"));
 
-        $noImmunityInGame = new AllPlayerTablesCriterion(new JobEffectCriteria($table, AttentatProtectionEffect::class));
+        $noImmunityInGame = new InversedCriterion(
+                new AllPlayerTablesCriterion(
+                        new JobEffectCriteria($table, AttentatProtectionEffect::class)
+                )
+        );
         $noImmunityInGame->setErrorMessage(clienttranslate("There's a soldier watching, you can't plant a bomb safely"));
 
         $criteria = new CriterionGroup([
@@ -43,8 +48,9 @@ class AttentatCriterionFactory extends CardCriterionFactory {
                 ], CriterionGroup::AND_OPERATOR
         );
 
-        $criteria->addConsequence(new AllChildOffsideConsequence())
-                ->addConsequence(new OffsideConsequence($card, $table));
+        $criteria
+                ->addConsequence(new OffsideConsequence($card, $table))
+                ->addConsequence(new AllChildOffsideConsequence());
 
         return $criteria;
     }
