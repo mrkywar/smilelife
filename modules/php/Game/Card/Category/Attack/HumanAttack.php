@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Attack\AttentatCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -35,7 +35,7 @@ class HumanAttack extends Attack implements BaseGame {
     }
     
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NotImplementedCritertionFactory();
+        return new AttentatCriterionFactory();
     }
     
     public function getDefaultPassTurn(): int {

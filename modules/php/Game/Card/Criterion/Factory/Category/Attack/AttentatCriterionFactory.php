@@ -3,12 +3,16 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\AttentatConsequence;
+use SmileLife\Card\Category\Child\Child;
+use SmileLife\Card\Consequence\Category\Attack\OffsideConsequence;
+use SmileLife\Card\Consequence\Category\Child\AllChildOffsideConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Criterion\PlayerTableCriterion\CardOnTableCriterion;
 use SmileLife\Card\Effect\Category\AttentatProtectionEffect;
 use SmileLife\Table\PlayerTable;
 
@@ -28,11 +32,27 @@ class AttentatCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $noImmunityInGame = new AllPlayerTablesCriterion(new JobEffectCriteria($table, AttentatProtectionEffect::class));
+        $cardOnTableCiterion = new AllPlayerTablesCriterion(new CardOnTableCriterion($table, Child::class));
+        $cardOnTableCiterion->setErrorMessage(clienttranslate("No child on game"));
+
+        $noImmunityInGame = new InversedCriterion(
+                new AllPlayerTablesCriterion(
+                        new JobEffectCriteria($table, AttentatProtectionEffect::class)
+                )
+        );
         $noImmunityInGame->setErrorMessage(clienttranslate("There's a soldier watching, you can't plant a bomb safely"));
-        $noImmunityInGame->addConsequence(new AttackDestinationConsequence($card, $table))
-                ->addConsequence(new AttentatConsequence());
-        
+
+        $criteria = new CriterionGroup([
+            $cardOnTableCiterion,
+            $noImmunityInGame
+                ], CriterionGroup::AND_OPERATOR
+        );
+
+        $criteria
+                ->addConsequence(new OffsideConsequence($card, $table))
+                ->addConsequence(new AllChildOffsideConsequence());
+
+        return $criteria;
     }
 
 }

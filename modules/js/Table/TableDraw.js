@@ -13,6 +13,7 @@ define([
                 displayDeckAndDiscard: function(){
                     this.deck = this.gamedatas.deck;
                     this.discard = this.gamedatas.discard;
+                    this.offside = this.gamedatas.offside;
                     
                     //--- display Deck infos
                     var drawCard = {
@@ -35,6 +36,16 @@ define([
                     pileDiscardCounter.setValue((null === this.discard)?0:this.discard.length);
                     this.discardCounter = pileDiscardCounter;
                     
+                    //--- display Offside infos
+                    if(null !== this.offside){
+                        this.lastOffsidedCard = this.offside[this.offside.length-1];
+                        
+                        this.displayCard(this.lastOffsidedCard, "pile_offside");
+                    }
+                    var pileOffsideCounter = new ebg.counter();
+                    pileOffsideCounter.create('pile_offside_count');
+                    pileOffsideCounter.setValue((null === this.offside)?0:this.offside.length);
+                    this.offsideCounter = pileOffsideCounter;
                 },
                 
                 

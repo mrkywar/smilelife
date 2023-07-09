@@ -143,6 +143,21 @@ class CardManager extends SuperManager {
 
         return $this->update($card);
     }
+    
+    public function offsideCard(Card &$card, Player $player) {
+        $this->getSerializer()->setIsForcedArray(true);
+        $cardInDiscard = $this->getAllCardsInOffside();
+        $this->getSerializer()->setIsForcedArray(false);
+
+        $position = count($cardInDiscard) + 1;
+
+        $card->setLocation(CardLocation::OFFSIDE)
+                ->setLocationArg($position)
+                ->setOwnerId(null)
+                ->setDiscarderId($player->getId());
+
+        return $this->update($card);
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Classic calls
@@ -155,6 +170,13 @@ class CardManager extends SuperManager {
     public function getAllCardsInDiscard() {
         $this->getSerializer()->setIsForcedArray(true);
         $discardedCards = $this->getAllCardsInLocation(CardLocation::DISCARD);
+        $this->getSerializer()->setIsForcedArray(false);
+        return $discardedCards;
+    }
+    
+    public function getAllCardsInOffside(){
+        $this->getSerializer()->setIsForcedArray(true);
+        $discardedCards = $this->getAllCardsInLocation(CardLocation::OFFSIDE);
         $this->getSerializer()->setIsForcedArray(false);
         return $discardedCards;
     }

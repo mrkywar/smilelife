@@ -10,6 +10,7 @@ interface CardLocation {
 
     const DECK = "deck";
     const TRASH = "trash";
+    const OFFSIDE = "offside";
     const PLAYER_HAND = "hand";
     const DISCARD = "discard";
     const PLAYER_BOARD = "board";

@@ -3,13 +3,17 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Attack\Sickness;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Card\Criterion\Attack\HaveDoublonAttackActiveCriterion;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Effect\Category\SicknessImmunityEffect;
+use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
+use SmileLife\Card\Effect\Category\SicknessImunueEffect;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -28,21 +32,36 @@ class SicknessCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
+        
+        //case 1-1 : No immune Job
+        $havejobCriterion = new HaveJobCriterion($opponentTable);
+        $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, SicknessImunueEffect::class));
+        $jobImmuneCriterion = new CriterionGroup([
+                    $havejobCriterion,
+                    $jobEffectCriterion
+                ], CriterionGroup::AND_OPERATOR);
+        $jobImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are imune to sickness"));
+        //case 1-1 : No Job
+        $nojobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
 
+        //case 1 : Job criterion
+        $jobCriterion = new CriterionGroup([
+                    $nojobCriterion,
+                    $jobImmuneCriterion
+                ], CriterionGroup::OR_OPERATOR);
+        
+        //case 2 : No Doublon
+        $doublonCriterion = new InversedCriterion(new HaveDoublonAttackActiveCriterion($opponentTable, Sickness::class));
+        $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
+        
         $criteria = new CriterionGroup([
-                // no Job
-                $noJobCriterion,
-                // no immunity
-                new CriterionGroup([
-                    new HaveJobCriterion($opponentTable),
-                    new InversedCriterion($opponentTable, SicknessImmunityEffect::class)
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
+            $jobCriterion,
+            $doublonCriterion,
+                ], CriterionGroup::AND_OPERATOR);
 
         $criteria->setErrorMessage(clienttranslate("Targeted player is immune to disease"))
-                ->addConsequence()
-                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()));
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
 
         return $criteria;
     }
