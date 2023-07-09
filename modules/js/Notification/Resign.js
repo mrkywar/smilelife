@@ -13,7 +13,7 @@ define([
                 },
 
                 notif_discardNotification: function (notif) {
-                    this.debug("disc", notif);
+//                    this.debug("disc", notif);
                     var card = notif.args.card;
                     this.displayCard(card, "pile_discard", "pile_" + card.pile + "_" + notif.args.playerId);
 
@@ -25,6 +25,21 @@ define([
 
                     this.discardCounter.setValue(this.discardCounter.getValue() + 1);
                     this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() - 1);
+                },
+                
+                notif_offsideNotification: function (notif) {
+                    this.debug("offside", notif.args);
+//                    var card = notif.args.card;
+//                    this.displayCard(card, "pile_offside", "pile_" + card.pile + "_" + notif.args.playerId);
+
+//                    if (parseInt(notif.args.playerId) === this.player_id) {
+//                        this.myTable = notif.args.table;
+//                    } else {
+//                        this.otherTabes[notif.args.playerId] = notif.args.table;
+//                    }
+//
+//                    this.offsideCounter.setValue(this.offsideCounter.getValue() + 1);
+//                    this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() - 1);
                 }
             }
     );

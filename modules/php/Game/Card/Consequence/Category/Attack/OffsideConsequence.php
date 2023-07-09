@@ -26,7 +26,7 @@ class OffsideConsequence extends DiscardConsequence {
                 ->setText(clienttranslate('${player_name} offside ${cardName}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cards', $this->cardDecorator->decorate($this->card))
+                ->add('cards', [$this->cardDecorator->decorate($this->card)])
                 ->add('cardName', (string) $this->card)
                 ->add('offside', $this->cardDecorator->decorate($discardedCards));
         ;
