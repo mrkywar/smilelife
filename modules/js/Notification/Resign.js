@@ -13,7 +13,6 @@ define([
                 },
 
                 notif_discardNotification: function (notif) {
-//                    this.debug("disc", notif);
                     var card = notif.args.card;
                     this.displayCard(card, "pile_discard", "pile_" + card.pile + "_" + notif.args.playerId);
 
@@ -28,11 +27,8 @@ define([
                 },
 
                 notif_offsideNotification: function (notif) {
-//                    this.debug("offside", notif.args);
-
                     for (var cardIndex in notif.args.cards) {
                         var card = notif.args.cards[cardIndex];
-                        this.debug("CARD", card);
                         this.displayCard(card, "pile_offside", "pile_" + card.pile + "_" + notif.args.playerId);
                         this.offsideCounter.setValue(this.offsideCounter.getValue() + 1);
                         this.boardCounter[notif.args.playerId][card.pile].setValue(this.boardCounter[notif.args.playerId][card.pile].getValue() - 1);
