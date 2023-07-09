@@ -33,7 +33,7 @@ class AttentatTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 
-        $casesGroup = rand(1, 2, 3, 4);
+        $casesGroup = rand(1, 4);
 
         switch ($casesGroup) {
             //----------------------------------- Groupe 1 : No Childs
