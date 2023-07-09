@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Child;
 
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Consequence\Consequence;

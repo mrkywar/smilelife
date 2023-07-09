@@ -2,8 +2,9 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
+use Core\Requester\Response\Response;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
-use Swoole\Http\Response;
+
 
 /**
  * Description of OffsideConsequence

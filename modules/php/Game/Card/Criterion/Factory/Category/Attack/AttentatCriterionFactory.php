@@ -4,6 +4,8 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Child\Child;
+use SmileLife\Card\Consequence\Category\Attack\OffsideConsequence;
+use SmileLife\Card\Consequence\Category\Child\AllChildOffsideConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
@@ -36,19 +38,15 @@ class AttentatCriterionFactory extends CardCriterionFactory {
         $noImmunityInGame->setErrorMessage(clienttranslate("There's a soldier watching, you can't plant a bomb safely"));
 
         $criteria = new CriterionGroup([
-                $cardOnTableCiterion,
-                $noImmunityInGame
-            ], CriterionGroup::AND_OPERATOR
+            $cardOnTableCiterion,
+            $noImmunityInGame
+                ], CriterionGroup::AND_OPERATOR
         );
-        
-        
-        
-        
-        
-//        
-//        
-//        $noImmunityInGame->addConsequence(new AttackDestinationConsequence($card, $table))
-//                ->addConsequence(new AttentatConsequence());
+
+        $criteria->addConsequence(new AllChildOffsideConsequence())
+                ->addConsequence(new OffsideConsequence($card, $table));
+
+        return $criteria;
     }
 
 }

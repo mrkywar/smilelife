@@ -225,20 +225,20 @@ class PlayerTable extends Model {
             return $this->removeStudy($card);
         } elseif ($card instanceof Flirt) {
             return $this->removeFlirt($card);
-        } elseif($card instanceof Wage){
+        } elseif ($card instanceof Wage) {
             return $this->removeWage($card);
-        }elseif($card instanceof Job){
+        } elseif ($card instanceof Job) {
             $this->jobId = null;
             return $this;
-        }elseif($card instanceof Marriage){
+        } elseif ($card instanceof Marriage) {
             $this->marriageId = null;
             return $this;
-        }elseif($card instanceof Adultery){
+        } elseif ($card instanceof Adultery) {
             $this->adulteryId = null;
             return $this;
-        }elseif($card instanceof Child){
+        } elseif ($card instanceof Child) {
             return $this->removeChild($card);
-        }else {
+        } else {
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
     }
@@ -302,7 +302,7 @@ class PlayerTable extends Model {
         $this->wageIds[] = $card->getId();
         return $this;
     }
-    
+
     public function removeWage(Wage $card) {
         $searchedId = $card->getId();
         $this->wageIds = array_values(
@@ -331,7 +331,7 @@ class PlayerTable extends Model {
 
         return $cards;
     }
-    
+
     public function getLastWage(): ?Wage {
         $wages = $this->getWages();
         if (empty($wages)) {
@@ -346,7 +346,7 @@ class PlayerTable extends Model {
 
         return $this;
     }
-    
+
     public function removeChild(Child $card) {
         $searchedId = $card->getId();
         $this->childIds = array_values(
@@ -415,7 +415,7 @@ class PlayerTable extends Model {
 
         return $cards;
     }
-    
+
     public function getLastStudies(): ?Studies {
         $studies = $this->getStudies();
         if (empty($studies)) {
@@ -643,9 +643,14 @@ class PlayerTable extends Model {
     }
 
     public function getCards() {
-        return $this->cardManager->findBy([
-                    "id" => $this->getCardsId()
-        ]);
+        $ids = $this->getCardsId();
+        if (!empty($ids)) {
+            return $this->cardManager->findBy([
+                        "id" => $ids
+            ]);
+        } else {
+            return [];
+        }
     }
 
     public function resignAdultery() {
