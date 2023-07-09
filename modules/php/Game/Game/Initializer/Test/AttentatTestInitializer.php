@@ -33,7 +33,8 @@ class AttentatTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 
-        $casesGroup = rand(2, 4);
+//        $casesGroup = rand(2, 4);
+        $casesGroup = 4;
 
         switch ($casesGroup) {
             //----------------------------------- Groupe 1 : No Childs
@@ -74,6 +75,8 @@ class AttentatTestInitializer extends TestGameInitializer {
                 $case4Table = $oTables[array_keys($oTables)[$i]];
                 unset($oTables[$i]);
                 $this->immuneCase($case4Table);
+
+                return $case4Table->getId();
                 break;
             default:
                 die("Unsupported Case $casesGroup");
