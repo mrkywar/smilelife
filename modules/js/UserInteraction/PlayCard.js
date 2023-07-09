@@ -17,11 +17,12 @@ define([
                 doPlay: function () {
                     var card = dojo.query(".selected");
                     if (1 !== card.length) {
-                        
+
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        if ('attack' === card[0].dataset.category) {
+                        this.debug('PC-24',card[0].dataset);
+                        if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
                             this.attackModal(card);
                         } else {
                             var data = {

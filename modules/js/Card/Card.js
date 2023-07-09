@@ -10,7 +10,8 @@ const PREF_CHOICE_SIZE_S = 5002;
 const PREF_CHOICE_SIZE_M = 5003;
 const PREF_CHOICE_SIZE_L = 5004;
 const PREF_CHOICE_SIZE_XL = 5005;
-
+//-- Card Specific type
+const CARD_TYPE_ATTENTAT = 82;
 
 
 define([
@@ -79,7 +80,8 @@ define([
                                 } else if (this.isMyMarriage(card)) {
                                     //volontary divorce
                                     this.doDivorce();
-                                } else if ('attack' === card.category) {
+                                } else if ('attack' === card.category && CARD_TYPE_ATTENTAT !== card.type) {
+                                    this.debug(card.type, CARD_TYPE_ATTENTAT, CARD_TYPE_ATTENTAT !== card.type);
                                     this.attackModal(card);
                                 } else if ('discard' === card.location) {
                                     //Play From Discard
@@ -97,12 +99,8 @@ define([
                                         this.debug('CC-PC01');
                                     }
                                 } else if ('hand' === card.location) {
-                                    if ('attack' === card.category) {
-                                        this.attackModal(card);
-                                    } else {
-                                        // play from hand
-                                        this.doPlay();
-                                    }
+                                    // play from hand
+                                    this.doPlay();
                                 }
                                 break;
                         }
