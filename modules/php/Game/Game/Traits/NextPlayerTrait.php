@@ -42,10 +42,11 @@ trait NextPlayerTrait {
 
             $notification = new Notification();
             $notification->setType("turnpassNotification")
-                    ->setText(clienttranslate('${player_name} misses a turn because of the ${card} card '))
+                    ->setText(clienttranslate('${player_name} misses a turn because of the ${cardName} card '))
                     ->add('player_name', $player->getName())
                     ->add('playerId', $player->getId())
-                    ->add('card', (string) $passCard)
+                    ->add('cardName', (string) $passCard)
+                    ->add('card', $cardDecorator->decorate($passCard))
                     ->add('table', $tableDecorator->decorate($playerTable))
                     ->add('discard', $cardDecorator->decorate($discardedCards));
             ;

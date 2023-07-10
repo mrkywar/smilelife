@@ -3,11 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
-use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
