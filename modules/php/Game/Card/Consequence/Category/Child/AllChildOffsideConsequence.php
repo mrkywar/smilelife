@@ -68,7 +68,7 @@ class AllChildOffsideConsequence extends Consequence {
                     ->setText(clienttranslate('${player_name} offside ${cardcount} child(s)'))
                     ->add('player_name', $player->getName())
                     ->add('playerId', $player->getId())
-                    ->add('cards', $ids)
+                    ->add('cards', $this->cardDecorator->decorate($childs))
                     ->add('cardcount', count($ids))
                     ->add('offside', $this->cardDecorator->decorate($discardedCards));
             ;

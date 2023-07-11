@@ -29,7 +29,7 @@ abstract class Special extends Card {
     }
 
     public function getPileName(): string {
-        return $this->getTitle();
+        return "special";
     }
 
     public function getDefaultPassTurn(): int {

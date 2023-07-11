@@ -3,11 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\TurnPassConsequence;
-use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
@@ -30,11 +28,14 @@ class JailCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $banditCriterion = new JobTypeCriterion($opponentTable, Bandit::class);
-        $banditCriterion->setErrorMessage(clienttranslate("Targeted player isn't Bandit"))
-                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
-                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer(), Jail::TURN_PASSED))
-                ->addConsequence(new DiscardConsequence($opponentTable->getJob(), $opponentTable->getPlayer()));
-        
+        $banditCriterion->setErrorMessage(clienttranslate("Targeted player isn't Bandit"));
+//                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
+//                ->addConsequence(new TurnPassConsequence($opponentTable->getPlayer(), Jail::TURN_PASSED))
+//                ->addConsequence(new DiscardConsequence($opponentTable->getJob(), $opponentTable->getPlayer()))
+//                ;
+        $banditCriterion->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+                
         return $banditCriterion;
         
     }
