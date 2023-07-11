@@ -238,6 +238,8 @@ class PlayerTable extends Model {
             return $this;
         } elseif ($card instanceof Child) {
             return $this->removeChild($card);
+        }elseif ($card instanceof Attack) {
+            return $this->removeAttack($card);
         } else {
             throw new PlayerTableException("PTE - 01 - Unsupported Card" . get_class($card));
         }
@@ -561,6 +563,18 @@ class PlayerTable extends Model {
 
         return $this;
     }
+    
+    public function removeAttack(Attack $card) {
+        $searchedId = $card->getId();
+        $this->attackIds = array_values(
+                array_filter($this->attackIds, function ($attackId) use ($searchedId) {
+                    return $searchedId !== $attackId;
+                })
+        );
+
+        return $this;
+    }
+    
 
     public function getAttacks() {
         if (empty($this->getAttackIds())) {
