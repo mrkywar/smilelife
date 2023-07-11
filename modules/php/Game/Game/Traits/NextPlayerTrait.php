@@ -37,10 +37,10 @@ trait NextPlayerTrait {
                 } else {
                     $passCard->setIsUsed(true);
                     $this->cardManager->update($passCard);
-                    $this->passTurnNotification($passCard);
+                    $this->passTurnNotification($passCard, $playerTable);
                 }
             } else {
-                $this->passTurnNotification($passCard);
+                $this->passTurnNotification($passCard, $playerTable);
             }
 
             $this->gamestate->nextState("playerPass");
@@ -86,6 +86,7 @@ trait NextPlayerTrait {
         ;
         $this->sendNotification($notification);
 
+        // Notify discard Prison 
         $notification2 = new Notification();
 
         $notification2->setType("discardNotification")
@@ -100,18 +101,21 @@ trait NextPlayerTrait {
         $this->sendNotification($notification2);
     }
 
-    private function passTurnNotification(Attack $card) {
+    private function passTurnNotification(Attack $passCard, PlayerTable $table) {
         $cardDecorator = new CardDecorator();
+        $tableDecorator = new PlayerTableDecorator();
         $notification = new Notification();
+        $player = $table->getPlayer();
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
-        $notification->setType("discardNotification")
-                ->setText(clienttranslate('${player_name} discard ${cardName}'))
+        $notification->setType("turnpassNotification")
+                ->setText(clienttranslate('${player_name} misses a turn because of the ${cardName} card '))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('card', $cardDecorator->decorate($card))
-                ->add('cardName', (string) $card)
+                ->add('cardName', (string) $passCard)
+                ->add('card', $cardDecorator->decorate($passCard))
+                ->add('table', $tableDecorator->decorate($table))
                 ->add('discard', $cardDecorator->decorate($discardedCards));
         ;
         $this->sendNotification($notification);
