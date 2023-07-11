@@ -5,6 +5,7 @@ namespace SmileLife\Game\Traits;
 use Core\Notification\Notification;
 use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Category\Attack\Jail;
+use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
@@ -29,6 +30,7 @@ trait NextPlayerTrait {
             $player = $playerTable->getPlayer();
 
             $passCard->setPassTurn($passCard->getPassTurn() - 1);
+            $this->cardManager->update($passCard);
 
             if ($passCard->getPassTurn() < 1) {
                 $notifications = [];
