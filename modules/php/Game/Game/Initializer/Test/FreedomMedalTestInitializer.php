@@ -2,9 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Accident;
-use SmileLife\Card\Category\Job\Job\Mechanic;
+use SmileLife\Card\Category\Attack\HumanAttack;
+use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Category\Reward\FreedomMedal;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 
@@ -22,7 +23,7 @@ class FreedomMedalTestInitializer extends TestGameInitializer {
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Reward\FreedomMedal();
+            $card = new FreedomMedal();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -55,7 +56,7 @@ class FreedomMedalTestInitializer extends TestGameInitializer {
     }
 
     private function attentatPlayedCase(PlayerTable $table) {
-        $forcedAttack = new \SmileLife\Card\Category\Attack\HumanAttack();
+        $forcedAttack = new HumanAttack();
         $forcedAttack->setLocation(CardLocation::OFFSIDE)
                 ->setLocationArg($table->getId())
                 ->setDiscarderId($table->getId());

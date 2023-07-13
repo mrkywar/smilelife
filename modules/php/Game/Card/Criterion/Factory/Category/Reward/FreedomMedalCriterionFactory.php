@@ -5,9 +5,11 @@ namespace SmileLife\Card\Criterion\Factory\Category\Reward;
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Attack\HumanAttack;
 use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Consequence\Category\Reward\FreedomMedalPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardOffsidedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
@@ -20,8 +22,6 @@ use SmileLife\Table\PlayerTable;
 class FreedomMedalCriterionFactory extends CardCriterionFactory {
 
     public function __construct() {
-        parent::__construct($card);
-
         $fakeBandit = new Bandit();
         $this->message = clienttranslate('You must have a Job for this reward and you must not be a ${jobName}', ['jobName' => $fakeBandit->getTitle()]);
     }
@@ -49,6 +49,9 @@ class FreedomMedalCriterionFactory extends CardCriterionFactory {
             $banditCriterion,
             $attentatCriterion
                 ], CriterionGroup::AND_OPERATOR);
+        
+        
+        $criteria->addConsequence(new FreedomMedalPlayedConsequence($card, $table));
 
         return $criteria;
     }
