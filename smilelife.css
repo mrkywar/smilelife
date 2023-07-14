@@ -388,22 +388,16 @@ html{
 .cardontable[data-type="38"].usedcard::before{
     content: '';
     position: absolute;
-    width: 60px;
-    height: 5px;
     background-color: #000;
     transform-origin: center center;
 }
 .cardontable[data-type="40"].usedcard::after,
 .cardontable[data-type="38"].usedcard::after{
     transform: rotate(45deg);
-    bottom: 60px;
-    right: 2px;
 }
 .cardontable[data-type="40"].usedcard::before,
 .cardontable[data-type="38"].usedcard::before{
     transform: rotate(-45deg);
-    bottom: 60px;
-    right: 2px;
 }
 .cardontable.movedcard{
     z-index: 10;
