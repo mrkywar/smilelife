@@ -57,6 +57,7 @@ define([
                             target: element.target.dataset.player
                         };
                         if ('takeCard' === this.actualState) {
+                            this.debug('AM-OTC',data);
                             this.takeAction('playFromDiscard', data);
                         } else {
                             this.takeAction('playCard', data);

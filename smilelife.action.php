@@ -74,8 +74,10 @@ class action_smilelife extends APP_GameAction {
     
     public function playFromDiscard(){
         self::setAjaxMode();
-
-        $this->game->actionPlayFromDiscard();
+        
+        $targetId = self::getArg("target", AT_posint);
+        
+        $this->game->actionPlayFromDiscard($targetId);
 
         self::ajaxResponse();
     }
