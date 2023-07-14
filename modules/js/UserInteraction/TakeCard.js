@@ -41,14 +41,19 @@ define([
                 },
 
                 doPlayFromDiscard: function () {
-                    this.takeAction('playFromDiscard');
+                    var card = dojo.query('#card_' + this.discard[0].id);
+                    if ('attack' === card[0].category && CARD_TYPE_ATTENTAT != card[0].type) {
+                        this.attackModal(card);
+                    } else {
+                        this.takeAction('playFromDiscard');
+                    }
                 },
 
                 doDivorce: function () {
                     this.takeAction('divorceVoluntry');
                 },
-                
-                doAdulteryResign: function(){
+
+                doAdulteryResign: function () {
                     this.takeAction('adulteryResign');
                 }
 
