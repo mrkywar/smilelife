@@ -42,8 +42,8 @@ define([
 
                 doPlayFromDiscard: function () {
                     var card = dojo.query('#card_' + this.discard[0].id);
-                    if ('attack' === card[0].category && CARD_TYPE_ATTENTAT != card[0].type) {
-                        this.attackModal(card);
+                    if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
+                        this.attackModal(card[0]);
                     } else {
                         this.takeAction('playFromDiscard');
                     }

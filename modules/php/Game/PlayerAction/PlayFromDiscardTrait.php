@@ -31,7 +31,7 @@ trait PlayFromDiscardTrait {
                 "id" => $targetId
             ]);
         }
-        
+
         try {
             $request = new PlayCardRequest($player, $card, $target);
             $response = $this->requester->send($request);

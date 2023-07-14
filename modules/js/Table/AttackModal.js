@@ -40,26 +40,26 @@ define([
 
                 },
 
-                onModalCloseClick: function (element) {
+                onModalCloseClick: function () {
                     $('modal-container').innerHTML = "";
                 },
 
                 onTargetClick: function (element) {
-                    var card = dojo.query(".selected");
-
-                    if (1 !== card.length) {
-                        this.showMessage(_('Invalid Card Selection'), "error");
-                        dojo.query(".selected").removeClass("selected");
-                    } else {
-
+                    if ('takeCard' === this.actualState) {
                         var data = {
-                            card: card[0].dataset.id,
                             target: element.target.dataset.player
                         };
-                        if ('takeCard' === this.actualState) {
-                            this.debug('AM-OTC',data);
-                            this.takeAction('playFromDiscard', data);
+                        this.takeAction('playFromDiscard', data);
+                    } else {
+                        var card = dojo.query(".selected");
+                        if (1 !== card.length) {
+                            this.showMessage(_('Invalid Card Selection'), "error");
+                            dojo.query(".selected").removeClass("selected");
                         } else {
+                            var data = {
+                                card: card[0].dataset.id,
+                                target: element.target.dataset.player
+                            };
                             this.takeAction('playCard', data);
                         }
                     }

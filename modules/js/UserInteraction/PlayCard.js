@@ -21,7 +21,6 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        this.debug('PC-24',card[0].dataset);
                         if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
                             this.attackModal(card);
                         } else {
