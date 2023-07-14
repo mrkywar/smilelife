@@ -378,8 +378,26 @@ html{
     float: left;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
-.usedcard{
+.cardontable[data-category="attack"].usedcard{
     filter: grayscale(100%);
+}
+
+.cardontable[data-type="40"].usedcard::after,
+.cardontable[data-type="38"].usedcard::after,
+.cardontable[data-type="40"].usedcard::before,
+.cardontable[data-type="38"].usedcard::before{
+    content: '';
+    position: absolute;
+    background-color: #000;
+    transform-origin: center center;
+}
+.cardontable[data-type="40"].usedcard::after,
+.cardontable[data-type="38"].usedcard::after{
+    transform: rotate(45deg);
+}
+.cardontable[data-type="40"].usedcard::before,
+.cardontable[data-type="38"].usedcard::before{
+    transform: rotate(-45deg);
 }
 .cardontable.movedcard{
     z-index: 10;

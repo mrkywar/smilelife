@@ -31,8 +31,9 @@ define([
                     return this.aviableCardDimensions[gameOptionSize];
 
                 },
-                
+
                 applyCardSize: function () {
+                    //-- REFRENCES SIZE : XL 
                     if (undefined === this.size) {
                         this.size = this.findActualCardSize();
                     }
@@ -146,6 +147,17 @@ define([
                         font-size: ` + (30 * size.ratio) + `px;
                         padding-bottom:0;
                     }
+                    /*------           USED   FLIRT                       ----*/
+                    .cardontable[data-type="40"].usedcard::after,
+                    .cardontable[data-type="38"].usedcard::after,
+                    .cardontable[data-type="40"].usedcard::before,
+                    .cardontable[data-type="38"].usedcard::before{
+                        width: ` + (140 * size.ratio) + `px;
+                        height: ` + (10 * size.ratio) + `px;
+                        bottom: ` + (150 * size.ratio) + `px;
+                        right: ` + (10 * size.ratio) + `px;
+                    }
+                    
                     /*------              SPECIAL                         ----*/
                     .cardontable[data-category="special"] .card_title{
                         margin-top: ` + (54 * size.ratio) + `px;
