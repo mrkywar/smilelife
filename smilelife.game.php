@@ -236,7 +236,7 @@ class SmileLife extends Table {
         if ($notification->isPublic()) {
             self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
         } else {
-            throw new Exception("TODO : Unsupported private Notification");
+            self::notifyPlayer($notification->getTargetedPlayer()->getId(), $notification->getType(), $notification->getText(), $notification->getParams());
         }
     }
 

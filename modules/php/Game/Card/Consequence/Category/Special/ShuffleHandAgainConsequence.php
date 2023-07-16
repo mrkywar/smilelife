@@ -2,7 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Special;
 
-use Core\Notification\Notification;
+use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
@@ -66,7 +66,7 @@ class ShuffleHandAgainConsequence extends Consequence {
             ]);
             $newCards = $this->redistributeCards($cards, $table, $attribute);
 
-            $notification = new Notification();
+            $notification = new PersonnalNotification($table->getPlayer());
             $notification->setType("handChangedNotification")
                     ->setPublic(false)
                     ->setText(clienttranslate('Your hand was changed by an external event'))
