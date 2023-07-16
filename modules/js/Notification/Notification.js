@@ -58,7 +58,8 @@ define([
                         ['doublonFlirtNotification', 200],
                         ['discardNotification',200],
                         ['turnpassNotification',200],
-                        ['offsideNotification',200]
+                        ['offsideNotification',200],
+                        ['handChangedNotification',200]
                         
                     ]
                     notifs.forEach(function (notif) {

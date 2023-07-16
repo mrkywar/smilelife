@@ -70,7 +70,7 @@ class ShuffleHandAgainConsequence extends Consequence {
             $notification->setType("handChangedNotification")
                     ->setPublic(false)
                     ->setText(clienttranslate('Your hand was changed by an external event'))
-                    ->add("card", $this->cardDecorator->decorate($newCards));
+                    ->add("cards", $this->cardDecorator->decorate($newCards));
             
             $response->addNotification($notification);
         }

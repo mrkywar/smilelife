@@ -11,6 +11,8 @@ define([
             ],
             {
                 constructor: function () {
+                    this.myHand = [];
+                    this.myTable = [];
                 },
 
                 /**
@@ -55,10 +57,8 @@ define([
 
                     //Prepare & Display this player Hand Cards
                     this.myHand = gamedatas.myhand;
-                    for (var cardId in gamedatas.myhand) {
-                        var card = gamedatas.myhand[cardId];
-                        this.displayCard(card, "myhand");
-                    }
+                    this.displayMyHand();
+                    
                     //Display this player Table cards
                     this.displayTablePiles(gamedatas.mytable);
 
@@ -72,6 +72,18 @@ define([
 
                         var table = gamedatas.tables[playerId];
                         this.displayTablePiles(table);
+                    }
+                },
+                
+                displayMyHand: function(){
+                    var myhand = $('myhand');
+                    this.debug("PT-DMH",this.myHand);
+                    myhand.innerHTML = ``;
+                    for (var cardId in this.myHand) {
+                        
+                        var card = this.myHand[cardId];
+                        this.debug('PT-DMH-C',card);
+                        this.displayCard(card, "myhand");
                     }
                 },
 
