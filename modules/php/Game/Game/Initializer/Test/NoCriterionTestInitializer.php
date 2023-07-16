@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Special\JobBoost;
+use SmileLife\Card\Category\Special\Troc;
 use SmileLife\Card\Core\CardLocation;
 
 /**
@@ -19,7 +19,7 @@ class NoCriterionTestInitializer extends TestGameInitializer {
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new JobBoost();
+            $card = new Troc();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;

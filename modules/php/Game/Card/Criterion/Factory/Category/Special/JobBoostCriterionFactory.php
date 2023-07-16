@@ -17,7 +17,7 @@ class JobBoostCriterionFactory extends NullCriterionFactory {
     
     /**
      * 
-     * @param PlayerTable $table : Game table of the player who plays (useless here)
+     * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
      * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
