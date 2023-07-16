@@ -27,8 +27,9 @@ class TsunamiCriterionFactory extends NullCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
-        $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
-                ->addConsequence(new ShuffleHandAgainConsequence());
+        $criterion
+                ->addConsequence(new ShuffleHandAgainConsequence())
+                ->addConsequence(new GenericCardPlayedConsequence($card, $table));
 
         return $criterion;
     }

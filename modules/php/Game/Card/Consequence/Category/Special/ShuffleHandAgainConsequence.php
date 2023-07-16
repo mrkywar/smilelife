@@ -38,7 +38,7 @@ class ShuffleHandAgainConsequence extends Consequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
-    
+
     /**
      * 
      * @var PlayerAttributesManager
@@ -56,7 +56,11 @@ class ShuffleHandAgainConsequence extends Consequence {
         $cards = $this->cardManager->findBy([
             'location' => CardLocation::PLAYER_HAND
         ]);
-
+//        foreach ($cards as $card) {
+//            echo $card->getId() . " = ".$card->getLocation(). " - ";
+//        }
+////        var_dump(array_keys($cards));
+//        die;
         shuffle($cards);
 
         $tables = $this->tableManager->findBy();
@@ -71,9 +75,10 @@ class ShuffleHandAgainConsequence extends Consequence {
                     ->setPublic(false)
                     ->setText(clienttranslate('Your hand was changed by an external event'))
                     ->add("cards", $this->cardDecorator->decorate($newCards));
-            
+
             $response->addNotification($notification);
         }
+        
     }
 
     private function redistributeCards(array &$cards, PlayerTable $table, PlayerAttributes $attribute) {
