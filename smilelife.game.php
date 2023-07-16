@@ -137,7 +137,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new SmileLife\Game\Initializer\Test\UsedCardTestInitilizer();
+        $this->gameInitializer = new SmileLife\Game\Initializer\Test\TsunamiTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -236,7 +236,7 @@ class SmileLife extends Table {
         if ($notification->isPublic()) {
             self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
         } else {
-            throw new Exception("TODO : Unsupported private Notification");
+            self::notifyPlayer($notification->getTargetedPlayer()->getId(), $notification->getType(), $notification->getText(), $notification->getParams());
         }
     }
 

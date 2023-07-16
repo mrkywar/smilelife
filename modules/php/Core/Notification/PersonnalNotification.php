@@ -2,6 +2,8 @@
 
 namespace Core\Notification;
 
+use Core\Models\Player;
+
 /**
  * Description of PersonnalNotification
  *
@@ -9,10 +11,11 @@ namespace Core\Notification;
  */
 class PersonnalNotification extends Notification {
 
-    public function __construct() {
+    public function __construct(Player $player) {
         parent::__construct();
 
-        $this->setPublic(false);
+        $this->setPublic(false)
+                ->setTargetedPlayer($player);
     }
 
 }

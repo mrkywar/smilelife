@@ -2,6 +2,7 @@
 
 namespace Core\Notification;
 
+use Core\Models\Player;
 use Core\Requester\Core\ParamsContainer;
 
 /**
@@ -28,6 +29,11 @@ class Notification extends ParamsContainer {
      * @var bool
      */
     private $public;
+
+    /**
+     * @var Player
+     */
+    private $targetedPlayer;
 
     public function __construct() {
         parent::__construct();
@@ -64,6 +70,10 @@ class Notification extends ParamsContainer {
         return $this->text;
     }
 
+    public function getTargetedPlayer(): Player {
+        return $this->targetedPlayer;
+    }
+
     public function setType(string $type) {
         $this->type = $type;
         return $this;
@@ -71,6 +81,11 @@ class Notification extends ParamsContainer {
 
     public function setText(string $text) {
         $this->text = $text;
+        return $this;
+    }
+
+    public function setTargetedPlayer(Player $targetedPlayer) {
+        $this->targetedPlayer = $targetedPlayer;
         return $this;
     }
 
