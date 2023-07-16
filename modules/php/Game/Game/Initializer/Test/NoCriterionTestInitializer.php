@@ -2,8 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Pet\Chick;
-use SmileLife\Card\Category\Special\Inheritance;
+use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Core\CardLocation;
 
 /**
@@ -20,15 +19,10 @@ class NoCriterionTestInitializer extends TestGameInitializer {
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new Inheritance();
+            $card = new JobBoost();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
-
-            $pet = new Chick();
-            $pet->setLocation(CardLocation::PLAYER_HAND)
-                    ->setLocationArg($oTable->getId());
-            $forcedCards[] = $pet;
         }
         $this->cardManager->add($forcedCards);
 
