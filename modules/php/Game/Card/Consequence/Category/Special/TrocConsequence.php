@@ -53,29 +53,37 @@ class TrocConsequence extends Consequence {
         $opponent = $this->opponentTable->getPlayer();
         $player = $this->table->getPlayer();
 
+        //-- Give Card
         $cards = $this->cardManager->getPlayerCards($player);
-        $givedCard = $this->getRandomCard($cards);
-        $givedCard->setLocationArg($opponent->getId());
-        $givenNotif = $this->generateNotification($opponent, $player, $givedCard);
-        $response->addNotification($givenNotif);
+        $givenCard = $this->getRandomCard($cards);
+        $givenCard->setLocationArg($opponent->getId());
 
+        //-- Recive Card
         $opponentCards = $this->cardManager->getPlayerCards($opponent);
         $recivedCard = $this->getRandomCard($opponentCards);
         $recivedCard->setLocationArg($player->getId());
-        $recivedNotif = $this->generateNotification($player, $opponent, $givedCard);
-        $response->addNotification($recivedNotif);
+
+        //-- Notify
+        $activeNotif = $this->generateNotification($player, $opponent, $recivedCard, $givenCard);
+        $response->addNotification($activeNotif);
+        $opponentNotif = $this->generateNotification($opponent, $player, $givenCard, $recivedCard);
+        $response->addNotification($opponentNotif);
+        
+        $this->cardManager->update([$recivedCard,$givenCard]);
     }
 
-    private function generateNotification(Player $player, Player $opponent, Card $card): \Core\Notification\Notification {
+    private function generateNotification(Player $player, Player $opponent, Card $recivedCard, Card $givenCard): \Core\Notification\Notification {
         $notification = new PersonnalNotification($player);
 
         $notification->setType('trocNotification')
-                ->setText(clienttranslate('${player_name} troc ${cardName} with you'))
+                ->setText(clienttranslate('${player_name} troc ${cardName} with you for ${cardName2}'))
                 ->add('player_name', $opponent->getName())
-                ->add('cardName', (string) $card)
+                ->add('cardName', (string) $recivedCard)
+                ->add('cardName2', (string) $givenCard)
                 ->add('playerId', $player->getId())
                 ->add('opponentId', $opponent->getId())
-                ->add('card', $this->cardDecorator->decorate($card));
+                ->add('recivedCard', $this->cardDecorator->decorate($recivedCard))
+                ->add('givenCard', $this->cardDecorator->decorate($givenCard));
 
         return $notification;
     }
