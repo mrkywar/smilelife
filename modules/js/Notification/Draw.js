@@ -23,11 +23,7 @@ define([
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() + 1);
                 },
                 
-                notif_handChangedNotification:function (notif){
-                    this.debug("Notification-D.js  -  NCN",notif.args);
-                    this.myHand = notif.args.cards;
-                    this.displayMyHand();
-                }
+                
             }
     );
 });

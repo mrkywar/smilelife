@@ -77,12 +77,9 @@ define([
                 
                 displayMyHand: function(){
                     var myhand = $('myhand');
-                    this.debug("PT-DMH",this.myHand);
                     myhand.innerHTML = ``;
-                    for (var cardId in this.myHand) {
-                        
+                    for (var cardId in this.myHand) {               
                         var card = this.myHand[cardId];
-                        this.debug('PT-DMH-C',card);
                         this.displayCard(card, "myhand");
                     }
                 },

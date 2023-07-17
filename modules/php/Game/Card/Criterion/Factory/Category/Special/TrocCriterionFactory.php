@@ -4,22 +4,23 @@ namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Special\TrocConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of JobBoostCriterionFactory
+ * Description of TrocCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class JobBoostCriterionFactory extends NullCriterionFactory {
+class TrocCriterionFactory extends NullCriterionFactory {
     
     /**
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
-     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
@@ -27,7 +28,10 @@ class JobBoostCriterionFactory extends NullCriterionFactory {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
         
         $criterion
+                ->addConsequence(new TrocConsequence($table, $opponentTable))
                 ->addConsequence(new GenericCardPlayedConsequence($card, $table));
+                
+                
 
         return $criterion;
     }
