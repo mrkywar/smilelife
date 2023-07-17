@@ -11,6 +11,7 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Card/Studies.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Flirts.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Wage.js',
+    g_gamethemeurl + 'modules/js/Notification/handEvent.js',
 ], function (dojo, declare) {
     return declare(
             'smilelife.notification',
@@ -23,7 +24,8 @@ define([
                 smilelife.notification.volontaryDivorce,
                 smilelife.notification.card.studies,
                 smilelife.notification.card.flirts,
-                smilelife.notification.card.wage
+                smilelife.notification.card.wage,
+                smilelife.notification.hand.events
             ],
             {
                 constructor: function () {
@@ -59,7 +61,8 @@ define([
                         ['discardNotification',200],
                         ['turnpassNotification',200],
                         ['offsideNotification',200],
-                        ['handChangedNotification',200]
+                        ['handChangedNotification',200],
+                        ['trocNotification',200]
                         
                     ]
                     notifs.forEach(function (notif) {
