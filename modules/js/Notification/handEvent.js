@@ -15,9 +15,12 @@ define([
                     this.debug("HE-TN", notif.args);
 
                     var givenCard = notif.args.givenCard;
-                    var cardFrom = "pile_" + givenCard.pile + "_" + notif.args.opponentId;
-                    this.displayCard(givenCard, "playerpanel_" + notif.args.playerId, cardFrom, true);
-                    
+                    var cardDest = "playerpanel_" + notif.args.playerId;
+                    this.displayCard(givenCard, cardDest, "myhand", true);
+
+                    var recivedCard = notif.args.recivedCard
+                    var cardFrom = "playerpanel_" + notif.args.opponentId;
+                    this.displayCard(recivedCard, "myhand", cardFrom);
                 }
             }
     );
