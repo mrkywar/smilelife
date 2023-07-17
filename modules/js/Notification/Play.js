@@ -22,10 +22,10 @@ define([
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
-                        this.displayCard(card, cardDest, "myhand", true);
+                        this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
+                        this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId, true);
                     }
 
                     if (notif.args.fromHand) {

@@ -6,8 +6,11 @@ define([
             "smilelife.card.display",
             [],
             {
-                displayCard: function (card, destinationDivId, fromDivId) {
-//                    this.debug("DC", card);
+                displayCard: function (card, destinationDivId, fromDivId, destroy) {
+                    this.debug("DC", destroy);
+                    if (typeof destroy === 'undefined') {
+                        destroy = false;
+                    }
 
                     var searchedDiv = $('card_' + card.id);
 
@@ -20,12 +23,14 @@ define([
                         searchedDiv.id = "temp_" + searchedDiv.id;
                         this.debug(searchedDiv, destinationDivId);
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
-                        var _this = this;
-                        setTimeout(function () {
-//                            _this.debug("MR", destinationDivId, card);
-                            _this.displayCard(card, destinationDivId);
-                        }, this.animationTimer + 15)
-//                        $(searchedDiv.id).remove();
+                        if(! destroy){
+                            var _this = this;
+                            setTimeout(function () {
+    //                            _this.debug("MR", destinationDivId, card);
+                                _this.displayCard(card, destinationDivId);
+                            }, this.animationTimer + 15)
+    //                        $(searchedDiv.id).remove();
+                        }
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
                         var initialId = card.id
