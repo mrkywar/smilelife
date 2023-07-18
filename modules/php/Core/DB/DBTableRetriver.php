@@ -21,12 +21,11 @@ class DBTableRetriver {
      * @return DBTable
      */
     public static function retrive($item) {
-        if (is_array($item)) {
+        if (is_array($item)) {     
             return self::retrive($item[array_keys($item)[0]]);
         } elseif ($item instanceof Model) {
             return self::retriveFromClassName(get_class($item));
         } else {
-            //var_dump($item);
             throw new DBTableRetriverException("Unsupported call for : " . $item . " - ERROR CODE : DBTR-01");
         }
     }
