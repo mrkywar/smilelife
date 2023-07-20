@@ -43,10 +43,10 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         //-- case2 : No Job + no studies (playable) (nothing to do)
         //-- case3 : No Job + enouth points studies (playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case3Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->enouthStudieCase($case3Table, $job);
+        $i = random_int(0, count($oTables) - 1);
+        $case3Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->enouthStudieCase($case3Table, $job);
 
         //-- case4 : No Job + no studies + job boost (playable)
         $i = random_int(0, count($oTables) - 1);
@@ -82,10 +82,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
             $forcedCards[] = $studie;
         }
 
-        var_dump($forcedCards, $job->getRequiredStudies());die;
-        $this->cardManager->add($forcedCards);
+        if ($job->getRequiredStudies() > 0) {
+            $this->cardManager->add($forcedCards);
 
-        $this->playWaitingCards($table);
+            $this->playWaitingCards($table);
+        }
     }
 
     private function jobBoostCase(PlayerTable $table) {
@@ -97,7 +98,7 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-    
+
     private function usedJobBoostCase(PlayerTable $table) {
         $jobBoost = new JobBoost();
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
