@@ -102,8 +102,8 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
     private function usedJobBoostCase(PlayerTable $table) {
         $jobBoost = new JobBoost();
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
-                ->setLocationArg($table->getId());
-//                ->setIsUsed(true);
+                ->setLocationArg($table->getId())
+                ->setIsUsed(true);
 
         $this->cardManager->add([$jobBoost]);
 

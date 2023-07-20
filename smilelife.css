@@ -378,7 +378,9 @@ html{
     float: left;
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
-.cardontable[data-category="attack"].usedcard{
+.cardontable[data-category="attack"].usedcard,
+.cardontable[data-category="special"].usedcard
+{
     filter: grayscale(100%);
 }
 
