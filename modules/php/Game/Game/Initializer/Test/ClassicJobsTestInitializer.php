@@ -35,19 +35,18 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 
-        //-- case1 : Job in game (not playable)
+//        //-- case1 : Job in game (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
-//        $this->jobInGameCase($case1Table);
-
-//        //-- case2 : No Job + no studies (playable) (nothing to do)
-//        //-- case3 : No Job + enouth points studies (playable)
+        $this->jobInGameCase($case1Table);
+//
+//        //-- case2 : No JobC
 //        $i = random_int(0, count($oTables) - 1);
 //        $case3Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->enouthStudieCase($case3Table, $job);
-
+//
 //        //-- case4 : No Job + no studies + job boost (playable)
 //        $i = random_int(0, count($oTables) - 1);
 //        $case4Table = $oTables[array_keys($oTables)[$i]];
