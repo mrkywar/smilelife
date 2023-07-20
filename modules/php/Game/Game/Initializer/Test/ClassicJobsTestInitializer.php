@@ -35,29 +35,30 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 
-//        //-- case1 : Job in game (not playable)
+        //-- case1 : Job in game (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->jobInGameCase($case1Table);
-//
-//        //-- case2 : No JobC
+
+        //-- case2 : No Job + no studies (playable) (nothing to do)
+        //-- case3 : No Job + enouth points studies (playable)
 //        $i = random_int(0, count($oTables) - 1);
 //        $case3Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->enouthStudieCase($case3Table, $job);
-//
-//        //-- case4 : No Job + no studies + job boost (playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case4Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->jobBoostCase($case4Table);
-//
-//        //-- case5 : No Job + no studies + used job boost (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case5Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->usedJobBoostCase($case5Table);
+
+        //-- case4 : No Job + no studies + job boost (playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case4Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->jobBoostCase($case4Table);
+
+        //-- case5 : No Job + no studies + used job boost (not playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case5Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->usedJobBoostCase($case5Table);
 
         return $case1Table->getId();
     }
@@ -81,7 +82,8 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
             $forcedCards[] = $studie;
         }
 
-        $this->cardManager->add([$forcedCards]);
+        var_dump($forcedCards, $job->getRequiredStudies());die;
+        $this->cardManager->add($forcedCards);
 
         $this->playWaitingCards($table);
     }
