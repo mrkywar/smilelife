@@ -51,12 +51,6 @@ class JobCriterionFactory extends CardCriterionFactory {
         
         $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table));
 
-        if ($card instanceof Guru || $card instanceof Bandit) {
-//            return new CriterionGroup([
-//                
-//                
-//                ],CriterionGroup::AND_OPERATOR);
-        }
         return $criteria;
     }
 
