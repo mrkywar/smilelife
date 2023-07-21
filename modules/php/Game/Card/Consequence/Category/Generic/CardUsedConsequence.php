@@ -44,7 +44,7 @@ abstract class CardUsedConsequence extends PlayerTableConsequence {
     }
 
     public function execute(Response &$response) {
-        $this->usedCard->setIsUsed(true);
+        $this->card->setIsUsed(true);
         $this->cardManager->update($this->card);
         
         $response->addNotification($this->generateNotification());

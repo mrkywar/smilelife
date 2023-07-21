@@ -21,12 +21,9 @@ class JobBoostUsedConsequence extends CardUsedConsequence {
      */
     private $job;
 
-    
-
     public function __construct(JobBoost $card, ?Job $job = null, PlayerTable $table) {
         parent::__construct($card, $table);
 
-        
         $this->job = $card;
     }
 
@@ -40,7 +37,7 @@ class JobBoostUsedConsequence extends CardUsedConsequence {
                 ->add('playerId', $player->getId())
                 ->add('playedCardName', $this->card->getText1())
                 ->add('cardName', $this->job->getText1())
-                ->add('card', $this->cardDecorator->decorate($this->getUsedCard()));
+                ->add('card', $this->cardDecorator->decorate($this->card));
 
         return $notification;
     }

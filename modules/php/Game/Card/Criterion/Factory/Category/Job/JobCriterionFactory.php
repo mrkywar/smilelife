@@ -5,6 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Guru;
+use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Special\JobBoostUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -47,6 +48,8 @@ class JobCriterionFactory extends CardCriterionFactory {
                     $jobStudieCriterion
                 ], CriterionGroup::AND_OPERATOR)
             ], CriterionGroup::OR_OPERATOR);
+        
+        $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table));
 
         if ($card instanceof Guru || $card instanceof Bandit) {
 //            return new CriterionGroup([
