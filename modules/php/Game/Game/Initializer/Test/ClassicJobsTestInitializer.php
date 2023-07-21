@@ -22,11 +22,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new \SmileLife\Card\Category\Job\Interim\Waiter();
+        $job = new \SmileLife\Card\Category\Job\Interim\Plumber();
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Job\Interim\Waiter();
+            $card = new \SmileLife\Card\Category\Job\Interim\Plumber();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -59,6 +59,12 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->usedJobBoostCase($case5Table);
+        
+       //-- case6 : Job (interim) in game (not playable but can dismiss & play)
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->InterimInGameCase($case1Table);
 
         return $case1Table->getId();
     }
@@ -110,4 +116,13 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
         $this->playWaitingCards($table);
     }
 
+    private function InterimInGameCase(PlayerTable $table) {
+        $forcedCard = new Stripteaser();
+        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add([$forcedCard]);
+
+        $this->playWaitingCards($table);
+    }
 }
