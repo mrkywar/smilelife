@@ -5,7 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Guru;
-use SmileLife\Card\Consequence\Category\Generic\CardUsedConsequence;
+use SmileLife\Card\Consequence\Category\Special\JobBoostUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -32,7 +32,7 @@ class JobCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $pistonCriterion = new HaveJobBoostReadyCriterion($table);
-        $pistonCriterion->addConsequence(new CardUsedConsequence($table->getJobBoost(), $table));
+        $pistonCriterion->addConsequence(new JobBoostUsedConsequence($table->getJobBoost(), $card, $table));
 
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($table));
         $noJobCriterion->setErrorMessage(clienttranslate('You have already an active Job, Resign First'));

@@ -2,11 +2,12 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
 use SmileLife\Card\Consequence\PlayerTableConsequence;
+use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -14,7 +15,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardUsedConsequence extends PlayerTableConsequence {
+abstract class CardUsedConsequence extends PlayerTableConsequence {
 
     /**
      * 
@@ -26,24 +27,37 @@ class CardUsedConsequence extends PlayerTableConsequence {
      * 
      * @var Card
      */
-    private $usedCard;
+    protected $card;
+    
+    /**
+     * 
+     * @var CardDecorator
+     */
+    protected $cardDecorator;
 
     public function __construct(Card $card = null, PlayerTable $table) {
         parent::__construct($table);
         
         $this->cardManager = new CardManager();
-        $this->usedCard = $card;
+        $this->cardDecorator = new CardDecorator();
+        $this->card = $card;
     }
 
     public function execute(Response &$response) {
         $this->usedCard->setIsUsed(true);
-        $this->cardManager->update($this->usedCard);
-
-//        
+        $this->cardManager->update($this->card);
+        
+        $response->addNotification($this->generateNotification());
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract
+     * ---------------------------------------------------------------------- */
+    
+    abstract protected function generateNotification(): Notification;
 
-    public function getUsedCard(): Card {
-        return $this->usedCard;
-    }
+//    public function getUsedCard(): Card {
+//        return $this->usedCard;
+//    }
 
 }
