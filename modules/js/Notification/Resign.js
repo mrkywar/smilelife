@@ -9,7 +9,7 @@ define([
             ],
             {
                 notif_resignNotification: function (notif) {
-                    this.notif_resignNotification(notif);
+                    this.notif_discardNotification(notif);
                 },
 
                 notif_discardNotification: function (notif) {
