@@ -18,14 +18,15 @@ define([
 
                 notif_playNotification: function (notif) {
                     var card = notif.args.card;
-
-                    var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
+                    
+                    this.debug("PN",notif.args);
+                    var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId, true);
+                        this.displayCard(card, cardDest, "playerpanel_" + notif.args.targetId, true);
                     }
 
                     if (notif.args.fromHand) {

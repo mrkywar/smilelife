@@ -30,6 +30,7 @@ class WagePlayedConsequence extends CardPlayedConsequence {
                 ->setText($this->getNotificationText())
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
+                ->add('targetId', $player->getId())
                 ->add('from', $from)
                 ->add('table', $this->tableDecorator->decorate($this->table))
                 ->add('card', $this->cardDecorator->decorate($this->getCard()))

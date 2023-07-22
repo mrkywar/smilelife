@@ -60,6 +60,7 @@ define([
                             this.displayCardInformations(newCardDiv, card);
                         }
 
+                        this.debug('DCOC',card);
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
