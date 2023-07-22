@@ -62,13 +62,11 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
 
-        $this->generateNotification($response);
-
         $this->cardManager->playCard($player, $this->card);
         $this->table->addCard($this->card);
         $this->tableManager->updateTable($this->table);
 
-//        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
+        $this->generateNotification($response);
     }
 
     /* -------------------------------------------------------------------------

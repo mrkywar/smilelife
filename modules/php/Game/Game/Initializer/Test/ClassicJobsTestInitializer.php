@@ -5,7 +5,7 @@ namespace SmileLife\Game\Initializer\Test;
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Designer;
+use SmileLife\Card\Category\Job\Job\Pharmacist;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
@@ -23,11 +23,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new Designer();
+        $job = new Pharmacist();
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new Designer();
+            $card = new Pharmacist();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -63,11 +63,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
         
        //-- case6 : Job (interim) in game (not playable but can dismiss & play)
         $i = random_int(0, count($oTables) - 1);
-        $case1Table = $oTables[array_keys($oTables)[$i]];
+        $case6Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
-        $this->InterimInGameCase($case1Table);
+        $this->InterimInGameCase($case6Table);
 
-        return $case1Table->getId();
+        return $case3Table->getId();
     }
 
     private function jobInGameCase(PlayerTable $table) {
