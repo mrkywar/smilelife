@@ -5,6 +5,7 @@ namespace SmileLife\Game\Initializer\Test;
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Astronaut;
+use SmileLife\Card\Category\Job\Job\Doctor;
 use SmileLife\Card\Category\Job\Job\Pharmacist;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
@@ -23,11 +24,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new Pharmacist();
+        $job = new Doctor();
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new Pharmacist();
+            $card = new Doctor();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
