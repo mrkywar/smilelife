@@ -5,7 +5,7 @@ namespace SmileLife\Game\Initializer\Test;
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Writer;
+use SmileLife\Card\Category\Job\Job\Designer;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
@@ -23,11 +23,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new Writer();
+        $job = new Designer();
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new Writer();
+            $card = new Designer();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
