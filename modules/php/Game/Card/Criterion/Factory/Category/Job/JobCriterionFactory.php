@@ -34,7 +34,7 @@ class JobCriterionFactory extends CardCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $pistonCriterion = new HaveJobBoostReadyCriterion($table);
         $jobBoost = $table->getJobBoost();
-        if(null !== $jobBoost){
+        if (null !== $jobBoost) {
             $pistonCriterion->addConsequence(new JobBoostUsedConsequence($jobBoost, $card, $table));
         }
 
@@ -42,17 +42,17 @@ class JobCriterionFactory extends CardCriterionFactory {
         $noJobCriterion->setErrorMessage(clienttranslate('You have already an active Job, Resign First'));
 
         $jobStudieCriterion = new JobStudiesCriterion($table, $card);
-        $jobStudieCriterion->setErrorMessage(clienttranslate('You do not have enough study points to perform this job'));
 
         $criteria = new CriterionGroup([
-                $pistonCriterion,
-                new CriterionGroup([
-                    $noJobCriterion,
+            $noJobCriterion,
+            new CriterionGroup([
+                    $pistonCriterion,
                     $jobStudieCriterion
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR);
-        
-        $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table));
+                ], CriterionGroup::OR_OPERATOR)
+            ], CriterionGroup::AND_OPERATOR);
+
+        $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                ->setErrorMessage(clienttranslate('You do not have enough study points to perform this job'));
 
         return $criteria;
     }
