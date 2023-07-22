@@ -42,26 +42,17 @@ class JobCriterionFactory extends CardCriterionFactory {
         $noJobCriterion->setErrorMessage(clienttranslate('You have already an active Job, Resign First'));
 
         $jobStudieCriterion = new JobStudiesCriterion($table, $card);
-        $jobStudieCriterion->setErrorMessage(clienttranslate('You do not have enough study points to perform this job'));
-
-        //-- V1
-//        $criteria = new CriterionGroup([
-//                $pistonCriterion,
-//                new CriterionGroup([
-//                    $noJobCriterion,
-//                    $jobStudieCriterion
-//                ], CriterionGroup::AND_OPERATOR)
-//            ], CriterionGroup::OR_OPERATOR);
 
         $criteria = new CriterionGroup([
             $noJobCriterion,
             new CriterionGroup([
                     $pistonCriterion,
                     $jobStudieCriterion
-                ], CriterionGroup::AND_OPERATOR)
+                ], CriterionGroup::OR_OPERATOR)
             ], CriterionGroup::AND_OPERATOR);
 
-        $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table));
+        $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                ->setErrorMessage(clienttranslate('You do not have enough study points to perform this job'));
 
         return $criteria;
     }
