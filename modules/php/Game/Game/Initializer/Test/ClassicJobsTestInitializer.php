@@ -22,11 +22,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new \SmileLife\Card\Category\Job\Official\Military();
+        $job = new \SmileLife\Card\Category\Job\Official\Teacher\MathTeacher();
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Job\Official\Military();
+            $card = new \SmileLife\Card\Category\Job\Official\Teacher\MathTeacher();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
