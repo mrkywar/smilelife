@@ -73,7 +73,11 @@ class CriterionGroup extends Criterion {
             if ($criterion->isValided()) {
                 $consequences = array_merge($consequences ?? [], $criterion->getConsequences() ?? []);
             }
+            if (self::OR_OPERATOR === $this->operator) {
+                return $consequences;
+            }
         }
+        
         return $consequences;
     }
 
