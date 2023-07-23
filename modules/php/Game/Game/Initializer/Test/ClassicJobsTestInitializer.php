@@ -5,6 +5,7 @@ namespace SmileLife\Game\Initializer\Test;
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Astronaut;
+use SmileLife\Card\Category\Job\Job\Lawyer;
 use SmileLife\Card\Category\Job\Job\Surgeon;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
@@ -23,11 +24,11 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new Surgeon();
+        $job = new Lawyer();
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new Surgeon();
+            $card = new Lawyer();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -74,8 +75,12 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
         $forcedCard = new Astronaut();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
+        
+        $jobBoost = new JobBoost();
+        $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
 
-        $this->cardManager->add([$forcedCard]);
+        $this->cardManager->add([$forcedCard, $jobBoost]);
 
         $this->playWaitingCards($table);
     }
@@ -101,7 +106,7 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $this->enouthStudieCase($table, new Surgeon());   
+//        $this->enouthStudieCase($table, new Surgeon());   
                 
         $this->cardManager->add([$jobBoost]);
 
