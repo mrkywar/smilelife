@@ -46,8 +46,8 @@ class JobCriterionFactory extends CardCriterionFactory {
         $criteria = new CriterionGroup([
             $noJobCriterion,
             new CriterionGroup([
-                    $pistonCriterion,
-                    $jobStudieCriterion
+                    $jobStudieCriterion,
+                    $pistonCriterion
                 ], CriterionGroup::OR_OPERATOR)
             ], CriterionGroup::AND_OPERATOR);
 
