@@ -4,30 +4,30 @@ namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\AirlinePilot;
 use SmileLife\Card\Category\Job\Job\Astronaut;
+use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Category\Job\Job\Guru;
+use SmileLife\Card\Category\Job\Official\Policeman;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of ClassicJobsTestInitializer
+ * Description of PolicemanTestInitializer
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class ClassicJobsTestInitializer extends TestGameInitializer {
+class PolicemanTestInitializer extends TestGameInitializer {
 
     public function init($players, $options = []) {
         parent::init($players, $options);
 
         $oTables = $this->playerTableManager->findBy();
 
-        $job = new \SmileLife\Card\Category\Job\Official\Policeman();
-
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Job\Official\Policeman();
+            $card = new Policeman();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -36,8 +36,19 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 
-        $casesGroup = 4;
-        switch ($casesGroup) {
+        $numbers = range(1, 8); //8 ! Cases
+        shuffle($numbers);
+        $laseTableId = null;
+        foreach ($oTables as $table) {
+            $case = array_shift($numbers);
+            $laseTableId = $this->applyCase($oTables, $case);
+        }
+        return $laseTableId;
+    }
+
+    private function applyCase(&$oTables, $case) {
+        
+        switch ($case) {
             case 1:
                 //-- case1 : Job in game (not playable)
                 $i = random_int(0, count($oTables) - 1);
@@ -57,6 +68,7 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
                 $i = random_int(0, count($oTables) - 1);
                 $case3Table = $oTables[array_keys($oTables)[$i]];
                 unset($oTables[$i]);
+                $job = new Policeman();
                 $this->enouthStudieCase($case3Table, $job);
 
                 return $case3Table->getId();
@@ -73,7 +85,7 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
                 $i = random_int(0, count($oTables) - 1);
                 $case5Table = $oTables[array_keys($oTables)[$i]];
                 unset($oTables[$i]);
-                $this->jobBoostCase($case5Table);
+                $this->usedJobBoostCase($case5Table);
 
                 return $case5Table->getId();
             case 6:
@@ -84,8 +96,35 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
                 $this->InterimInGameCase($case6Table);
 
                 return $case6Table->getId();
+            case 7:
+                //-- case7 : Guru in game (consequence)
+                $i = random_int(0, count($oTables) - 1);
+                $case7Table = $oTables[array_keys($oTables)[$i]];
+                unset($oTables[$i]);
+                $job = new Policeman();
+                $this->enouthStudieCase($case7Table, $job);
+
+                $j = random_int(0, count($oTables) - 1);
+                $opponentTable = $oTables[array_keys($oTables)[$j]];
+                $this->GuruCase($opponentTable);
+
+                return $case7Table->getId();
+            case 8:
+                //-- case8 : Bandit in game (consequence)
+                $i = random_int(0, count($oTables) - 1);
+                $case8Table = $oTables[array_keys($oTables)[$i]];
+                unset($oTables[$i]);
+                $job = new Policeman();
+                $this->enouthStudieCase($case8Table, $job);
+
+                $j = random_int(0, count($oTables) - 1);
+                $opponentTable = $oTables[array_keys($oTables)[$j]];
+                $this->BanditCase($opponentTable);
+
+                return $case8Table->getId();
+            
             default:
-                die("Unsupported Case $casesGroup");
+                die("Unsupported Case $case");
         }
     }
 
@@ -152,4 +191,23 @@ class ClassicJobsTestInitializer extends TestGameInitializer {
         $this->playWaitingCards($table);
     }
 
+    private function GuruCase(PlayerTable $table) {
+        $forcedCard = new Guru();
+        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add([$forcedCard]);
+
+        $this->playWaitingCards($table);
+    }
+
+    private function BanditCase(PlayerTable $table) {
+        $forcedCard = new Bandit();
+        $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+
+        $this->cardManager->add([$forcedCard]);
+
+        $this->playWaitingCards($table);
+    }
 }
