@@ -3,11 +3,11 @@
 namespace SmileLife\Card\Consequence\Category\Attack;
 
 use Core\Notification\Notification;
+use Core\Requester\Response\Response;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Official\Policeman;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Table\PlayerTable;
-use Swoole\Http\Response;
 
 /**
  * Description of IllegalJobDiscardConsequence
@@ -24,7 +24,7 @@ class IllegalJobDiscardConsequence extends DiscardConsequence {
 
     public function __construct(Job $card, Policeman $policeman, PlayerTable $table) {
         parent::__construct($card, $table);
-        $this->policeman = $$this->policeman;
+        $this->policeman = $policeman;
     }
 
     protected function addNotification(Response &$response) {

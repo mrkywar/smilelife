@@ -6,6 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Guru;
+use SmileLife\Card\Consequence\Category\Attack\IllegalJobDiscardConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
@@ -55,8 +56,15 @@ class PolicemanCriterionFactory extends JobCriterionFactory {
 
         $guruTable = $this->findGuruTable();
         $banditTable = $this->findBanditTable();
-        var_dump($guruTable, $banditTable);
-        die;
+        
+        if(null !== $guruTable){
+            $job= $guruTable->getJob();
+            $criteria->addConsequence(new IllegalJobDiscardConsequence($job, $card, $guruTable));
+        }
+        if(null !== $banditTable){
+            $job= $banditTable->getJob();
+            $criteria->addConsequence(new IllegalJobDiscardConsequence($job, $card, $banditTable));
+        }
 
         return $criteria;
     }
