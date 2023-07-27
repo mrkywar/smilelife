@@ -27,12 +27,17 @@ class GuruAndBanditCriterionFactory extends JobCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+        
+        $searchedJob = new JobTypeCriterion($table, Policeman::class);
         $policemanCriterion = new InversedCriterion(
-                new AllPlayerTablesCriterion(
-                        new JobTypeCriterion($table, $class)
-                )
+                new AllPlayerTablesCriterion($searchedJob)
         );
-        $policemanCriterion->setErrorMessage(clienttranslate("There's a policman watching, you can't work as ${workName} safely", ['workName' => $card->getTitle()]));
+        
+        $allTables = new AllPlayerTablesCriterion($searchedJob);
+        var_dump("SJ",$allTables->isValided());die();
+        
+        
+        $policemanCriterion->setErrorMessage(clienttranslate("There's a policman watching, you can't play this work safely"));
         $parentCriterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
         $criteria = new CriterionGroup([

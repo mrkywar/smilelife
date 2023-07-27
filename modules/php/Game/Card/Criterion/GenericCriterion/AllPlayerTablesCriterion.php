@@ -33,6 +33,8 @@ class AllPlayerTablesCriterion extends Criterion {
     public function isValided(): bool {
         foreach ($this->tableManager->findBy() as $table) {
             $this->criterion->setTable($table);
+            var_dump($table->getPlayer()->getName(),$this->criterion->isValided());
+            echo '<hr/>';
             if ($this->criterion->isValided()) {
                 return true;
             }
