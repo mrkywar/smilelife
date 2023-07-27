@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Job\Official\Policeman;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\Job\JobCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
@@ -27,16 +28,12 @@ class GuruAndBanditCriterionFactory extends JobCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        
+
         $searchedJob = new JobTypeCriterion($table, Policeman::class);
         $policemanCriterion = new InversedCriterion(
                 new AllPlayerTablesCriterion($searchedJob)
         );
-        
-        $allTables = new AllPlayerTablesCriterion($searchedJob);
-        var_dump("SJ",$allTables->isValided());die();
-        
-        
+
         $policemanCriterion->setErrorMessage(clienttranslate("There's a policman watching, you can't play this work safely"));
         $parentCriterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
