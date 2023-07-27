@@ -6,7 +6,6 @@ use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Official\Policeman;
-use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -14,7 +13,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class IllegalJobDiscardConsequence extends DiscardConsequence {
+class IllegalJobDiscardConsequence extends DisardJobConsequence {
 
     /**
      * 
@@ -30,6 +29,8 @@ class IllegalJobDiscardConsequence extends DiscardConsequence {
     protected function addNotification(Response &$response) {
         $notification = new Notification();
         $player = $this->table->getPlayer();
+        
+//        var_dump($player->getName(), $this->card->getTitle());die;
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
