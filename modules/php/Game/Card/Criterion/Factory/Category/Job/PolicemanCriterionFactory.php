@@ -56,14 +56,14 @@ class PolicemanCriterionFactory extends JobCriterionFactory {
 
         $guruTable = $this->findGuruTable();
         $banditTable = $this->findBanditTable();
-        
-        if(null !== $guruTable){
-            $job= $guruTable->getJob();
-            $criteria->addConsequence(new IllegalJobDiscardConsequence($job, $card, $guruTable));
+
+        if (null !== $guruTable) {
+            $guru = $guruTable->getJob();
+            $criteria->addConsequence(new IllegalJobDiscardConsequence($guru, $card, $guruTable));
         }
-        if(null !== $banditTable){
-            $job= $banditTable->getJob();
-            $criteria->addConsequence(new IllegalJobDiscardConsequence($job, $card, $banditTable));
+        if (null !== $banditTable) {
+            $bandit = $banditTable->getJob();
+            $criteria->addConsequence(new IllegalJobDiscardConsequence($bandit, $card, $banditTable));
         }
 
         return $criteria;
@@ -79,7 +79,7 @@ class PolicemanCriterionFactory extends JobCriterionFactory {
         }
         return null;
     }
-    
+
     private function findBanditTable(): ?PlayerTable {
         $tables = $this->tableManager->findBy();
         foreach ($tables as $table) {
