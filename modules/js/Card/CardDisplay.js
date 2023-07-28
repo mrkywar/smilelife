@@ -7,7 +7,6 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId, destroy) {
-                    this.debug("DC", destroy);
                     if (typeof destroy === 'undefined') {
                         destroy = false;
                     }
@@ -21,7 +20,7 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         searchedDiv.id = "temp_" + searchedDiv.id;
-                        this.debug(searchedDiv, destinationDivId);
+//                        this.debug(searchedDiv, destinationDivId);
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         if(! destroy){
                             var _this = this;
@@ -60,7 +59,6 @@ define([
                             this.displayCardInformations(newCardDiv, card);
                         }
 
-                        this.debug('DCOC',card);
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();

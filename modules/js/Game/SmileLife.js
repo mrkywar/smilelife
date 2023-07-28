@@ -66,7 +66,7 @@ define([
                         this,
                         (data) => resolve(data),
                         (isError, message, code) => {
-                                this.debug('TAD',isError, message, code);
+//                                this.debug('TAD',isError, message, code);
                                 if (isError) {
                                     reject(message, code);
                                 }

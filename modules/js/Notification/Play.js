@@ -19,14 +19,12 @@ define([
                 notif_playNotification: function (notif) {
                     var card = notif.args.card;
                     
-                    this.debug("PN",notif.args);
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
                         this.myTable = notif.args.table;
-                        this.debug("TU",this.myTable);
                     } else {
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.targetId, true);
                     }
