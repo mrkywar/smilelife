@@ -7,7 +7,6 @@ define([
             [],
             {
                 displayCard: function (card, destinationDivId, fromDivId, destroy) {
-                    this.debug("DC", destroy);
                     if (typeof destroy === 'undefined') {
                         destroy = false;
                     }
@@ -60,7 +59,6 @@ define([
                             this.displayCardInformations(newCardDiv, card);
                         }
 
-                        this.debug('DCOC',card);
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
