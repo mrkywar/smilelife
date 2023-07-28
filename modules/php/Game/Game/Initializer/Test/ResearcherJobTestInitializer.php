@@ -4,8 +4,8 @@ namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\AirlinePilot;
 use SmileLife\Card\Category\Job\Job\Astronaut;
+use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;

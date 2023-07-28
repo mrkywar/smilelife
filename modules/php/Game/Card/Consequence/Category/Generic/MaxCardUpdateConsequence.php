@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\PlayerAttributes\PlayerAttributes;
@@ -49,7 +50,6 @@ class MaxCardUpdateConsequence extends PlayerTableConsequence {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('cardMax', $attribute->getMaxCards())
-                ->add('card', $this->cardDecorator->decorate($card))
         ;
 
         $response->addNotification($notification);

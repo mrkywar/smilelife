@@ -2,9 +2,11 @@
 
 namespace SmileLife\Card\Consequence\Category\Generic;
 
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Consequence\PlayerTableConsequence;
+use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 
