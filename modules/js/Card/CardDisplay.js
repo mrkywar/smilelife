@@ -20,7 +20,7 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         searchedDiv.id = "temp_" + searchedDiv.id;
-                        this.debug(searchedDiv, destinationDivId);
+//                        this.debug(searchedDiv, destinationDivId);
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         if(! destroy){
                             var _this = this;

@@ -45,7 +45,7 @@ class MaxCardUpdateConsequence extends PlayerTableConsequence {
         
         $notification = new Notification();
 
-        $notification->setType("maxCardUpdate")
+        $notification->setType("maxCardUpdateNotification")
                 ->setText(clienttranslate('${player_name} play now with ${cardMax} card in hand'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
