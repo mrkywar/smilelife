@@ -23,7 +23,7 @@ interface CriterionInterface {
      */
     public function getConsequences(): ?array;
     
-    public function addConsequence(Consequence $consequence);
+    public function addConsequence(Consequence $consequence):CriterionInterface;
     
     
 }
