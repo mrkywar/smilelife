@@ -40,10 +40,6 @@ class PlayConsequence extends EventListener {
 //        var_dump($response->get('consequences'));
         $consequences = $response->get('consequences');
 
-//        echo "<pre>";
-//        var_dump($consequences);
-//        die;
-
         foreach (array_reverse($consequences) as $consequence) {
             $this->applyConsequence($consequence, $request, $response);
         }

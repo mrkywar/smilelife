@@ -71,13 +71,15 @@ class CriterionGroup extends Criterion {
 
         foreach ($this->criteria as $criterion) {
             if ($criterion->isValided()) {
+                $tconsequences = $criterion->getConsequences();
+
                 $consequences = array_merge($consequences ?? [], $criterion->getConsequences() ?? []);
-            }
-            if (self::OR_OPERATOR === $this->operator) {
-                return $consequences;
+                
+                if (self::OR_OPERATOR === $this->operator) {
+                    return $consequences;
+                }
             }
         }
-        
         return $consequences;
     }
 
@@ -90,6 +92,18 @@ class CriterionGroup extends Criterion {
         }
 
         return parent::getErrorMessage();
+    }
+
+    private function debug($consequence) {
+        if (null === $consequence) {
+            return;
+        } elseif (is_array($consequence)) {
+            foreach ($consequence as $conse) {
+                $this->debug($conse);
+            }
+        } else {
+            echo "(-->" . (get_class($consequence));
+        }
     }
 
 }
