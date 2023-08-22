@@ -68,7 +68,7 @@ class SurgeonJobTestInitializer extends TestGameInitializer {
         unset($oTables[$i]);
         $this->InterimInGameCase($case6Table);
 
-        return $case3Table->getId();
+        return $case4Table->getId();
     }
 
     private function jobInGameCase(PlayerTable $table) {
@@ -106,7 +106,7 @@ class SurgeonJobTestInitializer extends TestGameInitializer {
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-//        $this->enouthStudieCase($table, new Surgeon());   
+        $this->enouthStudieCase($table, new Surgeon());   
                 
         $this->cardManager->add([$jobBoost]);
 
