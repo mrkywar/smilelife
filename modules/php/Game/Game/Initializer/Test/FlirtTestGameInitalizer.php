@@ -62,22 +62,22 @@ class FlirtTestGameInitalizer extends TestGameInitializer {
 //        $this->limitlessCase($case3and4Table);
 //        
         //-- case 5 (Doublon)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case5Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->doublonCase($case5Table, $case1Table);
+        $i = random_int(0, count($oTables) - 1);
+        $case5Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->doublonCase($case5Table, $case1Table);
         //-- case 6 (Doublon on Adultery)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case1Table = $oTables[array_keys($oTables)[$i]];
-//        $i = random_int(0, count($oTables) - 1);
-//        $case6Table = $oTables[array_keys($oTables)[$i]];
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];
+        $i = random_int(0, count($oTables) - 1);
+        $case6Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
-//        $this->doublonAdulteryCase($case6Table, $case1Table);
+        $this->doublonAdulteryCase($case6Table, $case1Table);
         //-- case 7(classic) 
-//        $i = random_int(0, count($oTables) - 1);
-//        $case7Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->classicCase($case7Table);
+        $i = random_int(0, count($oTables) - 1);
+        $case7Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->classicCase($case7Table);
 
         return $case1Table->getId();
     }
