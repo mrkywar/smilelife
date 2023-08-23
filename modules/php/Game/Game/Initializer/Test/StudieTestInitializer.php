@@ -20,6 +20,22 @@ class StudieTestInitializer extends GameInitializer {
         parent::init($players, $options);
 
         $oTables = $this->playerTableManager->findBy();
+        
+        $forcedCards = [];
+        foreach ($oTables as $oTable) {
+            $card = new StudiesLevel1();
+            $card->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($oTable->getId());
+            $forcedCards[] = $card;
+            
+            $card2 = new StudiesLevel2();
+            $card2->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($oTable->getId());
+            $forcedCards[] = $card2;
+        }
+        $this->cardManager->add($forcedCards);
+
+        reset($oTables);
 
         //-- Case 1 Classic Job in game (not playable)
 //        $i = random_int(0, count($oTables) - 1);
@@ -59,8 +75,8 @@ class StudieTestInitializer extends GameInitializer {
         //-- Case 8 Advanced Limitless
         $i = random_int(0, count($oTables) - 1);
         $case8Table = $oTables[array_keys($oTables)[$i]];
-        unset($oTables[$i]);
-        $this->advancedLimitlessCase($case8Table);
+//        unset($oTables[$i]);
+//        $this->advancedLimitlessCase($case8Table);
 
         return $case8Table->getId();
     }
