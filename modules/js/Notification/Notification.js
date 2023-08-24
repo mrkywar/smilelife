@@ -59,7 +59,7 @@ define([
                         ['wageLevelUpdate', 200],
                         ['resignNotification', 200],
                         ['usedFlirtNotification', 200],
-                        ['doublonFlirtNotification', 200],
+                        ['doublonFlirtNotification', 200/1.2],
                         ['discardNotification',200],
                         ['turnpassNotification',200],
                         ['offsideNotification',200],

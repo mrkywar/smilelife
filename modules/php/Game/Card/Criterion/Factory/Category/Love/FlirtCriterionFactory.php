@@ -59,8 +59,9 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion->addConsequence(new FlirtDoublonDectectionConcequence($card, $table))
-                ->addConsequence(new FlirtPlayedConsequence($card, $table));
+        $finalCriterion
+                ->addConsequence(new FlirtPlayedConsequence($card, $table))
+                ->addConsequence(new FlirtDoublonDectectionConcequence($card, $table));
 
         return $finalCriterion;
     }

@@ -2,12 +2,14 @@
 
 namespace SmileLife\Card\Consequence\Category\Love;
 
+use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Consequence\Consequence;
+use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Core\CardPile;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
@@ -15,7 +17,7 @@ use SmileLife\Table\PlayerTableManager;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\PlayerTableConsequence {
+class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
 
     /**
      * 
@@ -66,6 +68,8 @@ class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\Play
         if (null !== $doublon) {
             $player = $this->table->getPlayer();
             $targetPlayer = $targetTable->getPlayer();
+            
+            $this->moveDoublon($doublon, $this->table, $player);
 
             $notification = new Notification();
             $notification->setType("doublonFlirtNotification")
@@ -81,10 +85,8 @@ class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\Play
 
             $targetTable->removeCard($doublon);
             $this->tableManager->updateTable($targetTable);
-
+            
             $this->card->setLocationArg($player->getId());
-            $this->cardManager->playCard($player, $doublon);
-
             $this->table->addCard($doublon);
             $this->tableManager->updateTable($this->table);
         }
@@ -108,4 +110,13 @@ class FlirtDoublonDectectionConcequence extends \SmileLife\Card\Consequence\Play
         return null;
     }
 
+    private function moveDoublon(Flirt &$doublon, PlayerTable $targetTable, Player $player){
+        $doublon->setLocationArg($player->getId());
+        if(null !== $targetTable->getAdultery()){
+            $doublon->setLocation(CardPile::PILE_ADULTERY)
+                    ->setPileName(CardPile::PILE_ADULTERY);
+            
+        }
+        $this->cardManager->update($doublon);
+    }
 }
