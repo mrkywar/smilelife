@@ -36,6 +36,10 @@ abstract class House extends Acquisition {
     public function getDisplayedName(): string {
         return $this->getTitle();
     }
+    
+    public function getAdditionalRequirement(): ?string {
+        return "houseAcquisition";
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)

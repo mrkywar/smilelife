@@ -52,6 +52,10 @@ abstract class Studies extends Card {
         return 0;
     }
 
+    public function getAdditionalRequirement(): ?string {
+        return null;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

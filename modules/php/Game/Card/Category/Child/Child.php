@@ -42,9 +42,13 @@ abstract class Child extends Card {
     public function getDisplayedName(): string {
         return $this->getSubtitle();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 0;
+    }
+
+    public function getAdditionalRequirement(): ?string {
+        return null;
     }
 
     /* -------------------------------------------------------------------------

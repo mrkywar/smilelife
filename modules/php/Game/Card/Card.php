@@ -178,6 +178,8 @@ abstract class Card extends Model {
     abstract public function getDefaultPassTurn(): int;
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
+    
+    abstract public function getAdditionalRequirement(): ?string;
 
 //    abstract public function getDisplayedName():string;
 
