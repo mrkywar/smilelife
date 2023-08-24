@@ -13,22 +13,18 @@ define([
 
                     var searchedDiv = $('card_' + card.id);
 
-                    if (searchedDiv && card.isUsed) {
-                        dojo.addClass(searchedDiv, "usedCard");
-                    }
-
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         searchedDiv.id = "temp_" + searchedDiv.id;
 //                        this.debug(searchedDiv, destinationDivId);
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
-                        if(! destroy){
+                        if (!destroy) {
                             var _this = this;
                             setTimeout(function () {
-    //                            _this.debug("MR", destinationDivId, card);
+                                //                            _this.debug("MR", destinationDivId, card);
                                 _this.displayCard(card, destinationDivId);
                             }, this.animationTimer + 15)
-    //                        $(searchedDiv.id).remove();
+                            //                        $(searchedDiv.id).remove();
                         }
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
@@ -54,6 +50,9 @@ define([
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
                         if (card.isUsed) {
                             dojo.addClass(newCardDiv, "usedcard");
+                        }
+                        if (card.haveAdditionalRequirement) {
+                            dojo.addClass(newCardDiv, "actionrequired");
                         }
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);

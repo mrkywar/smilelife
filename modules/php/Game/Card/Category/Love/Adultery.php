@@ -58,6 +58,10 @@ class Adultery extends Card implements BaseGame {
     public function getDefaultPassTurn(): int {
         return 0;
     }
+    
+    public function getAdditionalRequirement(): bool {
+        return false;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame

@@ -383,6 +383,10 @@ html{
 {
     filter: grayscale(100%);
 }
+.cardontable.actionrequired{
+    filter: invert(50%);
+}
+
 
 .cardontable[data-type="40"].usedcard::after,
 .cardontable[data-type="38"].usedcard::after,
