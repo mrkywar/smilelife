@@ -43,8 +43,8 @@ abstract class Pet extends Card {
         return 0;
     }
 
-    public function getAdditionalRequirement(): ?string {
-        return null;
+    public function getAdditionalRequirement(): bool {
+        return false;
     }
 
     /* -------------------------------------------------------------------------

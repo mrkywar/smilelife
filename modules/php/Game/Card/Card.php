@@ -179,7 +179,7 @@ abstract class Card extends Model {
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
     
-    abstract public function getAdditionalRequirement(): ?string;
+    abstract public function getAdditionalRequirement(): bool;
 
 //    abstract public function getDisplayedName():string;
 

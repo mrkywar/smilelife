@@ -47,8 +47,8 @@ abstract class Travel extends Acquisition {
         return $this->getSubtitle();
     }
     
-    public function getAdditionalRequirement(): ?string {
-        return "travelAcquisition";
+    public function getAdditionalRequirement(): bool {
+        return true;
     }
 
     /* -------------------------------------------------------------------------

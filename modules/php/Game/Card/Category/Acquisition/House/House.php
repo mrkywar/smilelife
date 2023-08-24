@@ -37,8 +37,8 @@ abstract class House extends Acquisition {
         return $this->getTitle();
     }
     
-    public function getAdditionalRequirement(): ?string {
-        return "houseAcquisition";
+    public function getAdditionalRequirement(): bool {
+        return true;
     }
 
     /* -------------------------------------------------------------------------

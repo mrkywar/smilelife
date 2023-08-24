@@ -86,8 +86,8 @@ abstract class Job extends Card {
         return 0;
     }
 
-    public function getAdditionalRequirement(): ?string {
-        return null;
+    public function getAdditionalRequirement(): bool {
+        return false;
     }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each job)
