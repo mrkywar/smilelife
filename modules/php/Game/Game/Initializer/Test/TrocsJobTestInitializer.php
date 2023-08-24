@@ -5,6 +5,8 @@ namespace SmileLife\Game\Initializer\Test;
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Astronaut;
+use SmileLife\Card\Category\Job\Job\HeadOfPurchasing;
+use SmileLife\Card\Category\Job\Job\HeadOfSales;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Surgeon;
 use SmileLife\Card\Category\Special\JobBoost;
