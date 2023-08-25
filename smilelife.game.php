@@ -13,6 +13,7 @@ use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Traits\ZombieTrait;
+use SmileLife\PlayerAction\CardRequiermentTrait;
 use SmileLife\PlayerAction\DrawTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
@@ -250,6 +251,7 @@ class SmileLife extends Table {
 //-- Traits for Player action (Play, Pass) 
     use PlayCardTrait;
     use PassTrait;
+    use CardRequiermentTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

@@ -21,7 +21,12 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
+                        if (card[0].classList.contains("actionrequired")) {
+                            var data = {
+                                card: card[0].dataset.id
+                            };
+                            this.takeAction('cardRequirement', data);
+                        } else if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
                             this.attackModal(card);
                         } else {
                             var data = {
