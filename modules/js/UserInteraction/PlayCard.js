@@ -21,7 +21,8 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        if (card[0].classList.contains("actionrequired")) {
+                        this.debug("dpd",card[0].dataset.category);
+                        if (card[0].dataset.category) {
                             var data = {
                                 card: card[0].dataset.id
                             };

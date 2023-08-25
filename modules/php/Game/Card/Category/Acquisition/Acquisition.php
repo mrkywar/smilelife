@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Acquisition;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\CardData;
 
 /**
  * Description of Acquisition

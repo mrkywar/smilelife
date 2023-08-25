@@ -48,11 +48,17 @@ define([
                     } else if (!searchedDiv) {
                         //-- display without move
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        
                         if (card.isUsed) {
                             dojo.addClass(newCardDiv, "usedcard");
                         }
-                        if (card.haveAdditionalRequirement) {
-                            dojo.addClass(newCardDiv, "actionrequired");
+                        if (null !== card.additionalsDatas) {
+//                            dojo.addClass(newCardDiv, "actionrequired");
+//                            this.debug("AdditionalDC",card.additionalsDatas);
+                            for(var dataKey in card.additionalsDatas){
+                                var dataVal = card.additionalsDatas[dataKey];
+                                dojo.attr(newCardDiv, 'data-'+dataKey, dataVal);
+                            }
                         }
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
