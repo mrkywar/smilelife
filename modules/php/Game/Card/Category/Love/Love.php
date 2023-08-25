@@ -24,10 +24,6 @@ abstract class Love extends Card {
         return 0;
     }
 
-    public function getAdditionalRequirement(): bool {
-        return false;
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

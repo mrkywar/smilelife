@@ -31,10 +31,6 @@ abstract class Attack extends Card {
     public function getDisplayedName(): string {
         return $this->getTitle();
     }
-    
-    public function getAdditionalRequirement(): bool{
-        return false;
-    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display

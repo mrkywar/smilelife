@@ -43,10 +43,6 @@ abstract class Pet extends Card {
         return 0;
     }
 
-    public function getAdditionalRequirement(): bool {
-        return false;
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

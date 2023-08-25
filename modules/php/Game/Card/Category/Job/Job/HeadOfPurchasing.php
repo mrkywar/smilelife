@@ -27,10 +27,6 @@ class HeadOfPurchasing extends Job implements BaseGame {
     public function hasPower(): bool {
         return true;
     }
-    
-    public function getAdditionalRequirement(): bool {
-        return true;
-    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract

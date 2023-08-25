@@ -26,10 +26,6 @@ abstract class Reward extends Card {
     public function getDefaultPassTurn(): int {
         return 0;
     }
-    
-    public function getAdditionalRequirement(): bool{
-        return false;
-    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display

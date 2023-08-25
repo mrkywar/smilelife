@@ -59,10 +59,6 @@ class Adultery extends Card implements BaseGame {
         return 0;
     }
     
-    public function getAdditionalRequirement(): bool {
-        return false;
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
      * ---------------------------------------------------------------------- */

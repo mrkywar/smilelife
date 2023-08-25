@@ -36,10 +36,6 @@ abstract class Special extends Card {
         return 0;
     }
 
-    public function getAdditionalRequirement(): bool {
-        return false;
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Base Game Forced (1 card in each special card)
      * ---------------------------------------------------------------------- */

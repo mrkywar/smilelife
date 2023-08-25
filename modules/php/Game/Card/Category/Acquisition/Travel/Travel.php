@@ -46,10 +46,6 @@ abstract class Travel extends Acquisition {
     public function getDisplayedName(): string {
         return $this->getSubtitle();
     }
-    
-    public function getAdditionalRequirement(): bool {
-        return true;
-    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
