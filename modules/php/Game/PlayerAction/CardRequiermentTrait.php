@@ -3,7 +3,7 @@
 namespace SmileLife\PlayerAction;
 
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Game\Request\PlayCardRequest;
+use SmileLife\Game\Request\CardRequirementRequest;
 
 /**
  *
@@ -20,20 +20,8 @@ trait CardRequiermentTrait {
             "id" => $cardId
         ]);
 
-        var_dump($card);die;
-        
-        throw new \BgaVisibleSystemException("EXCEPTION - Not yet implemented");
-        
-//        $target = $targetId;
-//        if (null !== $targetId) {
-//            $target = $this->playerManager->findOne([
-//                "id" => $targetId
-//            ]);
-//        }
-
-//        throw new \BgaVisibleSystemException('You cannot play this card!');
         try {
-            $request = new PlayCardRequest($player, $card, $target);
+            $request = new CardRequirementRequest($player, $card);
             $response = $this->requester->send($request);
             $this->applyResponse($response);
         } catch (CardException $e) {
