@@ -46,6 +46,10 @@ abstract class Child extends Card {
     public function getDefaultPassTurn(): int {
         return 0;
     }
+    
+    public function getAdditionalsDatas(): ?array {
+        return null;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)

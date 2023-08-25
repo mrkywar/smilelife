@@ -51,6 +51,9 @@ abstract class Studies extends Card {
     public function getDefaultPassTurn(): int {
         return 0;
     }
+    public function getAdditionalsDatas(): ?array {
+        return null;
+    }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display

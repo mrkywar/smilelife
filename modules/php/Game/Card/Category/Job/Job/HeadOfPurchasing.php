@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Category\Job\Job;
 
+use SmileLife\Card\CardData;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Module\BaseGame;
@@ -47,6 +48,13 @@ class HeadOfPurchasing extends Job implements BaseGame {
     public function getType(): int {
         return CardType::JOB_HEAD_OF_PURCHASING;
     }
+    
+    public function getAdditionalsDatas(): ?array{
+        return [
+            "action" => CardData::ACTION_ONE_HAND_CARD,
+        ];
+    }
+
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
