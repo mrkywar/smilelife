@@ -65,7 +65,7 @@ class action_smilelife extends APP_GameAction {
         self::setAjaxMode();
         
         $cardId = self::getArg("card", AT_posint, true);
-        $this->game->cardRequirement($cardId);
+        echo $this->game->cardRequirement($cardId);
         
         self::ajaxResponse();
     }

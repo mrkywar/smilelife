@@ -21,7 +21,6 @@ class RequirementRequest extends EventListener {
      */
     private $cardManager;
 
-
     public function __construct() {
         $this->setMethod("onAsk");
 
@@ -29,9 +28,11 @@ class RequirementRequest extends EventListener {
     }
 
     public function onAsk(CardRequirementRequest &$request, Response &$response) {
-        var_dump($request);die;
-        
-        
+        return $response->set("content", json_encode([
+                    "test" => "ok"
+        ]));
+
+//        var_dump($request->getCard());die;
 ////        var_dump($response->get('consequences'));
 //        $consequences = $response->get('consequences');
 //
@@ -41,7 +42,6 @@ class RequirementRequest extends EventListener {
 //        die;
     }
 
-    
     public function getPriority(): int {
         return 2;
     }

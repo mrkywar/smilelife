@@ -23,7 +23,8 @@ trait CardRequiermentTrait {
         try {
             $request = new CardRequirementRequest($player, $card);
             $response = $this->requester->send($request);
-            $this->applyResponse($response);
+            return $response->get('content');
+//            $this->applyResponse($response);
         } catch (CardException $e) {
             throw new \BgaVisibleSystemException($e->getMessage());
         } /* catch (\Exception $e) {
