@@ -23,7 +23,9 @@ define([
                     } else {
                         this.debug("dpd",card[0].dataset.type, this.isCardType(card[0],CARD_TYPE_HEAD_OF_PURCHASING),this.isCardType(card[0],CARD_TYPE_HEAD_OF_SALES));
                         if (this.isCardType(card[0],CARD_TYPE_HEAD_OF_PURCHASING) || this.isCardType(card[0],CARD_TYPE_HEAD_OF_SALES) ) {
-                            this.debug(dojo.query("#myhand .cardontable"));
+//                            this.debug(dojo.query("#myhand .cardontable"));
+                            
+                            this.additionalCardModal(card,dojo.query("#myhand .cardontable"));
 //                            var data = {
 //                                card: card[0].dataset.id
 //                            };

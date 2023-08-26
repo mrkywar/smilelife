@@ -7,7 +7,7 @@ define([
             [],
             {
                 attackModal: function (card) {
-                    dojo.place(this.format_block('jstpl_attack_modale'), 'modal-container');
+                    dojo.place(this.format_block('jstpl_attack_modale',{'title':_("CHOOSE_TARGET")}), 'modal-container');
 
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
