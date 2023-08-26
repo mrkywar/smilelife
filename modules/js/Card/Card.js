@@ -11,7 +11,10 @@ const PREF_CHOICE_SIZE_M = 5003;
 const PREF_CHOICE_SIZE_L = 5004;
 const PREF_CHOICE_SIZE_XL = 5005;
 //-- Card Specific type
+const CARD_TYPE_HEAD_OF_PURCHASING = 24;
+const CARD_TYPE_HEAD_OF_SALES = 25;
 const CARD_TYPE_ATTENTAT = 82;
+
 
 
 define([
@@ -55,6 +58,10 @@ define([
                             resolve();
                         }, duration + delay);
                     });
+                },
+                
+                isCardType(card, typeSearched){
+                    return card.dataset.type == typeSearched;
                 },
 
                 onCardClick: function (card) {

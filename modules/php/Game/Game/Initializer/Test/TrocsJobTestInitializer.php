@@ -36,9 +36,9 @@ class TrocsJobTestInitializer extends TestGameInitializer {
             $forcedCards[] = $card;
             
             $card2 = new HeadOfSales();
-            $card->setLocation(CardLocation::PLAYER_HAND)
+            $card2->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
-            $forcedCards[] = $card;
+            $forcedCards[] = $card2;
         }
         $this->cardManager->add($forcedCards);
 

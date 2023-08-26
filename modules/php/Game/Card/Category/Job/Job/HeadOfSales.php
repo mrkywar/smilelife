@@ -1,7 +1,7 @@
 <?php
-
 namespace SmileLife\Card\Category\Job\Job;
 
+use SmileLife\Card\CardData;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Module\BaseGame;
