@@ -53,6 +53,15 @@ class PassNotifier extends EventListener {
         ;
 
         $response->addNotification($notification);
+        
+        $cards = $this->cardManager->getPlayerCards($player);
+
+        $pNotification = new PersonnalNotification($player);
+        $pNotification->setType("handUpdateNotification")
+                ->setText(clienttranslate('Your Hand was updated'))
+                ->set('myHand', $this->cardDecorator->decorate($cards));
+        
+        $response->addNotification($pNotification);
 
         return $response;
     }

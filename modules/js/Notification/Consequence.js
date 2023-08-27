@@ -20,6 +20,12 @@ define([
                     this.boardCounter[notif.args.targetId][notif.args.card.pile].setValue(this.boardCounter[notif.args.targetId][notif.args.card.pile].getValue() -1);
                     this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() +1);
                 },
+                
+                notif_handUpdateNotification: function(notif){
+                    this.debug(this.myHand,notif);
+                    this.myHand = notif.args.myHand;
+                    this.debug(this.myHand);
+                }
             }
     );
 });

@@ -71,7 +71,7 @@ class DrawNotifier extends EventListener {
         $pNotification = new PersonnalNotification($player);
         $pNotification->setType("handUpdateNotification")
                 ->setText(clienttranslate('Your Hand was updated'))
-                ->set('myhand', $this->cardDecorator->decorate($cards));
+                ->set('myHand', $this->cardDecorator->decorate($cards));
         
         $response->addNotification($pNotification);
         

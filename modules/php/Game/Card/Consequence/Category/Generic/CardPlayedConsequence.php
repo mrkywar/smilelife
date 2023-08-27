@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Generic;
 
 use Core\Notification\Notification;
+use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
@@ -100,6 +101,18 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         }
 
         $response->addNotification($notification);
+        
+        $cards = $this->cardManager->getPlayerCards($player);
+
+        $pNotification = new PersonnalNotification($player);
+
+        $pNotification->setType("handUpdateNotification")
+                ->setText(clienttranslate('Your Hand was updated'))
+                ->set('myHand', $this->cardDecorator->decorate($cards));
+        
+        $response->addNotification($pNotification);
+
+        return $response;
     }
 
     abstract protected function getNotificationText();
