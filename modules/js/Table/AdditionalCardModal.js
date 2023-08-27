@@ -12,7 +12,13 @@ define([
                 additionalCardModal: function (card) {
                     dojo.place(this.format_block('jstpl_attack_modale',{'title':"CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'modal-container');
                     
-                    this.debug(this.myHand, card);
+                    this.debug('??',this.myHand, card.dataset.id);
+                    for (var hCardKey in this.myHand){
+                        var hCard = this.myHand[hCardKey];
+                        this.debug(hCard.id, card.dataset.id);
+                    }
+                    
+                    
 //                    for(var hCardKey in cardsInHand){
 //                        var hCard = cardsInHand[hCardKey];
 ////                        this.debug("COMP");
