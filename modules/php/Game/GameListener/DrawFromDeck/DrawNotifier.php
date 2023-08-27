@@ -4,8 +4,10 @@ namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
 use Core\Notification\Notification;
+use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
+use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Game\Request\DrawCardRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -22,11 +24,19 @@ class DrawNotifier extends EventListener {
      * @var CardDecorator
      */
     private $cardDecorator;
+    
+    /**
+     * 
+     * @var CardManager
+     */
+    protected $cardManager;
+
 
     public function __construct() {
         $this->setMethod("onDraw");
 
         $this->cardDecorator = new CardDecorator();
+        $this->cardManager = new CardManager();
     }
 
     public function eventName(): string {
@@ -55,6 +65,15 @@ class DrawNotifier extends EventListener {
         ;
 
         $response->addNotification($notification);
+        
+        $cards = $this->cardManager->getPlayerCards($player);
+
+        $pNotification = new PersonnalNotification($player);
+        $pNotification->setType("handUpdateNotification")
+                ->setText(clienttranslate('Your Hand was updated'))
+                ->set('myhand', $this->cardDecorator->decorate($cards));
+        
+        $response->addNotification($pNotification);
         
         return $response;
     }
