@@ -7,16 +7,17 @@ define([
             [],
             {
                 constructor: function () {
-                    this.debug("Pass ?");
+
                 },
-                additionalCardModal: function (card, cardsInHand) {
+                additionalCardModal: function (card) {
                     dojo.place(this.format_block('jstpl_attack_modale',{'title':"CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'modal-container');
                     
-                    for(var hCardKey in cardsInHand){
-                        var hCard = cardsInHand[hCardKey];
-//                        this.debug("COMP");
-//                        this.debug(hCard.dataset.id, card)
-                    }
+                    this.debug(this.myHand, card);
+//                    for(var hCardKey in cardsInHand){
+//                        var hCard = cardsInHand[hCardKey];
+////                        this.debug("COMP");
+////                        this.debug(hCard.dataset.id, card)
+//                    }
 //                    dojo.place(this.format_block('jstpl_additional_modale'), 'modal-container');
 //
 //                    for (var playerId in this.gamedatas.tables) {
