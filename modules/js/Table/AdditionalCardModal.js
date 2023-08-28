@@ -10,15 +10,18 @@ define([
 
                 },
                 additionalCardModal: function (card) {
-                    dojo.place(this.format_block('jstpl_attack_modale',{'title':"CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'modal-container');
-                    
-                    this.debug('??',this.myHand, card.dataset.id);
-                    for (var hCardKey in this.myHand){
+                    dojo.place(this.format_block('jstpl_attack_modale', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'modal-container');
+
+                    this.debug('??', this.myHand, card.dataset.id);
+                    for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
                         this.debug(hCard.id, card.dataset.id);
+                        if (hCard.id != card.dataset.id) {
+                            dojo.place(this.format_block('jstpl_card_more', hCard),'modal_selection');    
+                        }
                     }
-                    
-                    
+
+
 //                    for(var hCardKey in cardsInHand){
 //                        var hCard = cardsInHand[hCardKey];
 ////                        this.debug("COMP");
@@ -35,7 +38,6 @@ define([
 //
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
-
 
 //
 //                onTargetClick: function (element) {

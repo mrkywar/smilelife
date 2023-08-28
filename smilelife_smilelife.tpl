@@ -44,6 +44,7 @@
             </div>
         </div>
     `;
+    
     var jstpl_attack_modale = `
         <div class="modal-overlay">
             <div class="modal-content">
@@ -53,18 +54,33 @@
                         <a href="#" class="action-button bgabutton bgabutton_gray" onclick="return false;" id="attackCancel_button">X</a>
                     </div>
                 </div>
-                <div id="attack_victim_selection" class="modal-body">
+                <div id="modal_selection" class="modal-body">
                 </div>
             </div>
         </div>
     `;
+    
     var jstpl_card_content = `
-                        <span class="card_text card_title">\${title}</span>
-                        <span class="card_text card_subtitle">\${subtitle}</span>
-                        <span class="card_text card_text1">\${text1}</span>
-                        <span class="card_text card_text2">\${text2}</span>
-                        <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
-                    `
+        <span class="card_text card_title">\${title}</span>
+        <span class="card_text card_subtitle">\${subtitle}</span>
+        <span class="card_text card_text1">\${text1}</span>
+        <span class="card_text card_text2">\${text2}</span>
+        <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
+    `;
+    
+    var jstpl_card_more = `
+        <div id="card_more_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-points="\${smilePoints}" data-name="\${name}">
+            <div class="card_sides">
+                <div class="card-side front" id="front_card_more_\${id}">
+                    <span class="card_text card_title">\${title}</span>
+                    <span class="card_text card_subtitle">\${subtitle}</span>
+                    <span class="card_text card_text1">\${text1}</span>
+                    <span class="card_text card_text2">\${text2}</span>
+                    <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
+                </div>
+            </div>
+        </div>
+    `;
 
 </script>
 

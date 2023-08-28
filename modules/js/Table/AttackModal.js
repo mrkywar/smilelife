@@ -12,7 +12,7 @@ define([
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
 
-                        dojo.place(this.getAttackBtnHtml(player), 'attack_victim_selection');
+                        dojo.place(this.getAttackBtnHtml(player), 'modal_selection');
                         dojo.connect($("attack" + player.id + "_button"), 'onclick', this, 'onTargetClick');
                     }
 
