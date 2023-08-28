@@ -36,27 +36,7 @@ define([
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
 
-//                getAttackBtnHtml: function (player) {
-//                    var textColor = "";
-//                    if (this.getHtmlColorLuma(player.color) > 100) {
-//                        textColor = "black";
-//                    } else {
-//                        textColor = "white";
-//                    }
-//
-//                    return `
-//                        <a href="#" 
-//                            class="action-button bgabutton" 
-//                            onclick="return false;" 
-//                            data-player="` + player.id + `" 
-//                            id="attack` + player.id + `_button" *
-//                            style="background-color:#` + player.color + `;color:` + textColor + `">
-//                                ` + player.name + `
-//                        </a>
-//                    `;
-//
-//                },
-//
+
 //
 //                onTargetClick: function (element) {
 //                    if ('takeCard' === this.actualState) {

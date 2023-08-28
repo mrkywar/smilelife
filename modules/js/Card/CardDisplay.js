@@ -87,13 +87,14 @@ define([
                     div.dataset.name = '' + card.name;
                     div.dataset.id = '' + card.id;
 
-                    $("front_" + div.id).innerHTML = `
-                        <span class="card_text card_title">` + card.title + `</span>
-                        <span class="card_text card_subtitle">` + card.subtitle + `</span>
-                        <span class="card_text card_text1">` + card.text1 + `</span>
-                        <span class="card_text card_text2">` + card.text2 + `</span>
-                        <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
-                    `;
+                    dojo.place(this.format_block('jstpl_card_content', card), "front_" + div.id);    
+//                    $("front_" + div.id).innerHTML = `
+//                        <span class="card_text card_title">` + card.title + `</span>
+//                        <span class="card_text card_subtitle">` + card.subtitle + `</span>
+//                        <span class="card_text card_text1">` + card.text1 + `</span>
+//                        <span class="card_text card_text2">` + card.text2 + `</span>
+//                        <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
+//                    `;
 
                 },
             }

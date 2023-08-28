@@ -16,7 +16,7 @@
                 </div>
                 <div class="pile_counter" id="pile_discard_count">0</div>
             </div>
-             <div class="pile_container pile_offside">
+            <div class="pile_container pile_offside">
                 <div class="pile" id="pile_offside">
 
                 </div>
@@ -44,7 +44,6 @@
             </div>
         </div>
     `;
-    
     var jstpl_attack_modale = `
         <div class="modal-overlay">
             <div class="modal-content">
@@ -59,6 +58,13 @@
             </div>
         </div>
     `;
+    var jstpl_card_content = `
+                        <span class="card_text card_title">\${title}</span>
+                        <span class="card_text card_subtitle">\${subtitle}</span>
+                        <span class="card_text card_text1">\${text1}</span>
+                        <span class="card_text card_text2">\${text2}</span>
+                        <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
+                    `
 
 </script>
 
