@@ -1,5 +1,6 @@
 {OVERALL_GAME_HEADER}
 <div id="modal-container"></div>
+<div id="more-container"></div>
 
 <div id="game_container">
     <div class="centered_table" id="mytable_container">
@@ -44,7 +45,6 @@
             </div>
         </div>
     `;
-    
     var jstpl_attack_modale = `
         <div class="modal-overlay">
             <div class="modal-content">
@@ -59,7 +59,14 @@
             </div>
         </div>
     `;
-    
+    var jstp_modal_v2 = `
+        <div class="modal-overlay">
+            <div>
+                <h2>\${title}</h2>
+                <div id="modal-selection" class="modal-body"></div>
+            </div>
+        </div>
+    `;
     var jstpl_card_content = `
         <span class="card_text card_title">\${title}</span>
         <span class="card_text card_subtitle">\${subtitle}</span>
@@ -67,16 +74,11 @@
         <span class="card_text card_text2">\${text2}</span>
         <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
     `;
-    
     var jstpl_card_more = `
         <div id="card_more_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-points="\${smilePoints}" data-name="\${name}">
             <div class="card_sides">
                 <div class="card-side front" id="front_card_more_\${id}">
-                    <span class="card_text card_title">\${title}</span>
-                    <span class="card_text card_subtitle">\${subtitle}</span>
-                    <span class="card_text card_text1">\${text1}</span>
-                    <span class="card_text card_text2">\${text2}</span>
-                    <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
+                   ` + jstpl_card_content + `
                 </div>
             </div>
         </div>

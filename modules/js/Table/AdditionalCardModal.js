@@ -10,14 +10,15 @@ define([
 
                 },
                 additionalCardModal: function (card) {
-                    dojo.place(this.format_block('jstpl_attack_modale', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'modal-container');
+                    dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
 
                     this.debug('??', this.myHand, card.dataset.id);
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
                         this.debug(hCard.id, card.dataset.id);
                         if (hCard.id != card.dataset.id) {
-                            dojo.place(this.format_block('jstpl_card_more', hCard),'modal_selection');    
+                            dojo.place(this.format_block('jstpl_card_more', hCard),'modal-selection');
+                            dojo.connect($("card_more_"+hCard.id),'onclick', this, 'onMoreClick');
                         }
                     }
 
@@ -40,7 +41,10 @@ define([
                 },
 
 //
-//                onTargetClick: function (element) {
+                onMoreClick: function (element) {
+                    this.debug("mce",element);
+                    return false;
+                },
 //                    if ('takeCard' === this.actualState) {
 //                        var data = {
 //                            target: element.target.dataset.player
