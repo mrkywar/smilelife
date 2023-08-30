@@ -73,7 +73,7 @@ define([
                                 if (!searchedDiv.classList.contains("selected")) {
                                     //select card
                                     if (this.isMyJob(card) || this.isMyMarriage(card) || undefined === card.type || 'discard' === card.location) {
-                                        dojo.query(".selected").removeClass("selected");
+                                        dojo.query("#game_container .selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
                                     } else {
                                         this.debug('CC-TC01');

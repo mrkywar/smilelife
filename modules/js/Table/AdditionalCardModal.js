@@ -35,7 +35,13 @@ define([
 
 //
                 onMoreClick: function (card) {
-                    this.debug("mce", card);
+                    var searchedDiv = $('card_more_' + card.id);
+                    this.debug("mce", card,searchedDiv);
+
+                    if (!searchedDiv.classList.contains("selected")) {
+                        dojo.query("#more-container .selected").removeClass("selected");
+                        searchedDiv.classList.add("selected");
+                    }
 
                 },
 //                    if ('takeCard' === this.actualState) {
