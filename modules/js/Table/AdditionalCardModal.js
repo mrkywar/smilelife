@@ -54,7 +54,19 @@ define([
                 },
                 
                 onModalConfirmClick: function(){
-                    this.debug("confirm");
+                    var playedCard = dojo.query("#game_container .selected");
+                    var additionalCard = dojo.query("#more-container .selected");
+                    if (1 !== additionalCard.length || 1 !== playedCard.length) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query("#more-container .selected").removeClass("selected");
+                    }else{
+                        var data = {
+                            card: playedCard[0].dataset.id,
+                            additionalCard: [additionalCard[0].dataset.id]
+                        };
+
+                        this.takeAction('playCard', data);
+                    }
                 }
                 
 
