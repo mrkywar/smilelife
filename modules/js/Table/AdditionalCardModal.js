@@ -12,7 +12,7 @@ define([
                 additionalCardModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
 
-//                    this.debug('??', this.myHand, card.dataset.id);
+                    this.debug(card);
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
                         if (hCard.id != card.dataset.id) {
@@ -22,11 +22,11 @@ define([
                             this.debug(searchedDiv);
                             var _this = this;
 
-                            searchedDiv.addEventListener('click', (function (cardObject) {
+                            searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
                                 return function () {
-                                    _this.onMoreClick(cardObject);
+                                    _this.onMoreClick(playedCard, additionalCard);
                                 };
-                            })(hCard));
+                            })(card, hCard));
                         }
                     }
 
@@ -34,37 +34,24 @@ define([
                 },
 
 //
-                onMoreClick: function (card) {
-                    var searchedDiv = $('card_more_' + card.id);
-                    this.debug("mce", card,searchedDiv);
+                onMoreClick: function (playedCard, additionalCard) {
+                    var searchedDiv = $('card_more_' + additionalCard.id);
+//                    this.debug("mce", additionalCard,searchedDiv);
 
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
+                    } else {
+                        var data = {
+                            card: playedCard.dataset.id,
+                            additionalCard: [additionalCard.id]
+                        };
+                        this.debug(data);
+//                        this.takeAction('playCard', data);
                     }
 
+
                 },
-//                    if ('takeCard' === this.actualState) {
-//                        var data = {
-//                            target: element.target.dataset.player
-//                        };
-//                        this.takeAction('playFromDiscard', data);
-//                    } else {
-//                        var card = dojo.query(".selected");
-//                        if (1 !== card.length) {
-//                            this.showMessage(_('Invalid Card Selection'), "error");
-//                            dojo.query(".selected").removeClass("selected");
-//                        } else {
-//                            var data = {
-//                                card: card[0].dataset.id,
-//                                target: element.target.dataset.player
-//                            };
-//                            this.takeAction('playCard', data);
-//                        }
-//                    }
-//                }
-
-
 
             }
     );
