@@ -64,6 +64,10 @@
             <div>
                 <h2>\${title}</h2>
                 <div id="modal-selection" class="modal-body"></div>
+                <div id="modal-btn">
+                    <a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_confirm_button">confirm</a>
+                    <a href="#" class="action-button bgabutton bgabutton_red" onclick="return false;" id="more_cancel_button">cancel</a>
+                </div>
             </div>
         </div>
     `;

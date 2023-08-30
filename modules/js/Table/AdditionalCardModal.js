@@ -12,38 +12,31 @@ define([
                 additionalCardModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
 
-                    this.debug('??', this.myHand, card.dataset.id);
+//                    this.debug('??', this.myHand, card.dataset.id);
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
-                        this.debug(hCard.id, card.dataset.id);
                         if (hCard.id != card.dataset.id) {
-                            dojo.place(this.format_block('jstpl_card_more', hCard),'modal-selection');
-                            dojo.connect($("card_more_"+hCard.id),'onclick', this, 'onMoreClick');
+                            dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
+//                            dojo.connect($("card_more_"+hCard.id),'onclick', this, 'onMoreClick');
+                            var searchedDiv = document.getElementById('card_more_' + hCard.id)
+                            this.debug(searchedDiv);
+                            var _this = this;
+
+                            searchedDiv.addEventListener('click', (function (cardObject) {
+                                return function () {
+                                    _this.onMoreClick(cardObject);
+                                };
+                            })(hCard));
                         }
                     }
 
-
-//                    for(var hCardKey in cardsInHand){
-//                        var hCard = cardsInHand[hCardKey];
-////                        this.debug("COMP");
-////                        this.debug(hCard.dataset.id, card)
-//                    }
-//                    dojo.place(this.format_block('jstpl_additional_modale'), 'modal-container');
-//
-//                    for (var playerId in this.gamedatas.tables) {
-//                        var player = this.gamedatas.tables[playerId].player;
-//
-//                        dojo.place(this.getAttackBtnHtml(player), 'attack_victim_selection');
-//                        dojo.connect($("attack" + player.id + "_button"), 'onclick', this, 'onTargetClick');
-//                    }
-//
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
 
 //
-                onMoreClick: function (element) {
-                    this.debug("mce",element);
-                    return false;
+                onMoreClick: function (card) {
+                    this.debug("mce", card);
+
                 },
 //                    if ('takeCard' === this.actualState) {
 //                        var data = {
