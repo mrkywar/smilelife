@@ -55,8 +55,9 @@ class action_smilelife extends APP_GameAction {
 
         $cardId = self::getArg("card", AT_posint, true);
         $targetId = self::getArg("target", AT_posint);
+        $additionalIds = self::getArg("additionalCards", AT_numberlist);
 
-        $this->game->actionPlayCard($cardId, $targetId);
+        $this->game->actionPlayCard($cardId, $targetId, $additionalIds);
 
         self::ajaxResponse();
     }

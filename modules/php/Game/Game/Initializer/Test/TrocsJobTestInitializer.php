@@ -75,7 +75,7 @@ class TrocsJobTestInitializer extends TestGameInitializer {
         unset($oTables[$i]);
         $this->InterimInGameCase($case6Table);
 
-        return $case4Table->getId();
+        return $case3Table->getId();
     }
 
     private function jobInGameCase(PlayerTable $table) {

@@ -14,12 +14,13 @@ use SmileLife\PlayerAction\ActionType;
  */
 class PlayCardRequest extends Request {
 
-    public function __construct(Player $player, Card $card, Player $target = null) {
+    public function __construct(Player $player, Card $card, Player $target = null, $additionalCards = null) {
         parent::__construct();
 
         $this->set("player", $player)
                 ->set("card", $card)
-                ->set("target", $target);
+                ->set("target", $target)
+                ->set("additionnalCards", $additionalCards);
     }
 
     public function getPlayer(): Player {
@@ -32,6 +33,14 @@ class PlayCardRequest extends Request {
 
     public function getTargetedPlayer(): ?Player {
         return $this->get("target");
+    }
+
+    /**
+     * 
+     * @return Card[]|null
+     */
+    public function getAdditionalCards(): ?array {
+        return $this->get('additionnalCards');
     }
 
     public function getType(): string {

@@ -42,7 +42,7 @@ define([
                     } else {
                         var data = {
                             card: playedCard.dataset.id,
-                            additionalCard: [additionalCard.id]
+                            additionalCards: [additionalCard.id]
                         };
 
                         this.takeAction('playCard', data);
@@ -62,7 +62,7 @@ define([
                     }else{
                         var data = {
                             card: playedCard[0].dataset.id,
-                            additionalCard: [additionalCard[0].dataset.id]
+                            additionalCards: [additionalCard[0].dataset.id]
                         };
 
                         this.takeAction('playCard', data);
