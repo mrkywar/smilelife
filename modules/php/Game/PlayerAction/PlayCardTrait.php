@@ -28,9 +28,12 @@ trait PlayCardTrait {
         }
         $additionalCards = $additionalIds;
         if (null !== $additionalIds) {
+            $cm = new \SmileLife\Card\CardManager();
+            $this->cardManager->getSerializer()->setIsForcedArray(true);
             $additionalCards = $this->cardManager->findBy([
                 "id" => $additionalIds
             ]);
+            $this->cardManager->getSerializer()->setIsForcedArray(false);
         }
 
 //        throw new \BgaVisibleSystemException('You cannot play this card!');

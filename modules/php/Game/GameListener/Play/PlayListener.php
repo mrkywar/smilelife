@@ -51,10 +51,10 @@ class PlayListener extends EventListener {
             ]);
             $opponentTable->setPlayer($target);
         }
+        $additionalCards = $request->getAdditionalCards();
 
-        
         $criteriaFactory = $card->getCriterionFactory();
-        $criteria = $criteriaFactory->create($table, $card, $opponentTable);
+        $criteria = $criteriaFactory->create($table, $card, $opponentTable, $additionalCards);
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
