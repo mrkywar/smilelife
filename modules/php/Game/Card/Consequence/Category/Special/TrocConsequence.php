@@ -41,6 +41,7 @@ class TrocConsequence extends Consequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
+    
 
     public function __construct(PlayerTable $table, PlayerTable $opponentTable) {
         $this->table = $table;
@@ -51,10 +52,10 @@ class TrocConsequence extends Consequence {
 
     public function execute(Response &$response) {
         $opponent = $this->opponentTable->getPlayer();
-        $player = $this->table->getPlayer();
+        $player = $this->getPlayer();
 
         //-- Give Card
-        $cards = $this->cardManager->getPlayerCards($player);
+        $cards = $this->getGivableCards();
         $givenCard = $this->getRandomCard($cards);
         $givenCard->setLocationArg($opponent->getId());
 
@@ -91,6 +92,14 @@ class TrocConsequence extends Consequence {
     private function getRandomCard(array $cards): Card {
         $randomIndex = mt_rand(0, count($cards) - 1);
         return $cards[$randomIndex];
+    }
+    
+    protected function getGivableCards() {
+        return $this->cardManager->getPlayerCards($player);
+    }
+    
+    protected function getPlayer():Player {
+        return $this->table->getPlayer();
     }
 
 }

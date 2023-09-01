@@ -2,8 +2,11 @@
 
 namespace SmileLife\Card\Category\Job\Job;
 
+use SmileLife\Card\CardData;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\HeadsJobCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -46,6 +49,20 @@ class HeadOfSales extends Job implements BaseGame {
 
     public function getType(): int {
         return CardType::JOB_HEAD_OF_SALES;
+    }
+
+    public function getAdditionalsDatas(): ?array {
+        return [
+            "action" => CardData::ACTION_ONE_HAND_CARD,
+        ];
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract - Overwride
+     * ---------------------------------------------------------------------- */
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new HeadsJobCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

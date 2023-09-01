@@ -3,9 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Job\Guru;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Generic\HandUpdateConsequence;
 use SmileLife\Card\Consequence\Category\Special\JobBoostUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;

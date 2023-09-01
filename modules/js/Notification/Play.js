@@ -25,6 +25,7 @@ define([
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
                         this.myTable = notif.args.table;
+                        this.onModalCancelClick();
                     } else {
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.targetId, true);
                     }

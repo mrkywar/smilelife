@@ -81,9 +81,13 @@ abstract class Job extends Card {
     public function getCriterionFactory(): CardCriterionFactory {
         return new JobCriterionFactory();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 0;
+    }
+
+    public function getAdditionalsDatas(): ?array {
+        return null;
     }
 
     /* -------------------------------------------------------------------------

@@ -3,7 +3,6 @@
 namespace SmileLife\Card\Category\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Attack
@@ -30,6 +29,10 @@ abstract class Attack extends Card {
 
     public function getDisplayedName(): string {
         return $this->getTitle();
+    }
+
+    public function getAdditionalsDatas(): ?array {
+        return null;
     }
 
     /* -------------------------------------------------------------------------

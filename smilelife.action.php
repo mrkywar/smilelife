@@ -42,54 +42,63 @@ class action_smilelife extends APP_GameAction {
         self::ajaxResponse();
     }
 
-    public function draw(){
+    public function draw() {
         self::setAjaxMode();
 
         $this->game->actionDraw();
 
         self::ajaxResponse();
     }
-    
-    public function playCard(){
+
+    public function playCard() {
         self::setAjaxMode();
-        
+
         $cardId = self::getArg("card", AT_posint, true);
         $targetId = self::getArg("target", AT_posint);
+        $additionalIds = self::getArg("additionalCards", AT_numberlist);
 
-        $this->game->actionPlayCard($cardId, $targetId);
+        $this->game->actionPlayCard($cardId, $targetId, $additionalIds);
 
         self::ajaxResponse();
     }
-    
-    public function pass(){
+
+    public function cardRequirement() {
         self::setAjaxMode();
         
+        $cardId = self::getArg("card", AT_posint, true);
+        $this->game->cardRequirement($cardId);
+        
+        self::ajaxResponse();
+    }
+
+    public function pass() {
+        self::setAjaxMode();
+
         $cardId = self::getArg("card", AT_posint, true);
 
         $this->game->actionDiscard($cardId);
 
         self::ajaxResponse();
-        
     }
-    
-    public function playFromDiscard(){
+
+    public function playFromDiscard() {
         self::setAjaxMode();
-        
+
         $targetId = self::getArg("target", AT_posint);
-        
+
         $this->game->actionPlayFromDiscard($targetId);
 
         self::ajaxResponse();
     }
-    
-    public function divorceVoluntry(){
+
+    public function divorceVoluntry() {
         self::setAjaxMode();
 
         $this->game->actionDivorceVoluntry();
 
         self::ajaxResponse();
     }
-    
+
     public function adulteryResign() {
         self::setAjaxMode();
 
@@ -97,4 +106,5 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
+
 }

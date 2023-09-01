@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Generic;
 
 use Core\Notification\Notification;
+use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
@@ -37,18 +38,19 @@ class GenericAttackPlayedConsequence extends PlayerTableConsequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
-    
+
     /**
      * 
      * @var PlayerTableManager
      */
     private $tableManager;
-    
+
     /**
      * 
      * @var PlayerTable
      */
     private $targetedTable;
+
     /**
      * 
      * @var CardManager
@@ -57,7 +59,7 @@ class GenericAttackPlayedConsequence extends PlayerTableConsequence {
 
     public function __construct(Card $card, PlayerTable $table, PlayerTable $targetedTable) {
         parent::__construct($table);
-        
+
         $this->card = $card;
         $this->targetedTable = $targetedTable;
         $this->tableDecorator = new PlayerTableDecorator();
@@ -73,13 +75,13 @@ class GenericAttackPlayedConsequence extends PlayerTableConsequence {
 
         $notification = new Notification();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
-        
+
         $notification->setType("playNotification")
                 ->setText(clienttranslate('${player_name} attacks ${player_name2} by playing ${cardTitle}'))
                 ->add('player_name', $player->getName())
                 ->add('player_name2', $targetPlayer->getName())
                 ->add('playerId', $player->getId())
-                ->add('targetId',$targetPlayer->getId())
+                ->add('targetId', $targetPlayer->getId())
                 ->add('from', $from)
                 ->add('table', $this->tableDecorator->decorate($this->table))
                 ->add('card', $this->cardDecorator->decorate($this->card))
@@ -95,7 +97,16 @@ class GenericAttackPlayedConsequence extends PlayerTableConsequence {
         }
 
         $response->addNotification($notification);
-//        throw new ConsequenceException("Consequence-CUC : Not Yet implemented");
+
+        $cards = $this->cardManager->getPlayerCards($player);
+
+        $pNotification = new PersonnalNotification($player);
+
+        $pNotification->setType("handUpdateNotification")
+                ->setText(clienttranslate('Your Hand was updated'))
+                ->set('myHand', $this->cardDecorator->decorate($cards));
+
+        $response->addNotification($pNotification);
     }
 
 }

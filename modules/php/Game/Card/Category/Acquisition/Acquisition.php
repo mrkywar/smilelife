@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Category\Acquisition;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\CardData;
 
 /**
  * Description of Acquisition
@@ -26,6 +27,12 @@ abstract class Acquisition extends Card {
 
     public function getDefaultPassTurn(): int {
         return 0;
+    }
+
+    public function getAdditionalsDatas(): ?array {
+        return [
+            "action" => CardData::ACTION_CHOOSE_WAGE,
+        ];
     }
 
     /* -------------------------------------------------------------------------

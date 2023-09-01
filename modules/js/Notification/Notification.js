@@ -1,3 +1,6 @@
+const ANNIMATION_TIMER = 200;
+
+
 define([
     'dojo',
     'dojo/_base/declare',
@@ -51,21 +54,22 @@ define([
                     var _this = this;
 
                     var notifs = [
-                        ['flirtsAdultery', 200],
-                        ['drawNotification', 200],
-                        ['passNotification', 200],
-                        ['playNotification', 200],
-                        ['studiesLevelUpdate', 200],
-                        ['wageLevelUpdate', 200],
-                        ['resignNotification', 200],
-                        ['usedFlirtNotification', 200],
-                        ['doublonFlirtNotification', 200/1.2],
-                        ['discardNotification',200],
-                        ['turnpassNotification',200],
-                        ['offsideNotification',200],
-                        ['handChangedNotification',200],
-                        ['trocNotification',200],
-                        ['maxCardUpdateNotification',200]
+                        ['flirtsAdultery', ANNIMATION_TIMER],
+                        ['drawNotification', ANNIMATION_TIMER],
+                        ['passNotification', ANNIMATION_TIMER],
+                        ['playNotification', ANNIMATION_TIMER],
+                        ['studiesLevelUpdate', ANNIMATION_TIMER],
+                        ['wageLevelUpdate', ANNIMATION_TIMER],
+                        ['resignNotification', ANNIMATION_TIMER],
+                        ['usedFlirtNotification', ANNIMATION_TIMER],
+                        ['doublonFlirtNotification', ANNIMATION_TIMER/1.2],
+                        ['discardNotification',ANNIMATION_TIMER],
+                        ['turnpassNotification',ANNIMATION_TIMER],
+                        ['offsideNotification',ANNIMATION_TIMER],
+                        ['handChangedNotification',ANNIMATION_TIMER],
+                        ['trocNotification',ANNIMATION_TIMER],
+                        ['maxCardUpdateNotification',ANNIMATION_TIMER],
+                        ['handUpdateNotification',ANNIMATION_TIMER]
                         
                     ]
                     notifs.forEach(function (notif) {

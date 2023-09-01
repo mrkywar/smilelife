@@ -181,7 +181,7 @@ html{
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
 .modal-overlay .bgabutton_gray{
-    background-color: #d8d8d833;
+    /*background-color: #d8d8d833;*/
     border:0;
 }
 .modal-overlay .bgabutton_gray:hover{
@@ -383,6 +383,10 @@ html{
 {
     filter: grayscale(100%);
 }
+.cardontable.actionrequired{
+    filter: invert(50%);
+}
+
 
 .cardontable[data-type="40"].usedcard::after,
 .cardontable[data-type="38"].usedcard::after,

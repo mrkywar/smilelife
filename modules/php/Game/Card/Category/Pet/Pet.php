@@ -34,16 +34,18 @@ abstract class Pet extends Card {
     public function getPileName(): string {
         return "acquisition";
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new PetCriterionFactory();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 0;
     }
 
-
+    public function getAdditionalsDatas(): ?array {
+        return null;
+    }
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame (1 card in each type)
      * ---------------------------------------------------------------------- */

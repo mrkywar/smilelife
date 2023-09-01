@@ -11,7 +11,10 @@ const PREF_CHOICE_SIZE_M = 5003;
 const PREF_CHOICE_SIZE_L = 5004;
 const PREF_CHOICE_SIZE_XL = 5005;
 //-- Card Specific type
+const CARD_TYPE_HEAD_OF_PURCHASING = 24;
+const CARD_TYPE_HEAD_OF_SALES = 25;
 const CARD_TYPE_ATTENTAT = 82;
+
 
 
 define([
@@ -56,6 +59,10 @@ define([
                         }, duration + delay);
                     });
                 },
+                
+                isCardType(card, typeSearched){
+                    return card.dataset.type == typeSearched;
+                },
 
                 onCardClick: function (card) {
                     var searchedDiv = $('card_' + card.id);
@@ -66,7 +73,7 @@ define([
                                 if (!searchedDiv.classList.contains("selected")) {
                                     //select card
                                     if (this.isMyJob(card) || this.isMyMarriage(card) || undefined === card.type || 'discard' === card.location) {
-                                        dojo.query(".selected").removeClass("selected");
+                                        dojo.query("#game_container .selected").removeClass("selected");
                                         searchedDiv.classList.add("selected");
                                     } else {
                                         this.debug('CC-TC01');

@@ -8,6 +8,7 @@ define([
     g_gamethemeurl + 'modules/js/Table/PlayerPanel.js',
     g_gamethemeurl + 'modules/js/Table/TableDraw.js',
     g_gamethemeurl + 'modules/js/Table/AttackModal.js',
+    g_gamethemeurl + 'modules/js/Table/AdditionalCardModal.js',
     g_gamethemeurl + 'modules/js/UserInteraction/Button.js',
     g_gamethemeurl + 'modules/js/Notification/Notification.js',
 ], function (dojo, declare) {
@@ -19,6 +20,7 @@ define([
                 smilelife.card,
                 smilelife.table.draw,
                 smilelife.table.attackModal,
+                smilelife.table.additionalCardModal,
                 smilelife.ui.button,
                 smilelife.notification,
             ], {
