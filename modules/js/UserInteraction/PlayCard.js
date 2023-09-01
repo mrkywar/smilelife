@@ -22,7 +22,7 @@ define([
                         dojo.query(".selected").removeClass("selected");
                     } else {
                         if (this.isCardType(card[0],CARD_TYPE_HEAD_OF_PURCHASING) || this.isCardType(card[0],CARD_TYPE_HEAD_OF_SALES) ) {                         
-                            this.additionalCardModal(card[0]);
+                            this.additionalTrocCardModal(card[0]);
                         } else if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
                             this.attackModal(card);
                         } else {

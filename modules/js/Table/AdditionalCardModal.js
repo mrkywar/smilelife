@@ -9,11 +9,11 @@ define([
                 constructor: function () {
 
                 },
-                additionalCardModal: function (card) {
+                additionalTrocCardModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
-                    
+
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
-                    dojo.connect($("more_confirm_button"), 'onclick', this, 'onModalConfirmClick');
+//                    dojo.connect($("more_confirm_button"), 'onclick', this, 'onModalConfirmClick');
 
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
@@ -30,6 +30,21 @@ define([
                         }
                     }
 
+                    for (var playerId in this.gamedatas.tables) {
+                        var player = this.gamedatas.tables[playerId].player;
+
+                        dojo.place(this.getAttackBtnHtml(player), 'target-selection');
+                        var targetDiv = document.getElementById("attack" + player.id + "_button");
+                        var _this = this;
+
+                        targetDiv.addEventListener('click', (function (targetedPlayer) {
+                            return function () {
+                                _this.onMoreTargetClick(targetedPlayer);
+                            };
+                        })(player));
+
+                    }
+
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
 
@@ -39,36 +54,58 @@ define([
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
-                    } else {
-                        var data = {
-                            card: playedCard.dataset.id,
-                            additionalCards: [additionalCard.id]
-                        };
-
-                        this.takeAction('playCard', data);
                     }
+                    this.debug("TEST");
+                    return false;
                 },
-                
-                onModalCancelClick: function(){
+
+                onModalCancelClick: function () {
                     $('more-container').innerHTML = "";
                 },
-                
-                onModalConfirmClick: function(){
+
+                onMoreTargetClick: function (player) {
+
+
                     var playedCard = dojo.query("#game_container .selected");
                     var additionalCard = dojo.query("#more-container .selected");
+
+//                    this.debug(player, playedCard, additionalCard);
+                    this.debug( playedCard[0].dataset.id, additionalCard[0].dataset.id);
+
                     if (1 !== additionalCard.length || 1 !== playedCard.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query("#more-container .selected").removeClass("selected");
-                    }else{
+                    } else {
+                        this.debug( playedCard[0].dataset.id, additionalCard[0].dataset.id);
                         var data = {
+                            target: player.id,
                             card: playedCard[0].dataset.id,
-                            additionalCards: [additionalCard[0].dataset.id]
+                            additionalCards: []
                         };
-
-                        this.takeAction('playCard', data);
+//                        var data = {
+//                            card: playedCard[0].dataset.id,
+//                            additionalCards: [additionalCard[0].dataset.id],
+//                            target: player.id
+//                        };
+                        this.console.log(data);
                     }
                 }
-                
+//                onModalConfirmClick: function(){
+//                    var playedCard = dojo.query("#game_container .selected");
+//                    var additionalCard = dojo.query("#more-container .selected");
+//                    if (1 !== additionalCard.length || 1 !== playedCard.length) {
+//                        this.showMessage(_('Invalid Card Selection'), "error");
+//                        dojo.query("#more-container .selected").removeClass("selected");
+//                    }else{
+//                        var data = {
+//                            card: playedCard[0].dataset.id,
+//                            additionalCards: [additionalCard[0].dataset.id]
+//                        };
+//
+//                        this.takeAction('playCard', data);
+//                    }
+//                }
+
 
             }
     );
