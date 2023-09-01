@@ -64,48 +64,22 @@ define([
                 },
 
                 onMoreTargetClick: function (player) {
-
-
                     var playedCard = dojo.query("#game_container .selected");
                     var additionalCard = dojo.query("#more-container .selected");
-
-//                    this.debug(player, playedCard, additionalCard);
-                    this.debug( playedCard[0].dataset.id, additionalCard[0].dataset.id);
 
                     if (1 !== additionalCard.length || 1 !== playedCard.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query("#more-container .selected").removeClass("selected");
                     } else {
-                        this.debug( playedCard[0].dataset.id, additionalCard[0].dataset.id);
                         var data = {
                             target: player.id,
                             card: playedCard[0].dataset.id,
-                            additionalCards: []
+                            additionalCards: [additionalCard[0].dataset.id]
                         };
-//                        var data = {
-//                            card: playedCard[0].dataset.id,
-//                            additionalCards: [additionalCard[0].dataset.id],
-//                            target: player.id
-//                        };
-                        this.console.log(data);
+                        
+                        this.takeAction('playCard', data);
                     }
                 }
-//                onModalConfirmClick: function(){
-//                    var playedCard = dojo.query("#game_container .selected");
-//                    var additionalCard = dojo.query("#more-container .selected");
-//                    if (1 !== additionalCard.length || 1 !== playedCard.length) {
-//                        this.showMessage(_('Invalid Card Selection'), "error");
-//                        dojo.query("#more-container .selected").removeClass("selected");
-//                    }else{
-//                        var data = {
-//                            card: playedCard[0].dataset.id,
-//                            additionalCards: [additionalCard[0].dataset.id]
-//                        };
-//
-//                        this.takeAction('playCard', data);
-//                    }
-//                }
-
 
             }
     );
