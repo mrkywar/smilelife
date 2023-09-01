@@ -3,16 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Generic\HandUpdateConsequence;
-use SmileLife\Card\Consequence\Category\Special\JobBoostUsedConsequence;
+use SmileLife\Card\Consequence\Category\Special\TrocWithProtectedCardConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobBoostReadyCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobStudiesCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -32,8 +24,8 @@ class HeadsJobCriterionFactory extends JobCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
-
-        var_dump($complementaryCards);die;
+        
+        $criteria->addConsequence(new TrocWithProtectedCardConsequence($table, $opponentTable, $complementaryCards[0]));
 
         return $criteria;
     }
