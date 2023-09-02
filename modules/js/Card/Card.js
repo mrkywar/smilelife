@@ -11,6 +11,7 @@ const PREF_CHOICE_SIZE_M = 5003;
 const PREF_CHOICE_SIZE_L = 5004;
 const PREF_CHOICE_SIZE_XL = 5005;
 //-- Card Specific type
+const CARD_TYPE_BANDIT = 20;
 const CARD_TYPE_HEAD_OF_PURCHASING = 24;
 const CARD_TYPE_HEAD_OF_SALES = 25;
 const CARD_TYPE_ATTENTAT = 82;
@@ -62,7 +63,7 @@ define([
                 },
                 
                 isCardType(card, typeSearched){
-                    return card.dataset.type == typeSearched;
+                    return this.getCardType(card) === typeSearched;
                 },
                 
                 getCardType(card){
@@ -105,7 +106,7 @@ define([
                                     //select card
                                     if ('hand' === card.location) {
                                         dojo.query(".selected").removeClass("selected");
-                                        searchedDiv.classList.add("selected")
+                                        searchedDiv.classList.add("selected");
 
                                     } else {
                                         this.debug('CC-PC01');

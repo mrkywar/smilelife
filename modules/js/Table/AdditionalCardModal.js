@@ -47,12 +47,39 @@ define([
 
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
-                
-                jailModal: function(card){
+
+                jailModal: function (card) {
+                    this.debug('??',card);
                     for (var playerId in this.gamedatas.tables) {
-//                        var player = this.gamedatas.tables[playerId].player;
-                          this.debug(this.gamedatas.tables[playerId]);
+                        var job = this.gamedatas.tables[playerId].job;
+                        
+                        if(null !== job){
+                            this.debug('jmnn',job);
+                        }
                     }
+                    
+                    
+//                    for (var playerId in this.gamedatas.tables) {
+//                        this.debug('jmm',playerId);
+//                    }
+//                    
+                    
+                    
+//                    for (var playerId in this.gamedatas.tables) {
+//                        var job = this.gamedatas.tables[playerId].job;
+//                        this.debug(job);
+////                        if(null !== job && job.type ==CARD_TYPE_BANDIT )
+////                        if (this.isCardType(this.gamedatas.tables[playerId].job, CARD_TYPE_BANDIT)) {
+////                            var data = {
+////                                target: playerId,
+////                                card: card.id,
+////                            };
+////
+////                            this.takeAction('playCard', data);
+////                            return;
+////                        }
+//                    }
+////                    this.showMessage(_('No Bandit in game'), "error");
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
@@ -82,7 +109,7 @@ define([
                             card: playedCard[0].dataset.id,
                             additionalCards: [additionalCard[0].dataset.id]
                         };
-                        
+
                         this.takeAction('playCard', data);
                     }
                 }

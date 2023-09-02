@@ -22,7 +22,7 @@ define([
                         dojo.query(".selected").removeClass("selected");
                     } else {
                         var playedCard = card[0];
-                        this.debug(this.isCardType(playedCard, CARD_TYPE_JAIL), playedCard);
+//                        this.debug(this.isCardType(playedCard, CARD_TYPE_JAIL), playedCard);
 
                         switch (this.getCardType(playedCard)) {
                             case CARD_TYPE_HEAD_OF_PURCHASING:
@@ -30,6 +30,7 @@ define([
                                 this.additionalTrocCardModal(playedCard);
                                 break;
                             case CARD_TYPE_JAIL:
+                                this.debug(playedCard);
                                 this.jailModal(playedCard);
                                 break;
                             default:
