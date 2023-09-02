@@ -5,6 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
@@ -26,12 +27,18 @@ class GrandProfCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $table = $this->getTable();
+//        $table = $this->getTable();
         $criterion = new JobTypeCriterion($table, Teacher::class);
 
         $criterion->setErrorMessage(clienttranslate('You must have a Teacher Job for this Promotion'));
-        $consequence = new DiscardConsequence($table->getJob(), $table->getPlayer());
-        $criterion->addConsequence($consequence);
+        $job = $table->getJob();
+        if (null !== $job) {
+
+            $criterion->addConsequence(new DiscardConsequence($job, $table))
+                    ->addConsequence(new GenericCardPlayedConsequence($card, $table))
+            ;
+        }
+
 
         return $criterion;
     }

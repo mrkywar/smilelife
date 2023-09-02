@@ -1,9 +1,9 @@
 <?php
-
 namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
 use Core\Notification\Notification;
+use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
