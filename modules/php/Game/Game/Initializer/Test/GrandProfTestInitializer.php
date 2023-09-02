@@ -51,7 +51,7 @@ class GrandProfTestInitializer extends TestGameInitializer {
         unset($oTables[$i]);
         $this->teatcherJobCase($case3Table);
 
-        return $case1Table->getId();
+        return $case3Table->getId();
     }
 
     private function classicJobCase(PlayerTable $table) {
