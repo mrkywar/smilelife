@@ -21,19 +21,27 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        var playedCard = playedCard;
+                        var playedCard = card[0];
+                        this.debug(this.isCardType(playedCard, CARD_TYPE_JAIL), playedCard);
 
-                        if (this.isCardType(playedCard, CARD_TYPE_HEAD_OF_PURCHASING) || this.isCardType(playedCard, CARD_TYPE_HEAD_OF_SALES)) {
-                            this.additionalTrocCardModal(playedCard);
-                        } else if (this.isCardType(playedCard, CARD_TYPE_JAIL)) {
-
-                        } else if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
-                            this.attackModal(card);
-                        } else {
-                            var data = {
-                                card: playedCard.dataset.id
-                            };
-                            this.takeAction('playCard', data);
+                        switch (this.getCardType(playedCard)) {
+                            case CARD_TYPE_HEAD_OF_PURCHASING:
+                            case CARD_TYPE_HEAD_OF_SALES:
+                                this.additionalTrocCardModal(playedCard);
+                                break;
+                            case CARD_TYPE_JAIL:
+                                this.jailModal(playedCard);
+                                break;
+                            default:
+                                if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
+                                    this.attackModal(card);
+                                } else {
+                                    var data = {
+                                        card: playedCard.dataset.id
+                                    };
+                                    this.takeAction('playCard', data);
+                                }
+                                break;
                         }
                     }
                 },

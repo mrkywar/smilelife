@@ -64,6 +64,10 @@ define([
                 isCardType(card, typeSearched){
                     return card.dataset.type == typeSearched;
                 },
+                
+                getCardType(card){
+                    return parseInt(card.dataset.type);
+                },
 
                 onCardClick: function (card) {
                     var searchedDiv = $('card_' + card.id);
