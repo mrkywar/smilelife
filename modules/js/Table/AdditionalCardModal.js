@@ -47,6 +47,13 @@ define([
 
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
+                
+                jailModal: function(card){
+                    for (var playerId in this.gamedatas.tables) {
+//                        var player = this.gamedatas.tables[playerId].player;
+                          this.debug(this.gamedatas.tables[playerId]);
+                    }
+                },
 
                 onMoreClick: function (playedCard, additionalCard) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
@@ -55,7 +62,6 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     }
-                    this.debug("TEST");
                     return false;
                 },
 
