@@ -95,10 +95,10 @@
             <div class="target_stats">
                 <div class="target_stats_list">
                     <div class="target_stats_list_item">
-                        <div class="wage_value">Valeur 1</div>
+                        <div class="wage_value">\${targetWagesLevel}</div>
                     </div>
                     <div class="target_stats_list_item">
-                        <div class="studie_value">Valeur 2</div>
+                        <div class="studie_value">\${targetStudiesLevel}</div>
                     </div>
                 </div>
             </div>
