@@ -30,8 +30,10 @@ define([
                                 this.additionalTrocCardModal(playedCard);
                                 break;
                             case CARD_TYPE_JAIL:
-                                this.debug(playedCard);
                                 this.jailModal(playedCard);
+                                break;
+                            case CARD_TYPE_DISMISSAL:
+                                this.dissmissalModal(playedCard);
                                 break;
                             default:
                                 if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {

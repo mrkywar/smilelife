@@ -216,6 +216,19 @@ html{
 .modal-overlay .modal-body a{
     margin: 5px 5px;
 }
+.target_selection {
+  display: inline-block;
+  text-align: center;
+}
+
+.target_selection > div {
+  display: block;
+  margin-bottom: 5px; 
+  
+}
+.target_selection:not(:last-child) {
+    margin-right: 10px;
+}
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/

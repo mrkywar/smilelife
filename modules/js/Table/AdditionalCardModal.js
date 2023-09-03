@@ -51,8 +51,8 @@ define([
                 jailModal: function (card) {
                     for (var playerId in this.gamedatas.tables) {
                         var job = this.gamedatas.tables[playerId].job;
-                        
-                        if(null !== job&& job.type == CARD_TYPE_BANDIT){
+
+                        if (null !== job && job.type == CARD_TYPE_BANDIT) {
                             var data = {
                                 target: playerId,
                                 card: card.dataset.id,
@@ -63,7 +63,41 @@ define([
                         }
                     }
                     this.showMessage(_('No Bandit in game'), "error");
-                    
+
+                },
+
+                dissmissalModal: function (card) {
+                    dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
+                    var haveTarget = false;
+                    for (var playerId in this.gamedatas.tables) {
+                        var table = this.gamedatas.tables[playerId];
+                        var player = table.player;
+                        var job = table.job;
+                                                
+                        if(null !== job){
+                            haveTarget = true;
+                            var tplData = job;
+                            tplData.targetId = playerId;
+                            tplData.targetColor = player.color;
+                            tplData.targetName = player.name;
+                            
+                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+//                            this.debug("acm-dm",tplData,this.format_block('jstpl_target_with_card', tplData));
+                        }
+//                        if(null !== job){
+//                            //jstpl_target_with_card 
+//                            var tplData = job;
+//                            tplData.targetId = playerId;
+//                            tplData.targetColor = player.color;
+//                            tplData.targetName = player.name;
+//                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+//                            haveTarget = true;
+//                        }
+                        
+                    }
+                    this.debug("dm-ht", haveTarget);
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {

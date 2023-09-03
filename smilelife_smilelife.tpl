@@ -87,6 +87,22 @@
             </div>
         </div>
     `;
+    
+    var jstpl_target_with_card =`
+        <div id="taget_\${targetId}" class="target_selection">
+            <div class="target_identification">
+                <b style="color:#\${targetColor}">\${targetName}</b>
+            </div>
+            <div class="target_stats">
+    
+            </div>
+            <div class="target_card">
+                `+jstpl_card_more+`
+            </div>
+        </div>
+    `;
+    
+
 
 </script>
 
