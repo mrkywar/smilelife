@@ -49,37 +49,21 @@ define([
                 },
 
                 jailModal: function (card) {
-                    this.debug('??',card);
                     for (var playerId in this.gamedatas.tables) {
                         var job = this.gamedatas.tables[playerId].job;
                         
-                        if(null !== job){
-                            this.debug('jmnn',job);
+                        if(null !== job&& job.type == CARD_TYPE_BANDIT){
+                            var data = {
+                                target: playerId,
+                                card: card.dataset.id,
+                            };
+
+                            this.takeAction('playCard', data);
+                            return;
                         }
                     }
+                    this.showMessage(_('No Bandit in game'), "error");
                     
-                    
-//                    for (var playerId in this.gamedatas.tables) {
-//                        this.debug('jmm',playerId);
-//                    }
-//                    
-                    
-                    
-//                    for (var playerId in this.gamedatas.tables) {
-//                        var job = this.gamedatas.tables[playerId].job;
-//                        this.debug(job);
-////                        if(null !== job && job.type ==CARD_TYPE_BANDIT )
-////                        if (this.isCardType(this.gamedatas.tables[playerId].job, CARD_TYPE_BANDIT)) {
-////                            var data = {
-////                                target: playerId,
-////                                card: card.id,
-////                            };
-////
-////                            this.takeAction('playCard', data);
-////                            return;
-////                        }
-//                    }
-////                    this.showMessage(_('No Bandit in game'), "error");
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
