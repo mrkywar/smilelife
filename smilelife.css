@@ -234,11 +234,15 @@ html{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    background: #0000001f;
+    color: white;
+    border-radius: 10px;
 }
 
 .target_stats_list_item {
-    flex: 0 0 calc(50% - 10px); /* 2 colonnes avec espacement */
-    margin-bottom: 10px; /* Espace entre les éléments */
+    flex: 0 0 calc(50% - 10px); 
+    margin-bottom: 5px; 
+    margin-top: 5px; 
 }
 .target_stats_list_item .wage_value{
     background-image: url("img/icons/wages.svg");

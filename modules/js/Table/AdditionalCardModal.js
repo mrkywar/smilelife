@@ -75,30 +75,30 @@ define([
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
                         var job = table.job;
-                                                
-                        if(null !== job){
+
+                        if (null !== job) {
                             haveTarget = true;
                             var tplData = job;
                             tplData.targetId = playerId;
                             tplData.targetColor = player.color;
                             tplData.targetName = player.name;
-                            
+
                             tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
                             tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
-                            
+
                             dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
-//                            this.debug("acm-dm",tplData,this.format_block('jstpl_target_with_card', tplData));
+
+                            var targetDiv = document.getElementById("taget_" + playerId);
+                            var _this = this;
+
+                            targetDiv.addEventListener('click', (function (targetedPlayer, card) {
+                                return function () {
+                                    _this.onTargetClick(targetedPlayer, card);
+                                };
+                            })(player, job));
+
                         }
-//                        if(null !== job){
-//                            //jstpl_target_with_card 
-//                            var tplData = job;
-//                            tplData.targetId = playerId;
-//                            tplData.targetColor = player.color;
-//                            tplData.targetName = player.name;
-//                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
-//                            haveTarget = true;
-//                        }
-                        
+
                     }
                     this.debug("dm-ht", haveTarget);
                 },
@@ -115,6 +115,24 @@ define([
 
                 onModalCancelClick: function () {
                     $('more-container').innerHTML = "";
+                },
+
+                onTargetClick: function (player, card) {
+                    var searchedDiv = $('card_more_' + card.id);
+                    var playedCard = dojo.query("#game_container .selected");
+
+                    if (!searchedDiv.classList.contains("selected")) {
+                        dojo.query("#more-container .selected").removeClass("selected");
+                        searchedDiv.classList.add("selected");
+                        return;
+                    }else{
+                        var data = {
+                            target: player.id,
+                            card: playedCard[0].dataset.id,
+                        };
+
+                        this.takeAction('playCard', data);
+                    }
                 },
 
                 onMoreTargetClick: function (player) {
