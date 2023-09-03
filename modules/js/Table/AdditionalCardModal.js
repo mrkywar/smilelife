@@ -100,7 +100,10 @@ define([
                         }
 
                     }
-                    this.debug("dm-ht", haveTarget);
+                    if(!haveTarget){
+                        this.showMessage(_('No job in game'), "error");
+                        this.onModalCancelClick();
+                    }
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
