@@ -21,15 +21,28 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-                        if (this.isCardType(card[0],CARD_TYPE_HEAD_OF_PURCHASING) || this.isCardType(card[0],CARD_TYPE_HEAD_OF_SALES) ) {                         
-                            this.additionalTrocCardModal(card[0]);
-                        } else if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
-                            this.attackModal(card);
-                        } else {
-                            var data = {
-                                card: card[0].dataset.id
-                            };
-                            this.takeAction('playCard', data);
+                        var playedCard = card[0];
+//                        this.debug(this.isCardType(playedCard, CARD_TYPE_JAIL), playedCard);
+
+                        switch (this.getCardType(playedCard)) {
+                            case CARD_TYPE_HEAD_OF_PURCHASING:
+                            case CARD_TYPE_HEAD_OF_SALES:
+                                this.additionalTrocCardModal(playedCard);
+                                break;
+                            case CARD_TYPE_JAIL:
+                                this.debug(playedCard);
+                                this.jailModal(playedCard);
+                                break;
+                            default:
+                                if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
+                                    this.attackModal(card);
+                                } else {
+                                    var data = {
+                                        card: playedCard.dataset.id
+                                    };
+                                    this.takeAction('playCard', data);
+                                }
+                                break;
                         }
                     }
                 },

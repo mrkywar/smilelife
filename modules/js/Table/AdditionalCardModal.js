@@ -48,6 +48,24 @@ define([
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
 
+                jailModal: function (card) {
+                    for (var playerId in this.gamedatas.tables) {
+                        var job = this.gamedatas.tables[playerId].job;
+                        
+                        if(null !== job&& job.type == CARD_TYPE_BANDIT){
+                            var data = {
+                                target: playerId,
+                                card: card.dataset.id,
+                            };
+
+                            this.takeAction('playCard', data);
+                            return;
+                        }
+                    }
+                    this.showMessage(_('No Bandit in game'), "error");
+                    
+                },
+
                 onMoreClick: function (playedCard, additionalCard) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
 
@@ -55,7 +73,6 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     }
-                    this.debug("TEST");
                     return false;
                 },
 
@@ -76,7 +93,7 @@ define([
                             card: playedCard[0].dataset.id,
                             additionalCards: [additionalCard[0].dataset.id]
                         };
-                        
+
                         this.takeAction('playCard', data);
                     }
                 }
