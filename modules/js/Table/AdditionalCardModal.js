@@ -83,6 +83,12 @@ define([
                             tplData.targetColor = player.color;
                             tplData.targetName = player.name;
                             
+                            tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
+                            tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
+                            
+                            this.debug("acm-dm-sc",this.studyCounters[playerId].getValue());
+                            this.debug("acm-dm-wc", this.wagesCounters[playerId].getValue());
+                            
                             dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
 //                            this.debug("acm-dm",tplData,this.format_block('jstpl_target_with_card', tplData));
                         }

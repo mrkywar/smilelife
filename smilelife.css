@@ -46,13 +46,15 @@ html{
     background-image: url("img/icons/cards.svg");
     margin-right: 5px;
 }
-.player_counters .playerstudies_counter:before{
+.player_counters .playerstudies_counter:before,
+.target_stats_list .studie_value :before{
     background-image: url("img/icons/studies.svg");
     margin-right: 5px;
     background-size: 160%;
     background-position: -10px 50%;
 }
-.player_counters .playerwage_counter:before{
+.player_counters .playerwage_counter:before,
+.target_stats_list .wage_value :before{
     background-image: url("img/icons/wages.svg");
     background-size: 300%;
     background-position: -30px 50%;
@@ -217,18 +219,30 @@ html{
     margin: 5px 5px;
 }
 .target_selection {
-  display: inline-block;
-  text-align: center;
+    display: inline-block;
+    text-align: center;
 }
 
 .target_selection > div {
-  display: block;
-  margin-bottom: 5px; 
-  
+    display: block;
+    margin-bottom: 5px; 
+
 }
 .target_selection:not(:last-child) {
     margin-right: 10px;
 }
+
+.target_stats_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.target_stats_list_item {
+    flex: 0 0 calc(50% - 10px); /* 2 colonnes avec espacement */
+    margin-bottom: 10px; /* Espace entre les éléments */
+}
+
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/
