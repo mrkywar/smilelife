@@ -51,8 +51,8 @@ define([
                 jailModal: function (card) {
                     for (var playerId in this.gamedatas.tables) {
                         var job = this.gamedatas.tables[playerId].job;
-                        
-                        if(null !== job&& job.type == CARD_TYPE_BANDIT){
+
+                        if (null !== job && job.type == CARD_TYPE_BANDIT) {
                             var data = {
                                 target: playerId,
                                 card: card.dataset.id,
@@ -63,7 +63,47 @@ define([
                         }
                     }
                     this.showMessage(_('No Bandit in game'), "error");
-                    
+
+                },
+
+                dissmissalModal: function (card) {
+                    dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
+                    var haveTarget = false;
+                    for (var playerId in this.gamedatas.tables) {
+                        var table = this.gamedatas.tables[playerId];
+                        var player = table.player;
+                        var job = table.job;
+
+                        if (null !== job) {
+                            haveTarget = true;
+                            var tplData = job;
+                            tplData.targetId = playerId;
+                            tplData.targetColor = player.color;
+                            tplData.targetName = player.name;
+
+                            tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
+                            tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
+
+                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+
+                            var targetDiv = document.getElementById("taget_" + playerId);
+                            var _this = this;
+
+                            targetDiv.addEventListener('click', (function (targetedPlayer, card) {
+                                return function () {
+                                    _this.onTargetClick(targetedPlayer, card);
+                                };
+                            })(player, job));
+
+                        }
+
+                    }
+                    if(!haveTarget){
+                        this.showMessage(_('No job in game'), "error");
+                        this.onModalCancelClick();
+                    }
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
@@ -78,6 +118,24 @@ define([
 
                 onModalCancelClick: function () {
                     $('more-container').innerHTML = "";
+                },
+
+                onTargetClick: function (player, card) {
+                    var searchedDiv = $('card_more_' + card.id);
+                    var playedCard = dojo.query("#game_container .selected");
+
+                    if (!searchedDiv.classList.contains("selected")) {
+                        dojo.query("#more-container .selected").removeClass("selected");
+                        searchedDiv.classList.add("selected");
+                        return;
+                    }else{
+                        var data = {
+                            target: player.id,
+                            card: playedCard[0].dataset.id,
+                        };
+
+                        this.takeAction('playCard', data);
+                    }
                 },
 
                 onMoreTargetClick: function (player) {

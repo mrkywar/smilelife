@@ -13,7 +13,7 @@ define([
                         var player = this.gamedatas.tables[playerId].player;
 
                         dojo.place(this.getAttackBtnHtml(player), 'modal_selection');
-                        dojo.connect($("attack" + player.id + "_button"), 'onclick', this, 'onTargetClick');
+                        dojo.connect($("attack" + player.id + "_button"), 'onclick', this, 'onTargetClickOld');
                     }
 
                     dojo.connect($("attackCancel_button"), 'onclick', this, 'onModalCloseClick');
@@ -44,7 +44,8 @@ define([
                     $('modal-container').innerHTML = "";
                 },
 
-                onTargetClick: function (element) {
+                onTargetClickOld: function (element) {
+                    this.debug('DEPRECATED CALL');
                     if ('takeCard' === this.actualState) {
                         var data = {
                             target: element.target.dataset.player

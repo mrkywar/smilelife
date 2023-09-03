@@ -92,7 +92,7 @@ trait NextPlayerTrait {
         $notification2 = new Notification();
 
         $notification2->setType("discardNotification")
-                ->setText(clienttranslate('${player_name} discard ${cardName} after ${turnCount} turns passed'))
+                ->setText(clienttranslate('${player_name} pass a turn but discard ${cardName} after ${turnCount} turns'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('turnCount', $passCard->getDefaultPassTurn())
