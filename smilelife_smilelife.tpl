@@ -89,8 +89,8 @@
     `;
     var jstpl_target_with_card = `
         <div id="taget_\${targetId}" class="target_selection">
-            <div class="target_identification">
-                <b style="color:#\${targetColor}">\${targetName}</b>
+            <div class="target_identification" style="background-color:#\${targetColor}">
+                <b style="color:\${textColor}">\${targetName}</b>
             </div>
             <div class="target_stats">
                 <div class="target_stats_list">

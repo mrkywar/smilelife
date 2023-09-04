@@ -79,8 +79,15 @@ define([
                         if (null !== job) {
                             haveTarget = true;
                             var tplData = job;
+                            
+                            if (this.getHtmlColorLuma(player.color) > 100) {
+                                textColor = "black";
+                            } else {
+                                textColor = "white";
+                            }
                             tplData.targetId = playerId;
                             tplData.targetColor = player.color;
+                            tplData.textColor = textColor;
                             tplData.targetName = player.name;
 
                             tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
@@ -100,7 +107,7 @@ define([
                         }
 
                     }
-                    if(!haveTarget){
+                    if (!haveTarget) {
                         this.showMessage(_('No job in game'), "error");
                         this.onModalCancelClick();
                     }
@@ -128,7 +135,7 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                         return;
-                    }else{
+                    } else {
                         var data = {
                             target: player.id,
                             card: playedCard[0].dataset.id,
