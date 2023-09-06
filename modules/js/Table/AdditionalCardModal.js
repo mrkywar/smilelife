@@ -12,7 +12,7 @@ define([
                 additionalTrocCardModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
 
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+//                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 //                    dojo.connect($("more_confirm_button"), 'onclick', this, 'onModalConfirmClick');
 
                     for (var hCardKey in this.myHand) {
@@ -79,7 +79,7 @@ define([
                         if (null !== job) {
                             haveTarget = true;
                             var tplData = job;
-                            
+
                             if (this.getHtmlColorLuma(player.color) > 100) {
                                 textColor = "black";
                             } else {
@@ -111,6 +111,26 @@ define([
                         this.showMessage(_('No job in game'), "error");
                         this.onModalCancelClick();
                     }
+                },
+
+                astronautModal: function (card) {
+                    dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_A_CARD"}), 'more-container');
+                    
+                    for (var hCardKey in this.discard) {
+                        var hCard = this.discard[hCardKey];
+                        if (hCard.id != card.dataset.id) {
+                            dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
+                            var searchedDiv = document.getElementById('card_more_' + hCard.id)
+                            var _this = this;
+
+                            searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
+                                return function () {
+                                    _this.onMoreClick(playedCard, additionalCard);
+                                };
+                            })(card, hCard));
+                        }
+                    }
+
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {

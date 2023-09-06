@@ -37,7 +37,7 @@ define([
                                 break;
                             case CARD_TYPE_ASTRONAUT:
                                 if (this.studyCounters[this.player_id].getValue() >= 6) {
-                                    this.debug("PAS", this.discard);
+                                    this.astronautModal(playedCard);
                                 } else {
                                     this.showMessage(_('You do not have enough study points to perform this job'), "error");                           
                                 }
