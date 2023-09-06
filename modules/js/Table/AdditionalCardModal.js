@@ -9,26 +9,35 @@ define([
                 constructor: function () {
 
                 },
+
+                generateCardSelection(selectableCards, card) {
+                    for (var hCardKey in selectableCards) {
+                        var hCard = selectableCards[hCardKey];
+
+                        dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
+                        var searchedDiv = document.getElementById('card_more_' + hCard.id)
+                        var _this = this;
+
+                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
+                            return function () {
+                                _this.onMoreClick(playedCard, additionalCard);
+                            };
+                        })(card, hCard));
+
+                    }
+                },
+
                 additionalTrocCardModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
-
-//                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
-//                    dojo.connect($("more_confirm_button"), 'onclick', this, 'onModalConfirmClick');
-
+                    
+                    var selectableCards = [];
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
                         if (hCard.id != card.dataset.id) {
-                            dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
-                            var searchedDiv = document.getElementById('card_more_' + hCard.id)
-                            var _this = this;
-
-                            searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
-                                return function () {
-                                    _this.onMoreClick(playedCard, additionalCard);
-                                };
-                            })(card, hCard));
+                            selectableCards.push(hCard);
                         }
                     }
+                    this.generateCardSelection(selectableCards, card);
 
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
@@ -115,21 +124,8 @@ define([
 
                 astronautModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_A_CARD"}), 'more-container');
-                    
-                    for (var hCardKey in this.discard) {
-                        var hCard = this.discard[hCardKey];
-                        if (hCard.id != card.dataset.id) {
-                            dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
-                            var searchedDiv = document.getElementById('card_more_' + hCard.id)
-                            var _this = this;
 
-                            searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
-                                return function () {
-                                    _this.onMoreClick(playedCard, additionalCard);
-                                };
-                            })(card, hCard));
-                        }
-                    }
+                    this.generateCardSelection(this.discard, card);
 
                 },
 
@@ -140,6 +136,10 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     }
+
+                    var targetChoice = $('target-selection');
+                    this.debug(targetChoice);
+
                     return false;
                 },
 
