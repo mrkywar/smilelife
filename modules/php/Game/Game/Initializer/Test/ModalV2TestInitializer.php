@@ -17,6 +17,7 @@ use SmileLife\Table\PlayerTable;
  * Description of ModalV2TestInitializer
  *
  * @author Mr_Kywar mr_kywar@gmail.com
+ */
 class ModalV2TestInitializer extends TestGameInitializer {
 
     public function init($players, $options = []) {

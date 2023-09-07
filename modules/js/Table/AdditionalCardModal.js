@@ -29,7 +29,8 @@ define([
 
                 additionalTrocCardModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
-                    
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
                     var selectableCards = [];
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
@@ -124,6 +125,7 @@ define([
 
                 astronautModal: function (card) {
                     dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_A_CARD"}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
                     this.generateCardSelection(this.discard, card);
 
@@ -131,14 +133,19 @@ define([
 
                 onMoreClick: function (playedCard, additionalCard) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
+                    var targetChoice = dojo.query('#target-selection .action-button');
 
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
+                    } else if (0 === targetChoice.length) {                   
+                        var data = {
+                            additionalCards: [searchedDiv.dataset.id],
+                            card: playedCard.dataset.id
+                        };
+  
+                        this.takeAction('playCard', data);
                     }
-
-                    var targetChoice = $('target-selection');
-                    this.debug(targetChoice);
 
                     return false;
                 },

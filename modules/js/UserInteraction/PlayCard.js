@@ -36,12 +36,7 @@ define([
                                 this.dissmissalModal(playedCard);
                                 break;
                             case CARD_TYPE_ASTRONAUT:
-                                if (this.studyCounters[this.player_id].getValue() >= 6) {
-                                    this.astronautModal(playedCard);
-                                } else {
-                                    this.showMessage(_('You do not have enough study points to perform this job'), "error");                           
-                                }
-                                this.debug("PC-AS", this.player_id);
+                                this.astronautModal(playedCard);
                                 break;
                             default:
                                 if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
