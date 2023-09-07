@@ -62,12 +62,12 @@ class DataRetriver {
         $rawHand = $this->cardManager->getPlayerCards($currentPlayer);
         $discard = $this->cardManager->getAllCardsInDiscard();
 
-        $rawDiscard = null;
+        $rawDiscard = [];
         if ($discard instanceof Card) {
             $rawDiscard[] = $this->cardDecorator->decorate($discard);
         } elseif (!empty($discard)) {
             $rawDiscard = $this->cardDecorator->decorate($discard);
-        }
+        } 
 
         $offside = $this->cardManager->getAllCardsInOffside();
         $rawOffside = null;
