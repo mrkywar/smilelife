@@ -59,7 +59,7 @@
             </div>
         </div>
     `;
-    var jstp_modal_v2 = `
+    var jstpl_modal_v2 = `
         <div class="modal-overlay">
             <div>
                 <h2>\${title}</h2>
@@ -71,6 +71,7 @@
             </div>
         </div>
     `;
+    var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button">valid</a>` 
     var jstpl_card_content = `
         <span class="card_text card_title">\${title}</span>
         <span class="card_text card_subtitle">\${subtitle}</span>

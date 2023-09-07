@@ -6,8 +6,6 @@ define([
             "smilelife.table.draw",
             [],
             {
-                constructor: function () {
-                },
                 
                 
                 displayDeckAndDiscard: function(){

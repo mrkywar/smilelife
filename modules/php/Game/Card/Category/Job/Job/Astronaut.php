@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\AstronautCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -47,6 +49,15 @@ class Astronaut extends Job implements BaseGame {
     public function getType(): int {
         return CardType::JOB_ASTRONAUT;
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract - Overwride
+     * ---------------------------------------------------------------------- */
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new AstronautCriterionFactory();
+    }
+
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
