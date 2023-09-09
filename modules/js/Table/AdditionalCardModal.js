@@ -124,32 +124,33 @@ define([
                 },
 
                 astronautModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_A_CARD"}), 'more-container');
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': _('choose a card')}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
-                    
+
                     this.debug(this.discard);
                     if (0 === this.discard.length) {
                         dojo.place(this.format_block('jstpl_btn_valid'), 'modal-btn');
+                        dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection');
                         dojo.connect($("more_valid_button"), 'onclick', this, 'onModalValidClick');
-                    }
+                    } else {
 
-                    this.generateCardSelection(this.discard, card);
+                        this.generateCardSelection(this.discard, card);
+                    }
 
                 },
 
                 onModalValidClick: function () {
-                    
+                    var playedCard = dojo.query("#game_container .selected");
+//                    var additionalCard = dojo.query("#more-container .selected");
+
+                    var data = {
+                        card: playedCard[0].dataset.id
+                    }
+
+                    this.debug(data);
+                    this.takeAction('playCard', data);
                 },
-//                    var playedCard = dojo.query("#game_container .selected");
-////                    var additionalCard = dojo.query("#more-container .selected");
-//                    var data = {
-//                        target: player.id,
-//                        card: playedCard[0].dataset.id,
-//
-//                    };
-//
-//                    this.takeAction('playCard', data);
-//                },
+
 
                 onMoreClick: function (playedCard, additionalCard) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
