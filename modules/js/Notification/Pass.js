@@ -22,8 +22,6 @@ define([
                     }
                     this.discard = notif.args.discard;
 
-                    this.debug(notif);
-
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     this.discardCounter.setValue(this.discardCounter.getValue() + 1);
                 },

@@ -6,8 +6,6 @@ define([
             "smilelife.table.draw",
             [],
             {
-                constructor: function () {
-                },
                 
                 
                 displayDeckAndDiscard: function(){
@@ -26,14 +24,14 @@ define([
                     this.deckCounter = pileDeckCounter;
                     
                     //--- display Discard infos
-                    if(null !== this.discard){
+                    if(0 !== this.discard.length){
                         this.lastDiscardedCard = this.discard[this.discard.length-1];
                         
                         this.displayCard(this.lastDiscardedCard, "pile_discard");
                     }
                     var pileDiscardCounter = new ebg.counter();
                     pileDiscardCounter.create('pile_discard_count');
-                    pileDiscardCounter.setValue((null === this.discard)?0:this.discard.length);
+                    pileDiscardCounter.setValue(this.discard.length);
                     this.discardCounter = pileDiscardCounter;
                     
                     //--- display Offside infos

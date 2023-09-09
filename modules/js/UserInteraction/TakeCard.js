@@ -27,7 +27,7 @@ define([
 
                     this.addActionButton('drawCard_button', _('Draw from deck'), 'doDraw', null, false, 'blue');
 
-                    if (null !== this.discard && this.discard.length > 0) {
+                    if (this.discard.length > 0) {
                         this.addActionButton('playCard_button', _('Play from discard'), 'doPlayFromDiscard', null, false, 'blue');
                     }
 

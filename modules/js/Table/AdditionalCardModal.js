@@ -9,26 +9,36 @@ define([
                 constructor: function () {
 
                 },
+
+                generateCardSelection(selectableCards, card) {
+                    for (var hCardKey in selectableCards) {
+                        var hCard = selectableCards[hCardKey];
+
+                        dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
+                        var searchedDiv = document.getElementById('card_more_' + hCard.id)
+                        var _this = this;
+
+                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
+                            return function () {
+                                _this.onMoreClick(playedCard, additionalCard);
+                            };
+                        })(card, hCard));
+
+                    }
+                },
+
                 additionalTrocCardModal: function (card) {
-                    dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
-
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
-//                    dojo.connect($("more_confirm_button"), 'onclick', this, 'onModalConfirmClick');
 
+                    var selectableCards = [];
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
                         if (hCard.id != card.dataset.id) {
-                            dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
-                            var searchedDiv = document.getElementById('card_more_' + hCard.id)
-                            var _this = this;
-
-                            searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
-                                return function () {
-                                    _this.onMoreClick(playedCard, additionalCard);
-                                };
-                            })(card, hCard));
+                            selectableCards.push(hCard);
                         }
                     }
+                    this.generateCardSelection(selectableCards, card);
 
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
@@ -67,7 +77,7 @@ define([
                 },
 
                 dissmissalModal: function (card) {
-                    dojo.place(this.format_block('jstp_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
                     var haveTarget = false;
@@ -79,7 +89,7 @@ define([
                         if (null !== job) {
                             haveTarget = true;
                             var tplData = job;
-                            
+
                             if (this.getHtmlColorLuma(player.color) > 100) {
                                 textColor = "black";
                             } else {
@@ -113,13 +123,48 @@ define([
                     }
                 },
 
+                astronautModal: function (card) {
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': _('choose a card')}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
+                    this.debug(this.discard);
+                    if (0 === this.discard.length) {
+                        dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection');
+                    } else {
+                        this.generateCardSelection(this.discard, card);
+                    }
+                    dojo.place(this.format_block('jstpl_btn_nobonus'), 'modal-btn');
+                    dojo.connect($("more_valid_button"), 'onclick', this, 'onModalValidClick');
+                },
+
+                onModalValidClick: function () {
+                    var playedCard = dojo.query("#game_container .selected");
+//                    var additionalCard = dojo.query("#more-container .selected");
+
+                    var data = {
+                        card: playedCard[0].dataset.id
+                    }
+
+                    this.debug(data);
+                    this.takeAction('playCard', data);
+                },
+
                 onMoreClick: function (playedCard, additionalCard) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
+                    var targetChoice = dojo.query('#target-selection .action-button');
 
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
+                    } else if (0 === targetChoice.length) {
+                        var data = {
+                            additionalCards: [searchedDiv.dataset.id],
+                            card: playedCard.dataset.id
+                        };
+
+                        this.takeAction('playCard', data);
                     }
+
                     return false;
                 },
 
