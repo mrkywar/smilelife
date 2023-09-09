@@ -129,14 +129,12 @@ define([
 
                     this.debug(this.discard);
                     if (0 === this.discard.length) {
-                        dojo.place(this.format_block('jstpl_btn_valid'), 'modal-btn');
                         dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection');
-                        dojo.connect($("more_valid_button"), 'onclick', this, 'onModalValidClick');
                     } else {
-
                         this.generateCardSelection(this.discard, card);
                     }
-
+                    dojo.place(this.format_block('jstpl_btn_nobonus'), 'modal-btn');
+                    dojo.connect($("more_valid_button"), 'onclick', this, 'onModalValidClick');
                 },
 
                 onModalValidClick: function () {
@@ -150,7 +148,6 @@ define([
                     this.debug(data);
                     this.takeAction('playCard', data);
                 },
-
 
                 onMoreClick: function (playedCard, additionalCard) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
