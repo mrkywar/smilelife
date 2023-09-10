@@ -39,7 +39,6 @@ define([
                         }else{
                             var pCard = table[property];
                         }
-                        this.debug(pCard);
 
                         if (null !== pCard) {
                             haveTarget = true;
@@ -138,47 +137,7 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    var haveTarget = false;
-                    for (var playerId in this.gamedatas.tables) {
-                        var table = this.gamedatas.tables[playerId];
-                        var player = table.player;
-                        var job = table.job;
-
-                        if (null !== job) {
-                            haveTarget = true;
-                            var tplData = job;
-
-                            if (this.getHtmlColorLuma(player.color) > 100) {
-                                textColor = "black";
-                            } else {
-                                textColor = "white";
-                            }
-                            tplData.targetId = playerId;
-                            tplData.targetColor = player.color;
-                            tplData.textColor = textColor;
-                            tplData.targetName = player.name;
-
-                            tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
-                            tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
-
-                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
-
-                            var targetDiv = document.getElementById("taget_" + playerId);
-                            var _this = this;
-
-                            targetDiv.addEventListener('click', (function (targetedPlayer, card) {
-                                return function () {
-                                    _this.onTargetClick(targetedPlayer, card);
-                                };
-                            })(player, job));
-
-                        }
-
-                    }
-                    if (!haveTarget) {
-                        this.showMessage(_('No job in game'), "error");
-                        this.onModalCancelClick();
-                    }
+                    this.generateTargetStatSelection('job');
                 },
 
                 astronautModal: function (card) {

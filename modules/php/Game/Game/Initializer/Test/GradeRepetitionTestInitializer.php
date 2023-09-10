@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
+use SmileLife\Card\Category\Attack\Dismissal;
 use SmileLife\Card\Category\Attack\GradeRepetition;
 use SmileLife\Card\Category\Job\Job\Medium;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
@@ -26,6 +27,10 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
+            $card2 = new Dismissal();
+            $card2->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($oTable->getId());
+            $forcedCards[] = $card2;
 
             $forcedCard = new StudiesLevel1();
             $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
@@ -61,10 +66,10 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
 //        unset($oTables[$i]);
 //        $this->lastStudieVisibleCase($case5Table);
         //-- case6 : job case (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case6Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->jobCase($case6Table);
+        $i = random_int(0, count($oTables) - 1);
+        $case6Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->jobCase($case6Table);
 
         return $case2Table->getId();
     }
