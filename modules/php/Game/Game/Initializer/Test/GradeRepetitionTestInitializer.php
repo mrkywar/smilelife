@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
+use SmileLife\Card\Category\Attack\Dismissal;
 use SmileLife\Card\Category\Attack\GradeRepetition;
 use SmileLife\Card\Category\Job\Job\Medium;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
@@ -26,9 +27,20 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
+            $card2 = new Dismissal();
+            $card2->setLocation(CardLocation::PLAYER_HAND)
+                    ->setLocationArg($oTable->getId());
+            $forcedCards[] = $card2;
+
+            $forcedCard = new StudiesLevel1();
+            $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
+                    ->setLocationArg($oTable->getId());
+            $this->cardManager->add($forcedCard);
+
+            $this->playWaitingCards($oTable);
         }
         $this->cardManager->add($forcedCards);
-        
+
         reset($oTables);
         //-- case1 : No Sudies (not playable) (nothing to do)
         //-- case2 : One Studie (playable)
@@ -42,7 +54,6 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
 //        $case3Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->oneFlippedStudieCase($case3Table);
-
         //-- case4 : More Than one studie last flipped (not playable)
 //        $i = random_int(0, count($oTables) - 1);
 //        $case4Table = $oTables[array_keys($oTables)[$i]];
@@ -54,13 +65,12 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
 //        $case5Table = $oTables[array_keys($oTables)[$i]];
 //        unset($oTables[$i]);
 //        $this->lastStudieVisibleCase($case5Table);
-
         //-- case6 : job case (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case6Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->jobCase($case6Table);
-        
+        $i = random_int(0, count($oTables) - 1);
+        $case6Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->jobCase($case6Table);
+
         return $case2Table->getId();
     }
 
@@ -117,15 +127,15 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
             $card = new StudiesLevel1();
             $card->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($table->getId());
-            
+
             $forcedCard[] = $card;
         }
-        
+
         $job = new Medium();
         $job->setLocation(CardLocation::PLAYER_BOARD)
-                    ->setLocationArg($table->getId());
+                ->setLocationArg($table->getId());
         $forcedCard[] = $job;
-        
+
         $this->cardManager->add($forcedCard);
         $this->playWaitingCards($table);
     }
