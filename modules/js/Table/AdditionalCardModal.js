@@ -42,52 +42,60 @@ define([
                     }
                 },
 
-                generateTargetStatSelection: function (property, secondProperty) {
-                    var haveTarget = true;
+                generateTargetSelectionCard: function (card, player) {
+//                    this.debug('acm-gtsc', card, player);
+                    if (null !== card) {
+                        dojo.place(this.format_block('jstpl_card_more', card), 'target_card_' + player.id);
+
+                    }
+                },
+
+                generateTargetStatSelection: function (properties, card) {
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
 
-                        var pCard = this.getPropertyValue(table, property);
-                        var secondCard = this.getPropertyValue(table, secondProperty);
+                        var tplData = {};
 
-                        if (null !== pCard) {
-                            haveTarget = true;
-                            var tplData = pCard;
+                        if (this.getHtmlColorLuma(player.color) > 100) {
+                            textColor = "black";
+                        } else {
+                            textColor = "white";
+                        }
+                        tplData.targetId = playerId;
+                        tplData.targetColor = player.color;
+                        tplData.textColor = textColor;
+                        tplData.targetName = player.name;
 
-                            if (this.getHtmlColorLuma(player.color) > 100) {
-                                textColor = "black";
-                            } else {
-                                textColor = "white";
+                        tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
+                        tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
+
+                        dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+
+                        if (Array.isArray(properties)) {
+                            for (var property in properties) {
+                                var pCard = this.getPropertyValue(table, property);
+                                this.generateTargetSelectionCard(pCard, player);
                             }
-                            tplData.targetId = playerId;
-                            tplData.targetColor = player.color;
-                            tplData.textColor = textColor;
-                            tplData.targetName = player.name;
-
-                            tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
-                            tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
-
-                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
-                            if (null !== secondCard) {
-                                dojo.place(this.format_block('jstpl_card_more', secondCard), 'target_card_' + playerId);
-                            }
-
-                            var targetDiv = document.getElementById("taget_" + playerId);
-                            var _this = this;
-
-                            targetDiv.addEventListener('click', (function (targetedPlayer, card) {
-                                return function () {
-                                    _this.onTargetClick(targetedPlayer, card);
-                                };
-                            })(player, pCard));
-
+                        } else {
+                            var pCard = this.getPropertyValue(table, properties);
+                            this.generateTargetSelectionCard(pCard, player);
                         }
 
-                    }
-                    if (!haveTarget) {
-                        this.showMessage(_('No targetable card in game'), "error");
-                        this.onModalCancelClick();
+                        var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
+                        if (0 === choices.length) {
+                            dojo.destroy('target_' + player.id);
+//                            this.debug('selecFDes',dojo.query('#target_' + player.id));
+//                            $('target_' + player.id).innerHTML = '';
+                        } else {
+                            var targetDiv = $("target_" + playerId);
+                            this.debug(player, card);
+                            targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
+                                return function () {
+                                    _this.onTargetClick(targetedPlayer, playedCard);
+                                };
+                            })(player, card));
+                        }
                     }
                 },
 
@@ -144,21 +152,21 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.generateTargetStatSelection('studies');
+                    this.generateTargetStatSelection('studies', card);
                 },
 
                 jobAttackModal: function (card) {
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.generateTargetStatSelection('job');
+                    this.generateTargetStatSelection('job', card);
                 },
 
                 divorceModal: function (card) {
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.generateTargetStatSelection('marriage', 'job');
+                    this.generateTargetStatSelection(['marriage', 'job'],card);
                 },
 
                 astronautModal: function (card) {
@@ -211,23 +219,24 @@ define([
                 },
 
                 onTargetClick: function (player, card) {
-                    var searchedDiv = $('card_more_' + card.id);
-                    var playedCard = dojo.query("#game_container .selected");
-
-                    if (!searchedDiv.classList.contains("selected")) {
-                        dojo.query("#more-container .selected").removeClass("selected");
-                        dojo.query("#target_card_" + player.id + " .cardontable").forEach(function (element) {
-                            dojo.addClass(element, "selected");
-                        });
-                        return;
-                    } else {
-                        var data = {
-                            target: player.id,
-                            card: playedCard[0].dataset.id,
-                        };
-
-                        this.takeAction('playCard', data);
-                    }
+                    this.debug(player,card);
+//                    var searchedDiv = $('card_more_' + card.id);
+//                    var playedCard = dojo.query("#game_container .selected");
+//
+//                    if (!searchedDiv.classList.contains("selected")) {
+//                        dojo.query("#more-container .selected").removeClass("selected");
+//                        dojo.query("#target_card_" + player.id + " .cardontable").forEach(function (element) {
+//                            dojo.addClass(element, "selected");
+//                        });
+//                        return;
+//                    } else {
+//                        var data = {
+//                            target: player.id,
+//                            card: playedCard[0].dataset.id,
+//                        };
+//
+//                        this.takeAction('playCard', data);
+//                    }
                 },
 
                 onMoreTargetClick: function (player) {

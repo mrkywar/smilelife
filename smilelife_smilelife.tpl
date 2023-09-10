@@ -90,7 +90,7 @@
         </div>
     `;
     var jstpl_target_with_card = `
-        <div id="taget_\${targetId}" class="target_selection">
+        <div id="target_\${targetId}" class="target_selection">
             <div class="target_identification" style="background-color:#\${targetColor}">
                 <b style="color:\${textColor}">\${targetName}</b>
             </div>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="target_card" id="target_card_\${targetId}">
-                ` + jstpl_card_more + `
+
             </div>
         </div>
     `;
