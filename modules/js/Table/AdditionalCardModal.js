@@ -27,23 +27,29 @@ define([
                     }
                 },
 
-                generateTargetStatSelection: function (property) {
+                getPropertyValue: function (table, property) {
+                    if (typeof maVariable !== "undefined") {
+                        return null;
+                    } else if (Array.isArray(table[property])) {
+                        if (table[property].length > 0) {
+                            var index = table[property].length - 1;
+                            return table[property][index];
+                        } else {
+                            return null;
+                        }
+                    } else {
+                        return table[property];
+                    }
+                },
+
+                generateTargetStatSelection: function (property, secondProperty) {
                     var haveTarget = true;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
 
-                        this.debug('ACM-gtss', property, table, table[property], Array.isArray(table[property]))
-                        if (Array.isArray(table[property])) {
-                            if (table[property].length > 0) {
-                                var index = table[property].length - 1;
-                                var pCard = table[property][index];
-                            } else {
-                                var pCard = null;
-                            }
-                        } else {
-                            var pCard = table[property];
-                        }
+                        var pCard = this.getPropertyValue(table, property);
+                        var secondCard = this.getPropertyValue(table, secondProperty);
 
                         if (null !== pCard) {
                             haveTarget = true;
@@ -63,6 +69,9 @@ define([
                             tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
 
                             dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+                            if (null !== secondCard) {
+                                dojo.place(this.format_block('jstpl_card_more', secondCard), 'target_card_' + playerId);
+                            }
 
                             var targetDiv = document.getElementById("taget_" + playerId);
                             var _this = this;
@@ -145,6 +154,13 @@ define([
                     this.generateTargetStatSelection('job');
                 },
 
+                divorceModal: function (card) {
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
+                    this.generateTargetStatSelection('marriage', 'job');
+                },
+
                 astronautModal: function (card) {
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': _('choose a card')}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
@@ -200,7 +216,9 @@ define([
 
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
-                        searchedDiv.classList.add("selected");
+                        dojo.query("#target_card_" + player.id + " .cardontable").forEach(function (element) {
+                            dojo.addClass(element, "selected");
+                        });
                         return;
                     } else {
                         var data = {

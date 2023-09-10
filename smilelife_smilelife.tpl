@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="target_card">
+            <div class="target_card" id="target_card_\${targetId}">
                 ` + jstpl_card_more + `
             </div>
         </div>

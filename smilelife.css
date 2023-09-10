@@ -220,11 +220,18 @@ html{
     display: inline-block;
     text-align: center;
 }
-
+.modal-selection{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
 .target_selection > div {
-    display: block;
-    margin-bottom: 5px; 
-
+    display: flex;
+    flex-direction: column;
+}
+.target_selection > div .cardontable:not(:first-child){
+    margin-top: -50%
 }
 .target_selection:not(:last-child) {
     margin-right: 10px;
@@ -584,7 +591,7 @@ html{
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
 .debug{
-    display: block;
+    display: none;
     min-width: 30px;
     background: greenyellow;
     border: 3px black solid;
