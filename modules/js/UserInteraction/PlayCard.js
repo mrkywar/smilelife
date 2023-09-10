@@ -33,7 +33,8 @@ define([
                                 this.jailModal(playedCard);
                                 break;
                             case CARD_TYPE_DISMISSAL:
-                                this.dissmissalModal(playedCard);
+                            case CARD_TYPE_BURN_OUT:
+                                this.jobAttackModal(playedCard);
                                 break;
                             case CARD_TYPE_ASTRONAUT:
                                 this.astronautModal(playedCard);

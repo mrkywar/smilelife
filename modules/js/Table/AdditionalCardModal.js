@@ -33,10 +33,15 @@ define([
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
 
-                        if(Array.isArray(table[property])){
-                            var index = table[property].length - 1;
-                            var pCard = table[property][index];
-                        }else{
+                        this.debug('ACM-gtss', property, table, table[property], Array.isArray(table[property]))
+                        if (Array.isArray(table[property])) {
+                            if (table[property].length > 0) {
+                                var index = table[property].length - 1;
+                                var pCard = table[property][index];
+                            } else {
+                                var pCard = null;
+                            }
+                        } else {
                             var pCard = table[property];
                         }
 
@@ -133,7 +138,7 @@ define([
                     this.generateTargetStatSelection('studies');
                 },
 
-                dissmissalModal: function (card) {
+                jobAttackModal: function (card) {
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
