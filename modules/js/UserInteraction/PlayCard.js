@@ -38,6 +38,9 @@ define([
                             case CARD_TYPE_ASTRONAUT:
                                 this.astronautModal(playedCard);
                                 break;
+                            case CARD_TYPE_GRADE_REPETITION:
+                                this.gradeRepetitionModal(playedCard);
+                                break;
                             default:
                                 if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
                                     this.attackModal(card);

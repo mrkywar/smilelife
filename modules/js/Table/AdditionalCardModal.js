@@ -10,7 +10,7 @@ define([
 
                 },
 
-                generateCardSelection(selectableCards, card) {
+                generateCardSelection: function (selectableCards, card) {
                     for (var hCardKey in selectableCards) {
                         var hCard = selectableCards[hCardKey];
 
@@ -24,6 +24,57 @@ define([
                             };
                         })(card, hCard));
 
+                    }
+                },
+
+                generateTargetStatSelection: function (property) {
+                    var haveTarget = true;
+                    for (var playerId in this.gamedatas.tables) {
+                        var table = this.gamedatas.tables[playerId];
+                        var player = table.player;
+
+                        if(Array.isArray(table[property])){
+                            var index = table[property].length - 1;
+                            var pCard = table[property][index];
+                        }else{
+                            var pCard = table[property];
+                        }
+                        this.debug(pCard);
+
+                        if (null !== pCard) {
+                            haveTarget = true;
+                            var tplData = pCard;
+
+                            if (this.getHtmlColorLuma(player.color) > 100) {
+                                textColor = "black";
+                            } else {
+                                textColor = "white";
+                            }
+                            tplData.targetId = playerId;
+                            tplData.targetColor = player.color;
+                            tplData.textColor = textColor;
+                            tplData.targetName = player.name;
+
+                            tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
+                            tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
+
+                            dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+
+                            var targetDiv = document.getElementById("taget_" + playerId);
+                            var _this = this;
+
+                            targetDiv.addEventListener('click', (function (targetedPlayer, card) {
+                                return function () {
+                                    _this.onTargetClick(targetedPlayer, card);
+                                };
+                            })(player, pCard));
+
+                        }
+
+                    }
+                    if (!haveTarget) {
+                        this.showMessage(_('No targetable card in game'), "error");
+                        this.onModalCancelClick();
                     }
                 },
 
@@ -74,6 +125,13 @@ define([
                     }
                     this.showMessage(_('No Bandit in game'), "error");
 
+                },
+
+                gradeRepetitionModal: function (card) {
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
+                    this.generateTargetStatSelection('studies');
                 },
 
                 dissmissalModal: function (card) {
