@@ -85,11 +85,10 @@ define([
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
                         if (0 === choices.length) {
                             dojo.destroy('target_' + player.id);
-//                            this.debug('selecFDes',dojo.query('#target_' + player.id));
-//                            $('target_' + player.id).innerHTML = '';
                         } else {
                             var targetDiv = $("target_" + playerId);
-                            this.debug(player, card);
+                            var _this = this;
+
                             targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
                                 return function () {
                                     _this.onTargetClick(targetedPlayer, playedCard);
@@ -166,7 +165,7 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.generateTargetStatSelection(['marriage', 'job'],card);
+                    this.generateTargetStatSelection(['marriage', 'job'], card);
                 },
 
                 astronautModal: function (card) {
@@ -219,27 +218,24 @@ define([
                 },
 
                 onTargetClick: function (player, card) {
-                    this.debug(player,card);
-//                    var searchedDiv = $('card_more_' + card.id);
-//                    var playedCard = dojo.query("#game_container .selected");
-//
-//                    if (!searchedDiv.classList.contains("selected")) {
-//                        dojo.query("#more-container .selected").removeClass("selected");
-//                        dojo.query("#target_card_" + player.id + " .cardontable").forEach(function (element) {
-//                            dojo.addClass(element, "selected");
-//                        });
-//                        return;
-//                    } else {
-//                        var data = {
-//                            target: player.id,
-//                            card: playedCard[0].dataset.id,
-//                        };
-//
-//                        this.takeAction('playCard', data);
-//                    }
+                    var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
+                    var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
+
+                    if (0 === selectedCard.length) {
+                        dojo.query("#more-container .selected").removeClass("selected");
+                        aviableCard.forEach(function (element) {
+                            dojo.addClass(element, "selected");
+                        });
+                    } else {
+                        var data = {
+                            target: player.id,
+                            card: card.dataset.id
+                        };
+                        this.takeAction('playCard', data);
+                    }
                 },
 
-                onMoreTargetClick: function (player) {
+                onMoreTargetClick: function (player, card) {
                     var playedCard = dojo.query("#game_container .selected");
                     var additionalCard = dojo.query("#more-container .selected");
 

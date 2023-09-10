@@ -591,7 +591,7 @@ html{
             BEGIN - Debug
 ------------------------------------------------------------------------------*/
 .debug{
-    display: none;
+    display: block;
     min-width: 30px;
     background: greenyellow;
     border: 3px black solid;
