@@ -401,6 +401,14 @@ define([
                                     0 -` + (2 * size.ratio) + `px 0 #f9e000, 
                                     ` + (2 * size.ratio) + `px -` + (2 * size.ratio) + `px 0 #f9e000;
                     }
+                    
+                    /*------              MODAL STATS                     ----*/
+                    .target_stats_list_item .wage_value{
+                        background-position-y: -` + (40 * size.ratio) + `px;
+                    }
+                    .target_stats_list_item .studie_value{
+                        background-position-y: -` + (20 * size.ratio) + `px;
+                    }
                     `;
                     this.insertCSS(computedCSS);
                 },
