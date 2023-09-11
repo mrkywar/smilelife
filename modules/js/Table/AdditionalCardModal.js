@@ -75,9 +75,9 @@ define([
                         if (Array.isArray(properties)) {
                             for (var kProperty in properties) {
                                 var property = properties[kProperty];
-                                this.debug("acm-send",properties, kProperty, property);
+                               
                                 var pCard = this.getPropertyValue(table, property);
-                                this.debug('acm-card',pCard);
+ 
                                 this.generateTargetSelectionCard(pCard, player);
                             }
                         } else {
