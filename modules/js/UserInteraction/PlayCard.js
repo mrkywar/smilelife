@@ -34,6 +34,7 @@ define([
                                 break;
                             case CARD_TYPE_DISMISSAL:
                             case CARD_TYPE_BURN_OUT:
+                            case CARD_TYPE_ACCIDENT:
                                 this.jobAttackModal(playedCard);
                                 break;
                             case CARD_TYPE_ASTRONAUT:
