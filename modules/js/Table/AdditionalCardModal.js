@@ -28,7 +28,7 @@ define([
                 },
 
                 getPropertyValue: function (table, property) {
-                    if (typeof maVariable !== "undefined") {
+                    if (typeof table[property] === "undefined") {
                         return null;
                     } else if (Array.isArray(table[property])) {
                         if (table[property].length > 0) {
@@ -73,8 +73,11 @@ define([
                         dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
 
                         if (Array.isArray(properties)) {
-                            for (var property in properties) {
+                            for (var kProperty in properties) {
+                                var property = properties[kProperty];
+                                this.debug("acm-send",properties, kProperty, property);
                                 var pCard = this.getPropertyValue(table, property);
+                                this.debug('acm-card',pCard);
                                 this.generateTargetSelectionCard(pCard, player);
                             }
                         } else {
@@ -166,6 +169,13 @@ define([
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
                     this.generateTargetStatSelection(['marriage', 'job'], card);
+                },
+                
+                incomeTaxModal: function (card) {
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+
+                    this.generateTargetStatSelection(['wages', 'job'], card);
                 },
 
                 astronautModal: function (card) {

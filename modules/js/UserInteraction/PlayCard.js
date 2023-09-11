@@ -46,7 +46,10 @@ define([
                                 break;
                             case CARD_TYPE_DIVORCE:
                                 this.divorceModal(playedCard);
-                                break
+                                break;
+                            case CARD_TYPE_INCOME_TAX:
+                                this.incomeTaxModal(playedCard);
+                                break;
                             default:
                                 if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
                                     this.attackModal(card);
