@@ -35,6 +35,7 @@ define([
                             case CARD_TYPE_DISMISSAL:
                             case CARD_TYPE_BURN_OUT:
                             case CARD_TYPE_ACCIDENT:
+                            case CARD_TYPE_SICKNESS:
                                 this.jobAttackModal(playedCard);
                                 break;
                             case CARD_TYPE_ASTRONAUT:
@@ -45,7 +46,10 @@ define([
                                 break;
                             case CARD_TYPE_DIVORCE:
                                 this.divorceModal(playedCard);
-                                break
+                                break;
+                            case CARD_TYPE_INCOME_TAX:
+                                this.incomeTaxModal(playedCard);
+                                break;
                             default:
                                 if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
                                     this.attackModal(card);
