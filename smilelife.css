@@ -236,7 +236,9 @@ html{
 .target_selection:not(:last-child) {
     margin-right: 10px;
 }
-
+.modal-selection{
+    display: flex;
+}
 .target_stats_list {
     display: flex;
     flex-wrap: wrap;

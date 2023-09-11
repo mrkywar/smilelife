@@ -31,6 +31,7 @@ define([
                     if (typeof table[property] === "undefined") {
                         return null;
                     } else if (Array.isArray(table[property])) {
+                        
                         if (table[property].length > 0) {
                             var index = table[property].length - 1;
                             return table[property][index];
@@ -154,7 +155,7 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.generateTargetStatSelection('studies', card);
+                    this.generateTargetStatSelection(['studiesOnly','job'], card);
                 },
 
                 jobAttackModal: function (card) {

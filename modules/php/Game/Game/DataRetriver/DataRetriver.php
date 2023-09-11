@@ -81,10 +81,8 @@ class DataRetriver {
             "discard" => $rawDiscard,
             "offside" => $rawOffside
         ];
-
         $tables = $this->playerTableManager->findBy();
         $result['tables'] = $this->playerTableDecorator->decorate($tables);
-
         $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
         unset($result['tables'][$playerId]);
 

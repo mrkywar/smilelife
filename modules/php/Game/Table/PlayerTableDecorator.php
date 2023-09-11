@@ -59,6 +59,7 @@ class PlayerTableDecorator extends DisplayModelDecorator {
         return [
             "job" => $this->cardDecorator->decorate($table->getJob()),
             "studies" => $this->cardDecorator->decorate($table->getStudies()),
+            "studiesOnly" => $this->cardDecorator->decorate($table->getStudies()),
             "wages" => $this->cardDecorator->decorate($table->getWages()),
             "childs" => $this->cardDecorator->decorate($table->getChilds()),
             "flirts" => $this->cardDecorator->decorate($table->getFlirts()),
