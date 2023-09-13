@@ -16,12 +16,10 @@ define([
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
                         searchedDiv.id = "temp_" + searchedDiv.id;
-//                        this.debug(searchedDiv, destinationDivId);
                         this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
                         if (!destroy) {
                             var _this = this;
                             setTimeout(function () {
-                                //                            _this.debug("MR", destinationDivId, card);
                                 _this.displayCard(card, destinationDivId);
                             }, this.animationTimer + 15)
                             //                        $(searchedDiv.id).remove();
@@ -30,8 +28,6 @@ define([
                         //-- Move a new Card (draw or opponent action)
                         var initialId = card.id
                         card.id = 'temp_' + card.id;
-
-//                        this.debug(destinationDivId, card);
 
                         var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
                         if (card.type && !card.isFlipped) {
@@ -53,8 +49,6 @@ define([
                             dojo.addClass(newCardDiv, "usedcard");
                         }
                         if (null !== card.additionalsDatas) {
-//                            dojo.addClass(newCardDiv, "actionrequired");
-//                            this.debug("AdditionalDC",card.additionalsDatas);
                             for(var dataKey in card.additionalsDatas){
                                 var dataVal = card.additionalsDatas[dataKey];
                                 dojo.attr(newCardDiv, 'data-'+dataKey, dataVal);

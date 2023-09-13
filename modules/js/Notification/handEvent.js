@@ -12,8 +12,6 @@ define([
                 },
 
                 notif_trocNotification: function (notif) {
-                    this.debug("HE-TN", notif.args);
-
                     var givenCard = notif.args.givenCard;
                     var cardDest = "playerpanel_" + notif.args.playerId;
                     this.displayCard(givenCard, cardDest, "myhand", true);

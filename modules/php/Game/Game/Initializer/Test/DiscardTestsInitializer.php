@@ -13,7 +13,7 @@ use SmileLife\Game\Initializer\GameInitializer;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class AdulteryTestsInitializer extends GameInitializer {
+class DiscardTestsInitializer extends GameInitializer {
 
     public function init($players, $options = []) {
         parent::init($players, $options);

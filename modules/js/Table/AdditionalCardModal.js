@@ -44,7 +44,6 @@ define([
                 },
 
                 generateTargetSelectionCard: function (card, player) {
-//                    this.debug('acm-gtsc', card, player);
                     if (null !== card) {
                         dojo.place(this.format_block('jstpl_card_more', card), 'target_card_' + player.id);
 
@@ -183,7 +182,6 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': _('choose a card')}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.debug(this.discard);
                     if (0 === this.discard.length) {
                         dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection');
                     } else {
@@ -201,7 +199,6 @@ define([
                         card: playedCard[0].dataset.id
                     }
 
-                    this.debug(data);
                     this.takeAction('playCard', data);
                 },
 

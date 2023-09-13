@@ -55,7 +55,6 @@ define([
         },
 
         takeAction: function (action, data, reEnterStateOnError, checkAction = true) {
-//            this.debug('TA', action, data, reEnterStateOnError, checkAction)
             data = data || {};
             if (data.lock === undefined) {
                 data.lock = true;
@@ -70,7 +69,6 @@ define([
                         this,
                         (data) => resolve(data),
                         (isError, message, code) => {
-//                                this.debug('TAD',isError, message, code);
                                 if (isError) {
                                     reject(message, code);
                                 }

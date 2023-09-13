@@ -6,8 +6,8 @@ define([
             "smilelife.table.discard",
             [],
             {
-                updateTable: function () {
-                    this.debug(this.discard);
+                updateDiscard: function () {
+                    this.debug('D-UD',this.discard);
                 }
 
 

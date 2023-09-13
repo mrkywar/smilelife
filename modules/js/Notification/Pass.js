@@ -21,6 +21,7 @@ define([
                         this.otherTabes[notif.args.playerId] = notif.args.table;
                     }
                     this.discard = notif.args.discard;
+                    this.updateDiscard();
 
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     this.discardCounter.setValue(this.discardCounter.getValue() + 1);
