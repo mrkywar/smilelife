@@ -11,6 +11,7 @@ define([
                     this.maxhandCounters = [];
                     this.studyCounters = [];
                     this.wagesCounters = [];
+                    this.aviableWagesCounters = [];
                 },
 
                 displayPanels: function () {
@@ -26,6 +27,8 @@ define([
                 },
 
                 displayAPanel: function (player) {
+                    this.debug("PP-DAP",player);
+                    
                     dojo.place(this.getPlayerPanelHtml(player), "player_board_" + player.id);
                     var handCounter = new ebg.counter();
                     handCounter.create("player_hand_counter_".concat(player.id));
@@ -46,6 +49,11 @@ define([
                     wagesCounter.create("player_wages_counter_".concat(player.id));
                     wagesCounter.setValue(player.totalWages);
                     this.wagesCounters[player.id] = wagesCounter;
+                    
+                    var wagesAviable = new ebg.counter();
+                    wagesAviable.create("player_wages_aviable_counter_".concat(player.id));
+                    wagesAviable.setValue(player.aviableWages);
+                    this.aviableWagesCounters[player.id] = wagesAviable;
                 },
 
                 getPlayerPanelHtml: function (player) {
@@ -60,6 +68,8 @@ define([
                                 <span id="player_studies_counter_` + player.id + `"></span>
                             </div>
                             <div class="player_conter_item playerwage_counter">
+                                <span id="player_wages_aviable_counter_` + player.id + `"></span>
+                                <span>/</span>
                                 <span id="player_wages_counter_` + player.id + `"></span>
                             </div>
                         </div>

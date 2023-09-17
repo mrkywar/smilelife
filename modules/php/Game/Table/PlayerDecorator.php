@@ -51,6 +51,11 @@ class PlayerDecorator {
      * @var TotalWageCalculator
      */
     private $totalWageCalculator;
+    
+    /**
+     * @var AviableWageCalculator
+     */
+    private $aviableWageCalculator;
 
     public function __construct() {
         $this->cardManager = new CardManager();
@@ -59,6 +64,7 @@ class PlayerDecorator {
         $this->playerAttributeDecorator = new PlayerAttributesDecorator();
         $this->studiesLevelCalulator = new StudiesLevelCalculator();
         $this->totalWageCalculator = new TotalWageCalculator();
+        $this->aviableWageCalculator = new \SmileLife\Game\Calculator\AviableWageCalculator();
     }
 
     public function decorate($players) {
@@ -88,7 +94,8 @@ class PlayerDecorator {
             "hand" => count($this->cardManager->getPlayerCards($player)),
             "attributes" => $this->playerAttributeDecorator->decorate($attribute),
             "studies" => $this->studiesLevelCalulator->compute($table->getStudies()),
-            "totalWages" => $this->totalWageCalculator->compute($table->getWages())
+            "totalWages" => $this->totalWageCalculator->compute($table->getWages()),
+            "aviableWages" => $this->aviableWageCalculator->compute($table->getWages())
         ];
     }
 

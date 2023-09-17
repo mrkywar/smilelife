@@ -69,6 +69,7 @@ define([
 
                         tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
                         tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
+                        tplData.targetAviableWagesLevel = this.aviableWagesCounters[playerId].getValue();
 
                         dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
 

@@ -97,7 +97,7 @@
             <div class="target_stats">
                 <div class="target_stats_list">
                     <div class="target_stats_list_item">
-                        <div class="wage_value">\${targetWagesLevel}</div>
+                        <div class="wage_value">\${targetAviableWagesLevel}/\${targetWagesLevel}</div>
                     </div>
                     <div class="target_stats_list_item">
                         <div class="studie_value">\${targetStudiesLevel}</div>
