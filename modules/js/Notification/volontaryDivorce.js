@@ -10,11 +10,8 @@ define([
             {
 
                 notif_flirtsAdultery: function (notif) {
-                    this.debug("FA", notif.args, notif);
-
                     for (var cardId in notif.args.cards) {
                         var card = notif.args.cards[cardId];
-                        this.debug(card);
                         var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
                     }

@@ -8,6 +8,7 @@ define([
     g_gamethemeurl + 'modules/js/Table/PlayerPanel.js',
     g_gamethemeurl + 'modules/js/Table/TableDraw.js',
     g_gamethemeurl + 'modules/js/Table/AttackModal.js',
+    g_gamethemeurl + 'modules/js/Table/Discard.js',
     g_gamethemeurl + 'modules/js/Table/AdditionalCardModal.js',
     g_gamethemeurl + 'modules/js/UserInteraction/Button.js',
     g_gamethemeurl + 'modules/js/Notification/Notification.js',
@@ -21,6 +22,7 @@ define([
                 smilelife.table.draw,
                 smilelife.table.attackModal,
                 smilelife.table.additionalCardModal,
+                smilelife.table.discard,
                 smilelife.ui.button,
                 smilelife.notification,
             ], {
@@ -53,7 +55,6 @@ define([
         },
 
         takeAction: function (action, data, reEnterStateOnError, checkAction = true) {
-//            this.debug('TA', action, data, reEnterStateOnError, checkAction)
             data = data || {};
             if (data.lock === undefined) {
                 data.lock = true;
@@ -68,7 +69,6 @@ define([
                         this,
                         (data) => resolve(data),
                         (isError, message, code) => {
-//                                this.debug('TAD',isError, message, code);
                                 if (isError) {
                                     reject(message, code);
                                 }

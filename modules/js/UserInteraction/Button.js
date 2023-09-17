@@ -42,8 +42,6 @@ define([
                                 break;
                         }
                     }
-                    this.debug(stateName);
-//                    onModalCloseClick
                     this.actualState = null;
                 },
 

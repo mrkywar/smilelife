@@ -13,18 +13,9 @@ define([
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
                 },
-
-                doPlay: function () {
-                    var card = dojo.query(".selected");
-                    if (1 !== card.length) {
-
-                        this.showMessage(_('Invalid Card Selection'), "error");
-                        dojo.query(".selected").removeClass("selected");
-                    } else {
-                        var playedCard = card[0];
-//                        this.debug(this.isCardType(playedCard, CARD_TYPE_JAIL), playedCard);
-
-                        switch (this.getCardType(playedCard)) {
+                
+                cardPlay: function(playedCard, action){
+                    switch (this.getCardType(playedCard)) {
                             case CARD_TYPE_HEAD_OF_PURCHASING:
                             case CARD_TYPE_HEAD_OF_SALES:
                                 this.additionalTrocCardModal(playedCard);
@@ -52,15 +43,27 @@ define([
                                 break;
                             default:
                                 if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
-                                    this.attackModal(card);
+                                    this.attackModal(playedCard);
                                 } else {
                                     var data = {
                                         card: playedCard.dataset.id
                                     };
-                                    this.takeAction('playCard', data);
+                                    this.takeAction(action, data);
                                 }
                                 break;
                         }
+                },
+                
+                doPlay: function () {
+                    var card = dojo.query(".selected");
+                    if (1 !== card.length) {
+
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query(".selected").removeClass("selected");
+                    } else {
+                        var playedCard = card[0];
+
+                        this.cardPlay(playedCard,'playCard');
                     }
                 },
 

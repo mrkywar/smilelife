@@ -10,8 +10,6 @@ define([
             {
 
                 notif_doublonFlirtNotification: function (notif) {
-                    this.debug(notif);
-
                     var card = notif.args.card;
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
                     var cardFrom = "pile_" + card.pile + "_" + notif.args.targetId;
@@ -22,9 +20,7 @@ define([
                 },
                 
                 notif_handUpdateNotification: function(notif){
-                    this.debug(this.myHand,notif);
                     this.myHand = notif.args.myHand;
-                    this.debug(this.myHand);
                 }
             }
     );

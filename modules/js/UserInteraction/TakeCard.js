@@ -10,7 +10,6 @@ define([
                 },
 
                 addTakeCardInteraction: function () {
-                    this.debug("BTN",this.myTable.job);
                     if (null !== this.myTable.job) {
                         if (this.myTable.job.isTemporary) {
                             this.addActionButton('resign_button', _('Resign and Play'), 'doResign', null, false, 'gray');
@@ -42,12 +41,10 @@ define([
                 },
 
                 doPlayFromDiscard: function () {
-                    var card = dojo.query('#card_' + this.discard[0].id);
-                    if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
-                        this.attackModal(card[0]);
-                    } else {
-                        this.takeAction('playFromDiscard');
-                    }
+                    var card = this.discard[this.discard.length - 1];
+                    
+                    var playedCard = dojo.query('#card_' + card.id);
+                    this.cardPlay(playedCard[0],'playFromDiscard');
                 },
 
                 doDivorce: function () {

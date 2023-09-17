@@ -12,7 +12,7 @@ define([
             {
                 constructor: function () {
                     this.isDebugEnabled = ('studio.boardgamearena.com' === window.location.host || window.location.hash.indexOf('debug') > -1);
-                    this.debug("common.tools activate");
+                    this.debug("common.tools active");
                 },
 
                 /**
