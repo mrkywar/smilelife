@@ -42,7 +42,6 @@ define([
 
                 doPlayFromDiscard: function () {
                     var card = this.discard[this.discard.length - 1];
-                    this.debug(card);
                     
                     var playedCard = dojo.query('#card_' + card.id);
                     this.cardPlay(playedCard[0],'playFromDiscard');
