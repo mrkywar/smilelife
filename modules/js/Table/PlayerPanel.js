@@ -60,6 +60,8 @@ define([
                                 <span id="player_studies_counter_` + player.id + `"></span>
                             </div>
                             <div class="player_conter_item playerwage_counter">
+                                <span id="player_wages_aviable_counter_` + player.id + `"></span>
+                                <span>/</span>
                                 <span id="player_wages_counter_` + player.id + `"></span>
                             </div>
                         </div>

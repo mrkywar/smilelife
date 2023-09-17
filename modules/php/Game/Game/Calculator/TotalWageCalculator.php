@@ -25,7 +25,7 @@ class TotalWageCalculator {
         return $level;
     }
 
-    private function computeOne(Wage $card) {
+    protected function computeOne(Wage $card) {
         return $card->getAmount();
     }
 
