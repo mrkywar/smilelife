@@ -41,12 +41,11 @@ define([
                 },
 
                 doPlayFromDiscard: function () {
-                    var card = dojo.query('#card_' + this.discard[0].id);
-                    if ('attack' === card[0].dataset.category && CARD_TYPE_ATTENTAT != card[0].dataset.type) {
-                        this.attackModal(card[0]);
-                    } else {
-                        this.takeAction('playFromDiscard');
-                    }
+                    var card = this.discard[this.discard.length - 1];
+                    this.debug(card);
+                    
+                    var playedCard = dojo.query('#card_' + card.id);
+                    this.cardPlay(playedCard[0],'playFromDiscard');
                 },
 
                 doDivorce: function () {

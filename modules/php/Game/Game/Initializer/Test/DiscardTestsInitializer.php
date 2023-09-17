@@ -35,8 +35,8 @@ class DiscardTestsInitializer extends GameInitializer {
                 ->setLocationArg(4);
         
         
-        $forcedDiscard = [$job, $burnOut, $flirt, $studie];
-        $this->cardManager->add($forcedDiscard);
+//        $forcedDiscard = [$job, $burnOut, $flirt, $studie];
+//        $this->cardManager->add($forcedDiscard);
 
         $oTables = $this->playerTableManager->findBy();
         $i = random_int(0, count($oTables) - 1);
