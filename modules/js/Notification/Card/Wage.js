@@ -9,6 +9,7 @@ define([
                 notif_wageLevelUpdate: function (notif)
                 {
                     this.wagesCounters[notif.args.playerId].setValue(this.wagesCounters[notif.args.playerId].getValue() + notif.args.level);
+                    this.aviableWagesCounters[notif.args.playerId].setValue(this.aviableWagesCounters[notif.args.playerId].getValue() + notif.args.level);
                 }
             }
     );

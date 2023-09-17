@@ -11,6 +11,7 @@ define([
                     this.maxhandCounters = [];
                     this.studyCounters = [];
                     this.wagesCounters = [];
+                    this.aviableWagesCounters = [];
                 },
 
                 displayPanels: function () {
@@ -52,7 +53,7 @@ define([
                     var wagesAviable = new ebg.counter();
                     wagesAviable.create("player_wages_aviable_counter_".concat(player.id));
                     wagesAviable.setValue(player.aviableWages);
-                    this.wagesCounters[player.id] = wagesAviable;
+                    this.aviableWagesCounters[player.id] = wagesAviable;
                 },
 
                 getPlayerPanelHtml: function (player) {
