@@ -57,7 +57,7 @@ define([
                         if (card.type && !card.isFlipped) {
                             this.displayCardInformations(newCardDiv, card);
                         }
-
+                        this.updateDiscard();
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();

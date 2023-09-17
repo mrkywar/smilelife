@@ -13,7 +13,7 @@ define([
                         if (null !== divCard) {
                             dojo.destroy(divCard);
                         }
-                        this.debug('D-UDDD', card, divCard);
+//                        this.debug('D-UDDD', card, divCard);
                     }
                 }
 
