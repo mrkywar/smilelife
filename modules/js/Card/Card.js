@@ -101,10 +101,7 @@ define([
                                 } else if (this.isMyMarriage(card)) {
                                     //volontary divorce
                                     this.doDivorce();
-                                } else if ('attack' === card.category && CARD_TYPE_ATTENTAT !== card.type) {
-                                    this.debug(card.type, CARD_TYPE_ATTENTAT, CARD_TYPE_ATTENTAT !== card.type);
-                                    this.attackModal(card);
-                                } else if ('discard' === card.location) {
+                                }  else if ('discard' === card.location) {
                                     //Play From Discard
                                     this.doPlayFromDiscard();
                                 }
