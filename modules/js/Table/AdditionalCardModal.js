@@ -31,7 +31,7 @@ define([
                     if (typeof table[property] === "undefined") {
                         return null;
                     } else if (Array.isArray(table[property])) {
-                        
+
                         if (table[property].length > 0) {
                             var index = table[property].length - 1;
                             return table[property][index];
@@ -76,9 +76,9 @@ define([
                         if (Array.isArray(properties)) {
                             for (var kProperty in properties) {
                                 var property = properties[kProperty];
-                               
+
                                 var pCard = this.getPropertyValue(table, property);
- 
+
                                 this.generateTargetSelectionCard(pCard, player);
                             }
                         } else {
@@ -143,7 +143,11 @@ define([
                                 card: card.dataset.id,
                             };
 
-                            this.takeAction('playCard', data);
+                            if ('discard' === card.dataset.location) {
+                                this.takeAction('playFromDiscard', data);
+                            } else {
+                                this.takeAction('playCard', data);
+                            }
                             return;
                         }
                     }
@@ -155,7 +159,7 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
 
-                    this.generateTargetStatSelection(['studiesOnly','job'], card);
+                    this.generateTargetStatSelection(['studiesOnly', 'job'], card);
                 },
 
                 jobAttackModal: function (card) {
@@ -171,7 +175,7 @@ define([
 
                     this.generateTargetStatSelection(['marriage', 'job'], card);
                 },
-                
+
                 incomeTaxModal: function (card) {
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
                     dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
@@ -200,7 +204,11 @@ define([
                         card: playedCard[0].dataset.id
                     }
 
-                    this.takeAction('playCard', data);
+                    if ('discard' === card.dataset.location) {
+                        this.takeAction('playFromDiscard', data);
+                    } else {
+                        this.takeAction('playCard', data);
+                    }
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
@@ -216,7 +224,11 @@ define([
                             card: playedCard.dataset.id
                         };
 
-                        this.takeAction('playCard', data);
+                        if ('discard' === card.dataset.location) {
+                            this.takeAction('playFromDiscard', data);
+                        } else {
+                            this.takeAction('playCard', data);
+                        }
                     }
 
                     return false;
@@ -240,7 +252,11 @@ define([
                             target: player.id,
                             card: card.dataset.id
                         };
-                        this.takeAction('playCard', data);
+                        if ('discard' === card.dataset.location) {
+                            this.takeAction('playFromDiscard', data);
+                        } else {
+                            this.takeAction('playCard', data);
+                        }
                     }
                 },
 
@@ -258,7 +274,11 @@ define([
                             additionalCards: [additionalCard[0].dataset.id]
                         };
 
-                        this.takeAction('playCard', data);
+                        if ('discard' === card.dataset.location) {
+                            this.takeAction('playFromDiscard', data);
+                        } else {
+                            this.takeAction('playCard', data);
+                        }
                     }
                 }
 

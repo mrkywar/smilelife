@@ -80,6 +80,7 @@ define([
                     div.dataset.category = '' + card.category;
                     div.dataset.name = '' + card.name;
                     div.dataset.id = '' + card.id;
+                    div.dataset.location =''+card.location;
 
                     dojo.place(this.format_block('jstpl_card_content', card), "front_" + div.id);    
 //                    $("front_" + div.id).innerHTML = `

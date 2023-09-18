@@ -81,7 +81,7 @@
         <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
     `;
     var jstpl_card_more = `
-        <div id="card_more_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-points="\${smilePoints}" data-name="\${name}">
+        <div id="card_more_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
             <div class="card_sides">
                 <div class="card-side front" id="front_card_more_\${id}">
                    ` + jstpl_card_content + `
