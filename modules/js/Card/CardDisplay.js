@@ -10,88 +10,64 @@ define([
                     if (typeof destroy === 'undefined') {
                         destroy = false;
                     }
-
                     var searchedDiv = $('card_' + card.id);
-
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
-                        searchedDiv.id = "temp_" + searchedDiv.id;
-                        this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
-                        if (!destroy) {
-                            var _this = this;
-                            setTimeout(function () {
-                                _this.displayCard(card, destinationDivId);
-                            }, this.animationTimer + 15)
-                            //                        $(searchedDiv.id).remove();
-                        }
+                        this.moveCard(searchedDiv, destinationDivId, destroy);
                     } else if (fromDivId) {
                         //-- Move a new Card (draw or opponent action)
-                        var initialId = card.id
-                        card.id = 'temp_' + card.id;
-
-                        var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
+                        card.idPrefix = 'temp_';
+                        var newCardDiv = null;
                         if (card.type && !card.isFlipped) {
-                            this.displayCardInformations(newCardDiv, card);
+                            newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);
+                        } else {
+                            newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
                         }
                         newCardDiv.classList.add('movedcard');
+
                         this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, this.animationTimer, 0).then(() => {
                             if (card.type) {
-                                card.id = initialId;
                                 this.displayCard(card, destinationDivId);
                             }
                         });
-
                     } else if (!searchedDiv) {
-                        //-- display without move
-                        var newCardDiv = dojo.place(this.format_block('jstpl_card', card), destinationDivId);
-                        
+//                        //-- display without move
+                        card.idPrefix = "";
+                        var newCardDiv = null;
+                        if (card.type && !card.isFlipped) {
+                            newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);
+                        } else {
+                            newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
+                        }
                         if (card.isUsed) {
                             dojo.addClass(newCardDiv, "usedcard");
                         }
-                        if (null !== card.additionalsDatas) {
-                            for(var dataKey in card.additionalsDatas){
-                                var dataVal = card.additionalsDatas[dataKey];
-                                dojo.attr(newCardDiv, 'data-'+dataKey, dataVal);
-                            }
-                        }
-                        if (card.type && !card.isFlipped) {
-                            this.displayCardInformations(newCardDiv, card);
-                        }
+
                         this.updateDiscard();
                         dojo.connect(newCardDiv, 'onclick', (evt) => {
                             evt.preventDefault();
                             evt.stopPropagation();
                             this.onCardClick(card);
                         });
-
-
-
-                    } else {
+                    }else {
                         this.debug("DC other display", card, searchedDiv);
                         var newCardDiv = dojo.place(searchedDiv, destinationDivId);
                     }
 
-
                 },
 
-                displayCardInformations: function (div, card) {
-                    div.dataset.points = card.smilePoints;
-                    div.dataset.type = '' + card.type;
-                    div.dataset.category = '' + card.category;
-                    div.dataset.name = '' + card.name;
-                    div.dataset.id = '' + card.id;
-                    div.dataset.location =''+card.location;
-
-                    dojo.place(this.format_block('jstpl_card_content', card), "front_" + div.id);    
-//                    $("front_" + div.id).innerHTML = `
-//                        <span class="card_text card_title">` + card.title + `</span>
-//                        <span class="card_text card_subtitle">` + card.subtitle + `</span>
-//                        <span class="card_text card_text1">` + card.text1 + `</span>
-//                        <span class="card_text card_text2">` + card.text2 + `</span>
-//                        <span class="debug">` + card.id + " / " + card.type + " - S : " + card.smilePoints + `</span>
-//                    `;
-
+                moveCard: function (searchedDiv, destinationDivId, destroy) {
+                    searchedDiv.id = "temp_" + searchedDiv.id;
+                    this.slideToObjectAndDestroy(searchedDiv, destinationDivId, this.animationTimer);
+                    if (!destroy) {
+                        var _this = this;
+                        setTimeout(function () {
+                            _this.displayCard(card, destinationDivId);
+                        }, this.animationTimer + 15)
+                        //                        $(searchedDiv.id).remove();
+                    }
                 },
+
             }
     );
 });

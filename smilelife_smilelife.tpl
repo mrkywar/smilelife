@@ -45,6 +45,26 @@
             </div>
         </div>
     `;
+    var jstpl_visible_card = `
+        <div id="card\${idPrefix}_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
+            <div class="card_sides">
+                <div class="card-side front" id="front_card\${idPrefix}_\${id}">
+                   ` + jstpl_card_content + `
+                </div>
+                <div class="card-side back"></div>
+            </div>
+        </div>
+    `;
+    var jstpl_hidden_card = `
+        <div id="card\${idPrefix}_\${id}" class="cardontable selectable">
+            <div class="card_sides">
+                <div class="card-side front" id="front_card\${idPrefix}_\${id}">
+                </div>
+                <div class="card-side back"></div>
+            </div>
+        </div>
+    `;
+    
     var jstpl_attack_modale = `
         <div class="modal-overlay">
             <div class="modal-content">
