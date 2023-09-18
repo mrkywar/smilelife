@@ -36,20 +36,15 @@
 </div>
 
 <script type="text/javascript">
-    var jstpl_card = `
-        <div id="card_\${id}" class="cardontable selectable" >
-            <div class="card_sides">
-                <div class="card-side front" id="front_card_\${id}">
-                </div>
-                <div class="card-side back"></div>
-            </div>
-        </div>
-    `;
     var jstpl_visible_card = `
-        <div id="card\${idPrefix}_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
+        <div id="card_\${idPrefix}\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
             <div class="card_sides">
                 <div class="card-side front" id="front_card\${idPrefix}_\${id}">
-                   ` + jstpl_card_content + `
+                    <span class="card_text card_title">\${title}</span>
+                    <span class="card_text card_subtitle">\${subtitle}</span>
+                    <span class="card_text card_text1">\${text1}</span>
+                    <span class="card_text card_text2">\${text2}</span>
+                    <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
                 </div>
                 <div class="card-side back"></div>
             </div>
@@ -93,22 +88,6 @@
     `;
     var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button">valid</a>`;
     var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_valid_button">Play without bonus</a>`;
-    var jstpl_card_content = `
-        <span class="card_text card_title">\${title}</span>
-        <span class="card_text card_subtitle">\${subtitle}</span>
-        <span class="card_text card_text1">\${text1}</span>
-        <span class="card_text card_text2">\${text2}</span>
-        <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
-    `;
-    var jstpl_card_more = `
-        <div id="card_more_\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
-            <div class="card_sides">
-                <div class="card-side front" id="front_card_more_\${id}">
-                   ` + jstpl_card_content + `
-                </div>
-            </div>
-        </div>
-    `;
     var jstpl_target_with_card = `
         <div id="target_\${targetId}" class="target_selection">
             <div class="target_identification" style="background-color:#\${targetColor}">

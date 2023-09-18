@@ -13,8 +13,9 @@ define([
                 generateCardSelection: function (selectableCards, card) {
                     for (var hCardKey in selectableCards) {
                         var hCard = selectableCards[hCardKey];
+                        hCard.idPrefix = "more_";
 
-                        dojo.place(this.format_block('jstpl_card_more', hCard), 'modal-selection');
+                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection');
                         var searchedDiv = document.getElementById('card_more_' + hCard.id)
                         var _this = this;
 
@@ -45,7 +46,8 @@ define([
 
                 generateTargetSelectionCard: function (card, player) {
                     if (null !== card) {
-                        dojo.place(this.format_block('jstpl_card_more', card), 'target_card_' + player.id);
+                        card.idPrefix = "more_";
+                        dojo.place(this.format_block('jstpl_visible_card', card), 'target_card_' + player.id);
 
                     }
                 },
