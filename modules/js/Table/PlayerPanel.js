@@ -26,9 +26,7 @@ define([
                     }
                 },
 
-                displayAPanel: function (player) {
-                    this.debug("PP-DAP",player);
-                    
+                displayAPanel: function (player) {                 
                     dojo.place(this.getPlayerPanelHtml(player), "player_board_" + player.id);
                     var handCounter = new ebg.counter();
                     handCounter.create("player_hand_counter_".concat(player.id));
