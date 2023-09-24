@@ -159,12 +159,8 @@ define([
 
                 generateModale: function () {
                     var id = this.generateUniqueId();
-                    var _this = this;
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET", 'id': id}), 'more-container');
-
-                    dojo.connect($("more_cancel_button"), 'onclick', this, function (id) {
-                        _this.onModalCancelClick(id)
-                    });
+                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },
 
@@ -247,11 +243,13 @@ define([
                     return false;
                 },
 
-                onModalCancelClick: function (id) {
+                onModalCancelClick: function (event) {
 //                    $("#modal-"+id).destroy();
 //                    $('more-container #' + id).innerHTML = "";
-                    dojo.destroy("modal_"+id);
-                    
+                    dojo.destroy("modal_"+event.target.dataset.modal);
+
+//                    this.debug(event.target.dataset.modal);
+
                     this.playData = null;
                 },
 
