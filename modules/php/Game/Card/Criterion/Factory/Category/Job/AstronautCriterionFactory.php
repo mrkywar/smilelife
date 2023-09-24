@@ -27,6 +27,20 @@ class AstronautCriterionFactory extends JobCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
 
+//        var_dump($complementaryCards);
+        if (null !== $complementaryCards) {
+            $playableCritrion = new CardPlayableCriterion($complementaryCards[0], $table);
+
+            $playableCritrion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                    ->setErrorMessage(clienttranslate('the chosen card cannot be played'));
+
+            return new CriterionGroup([
+                $criteria,
+                $playableCritrion
+                    ], CriterionGroup::AND_OPERATOR);
+        } else {
+            die("no card");
+        }
 //        if (null !== $complementaryCards) {
 ////            $playableCritrion = new CardPlayableCriterion($complementaryCards[0], $table);
 ////            
