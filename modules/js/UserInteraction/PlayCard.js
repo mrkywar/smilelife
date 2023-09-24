@@ -46,9 +46,14 @@ define([
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
                                 this.attackModal(playedCard);
                             } else {
-                                var data = {
-                                    card: playedCard.dataset.id
-                                };
+                                var data = this.playData;
+                                this.playData = null;
+                                if (null === data) {
+                                    data = {
+                                        card: playedCard.dataset.id
+                                    };
+                                }
+//                                this.debug(this.playData);
                                 this.takeAction(action, data);
                             }
                             break;

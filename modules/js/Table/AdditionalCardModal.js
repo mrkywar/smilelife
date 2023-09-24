@@ -160,7 +160,7 @@ define([
                 generateModale: function () {
                     var id = this.generateUniqueId();
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET", 'id': id}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                    dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },
 
@@ -197,7 +197,7 @@ define([
                         this.generateCardSelection(this.discard, card, id);
                     }
                     dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
-                    dojo.connect($("more_valid_button"), 'onclick', this, 'onModalValidClick');
+                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
                 },
 
                 onModalValidClick: function () {
@@ -223,32 +223,24 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     } else if (0 === targetChoice.length) {
+
                         this.playData = {
                             additionalCards: [searchedDiv.dataset.id],
                             card: playedCard.dataset.id
                         };
-                        this.cardPlay(searchedDiv, 'play');
-//                        var data = {
-//                            additionalCards: [searchedDiv.dataset.id],
-//                            card: playedCard.dataset.id
-//                        };
-//
-//                        if ('discard' === card.dataset.location) {
-//                            this.takeAction('playFromDiscard', data);
-//                        } else {
-//                            this.takeAction('playCard', data);
-//                        }
+                        this.debug("???", playedCard, searchedDiv, targetChoice);
+                        if ('discard' === playedCard.dataset.location) {
+                            this.cardPlay(searchedDiv, 'playFromDiscard');
+                        } else {
+                            this.cardPlay(searchedDiv, 'playCard');
+                        }
                     }
 
                     return false;
                 },
 
                 onModalCancelClick: function (event) {
-//                    $("#modal-"+id).destroy();
-//                    $('more-container #' + id).innerHTML = "";
-                    dojo.destroy("modal_"+event.target.dataset.modal);
-
-//                    this.debug(event.target.dataset.modal);
+                    dojo.destroy("modal_" + event.target.dataset.modal);
 
                     this.playData = null;
                 },
