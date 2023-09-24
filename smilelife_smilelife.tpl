@@ -75,19 +75,19 @@
         </div>
     `;
     var jstpl_modal_v2 = `
-        <div class="modal-overlay">
+        <div class="modal-overlay" id="modal_\${id}">
             <div>
                 <h2>\${title}</h2>
-                <div id="modal-selection" class="modal-body"></div>
-                <div id="target-selection" class="modal-body"></div>
-                <div id="modal-btn">
-                    <a href="#" class="action-button bgabutton bgabutton_red" onclick="return false;" id="more_cancel_button">cancel</a>
+                <div id="modal-selection-\${id}" class="modal-body"></div>
+                <div id="target-selection-\${id}" class="modal-body"></div>
+                <div id="modal-btn-\${id}">
+                    <a href="#" class="action-button bgabutton bgabutton_red" onclick="return false;" id="more_cancel_button_\${id}">cancel</a>
                 </div>
             </div>
         </div>
     `;
-    var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button">valid</a>`;
-    var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_valid_button">Play without bonus</a>`;
+    var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button_\${id}">valid</a>`;
+    var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_valid_button_\${id}">Play without bonus</a>`;
     var jstpl_target_with_card = `
         <div id="target_\${targetId}" class="target_selection">
             <div class="target_identification" style="background-color:#\${targetColor}">

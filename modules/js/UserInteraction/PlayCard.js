@@ -13,47 +13,49 @@ define([
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
                 },
-                
-                cardPlay: function(playedCard, action){
+
+                cardPlay: function (playedCard, action) {
+
                     switch (this.getCardType(playedCard)) {
-                            case CARD_TYPE_HEAD_OF_PURCHASING:
-                            case CARD_TYPE_HEAD_OF_SALES:
-                                this.additionalTrocCardModal(playedCard);
-                                break;
-                            case CARD_TYPE_JAIL:
-                                this.jailModal(playedCard);
-                                break;
-                            case CARD_TYPE_DISMISSAL:
-                            case CARD_TYPE_BURN_OUT:
-                            case CARD_TYPE_ACCIDENT:
-                            case CARD_TYPE_SICKNESS:
-                                this.jobAttackModal(playedCard);
-                                break;
-                            case CARD_TYPE_ASTRONAUT:
-                                this.astronautModal(playedCard);
-                                break;
-                            case CARD_TYPE_GRADE_REPETITION:
-                                this.gradeRepetitionModal(playedCard);
-                                break;
-                            case CARD_TYPE_DIVORCE:
-                                this.divorceModal(playedCard);
-                                break;
-                            case CARD_TYPE_INCOME_TAX:
-                                this.incomeTaxModal(playedCard);
-                                break;
-                            default:
-                                if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
-                                    this.attackModal(playedCard);
-                                } else {
-                                    var data = {
-                                        card: playedCard.dataset.id
-                                    };
-                                    this.takeAction(action, data);
-                                }
-                                break;
-                        }
+                        case CARD_TYPE_HEAD_OF_PURCHASING:
+                        case CARD_TYPE_HEAD_OF_SALES:
+                            this.additionalTrocCardModal(playedCard);
+                            break;
+                        case CARD_TYPE_JAIL:
+                            this.jailModal(playedCard);
+                            break;
+                        case CARD_TYPE_DISMISSAL:
+                        case CARD_TYPE_BURN_OUT:
+                        case CARD_TYPE_ACCIDENT:
+                        case CARD_TYPE_SICKNESS:
+                            this.jobAttackModal(playedCard);
+                            break;
+                        case CARD_TYPE_ASTRONAUT:
+                            this.astronautModal(playedCard);
+                            break;
+                        case CARD_TYPE_GRADE_REPETITION:
+                            this.gradeRepetitionModal(playedCard);
+                            break;
+                        case CARD_TYPE_DIVORCE:
+                            this.divorceModal(playedCard);
+                            break;
+                        case CARD_TYPE_INCOME_TAX:
+                            this.incomeTaxModal(playedCard);
+                            break;
+                        default:
+                            if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
+                                this.attackModal(playedCard);
+                            } else {
+                                var data = {
+                                    card: playedCard.dataset.id
+                                };
+                                this.takeAction(action, data);
+                            }
+                            break;
+                    }
+
                 },
-                
+
                 doPlay: function () {
                     var card = dojo.query(".selected");
                     if (1 !== card.length) {
@@ -63,7 +65,7 @@ define([
                     } else {
                         var playedCard = card[0];
 
-                        this.cardPlay(playedCard,'playCard');
+                        this.cardPlay(playedCard, 'playCard');
                     }
                 },
 
