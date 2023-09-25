@@ -33,6 +33,9 @@ define([
                         case CARD_TYPE_ASTRONAUT:
                             this.astronautModal(playedCard);
                             break;
+                        case CARD_TYPE_SHOOTING_STAR:
+                            this.shootingStarModal(playedCard);
+                            break;
                         case CARD_TYPE_GRADE_REPETITION:
                             this.gradeRepetitionModal(playedCard);
                             break;

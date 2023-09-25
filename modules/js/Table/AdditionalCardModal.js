@@ -200,6 +200,15 @@ define([
                     dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
                 },
 
+                shootingStarModal: function (card) {
+                    if (0 === this.discard.length) {
+                        this.showMessage(_('No discarded card'), "error");
+                    } else {
+                        var id = this.generateModale();
+                        this.generateCardSelection(this.discard, card, id);
+                    }
+                },
+
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
 //                    var additionalCard = dojo.query("#more-container .selected");
@@ -228,7 +237,6 @@ define([
                             additionalCards: [searchedDiv.dataset.id],
                             card: playedCard.dataset.id
                         };
-                        this.debug("???", playedCard, searchedDiv, targetChoice);
                         if ('discard' === playedCard.dataset.location) {
                             this.cardPlay(searchedDiv, 'playFromDiscard');
                         } else {
@@ -257,7 +265,7 @@ define([
                     } else {
                         this.debug(this.playData);
                         var data = this.playData;
-                        if(null === data){
+                        if (null === data) {
                             data = {
                                 target: player.id,
                                 card: card.dataset.id
@@ -267,7 +275,7 @@ define([
                             } else {
                                 this.takeAction('playCard', data);
                             }
-                        }else{
+                        } else {
                             data.target = player.id;
                             this.takeAction('playCard', data);
                         }
