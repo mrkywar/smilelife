@@ -208,7 +208,7 @@ define([
                         card: playedCard[0].dataset.id
                     }
 
-                    if ('discard' === card.dataset.location) {
+                    if ('discard' === playedCard[0].dataset.location) {
                         this.takeAction('playFromDiscard', data);
                     } else {
                         this.takeAction('playCard', data);
@@ -255,15 +255,27 @@ define([
                             dojo.addClass(element, "selected");
                         });
                     } else {
-                        var data = {
-                            target: player.id,
-                            card: card.dataset.id
-                        };
-                        if ('discard' === card.dataset.location) {
-                            this.takeAction('playFromDiscard', data);
-                        } else {
+                        this.debug(this.playData);
+                        var data = this.playData;
+                        if(null === data){
+                            data = {
+                                target: player.id,
+                                card: card.dataset.id
+                            };
+                            if ('discard' === card.dataset.location) {
+                                this.takeAction('playFromDiscard', data);
+                            } else {
+                                this.takeAction('playCard', data);
+                            }
+                        }else{
+                            data.target = player.id;
                             this.takeAction('playCard', data);
                         }
+//                        var data = {
+//                            target: player.id,
+//                            card: card.dataset.id
+//                        };
+//                        
                     }
                 },
 
