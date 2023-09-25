@@ -54,7 +54,7 @@ class StudiesCriterionFactory extends CardCriterionFactory {
         $actualLevel = $this->studiesLevelCalculator->compute($table->getStudies());
 
         $studieLevelCriterion = new StudiesLevelCriterion($table, $card);
-        $studieLevelCriterion->setErrorMessage(clienttranslate('You have already reached level ${level} of studies and you cannot exceed 6', ['level' => $actualLevel]));
+        $studieLevelCriterion->setErrorMessage(clienttranslate('You cannot exceed 6 grades of studies'));
 
         //-- Classic Criterion
         $classicCriterion = new CriterionGroup([

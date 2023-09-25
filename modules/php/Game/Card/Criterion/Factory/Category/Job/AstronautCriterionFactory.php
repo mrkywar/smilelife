@@ -5,7 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\GenericCriterion\CardPlayableCriterion;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Table\PlayerTable;
 
@@ -27,19 +27,23 @@ class AstronautCriterionFactory extends JobCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
 
-//        if (null !== $complementaryCards) {
-////            $playableCritrion = new CardPlayableCriterion($complementaryCards[0], $table);
-////            
-////            $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table))
-////                ->setErrorMessage(clienttranslate('the chosen card cannot be played'));
-////            
-////            return new CriterionGroup([
-////                        $criteria,
-////                        $playableCritrion
-////                    ], CriterionGroup::AND_OPERATOR);
-//            
-//        }
+        if (null !== $complementaryCards) {
+            $factory = $this->getComplemataryCardCriterionFactory($complementaryCards[0]);
+
+            $subCriterion = $factory->create($table, $complementaryCards[0], $opponentTable);
+            $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
+
+            return new CriterionGroup([
+                $criteria,
+                $subCriterion
+                    ], CriterionGroup::AND_OPERATOR);
+        }
+
         return $criteria;
+    }
+
+    private function getComplemataryCardCriterionFactory(Card $card): CardCriterionFactory {
+        return $card->getCriterionFactory();
     }
 
 }

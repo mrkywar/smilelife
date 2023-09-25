@@ -10,11 +10,11 @@ define([
                     if (typeof destroy === 'undefined') {
                         destroy = false;
                     }
-                    this.debug('CD-MAIN',card);
+//                    this.debug('CD-MAIN',card);
                     if(typeof card === 'undefined'){
                         card = {};
                     }
-                    this.debug('CD-MAIN',card);
+//                    this.debug('CD-MAIN',card);
                     var searchedDiv = $('card_' + card.id);
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
@@ -45,7 +45,7 @@ define([
                 },
 
                 moveNewCard: function (destinationDivId,fromDivId, card) {
-                    this.debug('CD-MNC',card);
+//                    this.debug('CD-MNC',card);
                     card.idPrefix = 'temp_';
                     var newCardDiv = null;
                     if (card.type && !card.isFlipped) {
@@ -64,7 +64,7 @@ define([
 
                 createNewCard: function (destinationDivId, card) {
                     card.idPrefix = "";
-                    this.debug('CD-CRNC',card);
+//                    this.debug('CD-CRNC',card);
                     var newCardDiv = null;
                     if (card.type && !card.isFlipped) {
                         newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);

@@ -7,15 +7,15 @@ define([
             [],
             {
                 constructor: function () {
-
+                    this.playData = null;
                 },
 
-                generateCardSelection: function (selectableCards, card) {
+                generateCardSelection: function (selectableCards, card, id) {
                     for (var hCardKey in selectableCards) {
                         var hCard = selectableCards[hCardKey];
                         hCard.idPrefix = "more_";
 
-                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection');
+                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
                         var searchedDiv = document.getElementById('card_more_' + hCard.id)
                         var _this = this;
 
@@ -52,7 +52,7 @@ define([
                     }
                 },
 
-                generateTargetStatSelection: function (properties, card) {
+                generateTargetStatSelection: function (properties, card, id) {
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
@@ -73,7 +73,7 @@ define([
                         tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
                         tplData.targetAviableWagesLevel = this.aviableWagesCounters[playerId].getValue();
 
-                        dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection');
+                        dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection-' + id);
 
                         if (Array.isArray(properties)) {
                             for (var kProperty in properties) {
@@ -115,12 +115,12 @@ define([
                             selectableCards.push(hCard);
                         }
                     }
-                    this.generateCardSelection(selectableCards, card);
+                    this.generateCardSelection(selectableCards, card, id);
 
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
 
-                        dojo.place(this.getAttackBtnHtml(player), 'target-selection');
+                        dojo.place(this.getAttackBtnHtml(player), 'target-selection-' + id);
                         var targetDiv = document.getElementById("attack" + player.id + "_button");
                         var _this = this;
 
@@ -157,45 +157,47 @@ define([
 
                 },
 
-                gradeRepetitionModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                generateModale: function () {
+                    var id = this.generateUniqueId();
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET", 'id': id}), 'more-container');
+                    dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
+                    return id;
+                },
 
-                    this.generateTargetStatSelection(['studiesOnly', 'job'], card);
+                gradeRepetitionModal: function (card) {
+                    var id = this.generateModale();
+
+                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id);
                 },
 
                 jobAttackModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                    var id = this.generateModale();
 
-                    this.generateTargetStatSelection('job', card);
+                    this.generateTargetStatSelection('job', card, id);
                 },
 
                 divorceModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                    var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['marriage', 'job'], card);
+                    this.generateTargetStatSelection(['marriage', 'job'], card, id);
                 },
 
                 incomeTaxModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET"}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                    var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['wages', 'job'], card);
+                    this.generateTargetStatSelection(['wages', 'job'], card, id);
                 },
 
                 astronautModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': _('choose a card')}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                    var id = this.generateModale();
 
                     if (0 === this.discard.length) {
-                        dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection');
+                        dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                     } else {
-                        this.generateCardSelection(this.discard, card);
+                        this.generateCardSelection(this.discard, card, id);
                     }
-                    dojo.place(this.format_block('jstpl_btn_nobonus'), 'modal-btn');
-                    dojo.connect($("more_valid_button"), 'onclick', this, 'onModalValidClick');
+                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
+                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
                 },
 
                 onModalValidClick: function () {
@@ -206,7 +208,7 @@ define([
                         card: playedCard[0].dataset.id
                     }
 
-                    if ('discard' === card.dataset.location) {
+                    if ('discard' === playedCard[0].dataset.location) {
                         this.takeAction('playFromDiscard', data);
                     } else {
                         this.takeAction('playCard', data);
@@ -221,23 +223,26 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     } else if (0 === targetChoice.length) {
-                        var data = {
+
+                        this.playData = {
                             additionalCards: [searchedDiv.dataset.id],
                             card: playedCard.dataset.id
                         };
-
-                        if ('discard' === card.dataset.location) {
-                            this.takeAction('playFromDiscard', data);
+                        this.debug("???", playedCard, searchedDiv, targetChoice);
+                        if ('discard' === playedCard.dataset.location) {
+                            this.cardPlay(searchedDiv, 'playFromDiscard');
                         } else {
-                            this.takeAction('playCard', data);
+                            this.cardPlay(searchedDiv, 'playCard');
                         }
                     }
 
                     return false;
                 },
 
-                onModalCancelClick: function () {
-                    $('more-container').innerHTML = "";
+                onModalCancelClick: function (event) {
+                    dojo.destroy("modal_" + event.target.dataset.modal);
+
+                    this.playData = null;
                 },
 
                 onTargetClick: function (player, card) {
@@ -250,15 +255,27 @@ define([
                             dojo.addClass(element, "selected");
                         });
                     } else {
-                        var data = {
-                            target: player.id,
-                            card: card.dataset.id
-                        };
-                        if ('discard' === card.dataset.location) {
-                            this.takeAction('playFromDiscard', data);
-                        } else {
+                        this.debug(this.playData);
+                        var data = this.playData;
+                        if(null === data){
+                            data = {
+                                target: player.id,
+                                card: card.dataset.id
+                            };
+                            if ('discard' === card.dataset.location) {
+                                this.takeAction('playFromDiscard', data);
+                            } else {
+                                this.takeAction('playCard', data);
+                            }
+                        }else{
+                            data.target = player.id;
                             this.takeAction('playCard', data);
                         }
+//                        var data = {
+//                            target: player.id,
+//                            card: card.dataset.id
+//                        };
+//                        
                     }
                 },
 

@@ -2,7 +2,7 @@ define([
     'dojo',
     'dojo/_base/declare',
     'ebg/core/gamegui'
-    
+
 ], function (dojo, declare) {
     return declare(
             'common.tools',
@@ -65,6 +65,19 @@ define([
                     styleSheet.innerText = css;
                     document.head.appendChild(styleSheet);
                 },
+
+                generateUniqueId: function () {
+                    // Obtient l'horodatage actuel en millisecondes depuis l'époque Unix
+                    var timestamp = new Date().getTime();
+
+                    // Génère un nombre aléatoire entre 0 et 99999
+                    var random = Math.floor(Math.random() * 100000);
+
+                    // Concatène l'horodatage et le nombre aléatoire pour créer l'ID unique
+                    var uniqueId = timestamp + "-" + random;
+
+                    return uniqueId;
+                }
 
             }
     );
