@@ -60,6 +60,11 @@ define([
                     #pile_discard{
                         border-radius: ` + size.radius + `px;
                     }
+                    
+                    .modal-overlay .modal-body-container{
+                        max-height: ` + ((2 * size.height + 4 * (10 * size.ratio)) + 40) + `px;
+                    }
+                    
                     /*----------------------------------------------------------
                                 BEGIN - cards display COL 
                     ----------------------------------------------------------*/

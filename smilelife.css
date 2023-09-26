@@ -9,7 +9,6 @@ html{
     user-select: none; /* Standard */	
 }
 
-
 /*--------------------------------------------------------------------------
                 BEGIN - Global Panels
 --------------------------------------------------------------------------*/
@@ -176,7 +175,15 @@ html{
 .modal-overlay .modal-body{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+}
+.modal-overlay .modal-body-container{
+    overflow: auto;
+    width: 90%;
+    margin-left: 5%;
+    border: 2px solid #00000070;
+    border-radius: 8px;
+    background: #00000030;
 }
 .modal-overlay .modal-content {
     padding: 0px;
