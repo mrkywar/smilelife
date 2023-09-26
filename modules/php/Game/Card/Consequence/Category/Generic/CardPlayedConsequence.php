@@ -50,6 +50,8 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
      * @var CardManager
      */
     protected $cardManager;
+    
+    private $origin;
 
     public function __construct(Card $card, PlayerTable $table) {
         parent::__construct($table);
@@ -58,10 +60,13 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $this->cardDecorator = new CardDecorator();
         $this->tableManager = new PlayerTableManager();
         $this->cardManager = new CardManager();
+        
     }
 
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
+        
+        $this->origin = $this->card->getLocation(); 
 
         $this->cardManager->playCard($player, $this->card);
         $this->table->addCard($this->card);
@@ -77,7 +82,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
     protected function generateNotification(Response &$response) {
         $notification = new Notification();
         $player = $this->table->getPlayer();
-        $from = $response->get('from');
+        $from = $this->origin;
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 

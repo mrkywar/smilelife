@@ -53,6 +53,7 @@ define([
                 },
 
                 generateTargetStatSelection: function (properties, card, id) {
+                    var haveChoice = false;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
@@ -89,11 +90,14 @@ define([
                         }
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
+                        this.debug("ACM-GTSS", choices);
+
                         if (0 === choices.length) {
                             dojo.destroy('target_' + player.id);
                         } else {
                             var targetDiv = $("target_" + playerId);
                             var _this = this;
+                            haveChoice = true;
 
                             targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
                                 return function () {
@@ -101,6 +105,11 @@ define([
                                 };
                             })(player, card));
                         }
+                    }
+                    if (!haveChoice) {
+                        this.showMessage(_('No target aviable now'), "error");
+                        dojo.destroy("modal_" + id);
+
                     }
                 },
 
@@ -157,9 +166,12 @@ define([
 
                 },
 
-                generateModale: function () {
+                generateModale: function (title) {
+                    if (typeof title === "undefined") {
+                        title = _('CHOOSE_PLAYER_TARGET');
+                    }
                     var id = this.generateUniqueId();
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET", 'id': id}), 'more-container');
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), 'more-container');
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },
@@ -189,7 +201,7 @@ define([
                 },
 
                 astronautModal: function (card) {
-                    var id = this.generateModale();
+                    var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
 
                     if (0 === this.discard.length) {
                         dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
@@ -198,6 +210,15 @@ define([
                     }
                     dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                     dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
+                },
+
+                shootingStarModal: function (card) {
+                    if (0 === this.discard.length) {
+                        this.showMessage(_('No discarded card'), "error");
+                    } else {
+                        var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
+                        this.generateCardSelection(this.discard, card, id);
+                    }
                 },
 
                 onModalValidClick: function () {
@@ -228,7 +249,6 @@ define([
                             additionalCards: [searchedDiv.dataset.id],
                             card: playedCard.dataset.id
                         };
-                        this.debug("???", playedCard, searchedDiv, targetChoice);
                         if ('discard' === playedCard.dataset.location) {
                             this.cardPlay(searchedDiv, 'playFromDiscard');
                         } else {
@@ -257,7 +277,7 @@ define([
                     } else {
                         this.debug(this.playData);
                         var data = this.playData;
-                        if(null === data){
+                        if (null === data) {
                             data = {
                                 target: player.id,
                                 card: card.dataset.id
@@ -267,7 +287,7 @@ define([
                             } else {
                                 this.takeAction('playCard', data);
                             }
-                        }else{
+                        } else {
                             data.target = player.id;
                             this.takeAction('playCard', data);
                         }
