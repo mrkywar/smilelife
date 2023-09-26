@@ -157,9 +157,12 @@ define([
 
                 },
 
-                generateModale: function () {
+                generateModale: function (title) {
+                    if(typeof title === "undefined"){
+                        title = _('CHOOSE_PLAYER_TARGET');
+                    }
                     var id = this.generateUniqueId();
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_PLAYER_TARGET", 'id': id}), 'more-container');
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), 'more-container');
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },
@@ -189,7 +192,7 @@ define([
                 },
 
                 astronautModal: function (card) {
-                    var id = this.generateModale();
+                    var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
 
                     if (0 === this.discard.length) {
                         dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
@@ -204,7 +207,7 @@ define([
                     if (0 === this.discard.length) {
                         this.showMessage(_('No discarded card'), "error");
                     } else {
-                        var id = this.generateModale();
+                        var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
                         this.generateCardSelection(this.discard, card, id);
                     }
                 },

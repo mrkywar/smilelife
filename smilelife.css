@@ -170,6 +170,14 @@ html{
     z-index: 9999; 
     text-align: center
 }
+.modal-overlay h2{
+    color: white;
+}
+.modal-overlay .modal-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 .modal-overlay .modal-content {
     padding: 0px;
     border-radius: 5px;
