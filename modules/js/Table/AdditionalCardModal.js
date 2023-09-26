@@ -53,6 +53,7 @@ define([
                 },
 
                 generateTargetStatSelection: function (properties, card, id) {
+                    var haveChoice = false;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
@@ -89,11 +90,14 @@ define([
                         }
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
+                        this.debug("ACM-GTSS", choices);
+
                         if (0 === choices.length) {
                             dojo.destroy('target_' + player.id);
                         } else {
                             var targetDiv = $("target_" + playerId);
                             var _this = this;
+                            haveChoice = true;
 
                             targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
                                 return function () {
@@ -101,6 +105,11 @@ define([
                                 };
                             })(player, card));
                         }
+                    }
+                    if (!haveChoice) {
+                        this.showMessage(_('No target aviable now'), "error");
+                        dojo.destroy("modal_" + id);
+
                     }
                 },
 
@@ -158,7 +167,7 @@ define([
                 },
 
                 generateModale: function (title) {
-                    if(typeof title === "undefined"){
+                    if (typeof title === "undefined") {
                         title = _('CHOOSE_PLAYER_TARGET');
                     }
                     var id = this.generateUniqueId();
