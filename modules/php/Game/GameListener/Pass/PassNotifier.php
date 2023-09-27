@@ -1,4 +1,5 @@
 <?php
+
 namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
@@ -9,6 +10,8 @@ use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Game\Request\PassRequest;
 use SmileLife\PlayerAction\ActionType;
+use SmileLife\Table\PlayerTableDecorator;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of PassListener
@@ -29,11 +32,25 @@ class PassNotifier extends EventListener {
      */
     private $cardManager;
 
+    /**
+     * 
+     * @var TableManager
+     */
+    private $tableManager;
+
+    /**
+     * 
+     * @var PlayerTableDecorator
+     */
+    private $tableDecorator;
+
     public function __construct() {
         $this->setMethod("onPass");
 
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
+        $this->tableManager = new PlayerTableManager();
+        $this->tableDecorator = new PlayerTableDecorator();
     }
 
     public function onPass(PassRequest &$request, Response &$response) {
@@ -43,24 +60,27 @@ class PassNotifier extends EventListener {
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
 
+        $table = $this->tableManager->findBy(["id" => $player->getId()]);
+
         $notification->setType("passNotification")
                 ->setText(clienttranslate('${player_name} pass and discard ${cardName}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
+                ->add('table', $this->tableDecorator->decorate($table))
                 ->add('card', $this->cardDecorator->decorate($card))
                 ->add('cardName', (string) $card)
                 ->add('discard', $this->cardDecorator->decorate($discardedCards));
         ;
 
         $response->addNotification($notification);
-        
+
         $cards = $this->cardManager->getPlayerCards($player);
 
         $pNotification = new PersonnalNotification($player);
         $pNotification->setType("handUpdateNotification")
                 ->setText(clienttranslate('Your Hand was updated'))
                 ->set('myHand', $this->cardDecorator->decorate($cards));
-        
+
         $response->addNotification($pNotification);
 
         return $response;
