@@ -114,8 +114,7 @@ define([
                 },
 
                 additionalTrocCardModal: function (card) {
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': "CHOOSE_ADDITIONAL_CARD_IN_HAND"}), 'more-container');
-                    dojo.connect($("more_cancel_button"), 'onclick', this, 'onModalCancelClick');
+                    var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_HAND'));
 
                     var selectableCards = [];
                     for (var hCardKey in this.myHand) {
