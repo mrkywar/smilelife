@@ -134,7 +134,12 @@ class CardManager extends SuperManager {
         $cardInDiscard = $this->getAllCardsInDiscard();
         $this->getSerializer()->setIsForcedArray(false);
 
-        $position = count($cardInDiscard) + 1;
+        if (empty($cardInDiscard)) {
+            $position = 1;
+        } else {
+            $position = $cardInDiscard[count($cardInDiscard)-1]->getLocationArg() + 1;
+//            $position = count($cardInDiscard) + 1;
+        }
 
         $card->setLocation(CardLocation::DISCARD)
                 ->setLocationArg($position)
@@ -143,7 +148,7 @@ class CardManager extends SuperManager {
 
         return $this->update($card);
     }
-    
+
     public function offsideCard(Card &$card, Player $player) {
         $this->getSerializer()->setIsForcedArray(true);
         $cardInDiscard = $this->getAllCardsInOffside();
@@ -173,8 +178,8 @@ class CardManager extends SuperManager {
         $this->getSerializer()->setIsForcedArray(false);
         return $discardedCards;
     }
-    
-    public function getAllCardsInOffside(){
+
+    public function getAllCardsInOffside() {
         $this->getSerializer()->setIsForcedArray(true);
         $discardedCards = $this->getAllCardsInLocation(CardLocation::OFFSIDE);
         $this->getSerializer()->setIsForcedArray(false);
