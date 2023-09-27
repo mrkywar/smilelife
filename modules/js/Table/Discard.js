@@ -21,7 +21,7 @@ define([
                     if (!finded && this.discard.length > 0) {
                         var card = this.discard[this.discard.length - 1];
                         var lastVisible = dojo.query('#card_' + card.id);
-                        this.debug(lastVisible);
+                        
                         if (0 === lastVisible.length) {
                             this.displayCard(card, 'pile_discard');
                         }

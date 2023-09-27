@@ -17,6 +17,7 @@ define([
                     this.displayCard(card, "pile_discard", "pile_" + card.pile + "_" + notif.args.playerId);
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
+                        this.debug("UPD TABLE - Resign.js - notif_discardNotification",notif.args.table);
                         this.myTable = notif.args.table;
                     } else {
                         this.otherTabes[notif.args.playerId] = notif.args.table;

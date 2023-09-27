@@ -26,6 +26,7 @@ define([
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
+                        this.debug("UPD TABLE - Play.js - notif_playNotification",notif.args.table);
                         this.myTable = notif.args.table;
                         
                         $('more-container').innerHTML = "";
