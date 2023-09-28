@@ -82,7 +82,6 @@
                     <div id="modal-selection-\${id}" class="modal-body"></div>
                     <div id="target-selection-\${id}" class="modal-body"></div>
                 </div>
-                <div id="target-outer-selection-\${id}" class="modal-body"></div>
                 <div id="modal-btn-\${id}">
                     <a href="#" class="action-button bgabutton bgabutton_red" onclick="return false;" id="more_cancel_button_\${id}" data-modal="\${id}">cancel</a>
                 </div>

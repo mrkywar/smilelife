@@ -8,6 +8,7 @@ define([
             {
                 constructor: function () {
                     this.playData = null;
+                    this.forcedTarget = false;
                 },
 
                 generateCardSelection: function (selectableCards, card, id) {
@@ -48,6 +49,23 @@ define([
                     if (null !== card) {
                         card.idPrefix = "more_";
                         dojo.place(this.format_block('jstpl_visible_card', card), 'target_card_' + player.id);
+
+                    }
+                },
+                
+                generateTagetSelection: function(id){
+                    for (var playerId in this.gamedatas.tables) {
+                        var player = this.gamedatas.tables[playerId].player;
+
+                        dojo.place(this.getAttackBtnHtml(player), 'target-selection-' + id);
+                        var targetDiv = document.getElementById("attack" + player.id + "_button");
+                        var _this = this;
+
+                        targetDiv.addEventListener('click', (function (targetedPlayer, id) {
+                            return function () {
+                                _this.onMoreTrocClick(targetedPlayer, id);
+                            };
+                        })(player, id));
 
                     }
                 },
@@ -123,22 +141,8 @@ define([
                             selectableCards.push(hCard);
                         }
                     }
+                    this.forcedTarget = true;
                     this.generateCardSelection(selectableCards, card, id);
-
-                    for (var playerId in this.gamedatas.tables) {
-                        var player = this.gamedatas.tables[playerId].player;
-
-                        dojo.place(this.getAttackBtnHtml(player), 'target-outer-selection-' + id);
-                        var targetDiv = document.getElementById("attack" + player.id + "_button");
-                        var _this = this;
-
-                        targetDiv.addEventListener('click', (function (targetedPlayer, id) {
-                            return function () {
-                                _this.onMoreTrocClick(targetedPlayer, id);
-                            };
-                        })(player, id));
-
-                    }
 
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
@@ -158,6 +162,7 @@ define([
                             } else {
                                 this.takeAction('playCard', data);
                             }
+                            this.forcedTarget=false;
                             return;
                         }
                     }
@@ -233,15 +238,15 @@ define([
                     } else {
                         this.takeAction('playCard', data);
                     }
+                    this.forcedTarget=false;
                 },
 
                 onMoreTrocClick: function (player, id) {
-                    var searchedDiv = dojo.query('#modal_' + id + ' .selected');
-                    this.debug(player, searchedDiv.length, '#modal_' + id + ' .selected');
-                    if(0 === searchedDiv.length){
-                        this.showMessage(_('Invalid Card Selection'), "error");
-                    }
-//                    var targetChoice = dojo.query('#target-selection .action-button');
+                    this.debug(this.playData, player, id);
+                    
+                    var data = this.playData;
+                    data.target = player.id;
+                    this.takeAction('playCard', data);
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
@@ -251,7 +256,14 @@ define([
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
-                    } else if (0 === targetChoice.length) {
+                    } else if(this.forcedTarget){
+                        this.playData = {
+                            additionalCards: [additionalCard.id],
+                            card: playedCard.dataset.id
+                        };
+                        var id = this.generateModale();
+                        this.generateTagetSelection(id);
+                    }else if (0 === targetChoice.length) {
 
                         this.playData = {
                             additionalCards: [searchedDiv.dataset.id],
@@ -299,6 +311,7 @@ define([
                             data.target = player.id;
                             this.takeAction('playCard', data);
                         }
+                        this.forcedTarget=false;
 //                        var data = {
 //                            target: player.id,
 //                            card: card.dataset.id
@@ -326,6 +339,7 @@ define([
                         } else {
                             this.takeAction('playCard', data);
                         }
+                        this.forcedTarget=false;
                     }
                 }
 
