@@ -128,13 +128,13 @@ define([
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
 
-                        dojo.place(this.getAttackBtnHtml(player), 'target-selection-' + id);
+                        dojo.place(this.getAttackBtnHtml(player), 'target-outer-selection-' + id);
                         var targetDiv = document.getElementById("attack" + player.id + "_button");
                         var _this = this;
 
                         targetDiv.addEventListener('click', (function (targetedPlayer) {
                             return function () {
-                                _this.onMoreTargetClick(targetedPlayer);
+                                _this.onMoreTrocClick(targetedPlayer);
                             };
                         })(player));
 
