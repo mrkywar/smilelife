@@ -132,11 +132,11 @@ define([
                         var targetDiv = document.getElementById("attack" + player.id + "_button");
                         var _this = this;
 
-                        targetDiv.addEventListener('click', (function (targetedPlayer) {
+                        targetDiv.addEventListener('click', (function (targetedPlayer, id) {
                             return function () {
-                                _this.onMoreTrocClick(targetedPlayer);
+                                _this.onMoreTrocClick(targetedPlayer, id);
                             };
-                        })(player));
+                        })(player, id));
 
                     }
 
@@ -233,6 +233,15 @@ define([
                     } else {
                         this.takeAction('playCard', data);
                     }
+                },
+
+                onMoreTrocClick: function (player, id) {
+                    var searchedDiv = dojo.query('#modal_' + id + ' .selected');
+                    this.debug(player, searchedDiv, '#modal_' + id + ' .selected');
+                    if(0 === searchedDiv.length){
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                    }
+//                    var targetChoice = dojo.query('#target-selection .action-button');
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
