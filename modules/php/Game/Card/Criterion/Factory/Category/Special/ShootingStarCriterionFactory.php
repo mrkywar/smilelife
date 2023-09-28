@@ -36,7 +36,7 @@ class ShootingStarCriterionFactory extends NullCriterionFactory {
             $criteria = new CriterionGroup([
                 $criterion,
                 $invalidedCriterion
-            ]);
+            ], CriterionGroup::AND_OPERATOR);
             $criteria->setErrorMessage(clienttranslate('no card selected'));
             
             return $criteria;

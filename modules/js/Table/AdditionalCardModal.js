@@ -237,7 +237,7 @@ define([
 
                 onMoreTrocClick: function (player, id) {
                     var searchedDiv = dojo.query('#modal_' + id + ' .selected');
-                    this.debug(player, searchedDiv, '#modal_' + id + ' .selected');
+                    this.debug(player, searchedDiv.length, '#modal_' + id + ' .selected');
                     if(0 === searchedDiv.length){
                         this.showMessage(_('Invalid Card Selection'), "error");
                     }

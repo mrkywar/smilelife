@@ -5,6 +5,9 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Special\TrocWithProtectedCardConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -23,11 +26,23 @@ class HeadsJobCriterionFactory extends JobCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
+        $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
         
-        $criteria->addConsequence(new TrocWithProtectedCardConsequence($table, $opponentTable, $complementaryCards[0]));
+        if(null === $opponentTable){
+            // not possible to valid a complementary card is required !
+            $invalidedCriterion = new InversedCriterion(new NullCriterion());
+            $criteria = new CriterionGroup([
+                $criterion,
+                $invalidedCriterion
+            ], CriterionGroup::AND_OPERATOR);
+            $criteria->setErrorMessage(clienttranslate('Please select Targeted Player'));
+            
+            return $criteria;
+        }else{
+            $criterion->addConsequence(new TrocWithProtectedCardConsequence($table, $opponentTable, $complementaryCards[0]));
+        }
 
-        return $criteria;
+        return $criterion;
     }
 
 }
