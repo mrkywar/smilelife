@@ -174,13 +174,12 @@ html{
 }
 .modal-overlay .modal-body{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    flex-direction: row;
 }
 .modal-overlay .modal-body-container{
     overflow: auto;
-    width: 90%;
-    margin-left: 5%;
     border: 2px solid #ffffff70;
     border-radius: 8px;
     background: #ffffff96;

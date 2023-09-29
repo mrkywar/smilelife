@@ -45,10 +45,15 @@ define([
                         case CARD_TYPE_INCOME_TAX:
                             this.incomeTaxModal(playedCard);
                             break;
+                        case CARD_TYPE_TROC:
+                            this.trocModal(playedCard);
+                            break;
                         default:
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
+                                this.debug('PC-CP-DEFAULT - OLD ATTACK MODAL');
                                 this.attackModal(playedCard);
                             } else {
+                                this.debug('PC-CP-DEFAULT - OLD MODAL');
                                 var data = this.playData;
                                 this.playData = null;
                                 if (null === data) {
