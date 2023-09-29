@@ -18,6 +18,12 @@ class TrocSpecialTestInitializer extends TestGameInitializer {
         $oTables = $this->playerTableManager->findBy();
 
         $forcedCards = [];
+        
+        $troc = new Troc();
+        $troc->setLocation(CardLocation::DECK)
+                ->setLocationArg(0); // forced a troc card first card of the deck
+        $forcedCards[] = $troc;
+        
         foreach ($oTables as $oTable) {
             $card = new Troc();
             $card->setLocation(CardLocation::PLAYER_HAND)
