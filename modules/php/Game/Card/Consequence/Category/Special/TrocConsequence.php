@@ -95,7 +95,7 @@ class TrocConsequence extends Consequence {
     }
     
     protected function getGivableCards() {
-        return $this->cardManager->getPlayerCards($player);
+        return $this->cardManager->getPlayerCards($this->getPlayer());
     }
     
     protected function getPlayer():Player {

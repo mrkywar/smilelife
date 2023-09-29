@@ -52,8 +52,8 @@ define([
 
                     }
                 },
-                
-                generateTagetSelection: function(id){
+
+                generateTagetSelection: function (id) {
                     for (var playerId in this.gamedatas.tables) {
                         var player = this.gamedatas.tables[playerId].player;
 
@@ -70,29 +70,42 @@ define([
                     }
                 },
 
-                generateTargetStatSelection: function (properties, card, id) {
+                generatePlayerStat: function (player, card, id) {
+                    var tplData = {};
+
+                    if (this.getHtmlColorLuma(player.color) > 100) {
+                        textColor = "black";
+                    } else {
+                        textColor = "white";
+                    }
+                    tplData.targetId = player.id;
+                    tplData.targetColor = player.color;
+                    tplData.textColor = textColor;
+                    tplData.targetName = player.name;
+
+                    tplData.targetStudiesLevel = this.studyCounters[player.id].getValue();
+                    tplData.targetWagesLevel = this.wagesCounters[player.id].getValue();
+                    tplData.targetAviableWagesLevel = this.aviableWagesCounters[player.id].getValue();
+
+                    dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection-' + id);
+
+                    var targetDiv = $("target_" + player.id);
+                    var _this = this;
+
+                    targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
+                        return function () {
+                            _this.onTargetClick(targetedPlayer, playedCard);
+                        };
+                    })(player, card));
+                },
+
+                generateTargetStatSelection: function (properties, card, id, displayAll) {
                     var haveChoice = false;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
 
-                        var tplData = {};
-
-                        if (this.getHtmlColorLuma(player.color) > 100) {
-                            textColor = "black";
-                        } else {
-                            textColor = "white";
-                        }
-                        tplData.targetId = playerId;
-                        tplData.targetColor = player.color;
-                        tplData.textColor = textColor;
-                        tplData.targetName = player.name;
-
-                        tplData.targetStudiesLevel = this.studyCounters[playerId].getValue();
-                        tplData.targetWagesLevel = this.wagesCounters[playerId].getValue();
-                        tplData.targetAviableWagesLevel = this.aviableWagesCounters[playerId].getValue();
-
-                        dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection-' + id);
+                        this.generatePlayerStat(player, card, id);
 
                         if (Array.isArray(properties)) {
                             for (var kProperty in properties) {
@@ -108,20 +121,11 @@ define([
                         }
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
-                        this.debug("ACM-GTSS", choices);
 
-                        if (0 === choices.length) {
+                        if (0 === choices.length && !displayAll) {
                             dojo.destroy('target_' + player.id);
                         } else {
-                            var targetDiv = $("target_" + playerId);
-                            var _this = this;
                             haveChoice = true;
-
-                            targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
-                                return function () {
-                                    _this.onTargetClick(targetedPlayer, playedCard);
-                                };
-                            })(player, card));
                         }
                     }
                     if (!haveChoice) {
@@ -162,7 +166,7 @@ define([
                             } else {
                                 this.takeAction('playCard', data);
                             }
-                            this.forcedTarget=false;
+                            this.forcedTarget = false;
                             return;
                         }
                     }
@@ -183,25 +187,25 @@ define([
                 gradeRepetitionModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id);
+                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id, false);
                 },
 
                 jobAttackModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection('job', card, id);
+                    this.generateTargetStatSelection('job', card, id, true);
                 },
 
                 divorceModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['marriage', 'job'], card, id);
+                    this.generateTargetStatSelection(['marriage', 'job'], card, id, false);
                 },
 
                 incomeTaxModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['wages', 'job'], card, id);
+                    this.generateTargetStatSelection(['wages', 'job'], card, id, false);
                 },
 
                 astronautModal: function (card) {
@@ -225,6 +229,11 @@ define([
                     }
                 },
 
+                trocModal: function (card) {
+                    var id = this.generateModale();
+                    this.generateTargetStatSelection(null, card, id, true);
+                },
+
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
 //                    var additionalCard = dojo.query("#more-container .selected");
@@ -238,12 +247,12 @@ define([
                     } else {
                         this.takeAction('playCard', data);
                     }
-                    this.forcedTarget=false;
+                    this.forcedTarget = false;
                 },
 
                 onMoreTrocClick: function (player, id) {
                     this.debug(this.playData, player, id);
-                    
+
                     var data = this.playData;
                     data.target = player.id;
                     this.takeAction('playCard', data);
@@ -256,14 +265,14 @@ define([
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#more-container .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
-                    } else if(this.forcedTarget){
+                    } else if (this.forcedTarget) {
                         this.playData = {
                             additionalCards: [additionalCard.id],
                             card: playedCard.dataset.id
                         };
                         var id = this.generateModale();
                         this.generateTagetSelection(id);
-                    }else if (0 === targetChoice.length) {
+                    } else if (0 === targetChoice.length) {
 
                         this.playData = {
                             additionalCards: [searchedDiv.dataset.id],
@@ -289,12 +298,10 @@ define([
                     var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
                     var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
 
-                    if (0 === selectedCard.length) {
-                        dojo.query("#more-container .selected").removeClass("selected");
-                        aviableCard.forEach(function (element) {
-                            dojo.addClass(element, "selected");
-                        });
-                    } else {
+                    this.debug(aviableCard);
+
+                    if (0 !== selectedCard.length || 0 === aviableCard.length) {
+
                         this.debug(this.playData);
                         var data = this.playData;
                         if (null === data) {
@@ -311,12 +318,15 @@ define([
                             data.target = player.id;
                             this.takeAction('playCard', data);
                         }
-                        this.forcedTarget=false;
-//                        var data = {
-//                            target: player.id,
-//                            card: card.dataset.id
-//                        };
-//                        
+                        this.forcedTarget = false;
+
+
+                    } else {
+                        dojo.query("#more-container .selected").removeClass("selected");
+                        aviableCard.forEach(function (element) {
+                            dojo.addClass(element, "selected");
+                        });
+
                     }
                 },
 
@@ -339,7 +349,7 @@ define([
                         } else {
                             this.takeAction('playCard', data);
                         }
-                        this.forcedTarget=false;
+                        this.forcedTarget = false;
                     }
                 }
 

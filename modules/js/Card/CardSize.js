@@ -408,6 +408,9 @@ define([
                     }
                     
                     /*------              MODAL STATS                     ----*/
+                    .target_selection{
+                        min-width: ` + size.width + `px;
+                    }
                     .target_stats_list_item .wage_value{
                         background-position-y: -` + (40 * size.ratio) + `px;
                     }
