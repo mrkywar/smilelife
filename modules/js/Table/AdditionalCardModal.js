@@ -99,7 +99,7 @@ define([
                     })(player, card));
                 },
 
-                generateTargetStatSelection: function (properties, card, id) {
+                generateTargetStatSelection: function (properties, card, id, displayAll) {
                     var haveChoice = false;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
@@ -122,7 +122,7 @@ define([
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
 
-                        if (0 === choices.length) {
+                        if (0 === choices.length && !displayAll) {
                             dojo.destroy('target_' + player.id);
                         } else {
                             haveChoice = true;
@@ -187,25 +187,25 @@ define([
                 gradeRepetitionModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id);
+                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id, false);
                 },
 
                 jobAttackModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection('job', card, id);
+                    this.generateTargetStatSelection('job', card, id, true);
                 },
 
                 divorceModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['marriage', 'job'], card, id);
+                    this.generateTargetStatSelection(['marriage', 'job'], card, id, false);
                 },
 
                 incomeTaxModal: function (card) {
                     var id = this.generateModale();
 
-                    this.generateTargetStatSelection(['wages', 'job'], card, id);
+                    this.generateTargetStatSelection(['wages', 'job'], card, id, false);
                 },
 
                 astronautModal: function (card) {
@@ -231,14 +231,7 @@ define([
 
                 trocModal: function (card) {
                     var id = this.generateModale();
-                    for (var playerId in this.gamedatas.tables) {
-                        var table = this.gamedatas.tables[playerId];
-                        var player = table.player;
-
-                        this.generatePlayerStat(player, card, id);
-                    }
-//                    this.generateTargetStatSelection(null, card, id);
-//                        this.generateCardSelection(this.discard, card, id);generateTargetStatSelection: function (properties, card, id) 
+                    this.generateTargetStatSelection(null, card, id, true);
                 },
 
                 onModalValidClick: function () {
@@ -307,12 +300,8 @@ define([
 
                     this.debug(aviableCard);
 
-                    if (0 === selectedCard.length) {
-                        dojo.query("#more-container .selected").removeClass("selected");
-                        aviableCard.forEach(function (element) {
-                            dojo.addClass(element, "selected");
-                        });
-                    } else {
+                    if (0 !== selectedCard.length || 0 === aviableCard.length) {
+
                         this.debug(this.playData);
                         var data = this.playData;
                         if (null === data) {
@@ -330,11 +319,14 @@ define([
                             this.takeAction('playCard', data);
                         }
                         this.forcedTarget = false;
-//                        var data = {
-//                            target: player.id,
-//                            card: card.dataset.id
-//                        };
-//                        
+
+
+                    } else {
+                        dojo.query("#more-container .selected").removeClass("selected");
+                        aviableCard.forEach(function (element) {
+                            dojo.addClass(element, "selected");
+                        });
+
                     }
                 },
 
