@@ -26,9 +26,11 @@ define([
                             break;
                         case CARD_TYPE_DISMISSAL:
                         case CARD_TYPE_BURN_OUT:
+                            this.jobAttackModal(playedCard);
+                            break;
                         case CARD_TYPE_ACCIDENT:
                         case CARD_TYPE_SICKNESS:
-                            this.jobAttackModal(playedCard);
+                            this.otherAttackModal(playedCard);
                             break;
                         case CARD_TYPE_ASTRONAUT:
                             this.astronautModal(playedCard);

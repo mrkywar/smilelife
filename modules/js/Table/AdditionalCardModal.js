@@ -196,6 +196,13 @@ define([
                     this.generateTargetStatSelection('job', card, id, true);
                 },
 
+                otherAttackModal: function (card) {
+                    var id = this.generateModale();
+
+                    this.generateTargetStatSelection('job', card, id, false);
+
+                },
+
                 divorceModal: function (card) {
                     var id = this.generateModale();
 
