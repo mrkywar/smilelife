@@ -27,16 +27,15 @@ class HaveDoublonAttackActiveCriterion extends PlayerTableCriterion {
 
     public function isValided(): bool {
         foreach ($this->getTable()->getAttacks() as $card) {
-            if ($this->checkAttack($card)) {
+            if (($card instanceof $this->className) && $this->checkAttack($card)) {
                 return true;
             }
         }
-        
         return false;
     }
 
     private function checkAttack(Attack $card) {
-        return !$card->getIsUsed();
+        return (!$card->getIsUsed());
     }
 
 }

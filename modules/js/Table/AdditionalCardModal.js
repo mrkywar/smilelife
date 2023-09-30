@@ -1,3 +1,12 @@
+//-- MODALE : Declare All supported Type
+const MODAL_TYPE_TARGET = "target";
+const MODAL_TYPE_CARD = "card";
+
+
+//-- MODALE : Modale Type
+const MODAL_TITLE_TARGET = 'CHOOSE_PLAYER_TARGET';
+const MODAL_TITLE_CHOICE_DISCARD = 'CHOOSE_ADDITIONAL_CARD_IN_DISCARD';
+
 define([
     "dojo",
     "dojo/_base/declare",
@@ -9,6 +18,33 @@ define([
                 constructor: function () {
                     this.playData = null;
                     this.forcedTarget = false;
+                },
+
+                openModal: function (modalTitle, choiceType, card, properties, displayAllChoices) {
+                    var id = this.generateModale(modalTitle);
+
+                    switch (choiceType) {
+                        case MODAL_TYPE_TARGET:
+                            this.generateTargetStatSelection(properties, card, id, displayAllChoices);
+                            break;
+                        case MODAL_TYPE_CARD :
+                            if (0 === properties.lenth && !displayAll) {
+                                this.showMessage(_('No eligible cards'), "error");
+                            } else {
+                                var id = this.generateModale(_(modalTitle));
+                                if (0 === properties.lenth) {
+                                    dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
+                                } else {
+                                    this.generateCardSelection(properties, card, id);
+                                }
+                                dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
+                                dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
+                            }
+                            break;
+                        default:
+                            this.showMessage(_('Unsupported call : ') + choiceType, "error");
+                            break;
+                    }
                 },
 
                 generateCardSelection: function (selectableCards, card, id) {
@@ -141,7 +177,7 @@ define([
                     var selectableCards = [];
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
-                        if (hCard.id != card.dataset.id) {
+                        if (hCard.id !== intval(card.dataset.id)) {
                             selectableCards.push(hCard);
                         }
                     }
@@ -151,94 +187,11 @@ define([
                     dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
                 },
 
-                jailModal: function (card) {
-                    for (var playerId in this.gamedatas.tables) {
-                        var job = this.gamedatas.tables[playerId].job;
-
-                        if (null !== job && job.type == CARD_TYPE_BANDIT) {
-                            var data = {
-                                target: playerId,
-                                card: card.dataset.id,
-                            };
-
-                            if ('discard' === card.dataset.location) {
-                                this.takeAction('playFromDiscard', data);
-                            } else {
-                                this.takeAction('playCard', data);
-                            }
-                            this.forcedTarget = false;
-                            return;
-                        }
-                    }
-                    this.showMessage(_('No Bandit in game'), "error");
-
-                },
-
                 generateModale: function (title) {
-                    if (typeof title === "undefined") {
-                        title = _('CHOOSE_PLAYER_TARGET');
-                    }
                     var id = this.generateUniqueId();
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), 'more-container');
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
-                },
-
-                gradeRepetitionModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id, false);
-                },
-
-                jobAttackModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection('job', card, id, true);
-                },
-
-                otherAttackModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection('job', card, id, false);
-
-                },
-
-                divorceModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection(['marriage', 'job'], card, id, false);
-                },
-
-                incomeTaxModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection(['wages', 'job'], card, id, false);
-                },
-
-                astronautModal: function (card) {
-                    var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
-
-                    if (0 === this.discard.length) {
-                        dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
-                    } else {
-                        this.generateCardSelection(this.discard, card, id);
-                    }
-                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
-                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
-                },
-
-                shootingStarModal: function (card) {
-                    if (0 === this.discard.length) {
-                        this.showMessage(_('No discarded card'), "error");
-                    } else {
-                        var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
-                        this.generateCardSelection(this.discard, card, id);
-                    }
-                },
-
-                trocModal: function (card) {
-                    var id = this.generateModale();
-                    this.generateTargetStatSelection(null, card, id, true);
                 },
 
                 onModalValidClick: function () {
