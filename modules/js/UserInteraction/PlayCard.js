@@ -35,23 +35,40 @@ define([
                         case CARD_TYPE_ASTRONAUT:
                             this.astronautModal(playedCard);
                             break;
+//                      //--- BEGIN CASES : Choose A Another Card
                         case CARD_TYPE_SHOOTING_STAR:
-                            this.shootingStarModal(playedCard);
+                            var modalTitle = _('CHOOSE_ADDITIONAL_CARD_IN_DISCARD');
+                            var properties = this.discard;
+                            var displayAll = false;
+                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, displayAll);
                             break;
+//                      //--- BEGIN CASES : Choose Targeted Player
                         case CARD_TYPE_GRADE_REPETITION:
-                            this.gradeRepetitionModal(playedCard);
+                            var modalTitle = _('CHOOSE_PLAYER_TARGET');
+                            var properties = ['studiesOnly', 'job'];
+                            var displayAll = false;
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
                         case CARD_TYPE_DIVORCE:
-                            this.divorceModal(playedCard);
+                            var modalTitle = _('CHOOSE_PLAYER_TARGET');
+                            var properties = ['marriage', 'job'];
+                            var displayAll = false;
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
                         case CARD_TYPE_INCOME_TAX:
-                            this.incomeTaxModal(playedCard);
+                            var modalTitle = _('CHOOSE_PLAYER_TARGET');
+                            var properties = ['wages', 'job'];
+                            var displayAll = false;
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
                         case CARD_TYPE_TROC:
-                            this.openModal(MODALE_TITLE_TARGET, MODALE_TYPE_TARGET, playedCard, null, true);
+                            var modalTitle = _('CHOOSE_PLAYER_TARGET');
+                            var properties = null;
+                            var displayAll = true;
+                            this.openModal(modalTitle, MODALE_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
                         case CARD_TYPE_REVENGE:
-                            
+
                             break;
                         default:
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {

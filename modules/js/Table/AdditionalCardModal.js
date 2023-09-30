@@ -1,8 +1,10 @@
 //-- MODALE : Declare All supported Type
-const MODALE_TYPE_TARGET = "target";
+const MODAL_TYPE_TARGET = "target";
+const MODAL_TYPE_CARD = "card";
 
 //-- MODALE : Modale Type
-const MODALE_TITLE_TARGET = 'CHOOSE_PLAYER_TARGET';
+const MODAL_TITLE_TARGET = 'CHOOSE_PLAYER_TARGET';
+const MODAL_TITLE_CHOICE_DISCARD = 'CHOOSE_ADDITIONAL_CARD_IN_DISCARD';
 
 define([
     "dojo",
@@ -21,7 +23,7 @@ define([
                     var id = this.generateModale(_(modalTitle));
 
                     switch (choiceType) {
-                        case MODALE_TYPE_TARGET:
+                        case MODAL_TYPE_TARGET:
                             this.generateTargetStatSelection(playerProperties, card, id, displayAllChoices);
                             break;
                         default:
@@ -200,11 +202,11 @@ define([
                     return id;
                 },
 
-                gradeRepetitionModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id, false);
-                },
+//                gradeRepetitionModal: function (card) {
+//                    var id = this.generateModale();
+//
+//                    this.generateTargetStatSelection(['studiesOnly', 'job'], card, id, false);
+//                },
 
                 jobAttackModal: function (card) {
                     var id = this.generateModale();
@@ -219,17 +221,17 @@ define([
 
                 },
 
-                divorceModal: function (card) {
-                    var id = this.generateModale();
+//                divorceModal: function (card) {
+//                    var id = this.generateModale();
+//
+//                    this.generateTargetStatSelection(['marriage', 'job'], card, id, false);
+//                },
 
-                    this.generateTargetStatSelection(['marriage', 'job'], card, id, false);
-                },
-
-                incomeTaxModal: function (card) {
-                    var id = this.generateModale();
-
-                    this.generateTargetStatSelection(['wages', 'job'], card, id, false);
-                },
+//                incomeTaxModal: function (card) {
+//                    var id = this.generateModale();
+//
+//                    this.generateTargetStatSelection(['wages', 'job'], card, id, false);
+//                },
 
                 astronautModal: function (card) {
                     var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_DISCARD'));
@@ -252,10 +254,10 @@ define([
                     }
                 },
 
-                trocModal: function (card) {
-                    var id = this.generateModale();
-                    this.generateTargetStatSelection(null, card, id, true);
-                },
+//                trocModal: function (card) {
+//                    var id = this.generateModale();
+//                    this.generateTargetStatSelection(null, card, id, true);
+//                },
 
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
