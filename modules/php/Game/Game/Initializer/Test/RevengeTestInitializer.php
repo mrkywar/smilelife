@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
+use SmileLife\Card\Category\Attack\Accident;
 use SmileLife\Card\Category\Special\Revenge;
 use SmileLife\Card\Core\CardLocation;
 
@@ -18,12 +19,21 @@ class RevengeTestInitializer extends TestGameInitializer {
         $oTables = $this->playerTableManager->findBy();
 
         $forcedCards = [];
-        
+
         foreach ($oTables as $oTable) {
             $card = new Revenge();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
+
+            $attack = new Accident();
+            $attack->setLocation(CardLocation::PLAYER_BOARD)
+                    ->setLocationArg($oTable->getId())
+                    ->setIsUsed(true);
+            $forcedPlayed = [$attack];
+            $this->cardManager->add($forcedPlayed);
+
+            $this->playWaitingCards($oTable);
         }
         $this->cardManager->add($forcedCards);
 
