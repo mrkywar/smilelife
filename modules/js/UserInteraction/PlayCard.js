@@ -50,6 +50,9 @@ define([
                         case CARD_TYPE_TROC:
                             this.trocModal(playedCard);
                             break;
+                        case CARD_TYPE_REVENGE:
+                            
+                            break;
                         default:
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
                                 this.debug('PC-CP-DEFAULT - OLD ATTACK MODAL');
