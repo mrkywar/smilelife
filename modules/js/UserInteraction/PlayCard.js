@@ -46,14 +46,14 @@ define([
                         case CARD_TYPE_BURN_OUT:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
                             var properties = ['job'];
-                            var displayAll = true;
+                            var displayAll = false;
                             this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
                         case CARD_TYPE_ACCIDENT:
                         case CARD_TYPE_SICKNESS:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
                             var properties = ['job'];
-                            var displayAll = false;
+                            var displayAll = true;
                             this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
                         case CARD_TYPE_GRADE_REPETITION:
@@ -78,7 +78,7 @@ define([
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
                             var properties = null;
                             var displayAll = true;
-                            this.openModal(modalTitle, MODALE_TYPE_TARGET, playedCard, properties, displayAll);
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
                             break;
 //                      //--- BEGIN CASES : Specific Card (no modale)       
                         case CARD_TYPE_JAIL:

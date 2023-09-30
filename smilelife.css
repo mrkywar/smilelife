@@ -175,7 +175,7 @@ html{
 .modal-overlay .modal-body{
     display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     flex-direction: row;
 }
 .modal-overlay .modal-body-container{
