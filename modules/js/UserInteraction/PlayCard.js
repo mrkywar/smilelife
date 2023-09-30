@@ -48,7 +48,7 @@ define([
                             this.incomeTaxModal(playedCard);
                             break;
                         case CARD_TYPE_TROC:
-                            this.trocModal(playedCard);
+                            this.openModal(MODALE_TITLE_TARGET, MODALE_TYPE_TARGET, playedCard, null, true);
                             break;
                         case CARD_TYPE_REVENGE:
                             

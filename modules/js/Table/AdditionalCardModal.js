@@ -1,3 +1,9 @@
+//-- MODALE : Declare All supported Type
+const MODALE_TYPE_TARGET = "target";
+
+//-- MODALE : Modale Type
+const MODALE_TITLE_TARGET = 'CHOOSE_PLAYER_TARGET';
+
 define([
     "dojo",
     "dojo/_base/declare",
@@ -9,6 +15,19 @@ define([
                 constructor: function () {
                     this.playData = null;
                     this.forcedTarget = false;
+                },
+
+                openModal: function (modalTitle, choiceType, card, playerProperties, displayAllChoices) {
+                    var id = this.generateModale(_(modalTitle));
+
+                    switch (choiceType) {
+                        case MODALE_TYPE_TARGET:
+                            this.generateTargetStatSelection(playerProperties, card, id, displayAllChoices);
+                            break;
+                        default:
+                            this.showMessage(_('Unsupported call : ') + choiceType, "error");
+                            break;
+                    }
                 },
 
                 generateCardSelection: function (selectableCards, card, id) {
@@ -175,9 +194,6 @@ define([
                 },
 
                 generateModale: function (title) {
-                    if (typeof title === "undefined") {
-                        title = _('CHOOSE_PLAYER_TARGET');
-                    }
                     var id = this.generateUniqueId();
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), 'more-container');
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
