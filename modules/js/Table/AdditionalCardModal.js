@@ -143,22 +143,18 @@ define([
 
                         this.generatePlayerStat(player, card, id);
 
-                        if (Array.isArray(properties)) {
-                            for (var kProperty in properties) {
-                                var property = properties[kProperty];
+                        for (var kProperty in properties) {
+                            var property = properties[kProperty];
 
-                                var pCard = this.getPropertyValue(table, property);
+                            var pCard = this.getPropertyValue(table, property);
 
-                                this.generateTargetSelectionCard(pCard, player);
-                            }
-                        } else {
-                            var pCard = this.getPropertyValue(table, properties);
                             this.generateTargetSelectionCard(pCard, player);
                         }
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
+                        this.debug(choices.length, properties.length);
 
-                        if (0 === choices.length && !displayAll) {
+                        if (!displayAll && choices.length === properties.length) {
                             dojo.destroy('target_' + player.id);
                         } else {
                             haveChoice = true;

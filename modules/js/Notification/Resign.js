@@ -17,8 +17,10 @@ define([
                     this.displayCard(card, "pile_discard", "pile_" + card.pile + "_" + notif.args.playerId);
 
                     if (parseInt(notif.args.playerId) === this.player_id) {
+                        this.debug('UPD my');
                         this.myTable = notif.args.table;
                     } else {
+                        this.debug('UPD other');
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                     }
 
