@@ -12,14 +12,15 @@ define([
                     var card = notif.args.card;
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
+//                    this.debug("notif", cardDest, card);
                     this.displayCard(card, cardDest, cardDest);
                 },
 
                 notif_playNotification: function (notif) {
                     var card = notif.args.card;
-                    
+
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
-                    
+
                     this.discard = notif.args.discard;
                     this.updateDiscard();
 
@@ -27,7 +28,7 @@ define([
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
                         this.myTable = notif.args.table;
-                        
+
                         $('more-container').innerHTML = "";
                     } else {
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;

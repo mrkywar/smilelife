@@ -1,4 +1,4 @@
-const ANNIMATION_TIMER = 200;
+const ANNIMATION_TIMER = 400;
 
 
 define([
@@ -62,15 +62,15 @@ define([
                         ['wageLevelUpdate', ANNIMATION_TIMER],
                         ['resignNotification', ANNIMATION_TIMER],
                         ['usedFlirtNotification', ANNIMATION_TIMER],
-                        ['doublonFlirtNotification', ANNIMATION_TIMER/1.2],
-                        ['discardNotification',ANNIMATION_TIMER],
-                        ['turnpassNotification',ANNIMATION_TIMER],
-                        ['offsideNotification',ANNIMATION_TIMER],
-                        ['handChangedNotification',ANNIMATION_TIMER],
-                        ['trocNotification',ANNIMATION_TIMER],
-                        ['maxCardUpdateNotification',ANNIMATION_TIMER],
-                        ['handUpdateNotification',ANNIMATION_TIMER]
-                        
+                        ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],
+                        ['discardNotification', ANNIMATION_TIMER],
+                        ['turnpassNotification', ANNIMATION_TIMER * 2],
+                        ['offsideNotification', ANNIMATION_TIMER],
+                        ['handChangedNotification', ANNIMATION_TIMER],
+                        ['trocNotification', ANNIMATION_TIMER],
+                        ['maxCardUpdateNotification', ANNIMATION_TIMER],
+                        ['handUpdateNotification', ANNIMATION_TIMER]
+
                     ]
                     notifs.forEach(function (notif) {
                         dojo.subscribe(notif[0], _this, "notif_".concat(notif[0]));
