@@ -28,7 +28,7 @@ abstract class CardUsedConsequence extends PlayerTableConsequence {
      * @var Card
      */
     protected $card;
-    
+
     /**
      * 
      * @var CardDecorator
@@ -37,7 +37,7 @@ abstract class CardUsedConsequence extends PlayerTableConsequence {
 
     public function __construct(Card $card = null, PlayerTable $table) {
         parent::__construct($table);
-        
+
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
         $this->card = $card;
@@ -46,18 +46,17 @@ abstract class CardUsedConsequence extends PlayerTableConsequence {
     public function execute(Response &$response) {
         $this->card->setIsUsed(true);
         $this->cardManager->update($this->card);
-        
+
         $response->addNotification($this->generateNotification());
     }
-    
+
+    protected function getCard(): Card {
+        return $this->card;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
-    
+
     abstract protected function generateNotification(): Notification;
-
-//    public function getUsedCard(): Card {
-//        return $this->usedCard;
-//    }
-
 }
