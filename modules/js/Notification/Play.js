@@ -30,6 +30,7 @@ define([
                         
                         $('more-container').innerHTML = "";
                     } else {
+                        this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.targetId, true);
                     }
 
