@@ -146,7 +146,7 @@ define([
                     var selectableCards = [];
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
-                        if (hCard.id !== intval(card.dataset.id)) {
+                        if (hCard.id !== parseInt(card.dataset.id)) {
                             selectableCards.push(hCard);
                         }
                     }
