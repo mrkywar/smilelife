@@ -40,7 +40,8 @@ class DiscardLastWageConsequence extends DiscardConsequence {
                 ->add('card', $this->cardDecorator->decorate($this->card))
                 ->add('cardName', (string) $this->card)
                 ->add('cardValue', $this->card->getAmount())
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+                ->add('discard', $this->cardDecorator->decorate($discardedCards))
+                ->add('table', $this->tableDecorator->decorate($this->table));
         ;
 
         $response->addNotification($notification);
