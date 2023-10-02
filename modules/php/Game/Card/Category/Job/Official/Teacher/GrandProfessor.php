@@ -45,7 +45,7 @@ class GrandProfessor extends Teacher implements BaseGame {
     }
 
     public function getMaxSalary(): int {
-        return 2;
+        return 3;
     }
 
     public function getRequiredStudies(): int {
