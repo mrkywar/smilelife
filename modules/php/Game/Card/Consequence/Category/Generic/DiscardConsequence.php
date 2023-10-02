@@ -9,6 +9,7 @@ use SmileLife\Card\CardManager;
 use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
+use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -47,11 +48,18 @@ class DiscardConsequence extends Consequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
+    
+    /**
+     * 
+     * @var PlayerTableDecorator
+     */
+    protected $tableDecorator;
 
     public function __construct(Card $card, PlayerTable $table) {
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
         $this->cardDecorator = new CardDecorator();
+         $this->tableDecorator = new PlayerTableDecorator();
 
         $this->table = $table;
         $this->card = $card;
@@ -78,7 +86,8 @@ class DiscardConsequence extends Consequence {
                 ->add('playerId', $player->getId())
                 ->add('card', $this->cardDecorator->decorate($this->card))
                 ->add('cardName', (string) $this->card)
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+                ->add('discard', $this->cardDecorator->decorate($discardedCards))
+                ->add('table', $this->tableDecorator->decorate($this->table));
         ;
 
         $response->addNotification($notification);
