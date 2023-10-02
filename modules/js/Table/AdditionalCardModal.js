@@ -20,22 +20,22 @@ define([
                     this.forcedTarget = false;
                 },
 
-                openModal: function (modalTitle, choiceType, card, properties, displayAllChoices) {
+                openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
                     var id = this.generateModale(modalTitle);
 
                     switch (choiceType) {
                         case MODAL_TYPE_TARGET:
-                            this.generateTargetStatSelection(properties, card, id, displayAllChoices);
+                            this.generateTargetStatSelection(requiredProperties, optionnalProperties, card, id);
                             break;
                         case MODAL_TYPE_CARD :
-                            if (0 === properties.lenth && !displayAll) {
+                            if (0 === requiredProperties.lenth && !optionnalProperties) {
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
                                 var id = this.generateModale(_(modalTitle));
-                                if (0 === properties.lenth) {
+                                if (0 === requiredProperties.lenth) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
-                                    this.generateCardSelection(properties, card, id);
+                                    this.generateCardSelection(requiredProperties, card, id);
                                 }
                                 dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
@@ -135,28 +135,21 @@ define([
                     })(player, card));
                 },
 
-                generateTargetStatSelection: function (properties, card, id, displayAll) {
+                generateTargetStatSelection: function (requiredProperties, optionalProperties, card, id) {
                     var haveChoice = false;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
 
                         this.generatePlayerStat(player, card, id);
-
-                        for (var kProperty in properties) {
-                            var property = properties[kProperty];
-
-                            var pCard = this.getPropertyValue(table, property);
-
-                            this.generateTargetSelectionCard(pCard, player);
-                        }
+                        this.generatePropertiesChoices(requiredProperties, table, player);
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
-                        this.debug(choices.length, properties.length);
 
-                        if (!displayAll && choices.length === properties.length) {
+                        if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id);
                         } else {
+                            this.generatePropertiesChoices(optionalProperties, table, player);
                             haveChoice = true;
                         }
                     }
@@ -164,6 +157,16 @@ define([
                         this.showMessage(_('No target aviable now'), "error");
                         dojo.destroy("modal_" + id);
 
+                    }
+                },
+
+                generatePropertiesChoices: function (properties, table, player) {
+                    for (var kProperty in properties) {
+                        var property = properties[kProperty];
+
+                        var pCard = this.getPropertyValue(table, property);
+
+                        this.generateTargetSelectionCard(pCard, player);
                     }
                 },
 

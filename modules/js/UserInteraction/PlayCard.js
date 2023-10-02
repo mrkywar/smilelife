@@ -48,40 +48,46 @@ define([
                         case CARD_TYPE_DISMISSAL:
                         case CARD_TYPE_BURN_OUT:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
-                            var properties = ['job'];
                             var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
+                            var requiredProperties = ['job'];
+                            var optionnalProperties = null;
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
                         case CARD_TYPE_ACCIDENT:
                         case CARD_TYPE_SICKNESS:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
-                            var properties = ['job'];
                             var displayAll = true;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
+                            var requiredProperties = null;
+                            var optionnalProperties = ['job'];
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
                         case CARD_TYPE_GRADE_REPETITION:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
-                            var properties = ['studiesOnly', 'job'];
                             var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
+                            var requiredProperties = ['studiesOnly'];
+                            var optionnalProperties = ['job'];
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
                         case CARD_TYPE_DIVORCE:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
-                            var properties = ['marriage', 'job'];
                             var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
+                            var requiredProperties = ['marriage'];
+                            var optionnalProperties = ['job'];
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
                         case CARD_TYPE_INCOME_TAX:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
-                            var properties = ['wages', 'job'];
                             var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
+                            var requiredProperties = ['wages'];
+                            var optionnalProperties = ['job'];
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
                         case CARD_TYPE_TROC:
                             var modalTitle = _('CHOOSE_PLAYER_TARGET');
-                            var properties = null;
                             var displayAll = true;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, properties, displayAll);
+                            var requiredProperties = null;
+                            var optionnalProperties = null;
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
 //                      //--- BEGIN CASES : Specific Card (no modale)       
                         case CARD_TYPE_JAIL:
