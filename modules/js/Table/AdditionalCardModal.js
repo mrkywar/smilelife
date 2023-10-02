@@ -21,10 +21,9 @@ define([
                 },
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
-                    var id = this.generateModale(modalTitle);
-
                     switch (choiceType) {
                         case MODAL_TYPE_TARGET:
+                            var id = this.generateModale(modalTitle);
                             this.generateTargetStatSelection(requiredProperties, optionnalProperties, card, id);
                             break;
                         case MODAL_TYPE_CARD :
