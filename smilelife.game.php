@@ -138,7 +138,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new SmileLife\Game\Initializer\GameInitializer();
+        $this->gameInitializer = new GameInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -280,6 +280,7 @@ class SmileLife extends Table {
 //////////// Game state actions
 ////////////
     use NextPlayerTrait;
+    use PlayCardTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
       The action method of state X is called everytime the current game state is set to X.

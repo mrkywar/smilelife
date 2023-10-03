@@ -75,9 +75,11 @@ class GameInitializer {
         ]);
         $scores = [];
 
-        foreach ($oPlayers as $player) {
+        $oTables = $this->playerTableManager->findBy();
+        foreach ($oTables as $table) {
+            $player = $table->getPlayer();
             $cardsInHand = $this->cardManager->getPlayerCards($player);
-            $scores[$player->getId()] = $this->scoreCalculator->compute($cardsInHand);
+            $scores[$player->getId()] = $this->scoreCalculator->compute($table);
         }
         
         arsort($scores);
