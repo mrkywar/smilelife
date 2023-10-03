@@ -20,6 +20,12 @@ trait PlayersScoresTrait {
     public function stGamePlayersScores() {
         $playersTables = $this->tableManager->findBy();
         $this->scoreCalculator = new ScoreCalculator();
+        
+        foreach ($playersTables as $table){
+            $this->computeScore($table);
+        }
+        
+        die("EoG");
 
 //        foreach ($playersTables as $table){
 //            $score = 0;
@@ -37,6 +43,8 @@ trait PlayersScoresTrait {
         $player = $table->getPlayer();
         $player->setScore($score);
         $this->playerManager->update($player);
+        
+        var_dump($score);
     }
 
 //    private function getLastActivePassTurn(PlayerTable $table): ?Attack {
