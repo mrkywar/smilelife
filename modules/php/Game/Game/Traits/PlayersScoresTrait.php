@@ -25,17 +25,8 @@ trait PlayersScoresTrait {
             $this->computeScore($table);
         }
         
-        die("EoG");
+        $this->gamestate->nextState();
 
-//        foreach ($playersTables as $table){
-//            $score = 0;
-//            $player = 
-//        }
-//
-//            $this->gamestate->nextState("playerPass");
-//        } else {
-//            $this->gamestate->nextState("newTurn");
-//        }
     }
 
     private function computeScore(PlayerTable $table){
@@ -44,20 +35,8 @@ trait PlayersScoresTrait {
         $player->setScore($score);
         $this->playerManager->update($player);
         
-        var_dump($score);
+//        var_dump($score);
     }
-
-//    private function getLastActivePassTurn(PlayerTable $table): ?Attack {
-//        $attacks = $table->getAttacks();
-//
-//        foreach ($attacks as $attack) {
-//            if ($attack->getPassTurn() > 0) {
-//                return $attack;
-//            }
-//        }
-//
-//        return null;
-//    }
 //
 //    private function jailDiscarding(Jail $passCard, Bandit $job, PlayerTable $table) {
 //        $tableDecorator = new PlayerTableDecorator();
