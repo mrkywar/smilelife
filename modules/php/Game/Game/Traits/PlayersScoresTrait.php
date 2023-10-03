@@ -20,23 +20,31 @@ trait PlayersScoresTrait {
     public function stGamePlayersScores() {
         $playersTables = $this->tableManager->findBy();
         $this->scoreCalculator = new ScoreCalculator();
-        
-        foreach ($playersTables as $table){
+
+        foreach ($playersTables as $table) {
             $this->computeScore($table);
         }
-        
-        $this->gamestate->nextState();
 
+        $this->gamestate->nextState();
     }
 
-    private function computeScore(PlayerTable $table){
+    private function computeScore(PlayerTable $table) {
         $score = $this->scoreCalculator->compute($table);
         $player = $table->getPlayer();
         $player->setScore($score);
         $this->playerManager->update($player);
-        
+
+        $notification->setType("scoreNotification")
+                ->setText(clienttranslate('${player_name} have {score} points'))
+                ->add('player_name', $player->getName())
+                ->add('playerId', $player->getId())
+                ->add('score', $score);
+        ;
+        $this->sendNotification($notification);
+
 //        var_dump($score);
     }
+
 //
 //    private function jailDiscarding(Jail $passCard, Bandit $job, PlayerTable $table) {
 //        $tableDecorator = new PlayerTableDecorator();
