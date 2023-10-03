@@ -20,7 +20,7 @@ define([
                     if (
                             (parseInt(notif.args.playerId) === this.player_id && null !== this.myTable.marriage)
                             ||
-                            (parseInt(notif.args.playerId) !== this.player_id && null !== this.otherTabes[notif.args.playerId].marriage)
+                            (parseInt(notif.args.playerId) !== this.player_id && null !== this.gamedatas.tables[notif.args.playerId].marriage)
                             ) {
                         pileSize = pileSize + 1;
                     }

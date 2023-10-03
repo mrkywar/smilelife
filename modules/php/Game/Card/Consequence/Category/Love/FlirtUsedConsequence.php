@@ -36,7 +36,7 @@ class FlirtUsedConsequence extends CardUsedConsequence {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('cardName', $this->child->getText1())
-                ->add('card', $this->cardDecorator->decorate($this->getUsedCard()));
+                ->add('card', $this->cardDecorator->decorate($this->getCard()));
 
         return $notification;
     }

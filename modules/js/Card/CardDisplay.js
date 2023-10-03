@@ -11,22 +11,25 @@ define([
                         destroy = false;
                     }
 //                    this.debug('CD-MAIN',card);
-                    if(typeof card === 'undefined'){
+                    if (typeof card === 'undefined') {
                         card = {};
                     }
 //                    this.debug('CD-MAIN',card);
                     var searchedDiv = $('card_' + card.id);
                     if (searchedDiv && fromDivId) {
+//                        this.debug('CD-DC-MoReq', card);
                         //-- Move Request
                         this.moveExistingCard(searchedDiv, destinationDivId, destroy, card);
                     } else if (fromDivId) {
+//                        this.debug('CD-DC-NeCard', card, searchedDiv, fromDivId);
                         //-- Move a new Card (draw or opponent action)
                         this.moveNewCard(destinationDivId, fromDivId, card);
                     } else if (!searchedDiv) {
+//                        this.debug('CD-DC-NoMove', card);
                         //-- display without move
                         this.createNewCard(destinationDivId, card);
                     } else {
-                        this.debug("DC other display", card, searchedDiv);
+                        this.debug("CD-DC-OverDisp", card, searchedDiv);
                         var newCardDiv = dojo.place(searchedDiv, destinationDivId);
                     }
 
@@ -44,7 +47,7 @@ define([
                     }
                 },
 
-                moveNewCard: function (destinationDivId,fromDivId, card) {
+                moveNewCard: function (destinationDivId, fromDivId, card) {
 //                    this.debug('CD-MNC',card);
                     card.idPrefix = 'temp_';
                     var newCardDiv = null;

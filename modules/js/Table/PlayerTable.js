@@ -63,7 +63,6 @@ define([
                     this.displayTablePiles(gamedatas.mytable);
 
                     //Display of opponents' game tables
-                    this.otherTabes = gamedatas.tables;
                     for (var playerId in gamedatas.tables) {
                         var table = gamedatas.tables[playerId];
                         var player = table.player;

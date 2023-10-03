@@ -41,7 +41,8 @@ class IllegalJobDiscardConsequence extends DisardJobConsequence {
                 ->add('card', $this->cardDecorator->decorate($this->card))
                 ->add('cardName', (string) $this->card)
                 ->add('policemanName', (string) $this->policeman)
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+                ->add('discard', $this->cardDecorator->decorate($discardedCards))
+                ->add('table', $this->tableDecorator->decorate($this->table));;
         ;
 
         $response->addNotification($notification);

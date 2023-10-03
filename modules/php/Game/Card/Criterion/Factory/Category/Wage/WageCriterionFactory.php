@@ -34,11 +34,7 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $jobCriterion->setErrorMessage(clienttranslate('You must have a job to collect a salary'));
 
         $wageCriterion = new WageCriterion($table, $card);
-        $max = 0;
-        if (null !== $table->getJob()) {
-            $max = $table->getJob()->getMaxSalary();
-        }
-        $wageCriterion->setErrorMessage(clienttranslate('Your current Job only allows you to play salary level ${max} maximum', ['max' => $max]));
+        $wageCriterion->setErrorMessage(clienttranslate('Your job does not allow you to collect a salary of this amount'));
 
         //-- NationalMedalCriterion
         $nationalJobCriterion = parent::create($table, $card);

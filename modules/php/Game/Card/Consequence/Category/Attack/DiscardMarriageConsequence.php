@@ -40,7 +40,8 @@ class DiscardMarriageConsequence extends DiscardConsequence {
                 ->add('card', $this->cardDecorator->decorate($this->card))
                 ->add('cardName', (string) $this->card)
                 ->add('location', $this->card->getText1())
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+                ->add('discard', $this->cardDecorator->decorate($discardedCards))
+                ->add('table', $this->tableDecorator->decorate($this->table));
         ;
 
         $response->addNotification($notification);

@@ -20,22 +20,21 @@ define([
                     this.forcedTarget = false;
                 },
 
-                openModal: function (modalTitle, choiceType, card, properties, displayAllChoices) {
-                    var id = this.generateModale(modalTitle);
-
+                openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
                     switch (choiceType) {
                         case MODAL_TYPE_TARGET:
-                            this.generateTargetStatSelection(properties, card, id, displayAllChoices);
+                            var id = this.generateModale(modalTitle);
+                            this.generateTargetStatSelection(requiredProperties, optionnalProperties, card, id);
                             break;
                         case MODAL_TYPE_CARD :
-                            if (0 === properties.lenth && !displayAll) {
+                            if (0 === requiredProperties.lenth && !optionnalProperties) {
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
                                 var id = this.generateModale(_(modalTitle));
-                                if (0 === properties.lenth) {
+                                if (0 === requiredProperties.lenth) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
-                                    this.generateCardSelection(properties, card, id);
+                                    this.generateCardSelection(requiredProperties, card, id);
                                 }
                                 dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
@@ -135,32 +134,21 @@ define([
                     })(player, card));
                 },
 
-                generateTargetStatSelection: function (properties, card, id, displayAll) {
+                generateTargetStatSelection: function (requiredProperties, optionalProperties, card, id) {
                     var haveChoice = false;
                     for (var playerId in this.gamedatas.tables) {
                         var table = this.gamedatas.tables[playerId];
                         var player = table.player;
 
                         this.generatePlayerStat(player, card, id);
-
-                        if (Array.isArray(properties)) {
-                            for (var kProperty in properties) {
-                                var property = properties[kProperty];
-
-                                var pCard = this.getPropertyValue(table, property);
-
-                                this.generateTargetSelectionCard(pCard, player);
-                            }
-                        } else {
-                            var pCard = this.getPropertyValue(table, properties);
-                            this.generateTargetSelectionCard(pCard, player);
-                        }
+                        this.generatePropertiesChoices(requiredProperties, table, player);
 
                         var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
 
-                        if (0 === choices.length && !displayAll) {
+                        if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id);
                         } else {
+                            this.generatePropertiesChoices(optionalProperties, table, player);
                             haveChoice = true;
                         }
                     }
@@ -171,13 +159,23 @@ define([
                     }
                 },
 
+                generatePropertiesChoices: function (properties, table, player) {
+                    for (var kProperty in properties) {
+                        var property = properties[kProperty];
+
+                        var pCard = this.getPropertyValue(table, property);
+
+                        this.generateTargetSelectionCard(pCard, player);
+                    }
+                },
+
                 additionalTrocCardModal: function (card) {
                     var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_HAND'));
 
                     var selectableCards = [];
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
-                        if (hCard.id !== intval(card.dataset.id)) {
+                        if (hCard.id !== parseInt(card.dataset.id)) {
                             selectableCards.push(hCard);
                         }
                     }

@@ -28,7 +28,8 @@ class OffsideConsequence extends DiscardConsequence {
                 ->add('playerId', $player->getId())
                 ->add('cards', [$this->cardDecorator->decorate($this->card)])
                 ->add('cardName', (string) $this->card)
-                ->add('offside', $this->cardDecorator->decorate($discardedCards));
+                ->add('offside', $this->cardDecorator->decorate($discardedCards))
+                ->add('table', $this->tableDecorator->decorate($this->table));;
         ;
 
         $response->addNotification($notification);

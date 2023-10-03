@@ -18,7 +18,7 @@ define([
                         this.myTable = notif.args.table;
                     } else {
                         this.displayCard(card, "pile_discard", "playerpanel_" + notif.args.playerId, true);
-                        this.otherTabes[notif.args.playerId] = notif.args.table;
+                        this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                     }
                     this.discard = notif.args.discard;
 

@@ -174,7 +174,7 @@ html{
 }
 .modal-overlay .modal-body{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-around;
     flex-direction: row;
 }
