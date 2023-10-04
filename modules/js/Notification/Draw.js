@@ -10,7 +10,6 @@ define([
             {
 
                 notif_drawNotification: function (notif) {
-                    this.debug('DRAW', notif);
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         var card = notif.args.card;
                         this.displayCard(card, "myhand", "card_deck");

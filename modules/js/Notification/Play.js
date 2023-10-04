@@ -17,8 +17,8 @@ define([
                 },
 
                 notif_playNotification: function (notif) {
-                    this.debug('PLAY', notif);
                     var card = notif.args.card;
+                    this.debug(this.scoreCtrl);
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 
