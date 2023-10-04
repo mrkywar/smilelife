@@ -37,14 +37,13 @@ trait PlayersScoresTrait {
 
         $notification = new Notification();
         $notification->setType("scoreNotification")
-                ->setText(clienttranslate('${player_name} have ${score} points'))
+                ->setText(clienttranslate('${player_name} have ${score} simles'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('score', $score);
         ;
         $this->sendNotification($notification);
 
-//        var_dump($score);
     }
 
 //

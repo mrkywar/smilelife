@@ -17,6 +17,7 @@ define([
                 },
 
                 notif_playNotification: function (notif) {
+                    this.debug('PLAY', notif);
                     var card = notif.args.card;
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
@@ -36,7 +37,7 @@ define([
                     }
 
                     if (notif.args.fromHand) {
-                        this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.targetId].getValue() - 1);
+                        this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     } else {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
                     }
