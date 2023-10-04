@@ -2,6 +2,7 @@
 
 namespace SmileLife\Game\Traits;
 
+use Core\Notification\Notification;
 use SmileLife\Game\Calculator\ScoreCalculator;
 use SmileLife\Table\PlayerTable;
 
@@ -34,8 +35,9 @@ trait PlayersScoresTrait {
         $player->setScore($score);
         $this->playerManager->update($player);
 
+        $notification = new Notification();
         $notification->setType("scoreNotification")
-                ->setText(clienttranslate('${player_name} have {score} points'))
+                ->setText(clienttranslate('${player_name} have ${score} points'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('score', $score);

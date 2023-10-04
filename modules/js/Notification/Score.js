@@ -10,8 +10,8 @@ define([
             {
 
                 notif_scoreNotification: function (notif) {
-                    this.debug(notif);
-                    this.scoreCtrl[playerId].toValue(notif.args.score);
+                    this.debug("NOT-Score--nsn",notif);
+//                    this.scoreCtrl[playerId].toValue(notif.args.score);
                 },
 
             }
