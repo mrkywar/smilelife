@@ -32,7 +32,8 @@ trait PlayersScoresTrait {
     private function computeScore(PlayerTable $table) {
         $score = $this->scoreCalculator->compute($table);
         $player = $table->getPlayer();
-        $player->setScore($score);
+        $player->setScore($score)
+                ->setScoreTieBreaker(count($table->getAttackIds()));
         $this->playerManager->update($player);
 
         $notification = new Notification();
@@ -43,7 +44,6 @@ trait PlayersScoresTrait {
                 ->add('score', $score);
         ;
         $this->sendNotification($notification);
-
     }
 
 //

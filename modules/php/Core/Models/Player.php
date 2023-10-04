@@ -72,6 +72,13 @@ class Player extends Model {
 
     /**
      * 
+     * @var int
+     * @ORM\Column{"type":"integer", "name":"player_score_aux"}
+     */
+    private $scoreTieBreaker;
+
+    /**
+     * 
      * @var bool
      * @ORM\Column{"type":"boolean", "name":"player_zombie"}
      */
@@ -139,6 +146,10 @@ class Player extends Model {
         return $this->isEliminated;
     }
 
+    public function getScoreTieBreaker(): int {
+        return $this->scoreTieBreaker;
+    }
+
     public function setId(?int $id) {
         $this->id = $id;
         return $this;
@@ -189,6 +200,9 @@ class Player extends Model {
         return $this;
     }
 
-
+    public function setScoreTieBreaker(int $scoreTieBreaker) {
+        $this->scoreTieBreaker = $scoreTieBreaker;
+        return $this;
+    }
 
 }
