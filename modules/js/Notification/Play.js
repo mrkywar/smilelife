@@ -18,8 +18,6 @@ define([
 
                 notif_playNotification: function (notif) {
                     var card = notif.args.card;
-//                    this.debug(this.scoreCtrl.toValue(55));
-                    this.displayScoring("player_score_" + this.player_id, '000000', 50, 200);
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 

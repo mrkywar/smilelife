@@ -11,6 +11,9 @@ define([
 
                 notif_scoreNotification: function (notif) {
                     this.debug("NOT-Score--nsn",notif,this.scoreCtrl);
+                    
+                    this.displayScoring("player_score_" + notif.args.playerId, '000000', notif.args.score, 200);
+                    this.scoreCtrl[this.player_id].setValue(notif.args.score);
 //                    this.scoreCtrl[playerId].toValue(notif.args.score);
                 },
 
