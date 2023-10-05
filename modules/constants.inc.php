@@ -47,6 +47,7 @@ define('ST_NEW_ROUND', 10);
 define('ST_END_ROUND', 11);
 
 define('ST_NEXT_PLAYER', 20);
+define('ST_GAME_SCORE', 21);
 
 define('ST_PLAYER_TAKE_CARD', 30);
 define('ST_PLAYER_PLAY_CARD', 31);

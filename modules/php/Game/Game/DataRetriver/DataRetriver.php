@@ -74,10 +74,18 @@ class DataRetriver {
         if (!empty($offside)) {
             $rawOffside = $this->cardDecorator->decorate($offside);
         }
+        
+        $this->cardManager->getSerializer()->setIsForcedArray(true);
+        $deckCard = $this->cardManager->getAllCardsInDeck();
+        $this->cardManager->getSerializer()->setIsForcedArray(false);
+        $countDeck = 0;
+        if(!empty($deckCard)){
+            $countDeck = count($deckCard);
+        }
 
         $result = [
             "myhand" => $this->cardDecorator->decorate($rawHand),
-            "deck" => count($this->cardManager->getAllCardsInDeck()),
+            "deck" => $countDeck,
             "discard" => $rawDiscard,
             "offside" => $rawOffside
         ];

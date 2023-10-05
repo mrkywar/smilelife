@@ -30,14 +30,15 @@ class GameProgressionRetriver {
 
     public function retrive() {
         $game = $this->gameManager->findBy();
-        $this->cardManager->getSerializer()->setIsForcedArray(true);
-        $remingingCards = count($this->cardManager->getAllCardsInDeck());
+        $this->cardManager->getSerializer()->setIsForcedArray(true);       
+        $remingingCards = $this->cardManager->getAllCardsInDeck();
         $this->cardManager->getSerializer()->setIsForcedArray(false);
 
         $maxCards = $game->getAviableCards();
+//        var_dump($maxCards, $remingingCards);die;
 
         return intval(100 * round(
-                        ($maxCards - $remingingCards) / $maxCards
+                        ($maxCards - count($remingingCards)) / $maxCards
         ));
     }
 

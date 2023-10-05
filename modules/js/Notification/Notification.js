@@ -9,6 +9,7 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Draw.js',
     g_gamethemeurl + 'modules/js/Notification/Pass.js',
     g_gamethemeurl + 'modules/js/Notification/Play.js',
+    g_gamethemeurl + 'modules/js/Notification/Score.js',
     g_gamethemeurl + 'modules/js/Notification/Consequence.js',
     g_gamethemeurl + 'modules/js/Notification/volontaryDivorce.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Studies.js',
@@ -30,7 +31,8 @@ define([
                 smilelife.notification.card.flirts,
                 smilelife.notification.card.wage,
                 smilelife.notification.card.jobs,
-                smilelife.notification.hand.events
+                smilelife.notification.hand.events,
+                smilelife.notification.score
             ],
             {
                 constructor: function () {
@@ -64,12 +66,13 @@ define([
                         ['usedFlirtNotification', ANNIMATION_TIMER],
                         ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],
                         ['discardNotification', ANNIMATION_TIMER],
-                        ['turnpassNotification', ANNIMATION_TIMER * 2],
+                        ['turnpassNotification', ANNIMATION_TIMER * 2.2],
                         ['offsideNotification', ANNIMATION_TIMER],
                         ['handChangedNotification', ANNIMATION_TIMER],
                         ['trocNotification', ANNIMATION_TIMER],
                         ['maxCardUpdateNotification', ANNIMATION_TIMER],
-                        ['handUpdateNotification', ANNIMATION_TIMER]
+                        ['handUpdateNotification', ANNIMATION_TIMER],
+                        ['scoreNotification',0]
 
                     ]
                     notifs.forEach(function (notif) {

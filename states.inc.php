@@ -74,8 +74,8 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
-            "playPass" =>  ST_NEXT_PLAYER,
-            "zombiePass" => ST_NEXT_PLAYER,
+            "playPass" => ST_NEXT_PLAYER,
+            "zombiePass" => ST_NEXT_PLAYER
         ]
     ]
 ];
@@ -88,9 +88,18 @@ $gameGameStates = [
         "action" => "stNextPlayer",
         "transitions" => [
             "newTurn" => ST_PLAYER_TAKE_CARD,
-            "playerPass" => ST_NEXT_PLAYER
+            "playerPass" => ST_NEXT_PLAYER,
+            "endOfGame" => ST_GAME_SCORE,
         ],
     ],
+    
+    ST_GAME_SCORE => [
+        "name" => "gameScore",
+        "description" => "",
+        "type" => "game",
+        "action" => "stGamePlayersScores",
+        "transitions" => ["" => ST_GAME_END]
+    ]
 ];
 
 $machinestates = $basicGameStates + $playerActionsGameStates + $gameGameStates;
