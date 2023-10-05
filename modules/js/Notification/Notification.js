@@ -66,7 +66,7 @@ define([
                         ['usedFlirtNotification', ANNIMATION_TIMER],
                         ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],
                         ['discardNotification', ANNIMATION_TIMER],
-                        ['turnpassNotification', ANNIMATION_TIMER * 2.2],
+                        ['turnpassNotification', ANNIMATION_TIMER * 2.5],
                         ['offsideNotification', ANNIMATION_TIMER],
                         ['handChangedNotification', ANNIMATION_TIMER],
                         ['trocNotification', ANNIMATION_TIMER],
