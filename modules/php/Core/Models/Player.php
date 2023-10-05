@@ -100,6 +100,7 @@ class Player extends Model {
         $this->isEliminated = false;
         $this->isZombie = false;
         $this->score = 0;
+        $this->scoreTieBreaker = 0;
     }
 
     /* -------------------------------------------------------------------------
