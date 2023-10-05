@@ -23,8 +23,15 @@ trait NextPlayerTrait {
 
         $playerTable = $this->tableManager->findBy(["id" => $newPlayerId]);
         $passCard = $this->getLastActivePassTurn($playerTable);
-
-        if (null !== $passCard) {
+        
+        $this->cardManager->getSerializer()->setIsForcedArray(true);
+        $deckCard = $this->cardManager->getAllCardsInDeck();
+        $this->cardManager->getSerializer()->setIsForcedArray(false);
+        
+        
+        if(0 === count($deckCard)){
+            $this->gamestate->nextState("endOfGame");
+        }elseif (null !== $passCard) {
             $tableDecorator = new PlayerTableDecorator();
             $cardDecorator = new CardDecorator();
             $player = $playerTable->getPlayer();

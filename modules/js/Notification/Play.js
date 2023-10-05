@@ -36,7 +36,7 @@ define([
                     }
 
                     if (notif.args.fromHand) {
-                        this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.targetId].getValue() - 1);
+                        this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     } else {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
                     }
