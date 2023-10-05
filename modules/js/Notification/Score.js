@@ -10,9 +10,11 @@ define([
             {
 
                 notif_scoreNotification: function (notif) {
-                    this.displayScoring("player_score_" + notif.args.playerId, '000000', notif.args.score, 200);
-                    this.scoreCtrl[this.player_id].setValue(notif.args.score);
-//                    this.scoreCtrl[playerId].toValue(notif.args.score);
+                    for (var playerId in notif.args.scores) {
+                        var score = notif.args.scores[playerId];
+                        this.displayScoring("player_score_" + playerId, '000000', score, 200);
+                        this.scoreCtrl[playerId].toValue(score);
+                    }
                 },
 
             }
