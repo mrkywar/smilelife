@@ -93,6 +93,9 @@ class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
     }
 
     private function checkTableDoublonFlirt(PlayerTable $table): ?Flirt {
+        if(null !== $table->getMarriage()){
+            return null;
+        }
         $classic = $this->getDoublonFlirt($table->getLastFlirt());
         if (null !== $classic) {
             return $classic;
