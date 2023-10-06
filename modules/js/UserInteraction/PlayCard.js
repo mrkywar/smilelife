@@ -34,9 +34,9 @@ define([
                         case CARD_TYPE_HEAD_OF_SALES:
                             this.forcedTarget = true;
                             var modalTitle = _('CHOOSE_ADDITIONAL_CARD_IN_HAND');
-                            var properties = this.getHandCardsExceptPlayed(playedCard);
-                            var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, displayAll);
+                            var properties = this.myHand
+                            var optionnalProperties = playedCard;
+                            this.openModal(modalTitle, MODAL_TYPE_CARD_AND_TARGET, playedCard, properties, optionnalProperties);
                             break;
                         case CARD_TYPE_REVENGE:
                             var modalTitle = _('CHOOSE_AN_SUFFERED_ATTACK');
@@ -51,7 +51,7 @@ define([
                             var displayAll = false;
                             var requiredProperties = ['job'];
                             var optionnalProperties = null;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, optionnalProperties);
                             break;
                         case CARD_TYPE_ACCIDENT:
                         case CARD_TYPE_SICKNESS:

@@ -1,6 +1,7 @@
 //-- MODALE : Declare All supported Type
 const MODAL_TYPE_TARGET = "target";
 const MODAL_TYPE_CARD = "card";
+const MODAL_TYPE_CARD_AND_TARGET = "cardAndTarget";
 
 
 //-- MODALE : Modale Type
@@ -40,10 +41,24 @@ define([
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
                             }
                             break;
+                        case MODAL_TYPE_CARD_AND_TARGET:
+                            this.debug("ACM-OM-ccat",card, requiredProperties, optionnalProperties);
+                            break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;
                     }
+                },
+                
+                filterProperty: function(properties, filter){
+                    var selectableCards = [];
+                    for (var hCardKey in properties) {
+                        var hCard = properties[hCardKey];
+                        if (hCard.id !== parseInt(filter.dataset.id)) {
+                            selectableCards.push(hCard);
+                        }
+                    }
+                    return selectableCards;
                 },
 
                 generateCardSelection: function (selectableCards, card, id) {
