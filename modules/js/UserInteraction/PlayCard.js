@@ -36,7 +36,7 @@ define([
                             var modalTitle = _('CHOOSE_ADDITIONAL_CARD_IN_HAND');
                             var properties = this.myHand
                             var optionnalProperties = playedCard;
-                            this.openModal(modalTitle, MODAL_TYPE_CARD_AND_TARGET, playedCard, properties, optionnalProperties);
+                            this.openModal(modalTitle, MODAL_TYPE_TROC, playedCard, properties, optionnalProperties);
                             break;
                         case CARD_TYPE_REVENGE:
                             var modalTitle = _('CHOOSE_AN_SUFFERED_ATTACK');
