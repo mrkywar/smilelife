@@ -51,7 +51,7 @@ define([
                             var displayAll = false;
                             var requiredProperties = ['job'];
                             var optionnalProperties = null;
-                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, optionnalProperties);
+                            this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
                         case CARD_TYPE_ACCIDENT:
                         case CARD_TYPE_SICKNESS:
