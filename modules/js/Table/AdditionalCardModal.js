@@ -110,11 +110,11 @@ define([
                         var targetDiv = document.getElementById("attack" + player.id + "_button");
                         var _this = this;
 
-                        targetDiv.addEventListener('click', (function (targetedPlayer, id) {
+                        targetDiv.addEventListener('click', (function (targetedPlayer) {
                             return function () {
-                                _this.onMoreTargetClick(targetedPlayer, id);
+                                _this.onMoreTargetClick(targetedPlayer);
                             };
-                        })(player, id));
+                        })(player));
 
                     }
                 },
@@ -286,7 +286,7 @@ define([
                     }
                 },
 
-                onMoreTargetClick: function (player, card) {
+                onMoreTargetClick: function (player) {
                     var playedCard = dojo.query("#game_container .selected");
                     var additionalCard = dojo.query("#more-container .selected");
 
@@ -294,9 +294,10 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query("#more-container .selected").removeClass("selected");
                     } else {
+                        var card = playedCard[0];
                         var data = {
                             target: player.id,
-                            card: playedCard[0].dataset.id,
+                            card: card.dataset.id,
                             additionalCards: [additionalCard[0].dataset.id]
                         };
 
