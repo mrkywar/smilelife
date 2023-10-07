@@ -379,12 +379,7 @@ class PlayerTable extends Model {
     }
 
     public function addStudy(Studies $card) {
-        $criteria = new JobEffectCriteria($this, LimitlessStudiesEffect::class);
-        if ($criteria->isValided()) {
-            array_unshift($this->studiesIds, $card->getId());
-        } else {
-            $this->studiesIds[] = $card->getId();
-        }
+        $this->studiesIds[] = $card->getId();
 
         return $this;
     }
