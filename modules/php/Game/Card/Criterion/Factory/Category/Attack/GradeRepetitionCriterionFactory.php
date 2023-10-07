@@ -11,7 +11,7 @@ use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\UsedCardCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Criterion\StudiesCriterion\HaveStudiesCriterion;
 use SmileLife\Table\PlayerTable;
@@ -40,7 +40,7 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
         $haveStudieCriterion->setErrorMessage(clienttranslate("Targeted player have no studies"));
 
         $lastStudies = $opponentTable->getLastStudies();
-        $lastStudieCriterion = new IsNotFlippedCardCriterion($lastStudies);
+        $lastStudieCriterion = new InversedCriterion(new UsedCardCriterion($lastStudies));
         $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is flipped"));
 
         $criteria = new CriterionGroup([
