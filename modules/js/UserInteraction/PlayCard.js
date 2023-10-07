@@ -41,8 +41,8 @@ define([
                         case CARD_TYPE_REVENGE:
                             var modalTitle = _('CHOOSE_AN_SUFFERED_ATTACK');
                             var properties = this.myTable.attacks;
-                            var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, displayAll);
+                            var optionnalProperties = playedCard;
+                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, optionnalProperties);
                             break;
 //                      //--- BEGIN CASES : Choose Targeted Player
                         case CARD_TYPE_DISMISSAL:
