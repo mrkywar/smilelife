@@ -2,6 +2,7 @@
 
 namespace SmileLife\PlayerAction;
 
+use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Game\Request\PlayCardRequest;
@@ -12,17 +13,12 @@ use SmileLife\Game\Request\PlayCardRequest;
  */
 trait PlayCardTrait {
 
-    public function actionPlayCard($cardId, $targetId = null, $additionalIds = null) {
-        self::checkAction('playCard');
-
+    protected function doPlayCard(Card $card, $targetId = null, $additionalIds = null) {
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
         ]);
-        $card = $this->cardManager->findBy([
-            "id" => $cardId
-        ]);
-
         $target = $targetId;
+
         if (null !== $targetId) {
             $target = $this->playerManager->findOne([
                 "id" => $targetId
@@ -44,11 +40,22 @@ trait PlayCardTrait {
             $this->applyResponse($response);
         } catch (CardException $e) {
             throw new \BgaVisibleSystemException($e->getMessage());
-        } /*catch (\Exception $e) {
-            throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
         }
-        //        var_dump("here ?", $response);
-        //        die(); */
+    }
+
+    public function actionPlayCard($cardId, $targetId = null, $additionalIds = null) {
+        self::checkAction('playCard');
+
+        $card = $this->cardManager->findBy([
+            "id" => $cardId
+        ]);
+
+        $this->doPlayCard($card, $targetId, $additionalIds );
+        /* catch (\Exception $e) {
+          throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
+          }
+          //        var_dump("here ?", $response);
+          //        die(); */
     }
 
 }
