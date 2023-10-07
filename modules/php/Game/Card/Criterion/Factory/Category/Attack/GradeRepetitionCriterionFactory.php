@@ -41,7 +41,7 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
 
         $lastStudies = $opponentTable->getLastStudies();
         $lastStudieCriterion = new InversedCriterion(new UsedCardCriterion($lastStudies));
-        $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is flipped"));
+        $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is protected"));
 
         $criteria = new CriterionGroup([
             $noJobCriterion,

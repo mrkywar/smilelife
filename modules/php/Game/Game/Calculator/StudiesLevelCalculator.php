@@ -27,7 +27,7 @@ class StudiesLevelCalculator {
     }
 
     private function computeOne(Studies $card) {
-        return $card->getLevel();
+        return (!$card->getIsUsed()) ? $card->getLevel() : 0;
     }
 
 }
