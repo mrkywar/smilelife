@@ -64,10 +64,10 @@ class action_smilelife extends APP_GameAction {
 
     public function cardRequirement() {
         self::setAjaxMode();
-        
+
         $cardId = self::getArg("card", AT_posint, true);
         $this->game->cardRequirement($cardId);
-        
+
         self::ajaxResponse();
     }
 
@@ -85,8 +85,9 @@ class action_smilelife extends APP_GameAction {
         self::setAjaxMode();
 
         $targetId = self::getArg("target", AT_posint);
+        $additionalIds = self::getArg("additionalCards", AT_numberlist);
 
-        $this->game->actionPlayFromDiscard($targetId);
+        $this->game->actionPlayFromDiscard($targetId, $additionalIds);
 
         self::ajaxResponse();
     }

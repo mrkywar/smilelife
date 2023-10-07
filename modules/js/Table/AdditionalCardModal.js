@@ -1,11 +1,7 @@
 //-- MODALE : Declare All supported Type
 const MODAL_TYPE_TARGET = "target";
 const MODAL_TYPE_CARD = "card";
-
-
-//-- MODALE : Modale Type
-const MODAL_TITLE_TARGET = 'CHOOSE_PLAYER_TARGET';
-const MODAL_TITLE_CHOICE_DISCARD = 'CHOOSE_ADDITIONAL_CARD_IN_DISCARD';
+const MODAL_TYPE_TROC = "troc";
 
 define([
     "dojo",
@@ -25,12 +21,13 @@ define([
                         case MODAL_TYPE_TARGET:
                             var id = this.generateModale(modalTitle);
                             this.generateTargetStatSelection(requiredProperties, optionnalProperties, card, id);
+                            return id;
                             break;
                         case MODAL_TYPE_CARD :
                             if (0 === requiredProperties.lenth && !optionnalProperties) {
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
-                                var id = this.generateModale(_(modalTitle));
+                                var id = this.generateModale(modalTitle);
                                 if (0 === requiredProperties.lenth) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
@@ -38,12 +35,29 @@ define([
                                 }
                                 dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
+                                return id;
                             }
+                            break;
+                        case MODAL_TYPE_TROC:
+                            var cardChoices = this.filterProperty(requiredProperties, optionnalProperties);
+                            this.forcedTarget = true;
+                            this.openModal(modalTitle, MODAL_TYPE_CARD, card, cardChoices);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;
                     }
+                },
+
+                filterProperty: function (properties, filter) {
+                    var selectableCards = [];
+                    for (var hCardKey in properties) {
+                        var hCard = properties[hCardKey];
+                        if (hCard.id !== parseInt(filter.dataset.id)) {
+                            selectableCards.push(hCard);
+                        }
+                    }
+                    return selectableCards;
                 },
 
                 generateCardSelection: function (selectableCards, card, id) {
@@ -96,11 +110,11 @@ define([
                         var targetDiv = document.getElementById("attack" + player.id + "_button");
                         var _this = this;
 
-                        targetDiv.addEventListener('click', (function (targetedPlayer, id) {
+                        targetDiv.addEventListener('click', (function (targetedPlayer) {
                             return function () {
-                                _this.onMoreTrocClick(targetedPlayer, id);
+                                _this.onMoreTargetClick(targetedPlayer);
                             };
-                        })(player, id));
+                        })(player));
 
                     }
                 },
@@ -169,22 +183,6 @@ define([
                     }
                 },
 
-                additionalTrocCardModal: function (card) {
-                    var id = this.generateModale(_('CHOOSE_ADDITIONAL_CARD_IN_HAND'));
-
-                    var selectableCards = [];
-                    for (var hCardKey in this.myHand) {
-                        var hCard = this.myHand[hCardKey];
-                        if (hCard.id !== parseInt(card.dataset.id)) {
-                            selectableCards.push(hCard);
-                        }
-                    }
-                    this.forcedTarget = true;
-                    this.generateCardSelection(selectableCards, card, id);
-
-                    dojo.connect($("additionalCancel_button"), 'onclick', this, 'onModalCloseClick');
-                },
-
                 generateModale: function (title) {
                     var id = this.generateUniqueId();
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), 'more-container');
@@ -228,7 +226,7 @@ define([
                             additionalCards: [additionalCard.id],
                             card: playedCard.dataset.id
                         };
-                        var id = this.generateModale();
+                        var id = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
                         this.generateTagetSelection(id);
                     } else if (0 === targetChoice.length) {
 
@@ -288,7 +286,7 @@ define([
                     }
                 },
 
-                onMoreTargetClick: function (player, card) {
+                onMoreTargetClick: function (player) {
                     var playedCard = dojo.query("#game_container .selected");
                     var additionalCard = dojo.query("#more-container .selected");
 
@@ -296,9 +294,10 @@ define([
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query("#more-container .selected").removeClass("selected");
                     } else {
+                        var card = playedCard[0];
                         var data = {
                             target: player.id,
-                            card: playedCard[0].dataset.id,
+                            card: card.dataset.id,
                             additionalCards: [additionalCard[0].dataset.id]
                         };
 

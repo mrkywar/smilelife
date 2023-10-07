@@ -34,15 +34,15 @@ define([
                         case CARD_TYPE_HEAD_OF_SALES:
                             this.forcedTarget = true;
                             var modalTitle = _('CHOOSE_ADDITIONAL_CARD_IN_HAND');
-                            var properties = this.getHandCardsExceptPlayed(playedCard);
-                            var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, displayAll);
+                            var properties = this.myHand
+                            var optionnalProperties = playedCard;
+                            this.openModal(modalTitle, MODAL_TYPE_TROC, playedCard, properties, optionnalProperties);
                             break;
                         case CARD_TYPE_REVENGE:
                             var modalTitle = _('CHOOSE_AN_SUFFERED_ATTACK');
                             var properties = this.myTable.attacks;
-                            var displayAll = false;
-                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, displayAll);
+                            var optionnalProperties = playedCard;
+                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, properties, optionnalProperties);
                             break;
 //                      //--- BEGIN CASES : Choose Targeted Player
                         case CARD_TYPE_DISMISSAL:

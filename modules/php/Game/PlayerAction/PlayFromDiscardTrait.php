@@ -12,7 +12,7 @@ use SmileLife\Game\Request\PlayCardRequest;
  */
 trait PlayFromDiscardTrait {
 
-    public function actionPlayFromDiscard($targetId = null) {
+    public function actionPlayFromDiscard($targetId = null, $additionalIds = null) {
         self::checkAction('playFormDiscard');
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
@@ -24,24 +24,8 @@ trait PlayFromDiscardTrait {
         } else if ($card->getDiscarderId() === $player->getId()) {
             throw new \BgaUserException("Last discarded card is yours");
         }
-        
-        $target = $targetId;
-        if (null !== $targetId) {
-            $target = $this->playerManager->findOne([
-                "id" => $targetId
-            ]);
-        }
 
-        try {
-            $request = new PlayCardRequest($player, $card, $target);
-            $response = $this->requester->send($request);
-            $this->applyResponse($response);
-        } catch (CardException $e) {
-            throw new \BgaUserException($e->getMessage());
-        } /*catch (Exception $e) {
-            throw new \BgaUserException("EXCEPTION" . $e->getMessage());
-        }
-//        die('TODO Next Dev iteration');*/
+        $this->doPlayCard($card, $targetId, $additionalIds);
     }
 
 }

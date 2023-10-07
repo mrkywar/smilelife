@@ -74,9 +74,6 @@ define([
                     } else {
                         newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
                     }
-                    if (card.isUsed) {
-                        dojo.addClass(newCardDiv, "usedcard");
-                    }
 
                     this.updateDiscard();
                     dojo.connect(newCardDiv, 'onclick', (evt) => {

@@ -60,10 +60,7 @@ abstract class Travel extends Acquisition {
      * ---------------------------------------------------------------------- */
 
     public function __toString() {
-        return clienttranslate('${cardTitle} to ${travelDestination}', [
-            'cardTitle' => $this->getTitle(),
-            'travelDestination' => $this->getSubtitle()
-        ]);
+        return $this->getTitle();
     }
 
 }

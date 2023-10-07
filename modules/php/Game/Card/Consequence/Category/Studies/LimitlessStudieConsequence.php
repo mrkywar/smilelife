@@ -15,7 +15,7 @@ class LimitlessStudieConsequence extends StudiesConsequence {
 
     public function execute(Response &$response) {
         $card = $this->getStudies();
-        $card->setIsFlipped(true);
+        $card->setIsUsed(true);
 
         $cm = new CardManager();
         $cm->update($card);

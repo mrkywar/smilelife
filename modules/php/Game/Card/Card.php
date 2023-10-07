@@ -335,7 +335,8 @@ abstract class Card extends Model {
             "text2" => $this->getText2(),
             "isFlipped" => $this->getIsFlipped(),
             "isUsed" => $this->getIsUsed(),
-            "additionalsDatas"=> $this->getAdditionalsDatas()
+            "additionalsDatas"=> $this->getAdditionalsDatas(),
+            "usedClass" => ($this->getIsUsed())?"usedcard":"",
         ];
     }
 

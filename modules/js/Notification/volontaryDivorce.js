@@ -32,7 +32,6 @@ define([
                     }else{
                         var cardMarriage =this.gamedatas.tables[notif.args.playerId].marriage;
                     }
-                    this.debug(cardMarriage);
                     this.displayCard(cardMarriage, mariageDest, mariageDest);
 
                     this.boardCounter[notif.args.playerId].adultery.setValue(0);
