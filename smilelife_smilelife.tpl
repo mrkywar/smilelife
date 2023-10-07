@@ -37,9 +37,9 @@
 
 <script type="text/javascript">
     var jstpl_visible_card = `
-        <div id="card_\${idPrefix}\${id}" class="cardontable selectable" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
+        <div id="card_\${idPrefix}\${id}" class="cardontable selectable \${usedClass}" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
             <div class="card_sides">
-                <div class="card-side front" id="front_card\${idPrefix}_\${id}">
+                <div class="card-side front" id="front_card\${idPrefix}\${id}">
                     <span class="card_text card_title">\${title}</span>
                     <span class="card_text card_subtitle">\${subtitle}</span>
                     <span class="card_text card_text1">\${text1}</span>
@@ -53,7 +53,7 @@
     var jstpl_hidden_card = `
         <div id="card\${idPrefix}_\${id}" class="cardontable selectable">
             <div class="card_sides">
-                <div class="card-side front" id="front_card\${idPrefix}_\${id}">
+                <div class="card-side front" id="front_card\${idPrefix}\${id}">
                 </div>
                 <div class="card-side back"></div>
             </div>
