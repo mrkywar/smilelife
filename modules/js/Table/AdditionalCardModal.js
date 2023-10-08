@@ -33,8 +33,11 @@ define([
                                 } else {
                                     this.generateCardSelection(requiredProperties, card, id);
                                 }
-                                dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
-                                dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalValidClick');
+                                
+                                if (CARD_TYPE_SHOOTING_STAR !== parseInt(card.dataset.type)) {
+                                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
+                                    dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
+                                }
                                 return id;
                             }
                             break;
