@@ -12,11 +12,11 @@ use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
 
 /**
- * Description of DivorceOnAdulteryFlirtsConsequence
+ * Description of DivorceOnAdulteryChildsConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DivorceOnAdulteryFlirtsConsequence extends Consequence {
+class DivorceOnAdulteryChildsConsequence extends Consequence {
 
     /**
      * 
@@ -53,26 +53,24 @@ class DivorceOnAdulteryFlirtsConsequence extends Consequence {
         $table = $this->table;
         $player = $table->getPlayer();
 
-        $cardsId = $table->getAdulteryFlirtIds();
-        $flirts = $table->getAdulteryFlirts();
-        foreach ($flirts as $flirt) {
-            $flirt->setIsFlipped(true);
-            $this->cardManager->update($flirt);
+        $cardsId = $table->getChildIds();
+        $childs = $table->getChilds();
+        foreach ($childs as $child) {
+            $table->removeCard($child);
         }
-        $table->resignAdultery();
 
         $this->tableManager->updateTable($table);
 
-        $notificationFlirt = new Notification();
+        $notificationChild = new Notification();
 
-        $notificationFlirt->setType("flirtsAdultery")
-                ->setText(clienttranslate('all the adulterous flirtations of ${player_name} are preserved'))
+        $notificationChild->setType("childsAdultery")
+                ->setText(clienttranslate(' ${player_name} loses ${count} children for cheating'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cards', $cardsId)
+                ->add('count', count($cardsId))
         ;
 
-        $response->addNotification($notificationFlirt);
+        $response->addNotification($notificationChild);
     }
 
 }

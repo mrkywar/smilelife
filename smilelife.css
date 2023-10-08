@@ -449,9 +449,6 @@ html{
 {
     filter: brightness(0.3);
 }
-.cardontable.actionrequired{
-    filter: invert(50%);
-}
 .modal-overlay .cardontable[data-category="attack"].usedcard{
     filter: none;
 }
