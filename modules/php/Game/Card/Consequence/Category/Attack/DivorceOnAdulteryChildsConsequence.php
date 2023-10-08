@@ -68,6 +68,7 @@ class DivorceOnAdulteryChildsConsequence extends Consequence {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('count', count($cardsId))
+                ->add('cards', $this->cardDecorator->decorate($childs))
         ;
 
         $response->addNotification($notificationChild);

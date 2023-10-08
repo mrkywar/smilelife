@@ -57,6 +57,7 @@ define([
 
                     var notifs = [
                         ['flirtsAdultery', ANNIMATION_TIMER],
+                        ['childsAdultery', ANNIMATION_TIMER],
                         ['drawNotification', ANNIMATION_TIMER],
                         ['passNotification', ANNIMATION_TIMER],
                         ['playNotification', ANNIMATION_TIMER],

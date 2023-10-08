@@ -69,7 +69,7 @@ class DivorceOnAdulteryFlirtsConsequence extends Consequence {
                 ->setText(clienttranslate('all the adulterous flirtations of ${player_name} are preserved'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cards', $cardsId)
+                ->add('cards', $this->cardDecorator->decorate($flirts))
         ;
 
         $response->addNotification($notificationFlirt);
