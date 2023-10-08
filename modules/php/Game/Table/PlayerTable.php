@@ -665,7 +665,7 @@ class PlayerTable extends Model {
     }
 
     public function resignAdultery() {
-        $this->flirtIds = array_merge($this->adulteryFlirtIds, $this->flirtIds);
+        $this->flirtIds = array_merge($this->flirtIds, $this->adulteryFlirtIds);
         $this->adulteryFlirtIds = [];
     }
 
