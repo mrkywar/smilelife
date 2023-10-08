@@ -449,10 +449,9 @@ html{
 {
     filter: brightness(0.3);
 }
-.cardontable.actionrequired{
-    filter: invert(50%);
+.modal-overlay .cardontable[data-category="attack"].usedcard{
+    filter: none;
 }
-
 
 .cardontable[data-type="40"].usedcard::after,
 .cardontable[data-type="38"].usedcard::after,

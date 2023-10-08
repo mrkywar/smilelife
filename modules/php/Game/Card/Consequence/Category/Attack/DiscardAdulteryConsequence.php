@@ -3,18 +3,18 @@
 namespace SmileLife\Card\Consequence\Category\Attack;
 
 use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Child\Child;
+use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of DiscardChildConsequence
+ * Description of DiscardAdulteryConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DiscardChildConsequence extends DiscardConsequence {
+class DiscardAdulteryConsequence extends DiscardConsequence {
 
-    public function __construct(Child $card, PlayerTable $table) {
+    public function __construct(Adultery $card, PlayerTable $table) {
         parent::__construct($card, $table);
     }
 
