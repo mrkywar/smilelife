@@ -24,11 +24,11 @@ define([
                             return id;
                             break;
                         case MODAL_TYPE_CARD :
-                            if (0 === requiredProperties.lenth && !optionnalProperties) {
+                            if (0 === requiredProperties.length) {
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
                                 var id = this.generateModale(modalTitle);
-                                if (0 === requiredProperties.lenth) {
+                                if (0 === requiredProperties.length) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
                                     this.generateCardSelection(requiredProperties, card, id);

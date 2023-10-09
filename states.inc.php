@@ -98,7 +98,7 @@ $gameGameStates = [
         "description" => "",
         "type" => "game",
         "action" => "stGamePlayersScores",
-        "transitions" => ["" => ST_GAME_END]
+        "transitions" => ["endGame" => ST_GAME_END]
     ]
 ];
 
