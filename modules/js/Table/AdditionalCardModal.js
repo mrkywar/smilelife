@@ -160,7 +160,8 @@ define([
                         this.generatePlayerStat(player, card, id);
                         this.generatePropertiesChoices(requiredProperties, table, player);
 
-                        var choices = dojo.query('#target_card_' + player.id + ' .cardontable');
+                        var choices = dojo.query('#target_card_' + player.id + '_' + id + ' .cardontable');
+                        this.debug('gtss', choices);
 
                         if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id);
@@ -260,7 +261,7 @@ define([
 //                    this.debug("otg", player);
                     if (0 !== selectedCard.length || 0 === aviableCard.length) {
                         var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
-                       
+
                         if (!dojo.hasClass(targetPlayer[0], "selected")) {
                             dojo.query(".target_selection.selected").removeClass("selected");
                             this.debug(dojo.query(".target_selection.selected"));
