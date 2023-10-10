@@ -33,7 +33,7 @@ define([
                                 } else {
                                     this.generateCardSelection(requiredProperties, card, id);
                                 }
-                                
+
                                 if (CARD_TYPE_SHOOTING_STAR !== parseInt(card.dataset.type)) {
                                     dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                     dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
@@ -123,7 +123,7 @@ define([
                 },
 
                 generatePlayerStat: function (player, card, id) {
-                    var tplData = {};
+                    var tplData = {id: id};
 
                     if (this.getHtmlColorLuma(player.color) > 100) {
                         textColor = "black";
@@ -141,14 +141,14 @@ define([
 
                     dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection-' + id);
 
-                    var targetDiv = $("target_" + player.id);
+                    var targetDiv = $("target_" + player.id + "_" + id);
                     var _this = this;
 
-                    targetDiv.addEventListener('click', (function (targetedPlayer, playedCard) {
+                    targetDiv.addEventListener('click', (function (targetedPlayer, playedCard, id) {
                         return function () {
-                            _this.onTargetClick(targetedPlayer, playedCard);
+                            _this.onTargetClick(targetedPlayer, playedCard, id);
                         };
-                    })(player, card));
+                    })(player, card, id));
                 },
 
                 generateTargetStatSelection: function (requiredProperties, optionalProperties, card, id) {
@@ -253,32 +253,37 @@ define([
                     this.playData = null;
                 },
 
-                onTargetClick: function (player, card) {
+                onTargetClick: function (player, card, id) {
                     var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
                     var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
 
-                    this.debug(aviableCard);
-
+//                    this.debug("otg", player);
                     if (0 !== selectedCard.length || 0 === aviableCard.length) {
-
-                        this.debug(this.playData);
-                        var data = this.playData;
-                        if (null === data) {
-                            data = {
-                                target: player.id,
-                                card: card.dataset.id
-                            };
-                            if ('discard' === card.dataset.location) {
-                                this.takeAction('playFromDiscard', data);
+                        var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
+                       
+                        if (!dojo.hasClass(targetPlayer[0], "selected")) {
+                            dojo.query(".target_selection.selected").removeClass("selected");
+                            this.debug(dojo.query(".target_selection.selected"));
+                            dojo.addClass(targetPlayer[0], "selected");
+                            this.debug("addclass", dojo.hasClass(targetPlayer[0], "selected"));
+                        } else {
+                            var data = this.playData;
+                            if (null === data) {
+                                data = {
+                                    target: player.id,
+                                    card: card.dataset.id
+                                };
+                                if ('discard' === card.dataset.location) {
+                                    this.takeAction('playFromDiscard', data);
+                                } else {
+                                    this.takeAction('playCard', data);
+                                }
                             } else {
+                                data.target = player.id;
                                 this.takeAction('playCard', data);
                             }
-                        } else {
-                            data.target = player.id;
-                            this.takeAction('playCard', data);
+                            this.forcedTarget = false;
                         }
-                        this.forcedTarget = false;
-
 
                     } else {
                         dojo.query("#more-container .selected").removeClass("selected");

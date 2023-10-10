@@ -244,11 +244,25 @@ html{
     display: flex;
     flex-direction: column;
 }
+.target_selection .target_identification, .target_selection .target_stats{
+    padding: 5px 0;
+}
 .target_selection > div .cardontable:not(:first-child){
     margin-top: -50%
 }
 .target_selection:not(:last-child) {
     margin-right: 10px;
+}
+.target_selection{
+    cursor: pointer;
+    border: 2px solid #ffffff00;
+    background: #0000001f;
+    border-radius: 10px;
+}
+.target_selection.selected{
+    cursor: pointer;
+    border: 2px dashed #878787;
+    box-shadow: 2px 4px 2px 2px rgb(0 0 0 / 44%);
 }
 .modal-selection{
     display: flex;
@@ -257,9 +271,7 @@ html{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background: #0000001f;
     color: white;
-    border-radius: 10px;
 }
 
 .target_stats_list_item {
@@ -475,7 +487,7 @@ html{
 }
 .cardontable.selectable{
     cursor: pointer;
-    border: 2px solid white;
+    border: 2px solid #000000;
 }
 .cardontable.selected{
     cursor: pointer;
