@@ -160,11 +160,11 @@ define([
                         this.generatePlayerStat(player, card, id);
                         this.generatePropertiesChoices(requiredProperties, table, player);
 
-                        var choices = dojo.query('#target_card_' + player.id + '_' + id + ' .cardontable');
+                        var choices = dojo.query('#target_' + player.id + '_' + id + ' .cardontable');
                         this.debug('gtss', choices);
 
                         if (null !== requiredProperties && requiredProperties.length !== choices.length) {
-                            dojo.destroy('target_' + player.id);
+                            dojo.destroy('target_' + player.id + '_' + id);
                         } else {
                             this.generatePropertiesChoices(optionalProperties, table, player);
                             haveChoice = true;
