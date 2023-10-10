@@ -4,6 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Wage\WageLevelIncriseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
 use SmileLife\Table\PlayerTable;
@@ -26,7 +27,8 @@ class InheritanceCriterionFactory extends NullCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
-        $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
+        $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                ->addConsequence(new WageLevelIncriseConsequence($card, $table));
 
         return $criterion;
     }
