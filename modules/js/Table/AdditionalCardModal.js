@@ -165,7 +165,6 @@ define([
                         if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id + '_' + id);
                         } else {
-                            this.generatePropertiesChoices(optionalProperties, table, player);
                             haveChoice = true;
                         }
                     }
@@ -210,14 +209,13 @@ define([
                 },
 
                 onMoreTrocClick: function (player, id) {
-                    this.debug(this.playData, player, id);
-
                     var data = this.playData;
                     data.target = player.id;
                     this.takeAction('playCard', data);
                 },
 
                 onMoreClick: function (playedCard, additionalCard) {
+                    this.debug('omc');
                     var searchedDiv = $('card_more_' + additionalCard.id);
                     var targetChoice = dojo.query('#target-selection .action-button');
 
@@ -256,16 +254,12 @@ define([
                 onTargetClick: function (player, card, id) {
                     var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
                     var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
+                    var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
 
-//                    this.debug("otg", player);
                     if (0 !== selectedCard.length || 0 === aviableCard.length) {
-                        var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
-
                         if (!dojo.hasClass(targetPlayer[0], "selected")) {
                             dojo.query(".target_selection.selected").removeClass("selected");
-                            this.debug(dojo.query(".target_selection.selected"));
                             dojo.addClass(targetPlayer[0], "selected");
-                            this.debug("addclass", dojo.hasClass(targetPlayer[0], "selected"));
                         } else {
                             var data = this.playData;
                             if (null === data) {
@@ -290,7 +284,8 @@ define([
                         aviableCard.forEach(function (element) {
                             dojo.addClass(element, "selected");
                         });
-
+                        dojo.addClass(dojo.query("#target_card_" + player.id), "selected");
+                        dojo.addClass(targetPlayer[0], "selected");
                     }
                 },
 

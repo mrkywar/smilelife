@@ -28,7 +28,7 @@ class InheritanceCriterionFactory extends NullCriterionFactory {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
         $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
-                ->addConsequence(new WageLevelIncriseConsequence($card, $table));;
+                ->addConsequence(new WageLevelIncriseConsequence($card, $table));
 
         return $criterion;
     }
