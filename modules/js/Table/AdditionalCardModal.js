@@ -161,7 +161,6 @@ define([
                         this.generatePropertiesChoices(requiredProperties, table, player);
 
                         var choices = dojo.query('#target_' + player.id + '_' + id + ' .cardontable');
-                        this.debug('gtss', choices);
 
                         if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id + '_' + id);
