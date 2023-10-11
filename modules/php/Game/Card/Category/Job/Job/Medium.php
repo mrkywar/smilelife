@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\MediumCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -47,6 +49,15 @@ class Medium extends Job implements BaseGame {
     public function getType(): int {
         return CardType::JOB_MEDIUM;
     }
+    
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract - Overwride
+     * ---------------------------------------------------------------------- */
+    
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new MediumCriterionFactory();
+    }
+
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job
