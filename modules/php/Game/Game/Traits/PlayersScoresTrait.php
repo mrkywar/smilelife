@@ -35,7 +35,7 @@ trait PlayersScoresTrait {
 
         $this->sendNotification($notification);
 
-        $this->gamestate->nextState();
+        $this->gamestate->nextState("endGame");
     }
 
     private function computeScore(PlayerTable $table) {

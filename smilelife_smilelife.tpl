@@ -91,7 +91,7 @@
     var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button_\${id}">valid</a>`;
     var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_nobonus_button_\${id}">Play without bonus</a>`;
     var jstpl_target_with_card = `
-        <div id="target_\${targetId}" class="target_selection">
+        <div id="target_\${targetId}_\${id}" class="target_selection target_\${targetId}">
             <div class="target_identification" style="background-color:#\${targetColor}">
                 <b style="color:\${textColor}">\${targetName}</b>
             </div>

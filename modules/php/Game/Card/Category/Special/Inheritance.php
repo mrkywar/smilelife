@@ -3,10 +3,9 @@
 namespace SmileLife\Card\Category\Special;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Special\InheritanceCriterionFactory;
-use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -14,7 +13,7 @@ use SmileLife\Card\Module\BaseGame;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class Inheritance extends Special implements BaseGame {
+class Inheritance extends Wage implements BaseGame {
 
     public function __construct() {
         parent::__construct();
@@ -31,16 +30,24 @@ class Inheritance extends Special implements BaseGame {
         return self::class;
     }
 
-    public function getEffect(): Effect {
-        throw new CardException("C-Inheritance-01 : Not implemented yet");
-    }
-
     public function getType(): int {
         return CardType::SPECIAL_INHERITANCE;
     }
     
     public function getCriterionFactory(): CardCriterionFactory {
         return new InheritanceCriterionFactory();
+    }
+
+    public function getBaseCardCount(): int {
+        return 1;
+    }
+
+    public function getAmount(): int {
+        return 3;
+    }
+    
+    public function getPileName(): string {
+        return "special";
     }
 
     /* -------------------------------------------------------------------------

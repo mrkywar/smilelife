@@ -33,6 +33,7 @@ define([
                         this.offsideCounter.setValue(this.offsideCounter.getValue() + 1);
                         this.boardCounter[notif.args.playerId][card.pile].setValue(this.boardCounter[notif.args.playerId][card.pile].getValue() - 1);
                     }
+                    
                 }
             }
     );
