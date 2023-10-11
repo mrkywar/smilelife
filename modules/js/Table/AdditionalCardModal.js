@@ -165,6 +165,7 @@ define([
                         if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id + '_' + id);
                         } else {
+                            this.generatePropertiesChoices(optionalProperties, table, player);
                             haveChoice = true;
                         }
                     }
