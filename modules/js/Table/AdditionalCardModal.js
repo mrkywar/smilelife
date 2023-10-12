@@ -1,6 +1,7 @@
 //-- MODALE : Declare All supported Type
 const MODAL_TYPE_TARGET = "target";
 const MODAL_TYPE_CARD = "card";
+const MODAL_TYPE_DISPLAY = "display";
 const MODAL_TYPE_TROC = "troc";
 
 define([
@@ -18,6 +19,11 @@ define([
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
                     switch (choiceType) {
+                        case MODAL_TYPE_DISPLAY :
+                            var id = this.generateModale(modalTitle,"special-container");
+                            this.generateCardSelection(requiredProperties, card, id);
+                            $("more_cancel_button_"+id).innerHTML= _('ok');
+                            break;
                         case MODAL_TYPE_TARGET:
                             var id = this.generateModale(modalTitle);
                             this.generateTargetStatSelection(requiredProperties, optionnalProperties, card, id);
@@ -186,9 +192,12 @@ define([
                     }
                 },
 
-                generateModale: function (title) {
+                generateModale: function (title, destination) {
+                    if (typeof destination === "undefined") {
+                        destination = 'modal-container';
+                    }
                     var id = this.generateUniqueId();
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), 'more-container');
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },

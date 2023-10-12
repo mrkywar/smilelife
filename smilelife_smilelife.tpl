@@ -1,6 +1,7 @@
 {OVERALL_GAME_HEADER}
 <div id="modal-container"></div>
 <div id="more-container"></div>
+<div id="special-container"></div>
 
 <div id="game_container">
     <div class="centered_table" id="mytable_container">
