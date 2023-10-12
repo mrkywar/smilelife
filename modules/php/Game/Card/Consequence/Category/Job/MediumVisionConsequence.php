@@ -55,7 +55,7 @@ class MediumVisionConsequence extends PlayerTableConsequence {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('count',count($cardsToDisplay))
-                ->add('card', $this->cardDecorator->decorate($cardsToDisplay));
+                ->add('cards', $this->cardDecorator->decorate($cardsToDisplay));
 
         $response->addNotification($notification);
         return $response;
