@@ -4,6 +4,8 @@ namespace SmileLife\Card\Category\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Job\JournalistCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -47,6 +49,14 @@ class Journalist extends Job implements BaseGame {
 
     public function getType(): int {
         return CardType::JOB_JOURNALIST;
+    }
+
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Abstract - Overwride
+     * ---------------------------------------------------------------------- */
+
+    public function getCriterionFactory(): CardCriterionFactory {
+        return new JournalistCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

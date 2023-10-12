@@ -4,7 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Consequence\Category\Job\MediumVisionConsequence;
+use SmileLife\Card\Consequence\Category\Job\JournalistVisionConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
@@ -53,7 +53,7 @@ class JournalistCriterionFactory extends JobCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
         
-//        $criteria->addConsequence(new MediumVisionConsequence($card, $table));
+        $criteria->addConsequence(new JournalistVisionConsequence($card, $table));
         
         return $criteria;
     }
