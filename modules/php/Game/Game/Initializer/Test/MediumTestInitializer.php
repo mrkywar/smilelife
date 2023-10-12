@@ -25,6 +25,10 @@ class MediumTestInitializer extends TestGameInitializer {
             $forcedCards[] = $card;
         }
         $this->cardManager->add($forcedCards);
+
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];
+        return $case1Table->getId();
     }
 
 }

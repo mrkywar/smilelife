@@ -36,7 +36,7 @@ class MediumVisionConsequence extends PlayerTableConsequence {
     protected $cardDecorator;
 
     public function __construct(Medium $card, PlayerTable $table) {
-        parent::__construct($card, $table);
+        parent::__construct($table);
 
         $this->job = $card;
         $this->cardManager = new CardManager();
@@ -57,7 +57,8 @@ class MediumVisionConsequence extends PlayerTableConsequence {
                 ->add('count',count($cardsToDisplay))
                 ->add('card', $this->cardDecorator->decorate($cardsToDisplay));
 
-        return $notification;
+        $response->addNotification($notification);
+        return $response;
     }
 
 }
