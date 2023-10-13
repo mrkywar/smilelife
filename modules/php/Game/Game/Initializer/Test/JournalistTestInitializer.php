@@ -18,8 +18,8 @@ class JournalistTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $forcedCards = [];
         foreach ($oTables as $oTable) {
+            $forcedCards = [];
             $card = new Journalist();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
@@ -32,9 +32,10 @@ class JournalistTestInitializer extends TestGameInitializer {
 
                 $forcedCards[] = $studies;
             }
+            $this->cardManager->add($forcedCards);
             $this->playWaitingCards($oTable);
         }
-        $this->cardManager->add($forcedCards);
+
 
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
