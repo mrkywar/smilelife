@@ -54,27 +54,25 @@ class JournalistVisionConsequence extends PlayerTableConsequence {
 
     public function execute(Response &$response) {
         $activePlayer = $this->table->getPlayer();
+        $vision = [];
         foreach ($this->$playerManager->findBy() as $targetPlayer) {
             if ($activePlayer->getId() !== $targetPlayer->getId()) {
-                $response->addNotification($this->generateNotification($activePlayer, $targetPlayer));
+                $cards = $this->cardManager->getPlayerCards($targetPlayer);
+                $vision[$targetPlayer->getId()] = $this->cardDecorator->decorate($cards);
+//                $response->addNotification($this->generateNotification($activePlayer, $targetPlayer));
             }
         }
 
-        return $response;
-    }
-
-    private function generateNotification(Player $player, Player $targetPlayer): Notification {
-        $cards = $this->cardManager->getPlayerCards($targetPlayer);
-
         $notification = new Notification();
-        $notification->setType("showCardsNotification")
-                ->setText(clienttranslate('${player_name} show his hand cards to ${player_name2}'))
-                ->add('player_name', $targetPlayer->getName())
-                ->add('player_name2', $player->getName())
+        $notification->setType("showPlayerCardsNotification")
+                ->setText(clienttranslate('${player_name} show all player\'s hands cards'))
+                ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cards', $this->cardDecorator->decorate($cards));
+                ->add('vision', $vision);
 
-        return $notification;
+        $response->addNotification($notification);
+
+        return $response;
     }
 
 }
