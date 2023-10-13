@@ -2,6 +2,7 @@
 const MODAL_TYPE_TARGET = "target";
 const MODAL_TYPE_CARD = "card";
 const MODAL_TYPE_DISPLAY = "display";
+const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
 
 define([
@@ -19,10 +20,21 @@ define([
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
                     switch (choiceType) {
+                        case MODAL_TYPE_DISPLAY_MULTI:
+                            var id = this.generateModale(modalTitle, "special-container");
+                            for (var playerId in requiredProperties) {
+                                var table = this.gamedatas.tables[playerId];
+                                var player = table.player;
+//                                var card = requiredProperties[playerId];
+                                player.id = playerId;
+                                dojo.place('<h3>'+player.name+'</h3>','modal-selection-' + id);
+                                this.generateCardSelection(requiredProperties[playerId], card, id);
+                            }
+                            break;
                         case MODAL_TYPE_DISPLAY :
-                            var id = this.generateModale(modalTitle,"special-container");
+                            var id = this.generateModale(modalTitle, "special-container");
                             this.generateCardSelection(requiredProperties, card, id);
-                            $("more_cancel_button_"+id).innerHTML= _('ok');
+                            $("more_cancel_button_" + id).innerHTML = _('ok');
                             break;
                         case MODAL_TYPE_TARGET:
                             var id = this.generateModale(modalTitle);
