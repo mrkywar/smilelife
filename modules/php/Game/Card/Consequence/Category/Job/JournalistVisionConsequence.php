@@ -49,15 +49,15 @@ class JournalistVisionConsequence extends PlayerTableConsequence {
         $this->job = $card;
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
-        $this->$playerManager = new PlayerTableManager();
+        $this->playerManager = new PlayerTableManager();
     }
 
     public function execute(Response &$response) {
-        $activePlayer = $this->table->getPlayer();
+        $player = $this->table->getPlayer();
         $vision = [];
-        foreach ($this->$playerManager->findBy() as $targetPlayer) {
-            if ($activePlayer->getId() !== $targetPlayer->getId()) {
-                $cards = $this->cardManager->getPlayerCards($targetPlayer);
+        foreach ($this->playerManager->findBy() as $targetPlayer) {
+            if ($player->getId() !== $targetPlayer->getId()) {
+                $cards = $this->cardManager->getPlayerCards($targetPlayer->getPlayer());
                 $vision[$targetPlayer->getId()] = $this->cardDecorator->decorate($cards);
 //                $response->addNotification($this->generateNotification($activePlayer, $targetPlayer));
             }
