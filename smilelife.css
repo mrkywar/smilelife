@@ -243,9 +243,11 @@ html{
 .target_selection > div {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 #special-container .target_selection > div {
     flex-direction: row;
+    
 }
 #special-container .target_selection{
     margin-bottom: 10px;
@@ -277,18 +279,32 @@ html{
     display: flex;
 }
 .target_stats_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     color: white;
+    display: flex;
+    flex-direction: row;
+    width: 180px;
+    flex-direction: row;
+    justify-content: space-around;
 }
-
-.target_stats_list_item {
-    flex: 0 0 calc(50% - 10px); 
-    margin-bottom: 5px; 
-    margin-top: 5px; 
+.target_stats_list .target_stats_item_icon{
+    background-repeat: no-repeat;
+    width: 30px;
+    display: block;
+    height: 20px;
 }
-.target_stats_list_item .wage_value{
+.target_stats_list .target_stats_item_icon.wage_icon{
+    background-image: url("img/icons/wages.svg");
+    background-size: 60px;
+    background-position-x: -15px;
+    background-position-y: -20px;
+}
+.target_stats_list .target_stats_item_icon.studie_icon{
+    background-image: url("img/icons/studies.svg");
+    background-size: 40px;
+    background-position-x: -5px;
+    background-position-y: -10px;
+}
+/*.target_stats_list_item .wage_value{
     background-image: url("img/icons/wages.svg");
     background-repeat: no-repeat;
     background-size: 80%;
@@ -301,7 +317,7 @@ html{
     background-size: 60%;
     background-position-x: 0px;
     padding-left: 30px;
-}
+}*/
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/

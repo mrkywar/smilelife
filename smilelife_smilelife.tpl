@@ -97,13 +97,12 @@
                 <b style="color:\${textColor}">\${targetName}</b>
             </div>
             <div class="target_stats">
-                <div class="target_stats_list">
-                    <div class="target_stats_list_item">
-                        <div class="wage_value">\${targetAviableWagesLevel}/\${targetWagesLevel}</div>
-                    </div>
-                    <div class="target_stats_list_item">
-                        <div class="studie_value">\${targetStudiesLevel}</div>
-                    </div>
+                <div class="target_stats_list">       
+                        <div class="target_stats_item_icon wage_icon"></div>
+                        <div class="target_stats_item_value wage_value">\${targetAviableWagesLevel}/\${targetWagesLevel}</div>
+                    
+                        <div class="target_stats_item_icon studie_icon"></div>
+                        <div class="target_stats_item_value studie_value">\${targetStudiesLevel}</div>            
                 </div>
             </div>
             <div class="target_card" id="target_card_\${targetId}">
