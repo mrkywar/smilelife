@@ -17,6 +17,7 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Card/Wage.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Jobs.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Medium.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Journalist.js',
     g_gamethemeurl + 'modules/js/Notification/handEvent.js',
 ], function (dojo, declare) {
     return declare(
@@ -33,6 +34,7 @@ define([
                 smilelife.notification.card.wage,
                 smilelife.notification.card.jobs,
                 smilelife.notification.card.medium,
+                smilelife.notification.card.journalist,
                 smilelife.notification.hand.events,
                 smilelife.notification.score
             ],
@@ -76,6 +78,7 @@ define([
                         ['maxCardUpdateNotification', ANNIMATION_TIMER],
                         ['handUpdateNotification', ANNIMATION_TIMER],
                         ['showCardsNotification', ANNIMATION_TIMER],
+                        ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['scoreNotification',0]
 
                     ]

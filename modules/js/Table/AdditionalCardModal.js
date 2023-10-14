@@ -2,6 +2,7 @@
 const MODAL_TYPE_TARGET = "target";
 const MODAL_TYPE_CARD = "card";
 const MODAL_TYPE_DISPLAY = "display";
+const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
 
 define([
@@ -19,10 +20,27 @@ define([
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
                     switch (choiceType) {
+                        case MODAL_TYPE_DISPLAY_MULTI:
+                            var id = this.generateModale(modalTitle, "special-container");
+                            for (var playerId in requiredProperties) {
+                                var table = this.gamedatas.tables[playerId];
+                                var player = table.player;
+//                                var card = requiredProperties[playerId];
+                                player.id = playerId;
+                                dojo.place(this.format_block('jstpl_target_with_card', this.getPlayerStatsInfos(player, id)), 'modal-selection-' + id);
+                                for (var hCardKey in requiredProperties[playerId]) {
+                                    var hCard = requiredProperties[playerId][hCardKey];
+                                    hCard.idPrefix = "more_";
+
+                                    dojo.place(this.format_block('jstpl_visible_card', hCard), 'target_card_' + player.id);
+                                }
+                            }
+                            $("more_cancel_button_" + id).innerHTML = _('ok');
+                            break;
                         case MODAL_TYPE_DISPLAY :
-                            var id = this.generateModale(modalTitle,"special-container");
+                            var id = this.generateModale(modalTitle, "special-container");
                             this.generateCardSelection(requiredProperties, card, id);
-                            $("more_cancel_button_"+id).innerHTML= _('ok');
+                            $("more_cancel_button_" + id).innerHTML = _('ok');
                             break;
                         case MODAL_TYPE_TARGET:
                             var id = this.generateModale(modalTitle);
@@ -128,7 +146,7 @@ define([
                     }
                 },
 
-                generatePlayerStat: function (player, card, id) {
+                getPlayerStatsInfos: function (player, id) {
                     var tplData = {id: id};
 
                     if (this.getHtmlColorLuma(player.color) > 100) {
@@ -145,7 +163,11 @@ define([
                     tplData.targetWagesLevel = this.wagesCounters[player.id].getValue();
                     tplData.targetAviableWagesLevel = this.aviableWagesCounters[player.id].getValue();
 
-                    dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection-' + id);
+                    return tplData;
+                },
+
+                generatePlayerStat: function (player, card, id) {
+                    dojo.place(this.format_block('jstpl_target_with_card', this.getPlayerStatsInfos(player, id)), 'modal-selection-' + id);
 
                     var targetDiv = $("target_" + player.id + "_" + id);
                     var _this = this;
