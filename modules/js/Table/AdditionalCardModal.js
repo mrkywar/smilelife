@@ -27,9 +27,15 @@ define([
                                 var player = table.player;
 //                                var card = requiredProperties[playerId];
                                 player.id = playerId;
-                                dojo.place('<h3>'+player.name+'</h3>','modal-selection-' + id);
-                                this.generateCardSelection(requiredProperties[playerId], card, id);
+                                dojo.place(this.format_block('jstpl_target_with_card', this.getPlayerStatsInfos(player, id)), 'modal-selection-' + id);
+                                for (var hCardKey in requiredProperties[playerId]) {
+                                    var hCard = requiredProperties[playerId][hCardKey];
+                                    hCard.idPrefix = "more_";
+
+                                    dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
+                                }
                             }
+                            $("more_cancel_button_" + id).innerHTML = _('ok');
                             break;
                         case MODAL_TYPE_DISPLAY :
                             var id = this.generateModale(modalTitle, "special-container");
@@ -140,7 +146,7 @@ define([
                     }
                 },
 
-                generatePlayerStat: function (player, card, id) {
+                getPlayerStatsInfos: function (player, id) {
                     var tplData = {id: id};
 
                     if (this.getHtmlColorLuma(player.color) > 100) {
@@ -157,7 +163,11 @@ define([
                     tplData.targetWagesLevel = this.wagesCounters[player.id].getValue();
                     tplData.targetAviableWagesLevel = this.aviableWagesCounters[player.id].getValue();
 
-                    dojo.place(this.format_block('jstpl_target_with_card', tplData), 'modal-selection-' + id);
+                    return tplData;
+                },
+
+                generatePlayerStat: function (player, card, id) {
+                    dojo.place(this.format_block('jstpl_target_with_card', this.getPlayerStatsInfos(player, id)), 'modal-selection-' + id);
 
                     var targetDiv = $("target_" + player.id + "_" + id);
                     var _this = this;
