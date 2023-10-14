@@ -244,11 +244,20 @@ html{
     display: flex;
     flex-direction: column;
 }
+#special-container .target_selection > div {
+    flex-direction: row;
+}
+#special-container .target_selection{
+    margin-bottom: 10px;
+}
 .target_selection .target_identification, .target_selection .target_stats{
     padding: 5px 0;
 }
 .target_selection > div .cardontable:not(:first-child){
     margin-top: -50%
+}
+#special-container .target_selection > div .cardontable:not(:first-child){
+    margin-top: initial;
 }
 .target_selection:not(:last-child) {
     margin-right: 10px;

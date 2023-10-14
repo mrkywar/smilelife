@@ -32,7 +32,7 @@ define([
                                     var hCard = requiredProperties[playerId][hCardKey];
                                     hCard.idPrefix = "more_";
 
-                                    dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
+                                    dojo.place(this.format_block('jstpl_visible_card', hCard), 'target_card_' + player.id);
                                 }
                             }
                             $("more_cancel_button_" + id).innerHTML = _('ok');
