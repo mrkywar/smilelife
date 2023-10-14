@@ -8,9 +8,11 @@ define([
             {
                 notif_showPlayerCardsNotification: function (notif)
                 {
-                    var modalTitle = _('This is the results of your investigation');
-                    this.debug(notif);
-                    this.openModal(modalTitle, MODAL_TYPE_DISPLAY_MULTI, null, notif.args.vision);
+                    if (parseInt(notif.args.playerId) === this.player_id) {
+                        var modalTitle = _('This is the results of your investigation');
+                        this.debug(notif);
+                        this.openModal(modalTitle, MODAL_TYPE_DISPLAY_MULTI, null, notif.args.vision);
+                    }
                 }
             }
     );

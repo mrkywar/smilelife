@@ -8,8 +8,10 @@ define([
             {
                 notif_showCardsNotification: function (notif)
                 {
-                    var modalTitle = _('This is your vision');
-                    this.openModal(modalTitle, MODAL_TYPE_DISPLAY, null, notif.args.cards);
+                    if (parseInt(notif.args.playerId) === this.player_id) {
+                        var modalTitle = _('This is your vision');
+                        this.openModal(modalTitle, MODAL_TYPE_DISPLAY, null, notif.args.cards);
+                    }
                 }
             }
     );
