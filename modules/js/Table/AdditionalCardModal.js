@@ -247,10 +247,8 @@ define([
                 },
 
                 onMoreClick: function (playedCard, additionalCard, id) {
-                    this.debug('omc');
                     var searchedDiv = $('card_more_' + additionalCard.id);
                     var targetChoice = dojo.query('#target-selection .action-button');
-                    this.debug(searchedDiv.classList.contains("selected"), this.forcedTarget);
 
                     if (!searchedDiv.classList.contains("selected")) {
                         dojo.query("#modal_" + id + " .selected").removeClass("selected");
@@ -261,7 +259,9 @@ define([
                             card: playedCard.dataset.id
                         };
                         var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
-                        this.generateTagetSelection(idNew);
+                        this.generateTargetStatSelection(null, null, playedCard, idNew);
+//                        this.generateTagetSelection(idNew); -- sc-800 : Remove for new modal stats
+//                        generateTargetStatSelection: function (requiredProperties, optionalProperties, card, id) 
                     } else if (0 === targetChoice.length) {
 
                         this.playData = {
