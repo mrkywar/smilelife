@@ -92,6 +92,7 @@ trait NextPlayerTrait {
                 ->add('card', $cardDecorator->decorate($job))
                 ->add('cardName', (string) $job)
                 ->add('discard', $cardDecorator->decorate($discardedCards));
+//                ->add('table', $this->tableDecorator->decorate($table));;
         ;
         $this->sendNotification($notification);
 
@@ -105,7 +106,8 @@ trait NextPlayerTrait {
                 ->add('turnCount', $passCard->getDefaultPassTurn())
                 ->add('cardName', (string) $passCard)
                 ->add('card', $cardDecorator->decorate($passCard))
-                ->add('discard', $cardDecorator->decorate($discardedCards));
+                ->add('discard', $cardDecorator->decorate($discardedCards))
+                ->add('table', $tableDecorator->decorate($table));;
         ;
         $this->sendNotification($notification2);
     }

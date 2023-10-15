@@ -58,7 +58,7 @@ define([
                                     this.generateCardSelection(requiredProperties, card, id);
                                 }
 
-                                if (CARD_TYPE_SHOOTING_STAR !== parseInt(card.dataset.type)) {
+                                if (CARD_TYPE_ASTRONAUT === parseInt(card.dataset.type)) {
                                     dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                     dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
                                 }
@@ -96,11 +96,11 @@ define([
                         var searchedDiv = document.getElementById('card_more_' + hCard.id)
                         var _this = this;
 
-                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
+                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard, id) {
                             return function () {
-                                _this.onMoreClick(playedCard, additionalCard);
+                                _this.onMoreClick(playedCard, additionalCard, id);
                             };
-                        })(card, hCard));
+                        })(card, hCard, id));
 
                     }
                 },
@@ -246,21 +246,22 @@ define([
                     this.takeAction('playCard', data);
                 },
 
-                onMoreClick: function (playedCard, additionalCard) {
-                    this.debug('omc');
+                onMoreClick: function (playedCard, additionalCard, id) {
                     var searchedDiv = $('card_more_' + additionalCard.id);
                     var targetChoice = dojo.query('#target-selection .action-button');
 
                     if (!searchedDiv.classList.contains("selected")) {
-                        dojo.query("#more-container .selected").removeClass("selected");
+                        dojo.query("#modal_" + id + " .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     } else if (this.forcedTarget) {
                         this.playData = {
                             additionalCards: [additionalCard.id],
                             card: playedCard.dataset.id
                         };
-                        var id = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
-                        this.generateTagetSelection(id);
+                        var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
+                        this.generateTargetStatSelection(null, null, playedCard, idNew);
+//                        this.generateTagetSelection(idNew); -- sc-800 : Remove for new modal stats
+//                        generateTargetStatSelection: function (requiredProperties, optionalProperties, card, id) 
                     } else if (0 === targetChoice.length) {
 
                         this.playData = {
