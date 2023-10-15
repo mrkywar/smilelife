@@ -58,7 +58,7 @@ define([
                                     this.generateCardSelection(requiredProperties, card, id);
                                 }
 
-                                if (CARD_TYPE_SHOOTING_STAR !== parseInt(card.dataset.type)) {
+                                if (CARD_TYPE_ASTRONAUT === parseInt(card.dataset.type)) {
                                     dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                     dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
                                 }
