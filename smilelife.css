@@ -512,7 +512,7 @@ html{
 }
 .cardontable.selectable{
     cursor: pointer;
-    border: 2px solid #000000;
+    border: 2px solid #ffffff;
 }
 .cardontable.selected{
     cursor: pointer;

@@ -96,11 +96,11 @@ define([
                         var searchedDiv = document.getElementById('card_more_' + hCard.id)
                         var _this = this;
 
-                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard) {
+                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard, id) {
                             return function () {
-                                _this.onMoreClick(playedCard, additionalCard);
+                                _this.onMoreClick(playedCard, additionalCard, id);
                             };
-                        })(card, hCard));
+                        })(card, hCard, id));
 
                     }
                 },
@@ -246,21 +246,22 @@ define([
                     this.takeAction('playCard', data);
                 },
 
-                onMoreClick: function (playedCard, additionalCard) {
+                onMoreClick: function (playedCard, additionalCard, id) {
                     this.debug('omc');
                     var searchedDiv = $('card_more_' + additionalCard.id);
                     var targetChoice = dojo.query('#target-selection .action-button');
+                    this.debug(searchedDiv.classList.contains("selected"), this.forcedTarget);
 
                     if (!searchedDiv.classList.contains("selected")) {
-                        dojo.query("#more-container .selected").removeClass("selected");
+                        dojo.query("#modal_" + id + " .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     } else if (this.forcedTarget) {
                         this.playData = {
                             additionalCards: [additionalCard.id],
                             card: playedCard.dataset.id
                         };
-                        var id = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
-                        this.generateTagetSelection(id);
+                        var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
+                        this.generateTagetSelection(idNew);
                     } else if (0 === targetChoice.length) {
 
                         this.playData = {
