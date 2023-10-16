@@ -285,6 +285,7 @@ define([
                 },
 
                 onTargetClick: function (player, card, id) {
+                    var playedCard = dojo.query("#game_container .selected");
                     var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
                     var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
@@ -307,7 +308,13 @@ define([
                                 }
                             } else {
                                 data.target = player.id;
-                                this.takeAction('playCard', data);
+                                if ('discard' === playedCard[0].dataset.location) {
+                                    data.additionalCards = [card.dataset.id];
+                                    this.takeAction('playFromDiscard', data);
+                                } else {
+                                    this.takeAction('playCard', data);
+                                }
+
                             }
                             this.forcedTarget = false;
                         }
