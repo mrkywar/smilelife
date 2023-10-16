@@ -4,6 +4,7 @@ namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
 
 /**
@@ -19,9 +20,14 @@ class JailDrawTestInitializer extends TestGameInitializer {
         $oTables = $this->playerTableManager->findBy();
         $forcedCards = [];
 
+        $randCard = new StudiesLevel1();
+        $randCard->setLocation(CardLocation::DECK)
+                ->setLocationArg(0); // first place
+        $forcedCards[] = $randCard;
+        
         $jailInDraw = new Jail();
         $jailInDraw->setLocation(CardLocation::DECK)
-                ->setLocationArg(0); // First place
+                ->setLocationArg(1); // second place
         $forcedCards[] = $jailInDraw;
         $this->cardManager->add($forcedCards);
 
