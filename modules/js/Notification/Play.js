@@ -24,12 +24,14 @@ define([
                     this.discard = notif.args.discard;
                     this.updateDiscard();
 
+                    this.debug('p-npn', notif.args, this.player_id, parseInt(notif.args.playerId) === this.player_id);
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");
                         this.myTable = notif.args.table;
 
                         $('more-container').innerHTML = "";
+                        $('modal-container').innerHTML = "";
                     } else {
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.targetId, true);
