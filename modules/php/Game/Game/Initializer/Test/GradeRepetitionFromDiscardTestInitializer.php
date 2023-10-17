@@ -26,7 +26,7 @@ class GradeRepetitionFromDiscardTestInitializer extends TestGameInitializer {
         $grade = new GradeRepetition();
         $grade->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(1);
-        $forcedCards[] = $card;
+        $forcedCards[] = $grade;
 
         foreach ($oTables as $oTable) {
             $card = new GradeRepetition();
