@@ -287,7 +287,7 @@ define([
                 onTargetClick: function (player, card, id) {
                     var playedCard = dojo.query("#game_container .selected");
                     var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
-                    
+
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
 
 
@@ -295,6 +295,44 @@ define([
                     this.debug("acm-otc-playedCard", playedCard);
                     this.debug("acm-otc-target", targetPlayer);
                     this.debug("acm-otc-param", player, card);
+
+                    if (dojo.hasClass(targetPlayer[0], "selected")) {
+                        if (null === this.playData) {
+                            this.playData = {
+                                target: player.id,
+                                card: card.dataset.id
+                            };
+                            if ('discard' === card.dataset.location) {
+                                this.takeAction('playFromDiscard', this.playData);
+                            } else {
+                                this.takeAction('playCard', this.playData);
+                            }
+                        } else {
+                            this.playData.target = player.id;
+                            if ('discard' === playedCard[0].dataset.location) {
+                                data.additionalCards = [card.dataset.id];
+                                this.takeAction('playFromDiscard', data);
+                            } else {
+                                this.takeAction('playCard', data);
+                            }
+                        }
+                        this.forcedTarget = false;
+                        this.playData = null;
+                    } else {
+                        this.debug(dojo.query("#modal_" + id + " .target_selection"));
+                        dojo.removeClass(dojo.query("#modal_" + id + " .selected"), "selected");
+
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            dojo.removeClass(element, "selected");
+                        });
+
+                        dojo.addClass("target_" + player.id + "_" + id, "selected");
+                        var targetCardElements = dojo.query("#target_" + player.id + "_" + id + " .cardontable");
+                        targetCardElements.forEach(function (element) {
+                            dojo.addClass(element, "selected");
+                        });
+                    }
 
 
 
