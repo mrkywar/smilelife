@@ -244,10 +244,12 @@ html{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
 }
 #special-container .target_selection > div {
     flex-direction: row;
-    
+
 }
 #special-container .target_selection{
     margin-bottom: 10px;
@@ -304,20 +306,9 @@ html{
     background-position-x: -5px;
     background-position-y: -10px;
 }
-/*.target_stats_list_item .wage_value{
-    background-image: url("img/icons/wages.svg");
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position-x: -15px;
+#modals .cardontable{
+    margin-left: 5px;
 }
-
-.target_stats_list_item .studie_value{
-    background-image: url("img/icons/studies.svg");
-    background-repeat: no-repeat;
-    background-size: 60%;
-    background-position-x: 0px;
-    padding-left: 30px;
-}*/
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/

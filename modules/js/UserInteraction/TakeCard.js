@@ -45,6 +45,7 @@ define([
                     var card = this.discard[this.discard.length - 1];
                     
                     var playedCard = dojo.query('#card_' + card.id);
+                    dojo.addClass(playedCard[0], "selected");
                     this.cardPlay(playedCard[0],'playFromDiscard');
                 },
 
