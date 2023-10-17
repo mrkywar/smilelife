@@ -289,8 +289,6 @@ define([
 
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
 
-//                    this.debug("acm-otc-aviable", aviableCard);
-//                    this.debug("acm-otc-playedCard", playedCard);
 //                    this.debug("acm-otc-target", targetPlayer);
 //                    this.debug("acm-otc-param", player, card);
 
@@ -337,6 +335,8 @@ define([
 //                  [sc-806]rebuild this part
 //                  var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
 //                  var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
+////                    this.debug("acm-otc-aviable", aviableCard);
+////                    this.debug("acm-otc-playedCard", playedCard);
 //                    if (0 !== selectedCard.length || 0 === aviableCard.length) {
 //                        if (dojo.hasClass(targetPlayer[0], "selected")) {
 //
