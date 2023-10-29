@@ -48,10 +48,21 @@ define([
                             return id;
                             break;
                         case MODAL_TYPE_CARD :
+                            this.debug("ACM-OM-MTC", requiredProperties, this.playData);
+                            var id = this.generateModale(modalTitle);
+
                             if (0 === requiredProperties.length) {
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
-                                var id = this.generateModale(modalTitle);
+
+                                if (null !== this.playData && 1 === this.playData.additionalCards.length) {
+                                    var fictiveCard = {dataset:{id:this.playData.additionalCards[0]}};
+                                    requiredProperties = this.filterProperty(requiredProperties, fictiveCard);
+
+                                }
+                                this.debug("ACM-OM-MTC-AFT", requiredProperties, this.playData);
+                                this.debug(card, id);
+
                                 if (0 === requiredProperties.length) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
@@ -260,8 +271,6 @@ define([
                         };
                         var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
                         this.generateTargetStatSelection(null, null, playedCard, idNew);
-//                        this.generateTagetSelection(idNew); -- sc-800 : Remove for new modal stats
-//                        generateTargetStatSelection: function (requiredProperties, optionalProperties, card, id) 
                     } else if (0 === targetChoice.length) {
 
                         this.playData = {
@@ -288,9 +297,6 @@ define([
                     var playedCard = dojo.query("#game_container .selected");
 
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
-
-//                    this.debug("acm-otc-target", targetPlayer);
-//                    this.debug("acm-otc-param", player, card);
 
                     if (dojo.hasClass(targetPlayer[0], "selected")) {
                         if (null === this.playData) {
