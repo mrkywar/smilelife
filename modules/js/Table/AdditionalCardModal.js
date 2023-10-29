@@ -307,11 +307,16 @@ define([
                         dojo.query("#more-container .selected").removeClass("selected");
                     } else {
                         var card = playedCard[0];
-                        var data = {
-                            target: player.id,
-                            card: card.dataset.id,
-                            additionalCards: [additionalCard[0].dataset.id]
-                        };
+                        var data = this.playData;
+                        if (null === this.playData) {
+                            data = {
+                                card: card.dataset.id,
+                                additionalCards: [additionalCard[0].dataset.id]
+                            };
+                        }
+                        data.target = player.id;
+                        data.additionalCards = data.additionalCards.toString();
+                        this.debug('ACM-OMTC', data);
 
                         if ('discard' === card.dataset.location) {
                             this.takeAction('playFromDiscard', data);
@@ -341,6 +346,8 @@ define([
                         } else {
 
                             this.playData.target = player.id;
+                            this.playData.additionalCards = this.playData.additionalCards.toString();
+                            
                             if ('discard' === playedCard[0].dataset.location) {
                                 this.playData.additionalCards = [card.dataset.id];
                                 this.takeAction('playFromDiscard', this.playData);

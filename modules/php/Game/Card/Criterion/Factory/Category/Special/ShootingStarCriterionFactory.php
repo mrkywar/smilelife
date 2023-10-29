@@ -30,24 +30,28 @@ class ShootingStarCriterionFactory extends NullCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
+        echo'<pre>';
+        var_dump($complementaryCards);
+        die;
+
         if (empty($complementaryCards) || null === $complementaryCards[0]) {
             // not possible to valid a complementary card is required !
             $invalidedCriterion = new InversedCriterion(new NullCriterion());
             $criteria = new CriterionGroup([
                 $criterion,
                 $invalidedCriterion
-            ], CriterionGroup::AND_OPERATOR);
+                    ], CriterionGroup::AND_OPERATOR);
             $criteria->setErrorMessage(clienttranslate('no card selected'));
-            
+
             return $criteria;
         } else {
             $factory = $this->getComplemataryCardCriterionFactory($complementaryCards[0]);
 
             $subCriterion = $factory->create($table, $complementaryCards[0], $opponentTable);
             $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
-            
+
             $criterion
-                ->addConsequence(new GenericCardPlayedConsequence($card, $table));
+                    ->addConsequence(new GenericCardPlayedConsequence($card, $table));
 
             return new CriterionGroup([
                 $criterion,
@@ -74,5 +78,4 @@ class ShootingStarCriterionFactory extends NullCriterionFactory {
     private function getComplemataryCardCriterionFactory(Card $card): CardCriterionFactory {
         return $card->getCriterionFactory();
     }
-
 }
