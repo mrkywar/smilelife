@@ -15,7 +15,7 @@ define([
                 },
 
                 cardPlay: function (playedCard, action) {
-                    this.debug('PC-CP',playedCard, action);
+//                    this.debug('PC-CP',playedCard, action);
 
                     switch (this.getCardType(playedCard)) {
 //                      //--- BEGIN CASES : Choose A Another Card

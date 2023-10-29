@@ -19,6 +19,7 @@ define([
                 },
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
+                    this.debug("ACM-OM", card, this.playData);
                     switch (choiceType) {
                         case MODAL_TYPE_DISPLAY_MULTI:
                             var id = this.generateModale(modalTitle, "special-container");
@@ -48,7 +49,7 @@ define([
                             return id;
                             break;
                         case MODAL_TYPE_CARD :
-                            this.debug("ACM-OM-MTC", requiredProperties, this.playData);
+//                            this.debug("ACM-OM-MTC", requiredProperties, this.playData);
                             var id = this.generateModale(modalTitle);
 
                             if (0 === requiredProperties.length) {
@@ -60,8 +61,8 @@ define([
                                     requiredProperties = this.filterProperty(requiredProperties, fictiveCard);
 
                                 }
-                                this.debug("ACM-OM-MTC-AFT", requiredProperties, this.playData);
-                                this.debug(card, id);
+//                                this.debug("ACM-OM-MTC-AFT", requiredProperties, this.playData);
+//                                this.debug(card, id);
 
                                 if (0 === requiredProperties.length) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
@@ -272,11 +273,15 @@ define([
                         var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
                         this.generateTargetStatSelection(null, null, playedCard, idNew);
                     } else if (0 === targetChoice.length) {
-
-                        this.playData = {
-                            additionalCards: [searchedDiv.dataset.id],
-                            card: playedCard.dataset.id
-                        };
+                        this.debug('ACM-TC-L', this.playData);
+                        if (null === this.playData) {
+                            this.playData = {
+                                additionalCards: [searchedDiv.dataset.id],
+                                card: playedCard.dataset.id
+                            };
+                        } else {
+                            this.playData.additionalCards.push(searchedDiv.dataset.id);
+                        }
                         if ('discard' === playedCard.dataset.location) {
                             this.cardPlay(searchedDiv, 'playFromDiscard');
                         } else {
@@ -293,11 +298,35 @@ define([
                     this.playData = null;
                 },
 
+                onMoreTargetClick: function (player) {
+                    var playedCard = dojo.query("#game_container .selected");
+                    var additionalCard = dojo.query("#more-container .selected");
+
+                    if (1 !== additionalCard.length || 1 !== playedCard.length) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query("#more-container .selected").removeClass("selected");
+                    } else {
+                        var card = playedCard[0];
+                        var data = {
+                            target: player.id,
+                            card: card.dataset.id,
+                            additionalCards: [additionalCard[0].dataset.id]
+                        };
+
+                        if ('discard' === card.dataset.location) {
+                            this.takeAction('playFromDiscard', data);
+                        } else {
+                            this.takeAction('playCard', data);
+                        }
+                        this.forcedTarget = false;
+                    }
+                },
+
                 onTargetClick: function (player, card, id) {
                     var playedCard = dojo.query("#game_container .selected");
 
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
-
+//                    this.debug("ACM-Target-DATA",this.playData);
                     if (dojo.hasClass(targetPlayer[0], "selected")) {
                         if (null === this.playData) {
                             this.playData = {
@@ -310,6 +339,7 @@ define([
                                 this.takeAction('playCard', this.playData);
                             }
                         } else {
+
                             this.playData.target = player.id;
                             if ('discard' === playedCard[0].dataset.location) {
                                 this.playData.additionalCards = [card.dataset.id];
@@ -321,7 +351,7 @@ define([
                         this.forcedTarget = false;
                         this.playData = null;
                     } else {
-                        this.debug(dojo.query("#modal_" + id + " .target_selection"));
+//                        this.debug(dojo.query("#modal_" + id + " .target_selection"));
                         dojo.removeClass(dojo.query("#modal_" + id + " .selected"), "selected");
 
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
@@ -382,31 +412,7 @@ define([
 ////                        dojo.addClass(targetPlayer[0], "selected");
 //                    }
                 },
-
-                onMoreTargetClick: function (player) {
-                    var playedCard = dojo.query("#game_container .selected");
-                    var additionalCard = dojo.query("#more-container .selected");
-
-                    if (1 !== additionalCard.length || 1 !== playedCard.length) {
-                        this.showMessage(_('Invalid Card Selection'), "error");
-                        dojo.query("#more-container .selected").removeClass("selected");
-                    } else {
-                        var card = playedCard[0];
-                        var data = {
-                            target: player.id,
-                            card: card.dataset.id,
-                            additionalCards: [additionalCard[0].dataset.id]
-                        };
-
-                        if ('discard' === card.dataset.location) {
-                            this.takeAction('playFromDiscard', data);
-                        } else {
-                            this.takeAction('playCard', data);
-                        }
-                        this.forcedTarget = false;
-                    }
-                }
-
             }
+
     );
 });
