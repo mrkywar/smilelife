@@ -2,6 +2,7 @@
 
 namespace SmileLife\PlayerAction;
 
+use Core\DB\QueryString;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\Exception\CardException;
@@ -18,6 +19,7 @@ trait PlayCardTrait {
             "id" => self::getCurrentPlayerId()
         ]);
         $target = $targetId;
+        $cardsId = explode(",", $additionalIds);
 
         if (null !== $targetId) {
             $target = $this->playerManager->findOne([
@@ -27,14 +29,16 @@ trait PlayCardTrait {
         $additionalCards = $additionalIds;
         if (null !== $additionalIds) {
             $cm = new CardManager();
+
             $this->cardManager->getSerializer()->setIsForcedArray(true);
             $additionalCards = $this->cardManager->findBy([
-                "id" => explode(",", $additionalIds)
-            ]);
+                "id" => $cardsId
+                    ], null, [
+                "id" => array(QueryString::QUERY_FUNCTION => 'FIELD ( ' . QueryString::SUBSTITUTION_DBNAME . ',' . $additionalIds . ' )')
+                    ]
+            );
             $this->cardManager->getSerializer()->setIsForcedArray(false);
         }
-        var_dump("dpc", $additionalIds, $additionalCards);
-        die;
 
         try {
             $request = new PlayCardRequest($player, $card, $target, $additionalCards);
@@ -53,10 +57,5 @@ trait PlayCardTrait {
         ]);
 
         $this->doPlayCard($card, $targetId, $additionalIds);
-        /* catch (\Exception $e) {
-          throw new \BgaVisibleSystemException("EXCEPTION" . $e->getMessage());
-          }
-          //        var_dump("here ?", $response);
-          //        die(); */
     }
 }
