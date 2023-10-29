@@ -306,10 +306,10 @@ define([
                         } else {
                             this.playData.target = player.id;
                             if ('discard' === playedCard[0].dataset.location) {
-                                data.additionalCards = [card.dataset.id];
-                                this.takeAction('playFromDiscard', data);
+                                this.playData.additionalCards = [card.dataset.id];
+                                this.takeAction('playFromDiscard', this.playData);
                             } else {
-                                this.takeAction('playCard', data);
+                                this.takeAction('playCard', this.playData);
                             }
                         }
                         this.forcedTarget = false;
