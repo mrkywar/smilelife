@@ -30,7 +30,7 @@ define([
                                 dojo.place(this.format_block('jstpl_target_with_card', this.getPlayerStatsInfos(player, id)), 'modal-selection-' + id);
                                 for (var hCardKey in requiredProperties[playerId]) {
                                     var hCard = requiredProperties[playerId][hCardKey];
-                                    hCard.idPrefix = "more_";
+                                    hCard.idPrefix = "more_" + id + "_";
 
                                     dojo.place(this.format_block('jstpl_visible_card', hCard), 'target_card_' + player.id);
                                 }
@@ -56,7 +56,7 @@ define([
                             } else {
 
                                 if (null !== this.playData && 1 === this.playData.additionalCards.length) {
-                                    var fictiveCard = {dataset:{id:this.playData.additionalCards[0]}};
+                                    var fictiveCard = {dataset: {id: this.playData.additionalCards[0]}};
                                     requiredProperties = this.filterProperty(requiredProperties, fictiveCard);
 
                                 }
@@ -101,10 +101,10 @@ define([
                 generateCardSelection: function (selectableCards, card, id) {
                     for (var hCardKey in selectableCards) {
                         var hCard = selectableCards[hCardKey];
-                        hCard.idPrefix = "more_";
+                        hCard.idPrefix = "more_" + id + "_";
 
                         dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
-                        var searchedDiv = document.getElementById('card_more_' + hCard.id)
+                        var searchedDiv = document.getElementById('card_more_' + id + "_" + hCard.id)
                         var _this = this;
 
                         searchedDiv.addEventListener('click', (function (playedCard, additionalCard, id) {
@@ -132,9 +132,9 @@ define([
                     }
                 },
 
-                generateTargetSelectionCard: function (card, player) {
+                generateTargetSelectionCard: function (card, player, id) {
                     if (null !== card) {
-                        card.idPrefix = "more_";
+                        card.idPrefix = "more_" + id + "_";
                         dojo.place(this.format_block('jstpl_visible_card', card), 'target_card_' + player.id);
 
                     }
@@ -197,14 +197,14 @@ define([
                         var player = table.player;
 
                         this.generatePlayerStat(player, card, id);
-                        this.generatePropertiesChoices(requiredProperties, table, player);
+                        this.generatePropertiesChoices(requiredProperties, table, player, id);
 
                         var choices = dojo.query('#target_' + player.id + '_' + id + ' .cardontable');
 
                         if (null !== requiredProperties && requiredProperties.length !== choices.length) {
                             dojo.destroy('target_' + player.id + '_' + id);
                         } else {
-                            this.generatePropertiesChoices(optionalProperties, table, player);
+                            this.generatePropertiesChoices(optionalProperties, table, player, id);
                             haveChoice = true;
                         }
                     }
@@ -215,13 +215,13 @@ define([
                     }
                 },
 
-                generatePropertiesChoices: function (properties, table, player) {
+                generatePropertiesChoices: function (properties, table, player, id) {
                     for (var kProperty in properties) {
                         var property = properties[kProperty];
 
                         var pCard = this.getPropertyValue(table, property);
 
-                        this.generateTargetSelectionCard(pCard, player);
+                        this.generateTargetSelectionCard(pCard, player, id);
                     }
                 },
 
@@ -258,7 +258,7 @@ define([
                 },
 
                 onMoreClick: function (playedCard, additionalCard, id) {
-                    var searchedDiv = $('card_more_' + additionalCard.id);
+                    var searchedDiv = $('card_more_' + id + "_" + additionalCard.id);
                     var targetChoice = dojo.query('#target-selection .action-button');
 
                     if (!searchedDiv.classList.contains("selected")) {
