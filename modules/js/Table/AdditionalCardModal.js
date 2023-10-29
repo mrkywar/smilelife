@@ -286,15 +286,11 @@ define([
 
                 onTargetClick: function (player, card, id) {
                     var playedCard = dojo.query("#game_container .selected");
-                    var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
 
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
 
-
-                    this.debug("acm-otc-aviable", aviableCard);
-                    this.debug("acm-otc-playedCard", playedCard);
-                    this.debug("acm-otc-target", targetPlayer);
-                    this.debug("acm-otc-param", player, card);
+//                    this.debug("acm-otc-target", targetPlayer);
+//                    this.debug("acm-otc-param", player, card);
 
                     if (dojo.hasClass(targetPlayer[0], "selected")) {
                         if (null === this.playData) {
@@ -337,7 +333,10 @@ define([
 
 
 //                  [sc-806]rebuild this part
+//                  var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
 //                  var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
+////                    this.debug("acm-otc-aviable", aviableCard);
+////                    this.debug("acm-otc-playedCard", playedCard);
 //                    if (0 !== selectedCard.length || 0 === aviableCard.length) {
 //                        if (dojo.hasClass(targetPlayer[0], "selected")) {
 //
