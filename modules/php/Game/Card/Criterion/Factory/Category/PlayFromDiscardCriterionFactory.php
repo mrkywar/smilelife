@@ -28,8 +28,6 @@ class PlayFromDiscardCriterionFactory extends NullCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
-        
-        var_dump($card, $complementaryCards);die;
 
         if (empty($complementaryCards)) {
             // not possible to valid a complementary card is required !

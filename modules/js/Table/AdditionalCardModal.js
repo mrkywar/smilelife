@@ -240,9 +240,14 @@ define([
                     var playedCard = dojo.query("#game_container .selected");
 //                    var additionalCard = dojo.query("#more-container .selected");
 
-                    var data = {
-                        card: playedCard[0].dataset.id
+                    this.debug(this.playData);
+                    var data = this.playData;
+                    if (null === data) {
+                        data = {
+                            card: playedCard[0].dataset.id
+                        }
                     }
+
 
                     if ('discard' === playedCard[0].dataset.location) {
                         this.takeAction('playFromDiscard', data);
@@ -347,7 +352,7 @@ define([
 
                             this.playData.target = player.id;
                             this.playData.additionalCards = this.playData.additionalCards.toString();
-                            
+
                             if ('discard' === playedCard[0].dataset.location) {
                                 this.playData.additionalCards = [card.dataset.id];
                                 this.takeAction('playFromDiscard', this.playData);
