@@ -190,12 +190,16 @@ class QueryBuilder {
     /**
      * Allows you to add a ordering instruction for a query
      * @param DbField $field : Field use for the query ordering
-     * @param string $dir (optionnal, default ASC) : ordering direction 
+     * @param string|array $dir (optionnal, default ASC) : ordering direction 
      * @return $this
      */
-    public function addOrderBy(DbField $field, string $dir = QueryString::ORDER_ASC) {
-        $this->orderBy[$field->getDbName()] = "`" . $field->getDbName()
-                . "` " . $dir;
+    public function addOrderBy(DbField $field, $dir = QueryString::ORDER_ASC) {
+        if (is_string($dir)) {
+            $this->orderBy[$field->getDbName()] = "`" . $field->getDbName()
+                    . "` " . $dir;
+        } elseif (is_array($dir)) {
+            $this->orderBy[$field->getDbName()] = str_replace(QueryString::SUBSTITUTION_DBNAME, $field->getDbName(), $dir[QueryString::QUERY_FUNCTION]);
+        }
         return $this;
     }
 
@@ -319,5 +323,4 @@ class QueryBuilder {
         $this->values = $values;
         return $this;
     }
-
 }
