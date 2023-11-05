@@ -107,5 +107,14 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
+    
+    // Specials Actions - for Specials Cards
+    public function luckAction(){
+        self::setAjaxMode();
+        
+        die('NYI - S.A_LA');
+        
+        self::ajaxResponse();
+    }
 
 }

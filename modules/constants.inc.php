@@ -52,6 +52,8 @@ define('ST_GAME_SCORE', 21);
 define('ST_PLAYER_TAKE_CARD', 30);
 define('ST_PLAYER_PLAY_CARD', 31);
 
+define('ST_PLAYER_SPECIAL_LUCK',40);
+
 
 
 
