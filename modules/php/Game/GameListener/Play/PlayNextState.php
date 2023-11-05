@@ -17,14 +17,14 @@ use SmileLife\Table\PlayerTableManager;
  */
 class PlayNextState extends EventListener {
 
-
-
     public function __construct() {
         $this->setMethod("onPlay");
     }
 
     public function onPlay(PlayCardRequest &$request, Response &$response) {
-       $response->set("nextState", "playCard");
+        if ("" === $response->get("nextState")) {
+            $response->set("nextState", "playCard");
+        }
     }
 
     public function eventName(): string {
@@ -34,5 +34,4 @@ class PlayNextState extends EventListener {
     public function getPriority(): int {
         return 20;
     }
-
 }

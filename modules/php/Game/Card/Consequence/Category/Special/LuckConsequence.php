@@ -23,14 +23,15 @@ class LuckConsequence extends Consequence {
      * @var PlayerTable
      */
     private $table;
-    
+
     public function __construct(PlayerTable $table) {
         $this->table = $table;
     }
 
     public function execute(Response &$response) {
-        $response->set('nextState','luckAction');
+        $response->set('nextState', 'luckAction');
+        
+        
+        return $response;
     }
-
-  
 }

@@ -15,7 +15,7 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class LuckCriterionFactory extends NullCriterionFactory {
-    
+
     /**
      * 
      * @param PlayerTable $table : Game table of the player who plays
@@ -26,12 +26,10 @@ class LuckCriterionFactory extends NullCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
-        
+
         $criterion
-                ->addConsequence(new LuckConsequence($table))
-                ->addConsequence(new GenericCardPlayedConsequence($card, $table));
-                
-                
+                ->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                ->addConsequence(new LuckConsequence($table));
 
         return $criterion;
     }

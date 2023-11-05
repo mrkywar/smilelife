@@ -230,7 +230,6 @@ class SmileLife extends Table {
         }
 //        $notification = $this->retriveNotification($response);
 //        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
-
         $this->gamestate->nextState($response->get('nextState'));
     }
 
