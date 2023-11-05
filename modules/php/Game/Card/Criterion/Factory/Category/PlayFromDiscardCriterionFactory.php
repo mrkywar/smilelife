@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Special\ShootingStar;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
@@ -30,16 +31,23 @@ class PlayFromDiscardCriterionFactory extends NullCriterionFactory {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
         if (empty($complementaryCards)) {
-            // not possible to valid a complementary card is required !
-            $invalidedCriterion = new InversedCriterion(new NullCriterion());
-            $criteria = new CriterionGroup([
-                $criterion,
-                $invalidedCriterion
-                    ], CriterionGroup::AND_OPERATOR);
-            $criteria->setErrorMessage(clienttranslate('no card selected'));
-
-            return $criteria;
+            // No complementary card given
+            if ($this->isComplementaryCardsMendatory($card)) {
+                // CASE : Shooting star require a card 
+                // not possible to valid a complementary card is required !
+                $invalidedCriterion = new InversedCriterion(new NullCriterion());
+                $criteria = new CriterionGroup([
+                    $criterion,
+                    $invalidedCriterion
+                        ], CriterionGroup::AND_OPERATOR);
+                $criteria->setErrorMessage(clienttranslate('no card selected'));
+                return $criteria;
+            } else {
+                // CASE : Astronaut not require a complementary card (and player have accept it)
+                return $criterion;
+            }
         } else {
+            // CASE : Play from discard classic case
             foreach ($complementaryCards as $complementaryCard) {
                 $factory = $this->getComplemataryCardCriterionFactory($complementaryCard);
                 $subCriterion = $factory->create($table, $complementaryCard, $opponentTable);
@@ -52,14 +60,16 @@ class PlayFromDiscardCriterionFactory extends NullCriterionFactory {
             }
             $criterion
                     ->addConsequence(new GenericCardPlayedConsequence($card, $table));
-            
+
             return $criterion;
-           
         }
+    }
+
+    private function isComplementaryCardsMendatory(Card $card) {
+        return ($card instanceof ShootingStar);
     }
 
     private function getComplemataryCardCriterionFactory(Card $card): CardCriterionFactory {
         return $card->getCriterionFactory();
     }
-
 }

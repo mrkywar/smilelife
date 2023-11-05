@@ -3,9 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\PlayFromDiscardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Table\PlayerTable;
 
@@ -17,6 +16,19 @@ use SmileLife\Table\PlayerTable;
 class AstronautCriterionFactory extends JobCriterionFactory {
 
     /**
+     * @var PlayFromDiscardCriterionFactory
+     */
+    private PlayFromDiscardCriterionFactory $powerCriterionFactory;
+
+    public function __construct() {
+//        parent::__construct();
+        /**
+         * Specific for Astronaut(if PHP allow multi-heritage i didn't need this trick)
+         */
+        $this->powerCriterionFactory = new PlayFromDiscardCriterionFactory();
+    }
+
+    /**
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
@@ -25,25 +37,15 @@ class AstronautCriterionFactory extends JobCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
+        $jobCriteria = parent::create($table, $card, $opponentTable, $complementaryCards);
+        $powerCriteria = $this->powerCriterionFactory->create($table, $card, $opponentTable, $complementaryCards);
 
-        if (null !== $complementaryCards) {
-            $factory = $this->getComplemataryCardCriterionFactory($complementaryCards[0]);
+        return new CriterionGroup(
+                [$powerCriteria, $jobCriteria],
+                CriterionGroup::AND_OPERATOR
+        );
 
-            $subCriterion = $factory->create($table, $complementaryCards[0], $opponentTable);
-            $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
 
-            return new CriterionGroup([
-                $criteria,
-                $subCriterion
-                    ], CriterionGroup::AND_OPERATOR);
-        }
-
-        return $criteria;
-    }
-
-    private function getComplemataryCardCriterionFactory(Card $card): CardCriterionFactory {
-        return $card->getCriterionFactory();
     }
 
 }
