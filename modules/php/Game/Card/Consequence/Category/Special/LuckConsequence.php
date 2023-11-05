@@ -12,42 +12,20 @@ use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of TrocConsequence
+ * Description of LuckConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class TrocConsequence extends Consequence {
+class LuckConsequence extends Consequence {
 
     /**
      * 
      * @var PlayerTable
      */
     private $table;
-
-    /**
-     * 
-     * @var PlayerTable
-     */
-    private $opponentTable;
-
-    /**
-     * 
-     * @var CardManager
-     */
-    protected $cardManager;
-
-    /**
-     * 
-     * @var CardDecorator
-     */
-    protected $cardDecorator;
     
-
-    public function __construct(PlayerTable $table, PlayerTable $opponentTable) {
+    public function __construct(PlayerTable $table) {
         $this->table = $table;
-        $this->opponentTable = $opponentTable;
-        $this->cardManager = new CardManager();
-        $this->cardDecorator = new CardDecorator();
     }
 
     public function execute(Response &$response) {
