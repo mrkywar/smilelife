@@ -218,6 +218,10 @@ class CardManager extends SuperManager {
     public function getPlayerCards(Player $player) {
         return $this->getAllCardsInLocation(CardLocation::PLAYER_HAND, $player->getId());
     }
+    
+    public function getAllLuckCards(Player $player) {
+        return $this->getAllCardsInLocation(CardLocation::SPECIAL_LUCK, $player->getId());
+    }
 
     private function getAllCardsInLocation(string $location, int $locationArg = null, $limit = null) {
         $criterias = [

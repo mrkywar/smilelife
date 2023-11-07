@@ -60,24 +60,10 @@ class DataRetriver {
         ]); // !! We must only return informations visible by this player !!
 
         $rawHand = $this->cardManager->getPlayerCards($currentPlayer);
-        $discard = $this->cardManager->getAllCardsInDiscard();
-
-        $rawDiscard = [];
-        if ($discard instanceof Card) {
-            $rawDiscard[] = $this->cardDecorator->decorate($discard);
-        } elseif (!empty($discard)) {
-            $rawDiscard = $this->cardDecorator->decorate($discard);
-        } 
-
-        $offside = $this->cardManager->getAllCardsInOffside();
-        $rawOffside = null;
-        if (!empty($offside)) {
-            $rawOffside = $this->cardDecorator->decorate($offside);
-        }
-        
         $this->cardManager->getSerializer()->setIsForcedArray(true);
+        
         $deckCard = $this->cardManager->getAllCardsInDeck();
-        $this->cardManager->getSerializer()->setIsForcedArray(false);
+        
         $countDeck = 0;
         if(!empty($deckCard)){
             $countDeck = count($deckCard);
@@ -86,15 +72,26 @@ class DataRetriver {
         $result = [
             "myhand" => $this->cardDecorator->decorate($rawHand),
             "deck" => $countDeck,
-            "discard" => $rawDiscard,
-            "offside" => $rawOffside
+            "discard" => $this->getSerilaizedCards($this->cardManager->getAllCardsInDiscard()),
+            "offside" => $this->getSerilaizedCards($this->cardManager->getAllCardsInOffside()),
+            "luckCards" => $this->getSerilaizedCards($this->cardManager->getAllLuckCards($currentPlayer))
         ];
+        
+        $this->cardManager->getSerializer()->setIsForcedArray(false);
+        
         $tables = $this->playerTableManager->findBy();
         $result['tables'] = $this->playerTableDecorator->decorate($tables);
         $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
         unset($result['tables'][$playerId]);
 
         return $result;
+    }
+    
+    protected function getSerilaizedCards($cardsToSerialize):array|null{
+        if(!empty($cardsToSerialize)){
+            return $this->cardDecorator->decorate($cardsToSerialize);
+        }
+        return null;
     }
 
     public function getPlayerManager(): PlayerManager {
