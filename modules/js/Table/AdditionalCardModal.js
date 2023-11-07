@@ -4,6 +4,7 @@ const MODAL_TYPE_CARD = "card";
 const MODAL_TYPE_DISPLAY = "display";
 const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
+const MODAL_TYPE_LUCK_CHOICE = "luckChoice"
 
 define([
     "dojo",
@@ -49,9 +50,7 @@ define([
                             return id;
                             break;
                         case MODAL_TYPE_CARD :
-//                            this.debug("ACM-OM-MTC", requiredProperties, this.playData);
                             var id = this.generateModale(modalTitle);
-
                             if (0 === requiredProperties.length) {
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
@@ -61,9 +60,6 @@ define([
                                     requiredProperties = this.filterProperty(requiredProperties, fictiveCard);
 
                                 }
-//                                this.debug("ACM-OM-MTC-AFT", requiredProperties, this.playData);
-//                                this.debug(card, id);
-
                                 if (0 === requiredProperties.length) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
@@ -82,6 +78,11 @@ define([
                             this.forcedTarget = true;
                             this.openModal(modalTitle, MODAL_TYPE_CARD, card, cardChoices);
                             break;
+                        case MODAL_TYPE_LUCK_CHOICE:
+                            var id = this.generateModale(modalTitle, "special-container");
+                            var luckCallbackHandler = this.onLuckClick;
+                            this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler);
+                            break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;
@@ -99,21 +100,26 @@ define([
                     return selectableCards;
                 },
 
-                generateCardSelection: function (selectableCards, card, id) {
+                generateCardSelection: function (selectableCards, card, id, callback) {
+                    if (typeof callback === "undefined") {
+                        callback = this.onMoreClick.bind(this);
+                    } else {
+                        callback = callback.bind(this);
+                    }
+
                     for (var hCardKey in selectableCards) {
                         var hCard = selectableCards[hCardKey];
                         hCard.idPrefix = "more_" + id + "_";
 
                         dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
-                        var searchedDiv = document.getElementById('card_more_' + id + "_" + hCard.id)
-                        var _this = this;
+                        var searchedDiv = document.getElementById('card_more_' + id + "_" + hCard.id);
 
-                        searchedDiv.addEventListener('click', (function (playedCard, additionalCard, id) {
-                            return function () {
-                                _this.onMoreClick(playedCard, additionalCard, id);
-                            };
-                        })(card, hCard, id));
-
+                        // Utilisation d'une fonction immédiate pour encapsuler les valeurs
+                        (function (playedCard, currentHCard, currentId) {
+                            searchedDiv.addEventListener('click', function () {
+                                callback(playedCard, currentHCard, currentId);
+                            });
+                        })(card, hCard, id);
                     }
                 },
 
@@ -292,6 +298,21 @@ define([
                         } else {
                             this.cardPlay(searchedDiv, 'playCard');
                         }
+                    }
+
+                    return false;
+                },
+
+                onLuckClick: function (playedCard, additionalCard, id) {
+                    var searchedDiv = $('card_more_' + id + "_" + additionalCard.id);
+                    if (!searchedDiv.classList.contains("selected")) {
+                        dojo.query("#modal_" + id + " .selected").removeClass("selected");
+                        searchedDiv.classList.add("selected");
+                    } else {
+                        this.debug("ACM-OM", playedCard, additionalCard);
+//                        var data = {
+//                            card: playedCard.dataset.id
+//                        };
                     }
 
                     return false;

@@ -10,8 +10,8 @@ define([
                 {
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.luckCards = notif.args.vision;
-                        var modalTitle = _('This is your vision');
-                        this.openModal(modalTitle, MODAL_TYPE_DISPLAY, null, notif.args.vision);
+                        var modalTitle = _('This is your choice');
+                        this.openModal(modalTitle, MODAL_TYPE_LUCK_CHOICE, null, notif.args.vision);
                     }
                 }
             }
