@@ -81,7 +81,7 @@ define([
                         ['handUpdateNotification', ANNIMATION_TIMER],
                         ['showCardsNotification', ANNIMATION_TIMER],
                         ['showPlayerCardsNotification', ANNIMATION_TIMER],
-                        ['luckNotification', ANNIMATION_TIMER]
+                        ['luckNotification', ANNIMATION_TIMER],
                         ['scoreNotification',0]
 
                     ]

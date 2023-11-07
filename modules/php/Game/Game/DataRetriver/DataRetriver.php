@@ -61,11 +61,11 @@ class DataRetriver {
 
         $rawHand = $this->cardManager->getPlayerCards($currentPlayer);
         $this->cardManager->getSerializer()->setIsForcedArray(true);
-        
+
         $deckCard = $this->cardManager->getAllCardsInDeck();
-        
+
         $countDeck = 0;
-        if(!empty($deckCard)){
+        if (!empty($deckCard)) {
             $countDeck = count($deckCard);
         }
 
@@ -76,9 +76,9 @@ class DataRetriver {
             "offside" => $this->getSerilaizedCards($this->cardManager->getAllCardsInOffside()),
             "luckCards" => $this->getSerilaizedCards($this->cardManager->getAllLuckCards($currentPlayer))
         ];
-        
+
         $this->cardManager->getSerializer()->setIsForcedArray(false);
-        
+
         $tables = $this->playerTableManager->findBy();
         $result['tables'] = $this->playerTableDecorator->decorate($tables);
         $result["mytable"] = $result['tables'][$playerId]; //extract connected user table
@@ -86,9 +86,9 @@ class DataRetriver {
 
         return $result;
     }
-    
-    protected function getSerilaizedCards($cardsToSerialize):array|null{
-        if(!empty($cardsToSerialize)){
+
+    protected function getSerilaizedCards($cardsToSerialize) {
+        if (!empty($cardsToSerialize)) {
             return $this->cardDecorator->decorate($cardsToSerialize);
         }
         return null;
@@ -105,5 +105,4 @@ class DataRetriver {
     public function getPlayerTableManager(): PlayerTableManager {
         return $this->playerTableManager;
     }
-
 }
