@@ -79,7 +79,7 @@ define([
 
                     //---- Display Specials Pile infos
                     var pileSpecialCounter = this.displayPile(tableCards.specialPile, 'pile_special_', player);
-
+                    
                     //---- Save object
                     this.boardCounter[player.id] = {
                         job: pileJobCounter,
