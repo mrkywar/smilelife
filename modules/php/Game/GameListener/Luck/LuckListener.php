@@ -5,6 +5,7 @@ namespace SmileLife\Game\GameListener\Luck;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\Game\Request\LuckChoiceRequest;
 use SmileLife\PlayerAction\ActionType;
 
@@ -28,13 +29,25 @@ class LuckListener extends EventListener {
     }
 
     public function onLuckChoice(LuckChoiceRequest &$request, Response &$response) {
-        die('LL event OLC');
-//        $card = $request->getCard();
-//        $this->cardManager->discardCard($card, $request->getPlayer());
-//
-//        $response->set('card', $card);
-//
-//        return $response;
+        $card = $request->getCard();
+        $player = $request->getPlayer();
+        $luckCards = $this->cardManager->getAllLuckCards($player);
+
+        foreach ($luckCards as $aviableChoice) {
+            if ($card->getId() === $aviableChoice->getId()) {
+                $card->setLocation(CardLocation::PLAYER_HAND)
+                        ->setLocationArg($player->getId());
+
+                $this->cardManager->moveCard($card);
+
+                $response->add("player", $player)
+                        ->add("card", $card);
+            } else {
+                $this->cardManager->discardCard($aviableChoice, $player);
+            }
+        }
+
+        return $response;
     }
 
     public function eventName(): string {
@@ -44,5 +57,4 @@ class LuckListener extends EventListener {
     public function getPriority(): int {
         return 1;
     }
-
 }
