@@ -75,7 +75,20 @@ $playerActionsGameStates = [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
-            "zombiePass" => ST_NEXT_PLAYER
+            "zombiePass" => ST_NEXT_PLAYER,
+            "luckAction" => ST_PLAYER_SPECIAL_LUCK,
+        ]
+    ],
+    ST_PLAYER_SPECIAL_LUCK => [
+        "name" => "luckAction",
+        "description" => clienttranslate('${actplayer} play chance and must choose a card to keep'),
+        "descriptionmyturn" => clienttranslate('${you} play chance and must choose a card to keep'),
+        "type" => "activeplayer",
+        "possibleactions" => [
+            "luckChoice"
+        ],
+        "transitions" => [
+            "playAgain" => ST_PLAYER_PLAY_CARD
         ]
     ]
 ];
@@ -92,7 +105,6 @@ $gameGameStates = [
             "endOfGame" => ST_GAME_SCORE,
         ],
     ],
-    
     ST_GAME_SCORE => [
         "name" => "gameScore",
         "description" => "",

@@ -5,7 +5,7 @@ namespace SmileLife\Card\Category\Special;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
+use SmileLife\Card\Criterion\Factory\Category\Special\LuckCriterionFactory;
 use SmileLife\Card\Effect\Effect;
 use SmileLife\Card\Module\BaseGame;
 
@@ -31,16 +31,12 @@ class Luck extends Special implements BaseGame {
         return self::class;
     }
 
-    public function getEffect(): Effect {
-        throw new CardException("C-Luck-01 : Not implemented yet");
-    }
-
     public function getType(): int {
         return CardType::SPECIAL_LUCK;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NotImplementedCritertionFactory();
+        return new LuckCriterionFactory();
     }
 
     /* -------------------------------------------------------------------------

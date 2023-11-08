@@ -16,6 +16,7 @@ use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
 use SmileLife\PlayerAction\DrawTrait;
+use SmileLife\PlayerAction\LuckChoiceTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\PlayFromDiscardTrait;
@@ -139,7 +140,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\AstronautJobTestInitializerV2();
+        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\LuckTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -230,7 +231,6 @@ class SmileLife extends Table {
         }
 //        $notification = $this->retriveNotification($response);
 //        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
-
         $this->gamestate->nextState($response->get('nextState'));
     }
 
@@ -253,6 +253,7 @@ class SmileLife extends Table {
     use PlayCardTrait;
     use PassTrait;
     use CardRequiermentTrait;
+    use LuckChoiceTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

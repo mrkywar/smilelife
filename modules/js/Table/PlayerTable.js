@@ -13,6 +13,7 @@ define([
                 constructor: function () {
                     this.myHand = [];
                     this.myTable = [];
+                    this.luckCards = null;
                 },
 
                 /**
@@ -61,7 +62,10 @@ define([
                     
                     //Display this player Table cards
                     this.displayTablePiles(gamedatas.mytable);
-
+                    
+                    //Save special Cards
+                    this.luckCards = gamedatas.luckCards;
+                                        
                     //Display of opponents' game tables
                     for (var playerId in gamedatas.tables) {
                         var table = gamedatas.tables[playerId];

@@ -8,24 +8,26 @@ define([
             {
                 updateDiscard: function () {
                     var finded = false;
+                    if (null !== this.discard) {
+                        for (var kCard = 0; kCard < this.discard.length - 1; kCard++) {
+                            var card = this.discard[kCard];
+                            var divCard = $('card_' + card.id);
+                            if (null !== divCard) {
+                                dojo.destroy(divCard);
+                                finded = true;
+                            }
 
-                    for (var kCard = 0; kCard < this.discard.length - 1; kCard++) {
-                        var card = this.discard[kCard];
-                        var divCard = $('card_' + card.id);
-                        if (null !== divCard) {
-                            dojo.destroy(divCard);
-                            finded = true;
                         }
 
-                    }
-                    if (!finded && this.discard.length > 0) {
-                        var card = this.discard[this.discard.length - 1];
-                        var lastVisible = dojo.query('#card_' + card.id);
-                        
-                        if (0 === lastVisible.length) {
-                            this.displayCard(card, 'pile_discard');
-                        }
+                        if (!finded && this.discard.length > 0) {
+                            var card = this.discard[this.discard.length - 1];
+                            var lastVisible = dojo.query('#card_' + card.id);
+
+                            if (0 === lastVisible.length) {
+                                this.displayCard(card, 'pile_discard');
+                            }
 //                        this.displayCard(card, 'discard')
+                        }
                     }
                 }
 
