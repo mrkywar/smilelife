@@ -85,10 +85,10 @@ $playerActionsGameStates = [
         "descriptionmyturn" => clienttranslate('${you} play chance and must choose a card to keep'),
         "type" => "activeplayer",
         "possibleactions" => [
-            "chooseCard"
+            "luckChoice"
         ],
         "transitions" => [
-            "playCard" => ST_NEXT_PLAYER
+            "playAgain" => ST_PLAYER_TAKE_CARD
         ]
     ]
 ];

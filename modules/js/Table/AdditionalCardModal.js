@@ -81,8 +81,8 @@ define([
                         case MODAL_TYPE_LUCK_CHOICE:
                             var id = this.generateModale(modalTitle, "special-container");
                             var luckCallbackHandler = this.onLuckClick;
-                            this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler);
-                            break;
+                            this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler); 
+                           break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;
@@ -310,9 +310,10 @@ define([
                         searchedDiv.classList.add("selected");
                     } else {
                         this.debug("ACM-OM", playedCard, additionalCard);
-//                        var data = {
-//                            card: playedCard.dataset.id
-//                        };
+                        var data = {
+                            card: additionalCard.id
+                        };
+                        this.takeAction('luckChoice',data)
                     }
 
                     return false;
