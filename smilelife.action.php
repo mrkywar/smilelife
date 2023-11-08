@@ -107,14 +107,14 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
-    
+
     // Specials Actions - for Specials Cards
-    public function luckChoice(){
+    public function luckChoice() {
         self::setAjaxMode();
-        
-        die('NYI - S.A_LA');
-        
+
+        $cardId = self::getArg("card", AT_posint, true);
+        $this->game->actionLuckChoice($cardId);
+
         self::ajaxResponse();
     }
-
 }

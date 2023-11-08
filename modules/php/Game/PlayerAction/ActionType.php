@@ -7,7 +7,7 @@ namespace SmileLife\PlayerAction;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class ActionType {
+abstract class ActionType {
 
     const ACTION_PASS = "pass";
     const ACTION_PLAY = "playCard";
@@ -16,6 +16,8 @@ class ActionType {
     const ACTION_DECK_DRAW = "drawCard";
     const ACTION_VOLONTARY_DIVORCE = "volontaryDivorce";
     const ACTION_RESIGN_ADULTERY = "resignAdultery";
+    
+    const ACTION_SPECIAL_LUCK = "luckChoice";
     
     const REQUIREMENT_REQUEST = "requirementRequest";
 

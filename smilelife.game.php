@@ -16,6 +16,7 @@ use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
 use SmileLife\PlayerAction\DrawTrait;
+use SmileLife\PlayerAction\LuckChoiceTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\PlayFromDiscardTrait;
@@ -252,6 +253,7 @@ class SmileLife extends Table {
     use PlayCardTrait;
     use PassTrait;
     use CardRequiermentTrait;
+    use LuckChoiceTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

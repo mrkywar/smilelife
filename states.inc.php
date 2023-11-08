@@ -88,7 +88,7 @@ $playerActionsGameStates = [
             "luckChoice"
         ],
         "transitions" => [
-            "playAgain" => ST_PLAYER_TAKE_CARD
+            "playAgain" => ST_PLAYER_PLAY_CARD
         ]
     ]
 ];
