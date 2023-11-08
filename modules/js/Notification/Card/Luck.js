@@ -13,6 +13,17 @@ define([
                         var modalTitle = _('This is your choice');
                         this.openModal(modalTitle, MODAL_TYPE_LUCK_CHOICE, null, notif.args.vision);
                     }
+                },
+                
+                notif_luckChoiceNotification: function(notif){
+                    if (parseInt(notif.args.playerId) === this.player_id) {
+                        var card = notif.args.card;
+                        this.displayCard(card, "myhand", "special-container");
+                        
+                        $("special-container").innerHTML="";
+                    }else{
+                        this.debug("L-NLCN", notif.args);
+                    }
                 }
             }
     );

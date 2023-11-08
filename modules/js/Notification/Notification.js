@@ -82,6 +82,7 @@ define([
                         ['showCardsNotification', ANNIMATION_TIMER],
                         ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['luckNotification', ANNIMATION_TIMER],
+                        ['luckChoiceNotification', ANNIMATION_TIMER],
                         ['scoreNotification',0]
 
                     ]
