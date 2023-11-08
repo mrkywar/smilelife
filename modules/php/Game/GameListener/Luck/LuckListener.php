@@ -32,6 +32,8 @@ class LuckListener extends EventListener {
         $card = $request->getCard();
         $player = $request->getPlayer();
         $luckCards = $this->cardManager->getAllLuckCards($player);
+        
+        $discardedCards=[];
 
         foreach ($luckCards as $aviableChoice) {
             if ($card->getId() === $aviableChoice->getId()) {
@@ -43,10 +45,13 @@ class LuckListener extends EventListener {
                 $response->add("player", $player)
                         ->add("card", $card);
             } else {
+                $discardedCards[] = $aviableChoice;
                 $this->cardManager->discardCard($aviableChoice, $player);
             }
         }
 
+        $response->add("discardedCards",$discardedCards);
+        
         return $response;
     }
 
