@@ -4,12 +4,14 @@ define([
 
     g_gamethemeurl + 'modules/js/UserInteraction/TakeCard.js',
     g_gamethemeurl + 'modules/js/UserInteraction/PlayCard.js',
+    g_gamethemeurl + 'modules/js/UserInteraction/LuckAction.js',
 ], function (dojo, declare) {
     return declare(
             "smilelife.ui.button",
             [
                 smilelife.ui.takeCard,
                 smilelife.ui.playCard,
+                smilelife.ui.luckAction,
             ],
             {
                 constructor: function () {
@@ -59,6 +61,9 @@ define([
                                 break;
                             case "playCard":
                                 this.addPlayCardInteraction();
+                                break;
+                            case "luckAction":
+                                this.addLuckChoiceInteraction();
                                 break;
                         }
                     }
