@@ -68,7 +68,7 @@ class DataRetriver {
         if (!empty($deckCard)) {
             $countDeck = count($deckCard);
         }
-
+        
         $result = [
             "myhand" => $this->cardDecorator->decorate($rawHand),
             "deck" => $countDeck,

@@ -33,15 +33,15 @@ class LuckNotifier extends EventListener {
 
     /**
      * 
-     * @var TableManager
-     */
-    private $tableManager;
-
-    /**
-     * 
      * @var PlayerTableDecorator
      */
     private $tableDecorator;
+
+    /**
+     * 
+     * @var TableManager
+     */
+    private $tableManager;
 
     public function __construct() {
         $this->setMethod("onLuckChoice");
@@ -53,20 +53,24 @@ class LuckNotifier extends EventListener {
     }
 
     public function onLuckChoice(LuckChoiceRequest &$request, Response &$response) {
-        $card = $request->getCard();
+        $card = $response->get('card');
         $player = $request->getPlayer();
+
+        $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
         $discardCards = $this->cardManager->getAllCardsInDiscard();
 
-        $refusedCards = $request->get('discardedCards');
+        $refusedCards = $response->get('discardedCards');
 
         $choiceNotification = new Notification();
         $choiceNotification->setType("luckChoiceNotification")
                 ->setText(clienttranslate('${player_name} chose one card among the three offered thanks to his luck card and discarded the rest'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('refusedCards', $this->tableDecorator->decorate($refusedCards))
-                ->add('discard', $this->tableDecorator->decorate($discardCards))
+                ->add('card', $this->cardDecorator->decorate($card))
+                ->add('table', $this->tableDecorator->decorate($table))
+                ->add('refusedCards', $this->cardDecorator->decorate($refusedCards))
+                ->add('discard', $this->cardDecorator->decorate($discardCards))
         ;
 
         $response->addNotification($choiceNotification);
@@ -75,7 +79,7 @@ class LuckNotifier extends EventListener {
     }
 
     public function eventName(): string {
-        return ActionType::ACTION_PASS;
+        return ActionType::ACTION_SPECIAL_LUCK;
     }
 
     public function getPriority(): int {

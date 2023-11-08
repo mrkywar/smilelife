@@ -20,7 +20,7 @@ define([
                 },
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
-                    this.debug("ACM-OM", card, this.playData);
+//                    this.debug("ACM-OM", card, this.playData);
                     switch (choiceType) {
                         case MODAL_TYPE_DISPLAY_MULTI:
                             var id = this.generateModale(modalTitle, "special-container");
