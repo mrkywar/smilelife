@@ -3,9 +3,13 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\PlayFromDiscardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -40,12 +44,15 @@ class AstronautCriterionFactory extends JobCriterionFactory {
         $jobCriteria = parent::create($table, $card, $opponentTable, $complementaryCards);
         $powerCriteria = $this->powerCriterionFactory->create($table, $card, $opponentTable, $complementaryCards);
 
+        $complementaryCriterion = new NullCriterion();
+        if (null !== $complementaryCards) {
+            $complementaryCriterion= new InversedCriterion(new CardTypeCriterion($card, Job::class));
+            $complementaryCriterion->setErrorMessage(clienttranslate('You cannot do two jobs at the same time'));
+        } 
+
         return new CriterionGroup(
-                [$powerCriteria, $jobCriteria],
+                [$powerCriteria, $jobCriteria, $complementaryCriterion],
                 CriterionGroup::AND_OPERATOR
         );
-
-
     }
-
 }

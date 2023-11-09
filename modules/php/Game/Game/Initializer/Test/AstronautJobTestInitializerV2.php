@@ -6,6 +6,7 @@ use SmileLife\Card\Category\Job\Interim\Barman;
 use SmileLife\Card\Category\Job\Interim\Stripteaser;
 use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Astronaut;
+use SmileLife\Card\Category\Job\Job\PizzaMaker;
 use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Category\Special\ShootingStar;
 use SmileLife\Card\Category\Studies\StudiesLevel1;
@@ -32,18 +33,23 @@ class AstronautJobTestInitializerV2 extends TestGameInitializer {
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
-            
+
             $shootStar = new ShootingStar();
             $shootStar->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
-            
+
             $forcedCards[] = $shootStar;
         }
-        
+
         $discarded = new Astronaut();
         $discarded->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(0);
         $forcedCards[] = $discarded;
+
+        $otherJob = new PizzaMaker();
+        $otherJob->setLocation(CardLocation::DISCARD)
+                ->setLocationArg(1);
+        $forcedCards[] = $otherJob;
         
         $this->cardManager->add($forcedCards);
 
@@ -73,8 +79,8 @@ class AstronautJobTestInitializerV2 extends TestGameInitializer {
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->usedJobBoostCase($case5Table);
-        
-       //-- case6 : Job (interim) in game (not playable but can dismiss & play)
+
+        //-- case6 : Job (interim) in game (not playable but can dismiss & play)
         $i = random_int(0, count($oTables) - 1);
         $case6Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
@@ -87,7 +93,7 @@ class AstronautJobTestInitializerV2 extends TestGameInitializer {
         $forcedCard = new Barman();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $jobBoost = new JobBoost();
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
@@ -119,7 +125,7 @@ class AstronautJobTestInitializerV2 extends TestGameInitializer {
                 ->setLocationArg($table->getId());
 
 //        $this->enouthStudieCase($table, new Surgeon());   
-                
+
         $this->cardManager->add([$jobBoost]);
 
         $this->playWaitingCards($table);
