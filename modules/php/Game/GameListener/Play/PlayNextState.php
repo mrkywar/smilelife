@@ -22,7 +22,7 @@ class PlayNextState extends EventListener {
     }
 
     public function onPlay(PlayCardRequest &$request, Response &$response) {
-        if ("" === $response->get("nextState")) {
+        if (null === $response->get("nextState")) {
             $response->set("nextState", "playCard");
         }
     }
