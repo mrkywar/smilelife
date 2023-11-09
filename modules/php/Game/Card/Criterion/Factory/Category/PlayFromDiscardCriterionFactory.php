@@ -47,10 +47,16 @@ class PlayFromDiscardCriterionFactory extends NullCriterionFactory {
                 return $criterion;
             }
         } else {
-            // CASE : Play from discard classic case
-            foreach ($complementaryCards as $complementaryCard) {
+            for ($i = 0; $i < sizeof($complementaryCards); $i++) {
+                $complementaryCard = $complementaryCards[$i];
+                $newComplementaryCard = null;
                 $factory = $this->getComplemataryCardCriterionFactory($complementaryCard);
-                $subCriterion = $factory->create($table, $complementaryCard, $opponentTable);
+                if (isset($complementaryCards[$i + 1])) {
+                    // the next Complementary card should be for the active 
+                    $newComplementaryCard = [$complementaryCards[$i + 1]];
+                }
+
+                $subCriterion = $factory->create($table, $complementaryCard, $opponentTable, $newComplementaryCard);
                 $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
 
                 $criterion = new CriterionGroup([
@@ -58,6 +64,7 @@ class PlayFromDiscardCriterionFactory extends NullCriterionFactory {
                     $subCriterion
                         ], CriterionGroup::AND_OPERATOR);
             }
+
             $criterion
                     ->addConsequence(new GenericCardPlayedConsequence($card, $table));
 

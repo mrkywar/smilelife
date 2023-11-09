@@ -17,6 +17,7 @@ define([
                 constructor: function () {
                     this.playData = null;
                     this.forcedTarget = false;
+                    this.oCard = null;
                 },
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
@@ -81,8 +82,8 @@ define([
                         case MODAL_TYPE_LUCK_CHOICE:
                             var id = this.generateModale(modalTitle, "special-container");
                             var luckCallbackHandler = this.onLuckClick;
-                            this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler); 
-                           break;
+                            this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler);
+                            break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;
@@ -281,19 +282,24 @@ define([
                             additionalCards: [additionalCard.id],
                             card: playedCard.dataset.id
                         };
+                        this.oCard = playedCard;
                         var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
                         this.generateTargetStatSelection(null, null, playedCard, idNew);
                     } else if (0 === targetChoice.length) {
-                        this.debug('ACM-TC-L', this.playData);
+                        this.debug('ACM-TC-L', this.playData, this.oCard, playedCard);
                         if (null === this.playData) {
                             this.playData = {
                                 additionalCards: [searchedDiv.dataset.id],
                                 card: playedCard.dataset.id
                             };
+                            this.oCard = playedCard;
                         } else {
                             this.playData.additionalCards.push(searchedDiv.dataset.id);
                         }
-                        if ('discard' === playedCard.dataset.location) {
+
+                        this.debug('ACM-OMC-beforeAjaxCall - L300', playedCard, additionalCard, searchedDiv, this.oCard);
+
+                        if ('discard' === this.oCard.dataset.location) {
                             this.cardPlay(searchedDiv, 'playFromDiscard');
                         } else {
                             this.cardPlay(searchedDiv, 'playCard');
@@ -313,7 +319,7 @@ define([
                         var data = {
                             card: additionalCard.id
                         };
-                        this.takeAction('luckChoice',data)
+                        this.takeAction('luckChoice', data)
                     }
 
                     return false;
@@ -340,6 +346,7 @@ define([
                                 card: card.dataset.id,
                                 additionalCards: [additionalCard[0].dataset.id]
                             };
+                            this.oCard = card;
                         }
                         data.target = player.id;
                         data.additionalCards = data.additionalCards.toString();
@@ -365,13 +372,14 @@ define([
                                 target: player.id,
                                 card: card.dataset.id
                             };
+                            this.oCard = card;
                             if ('discard' === card.dataset.location) {
                                 this.takeAction('playFromDiscard', this.playData);
                             } else {
                                 this.takeAction('playCard', this.playData);
                             }
                         } else {
-
+                            //--THIS IS GOOD!
                             this.playData.target = player.id;
                             this.playData.additionalCards = this.playData.additionalCards.toString();
 
@@ -382,8 +390,8 @@ define([
                                 this.takeAction('playCard', this.playData);
                             }
                         }
-                        this.forcedTarget = false;
-                        this.playData = null;
+//                        this.forcedTarget = false;
+//                        this.playData = null;
                     } else {
 //                        this.debug(dojo.query("#modal_" + id + " .target_selection"));
                         dojo.removeClass(dojo.query("#modal_" + id + " .selected"), "selected");
@@ -400,52 +408,8 @@ define([
                         });
                     }
 
-
-
-//                  [sc-806]rebuild this part
-//                  var aviableCard = dojo.query("#target_card_" + player.id + " .cardontable");
-//                  var selectedCard = dojo.query("#target_card_" + player.id + " .selected");
-////                    this.debug("acm-otc-aviable", aviableCard);
-////                    this.debug("acm-otc-playedCard", playedCard);
-//                    if (0 !== selectedCard.length || 0 === aviableCard.length) {
-//                        if (dojo.hasClass(targetPlayer[0], "selected")) {
-//
-//                            var data = this.playData;
-//                            if (null === data) {
-//                                data = {
-//                                    target: player.id,
-//                                    card: card.dataset.id
-//                                };
-//                                if ('discard' === card.dataset.location) {
-//                                    this.takeAction('playFromDiscard', data);
-//                                } else {
-//                                    this.takeAction('playCard', data);
-//                                }
-//                            } else {
-//                                data.target = player.id;
-//                                if ('discard' === playedCard[0].dataset.location) {
-//                                    data.additionalCards = [card.dataset.id];
-//                                    this.takeAction('playFromDiscard', data);
-//                                } else {
-//                                    this.takeAction('playCard', data);
-//                                }
-//
-//                            }
-//                            this.forcedTarget = false;
-//                        }
-//
-//                    } else {
-//                        dojo.query("#more-container .selected").removeClass("selected");
-//                        aviableCard.forEach(function (element) {
-//                            dojo.addClass(element, "selected");
-//                        });
-//                        dojo.removeClass(dojo.query("#modal_" + id + " .selected"), "selected")
-//                        dojo.addClass(dojo.query("#target_card_" + player.id), "selected");
-//                        dojo.addClass(dojo.query("#target_card_" + player.id + " .cardontable"), "selected");
-////                        dojo.addClass(dojo.query("#target_card_" + player.id), "selected");
-////                        dojo.addClass(targetPlayer[0], "selected");
-//                    }
                 },
+
             }
 
     );

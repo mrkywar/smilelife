@@ -100,15 +100,17 @@ define([
                                 this.attackModal(playedCard);
                             } else {
                                 this.debug('PC-CP-DEFAULT - OLD MODAL');
-                                var data = this.playData;
-                                this.playData = null;
-                                if (null === data) {
-                                    data = {
+                                if (null === this.playData) {
+                                    this.playData = {
                                         card: playedCard.dataset.id
                                     };
                                 }
 //                                this.debug(this.playData);
-                                this.takeAction(action, data);
+                                if (null !== this.playData.additionalCards) {
+                                    this.playData.additionalCards = this.playData.additionalCards.toString();
+                                }
+
+                                this.takeAction(action, this.playData);
                             }
                             break;
                     }

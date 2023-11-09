@@ -43,10 +43,10 @@ class AstronautCriterionFactory extends JobCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $jobCriteria = parent::create($table, $card, $opponentTable, $complementaryCards);
         $powerCriteria = $this->powerCriterionFactory->create($table, $card, $opponentTable, $complementaryCards);
-
+        
         $complementaryCriterion = new NullCriterion();
         if (null !== $complementaryCards) {
-            $complementaryCriterion= new InversedCriterion(new CardTypeCriterion($card, Job::class));
+            $complementaryCriterion= new InversedCriterion(new CardTypeCriterion($complementaryCards[sizeof($complementaryCards)-1], Job::class));
             $complementaryCriterion->setErrorMessage(clienttranslate('You cannot do two jobs at the same time'));
         } 
 
