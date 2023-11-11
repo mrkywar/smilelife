@@ -77,6 +77,7 @@ $playerActionsGameStates = [
             "playPass" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
             "luckAction" => ST_PLAYER_SPECIAL_LUCK,
+            "rainbowAction" => ST_PLAYER_SPECIAL_RAINBOW
         ]
     ],
     ST_PLAYER_SPECIAL_LUCK => [
@@ -89,6 +90,20 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "playAgain" => ST_PLAYER_PLAY_CARD
+        ]
+    ],
+    ST_PLAYER_SPECIAL_RAINBOW =>[
+        "name" => "rainbowAction",
+        "description" => clienttranslate('${actplayer} play up to three cards'),
+        "descriptionmyturn" => clienttranslate('${you} play up to three cards'),
+        "type" => "activeplayer",
+        "possibleactions" => [
+            "playCard",
+            "stopBonus"
+        ],
+        "transitions" => [
+            "playAgain" => ST_PLAYER_SPECIAL_RAINBOW,
+            "stopBonus" => ST_NEXT_PLAYER
         ]
     ]
 ];
