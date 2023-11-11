@@ -15,6 +15,7 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class RainbowConsequence extends SpecialNextStateConsequence {
+
     /**
      * 
      * @var CardManager
@@ -35,7 +36,15 @@ class RainbowConsequence extends SpecialNextStateConsequence {
 
     public function execute(Response &$response) {
         parent::execute($response);
+
+        $player = $this->table->getPlayer();
         
+        $notification = new Notification();
+        $notification->setType("rainbowNotification")
+                ->setText(clienttranslate('${player_name} play rainbow and can play more than one card'))
+                ->add('player_name', $player->getName());
+        $response->addNotification($notification);
+
         return $response;
     }
 }

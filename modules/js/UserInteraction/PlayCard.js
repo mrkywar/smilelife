@@ -105,8 +105,7 @@ define([
                                         card: playedCard.dataset.id
                                     };
                                 }
-//                                this.debug(this.playData);
-                                if (null !== this.playData.additionalCards) {
+                                if (typeof this.playData.additionalCard !== 'undefined' && null !== this.playData.additionalCards) {
                                     this.playData.additionalCards = this.playData.additionalCards.toString();
                                 }
 
