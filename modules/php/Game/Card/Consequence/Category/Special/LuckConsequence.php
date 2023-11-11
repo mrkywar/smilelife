@@ -4,9 +4,7 @@ namespace SmileLife\Card\Consequence\Category\Special;
 
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
-use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
@@ -16,13 +14,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class LuckConsequence extends Consequence {
-
-    /**
-     * 
-     * @var PlayerTable
-     */
-    private $table;
+class LuckConsequence extends SpecialNextStateConsequence {
 
     /**
      * 
@@ -37,13 +29,13 @@ class LuckConsequence extends Consequence {
     private $cardDecorator;
 
     public function __construct(PlayerTable $table) {
-        $this->table = $table;
+        parent::__construct($table, 'luckAction');
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
     }
 
     public function execute(Response &$response) {
-        $response->set('nextState', 'luckAction');
+        parent::execute($response);
         $player = $this->table->getPlayer();
 
         $cardsToShow = $this->cardManager->drawCard(3);
@@ -65,11 +57,5 @@ class LuckConsequence extends Consequence {
         
 
         return $response;
-    }
-
-    private function updateCard(Card &$card) {
-        $card->setLocation(CardLocation::SPECIAL_LUCK)
-                ->setLocationArg($this->table->getId());
-        return $card;
     }
 }
