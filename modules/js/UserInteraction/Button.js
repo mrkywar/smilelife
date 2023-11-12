@@ -36,6 +36,7 @@ define([
                 //
                 onLeavingState: function (stateName)
                 {
+                    
                     dojo.query(".selected").removeClass("selected");
                     if (this.isCurrentPlayerActive())
                     {
@@ -44,6 +45,7 @@ define([
                             case "playCard":
                                 this.onModalCloseClick();
                                 break;
+                                
                         }
                     }
                     this.actualState = null;
@@ -58,6 +60,7 @@ define([
                     
                     if (this.isCurrentPlayerActive())
                     {
+                        this.playData = null;
                         switch (stateName)
                         {
                             case "takeCard":

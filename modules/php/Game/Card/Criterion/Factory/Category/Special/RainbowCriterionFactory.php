@@ -29,7 +29,7 @@ class RainbowCriterionFactory extends NullCriterionFactory {
 
         $criterion
                 ->addConsequence(new GenericCardPlayedConsequence($card, $table))
-                ->addConsequence(new RainbowConsequence($table));
+                ->addConsequence(new RainbowConsequence($card, $table));
 
         return $criterion;
     }
