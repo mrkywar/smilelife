@@ -3,7 +3,7 @@
 namespace SmileLife\PlayerAction;
 
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Game\Request\LuckChoiceRequest;
+use SmileLife\Game\Request\RainbowStopRequest;
 
 /**
  *
@@ -16,20 +16,19 @@ trait RainbowStopTrait {
         $player = $this->playerManager->findOne([
             "id" => self::getCurrentPlayerId()
         ]);
-        die('STOP-ARS');
+//        die('STOP-ARS');
 //
 //        $card = $this->cardManager->findBy(["id"=>$cardId]);
 //        if (null === $card) {
 //            throw new \BgaUserException("No card selected");
 //        } 
 //        
-//         try {
-//            $request = new LuckChoiceRequest($player, $card);
-//            $response = $this->requester->send($request);
-//            $this->applyResponse($response);
-//        } catch (CardException $e) {
-//            throw new \BgaVisibleSystemException($e->getMessage());
-//        }
+        try {
+            $request = new RainbowStopRequest($player);
+            $response = $this->requester->send($request);
+            $this->applyResponse($response);
+        } catch (CardException $e) {
+            throw new \BgaVisibleSystemException($e->getMessage());
+        }
     }
-
 }

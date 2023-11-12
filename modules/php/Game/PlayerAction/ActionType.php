@@ -18,6 +18,7 @@ abstract class ActionType {
     const ACTION_RESIGN_ADULTERY = "resignAdultery";
     
     const ACTION_SPECIAL_LUCK = "luckChoice";
+    const ACTION_SPECIAL_STOP_RAINBOW = "stopRainbow";
     
     const REQUIREMENT_REQUEST = "requirementRequest";
 
