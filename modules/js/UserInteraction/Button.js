@@ -5,6 +5,7 @@ define([
     g_gamethemeurl + 'modules/js/UserInteraction/TakeCard.js',
     g_gamethemeurl + 'modules/js/UserInteraction/PlayCard.js',
     g_gamethemeurl + 'modules/js/UserInteraction/LuckAction.js',
+    g_gamethemeurl + 'modules/js/UserInteraction/RainbowAction.js',
 ], function (dojo, declare) {
     return declare(
             "smilelife.ui.button",
@@ -12,6 +13,7 @@ define([
                 smilelife.ui.takeCard,
                 smilelife.ui.playCard,
                 smilelife.ui.luckAction,
+                smilelife.ui.rainbowAction,
             ],
             {
                 constructor: function () {
@@ -52,6 +54,8 @@ define([
                 //        
                 onUpdateActionButtons: function (stateName, args)
                 {
+                    this.debug("UI-B-ouab",stateName, args);
+                    
                     if (this.isCurrentPlayerActive())
                     {
                         switch (stateName)
@@ -64,6 +68,9 @@ define([
                                 break;
                             case "luckAction":
                                 this.addLuckChoiceInteraction();
+                                break;
+                            case "rainbowAction":
+                                this.addRainbowInteraction();
                                 break;
                         }
                     }
