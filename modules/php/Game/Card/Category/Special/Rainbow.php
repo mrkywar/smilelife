@@ -38,6 +38,15 @@ class Rainbow extends Special implements BaseGame {
         return new RainbowCriterionFactory();
     }
 
+    
+    /**
+     * Rainbow use PassTurn to play multi card 
+     * @return int
+     */
+    public function getDefaultPassTurn(): int {
+        return 3;
+    }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Special
      * ---------------------------------------------------------------------- */

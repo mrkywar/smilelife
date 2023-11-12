@@ -17,11 +17,10 @@ use SmileLife\Card\Category\Love\Marriage\Marriage;
 use SmileLife\Card\Category\Pet\Pet;
 use SmileLife\Card\Category\Reward\Reward;
 use SmileLife\Card\Category\Special\JobBoost;
+use SmileLife\Card\Category\Special\Rainbow;
 use SmileLife\Card\Category\Special\Special;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
-use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 
 /**
  * Description of Game
@@ -503,6 +502,15 @@ class PlayerTable extends Model {
         } else {
             return $flirts[sizeof($flirts) - 1];
         }
+    }
+    
+    public function getRainbow():?Rainbow {
+        foreach ($this->getSpecials() as $card){
+           if($card instanceof Rainbow){
+               return $card;
+           }
+        }
+        return null;
     }
 
     public function addReward(Reward $card) {
