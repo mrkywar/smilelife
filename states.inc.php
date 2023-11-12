@@ -99,7 +99,7 @@ $playerActionsGameStates = [
         "type" => "activeplayer",
         "possibleactions" => [
             "playCard",
-            "stopBonus"
+            "rainbowStop"
         ],
         "transitions" => [
             "playAgain" => ST_PLAYER_SPECIAL_RAINBOW,

@@ -117,4 +117,12 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
+    
+    public function rainbowStop(){
+        self::setAjaxMode();
+
+        $this->game->actionRainbowStop();
+
+        self::ajaxResponse();
+    }
 }

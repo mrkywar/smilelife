@@ -15,7 +15,7 @@ define([
                 },
 
                 doStopRainbow: function () {
-                    this.takeAction('stopRainbow');
+                    this.takeAction('rainbowStop');
                 }
 
 

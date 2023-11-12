@@ -20,6 +20,7 @@ use SmileLife\PlayerAction\LuckChoiceTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\PlayFromDiscardTrait;
+use SmileLife\PlayerAction\RainbowStopTrait;
 use SmileLife\PlayerAction\ResignAdulteryTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\PlayerAction\VolontaryDivorceTrait;
@@ -254,6 +255,7 @@ class SmileLife extends Table {
     use PassTrait;
     use CardRequiermentTrait;
     use LuckChoiceTrait;
+    use RainbowStopTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
