@@ -11,8 +11,25 @@ define([
 
                 notif_drawNotification: function (notif) {
                     if (parseInt(notif.args.playerId) === this.player_id) {
-                        var card = notif.args.card;
-                        this.displayCard(card, "myhand", "card_deck");
+                        if (typeof notif.args.card === 'undefined') {
+                            var notifCards = notif.args.cards;
+                            var index = 0;
+                            var _this = this;
+
+                            function processNextCard() {
+                                if (index < notifCards.length) {
+                                    var card = notifCards[index];
+                                    _this.drawDisplayCard(card);
+                                    index++;
+                                    setTimeout(processNextCard, 100);
+                                }
+                            }
+
+                            processNextCard();
+                        } else {
+                            var card = notif.args.card;
+                            this.drawDisplayCard(card);
+                        }
                     } else {
                         var card = {
                             id: Date.now(),
@@ -22,8 +39,13 @@ define([
                     this.deckCounter.setValue(this.deckCounter.getValue() - 1);
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() + 1);
                 },
-                
-                
+
+                drawDisplayCard: function (card) {
+                    this.displayCard(card, "myhand", "card_deck");
+                }
+
+
+
             }
     );
 });

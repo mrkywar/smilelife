@@ -68,8 +68,8 @@ class RaindowRecaveConsequence extends PlayerTableConsequence {
                 ->setText(clienttranslate('${player_name} draw ${count} card(s) after play additionals card(s)'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add("count", $countCardsToDraw)
-                ->add('cards', $this->cardDecorator->decorate($card));
+                ->add('count', $countCardsToDraw)
+                ->add('cards', $this->cardDecorator->decorate($drawCards));
 
         $response->addNotification($notification);
 
