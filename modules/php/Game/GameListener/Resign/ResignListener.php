@@ -5,6 +5,8 @@ namespace SmileLife\Game\GameListener\Resign;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Job\Job\Researcher;
+use SmileLife\Card\Consequence\Category\Generic\MaxCardUpdateConsequence;
 use SmileLife\Game\Request\ResignRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -47,6 +49,16 @@ class ResignListener extends EventListener {
         $job = $table->getJob();
         $this->cardManager->discardCard($job, $player);
         $table->setJobId(null);
+        
+        if ($job instanceof Researcher) {
+            $table = $this->tableManager->findOneBy([
+                "id" => $player->getId()
+            ]);
+
+            $consequence = new MaxCardUpdateConsequence($table, -1);
+            $consequence->execute($response);
+            $response->set("nextState", "resignAndDiscard");
+        } 
         
         $this->tableManager->updateTable($table);
         
