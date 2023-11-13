@@ -3,10 +3,8 @@
 namespace SmileLife\Card\Category\Special;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
-use SmileLife\Card\Effect\Effect;
+use SmileLife\Card\Criterion\Factory\Category\Special\RainbowCriterionFactory;
 use SmileLife\Card\Module\BaseGame;
 
 /**
@@ -32,16 +30,21 @@ class Rainbow extends Special implements BaseGame {
         return self::class;
     }
 
-    public function getEffect(): Effect {
-        throw new CardException("C-Rainbow-01 : Not implemented yet");
-    }
-
     public function getType(): int {
         return CardType::SPECIAL_RAINBOW;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NotImplementedCritertionFactory();
+        return new RainbowCriterionFactory();
+    }
+
+    
+    /**
+     * Rainbow use PassTurn to play multi card 
+     * @return int
+     */
+    public function getDefaultPassTurn(): int {
+        return 3;
     }
 
     /* -------------------------------------------------------------------------

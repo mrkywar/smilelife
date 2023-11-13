@@ -110,6 +110,7 @@ define([
                                 }
                                 break;
                             case 'playCard':
+                            case 'rainbowAction':
                                 if (!searchedDiv.classList.contains("selected")) {
                                     //select card
                                     if ('hand' === card.location) {

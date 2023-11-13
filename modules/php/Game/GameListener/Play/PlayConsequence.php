@@ -23,17 +23,10 @@ class PlayConsequence extends EventListener {
      */
     private $cardManager;
 
-    /**
-     * 
-     * @var PlayerTableManager
-     */
-    private $tableManager;
-
     public function __construct() {
         $this->setMethod("onPlay");
 
         $this->cardManager = new CardManager();
-        $this->tableManager = new PlayerTableManager();
     }
 
     public function onPlay(PlayCardRequest &$request, Response &$response) {

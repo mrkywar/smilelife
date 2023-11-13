@@ -20,6 +20,7 @@ use SmileLife\PlayerAction\LuckChoiceTrait;
 use SmileLife\PlayerAction\PassTrait;
 use SmileLife\PlayerAction\PlayCardTrait;
 use SmileLife\PlayerAction\PlayFromDiscardTrait;
+use SmileLife\PlayerAction\RainbowStopTrait;
 use SmileLife\PlayerAction\ResignAdulteryTrait;
 use SmileLife\PlayerAction\ResignTrait;
 use SmileLife\PlayerAction\VolontaryDivorceTrait;
@@ -140,7 +141,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\AstronautJobTestInitializerV2();
+        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\RainbowTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -254,6 +255,7 @@ class SmileLife extends Table {
     use PassTrait;
     use CardRequiermentTrait;
     use LuckChoiceTrait;
+    use RainbowStopTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

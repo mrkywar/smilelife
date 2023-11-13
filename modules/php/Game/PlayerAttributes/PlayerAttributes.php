@@ -31,14 +31,13 @@ class PlayerAttributes extends Model {
      */
     private $maxCards;
 
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Constructor
      * ---------------------------------------------------------------------- */
 
     public function __construct() {
         $this->maxCards = 5;
-        $this->passTurn = 0;
+        $this->rainbowUseCount = 0;
         $this->attackStatus = [];
     }
 
@@ -77,15 +76,5 @@ class PlayerAttributes extends Model {
         $this->id = $id;
         return $this;
     }
-
-    public function getPassTurn(): int {
-        return $this->passTurn;
-    }
-
-    public function setPassTurn(int $passTurn) {
-        $this->passTurn = $passTurn;
-        return $this;
-    }
-
 
 }
