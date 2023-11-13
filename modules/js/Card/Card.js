@@ -125,6 +125,22 @@ define([
                                     this.doPlay();
                                 }
                                 break;
+                                
+                            case 'researcherDiscard':
+                                if (!searchedDiv.classList.contains("selected")) {
+                                    //select card
+                                    if ('hand' === card.location) {
+                                        dojo.query(".selected").removeClass("selected");
+                                        searchedDiv.classList.add("selected");
+
+                                    } else {
+                                        this.debug('CC-PC01');
+                                    }
+                                } else if ('hand' === card.location) {
+                                    // Discard fromHand
+                                    this.doDiscard();
+                                }
+                                break;
                         }
 
 

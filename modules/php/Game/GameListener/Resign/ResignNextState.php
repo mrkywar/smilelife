@@ -35,8 +35,7 @@ class ResignNextState extends EventListener {
         $job = $this->extractJob($response);
         if ($job->isTemporary()) {
             $response->set("nextState", "resignAndPlay");
-        } else {
-            var_dump($response->get("nextState"));die;
+        } elseif (null === $response->get("nextState")) {
             $response->set("nextState", "resignAndPass");
         }
 

@@ -6,6 +6,7 @@ define([
     g_gamethemeurl + 'modules/js/UserInteraction/PlayCard.js',
     g_gamethemeurl + 'modules/js/UserInteraction/LuckAction.js',
     g_gamethemeurl + 'modules/js/UserInteraction/RainbowAction.js',
+    g_gamethemeurl + 'modules/js/UserInteraction/DiscardAction.js',
 ], function (dojo, declare) {
     return declare(
             "smilelife.ui.button",
@@ -14,6 +15,7 @@ define([
                 smilelife.ui.playCard,
                 smilelife.ui.luckAction,
                 smilelife.ui.rainbowAction,
+                smilelife.ui.discardAction,
             ],
             {
                 constructor: function () {
@@ -75,6 +77,10 @@ define([
                             case "rainbowAction":
                                 this.addRainbowInteraction();
                                 break;
+                            case "researcherDiscard":
+                                this.addDiscardInteraction();
+                                break; 
+                                
                         }
                     }
                 },

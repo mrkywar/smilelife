@@ -118,7 +118,6 @@ define([
 
                 doPlay: function () {
                     var card = dojo.query("#myhand .selected");
-                    this.debug("UI-dp", card);
 
                     if (1 !== card.length) {
 
