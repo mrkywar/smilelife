@@ -31,9 +31,11 @@ define([
                         var card = notif.args.cards[cardIndex];
                         this.displayCard(card, "pile_offside", "pile_" + card.pile + "_" + notif.args.playerId);
                         this.offsideCounter.setValue(this.offsideCounter.getValue() + 1);
-                        this.boardCounter[notif.args.playerId][card.pile].setValue(this.boardCounter[notif.args.playerId][card.pile].getValue() - 1);
+                        if (CARD_TYPE_ATTENTAT != card.type) {
+                            this.boardCounter[notif.args.playerId][card.pile].setValue(this.boardCounter[notif.args.playerId][card.pile].getValue() - 1);
+                        }
                     }
-                    
+
                 }
             }
     );
