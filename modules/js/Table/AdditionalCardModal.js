@@ -381,7 +381,9 @@ define([
                         } else {
                             //--THIS IS GOOD!
                             this.playData.target = player.id;
-                            this.playData.additionalCards = this.playData.additionalCards.toString();
+                            if (typeof this.playData.additionalCards !== 'undefined') {
+                                this.playData.additionalCards = this.playData.additionalCards.toString();
+                            }
 
                             if ('discard' === playedCard[0].dataset.location) {
                                 this.playData.additionalCards = [card.dataset.id];
