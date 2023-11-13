@@ -114,7 +114,7 @@ $playerActionsGameStates = [
         "descriptionmyturn" => clienttranslate('${you} should discard a card'),
         "type" => "activeplayer",
         "possibleactions" => [
-            "discardAction",
+            "discardCard"
         ],
         "transitions" => [
             "playPass" => ST_NEXT_PLAYER

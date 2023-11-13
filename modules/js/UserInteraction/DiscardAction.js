@@ -14,20 +14,19 @@ define([
                 },
 
                 doDiscard: function () {
-                   var card = dojo.query("#myhand .selected");
-                   this.debug("UI-DA-od",card)
+                    var cards = dojo.query("#myhand .selected");
+                    this.debug("UI-DA-od", cards)
 
-                    if (1 !== card.length) {
+                    if (1 !== cards.length) {
 
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
-//                        var playedCard = card[0];
-//                        this.playData = {
-//                            card: playedCard.dataset.id
-//                        };
-//
-//                        this.cardPlay(playedCard, 'playCard');
+                        var discardedCard = {
+                            card: cards[0].dataset.id
+                        };
+                        
+                        this.takeAction('pass', discardedCard);
                     }
                 },
 

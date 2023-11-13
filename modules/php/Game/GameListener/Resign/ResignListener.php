@@ -37,11 +37,9 @@ class ResignListener extends EventListener {
         $this->tableManager = new PlayerTableManager();
     }
 
-  
-
     public function onResign(ResignRequest &$request, Response &$response) {
         $player = $request->getPlayer();
-        
+
         $table = $this->tableManager->findOneBy([
             "id" => $player->getId()
         ]);
@@ -49,25 +47,20 @@ class ResignListener extends EventListener {
         $job = $table->getJob();
         $this->cardManager->discardCard($job, $player);
         $table->setJobId(null);
-        
-        if ($job instanceof Researcher) {
-            $table = $this->tableManager->findOneBy([
-                "id" => $player->getId()
-            ]);
 
+        $this->tableManager->updateTable($table);
+
+        if ($job instanceof Researcher) {
             $consequence = new MaxCardUpdateConsequence($table, -1);
             $consequence->execute($response);
             $response->set("nextState", "resignAndDiscard");
-        } 
-        
-        $this->tableManager->updateTable($table);
-        
+        }
+
         $response->add("playerTable", $table)
                 ->add("player", $player)
                 ->add("job", $job);
 
         return $response;
-        
     }
 
     public function eventName(): string {
@@ -77,5 +70,4 @@ class ResignListener extends EventListener {
     public function getPriority(): int {
         return 1;
     }
-
 }
