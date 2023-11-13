@@ -54,6 +54,7 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
+            "resignAndDiscard"=> ST_PLAYER_RESEARCHER_DISCARD,
             "volontryDivorse" => ST_NEXT_PLAYER,
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
@@ -73,6 +74,7 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
+            "resignAndDiscard"=> ST_PLAYER_RESEARCHER_DISCARD,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
@@ -105,7 +107,20 @@ $playerActionsGameStates = [
             "playAgain" => ST_PLAYER_SPECIAL_RAINBOW,
             "stopBonus" => ST_NEXT_PLAYER
         ]
-    ]
+    ],
+    ST_PLAYER_RESEARCHER_DISCARD =>[
+        "name" => "researcherDiscard",
+        "description" => clienttranslate('${actplayer} should discard a card'),
+        "descriptionmyturn" => clienttranslate('${you} should discard a card'),
+        "type" => "activeplayer",
+        "possibleactions" => [
+            "discardAction",
+        ],
+        "transitions" => [
+            "playPass" => ST_NEXT_PLAYER
+        ]
+    ],
+    
 ];
 
 $gameGameStates = [
