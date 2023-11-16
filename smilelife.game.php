@@ -133,7 +133,7 @@ class SmileLife extends Table {
      * @var Requester
      */
     private $requester;
-    
+
     /**
      * 
      * @var GameStateParamManager
@@ -157,11 +157,12 @@ class SmileLife extends Table {
 
         $this->eventDispatcher = new EventDispatcher();
         $this->requester = new SmileLifeRequester();
-        
+
 //        $this->gameStateManager = new GameStateParamManager();        $this->gameStateManager = new GameStateParamManager();
 
         self::initGameStateLabels(array(
-            "playerJump" => 42
+            "playerNext" => 41,
+            "playerJump" => 42,
                 //    "my_first_global_variable" => 10,
                 //    "my_second_global_variable" => 11,
                 //      ...
@@ -241,11 +242,12 @@ class SmileLife extends Table {
         if (null !== $response->get('playerJump')) {
             $curent = self::getCurrentPlayerId();
             $next = $this->getPlayerAfter($curent);
-            $this->setGameStateValue('playerJump',$next);
-            var_dump("C :" . $curent, "<br/>N: " . $next, "P : " . $response->get('playerJump'),$this->getGameStateValue('playerJump'));
-            
-            
-            die;
+            $this->setGameStateValue('playerJump', $response->get('playerJump'));
+            $this->setGameStateValue('playerNext', $next);
+//            var_dump("C :" . $curent, "<br/>N: " . $next, "P : " . $response->get('playerJump'),$this->getGameStateValue('playerJump'));
+//            
+//            
+//            die;
         }
 //        $notification = $this->retriveNotification($response);
 //        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
