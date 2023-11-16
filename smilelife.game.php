@@ -116,8 +116,7 @@ class SmileLife extends Table {
      * @var PlayerManager
      */
     private $playerManager;
-    
-    
+
     /**
      * 
      * @var PlayerAttributesManager
@@ -229,6 +228,15 @@ class SmileLife extends Table {
 
         foreach ($response->getNotifications() as $notification) {
             $this->sendNotification($notification);
+        }
+        if (null !== $response->get('playerJump')) {
+            $curent = self::getCurrentPlayerId();
+            $next = $this->getPlayerAfter($curent);
+            $this->setGameStateValue('playerJump',$next);
+            var_dump("C :" . $curent, "<br/>N: " . $next, "P : " . $response->get('playerJump'),$this->gamestate->getGameStateValue('playerJump'));
+            
+            
+            die;
         }
 //        $notification = $this->retriveNotification($response);
 //        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
@@ -351,5 +359,4 @@ class SmileLife extends Table {
     public static function getInstance(): SmileLife {
         return self::$instance;
     }
-
 }

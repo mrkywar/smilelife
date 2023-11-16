@@ -54,7 +54,7 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
-            "resignAndDiscard"=> ST_PLAYER_RESEARCHER_DISCARD,
+            "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
             "volontryDivorse" => ST_NEXT_PLAYER,
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
@@ -74,7 +74,7 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
-            "resignAndDiscard"=> ST_PLAYER_RESEARCHER_DISCARD,
+            "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
@@ -94,7 +94,7 @@ $playerActionsGameStates = [
             "playAgain" => ST_PLAYER_PLAY_CARD
         ]
     ],
-    ST_PLAYER_SPECIAL_RAINBOW =>[
+    ST_PLAYER_SPECIAL_RAINBOW => [
         "name" => "rainbowAction",
         "description" => clienttranslate('${actplayer} play up to three cards'),
         "descriptionmyturn" => clienttranslate('${you} play up to three cards'),
@@ -108,7 +108,7 @@ $playerActionsGameStates = [
             "stopBonus" => ST_NEXT_PLAYER
         ]
     ],
-    ST_PLAYER_RESEARCHER_DISCARD =>[
+    ST_PLAYER_RESEARCHER_DISCARD => [
         "name" => "researcherDiscard",
         "description" => clienttranslate('${actplayer} should discard a card'),
         "descriptionmyturn" => clienttranslate('${you} should discard a card'),
@@ -120,7 +120,6 @@ $playerActionsGameStates = [
             "playPass" => ST_NEXT_PLAYER
         ]
     ],
-    
 ];
 
 $gameGameStates = [

@@ -42,6 +42,14 @@ CREATE TABLE IF NOT EXISTS `player_attributes`(
     PRIMARY KEY(`attributes_player_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `gamestate_param` (
+    `gamestate_param_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `gamestate_param_label` VARCHAR(255) NOT NULL,
+    `gamestate_param_value` VARCHAR(255),
+    PRIMARY KEY (`gamestate_param_id`),
+    UNIQUE KEY unique_label (`gamestate_param_label`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `card` (
   `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `card_class` varchar(255) NOT NULL COMMENT 'Type of the card (matches the class name the card need to be instanciated with)',
