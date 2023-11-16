@@ -133,6 +133,12 @@ class SmileLife extends Table {
      * @var Requester
      */
     private $requester;
+    
+    /**
+     * 
+     * @var GameStateParamManager
+     */
+//    private $gameStateManager;
 
     function __construct() {
         parent::__construct();
@@ -151,8 +157,11 @@ class SmileLife extends Table {
 
         $this->eventDispatcher = new EventDispatcher();
         $this->requester = new SmileLifeRequester();
+        
+//        $this->gameStateManager = new GameStateParamManager();        $this->gameStateManager = new GameStateParamManager();
 
         self::initGameStateLabels(array(
+            "playerJump" => 42
                 //    "my_first_global_variable" => 10,
                 //    "my_second_global_variable" => 11,
                 //      ...
@@ -233,7 +242,7 @@ class SmileLife extends Table {
             $curent = self::getCurrentPlayerId();
             $next = $this->getPlayerAfter($curent);
             $this->setGameStateValue('playerJump',$next);
-            var_dump("C :" . $curent, "<br/>N: " . $next, "P : " . $response->get('playerJump'),$this->gamestate->getGameStateValue('playerJump'));
+            var_dump("C :" . $curent, "<br/>N: " . $next, "P : " . $response->get('playerJump'),$this->getGameStateValue('playerJump'));
             
             
             die;

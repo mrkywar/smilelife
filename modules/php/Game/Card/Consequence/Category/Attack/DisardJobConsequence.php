@@ -7,6 +7,7 @@ use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Consequence\Category\Generic\MaxCardUpdateConsequence;
+use SmileLife\Game\GameState\GameStateParamManager;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -27,6 +28,7 @@ class DisardJobConsequence extends DiscardConsequence {
         if ($this->card instanceof Researcher) {
             $complementaryConsequence = new MaxCardUpdateConsequence($this->table, -1);
             $complementaryConsequence->execute($response);
+           
 
             $response->set('playerJump', $this->table->getId())
                     ->set("nextState", "resignAndDiscard");
