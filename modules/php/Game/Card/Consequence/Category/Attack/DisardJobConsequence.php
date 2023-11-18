@@ -31,7 +31,7 @@ class DisardJobConsequence extends DiscardConsequence {
            
 
             $response->set('playerJump', $this->table->getId())
-                    ->set("nextState", "resignAndDiscard");
+                    ->set("nextState", "attackAndDiscard");
         }
 
         return parent::execute($response);

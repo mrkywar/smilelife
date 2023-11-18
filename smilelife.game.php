@@ -247,10 +247,10 @@ class SmileLife extends Table {
             $this->setGameStateValue('playerJump', $jump);
             $this->setGameStateValue('playerNext', $next);
 
-            Logger::log("ReqJump | J : " . $jump . " - N : " . $next . " C : " . $curent, "info");
+            Logger::log("ReqJump | J : " . $jump . " - N : " . $next . " C : " . $curent, "SMG-info");
         }
 
-        Logger::log("SMG", "info");
+        Logger::log($response->get('nextState'), "SMG-info");
 //        var_dump($response->get('nextState'), $this->getGameStateValue('playerJump'), $this->getGameStateValue('playerNext'));
 //        die;
 //        echo '<pre>';

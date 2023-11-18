@@ -31,7 +31,8 @@ $basicGameStates = [
         "type" => "manager",
         "action" => "stGamePlayerJump",
         "transitions" => [
-            "discard" => ST_PLAYER_RESEARCHER_DISCARD
+            "discard" => ST_PLAYER_RESEARCHER_DISCARD,
+            "backToNormal" => ST_PLAYER_TAKE_CARD
         ]
     ],
     // Final state.
@@ -63,7 +64,8 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
-            "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
+            "attackAndDiscard" => ST_GAME_PLAYER_JUMP,
+            "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
             "volontryDivorse" => ST_NEXT_PLAYER,
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,

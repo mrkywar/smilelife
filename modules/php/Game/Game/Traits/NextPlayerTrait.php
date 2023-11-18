@@ -20,9 +20,6 @@ trait NextPlayerTrait {
         $playerId = intval($this->getActivePlayerId());
         $this->giveExtraTime($playerId);
         
-        var_dump($this->getGameStateValue('playerJump'));
-        die;
-        
         $newPlayerId = $this->activeNextPlayer();
 
         $playerTable = $this->tableManager->findBy(["id" => $newPlayerId]);
