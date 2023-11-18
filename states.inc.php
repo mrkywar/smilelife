@@ -25,6 +25,15 @@ $basicGameStates = [
         "action" => "stGameSetup",
         "transitions" => ["" => ST_PLAYER_TAKE_CARD]
     ],
+    ST_GAME_PLAYER_JUMP => [
+        "name" => "playerJump",
+        "description" => clienttranslate("player Jump"),
+        "type" => "manager",
+        "action" => "stGamePlayerJump",
+        "transitions" => [
+            "discard" => ST_PLAYER_RESEARCHER_DISCARD
+        ]
+    ],
     // Final state.
     // Please do not modify.
     ST_GAME_END => [
@@ -54,7 +63,7 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
-            "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
+            "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
             "volontryDivorse" => ST_NEXT_PLAYER,
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
@@ -74,7 +83,7 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
-            "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
+            "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
@@ -117,7 +126,7 @@ $playerActionsGameStates = [
             "discardCard"
         ],
         "transitions" => [
-            "playPass" => ST_NEXT_PLAYER
+            "playPass" => ST_GAME_PLAYER_JUMP
         ]
     ],
 ];

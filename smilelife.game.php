@@ -12,6 +12,7 @@ use SmileLife\Game\GameProgressionRetriver;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
+use SmileLife\Game\Traits\PlayerJumpTrait;
 use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
@@ -241,16 +242,20 @@ class SmileLife extends Table {
         }
         if (null !== $response->get('playerJump')) {
             $curent = self::getCurrentPlayerId();
+            $jump = $response->get('playerJump');
             $next = $this->getPlayerAfter($curent);
-            $this->setGameStateValue('playerJump', $response->get('playerJump'));
+            $this->setGameStateValue('playerJump', $jump);
             $this->setGameStateValue('playerNext', $next);
-//            var_dump("C :" . $curent, "<br/>N: " . $next, "P : " . $response->get('playerJump'),$this->getGameStateValue('playerJump'));
-//            
-//            
-//            die;
+
+            Logger::log("ReqJump | J : " . $jump . " - N : " . $next . " C : " . $curent, "info");
         }
-//        $notification = $this->retriveNotification($response);
-//        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
+
+        Logger::log("SMG", "info");
+//        var_dump($response->get('nextState'), $this->getGameStateValue('playerJump'), $this->getGameStateValue('playerNext'));
+//        die;
+//        echo '<pre>';
+//        var_dump($currentState = $this->gamestate->state(), $response->get('nextState'));
+//        die;
         $this->gamestate->nextState($response->get('nextState'));
     }
 
@@ -303,6 +308,7 @@ class SmileLife extends Table {
 //////////// Game state actions
 ////////////
     use NextPlayerTrait;
+    use PlayerJumpTrait;
     use PlayersScoresTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
