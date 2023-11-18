@@ -117,13 +117,17 @@ define([
                 },
 
                 doPlay: function () {
-                    var card = dojo.query(".selected");
+                    var card = dojo.query("#myhand .selected");
+
                     if (1 !== card.length) {
 
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
                         var playedCard = card[0];
+                        this.playData = {
+                            card: playedCard.dataset.id
+                        };
 
                         this.cardPlay(playedCard, 'playCard');
                     }

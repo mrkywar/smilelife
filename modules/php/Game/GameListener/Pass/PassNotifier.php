@@ -63,7 +63,7 @@ class PassNotifier extends EventListener {
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
         $notification->setType("passNotification")
-                ->setText(clienttranslate('${player_name} pass and discard ${cardName}'))
+                ->setText(clienttranslate('${player_name} discard ${cardName}'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('table', $this->tableDecorator->decorate($table))

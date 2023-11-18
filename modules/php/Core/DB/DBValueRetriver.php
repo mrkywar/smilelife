@@ -24,7 +24,6 @@ abstract class DBValueRetriver {
             }
             return $values;
         }else{
-            var_dump($items);
             throw new DBValueRetriverException("Unsupported call - ERROR CODE : DBVR-01");
         }
         

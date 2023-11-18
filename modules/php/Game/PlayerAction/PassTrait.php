@@ -27,5 +27,4 @@ trait PassTrait {
 
         $this->applyResponse($response);
     }
-
 }

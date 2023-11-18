@@ -27,7 +27,6 @@ abstract class DBFieldsRetriver {
         } elseif (is_string($item)) {
             return self::retriveFields($item);
         } else {
-            var_dump($item);
             throw new DBFieldsRetriverException("Unsupported call for : " . $item . " - ERROR CODE : DBFR-01");
         }
     }

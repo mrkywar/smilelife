@@ -42,6 +42,7 @@ define('CH_MODULES_BASE_GAME', 1);
  */
 define('ST_GAME_SETUP', 1);
 define('ST_GAME_END', 99);
+define('ST_GAME_PLAYER_JUMP',84); // 84 = 42*2 (linked to 42 action)
 
 define('ST_NEW_ROUND', 10);
 define('ST_END_ROUND', 11);
@@ -54,6 +55,8 @@ define('ST_PLAYER_PLAY_CARD', 31);
 
 define('ST_PLAYER_SPECIAL_LUCK',40);
 define('ST_PLAYER_SPECIAL_RAINBOW',41);
+define('ST_PLAYER_RESEARCHER_DISCARD',42);
+
 
 
 

@@ -4,9 +4,11 @@ namespace SmileLife\Card\Consequence\Category\Attack;
 
 use Core\Requester\Response\Response;
 use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Consequence\Category\Generic\MaxCardUpdateConsequence;
+use SmileLife\Game\GameState\GameStateParamManager;
 use SmileLife\Table\PlayerTable;
-
 
 /**
  * Description of DisardJobConsequence
@@ -23,7 +25,15 @@ class DisardJobConsequence extends DiscardConsequence {
         $this->table->removeCard($this->card);
         $this->tableManager->update($this->table);
 
+        if ($this->card instanceof Researcher) {
+            $complementaryConsequence = new MaxCardUpdateConsequence($this->table, -1);
+            $complementaryConsequence->execute($response);
+           
+
+            $response->set('playerJump', $this->table->getId())
+                    ->set("nextState", "attackAndDiscard");
+        }
+
         return parent::execute($response);
     }
-
 }

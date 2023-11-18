@@ -32,8 +32,6 @@ abstract class DBValueTransformer {
             case DBField::DATETIME_FORMAT:
                 return "'" . self::transposeDateTime($value) . "'";
             default:
-                echo '<pre>';
-                var_dump($field, $value);
                 throw new DBValueTransformerException("UNIMPLEMENTED Please contact me with full message log - DBVT-01");
 //                return $value;
         }

@@ -12,6 +12,7 @@ use SmileLife\Game\GameProgressionRetriver;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
+use SmileLife\Game\Traits\PlayerJumpTrait;
 use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
@@ -116,8 +117,7 @@ class SmileLife extends Table {
      * @var PlayerManager
      */
     private $playerManager;
-    
-    
+
     /**
      * 
      * @var PlayerAttributesManager
@@ -135,13 +135,19 @@ class SmileLife extends Table {
      */
     private $requester;
 
+    /**
+     * 
+     * @var GameStateParamManager
+     */
+//    private $gameStateManager;
+
     function __construct() {
         parent::__construct();
 
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\AttentatTestInitializer();
+        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\ResearcherJobTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -153,7 +159,11 @@ class SmileLife extends Table {
         $this->eventDispatcher = new EventDispatcher();
         $this->requester = new SmileLifeRequester();
 
+//        $this->gameStateManager = new GameStateParamManager();        $this->gameStateManager = new GameStateParamManager();
+
         self::initGameStateLabels(array(
+            "playerNext" => 41,
+            "playerJump" => 42,
                 //    "my_first_global_variable" => 10,
                 //    "my_second_global_variable" => 11,
                 //      ...
@@ -230,8 +240,22 @@ class SmileLife extends Table {
         foreach ($response->getNotifications() as $notification) {
             $this->sendNotification($notification);
         }
-//        $notification = $this->retriveNotification($response);
-//        self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
+        if (null !== $response->get('playerJump')) {
+            $curent = self::getCurrentPlayerId();
+            $jump = $response->get('playerJump');
+            $next = $this->getPlayerAfter($curent);
+            $this->setGameStateValue('playerJump', $jump);
+            $this->setGameStateValue('playerNext', $next);
+
+            Logger::log("ReqJump | J : " . $jump . " - N : " . $next . " C : " . $curent, "SMG-info");
+        }
+
+        Logger::log($response->get('nextState'), "SMG-info");
+//        var_dump($response->get('nextState'), $this->getGameStateValue('playerJump'), $this->getGameStateValue('playerNext'));
+//        die;
+//        echo '<pre>';
+//        var_dump($currentState = $this->gamestate->state(), $response->get('nextState'));
+//        die;
         $this->gamestate->nextState($response->get('nextState'));
     }
 
@@ -284,6 +308,7 @@ class SmileLife extends Table {
 //////////// Game state actions
 ////////////
     use NextPlayerTrait;
+    use PlayerJumpTrait;
     use PlayersScoresTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
@@ -351,5 +376,4 @@ class SmileLife extends Table {
     public static function getInstance(): SmileLife {
         return self::$instance;
     }
-
 }

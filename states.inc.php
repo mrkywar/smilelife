@@ -25,6 +25,16 @@ $basicGameStates = [
         "action" => "stGameSetup",
         "transitions" => ["" => ST_PLAYER_TAKE_CARD]
     ],
+    ST_GAME_PLAYER_JUMP => [
+        "name" => "playerJump",
+        "description" => clienttranslate("player Jump"),
+        "type" => "manager",
+        "action" => "stGamePlayerJump",
+        "transitions" => [
+            "discard" => ST_PLAYER_RESEARCHER_DISCARD,
+            "backToNormal" => ST_PLAYER_TAKE_CARD
+        ]
+    ],
     // Final state.
     // Please do not modify.
     ST_GAME_END => [
@@ -54,6 +64,8 @@ $playerActionsGameStates = [
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_TAKE_CARD,
             "resignAndPass" => ST_NEXT_PLAYER,
+            "attackAndDiscard" => ST_GAME_PLAYER_JUMP,
+            "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
             "volontryDivorse" => ST_NEXT_PLAYER,
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
@@ -73,6 +85,7 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
+            "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
@@ -92,7 +105,7 @@ $playerActionsGameStates = [
             "playAgain" => ST_PLAYER_PLAY_CARD
         ]
     ],
-    ST_PLAYER_SPECIAL_RAINBOW =>[
+    ST_PLAYER_SPECIAL_RAINBOW => [
         "name" => "rainbowAction",
         "description" => clienttranslate('${actplayer} play up to three cards'),
         "descriptionmyturn" => clienttranslate('${you} play up to three cards'),
@@ -105,7 +118,19 @@ $playerActionsGameStates = [
             "playAgain" => ST_PLAYER_SPECIAL_RAINBOW,
             "stopBonus" => ST_NEXT_PLAYER
         ]
-    ]
+    ],
+    ST_PLAYER_RESEARCHER_DISCARD => [
+        "name" => "researcherDiscard",
+        "description" => clienttranslate('${actplayer} should discard a card'),
+        "descriptionmyturn" => clienttranslate('${you} should discard a card'),
+        "type" => "activeplayer",
+        "possibleactions" => [
+            "discardCard"
+        ],
+        "transitions" => [
+            "playPass" => ST_GAME_PLAYER_JUMP
+        ]
+    ],
 ];
 
 $gameGameStates = [
