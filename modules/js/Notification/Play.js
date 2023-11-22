@@ -43,15 +43,18 @@ define([
                     }
 
                     //-- Job redisplay (to keep on the top)
-                    var jobDest = "pile_job_" + notif.args.playerId;
 
-                    if (parseInt(notif.args.playerId) === this.player_id) {
-                        var cardJob = this.myTable.job;
-                    } else {
-                        var cardJob = this.gamedatas.tables[notif.args.playerId].job;
-                    }
-                    if (null !== cardJob) {
-                        this.displayCard(cardJob, jobDest, jobDest);
+                    if ("job" === card.pile && "studies" === card.categorie) {
+                        var jobDest = "pile_job_" + notif.args.playerId;
+
+                        if (parseInt(notif.args.playerId) === this.player_id) {
+                            var cardJob = this.myTable.job;
+                        } else {
+                            var cardJob = this.gamedatas.tables[notif.args.playerId].job;
+                        }
+                        if (null !== cardJob) {
+                            this.displayCard(cardJob, jobDest, jobDest);
+                        }
                     }
 
                     this.boardCounter[notif.args.targetId][notif.args.card.pile].setValue(this.boardCounter[notif.args.targetId][notif.args.card.pile].getValue() + 1);
