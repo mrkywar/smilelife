@@ -178,7 +178,7 @@ abstract class Card extends Model {
     abstract public function getDefaultPassTurn(): int;
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
-    
+
     abstract public function getAdditionalsDatas(): ?array;
 
     /* -------------------------------------------------------------------------
@@ -329,14 +329,15 @@ abstract class Card extends Model {
             "name" => $this->getName(),
             "smilePoints" => $this->getSmilePoints(),
             "location" => $this->getLocation(),
+            "locationArg" => $this->getLocationArg(),
             "title" => $this->getTitle(),
             "subtitle" => $this->getSubTitle(),
             "text1" => $this->getText1(),
             "text2" => $this->getText2(),
             "isFlipped" => $this->getIsFlipped(),
             "isUsed" => $this->getIsUsed(),
-            "additionalsDatas"=> $this->getAdditionalsDatas(),
-            "usedClass" => ($this->getIsUsed())?"usedcard":"",
+            "additionalsDatas" => $this->getAdditionalsDatas(),
+            "usedClass" => ($this->getIsUsed()) ? "usedcard" : "",
         ];
     }
 
@@ -369,5 +370,4 @@ abstract class Card extends Model {
     public function setPlayerDiscarder(Player $player) {
         return $this->setDiscarderId($player->getId());
     }
-
 }

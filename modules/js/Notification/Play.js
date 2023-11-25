@@ -21,6 +21,8 @@ define([
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 
+                    this.debug('PlayNotif', notif.args);
+
                     this.discard = notif.args.discard;
                     this.updateDiscard();
 
@@ -36,14 +38,16 @@ define([
                         this.displayCard(card, cardDest, "playerpanel_" + notif.args.targetId, true);
                     }
 
-                    if (notif.args.fromHand) {
-                        this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
-                    } else {
+
+                    //-- UPDATE Counters
+                    if ("discard" === card.location) {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
+                    } else if (card.locationArg !== notif.args.playerId) {
+                        this.boardCounter[card.locationArg][card.pile].setValue(this.boardCounter[card.locationArg][card.pile].getValue() - 1);
                     }
+                    this.boardCounter[notif.args.targetId][card.pile].setValue(this.boardCounter[notif.args.targetId][notif.args.card.pile].getValue() + 1);
 
                     //-- Job redisplay (to keep on the top)
-
                     if ("job" === card.pile && "studies" === card.categorie) {
                         var jobDest = "pile_job_" + notif.args.playerId;
 
@@ -56,8 +60,6 @@ define([
                             this.displayCard(cardJob, jobDest, jobDest);
                         }
                     }
-
-                    this.boardCounter[notif.args.targetId][notif.args.card.pile].setValue(this.boardCounter[notif.args.targetId][notif.args.card.pile].getValue() + 1);
 
                     this.discard = notif.args.discard;
 

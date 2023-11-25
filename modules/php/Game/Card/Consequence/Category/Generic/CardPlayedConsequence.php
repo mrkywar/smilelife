@@ -50,7 +50,6 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
      * @var CardManager
      */
     protected $cardManager;
-    
     private $origin;
 
     public function __construct(Card $card, PlayerTable $table) {
@@ -60,19 +59,18 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $this->cardDecorator = new CardDecorator();
         $this->tableManager = new PlayerTableManager();
         $this->cardManager = new CardManager();
-        
     }
 
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
-        
-        $this->origin = $this->card->getLocation(); 
 
+        $this->origin = $this->card->getLocation();
+        
+        $this->generateNotification($response);
+        
         $this->cardManager->playCard($player, $this->card);
         $this->table->addCard($this->card);
         $this->tableManager->updateTable($this->table);
-
-        $this->generateNotification($response);
     }
 
     /* -------------------------------------------------------------------------
@@ -106,7 +104,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         }
 
         $response->addNotification($notification);
-        
+
         $cards = $this->cardManager->getPlayerCards($player);
 
         $pNotification = new PersonnalNotification($player);
@@ -114,7 +112,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $pNotification->setType("handUpdateNotification")
                 ->setText(clienttranslate('Your Hand was updated'))
                 ->set('myHand', $this->cardDecorator->decorate($cards));
-        
+
         $response->addNotification($pNotification);
 
         return $response;
