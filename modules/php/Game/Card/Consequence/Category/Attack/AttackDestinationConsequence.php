@@ -48,6 +48,8 @@ class AttackDestinationConsequence extends PlayerTableConsequence {
         
         $this->card->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($player->getId())
+                ->setOwnerId($player->getId())
+                ->setIsUsed(false)
                 ->setPassTurn($this->card->getDefaultPassTurn());
 
         $this->cardManager->moveCard($this->card);

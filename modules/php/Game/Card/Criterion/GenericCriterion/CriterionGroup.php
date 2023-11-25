@@ -74,7 +74,7 @@ class CriterionGroup extends Criterion {
                 $tconsequences = $criterion->getConsequences();
 
                 $consequences = array_merge($consequences ?? [], $criterion->getConsequences() ?? []);
-                
+                //-- I think is an XOR case
                 if (self::OR_OPERATOR === $this->operator) {
                     return $consequences;
                 }
