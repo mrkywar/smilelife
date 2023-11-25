@@ -42,7 +42,7 @@ define([
                     //-- UPDATE Counters
                     if ("discard" === card.location) {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
-                    } else if (card.locationArg !== notif.args.playerId) {
+                    } else if (card.locationArg !== notif.args.targetId) {
                         this.boardCounter[card.locationArg][card.pile].setValue(this.boardCounter[card.locationArg][card.pile].getValue() - 1);
                     }
                     this.boardCounter[notif.args.targetId][card.pile].setValue(this.boardCounter[notif.args.targetId][notif.args.card.pile].getValue() + 1);
