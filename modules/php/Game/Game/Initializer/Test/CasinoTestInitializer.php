@@ -23,9 +23,14 @@ class CasinoTestInitializer extends TestGameInitializer {
         $casinoPlayed = new Casino();
         $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
                 ->setLocationArg(1)
-                ->setOwnerId($case1Table->getId())
-        ;
-        $this->cardManager->add($casinoPlayed);
+                ->setOwnerId($case1Table->getId());
+
+        $wage1Casino = new \SmileLife\Card\Category\Wage\WageLevel2();
+        $wage1Casino->setLocation(CardLocation::SPECIAL_CASINO)
+                ->setLocationArg(2)
+                ->setOwnerId($case1Table->getId());
+
+        $this->cardManager->add([$casinoPlayed, $wage1Casino]);
 
         return $case1Table->getId();
     }
