@@ -449,17 +449,13 @@ html{
 .pile_adultery .pile_counter{
     background: black;
 }
-#pile_discard{
+#pile_discard, #pile_offside{
     border-radius: 4px;
     box-shadow: none !important;
-    background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, black 40px, black 80px);
     background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
 }
-#pile_offside{
-    border-radius: 4px;
-    box-shadow: none !important;
-    background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, black 40px, black 80px);
-    background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
+#pile_casino{
+    
 }
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard

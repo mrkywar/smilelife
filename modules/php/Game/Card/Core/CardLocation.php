@@ -15,4 +15,5 @@ interface CardLocation {
     const DISCARD = "discard";
     const PLAYER_BOARD = "board";
     const SPECIAL_LUCK = "luck";
+    const SPECIAL_CASINO = "casino";
 }
