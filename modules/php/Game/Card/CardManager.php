@@ -185,6 +185,13 @@ class CardManager extends SuperManager {
         $this->getSerializer()->setIsForcedArray(false);
         return $discardedCards;
     }
+    
+    public function getAllCardsInCasino() {
+        $this->getSerializer()->setIsForcedArray(true);
+        $discardedCards = $this->getAllCardsInLocation(CardLocation::SPECIAL_CASINO);
+        $this->getSerializer()->setIsForcedArray(false);
+        return $discardedCards;
+    }
 
     public function getLastDiscardedCard() {
         $cards = $this->getAllCardsInDiscard();
