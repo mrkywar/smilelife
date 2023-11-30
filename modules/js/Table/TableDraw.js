@@ -45,6 +45,21 @@ define([
                     this.offsideCounter = pileOffsideCounter;
                 },
 
+                displayCasinoCards: function () {
+                    this.casino = this.gamedatas.casino;
+
+                    for (var cardId in this.casino) {
+                        var card = this.casino[cardId];
+                        this.displayCard(card, "pile_casino");
+                    }
+
+                    var pileCasinoCounter = new ebg.counter();
+                    pileCasinoCounter.create('pile_casino_count');
+                    pileCasinoCounter.setValue((null === this.casino && this.casino.length > 0) ? null : this.casino.length);
+                    this.casinoCounter = pileCasinoCounter;
+
+                },
+
             }
 
 
