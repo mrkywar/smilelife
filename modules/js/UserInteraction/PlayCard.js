@@ -12,6 +12,35 @@ define([
                 addPlayCardInteraction: function () {
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
+
+                    if (this.isCasinoUseable()) {
+                        this.addActionButton('cadion_button', _('bet the salary'), 'doCasino', null, false, 'green');
+                    }
+                    ;
+                },
+
+                isCasinoUseable: function () {
+                    this.debug("isCU", this.casino);
+                    if (this.casino.length > 0) {
+                        var casinoCard = this.casino[0];
+
+                        this.debug(parseInt(casinoCard.owner), this.player_id, this.isMyHandContainWage());
+
+                        return(parseInt(casinoCard.owner) !== this.player_id && this.isMyHandContainWage());
+                    }
+                    return false;
+
+                },
+
+                isMyHandContainWage: function () {
+                    for (var hCardKey in this.myHand) {
+                        var hCard = this.myHand[hCardKey];
+                        this.debug(hCard);
+                        if ('wage' === hCard.category) {
+                            return true;
+                        }
+                    }
+                    return false;
                 },
 
                 cardPlay: function (playedCard, action) {
@@ -145,6 +174,16 @@ define([
                             card: card[0].dataset.id
                         };
                         this.takeAction('pass', data);
+                    }
+                },
+
+                doCasino: function () {
+                    var card = dojo.query(".selected");
+
+                    if (1 !== card.length) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query(".selected").removeClass("selected");
+
                     }
                 },
 

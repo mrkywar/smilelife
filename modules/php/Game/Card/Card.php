@@ -330,6 +330,7 @@ abstract class Card extends Model {
             "smilePoints" => $this->getSmilePoints(),
             "location" => $this->getLocation(),
             "locationArg" => $this->getLocationArg(),
+            "owner"=> $this->getOwnerId(),
             "title" => $this->getTitle(),
             "subtitle" => $this->getSubTitle(),
             "text1" => $this->getText1(),
