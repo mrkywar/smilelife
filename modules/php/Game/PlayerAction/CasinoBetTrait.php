@@ -13,7 +13,7 @@ use SmileLife\Table\PlayerTableDecorator;
  */
 trait CasinoBetTrait {
 
-    public function casinoPlay($cardId) {
+    public function casinoBet($cardId) {
         self::checkAction('casinoBet');
 
         $player = $this->playerManager->findOne([
@@ -25,7 +25,10 @@ trait CasinoBetTrait {
             throw new \BgaUserException("No card selected");
         }
 
-        var_dump($cardId);
-        die;
+        $request = new \SmileLife\Game\Request\CasinoBetRequest($player, $card);
+
+        $response = $this->requester->send($request);
+
+        $this->applyResponse($response);
     }
 }
