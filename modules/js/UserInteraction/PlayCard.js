@@ -182,10 +182,7 @@ define([
                 doCasino: function () {
                     var card = dojo.query(".selected");
 
-                    if (1 !== card.length) {
-                        this.showMessage(_('Invalid Card Selection'), "error");
-                        dojo.query(".selected").removeClass("selected");
-                    } else if ('wage' !== sCard.dataset.category) {
+                    if (1 !== card.length || 'wage' !== card[0].dataset.category) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
                     } else {
