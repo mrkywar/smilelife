@@ -16,7 +16,7 @@ use SmileLife\Game\Traits\PlayerJumpTrait;
 use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
-use SmileLife\PlayerAction\CasinoPlayTrait;
+use SmileLife\PlayerAction\CasinoBetTrait;
 use SmileLife\PlayerAction\DrawTrait;
 use SmileLife\PlayerAction\LuckChoiceTrait;
 use SmileLife\PlayerAction\PassTrait;
@@ -281,7 +281,7 @@ class SmileLife extends Table {
     use CardRequiermentTrait;
     use LuckChoiceTrait;
     use RainbowStopTrait;
-    use CasinoPlayTrait;
+    use CasinoBetTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

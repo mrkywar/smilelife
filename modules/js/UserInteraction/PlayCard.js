@@ -189,7 +189,7 @@ define([
                         var data = {
                             card: card[0].dataset.id
                         };
-                        this.takeAction('casinoPlay', data);
+                        this.takeAction('casinoBet', data);
                     }
 
                 },

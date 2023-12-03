@@ -82,7 +82,7 @@ $playerActionsGameStates = [
             "playCard",
             "resignAdultery",
             "discardCard",
-            "casinoPlay"
+            "casinoBet"
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
