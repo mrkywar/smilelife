@@ -10,6 +10,7 @@ use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
+use SmileLife\Card\Criterion\SpecialCriterion\CasinoWagePlayedCriterion;
 use SmileLife\Game\Request\CasinoBetRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTable;
@@ -47,9 +48,9 @@ class CasinoBetListener extends EventListener {
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
         $criterion = $this->getCasinoSpecialActionCriterion($card, $table);
-        
+
         echo "<pre>";
-        var_dump($request, $criterion->isValided());
+        var_dump($criterion->isValided(), $criterion->getErrorMessage());
         $card = $request->getCard();
         $player = $request->getPlayer();
         die('CBL');
@@ -58,12 +59,20 @@ class CasinoBetListener extends EventListener {
     private function getCasinoSpecialActionCriterion(Card $card, PlayerTable $table) {
         $wageCriterion = new CardTypeCriterion($card, Wage::class);
         $casinoOpened = new CasinoOpenedCriterion($table);
+        $wagesAllreadyBet = new CasinoWagePlayedCriterion();
+        $wageCriterion->setErrorMessage(clienttranslate("You must choose a salary"));
+
+        $casinoCriterion = new CriterionGroup([
+            $casinoOpened,
+            $wagesAllreadyBet
+                ], CriterionGroup::OR_OPERATOR);
+        $casinoCriterion->setErrorMessage(clienttranslate("Casino isn't oppened"));
+
 
         return new CriterionGroup([
             $wageCriterion,
-            $casinoOpened
-                ], CriterionGroup::AND_OPERATOR
-        );
+            $casinoCriterion
+                ], CriterionGroup::AND_OPERATOR);
     }
 
 //    public function onDraw(DrawCardRequest &$request, Response &$response) {
