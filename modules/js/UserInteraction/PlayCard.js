@@ -10,12 +10,14 @@ define([
                 },
 
                 addPlayCardInteraction: function () {
+                    if (this.isCasinoUseable()) {
+                        this.addActionButton('casino_button', _('Casino : bet a salary'), 'doCasino', null, false, null);
+//                        this.addActionButton('casino_button2', _('Cliquez-moi'), 'doCasino', {primary: true, disabled: false, color: 'green'});
+                    }
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
 
-                    if (this.isCasinoUseable()) {
-                        this.addActionButton('cadion_button', _('bet the salary'), 'doCasino', null, false, 'green');
-                    }
+
                     ;
                 },
 
@@ -183,8 +185,16 @@ define([
                     if (1 !== card.length) {
                         this.showMessage(_('Invalid Card Selection'), "error");
                         dojo.query(".selected").removeClass("selected");
-
+                    } else if ('wage' !== sCard.dataset.category) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query(".selected").removeClass("selected");
+                    } else {
+                        var data = {
+                            card: card[0].dataset.id
+                        };
+                        this.takeAction('casinoPlay', data);
                     }
+
                 },
 
                 getHandCardsExceptPlayed: function (card) {
