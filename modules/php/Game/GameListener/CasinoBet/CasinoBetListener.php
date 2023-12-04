@@ -59,12 +59,6 @@ class CasinoBetListener extends EventListener {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
 
-        echo '<pre>';
-        
-        echo "??";
-        var_dump($criterion->getConsequences());
-        die;
-
         $response->set("from", $card->getLocation());
 
         $response->set('player', $player)
