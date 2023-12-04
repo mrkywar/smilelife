@@ -35,8 +35,6 @@ class CasinoOpenedCriterion extends PlayerTableCriterion {
     public function isValided(): bool {
         $casino = $this->retriveCasino();
 
-//        var_dump($casino->getLocation(), CardLocation::SPECIAL_CASINO, $casino->getOwnerId(), $this->getTable()->getId());
-
         return (
                 CardLocation::SPECIAL_CASINO === $casino->getLocation() &&
                 (

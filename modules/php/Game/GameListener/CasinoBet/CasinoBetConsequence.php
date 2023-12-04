@@ -22,9 +22,6 @@ class CasinoBetConsequence extends EventListener {
 
     public function onCasinoBet(CasinoBetRequest &$request, Response &$response) {
         $consequences = $response->get('consequences');
-        
-        echo '<pre>';
-        var_dump($consequences);die;
 
         foreach (array_reverse($consequences) as $consequence) {
             $this->applyConsequence($consequence, $request, $response);

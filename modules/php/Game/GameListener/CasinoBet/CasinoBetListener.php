@@ -4,17 +4,11 @@ namespace SmileLife\Game\GameListener\CasinoBet;
 
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
-use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
-use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
-use SmileLife\Card\Criterion\SpecialCriterion\CasinoWagePlayedCriterion;
+use SmileLife\Card\Criterion\Factory\Category\Special\CasinoBetCriterionFactory;
 use SmileLife\Game\Request\CasinoBetRequest;
 use SmileLife\PlayerAction\ActionType;
-use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -35,12 +29,20 @@ class CasinoBetListener extends EventListener {
      * @var PlayerTableManager
      */
     private $tableManager;
+    
+    /**
+     * 
+     * @var CasinoBetCriterionFactory
+     */
+    private $criterionFactory;
 
     public function __construct() {
         $this->setMethod("onCasinoBet");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
+        $this->criterionFactory = new CasinoBetCriterionFactory();
+        
     }
 
     public function onCasinoBet(CasinoBetRequest &$request, Response &$response) {
@@ -48,15 +50,20 @@ class CasinoBetListener extends EventListener {
         $player = $request->getPlayer();
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
-        $criterion = $this->getCasinoSpecialActionCriterion($card, $table);
-        
-        
+        $criterion = $this->criterionFactory->create($table, $card);
+
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criterion);
 
         if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
+
+        echo '<pre>';
+        
+        echo "??";
+        var_dump($criterion->getConsequences());
+        die;
 
         $response->set("from", $card->getLocation());
 
@@ -65,26 +72,6 @@ class CasinoBetListener extends EventListener {
                 ->set("table", $table)
                 ->set('consequences', null)
                 ->set('consequences', $criterion->getConsequences());
-       
-    }
-
-    private function getCasinoSpecialActionCriterion(Card $card, PlayerTable $table) {
-        $wageCriterion = new CardTypeCriterion($card, Wage::class);
-        $casinoOpened = new CasinoOpenedCriterion($table);
-        $wagesAllreadyBet = new CasinoWagePlayedCriterion();
-        $wageCriterion->setErrorMessage(clienttranslate("You must choose a salary"));
-
-        $casinoCriterion = new CriterionGroup([
-            $casinoOpened,
-            $wagesAllreadyBet
-                ], CriterionGroup::OR_OPERATOR);
-        $casinoCriterion->setErrorMessage(clienttranslate("Casino isn't oppened"));
-
-
-        return new CriterionGroup([
-            $wageCriterion,
-            $casinoCriterion
-                ], CriterionGroup::AND_OPERATOR);
     }
 
     public function eventName(): string {
