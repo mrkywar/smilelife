@@ -2,6 +2,17 @@
 
 namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
+use SmileLife\Card\Card;
+use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
+use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
+use SmileLife\Card\Criterion\SpecialCriterion\CasinoWagePlayedCriterion;
+use SmileLife\Table\PlayerTable;
+
 /**
  * Description of CasinoBetCriterionFactory
  *
@@ -29,9 +40,15 @@ class CasinoBetCriterionFactory extends NullCriterionFactory {
                 ], CriterionGroup::OR_OPERATOR);
         $casinoCriterion->setErrorMessage(clienttranslate("Casino isn't oppened"));
 
-        return new CriterionGroup([
+        $criterion = new CriterionGroup([
             $wageCriterion,
             $casinoCriterion
                 ], CriterionGroup::AND_OPERATOR);
+
+        if ($wageCriterion->isValided()) {
+            $criterion->addConsequence(new WageBetedConsequence($card, $table));
+        }
+
+        return $criterion;
     }
 }

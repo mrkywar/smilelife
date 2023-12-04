@@ -7,6 +7,7 @@ use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
@@ -48,12 +49,29 @@ class CasinoBetListener extends EventListener {
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
         $criterion = $this->getCasinoSpecialActionCriterion($card, $table);
+        
+        
+        $criteriaTester = new CriterionTester();
+        $testRestult = $criteriaTester->test($criteria);
 
-        echo "<pre>";
-        var_dump($criterion->isValided(), $criterion->getErrorMessage());
-        $card = $request->getCard();
-        $player = $request->getPlayer();
-        die('CBL');
+        if (!$testRestult->isValided()) {
+            throw new \BgaUserException($testRestult->getErrorMessage());
+        }
+
+        $response->set("from", $card->getLocation());
+
+        $response->set('player', $player)
+                ->set('card', $card)
+                ->set("table", $table)
+                ->set('consequences', null)
+                ->set('consequences', $criterion->getConsequences());
+        
+        
+//        echo "<pre>";
+//        var_dump($criterion->isValided(), $criterion->getErrorMessage());
+//        $card = $request->getCard();
+//        $player = $request->getPlayer();
+//        die('CBL');
     }
 
     private function getCasinoSpecialActionCriterion(Card $card, PlayerTable $table) {

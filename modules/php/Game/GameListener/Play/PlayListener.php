@@ -59,15 +59,7 @@ class PlayListener extends EventListener {
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
-        if ($testRestult->isValided() && 1 === 0) {
-
-//            var_dump($testRestult->getErrorMessage());die;
-            $debugger = new CriterionDebugger($criteria);
-            $debugger->debug();
-            die("DEBUG");
-
-            throw new CardException("Not Playable");
-        } else if (!$testRestult->isValided()) {
+        if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
 
@@ -76,12 +68,8 @@ class PlayListener extends EventListener {
         $response->set('player', $player)
                 ->set('card', $card)
                 ->set("table", $table)
-                ->set('consequences', null);
-
-        if ($testRestult->isValided()) {
-//            var_dump( $criteria->getConsequences());die;
-            $response->set('consequences', $criteria->getConsequences());
-        }
+                ->set('consequences', null)
+                ->set('consequences', $criteria->getConsequences());
 
         return $response;
     }
@@ -93,5 +81,4 @@ class PlayListener extends EventListener {
     public function getPriority(): int {
         return 5;
     }
-
 }
