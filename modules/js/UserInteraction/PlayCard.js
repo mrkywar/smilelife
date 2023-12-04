@@ -10,8 +10,39 @@ define([
                 },
 
                 addPlayCardInteraction: function () {
+                    if (this.isCasinoUseable()) {
+                        this.addActionButton('casino_button', _('Casino : bet a salary'), 'doCasino', null, false, null);
+//                        this.addActionButton('casino_button2', _('Cliquez-moi'), 'doCasino', {primary: true, disabled: false, color: 'green'});
+                    }
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
+
+
+                    ;
+                },
+
+                isCasinoUseable: function () {
+                    this.debug("isCU", this.casino);
+                    if (this.casino.length > 0) {
+                        var casinoCard = this.casino[0];
+
+                        this.debug(parseInt(casinoCard.owner), this.player_id, this.isMyHandContainWage());
+
+                        return(parseInt(casinoCard.owner) !== this.player_id && this.isMyHandContainWage());
+                    }
+                    return false;
+
+                },
+
+                isMyHandContainWage: function () {
+                    for (var hCardKey in this.myHand) {
+                        var hCard = this.myHand[hCardKey];
+                        this.debug(hCard);
+                        if ('wage' === hCard.category) {
+                            return true;
+                        }
+                    }
+                    return false;
                 },
 
                 cardPlay: function (playedCard, action) {
@@ -146,6 +177,21 @@ define([
                         };
                         this.takeAction('pass', data);
                     }
+                },
+
+                doCasino: function () {
+                    var card = dojo.query(".selected");
+
+                    if (1 !== card.length || 'wage' !== card[0].dataset.category) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query(".selected").removeClass("selected");
+                    } else {
+                        var data = {
+                            card: card[0].dataset.id
+                        };
+                        this.takeAction('casinoBet', data);
+                    }
+
                 },
 
                 getHandCardsExceptPlayed: function (card) {

@@ -31,7 +31,14 @@ define([
 
             this.playerTables = [];
             this.handCounters = [];
+            
+            this.deckCounter = null;
+            this.discardCounter = null;
+            this.offsideCounter = null;
+            this.casinoCounter = null;
+
             this.cardDefaultSize = "M"; //TODO : See if I keep this
+            this.casino = [];
             this.game = this;
             this.animationTimer = 1000;
 
@@ -48,6 +55,7 @@ define([
             this.gamedatas = gamedatas;
 
             this.displayDeckAndDiscard();
+            this.displayCasinoCards();
             this.displayTables();
             this.displayPanels();
 
@@ -69,10 +77,10 @@ define([
                         this,
                         (data) => resolve(data),
                         (isError, message, code) => {
-                                if (isError) {
-                                    reject(message, code);
-                                }
-                            },
+                    if (isError) {
+                        reject(message, code);
+                    }
+                },
                         );
             });
 

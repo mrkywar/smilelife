@@ -8,6 +8,12 @@
 <div id="game_container">
     <div class="centered_table" id="mytable_container">
         <div id="deck_and_discard">
+            <div class="pile_container pile_casino">
+                <div class="pile" id="pile_casino">
+
+                </div>
+                <div class="pile_counter" id="pile_casino_count"></div>
+            </div>
             <div class="pile_container pile_deck">
                 <div class="pile" id="pile_deck">
 

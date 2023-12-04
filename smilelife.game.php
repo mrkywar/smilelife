@@ -16,6 +16,7 @@ use SmileLife\Game\Traits\PlayerJumpTrait;
 use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
+use SmileLife\PlayerAction\CasinoBetTrait;
 use SmileLife\PlayerAction\DrawTrait;
 use SmileLife\PlayerAction\LuckChoiceTrait;
 use SmileLife\PlayerAction\PassTrait;
@@ -147,7 +148,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\RevengeFromDiscardTestInitializer();
+        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\CasinoTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -280,6 +281,7 @@ class SmileLife extends Table {
     use CardRequiermentTrait;
     use LuckChoiceTrait;
     use RainbowStopTrait;
+    use CasinoBetTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

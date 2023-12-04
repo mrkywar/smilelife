@@ -125,4 +125,13 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
+    
+    public function casinoBet(){
+        self::setAjaxMode();
+
+        $cardId = self::getArg("card", AT_posint, true);
+        $this->game->casinoBet($cardId);
+
+        self::ajaxResponse();
+    }
 }

@@ -74,6 +74,7 @@ class DataRetriver {
             "deck" => $countDeck,
             "discard" => $this->getSerilaizedCards($this->cardManager->getAllCardsInDiscard()),
             "offside" => $this->getSerilaizedCards($this->cardManager->getAllCardsInOffside()),
+            "casino" => $this->getSerilaizedCards($this->cardManager->getAllCardsInCasino()),
             "luckCards" => $this->getSerilaizedCards($this->cardManager->getAllLuckCards($currentPlayer))
         ];
 
