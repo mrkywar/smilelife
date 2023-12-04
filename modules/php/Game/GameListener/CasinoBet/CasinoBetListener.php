@@ -52,7 +52,7 @@ class CasinoBetListener extends EventListener {
         
         
         $criteriaTester = new CriterionTester();
-        $testRestult = $criteriaTester->test($criteria);
+        $testRestult = $criteriaTester->test($criterion);
 
         if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
@@ -65,13 +65,7 @@ class CasinoBetListener extends EventListener {
                 ->set("table", $table)
                 ->set('consequences', null)
                 ->set('consequences', $criterion->getConsequences());
-        
-        
-//        echo "<pre>";
-//        var_dump($criterion->isValided(), $criterion->getErrorMessage());
-//        $card = $request->getCard();
-//        $player = $request->getPlayer();
-//        die('CBL');
+       
     }
 
     private function getCasinoSpecialActionCriterion(Card $card, PlayerTable $table) {
@@ -92,22 +86,6 @@ class CasinoBetListener extends EventListener {
             $casinoCriterion
                 ], CriterionGroup::AND_OPERATOR);
     }
-
-//    public function onDraw(DrawCardRequest &$request, Response &$response) {
-//        $player = $request->getPlayer();
-//
-//        $card = $this->cardManager->drawCard();
-//
-//        $card->setLocation(CardLocation::PLAYER_HAND)
-//                ->setLocationArg($player->getId());
-//
-//        $this->cardManager->moveCard($card);
-//
-//        $response->add("player", $player)
-//                ->add("card", $card);
-//
-//        return $response;
-//    }
 
     public function eventName(): string {
         return ActionType::ACTION_SPECIAL_CASINO;

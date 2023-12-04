@@ -45,9 +45,7 @@ class CasinoBetCriterionFactory extends NullCriterionFactory {
             $casinoCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        if ($wageCriterion->isValided()) {
-            $criterion->addConsequence(new WageBetedConsequence($card, $table));
-        }
+        $wageCriterion->addConsequence(new WageBetedConsequence($card, $table));
 
         return $criterion;
     }

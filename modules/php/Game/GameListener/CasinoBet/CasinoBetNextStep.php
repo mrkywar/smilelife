@@ -3,13 +3,8 @@
 namespace SmileLife\Game\GameListener\Discard;
 
 use Core\Event\EventListener\EventListener;
-use Core\Notification\Notification;
-use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
-use SmileLife\Card\Card;
-use SmileLife\Card\CardManager;
-use SmileLife\Card\Core\CardDecorator;
-use SmileLife\Game\Request\DrawCardRequest;
+use SmileLife\Game\Request\CasinoBetRequest;
 use SmileLife\PlayerAction\ActionType;
 
 /**
@@ -31,7 +26,7 @@ class CasinoBetNextStep extends EventListener {
         return 10;
     }
 
-    public function onCasinoBet(DrawCardRequest &$request, Response &$response) {
+    public function onCasinoBet(CasinoBetRequest &$request, Response &$response) {
         $response->set("nextState", "playCard");
         return $response;
     }

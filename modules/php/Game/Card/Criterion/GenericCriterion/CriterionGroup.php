@@ -68,7 +68,7 @@ class CriterionGroup extends Criterion {
 
     public function getConsequences(): ?array {
         $consequences = parent::getConsequences();
-
+        echo "<pre>";
         foreach ($this->criteria as $criterion) {
             if ($criterion->isValided()) {
                 $tconsequences = $criterion->getConsequences();
@@ -80,6 +80,7 @@ class CriterionGroup extends Criterion {
                 }
             }
         }
+        die;
         return $consequences;
     }
 
