@@ -35,7 +35,7 @@ class WageBetedConsequence extends PlayerTableConsequence {
      */
     protected $cardManager;
 
-    public function __construct(Wage $card, PlayerTable $table) {
+    public function __construct(PlayerTable $table, Wage $card) {
         parent::__construct($table);
         $this->card = $card;
         $this->cardDecorator = new CardDecorator();

@@ -4,12 +4,14 @@ namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Consequence\Category\Special\CasinoResolveConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
+use SmileLife\Card\Criterion\SpecialCriterion\CasinoResolvableCriterion;
 use SmileLife\Card\Criterion\SpecialCriterion\CasinoWagePlayedCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -45,7 +47,12 @@ class CasinoBetCriterionFactory extends NullCriterionFactory {
             $casinoCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        $criterion->addConsequence(new WageBetedConsequence($card, $table));
+        $resolvableCriterion = new CasinoResolvableCriterion();
+        if ($resolvableCriterion->isValided()) {
+            $criterion->addConsequence(new CasinoResolveConsequence($table, $card));
+        }
+
+        $criterion->addConsequence(new WageBetedConsequence($table, $card));
 
         return $criterion;
     }
