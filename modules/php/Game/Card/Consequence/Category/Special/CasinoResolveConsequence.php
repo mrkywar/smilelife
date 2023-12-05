@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Consequence\Category\Special;
 
 use Core\Managers\PlayerManager;
+use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
@@ -62,7 +63,6 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
 
         $this->tableManager = new PlayerTableManager();
         $this->tableDecorator = new PlayerTableDecorator();
-        $this->playerManager = new PlayerManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
         $this->card = $card;
@@ -73,38 +73,31 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
 
         $wage = $this->retriveBetWage();
 
-        if ($wage->getAmount() === $this->card->getAmount()) {
-            //-- Actual player win
-            $newOwnerId = $this->card->getOwnerId();
-        } else {
-            //-- Other player win
-            $newOwnerId = $wage->getOwnerId();
-        }
+        $playerTable = $this->retriveNewPlayerTableOwner($wage);
+        $player = $playerTable->getPlayer();
 
         $wage->setLocation(CardLocation::PLAYER_BOARD)
-                ->setOwnerId($newOwnerId)
-                ->setLocationArg($newOwnerId)
+                ->setOwnerId($player->getId())
+                ->setLocationArg($player->getId())
                 ->setIsFlipped(false);
         $this->card->setLocation(CardLocation::PLAYER_BOARD)
-                ->setOwnerId($newOwnerId)
-                ->setLocationArg($newOwnerId);
+                ->setOwnerId($player->getId())
+                ->setLocationArg($player->getId());
 
-        $this->table->addWage($this->card)
-                ->addWage($wage);
-
-        $this->tableManager->update($this->table);
         $this->cardManager->update([$wage, $this->card]);
 
-        $newOwner = $this->playerManager->findBy(['id' => $newOwnerId]);
-        
+        $playerTable->addWage($this->card)
+                ->addWage($wage);
+
+        $this->tableManager->update($playerTable);
+
         $notification = new Notification();
         $notification->setType("casinoResolvedNotification")
                 ->setText(clienttranslate('${player_name} win a bet at casino and win two wages'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('cards', $this->cardDecorator->decorate([$this->card, $wage]))
-                ->add('discard', $this->cardDecorator->decorate($discardedCards))
-                ->add('table', $this->tableDecorator->decorate($this->table))
+                ->add('table', $this->tableDecorator->decorate($playerTable))
         ;
 
         $response->addNotification($notification);
@@ -130,5 +123,17 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
             }
         }
         return null;
+    }
+
+    private function retriveNewPlayerTableOwner(Wage $wage): PlayerTable {
+        if ($wage->getAmount() === $this->card->getAmount()) {
+            //-- Actual player win
+            $newOwnerId = $this->card->getOwnerId();
+        } else {
+            //-- Other player win
+            $newOwnerId = $wage->getOwnerId();
+        }
+
+        return $this->tableManager->findBy(['id' => $newOwnerId]);
     }
 }
