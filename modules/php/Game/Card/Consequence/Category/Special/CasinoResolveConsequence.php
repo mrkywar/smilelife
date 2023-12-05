@@ -2,12 +2,17 @@
 
 namespace SmileLife\Card\Consequence\Category\Special;
 
+use Core\Managers\PlayerManager;
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
+use SmileLife\Table\PlayerTableDecorator;
+use SmileLife\Table\PlayerTableManager;
 
 /**
  * Description of CasinoResolveConsequence
@@ -30,6 +35,24 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
 
     /**
      * 
+     * @var PlayerTableManager
+     */
+    private $tableManager;
+
+    /**
+     * 
+     * @var PlayerManager
+     */
+    private $playerManager;
+
+    /**
+     * 
+     * @var PlayerTableDecorator
+     */
+    protected $tableDecorator;
+
+    /**
+     * 
      * @var Wage
      */
     private $card;
@@ -37,6 +60,9 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
     public function __construct(PlayerTable $table, Wage $card) {
         parent::__construct($table);
 
+        $this->tableManager = new PlayerTableManager();
+        $this->tableDecorator = new PlayerTableDecorator();
+        $this->playerManager = new PlayerManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
         $this->card = $card;
@@ -47,28 +73,52 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
 
         $wage = $this->retriveBetWage();
 
-        echo "<pre>";
-//        var_dump($wage, $this->card);
-
         if ($wage->getAmount() === $this->card->getAmount()) {
             //-- Actual player win
-            $newOwner = $this->card->getOwnerId();
+            $newOwnerId = $this->card->getOwnerId();
         } else {
             //-- Other player win
-            $newOwner = $wage->getOwnerId();
+            $newOwnerId = $wage->getOwnerId();
         }
-        
-        $wage->setLocation(\SmileLife\Card\Core\CardLocation::PLAYER_BOARD)
-                ->setOwnerId($newOwner)
-                ->setLocationArg($newOwner);
-        $this->card->setLocation(\SmileLife\Card\Core\CardLocation::PLAYER_BOARD)
-                ->setOwnerId($newOwner)
-                ->setLocationArg($newOwner);
-        
 
-        var_dump($newOwner, $this->card->getOwnerId() . " > " . $wage->getOwnerId());
+        $wage->setLocation(CardLocation::PLAYER_BOARD)
+                ->setOwnerId($newOwnerId)
+                ->setLocationArg($newOwnerId)
+                ->setIsFlipped(false);
+        $this->card->setLocation(CardLocation::PLAYER_BOARD)
+                ->setOwnerId($newOwnerId)
+                ->setLocationArg($newOwnerId);
 
-        die;
+        $this->table->addWage($this->card)
+                ->addWage($wage);
+
+        $this->tableManager->update($this->table);
+        $this->cardManager->update([$wage, $this->card]);
+
+        $newOwner = $this->playerManager->findBy(['id' => $newOwnerId]);
+        
+        $notification = new Notification();
+        $notification->setType("casinoResolvedNotification")
+                ->setText(clienttranslate('${player_name} win a bet at casino and win two wages'))
+                ->add('player_name', $player->getName())
+                ->add('playerId', $player->getId())
+                ->add('cards', $this->cardDecorator->decorate([$this->card, $wage]))
+                ->add('discard', $this->cardDecorator->decorate($discardedCards))
+                ->add('table', $this->tableDecorator->decorate($this->table))
+        ;
+
+        $response->addNotification($notification);
+
+        $levelNotification = new Notification();
+        $levelNotification->setType("wageLevelUpdate")
+                ->setText(clienttranslate('${player_name} add ${level} to his available amount'))
+                ->add('player_name', $player->getName())
+                ->add('playerId', $player->getId())
+                ->add('level', $this->card->getAmount() + $wage->getAmount());
+
+        $response->addNotification($levelNotification);
+
+        return $response;
     }
 
     private function retriveBetWage(): ?Wage {
