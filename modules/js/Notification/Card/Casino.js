@@ -25,22 +25,21 @@ define([
 
                 notif_casinoResolvedNotification: function (notif) {
                     this.debug(notif.args);
-                    var notifCards = notif.args.cards;
-                    var index = 0;
-                    var _this = this;
 
-                    function processNextCard() {
-                        if (index < notifCards.length) {
-                            var card = notifCards[index];
-                            _this.displayCard(card, "pile_" + card.pile + "_" + notif.args.playerId, "pile_casino");
-                            index++;
-                            setTimeout(processNextCard, 100);
-                        }
-                    }
+                    this.notif_wageLevelUpdate(notif);
 
-                    processNextCard();
-                    
+                    var card = notif.args.card;
+                    var wage = notif.args.wage;
+
+                    this.displayCard(card, "pile_" + card.pile + "_" + notif.args.playerId, "pile_casino");
+                    setTimeout(function () {
+                        this.displayCard(wage, "pile_" + wage.pile + "_" + notif.args.playerId, "pile_casino");
+                    }.bind(this), 100);
+
+                    this.boardCounter[notif.args.playerId][card.pile].setValue(this.boardCounter[notif.args.playerId][card.pile].getValue() + 2);
                     this.casinoCounter.setValue(1);
+                    this.gamedatas.tables[notif.args.playerId] = notif.args.table;
+
                 },
             }
     );

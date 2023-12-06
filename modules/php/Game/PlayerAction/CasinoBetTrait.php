@@ -2,10 +2,7 @@
 
 namespace SmileLife\PlayerAction;
 
-use SmileLife\Card\Core\CardDecorator;
-use SmileLife\Card\Core\CardSerializer;
-use SmileLife\Game\Request\PassRequest;
-use SmileLife\Table\PlayerTableDecorator;
+use SmileLife\Game\Request\CasinoBetRequest;
 
 /**
  *
@@ -25,7 +22,7 @@ trait CasinoBetTrait {
             throw new \BgaUserException("No card selected");
         }
 
-        $request = new \SmileLife\Game\Request\CasinoBetRequest($player, $card);
+        $request = new CasinoBetRequest($player, $card);
 
         $response = $this->requester->send($request);
 

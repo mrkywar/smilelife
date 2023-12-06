@@ -87,23 +87,16 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
 
         $notification = new Notification();
         $notification->setType("casinoResolvedNotification")
-                ->setText(clienttranslate('${player_name} win a bet at casino and win two wages'))
+                ->setText(clienttranslate('${player_name} win a bet at casino and win two wages and add ${level} to his available amount'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cards', $this->cardDecorator->decorate([$this->card, $wage]))
+                ->add('card', $this->cardDecorator->decorate($this->card))
+                ->add('wage', $this->cardDecorator->decorate($wage))
                 ->add('table', $this->tableDecorator->decorate($playerTable))
+                ->add('level', $this->card->getAmount() + $wage->getAmount());
         ;
 
         $response->addNotification($notification);
-
-        $levelNotification = new Notification();
-        $levelNotification->setType("wageLevelUpdate")
-                ->setText(clienttranslate('${player_name} add ${level} to his available amount'))
-                ->add('player_name', $player->getName())
-                ->add('playerId', $player->getId())
-                ->add('level', $this->card->getAmount() + $wage->getAmount());
-
-        $response->addNotification($levelNotification);
 
         return $response;
     }

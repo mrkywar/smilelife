@@ -27,7 +27,7 @@ class CasinoBetNextStep extends EventListener {
     }
 
     public function onCasinoBet(CasinoBetRequest &$request, Response &$response) {
-        $response->set("nextState", "playCard");
+        $response->set("nextState", "casinoBet");
         return $response;
     }
 

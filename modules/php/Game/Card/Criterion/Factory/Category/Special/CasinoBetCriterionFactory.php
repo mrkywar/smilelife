@@ -48,12 +48,12 @@ class CasinoBetCriterionFactory extends NullCriterionFactory {
                 ], CriterionGroup::AND_OPERATOR);
 
         $resolvableCriterion = new CasinoResolvableCriterion();
+
         if ($resolvableCriterion->isValided()) {
             $criterion->addConsequence(new CasinoResolveConsequence($table, $card));
         }
-
         $criterion->addConsequence(new WageBetedConsequence($table, $card));
-
+        
         return $criterion;
     }
 }
