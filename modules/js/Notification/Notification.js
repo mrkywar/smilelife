@@ -5,40 +5,43 @@ define([
     'dojo',
     'dojo/_base/declare',
 
-    g_gamethemeurl + 'modules/js/Notification/Resign.js',
     g_gamethemeurl + 'modules/js/Notification/Draw.js',
+    g_gamethemeurl + 'modules/js/Notification/HandEvent.js',
     g_gamethemeurl + 'modules/js/Notification/Pass.js',
     g_gamethemeurl + 'modules/js/Notification/Play.js',
+    g_gamethemeurl + 'modules/js/Notification/Resign.js',
     g_gamethemeurl + 'modules/js/Notification/Score.js',
-    g_gamethemeurl + 'modules/js/Notification/Consequence.js',
-    g_gamethemeurl + 'modules/js/Notification/volontaryDivorce.js',
-    g_gamethemeurl + 'modules/js/Notification/Card/Studies.js',
+    g_gamethemeurl + 'modules/js/Notification/VolontaryDivorce.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Casino.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Flirts.js',
-    g_gamethemeurl + 'modules/js/Notification/Card/Wage.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Jobs.js',
-    g_gamethemeurl + 'modules/js/Notification/Card/Medium.js',
-    g_gamethemeurl + 'modules/js/Notification/Card/Luck.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Journalist.js',
-    g_gamethemeurl + 'modules/js/Notification/handEvent.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Luck.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Medium.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Studies.js',
+    g_gamethemeurl + 'modules/js/Notification/Card/Wage.js',
+    
 ], function (dojo, declare) {
     return declare(
             'smilelife.notification',
             [
-                smilelife.notification.resign,
                 smilelife.notification.draw,
+                smilelife.notification.hand.events,
                 smilelife.notification.pass,
                 smilelife.notification.play,
-                smilelife.notification.consequence,
+                smilelife.notification.resign,
+                smilelife.notification.score,
                 smilelife.notification.volontaryDivorce,
-                smilelife.notification.card.studies,
+                
+                smilelife.notification.card.casino,
                 smilelife.notification.card.flirts,
-                smilelife.notification.card.wage,
                 smilelife.notification.card.jobs,
-                smilelife.notification.card.medium,
                 smilelife.notification.card.journalist,
                 smilelife.notification.card.luck,
-                smilelife.notification.hand.events,
-                smilelife.notification.score
+                smilelife.notification.card.medium,
+                smilelife.notification.card.studies,
+                smilelife.notification.card.wage,
+                
             ],
             {
                 constructor: function () {
@@ -83,7 +86,7 @@ define([
                         ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['luckNotification', ANNIMATION_TIMER],
                         ['luckChoiceNotification', ANNIMATION_TIMER],
-                        ['scoreNotification',0]
+                        ['scoreNotification', 0]
 
                     ]
                     notifs.forEach(function (notif) {

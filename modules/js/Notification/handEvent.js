@@ -19,6 +19,9 @@ define([
                     var recivedCard = notif.args.recivedCard
                     var cardFrom = "playerpanel_" + notif.args.opponentId;
                     this.displayCard(recivedCard, "myhand", cardFrom);
+                },
+                notif_handUpdateNotification: function(notif){
+                    this.myHand = notif.args.myHand;
                 }
             }
     );
