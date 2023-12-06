@@ -55,7 +55,8 @@ define([
 
                     var pileCasinoCounter = new ebg.counter();
                     pileCasinoCounter.create('pile_casino_count');
-                    pileCasinoCounter.setValue((null === this.casino && this.casino.length > 0) ? null : this.casino.length);
+
+                    pileCasinoCounter.setValue((null === this.casino || 0 === this.casino.length) ? null : this.casino.length);
                     this.casinoCounter = pileCasinoCounter;
 
                 },

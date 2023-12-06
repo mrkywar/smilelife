@@ -35,21 +35,36 @@ class CasinoTestInitializer extends TestGameInitializer {
             $this->playWaitingCards($oTable);
         }
 
-        return $this->basicDisplayTests($oTables);
+        return $this->firstBetTests($oTables);
+    }
+    
+    private function firstBetTests($oTables){
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];
+        
+        $casinoPlayed = new Casino();
+        $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
+                ->setLocationArg(99)
+                ->setOwnerId($case1Table->getId());
+        
+         $this->cardManager->add($casinoPlayed);
+        
+        return $case1Table->getId();
     }
 
-    private function basicDisplayTests($oTables) {
+    private function secondBetTests($oTables) {
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
 
         $casinoPlayed = new Casino();
         $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
-                ->setLocationArg(1)
+                ->setLocationArg(99)
                 ->setOwnerId($case1Table->getId());
 
         $wage1Casino = new WageLevel2();
         $wage1Casino->setLocation(CardLocation::SPECIAL_CASINO)
                 ->setLocationArg(2)
+                ->setIsFlipped(true)
                 ->setOwnerId($case1Table->getId());
 
         $this->cardManager->add([$casinoPlayed, $wage1Casino]);
