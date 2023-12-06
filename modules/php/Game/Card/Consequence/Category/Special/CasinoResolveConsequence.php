@@ -42,12 +42,6 @@ class CasinoResolveConsequence extends PlayerTableConsequence {
 
     /**
      * 
-     * @var PlayerManager
-     */
-    private $playerManager;
-
-    /**
-     * 
      * @var PlayerTableDecorator
      */
     protected $tableDecorator;

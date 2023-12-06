@@ -63,8 +63,8 @@ define([
                     var _this = this;
 
                     var notifs = [
-                        ['betNotification', ANNIMATION_TIMER/1.2],
-                        ['casinoResolvedNotification', ANNIMATION_TIMER*2.5],
+                        ['betNotification', ANNIMATION_TIMER / 1.2],
+                        ['casinoResolvedNotification', ANNIMATION_TIMER * 2],
                         ['childsAdultery', ANNIMATION_TIMER],
                         ['discardNotification', ANNIMATION_TIMER],
                         ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],

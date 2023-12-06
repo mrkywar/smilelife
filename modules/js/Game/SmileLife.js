@@ -40,7 +40,7 @@ define([
             this.cardDefaultSize = "M"; //TODO : See if I keep this
             this.casino = [];
             this.game = this;
-            this.animationTimer = 1000;
+            this.animationTimer = ANNIMATION_TIMER;
 
 
         },

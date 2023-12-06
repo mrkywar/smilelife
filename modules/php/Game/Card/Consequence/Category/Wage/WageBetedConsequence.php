@@ -51,7 +51,7 @@ class WageBetedConsequence extends PlayerTableConsequence {
         $this->card->setLocation(CardLocation::SPECIAL_CASINO)
                 ->setLocationArg(sizeof($cardsOnCasino) + 1)
                 ->setOwnerId($player->getId())
-                ->setIsFlipped(sizeof($cardsOnCasino) > 1);
+                ->setIsFlipped(sizeof($cardsOnCasino) <= 1);
 
         $this->cardManager->update($this->card);
 
