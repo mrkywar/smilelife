@@ -22,12 +22,8 @@ define([
                 },
 
                 isCasinoUseable: function () {
-                    this.debug("isCU", this.casino);
                     if (this.casino.length > 0) {
                         var casinoCard = this.casino[0];
-
-                        this.debug(parseInt(casinoCard.owner), this.player_id, this.isMyHandContainWage());
-
                         return(parseInt(casinoCard.owner) !== this.player_id && this.isMyHandContainWage());
                     }
                     return false;
@@ -37,7 +33,6 @@ define([
                 isMyHandContainWage: function () {
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
-                        this.debug(hCard);
                         if ('wage' === hCard.category) {
                             return true;
                         }
@@ -46,7 +41,6 @@ define([
                 },
 
                 cardPlay: function (playedCard, action) {
-//                    this.debug('PC-CP',playedCard, action);
 
                     switch (this.getCardType(playedCard)) {
 //                      //--- BEGIN CASES : Choose A Another Card
@@ -126,11 +120,10 @@ define([
                             this.jailPlayed(playedCard);
                             break;
                         default:
+                            this.debug('PC-CP-DEFAULT - OLD  MODAL');
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
-                                this.debug('PC-CP-DEFAULT - OLD ATTACK MODAL');
                                 this.attackModal(playedCard);
                             } else {
-                                this.debug('PC-CP-DEFAULT - OLD MODAL');
                                 if (null === this.playData) {
                                     this.playData = {
                                         card: playedCard.dataset.id

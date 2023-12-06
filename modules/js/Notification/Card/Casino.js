@@ -8,11 +8,11 @@ define([
             {
                 notif_betNotification: function (notif)
                 {
-                    this.debug(notif);
+                    this.debug(notif.args);
                 },
                 
                 notif_casinoResolvedNotification: function(notif) {
-                    this.debug(notif);
+                    this.debug(notif.args);
                 },
             }
     );

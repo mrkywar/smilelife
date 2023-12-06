@@ -20,7 +20,6 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Card/Medium.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Studies.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Wage.js',
-    
 ], function (dojo, declare) {
     return declare(
             'smilelife.notification',
@@ -32,7 +31,7 @@ define([
                 smilelife.notification.resign,
                 smilelife.notification.score,
                 smilelife.notification.volontaryDivorce,
-                
+
                 smilelife.notification.card.casino,
                 smilelife.notification.card.flirts,
                 smilelife.notification.card.jobs,
@@ -41,7 +40,6 @@ define([
                 smilelife.notification.card.medium,
                 smilelife.notification.card.studies,
                 smilelife.notification.card.wage,
-                
             ],
             {
                 constructor: function () {
@@ -65,28 +63,30 @@ define([
                     var _this = this;
 
                     var notifs = [
-                        ['flirtsAdultery', ANNIMATION_TIMER],
+                        ['betNotification', ANNIMATION_TIMER/1.2],
+                        ['casinoResolvedNotification', ANNIMATION_TIMER*2.5],
                         ['childsAdultery', ANNIMATION_TIMER],
-                        ['drawNotification', ANNIMATION_TIMER],
-                        ['passNotification', ANNIMATION_TIMER],
-                        ['playNotification', ANNIMATION_TIMER],
-                        ['studiesLevelUpdate', ANNIMATION_TIMER],
-                        ['wageLevelUpdate', ANNIMATION_TIMER],
-                        ['resignNotification', ANNIMATION_TIMER],
-                        ['usedFlirtNotification', ANNIMATION_TIMER],
-                        ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],
                         ['discardNotification', ANNIMATION_TIMER],
-                        ['turnpassNotification', ANNIMATION_TIMER * 2.5],
-                        ['offsideNotification', ANNIMATION_TIMER],
+                        ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],
+                        ['drawNotification', ANNIMATION_TIMER],
+                        ['flirtsAdultery', ANNIMATION_TIMER],
                         ['handChangedNotification', ANNIMATION_TIMER],
-                        ['trocNotification', ANNIMATION_TIMER],
-                        ['maxCardUpdateNotification', ANNIMATION_TIMER],
                         ['handUpdateNotification', ANNIMATION_TIMER],
-                        ['showCardsNotification', ANNIMATION_TIMER],
-                        ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['luckNotification', ANNIMATION_TIMER],
                         ['luckChoiceNotification', ANNIMATION_TIMER],
-                        ['scoreNotification', 0]
+                        ['maxCardUpdateNotification', ANNIMATION_TIMER],
+                        ['offsideNotification', ANNIMATION_TIMER],
+                        ['passNotification', ANNIMATION_TIMER],
+                        ['playNotification', ANNIMATION_TIMER],
+                        ['resignNotification', ANNIMATION_TIMER],
+                        ['showCardsNotification', ANNIMATION_TIMER],
+                        ['showPlayerCardsNotification', ANNIMATION_TIMER],
+                        ['scoreNotification', 0],
+                        ['studiesLevelUpdate', 0],
+                        ['turnpassNotification', ANNIMATION_TIMER * 2.5],
+                        ['trocNotification', ANNIMATION_TIMER],
+                        ['usedFlirtNotification', ANNIMATION_TIMER],
+                        ['wageLevelUpdate', 0]
 
                     ]
                     notifs.forEach(function (notif) {

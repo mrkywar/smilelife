@@ -10,9 +10,7 @@ define([
             {
                 notif_turnpassNotification: function (notif) {
                     var card = notif.args.card;
-
                     var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
-//                    this.debug("notif", cardDest, card);
                     this.displayCard(card, cardDest, cardDest);
                 },
 
@@ -21,7 +19,6 @@ define([
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 
-                    this.debug('PlayNotif', notif.args);
 
                     this.discard = notif.args.discard;
                     this.updateDiscard();

@@ -15,8 +15,6 @@ define([
 
                 doDiscard: function () {
                     var cards = dojo.query("#myhand .selected");
-                    this.debug("UI-DA-od", cards)
-
                     if (1 !== cards.length) {
 
                         this.showMessage(_('Invalid Card Selection'), "error");
