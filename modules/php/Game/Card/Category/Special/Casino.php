@@ -32,6 +32,10 @@ class Casino extends Special implements BaseGame {
     public function getClass(): string {
         return self::class;
     }
+    
+    public function getDefaultPassTurn(): int {
+        return 1;
+    }
 
     public function getEffect(): Effect {
         throw new CardException("C-Casino-01 : Not implemented yet");

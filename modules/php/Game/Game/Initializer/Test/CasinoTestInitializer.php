@@ -47,6 +47,7 @@ class CasinoTestInitializer extends TestGameInitializer {
         
         $casinoPlayed = $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
         $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
+                ->getPassTurn(0)
                 ->setLocationArg(99)
                 ->setOwnerId($case1Table->getId());
         

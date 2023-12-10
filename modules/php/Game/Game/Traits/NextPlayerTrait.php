@@ -3,9 +3,11 @@
 namespace SmileLife\Game\Traits;
 
 use Core\Notification\Notification;
+use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
+use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
@@ -19,44 +21,64 @@ trait NextPlayerTrait {
     public function stNextPlayer() {
         $playerId = intval($this->getActivePlayerId());
         $this->giveExtraTime($playerId);
-        
+
         $newPlayerId = $this->activeNextPlayer();
 
         $playerTable = $this->tableManager->findBy(["id" => $newPlayerId]);
-        $passCard = $this->getLastActivePassTurn($playerTable);
-        
+
         $this->cardManager->getSerializer()->setIsForcedArray(true);
         $deckCard = $this->cardManager->getAllCardsInDeck();
         $this->cardManager->getSerializer()->setIsForcedArray(false);
-        
-        
-        if(0 === count($deckCard)){
+
+        if (0 === count($deckCard)) {
             $this->gamestate->nextState("endOfGame");
-        }elseif (null !== $passCard) {
-            $tableDecorator = new PlayerTableDecorator();
-            $cardDecorator = new CardDecorator();
-            $player = $playerTable->getPlayer();
-
-            $passCard->setPassTurn($passCard->getPassTurn() - 1);
-            $this->cardManager->update($passCard);
-
-            if ($passCard->getPassTurn() < 1) {
-                $notifications = [];
-                if ($passCard instanceof Jail) {
-                    $this->jailDiscarding($passCard, $playerTable->getJob(), $playerTable);
-                } else {
-                    $passCard->setIsUsed(true);
-                    $this->cardManager->update($passCard);
-                    $this->passTurnNotification($passCard, $playerTable);
+        } else {
+            $casino = $this->getCasinoCard();
+            if ($casino->getOwnerId() === $playerId) {
+                $casino->setPassTurn($casino->getPassTurn() - 1);
+                if ($casino->getPassTurn() < 0) {
+                    $casino->setOwnerId(null); //auto open casino
+                    $notification->setType("openCasinoNotification");
+                    $notification->setText(clienttranslate('The casino is now open'))
+                            ->add('card', $cardDecorator->decorate($casino));
+                    
+                    $this->sendNotification($notification);
                 }
-            } else {
-                $this->passTurnNotification($passCard, $playerTable);
+                $this->cardManager->update($casino);
             }
 
-            $this->gamestate->nextState("playerPass");
-        } else {
-            $this->gamestate->nextState("newTurn");
+            $passCard = $this->getLastActivePassTurn($playerTable);
+            //-- For pass turn (attack card)
+            if (null !== $passCard) {
+                $tableDecorator = new PlayerTableDecorator();
+                $cardDecorator = new CardDecorator();
+                $player = $playerTable->getPlayer();
+
+                $passCard->setPassTurn($passCard->getPassTurn() - 1);
+                $this->cardManager->update($passCard);
+
+                if ($passCard->getPassTurn() < 1) {
+                    $notifications = [];
+                    if ($passCard instanceof Jail) {
+                        $this->jailDiscarding($passCard, $playerTable->getJob(), $playerTable);
+                    } else {
+                        $passCard->setIsUsed(true);
+                        $this->cardManager->update($passCard);
+                        $this->passTurnNotification($passCard, $playerTable);
+                    }
+                } else {
+                    $this->passTurnNotification($passCard, $playerTable);
+                }
+
+                $this->gamestate->nextState("playerPass");
+            } else {
+                $this->gamestate->nextState("newTurn");
+            }
         }
+    }
+
+    private function getCasinoCard(): ?Casino {
+        return $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO]);
     }
 
     private function getLastActivePassTurn(PlayerTable $table): ?Attack {
@@ -108,7 +130,8 @@ trait NextPlayerTrait {
                 ->add('cardName', (string) $passCard)
                 ->add('card', $cardDecorator->decorate($passCard))
                 ->add('discard', $cardDecorator->decorate($discardedCards))
-                ->add('table', $tableDecorator->decorate($table));;
+                ->add('table', $tableDecorator->decorate($table));
+        ;
         ;
         $this->sendNotification($notification2);
     }
@@ -132,5 +155,4 @@ trait NextPlayerTrait {
         ;
         $this->sendNotification($notification);
     }
-
 }
