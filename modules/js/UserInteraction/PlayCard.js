@@ -22,9 +22,16 @@ define([
                 },
 
                 isCasinoUseable: function () {
+                    this.debug('iCU',this.casino);
                     if (this.casino.length > 0) {
                         var casinoCard = this.casino[0];
-                        return(parseInt(casinoCard.owner) !== this.player_id && this.isMyHandContainWage());
+                        this.debug("iCU - C",casinoCard,this.player_id);
+                        
+                        return (this.isMyHandContainWage() && (
+                                    parseInt(casinoCard.owner) === this.player_id ||
+                                    ( parseInt(casinoCard.owner) !== this.player_id && this.casino.length > 1) ||
+                                    null === casinoCard.owner
+                                ));
                     }
                     return false;
 

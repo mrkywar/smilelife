@@ -18,6 +18,11 @@ define([
                         this.displayCard(card, "pile_casino", "playerpanel_" + notif.args.playerId, true);
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                     }
+                    
+                    
+                     //-- Casino redisplay (to keep on the top)
+                     var cardCasino= this.casino[0];
+                     this.displayCard(cardCasino,"pile_casino" , "pile_casino");
 
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     this.casinoCounter.setValue(this.casinoCounter.getValue() + 1);
@@ -25,7 +30,6 @@ define([
 
                 notif_casinoResolvedNotification: function (notif) {
                     this.debug(notif.args);
-
                     this.notif_wageLevelUpdate(notif);
 
                     var card = notif.args.card;

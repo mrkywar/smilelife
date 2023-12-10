@@ -2,7 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
+use SmileLife\Card\CardType;
+use SmileLife\Card\Category\Job\Interim\Barman;
 use SmileLife\Card\Category\Special\Casino;
+use SmileLife\Card\Category\Wage\WageLevel1;
 use SmileLife\Card\Category\Wage\WageLevel2;
 use SmileLife\Card\Core\CardLocation;
 
@@ -21,11 +24,11 @@ class CasinoTestInitializer extends TestGameInitializer {
         //give a job (on table) and a wage (in hand)
 
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Wage\WageLevel1();
+            $card = new WageLevel1();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
 
-            $job = new \SmileLife\Card\Category\Job\Interim\Barman();
+            $job = new Barman();
             $job->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($oTable->getId());
 
@@ -42,7 +45,7 @@ class CasinoTestInitializer extends TestGameInitializer {
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
         
-        $casinoPlayed = new Casino();
+        $casinoPlayed = $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
         $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
                 ->setLocationArg(99)
                 ->setOwnerId($case1Table->getId());
