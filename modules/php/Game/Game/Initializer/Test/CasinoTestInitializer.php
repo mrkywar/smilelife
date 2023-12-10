@@ -46,12 +46,13 @@ class CasinoTestInitializer extends TestGameInitializer {
         $case1Table = $oTables[array_keys($oTables)[$i]];
         
         $casinoPlayed = $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
+
         $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
-                ->getPassTurn(0)
+                ->setPassTurn(0)
                 ->setLocationArg(99)
                 ->setOwnerId($case1Table->getId());
         
-         $this->cardManager->add($casinoPlayed);
+         $this->cardManager->update($casinoPlayed);
         
         return $case1Table->getId();
     }

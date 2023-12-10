@@ -35,14 +35,18 @@ trait NextPlayerTrait {
         } else {
             $casino = $this->getCasinoCard();
             if ($casino->getOwnerId() === $playerId) {
-                $casino->setPassTurn($casino->getPassTurn() - 1);
-                if ($casino->getPassTurn() < 0) {
+
+                if (0 === $casino->getPassTurn()) {
+                    $cardDecorator = new CardDecorator();
                     $casino->setOwnerId(null); //auto open casino
-                    $notification->setType("openCasinoNotification");
-                    $notification->setText(clienttranslate('The casino is now open'))
+                    $notification = new Notification();
+                    $notification->setType("openCasinoNotification")
+                            ->setText(clienttranslate('The casino is now open'))
                             ->add('card', $cardDecorator->decorate($casino));
-                    
+
                     $this->sendNotification($notification);
+                } else {
+                    $casino->setPassTurn($casino->getPassTurn() - 1);
                 }
                 $this->cardManager->update($casino);
             }
