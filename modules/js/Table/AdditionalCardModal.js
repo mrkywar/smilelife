@@ -21,7 +21,6 @@ define([
                 },
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
-//                    this.debug("ACM-OM", card, this.playData);
                     switch (choiceType) {
                         case MODAL_TYPE_DISPLAY_MULTI:
                             var id = this.generateModale(modalTitle, "special-container");
@@ -247,7 +246,6 @@ define([
                     var playedCard = dojo.query("#game_container .selected");
 //                    var additionalCard = dojo.query("#more-container .selected");
 
-                    this.debug(this.playData);
                     var data = this.playData;
                     if (null === data) {
                         data = {
@@ -286,7 +284,6 @@ define([
                         var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
                         this.generateTargetStatSelection(null, null, playedCard, idNew);
                     } else if (0 === targetChoice.length) {
-                        this.debug('ACM-TC-L', this.playData, this.oCard, playedCard);
                         if (null === this.playData) {
                             this.playData = {
                                 additionalCards: [searchedDiv.dataset.id],
@@ -296,9 +293,6 @@ define([
                         } else {
                             this.playData.additionalCards.push(searchedDiv.dataset.id);
                         }
-
-                        this.debug('ACM-OMC-beforeAjaxCall - L300', playedCard, additionalCard, searchedDiv, this.oCard);
-
                         if ('discard' === this.oCard.dataset.location) {
                             this.cardPlay(searchedDiv, 'playFromDiscard');
                         } else {
@@ -315,7 +309,6 @@ define([
                         dojo.query("#modal_" + id + " .selected").removeClass("selected");
                         searchedDiv.classList.add("selected");
                     } else {
-                        this.debug("ACM-OM", playedCard, additionalCard);
                         var data = {
                             card: additionalCard.id
                         };
@@ -350,8 +343,6 @@ define([
                         }
                         data.target = player.id;
                         data.additionalCards = data.additionalCards.toString();
-                        this.debug('ACM-OMTC', data);
-
                         if ('discard' === card.dataset.location) {
                             this.takeAction('playFromDiscard', data);
                         } else {
@@ -365,7 +356,6 @@ define([
                     var playedCard = dojo.query("#game_container .selected");
 
                     var targetPlayer = dojo.query("#modal_" + id + " .target_" + player.id);
-//                    this.debug("ACM-Target-DATA",this.playData);
                     if (dojo.hasClass(targetPlayer[0], "selected")) {
                         if (null === this.playData) {
                             this.playData = {
@@ -392,10 +382,7 @@ define([
                                 this.takeAction('playCard', this.playData);
                             }
                         }
-//                        this.forcedTarget = false;
-//                        this.playData = null;
                     } else {
-//                        this.debug(dojo.query("#modal_" + id + " .target_selection"));
                         dojo.removeClass(dojo.query("#modal_" + id + " .selected"), "selected");
 
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");

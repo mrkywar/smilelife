@@ -10,12 +10,44 @@ define([
                 },
 
                 addPlayCardInteraction: function () {
+                    if (this.isCasinoUseable()) {
+                        this.addActionButton('casino_button', _('Casino : bet a salary'), 'doCasino', null, false, null);
+//                        this.addActionButton('casino_button2', _('Cliquez-moi'), 'doCasino', {primary: true, disabled: false, color: 'green'});
+                    }
                     this.addActionButton('play_button', _('Play card'), 'doPlay', null, false, 'blue');
                     this.addActionButton('discard_button', _('Discard card and pass'), 'doPass', null, false, 'red');
+
+
+                    ;
+                },
+
+                isCasinoUseable: function () {
+                    this.debug('iCU',this.casino);
+                    if (this.casino.length > 0) {
+                        var casinoCard = this.casino[0];
+                        this.debug("iCU - C",casinoCard,this.player_id);
+                        
+                        return (this.isMyHandContainWage() && (
+                                    parseInt(casinoCard.owner) === this.player_id ||
+                                    ( parseInt(casinoCard.owner) !== this.player_id && this.casino.length > 1) ||
+                                    null === casinoCard.owner
+                                ));
+                    }
+                    return false;
+
+                },
+
+                isMyHandContainWage: function () {
+                    for (var hCardKey in this.myHand) {
+                        var hCard = this.myHand[hCardKey];
+                        if ('wage' === hCard.category) {
+                            return true;
+                        }
+                    }
+                    return false;
                 },
 
                 cardPlay: function (playedCard, action) {
-//                    this.debug('PC-CP',playedCard, action);
 
                     switch (this.getCardType(playedCard)) {
 //                      //--- BEGIN CASES : Choose A Another Card
@@ -95,11 +127,10 @@ define([
                             this.jailPlayed(playedCard);
                             break;
                         default:
+                            this.debug('PC-CP-DEFAULT - OLD  MODAL');
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
-                                this.debug('PC-CP-DEFAULT - OLD ATTACK MODAL');
                                 this.attackModal(playedCard);
                             } else {
-                                this.debug('PC-CP-DEFAULT - OLD MODAL');
                                 if (null === this.playData) {
                                     this.playData = {
                                         card: playedCard.dataset.id
@@ -146,6 +177,21 @@ define([
                         };
                         this.takeAction('pass', data);
                     }
+                },
+
+                doCasino: function () {
+                    var card = dojo.query(".selected");
+
+                    if (1 !== card.length || 'wage' !== card[0].dataset.category) {
+                        this.showMessage(_('Invalid Card Selection'), "error");
+                        dojo.query(".selected").removeClass("selected");
+                    } else {
+                        var data = {
+                            card: card[0].dataset.id
+                        };
+                        this.takeAction('casinoBet', data);
+                    }
+
                 },
 
                 getHandCardsExceptPlayed: function (card) {

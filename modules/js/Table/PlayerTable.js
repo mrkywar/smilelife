@@ -65,7 +65,7 @@ define([
                     
                     //Save special Cards
                     this.luckCards = gamedatas.luckCards;
-                                        
+                    
                     //Display of opponents' game tables
                     for (var playerId in gamedatas.tables) {
                         var table = gamedatas.tables[playerId];
@@ -86,7 +86,7 @@ define([
                         this.displayCard(card, "myhand");
                     }
                 },
-
+                
                 /**
                  * This function get HTML code for connected player table (with hand container)
                  * @param {object} player

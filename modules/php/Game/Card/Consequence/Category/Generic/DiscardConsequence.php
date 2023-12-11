@@ -48,7 +48,7 @@ class DiscardConsequence extends Consequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
-    
+
     /**
      * 
      * @var PlayerTableDecorator
@@ -59,7 +59,7 @@ class DiscardConsequence extends Consequence {
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
         $this->cardDecorator = new CardDecorator();
-         $this->tableDecorator = new PlayerTableDecorator();
+        $this->tableDecorator = new PlayerTableDecorator();
 
         $this->table = $table;
         $this->card = $card;
@@ -92,5 +92,4 @@ class DiscardConsequence extends Consequence {
 
         $response->addNotification($notification);
     }
-
 }

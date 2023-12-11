@@ -1,22 +1,22 @@
 <?php
 
-namespace SmileLife\Game\GameListener\Discard;
+namespace SmileLife\Game\GameListener\CasinoBet;
 
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Criterion\CriterionTester\CriterionDebugger;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
-use SmileLife\Game\Request\PlayCardRequest;
+use SmileLife\Card\Criterion\Factory\Category\Special\CasinoBetCriterionFactory;
+use SmileLife\Game\Request\CasinoBetRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
 
 /**
- * Description of PlayListener
+ * Description of DiscardListener
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PlayListener extends EventListener {
+class CasinoBetListener extends EventListener {
 
     /**
      * 
@@ -29,35 +29,31 @@ class PlayListener extends EventListener {
      * @var PlayerTableManager
      */
     private $tableManager;
+    
+    /**
+     * 
+     * @var CasinoBetCriterionFactory
+     */
+    private $criterionFactory;
 
     public function __construct() {
-        $this->setMethod("onPlay");
+        $this->setMethod("onCasinoBet");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
+        $this->criterionFactory = new CasinoBetCriterionFactory();
+        
     }
 
-    public function onPlay(PlayCardRequest &$request, Response &$response) {
+    public function onCasinoBet(CasinoBetRequest &$request, Response &$response) {
         $card = $request->getCard();
         $player = $request->getPlayer();
-        $target = $request->getTargetedPlayer();
-        $table = $this->tableManager->findOneBy([
-            "id" => $player->getId()
-        ]);
-        $opponentTable = $target;
-        if (null !== $target) {
-            $opponentTable = $this->tableManager->findOneBy([
-                "id" => $target->getId()
-            ]);
-            $opponentTable->setPlayer($target);
-        }
-        $additionalCards = $request->getAdditionalCards();
+        $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
-        $criteriaFactory = $card->getCriterionFactory();
-        $criteria = $criteriaFactory->create($table, $card, $opponentTable, $additionalCards);
+        $criterion = $this->criterionFactory->create($table, $card);
 
         $criteriaTester = new CriterionTester();
-        $testRestult = $criteriaTester->test($criteria);
+        $testRestult = $criteriaTester->test($criterion);
 
         if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
@@ -69,16 +65,14 @@ class PlayListener extends EventListener {
                 ->set('card', $card)
                 ->set("table", $table)
                 ->set('consequences', null)
-                ->set('consequences', $criteria->getConsequences());
-
-        return $response;
+                ->set('consequences', $criterion->getConsequences());
     }
 
     public function eventName(): string {
-        return ActionType::ACTION_PLAY;
+        return ActionType::ACTION_SPECIAL_CASINO;
     }
 
     public function getPriority(): int {
-        return 5;
+        return 1;
     }
 }

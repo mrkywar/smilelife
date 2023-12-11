@@ -81,16 +81,18 @@ $playerActionsGameStates = [
         "possibleactions" => [
             "playCard",
             "resignAdultery",
-            "discardCard"
+            "discardCard",
+            "casinoBet"
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
             "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
+            "casinoBet" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
             "luckAction" => ST_PLAYER_SPECIAL_LUCK,
-            "rainbowAction" => ST_PLAYER_SPECIAL_RAINBOW
+            "rainbowAction" => ST_PLAYER_SPECIAL_RAINBOW,
         ]
     ],
     ST_PLAYER_SPECIAL_LUCK => [

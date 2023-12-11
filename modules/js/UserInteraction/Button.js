@@ -57,9 +57,7 @@ define([
                 //                        action status bar (ie: the HTML links in the status bar).
                 //        
                 onUpdateActionButtons: function (stateName, args)
-                {
-                    this.debug("UI-B-ouab",stateName, args);
-                    
+                {                    
                     if (this.isCurrentPlayerActive())
                     {
                         this.playData = null;
