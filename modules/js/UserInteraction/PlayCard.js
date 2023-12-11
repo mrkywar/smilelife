@@ -23,7 +23,7 @@ define([
 
                 isCasinoUseable: function () {
                     this.debug('iCU',this.casino);
-                    if (this.casino.length > 0) {
+                    if (null !== this.casino && this.casino.length > 0) {
                         var casinoCard = this.casino[0];
                         this.debug("iCU - C",casinoCard,this.player_id);
                         
