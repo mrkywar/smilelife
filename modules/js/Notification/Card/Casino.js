@@ -34,9 +34,12 @@ define([
                     this.displayCard(card, "pile_casino", "pile_casino");
                 },
 
-                notif_noOtherBetNotification: function (notif) {
+                notif_noOtherBetNotification: function (notif) {   
                     var card = notif.args.card;
-                    this.displayCard(card, "playerpanel_" + notif.args.playerId, "pile_casino");
+                    this.displayCard(card, "pile_" + card.pile + "_" + notif.args.playerId, "pile_casino");
+                    this.casinoCounter.setValue(1);
+                    this.boardCounter[notif.args.playerId][card.pile].setValue(this.boardCounter[notif.args.playerId][card.pile].getValue() + 1);
+                    this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                 },
 
                 notif_casinoResolvedNotification: function (notif) {

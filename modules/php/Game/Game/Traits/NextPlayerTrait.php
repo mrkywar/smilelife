@@ -31,6 +31,7 @@ trait NextPlayerTrait {
         $deckCard = $this->cardManager->getAllCardsInDeck();
         $this->cardManager->getSerializer()->setIsForcedArray(false);
         $cardDecorator = new CardDecorator();
+        $tableDecorator = new PlayerTableDecorator();
 
         if (0 === count($deckCard)) {
             $this->gamestate->nextState("endOfGame");
@@ -43,8 +44,9 @@ trait NextPlayerTrait {
                     $casino->setOwnerId(null); //auto open casino
                     $notification = new Notification();
                     $notification->setType("openCasinoNotification")
-                            ->setText(clienttranslate('The casino is now open'))
-                            ->add('card', $cardDecorator->decorate($casino));
+                            ->setText(clienttranslate('The ${cardName} is now open'))
+                            ->add('card', $cardDecorator->decorate($casino))
+                            ->add('cardName', (string) $casino);
 
                     $this->sendNotification($notification);
                 } else {
@@ -65,8 +67,11 @@ trait NextPlayerTrait {
 
                     $notification = new Notification();
                     $notification->setType("noOtherBetNotification")
-                            ->setText(clienttranslate('There was only one bet on the casino, the owner of the bet wins (but not its value)'))
-                            ->add('card', $cardDecorator->decorate($lastWage));
+                            ->setText(clienttranslate('There was only one bet on the ${cardName}, the owner of the bet wins (but not its value)'))
+                            ->add("playerId",$playerId)
+                            ->add("card", $cardDecorator->decorate($lastWage))
+                            ->add('cardName', (string) $casino)
+                            ->add("table", $tableDecorator->decorate($playerTable));
                     $this->sendNotification($notification);
                 } else {
                     $lastWage->setPassTurn($lastWage->getPassTurn() - 1);
@@ -150,7 +155,7 @@ trait NextPlayerTrait {
                 ->add('playerId', $player->getId())
                 ->add('card', $cardDecorator->decorate($job))
                 ->add('cardName', (string) $job)
-                ->add('discard', $cardDecorator->decorate($discardedCards));
+                ->add('discard', $cardDecorator->decorate($discardedCards))
 //                ->add('table', $this->tableDecorator->decorate($table));;
         ;
         $this->sendNotification($notification);
@@ -167,8 +172,7 @@ trait NextPlayerTrait {
                 ->add('card', $cardDecorator->decorate($passCard))
                 ->add('discard', $cardDecorator->decorate($discardedCards))
                 ->add('table', $tableDecorator->decorate($table));
-        ;
-        ;
+
         $this->sendNotification($notification2);
     }
 
