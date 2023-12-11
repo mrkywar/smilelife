@@ -9,6 +9,7 @@ use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 
@@ -33,6 +34,7 @@ trait NextPlayerTrait {
         if (0 === count($deckCard)) {
             $this->gamestate->nextState("endOfGame");
         } else {
+            //-- Casino Open case !
             $casino = $this->getCasinoCard();
             if ($casino->getOwnerId() === $playerId) {
 
@@ -51,8 +53,25 @@ trait NextPlayerTrait {
                 $this->cardManager->update($casino);
             }
 
-            $passCard = $this->getLastActivePassTurn($playerTable);
+            //-- Only One Wage Bet Case !
+            $lastWage = $this->getLastBettedWage();
+            if (null !== $lastWage && $lastWage->getOwnerId() === $playerId) {
+                if (0 === $lastWage->getPassTurn()) {
+                    $lastWage->setLocation(CardLocation::PLAYER_BOARD)
+                            ->setLocationArg($playerId);
+
+                    $notification->setType("noOtherBetNotification")
+                            ->setText(clienttranslate('There was only one bet on the casino, the owner of the bet wins (but not its value)'))
+                            ->add('card', $cardDecorator->decorate($lastWage));
+                } else {
+                    $lastWage->setPassTurn($lastWage->getPassTurn() - 1);
+                }
+
+                $this->cardManager->update($lastWage);
+            }
+
             //-- For pass turn (attack card)
+            $passCard = $this->getLastActivePassTurn($playerTable);
             if (null !== $passCard) {
                 $tableDecorator = new PlayerTableDecorator();
                 $cardDecorator = new CardDecorator();
@@ -82,7 +101,15 @@ trait NextPlayerTrait {
     }
 
     private function getCasinoCard(): ?Casino {
-        return $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO]);
+        return $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
+    }
+
+    private function getLastBettedWage(): ?\SmileLife\Card\Category\Wage\Wage {
+        $casinoCards = $this->cardManager->getAllCardsInCasino();
+        if (is_array($casinoCards)) {
+            return $cagetAllCardsInCasino[1];
+        }
+        return null;
     }
 
     private function getLastActivePassTurn(PlayerTable $table): ?Attack {
