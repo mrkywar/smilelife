@@ -38,7 +38,21 @@ class CasinoTestInitializer extends TestGameInitializer {
             $this->playWaitingCards($oTable);
         }
 
-        return $this->firstBetTests($oTables);
+        return $this->casionPlayTests($oTables);
+    }
+    
+    private function casionPlayTests($oTables){
+        $i = random_int(0, count($oTables) - 1);
+        $case1Table = $oTables[array_keys($oTables)[$i]];
+        
+        $casino = $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
+        $casino->setLocation(CardLocation::PLAYER_HAND)
+                ->setLocationArg($case1Table->getId());
+        
+        $this->cardManager->update($casino);
+        
+        return $case1Table->getId();
+        
     }
     
     private function firstBetTests($oTables){
@@ -52,8 +66,8 @@ class CasinoTestInitializer extends TestGameInitializer {
                 ->setLocationArg(99)
                 ->setOwnerId($case1Table->getId());
         
-         $this->cardManager->update($casinoPlayed);
-        
+        $this->cardManager->update($casinoPlayed);
+
         return $case1Table->getId();
     }
 
