@@ -34,6 +34,11 @@ define([
                     this.displayCard(card, "pile_casino", "pile_casino");
                 },
 
+                notif_noOtherBetNotification: function (notif) {
+                    var card = notif.args.card;
+                    this.displayCard(card, "playerpanel_" + notif.args.playerId, "pile_casino");
+                },
+
                 notif_casinoResolvedNotification: function (notif) {
 //                    this.debug(notif.args);
                     this.notif_wageLevelUpdate(notif);
