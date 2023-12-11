@@ -5,6 +5,7 @@ namespace SmileLife\Card\Consequence\Category\Wage;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
@@ -47,13 +48,16 @@ class WageBetedConsequence extends PlayerTableConsequence {
         $player = $this->table->getPlayer();
 
         $cardsOnCasino = $this->cardManager->getAllCardsInCasino();
+        $casino = $this->getCasino($cardsOnCasino);
+
+        $casino->setPassTurn($casino->getDefaultPassTurn());
 
         $this->card->setLocation(CardLocation::SPECIAL_CASINO)
                 ->setLocationArg(sizeof($cardsOnCasino) + 1)
                 ->setOwnerId($player->getId())
                 ->setIsFlipped(sizeof($cardsOnCasino) <= 1);
 
-        $this->cardManager->update($this->card);
+        $this->cardManager->update([$this->card, $casino]);
 
         $notification->setType("betNotification")
                 ->setText(clienttranslate('${player_name} bet a wage on casino'))
@@ -62,5 +66,9 @@ class WageBetedConsequence extends PlayerTableConsequence {
                 ->add('card', $this->cardDecorator->decorate($this->card))
         ;
         $response->addNotification($notification);
+    }
+
+    private function getCasino($cardsOnCasino): Casino {
+        return $cardsOnCasino[0];
     }
 }

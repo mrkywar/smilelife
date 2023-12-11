@@ -83,6 +83,7 @@ define([
                         ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['scoreNotification', 0],
                         ['studiesLevelUpdate', 0],
+                        ['openCasinoNotification', 0],
                         ['turnpassNotification', ANNIMATION_TIMER * 2.5],
                         ['trocNotification', ANNIMATION_TIMER],
                         ['usedFlirtNotification', ANNIMATION_TIMER],
