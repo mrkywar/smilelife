@@ -31,15 +31,18 @@ define([
                 },
 
                 notif_openCasinoNotification: function (notif) {
-                    var card = notif.args.card;
-                    this.debug("nocn");
+//                    var card = notif.args.casino;
+//                    this.debug('OPEN', notif.args, notif.args.card);
                     if (null === this.casino) {
-                        this.casino = [card];
-                        this.displayCard(card, "pile_casino", "pile_casino");
+                        this.casino = [notif.args.casino];
                     } else {
-                        this.casino[0] = card;
+                        this.casino[0] = notif.args.casino
                     }
-                    this.displayCard(card, "pile_casino", "pile_casino");
+                    if (typeof notif.args.card !== 'undefined') {
+                        this.notif_betNotification(notif);
+                    }
+                    this.displayCard(notif.args.casino, "pile_casino", "pile_casino");
+
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     this.casinoCounter.setValue(this.casinoCounter.getValue() + 1);
                 },

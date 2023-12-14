@@ -8,6 +8,7 @@ use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Special\Casino;
+use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
@@ -119,10 +120,13 @@ trait NextPlayerTrait {
         }
     }
 
-    private function getLastBettedWage(): ?\SmileLife\Card\Category\Wage\Wage {
+    private function getLastBettedWage(): ?Wage {
         $casinoCards = $this->cardManager->getAllCardsInCasino();
-        if (!empty($casinoCards) && is_array($casinoCards)) {
-            return $casinoCards[0];
+        
+        foreach ($casinoCards as $card){
+            if($card instanceof Wage){
+                return $card;
+            }
         }
         return null;
     }
