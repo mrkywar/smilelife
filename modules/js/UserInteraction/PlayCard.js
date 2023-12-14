@@ -22,15 +22,15 @@ define([
                 },
 
                 isCasinoUseable: function () {
-                    this.debug('iCU',this.casino);
-                    if (this.casino.length > 0) {
+                    this.debug('iCU', this.casino);
+                    if (null !== this.casino && this.casino.length > 0) {
                         var casinoCard = this.casino[0];
-                        this.debug("iCU - C",casinoCard,this.player_id);
-                        
+                        this.debug("iCU - C", casinoCard, this.player_id);
+
                         return (this.isMyHandContainWage() && (
-                                    parseInt(casinoCard.owner) === this.player_id ||
-                                    ( parseInt(casinoCard.owner) !== this.player_id && this.casino.length > 1) ||
-                                    null === casinoCard.owner
+                                parseInt(casinoCard.owner) === this.player_id ||
+                                (parseInt(casinoCard.owner) !== this.player_id && this.casino.length > 1) ||
+                                null === casinoCard.owner
                                 ));
                     }
                     return false;
@@ -126,6 +126,13 @@ define([
                         case CARD_TYPE_JAIL:
                             this.jailPlayed(playedCard);
                             break;
+                        case CARD_TYPE_CASINO:
+                            var modalTitle = _('OPTIONNAL_CHOOSE_WAGE_TO_BET');
+                            var wageCards = this.getHandWages();
+                            var requiredProperties = null;
+                            var displayAll = true;
+                            this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, wageCards, displayAll);
+                            break;
                         default:
                             this.debug('PC-CP-DEFAULT - OLD  MODAL');
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
@@ -199,6 +206,17 @@ define([
                     for (var hCardKey in this.myHand) {
                         var hCard = this.myHand[hCardKey];
                         if (hCard.id !== parseInt(card.dataset.id)) {
+                            selectableCards.push(hCard);
+                        }
+                    }
+                    return selectableCards;
+                },
+
+                getHandWages: function () {
+                    var selectableCards = [];
+                    for (var hCardKey in this.myHand) {
+                        var hCard = this.myHand[hCardKey];
+                        if ("wage" === hCard.category) {
                             selectableCards.push(hCard);
                         }
                     }

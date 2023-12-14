@@ -8,6 +8,7 @@ use SmileLife\Card\Category\Attack\Attack;
 use SmileLife\Card\Category\Attack\Jail;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Special\Casino;
+use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
@@ -38,7 +39,7 @@ trait NextPlayerTrait {
         } else {
             //-- Casino Open case !
             $casino = $this->getCasinoCard();
-            if ($casino->getOwnerId() === $playerId) {
+            if (null!== $casino && $casino->getOwnerId() === $playerId) {
 
                 if (0 === $casino->getPassTurn()) {
                     $casino->setOwnerId(null); //auto open casino
@@ -68,7 +69,7 @@ trait NextPlayerTrait {
                     $notification = new Notification();
                     $notification->setType("noOtherBetNotification")
                             ->setText(clienttranslate('There was only one bet on the ${cardName}, the owner of the bet wins (but not its value)'))
-                            ->add("playerId",$playerId)
+                            ->add("playerId", $playerId)
                             ->add("card", $cardDecorator->decorate($lastWage))
                             ->add('cardName', (string) $casino)
                             ->add("table", $tableDecorator->decorate($playerTable));
@@ -111,13 +112,21 @@ trait NextPlayerTrait {
     }
 
     private function getCasinoCard(): ?Casino {
-        return $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
+        $cards = $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
+        if (empty($cards)) {
+            return null;
+        } else {
+            return $cards;
+        }
     }
 
-    private function getLastBettedWage(): ?\SmileLife\Card\Category\Wage\Wage {
+    private function getLastBettedWage(): ?Wage {
         $casinoCards = $this->cardManager->getAllCardsInCasino();
-        if (is_array($casinoCards)) {
-            return $casinoCards[0];
+        
+        foreach ($casinoCards as $card){
+            if($card instanceof Wage){
+                return $card;
+            }
         }
         return null;
     }

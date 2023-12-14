@@ -19,22 +19,35 @@ define([
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                     }
 
-
                     //-- Casino redisplay (to keep on the top)
-                    var cardCasino = this.casino[0];
-                    this.displayCard(cardCasino, "pile_casino", "pile_casino");
+
+                    if (null !== this.casino) {
+                        var cardCasino = this.casino[0];
+                        this.displayCard(cardCasino, "pile_casino", "pile_casino");
+                    }
 
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     this.casinoCounter.setValue(this.casinoCounter.getValue() + 1);
                 },
 
                 notif_openCasinoNotification: function (notif) {
-                    var card = notif.args.card;
-                    this.casino[0] = card;
-                    this.displayCard(card, "pile_casino", "pile_casino");
+//                    var card = notif.args.casino;
+//                    this.debug('OPEN', notif.args, notif.args.card);
+                    if (null === this.casino) {
+                        this.casino = [notif.args.casino];
+                    } else {
+                        this.casino[0] = notif.args.casino
+                    }
+                    if (typeof notif.args.card !== 'undefined') {
+                        this.notif_betNotification(notif);
+                    }
+                    this.displayCard(notif.args.casino, "pile_casino", "pile_casino");
+
+                    this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
+                    this.casinoCounter.setValue(this.casinoCounter.getValue() + 1);
                 },
 
-                notif_noOtherBetNotification: function (notif) {   
+                notif_noOtherBetNotification: function (notif) {
                     var card = notif.args.card;
                     this.displayCard(card, "pile_" + card.pile + "_" + notif.args.playerId, "pile_casino");
                     this.casinoCounter.setValue(1);

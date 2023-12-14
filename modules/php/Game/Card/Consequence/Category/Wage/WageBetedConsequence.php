@@ -5,6 +5,7 @@ namespace SmileLife\Card\Consequence\Category\Wage;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Consequence\PlayerTableConsequence;
@@ -69,7 +70,7 @@ class WageBetedConsequence extends PlayerTableConsequence {
         $response->addNotification($notification);
     }
 
-    private function getCasino($cardsOnCasino): Casino {
-        return $cardsOnCasino[0];
+    protected function getCasino($cardsOnCasino): Casino {
+        return $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
     }
 }

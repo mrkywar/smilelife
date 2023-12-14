@@ -55,18 +55,20 @@ define([
                                 this.showMessage(_('No eligible cards'), "error");
                             } else {
 
-                                if (null !== this.playData && 1 === this.playData.additionalCards.length) {
+                                if (null !== this.playData && typeof this.playData.additionalCards !== "undefined" && 1 === this.playData.additionalCards.length) {
                                     var fictiveCard = {dataset: {id: this.playData.additionalCards[0]}};
                                     requiredProperties = this.filterProperty(requiredProperties, fictiveCard);
 
                                 }
+                                this.debug('ACM-MTC', requiredProperties);
                                 if (0 === requiredProperties.length) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
+
                                     this.generateCardSelection(requiredProperties, card, id);
                                 }
 
-                                if (CARD_TYPE_ASTRONAUT === parseInt(card.dataset.type)) {
+                                if (CARD_TYPE_ASTRONAUT === parseInt(card.dataset.type) || CARD_TYPE_CASINO) {
                                     dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
                                     dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
                                 }
@@ -83,6 +85,7 @@ define([
                             var luckCallbackHandler = this.onLuckClick;
                             this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler);
                             break;
+
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;
@@ -284,7 +287,7 @@ define([
                         var idNew = this.generateModale(_('CHOOSE_PLAYER_TARGET'));
                         this.generateTargetStatSelection(null, null, playedCard, idNew);
                     } else if (0 === targetChoice.length) {
-                        if (null === this.playData) {
+                        if (null === this.playData || typeof this.playData.additionalCards === "undefined") {
                             this.playData = {
                                 additionalCards: [searchedDiv.dataset.id],
                                 card: playedCard.dataset.id
