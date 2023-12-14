@@ -19,10 +19,12 @@ define([
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                     }
 
-
                     //-- Casino redisplay (to keep on the top)
-                    var cardCasino = this.casino[0];
-                    this.displayCard(cardCasino, "pile_casino", "pile_casino");
+
+                    if (null !== this.casino) {
+                        var cardCasino = this.casino[0];
+                        this.displayCard(cardCasino, "pile_casino", "pile_casino");
+                    }
 
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
                     this.casinoCounter.setValue(this.casinoCounter.getValue() + 1);
@@ -30,11 +32,19 @@ define([
 
                 notif_openCasinoNotification: function (notif) {
                     var card = notif.args.card;
-                    this.casino[0] = card;
+                    this.debug("nocn");
+                    if (null === this.casino) {
+                        this.casino = [card];
+                        this.displayCard(card, "pile_casino", "pile_casino");
+                    } else {
+                        this.casino[0] = card;
+                    }
                     this.displayCard(card, "pile_casino", "pile_casino");
+                    this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() - 1);
+                    this.casinoCounter.setValue(this.casinoCounter.getValue() + 1);
                 },
 
-                notif_noOtherBetNotification: function (notif) {   
+                notif_noOtherBetNotification: function (notif) {
                     var card = notif.args.card;
                     this.displayCard(card, "pile_" + card.pile + "_" + notif.args.playerId, "pile_casino");
                     this.casinoCounter.setValue(1);

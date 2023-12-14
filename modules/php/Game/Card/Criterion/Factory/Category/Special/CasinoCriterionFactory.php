@@ -27,10 +27,10 @@ class CasinoCriterionFactory extends NullCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
-        $criterion->addConsequence(new CasinoPlayedConsequence($table, $card));
-
-        foreach ($complementaryCards as $complementaryCard) {
-            $criterion->addConsequence(new WageBetedConsequence($table, $complementaryCard));
+        if (!empty($complementaryCards)) {
+            $criterion->addConsequence(new CasinoPlayedConsequence($table, $card,$complementaryCards[0]));
+        }else{
+            $criterion->addConsequence(new CasinoPlayedConsequence($table, $card));
         }
 
         return $criterion;
