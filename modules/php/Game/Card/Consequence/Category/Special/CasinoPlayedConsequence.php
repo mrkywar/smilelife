@@ -2,6 +2,7 @@
 
 namespace SmileLife\Card\Consequence\Category\Special;
 
+use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Special\Casino;
@@ -49,6 +50,8 @@ class CasinoPlayedConsequence extends PlayerTableConsequence {
                 ->setLocation(99)
                 ->setPassTurn($this->card->getDefaultPassTurn());
 
+        $player = $this->table->getPlayer();
+        
         $this->cardManager->update($this->card);
 
         $notification = new Notification();

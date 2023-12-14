@@ -38,7 +38,7 @@ trait NextPlayerTrait {
         } else {
             //-- Casino Open case !
             $casino = $this->getCasinoCard();
-            if ($casino->getOwnerId() === $playerId) {
+            if (null!== $casino && $casino->getOwnerId() === $playerId) {
 
                 if (0 === $casino->getPassTurn()) {
                     $casino->setOwnerId(null); //auto open casino
@@ -68,7 +68,7 @@ trait NextPlayerTrait {
                     $notification = new Notification();
                     $notification->setType("noOtherBetNotification")
                             ->setText(clienttranslate('There was only one bet on the ${cardName}, the owner of the bet wins (but not its value)'))
-                            ->add("playerId",$playerId)
+                            ->add("playerId", $playerId)
                             ->add("card", $cardDecorator->decorate($lastWage))
                             ->add('cardName', (string) $casino)
                             ->add("table", $tableDecorator->decorate($playerTable));
@@ -111,12 +111,17 @@ trait NextPlayerTrait {
     }
 
     private function getCasinoCard(): ?Casino {
-        return $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
+        $cards = $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
+        if (empty($cards)) {
+            return null;
+        } else {
+            return $cards;
+        }
     }
 
     private function getLastBettedWage(): ?\SmileLife\Card\Category\Wage\Wage {
         $casinoCards = $this->cardManager->getAllCardsInCasino();
-        if (is_array($casinoCards)) {
+        if (!empty($casinoCards) && is_array($casinoCards)) {
             return $casinoCards[0];
         }
         return null;
