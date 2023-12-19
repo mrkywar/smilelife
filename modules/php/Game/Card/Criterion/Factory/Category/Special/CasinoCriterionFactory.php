@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Generic\PlayerDrawConsequence;
 use SmileLife\Card\Consequence\Category\Special\CasinoPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
@@ -27,10 +28,13 @@ class CasinoCriterionFactory extends NullCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
+        $criterion->addConsequence(new CasinoPlayedConsequence($table, $card));
+//
         if (!empty($complementaryCards)) {
-            $criterion->addConsequence(new CasinoPlayedConsequence($table, $card,$complementaryCards[0]));
-        }else{
-            $criterion->addConsequence(new CasinoPlayedConsequence($table, $card));
+            foreach ($complementaryCards as $complementaryCard) {
+                $criterion->addConsequence(new WageBetedConsequence($table, $complementaryCard))
+                        ->addConsequence(new PlayerDrawConsequence($table));
+            }
         }
 
         return $criterion;

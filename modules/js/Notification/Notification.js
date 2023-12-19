@@ -64,6 +64,7 @@ define([
 
                     var notifs = [
                         ['betNotification', ANNIMATION_TIMER / 1.2],
+                        ['casinoPlayedNotification', ANNIMATION_TIMER * 2],
                         ['casinoResolvedNotification', ANNIMATION_TIMER * 2],
                         ['childsAdultery', ANNIMATION_TIMER],
                         ['discardNotification', ANNIMATION_TIMER],
@@ -82,8 +83,7 @@ define([
                         ['showCardsNotification', ANNIMATION_TIMER],
                         ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['scoreNotification', 0],
-                        ['studiesLevelUpdate', 0],
-                        ['openCasinoNotification', 0],
+                        ['studiesLevelUpdate', 0],                        
                         ['noOtherBetNotification', ANNIMATION_TIMER],
                         ['turnpassNotification', ANNIMATION_TIMER * 2.5],
                         ['trocNotification', ANNIMATION_TIMER],
