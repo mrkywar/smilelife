@@ -63,12 +63,14 @@ class CasinoPlayedConsequence extends PlayerTableConsequence {
 
     private function generateCasinoNotification(Player $player): Notification {
         $casinoNotification = new Notification();
-        $casinoNotification->setType("openCasinoNotification")
-                ->setText(clienttranslate('${player_name} play a casino'))
+        
+        $casinoNotification->setType('casinoPlayedNotification')
+                ->setText(clienttranslate(' ${player_name} play a casino'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('casino', $this->cardDecorator->decorate($this->card));
-
+                ->add('card', $this->cardDecorator->decorate($this->card))
+                ;
+        
         return $casinoNotification;
     }
 }

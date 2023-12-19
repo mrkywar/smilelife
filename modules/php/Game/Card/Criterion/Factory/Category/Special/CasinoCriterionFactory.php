@@ -29,7 +29,7 @@ class CasinoCriterionFactory extends NullCriterionFactory {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
         $criterion->addConsequence(new CasinoPlayedConsequence($table, $card));
-
+//
         if (!empty($complementaryCards)) {
             foreach ($complementaryCards as $complementaryCard) {
                 $criterion->addConsequence(new WageBetedConsequence($table, $complementaryCard))
