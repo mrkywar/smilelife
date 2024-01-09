@@ -38,19 +38,12 @@ class CasinoPlayedConsequence extends PlayerTableConsequence {
      */
     private $card;
 
-    /**
-     * 
-     * @var ?Wage
-     */
-    private $wage;
-
-    public function __construct(PlayerTable $table, Casino $card, ?Wage $wage = null) {
+    public function __construct(PlayerTable $table, Casino $card) {
         parent::__construct($table);
 
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
         $this->card = $card;
-        $this->wage = $wage;
     }
 
     public function execute(Response &$response) {
@@ -61,17 +54,7 @@ class CasinoPlayedConsequence extends PlayerTableConsequence {
 
         $player = $this->table->getPlayer();
 
-        if (null !== $this->wage) {
-            $this->wage->setLocation(CardLocation::SPECIAL_CASINO)
-                    ->setLocationArg(1)
-                    ->setOwnerId($player->getId())
-                    ->setPassTurn(1)
-                    ->setIsFlipped(true);
-
-            $this->cardManager->update([$this->card, $this->wage]);
-        } else {
-            $this->cardManager->update($this->card);
-        }
+        $this->cardManager->update($this->card);
 
         $response->addNotification($this->generateCasinoNotification($player));
 
@@ -80,16 +63,14 @@ class CasinoPlayedConsequence extends PlayerTableConsequence {
 
     private function generateCasinoNotification(Player $player): Notification {
         $casinoNotification = new Notification();
-        $casinoNotification->setType("openCasinoNotification")
-                ->setText(clienttranslate('${player_name} play a casino'))
+        
+        $casinoNotification->setType('casinoPlayedNotification')
+                ->setText(clienttranslate(' ${player_name} play a casino'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('casino', $this->cardDecorator->decorate($this->card));
-        if (null !== $this->wage) {
-            $casinoNotification->add("card", $this->cardDecorator->decorate($this->wage));
-        }
+                ->add('card', $this->cardDecorator->decorate($this->card))
+                ;
         
-
         return $casinoNotification;
     }
 }

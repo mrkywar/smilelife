@@ -237,10 +237,11 @@ class SmileLife extends Table {
         if (null === $response) {
             return;
         }
-
+//        echo "<pre>";
         foreach ($response->getNotifications() as $notification) {
             $this->sendNotification($notification);
         }
+//        die('sl');
         if (null !== $response->get('playerJump')) {
             $curent = self::getCurrentPlayerId();
             $jump = $response->get('playerJump');
@@ -261,6 +262,7 @@ class SmileLife extends Table {
     }
 
     protected function sendNotification(Notification $notification) {
+//        var_dump($notification->getType());
         if ($notification->isPublic()) {
             self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
         } else {
