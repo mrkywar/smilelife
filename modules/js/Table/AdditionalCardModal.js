@@ -5,7 +5,7 @@ const MODAL_TYPE_DISPLAY = "display";
 const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
 const MODAL_TYPE_LUCK_CHOICE = "luckChoice";
-const MODAL_TYPE_PAY = "payAcquisition";
+const MODAL_TYPE_PAY_TRAVEL = "payTravel";
 
 define([
     "dojo",
@@ -86,7 +86,7 @@ define([
                             var luckCallbackHandler = this.onLuckClick;
                             this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler);
                             break;
-                        case MODAL_TYPE_PAY:
+                        case MODAL_TYPE_PAY_TRAVEL:
                             var id = this.generateModale(modalTitle, "special-container");
                             this.debug('PAY',card,requiredProperties);
                             break;
@@ -247,6 +247,18 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
+                },
+                
+                retrivePlayerAviableWages: function(){
+                    this.debug(this.myTable);
+                },
+                
+                retriveReducedPrice: function(card,category){
+                    this.debug(card,this.myTable.job);
+//                    if(
+//                            null !== this.myTable.job &&                        //did I have a job 
+//                            card.id === this.myTable.job.id                     //is this job a pilot
+//                            )
                 },
 
                 onModalValidClick: function () {
