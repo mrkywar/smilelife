@@ -4,7 +4,8 @@ const MODAL_TYPE_CARD = "card";
 const MODAL_TYPE_DISPLAY = "display";
 const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
-const MODAL_TYPE_LUCK_CHOICE = "luckChoice"
+const MODAL_TYPE_LUCK_CHOICE = "luckChoice";
+const MODAL_TYPE_PAY = "payAcquisition";
 
 define([
     "dojo",
@@ -85,7 +86,10 @@ define([
                             var luckCallbackHandler = this.onLuckClick;
                             this.generateCardSelection(this.luckCards, card, id, luckCallbackHandler);
                             break;
-
+                        case MODAL_TYPE_PAY:
+                            var id = this.generateModale(modalTitle, "special-container");
+                            this.debug('PAY',card,requiredProperties);
+                            break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
                             break;

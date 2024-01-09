@@ -22,10 +22,8 @@ define([
                 },
 
                 isCasinoUseable: function () {
-                    this.debug('iCU', this.casino);
                     if (null !== this.casino && this.casino.length > 0) {
                         var casinoCard = this.casino[0];
-                        this.debug("iCU - C", casinoCard, this.player_id);
 
                         return (this.isMyHandContainWage() && (
                                 parseInt(casinoCard.owner) === this.player_id ||
@@ -122,7 +120,17 @@ define([
                             var optionnalProperties = null;
                             this.openModal(modalTitle, MODAL_TYPE_TARGET, playedCard, requiredProperties, optionnalProperties);
                             break;
-//                      //--- BEGIN CASES : Specific Card (no modale)       
+                            //--- BEGIN AQUISITION Cards (Travels & Houses)
+                        case CARD_TYPE_TRAVEL_CAIRO :
+                        case CARD_TYPE_TRAVEL_LONDON :
+                        case CARD_TYPE_TRAVEL_NEW_YORK :
+                        case CARD_TYPE_TRAVEL_RIO :
+                        case CARD_TYPE_TRAVEL_SYDNEY :
+                            var modalTitle = _('CHOOSE_PAYEMENT');
+                            var category = playedCard.dataset.category;
+                            this.openModal(modalTitle, MODAL_TYPE_PAY, playedCard, category);
+                            break
+                            //--- BEGIN CASES : Specific Card (no modale)       
                         case CARD_TYPE_JAIL:
                             this.jailPlayed(playedCard);
                             break;

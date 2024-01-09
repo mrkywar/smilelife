@@ -6,6 +6,9 @@ define([
             "smilelife.card.display",
             [],
             {
+                constructor: function () {
+                },
+
                 displayCard: function (card, destinationDivId, fromDivId, destroy) {
                     if (typeof destroy === 'undefined') {
                         destroy = false;
@@ -13,6 +16,8 @@ define([
                     if (typeof card === 'undefined') {
                         card = {};
                     }
+
+                    this.debug('DISPLAY : ', card);
                     var searchedDiv = $('card_' + card.id);
                     if (searchedDiv && fromDivId) {
                         //-- Move Request
@@ -43,12 +48,8 @@ define([
 
                 moveNewCard: function (destinationDivId, fromDivId, card) {
                     card.idPrefix = 'temp_';
-                    var newCardDiv = null;
-                    if (card.type && !card.isFlipped) {
-                        newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);
-                    } else {
-                        newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
-                    }
+                    
+                    var newCardDiv = this.generateCardHTML(destinationDivId, card);
                     newCardDiv.classList.add('movedcard');
 
                     this.slideTemporary(newCardDiv, fromDivId, fromDivId, destinationDivId, this.animationTimer, 0).then(() => {
@@ -60,20 +61,31 @@ define([
 
                 createNewCard: function (destinationDivId, card) {
                     card.idPrefix = "";
-                    var newCardDiv = null;
-                    if (card.type && !card.isFlipped) {
-                        newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);
-                    } else {
-                        newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
-                    }
-
+                    
+                    var newCardDiv = this.generateCardHTML(destinationDivId, card);
+                    
                     this.updateDiscard();
                     dojo.connect(newCardDiv, 'onclick', (evt) => {
                         evt.preventDefault();
                         evt.stopPropagation();
                         this.onCardClick(card);
                     });
+                },
+                
+                generateCardHTML: function (destinationDivId, card) {
+                    var newCardDiv = null;
+                    if (card.type && !card.isFlipped) {
+                        newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);
+                        if (typeof card.price != 'undefined') {
+                            newCardDiv.dataset.price = card.price
+                        }
+                    } else {
+                        newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
+                    }
+                    return newCardDiv;
                 }
+                
+                
 
             }
     );
