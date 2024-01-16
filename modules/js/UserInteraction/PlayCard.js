@@ -128,7 +128,7 @@ define([
                         case CARD_TYPE_TRAVEL_SYDNEY :
                             var modalTitle = _('CHOOSE_PAYEMENT');
                             var category = playedCard.dataset.category;
-                            this.openModal(modalTitle, MODAL_TYPE_PAY, playedCard, category);
+                            this.openModal(modalTitle, MODAL_TYPE_PAY_TRAVEL, playedCard, category);
                             break
                             //--- BEGIN CASES : Specific Card (no modale)       
                         case CARD_TYPE_JAIL:

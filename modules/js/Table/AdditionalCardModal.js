@@ -88,7 +88,8 @@ define([
                             break;
                         case MODAL_TYPE_PAY_TRAVEL:
                             var id = this.generateModale(modalTitle, "special-container");
-                            this.debug('PAY',card,requiredProperties);
+//                            this.debug('PAY',card,requiredProperties);
+                            this.generateTravelChoices(card);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
@@ -237,7 +238,7 @@ define([
 
                         this.generateTargetSelectionCard(pCard, player, id);
                     }
-                },
+                },  
 
                 generateModale: function (title, destination) {
                     if (typeof destination === "undefined") {
@@ -247,6 +248,16 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
+                },
+                
+                generateTravelChoices: function(card){
+                    var travelProperties = {
+                        price : card.dataset.price,
+                        job : this.myTable.job,
+                        wages : this.getUsableWages()
+                    }
+//                    this.getUsableWages();
+                    this.debug('travel', travelProperties, this.myTable);
                 },
                 
                 retrivePlayerAviableWages: function(){

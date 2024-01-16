@@ -28,6 +28,18 @@ define([
                             card.id === this.myTable.job.id                     //is this card the same of my job
                             );
                 },
+                
+                getUsableWages: function(){
+                    var cards = [];
+                    for (var cardIndex in this.myTable.wages) {
+                        var wage = this.myTable.wages[cardIndex];
+//                        this.debug('W',wage);
+                        if(!wage.isFlipped){
+                            cards.push(wage);
+                        }
+                    }
+                    return cards;
+                },
                 /**
                  * This function is check if a given card is a marriage owned by 
                  * the active player

@@ -35,13 +35,19 @@ class TravelTestInitializer extends TestGameInitializer {
                 $card->setLocation(CardLocation::PLAYER_HAND)
                         ->setLocationArg($oTable->getId());
 
-                $this->cardManager->add($card);
+                $wage = new \SmileLife\Card\Category\Wage\WageLevel3();
+                $wage->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+                $this->cardManager->add([$card, $wage]);
+                $this->playWaitingCards($oTable);
             }
         }
 
         $i = random_int(0, count($oTables) - 1);
-        $table =  $oTables[array_keys($oTables)[$i]];
-        
+        $table = $oTables[array_keys($oTables)[$i]];
+
         return $table->getId();
     }
 }
