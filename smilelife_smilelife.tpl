@@ -97,7 +97,8 @@
         </div>
     `;
     var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button_\${id}">valid</a>`;
-    var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_nobonus_button_\${id}">Play without bonus</a>`;
+    var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_nobonus_button_\${id}">play without bonus</a>`;
+    var jstpl_btn_free = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_nobonus_button_\${id}">free (pilot power)</a>`;
     var jstpl_target_with_card = `
         <div id="target_\${targetId}_\${id}" class="target_selection target_\${targetId}">
             <div class="target_identification" style="background-color:#\${targetColor}">
@@ -115,6 +116,12 @@
             <div class="target_card" id="target_card_\${targetId}">
 
             </div>
+        </div>
+    `;
+    var jstpl_buy_aquisition = `
+        <div class="price_info_container">
+            <div class="price_info price_base">Price : \${price}</div>
+            <div class="price_info price_due">To Pay : <span class="due">\${due}</span>/0</div>
         </div>
     `;
 

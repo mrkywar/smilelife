@@ -89,7 +89,7 @@ define([
                         case MODAL_TYPE_PAY_TRAVEL:
                             var id = this.generateModale(modalTitle, "special-container");
 //                            this.debug('PAY',card,requiredProperties);
-                            this.generateTravelChoices(card);
+                            this.generateTravelChoices(card, id);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
@@ -238,7 +238,7 @@ define([
 
                         this.generateTargetSelectionCard(pCard, player, id);
                     }
-                },  
+                },
 
                 generateModale: function (title, destination) {
                     if (typeof destination === "undefined") {
@@ -249,23 +249,34 @@ define([
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },
-                
-                generateTravelChoices: function(card){
+
+                generateTravelChoices: function (card, id) {
                     var travelProperties = {
-                        price : card.dataset.price,
-                        job : this.myTable.job,
-                        wages : this.getUsableWages()
+                        price: card.dataset.price,
+                        isPilot: this.isMyJobPilot(),
+                        wages: this.getUsableWages()
                     }
-//                    this.getUsableWages();
+
+                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': travelProperties.price, due: (travelProperties.isPilot) ? 0 : travelProperties.price}), 'modal-selection-' + id);
+
+                    if (travelProperties.isPilot) {
+                        dojo.place(this.format_block('jstpl_btn_free', {'id': id}), 'modal-btn-' + id);
+                    }
+
+                    for (var wageIndex in travelProperties.wages) {
+                        var hCard = travelProperties.wages[wageIndex];
+                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'target-selection-' + id);
+                    }
+
                     this.debug('travel', travelProperties, this.myTable);
                 },
-                
-                retrivePlayerAviableWages: function(){
+
+                retrivePlayerAviableWages: function () {
                     this.debug(this.myTable);
                 },
-                
-                retriveReducedPrice: function(card,category){
-                    this.debug(card,this.myTable.job);
+
+                retriveReducedPrice: function (card, category) {
+                    this.debug(card, this.myTable.job);
 //                    if(
 //                            null !== this.myTable.job &&                        //did I have a job 
 //                            card.id === this.myTable.job.id                     //is this job a pilot

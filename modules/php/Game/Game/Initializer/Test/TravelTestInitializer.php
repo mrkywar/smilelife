@@ -47,6 +47,12 @@ class TravelTestInitializer extends TestGameInitializer {
 
         $i = random_int(0, count($oTables) - 1);
         $table = $oTables[array_keys($oTables)[$i]];
+        $jobPilote = new \SmileLife\Card\Category\Job\Job\AirlinePilot();
+        $jobPilote->setLocation(CardLocation::PLAYER_BOARD)
+                ->setLocationArg($table->getId());
+        
+        $this->cardManager->add($jobPilote);
+        $this->playWaitingCards($table);
 
         return $table->getId();
     }

@@ -29,6 +29,13 @@ define([
                             );
                 },
                 
+                isMyJobPilot: function(){
+                    return(
+                       null !== this.myTable.job &&                        //did I have a job 
+                       this.myTable.job.type === CARD_TYPE_AIRLINE_PILOT
+                    );
+                },
+                
                 getUsableWages: function(){
                     var cards = [];
                     for (var cardIndex in this.myTable.wages) {

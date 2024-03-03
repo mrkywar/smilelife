@@ -3,10 +3,10 @@ html{
 }
 * {
     /* Ensure that the text in game cannot be highlighted */
-    -webkit-user-select: none; /* Safari */        
+    -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */	
+    user-select: none; /* Standard */
 }
 
 /*--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ html{
     flex-wrap: nowrap;
 }
 .player_counters .player_conter_item *{
-    display: flex;    
+    display: flex;
     align-content: space-around;
     flex-wrap: wrap;
 }
@@ -166,7 +166,7 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; 
+    z-index: 9999;
     text-align: center
 }
 .modal-overlay h2{
@@ -308,6 +308,13 @@ html{
 }
 #modals .cardontable{
     margin-left: 5px;
+}
+
+#modals .price_info_container{
+    display: flex;
+    justify-content: space-evenly;
+    justify-items: stretch;
+    width: 100%;
 }
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
@@ -455,7 +462,7 @@ html{
     background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
 }
 #pile_casino{
-    
+
 }
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
@@ -545,7 +552,7 @@ html{
     text-transform: uppercase;
 }
 .cardontable[data-category="adultery"] .card_text,
-.cardontable[data-category="special"] .card_text1, 
+.cardontable[data-category="special"] .card_text1,
 .cardontable[data-category="special"] .card_title,
 .cardontable[data-category="child"] .card_text1,
 .cardontable[data-category="powered_job"] .card_text1,
@@ -630,7 +637,7 @@ html{
 --------------------------------------------------------------------------*/
 #casino_button{
     background: green;
-    
+
 }
 
 /*-----------------------------------------------------------------------------
