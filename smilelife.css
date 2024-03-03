@@ -224,9 +224,6 @@ html{
     margin: 0;
     margin-bottom: 5px;
 }
-.modal-overlay .modal-body{
-    padding: 10px 0;
-}
 .modal-overlay .modal-body a{
     margin: 5px 5px;
 }
@@ -316,6 +313,17 @@ html{
     justify-items: stretch;
     width: 100%;
 }
+#modals .price_info_container .price_info{
+    width: 50%;
+    padding: 5px 0;
+}
+#modals .price_info_container .price_info:first-child{
+    background-color: #878787;
+}
+#modals .price_info_container .price_info:last-child{
+    background-color: #179bd7;
+}
+
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/
