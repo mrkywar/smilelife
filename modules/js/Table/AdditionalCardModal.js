@@ -89,6 +89,9 @@ define([
                         case MODAL_TYPE_PAY_TRAVEL:
                             var isPilot = this.isMyJobPilot();
                             var aviableWages = this.getUsableWages();
+                            var aviableAmount = this.getAviableAmount(aviableWages);
+                            this.debug('aviable',aviableAmount);
+                            
                             if (aviableWages.length < 1) {
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             }else if (isPilot) {
@@ -277,7 +280,7 @@ define([
 //                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'target-selection-' + id);
 //                    }
 //
-                    this.debug('travel', travelProperties, this.myTable);
+//                    this.debug('travel', travelProperties, this.myTable);
                 },
 
                 retrivePlayerAviableWages: function () {

@@ -22,30 +22,45 @@ define([
                  */
                 isMyJob: function (card) {
                     return (
-                            (undefined !== card.category) &&                    //is card category defined
-                            (card.category.includes("job")) &&                  //is card a job ?
-                            null !== this.myTable.job &&                        //did I have a job 
+                            (undefined !== card.category) && //is card category defined
+                            (card.category.includes("job")) && //is card a job ?
+                            null !== this.myTable.job && //did I have a job 
                             card.id === this.myTable.job.id                     //is this card the same of my job
                             );
                 },
-                
-                isMyJobPilot: function(){
+
+                isMyJobPilot: function () {
                     return(
-                       null !== this.myTable.job &&                        //did I have a job 
-                       this.myTable.job.type === CARD_TYPE_AIRLINE_PILOT
-                    );
+                            null !== this.myTable.job && //did I have a job 
+                            this.myTable.job.type === CARD_TYPE_AIRLINE_PILOT
+                            );
                 },
-                
-                getUsableWages: function(){
+
+                getUsableWages: function () {
                     var cards = [];
                     for (var cardIndex in this.myTable.wages) {
                         var wage = this.myTable.wages[cardIndex];
 //                        this.debug('W',wage);
-                        if(!wage.isFlipped){
+                        if (!wage.isFlipped) {
                             cards.push(wage);
                         }
                     }
                     return cards;
+                },
+
+                getAviableAmount: function (wages) {
+                    if (typeof wages === "undefined") {
+                        wages = this.getUsableWages();
+                    }
+
+                    var amount = 0;
+                    this.debug(wages);
+                    for (var kWage in wages) {
+                        var hWage = wages[kWage];
+                        amount+= hWage.wageAmount;
+                        this.debug("w",hWage);
+                    }
+                    return amount;
                 },
                 /**
                  * This function is check if a given card is a marriage owned by 
@@ -53,13 +68,13 @@ define([
                  */
                 isMyMarriage: function (card) {
                     return (
-                            (undefined !== card.category) &&                    //is card category defined
-                            (card.category.includes("marriage")) &&             //is card a marriage ?
-                            null !== this.myTable.marriage &&                   //did I have a marriage 
+                            (undefined !== card.category) && //is card category defined
+                            (card.category.includes("marriage")) && //is card a marriage ?
+                            null !== this.myTable.marriage && //did I have a marriage 
                             card.id === this.myTable.marriage.id                //is this card the same of my marriage
                             );
                 },
-                
+
                 /**
                  * This function is the main code for displaying all Tables for 
                  * dispaying my Hand, my Table and oppponents' tables
@@ -78,13 +93,13 @@ define([
                     //Prepare & Display this player Hand Cards
                     this.myHand = gamedatas.myhand;
                     this.displayMyHand();
-                    
+
                     //Display this player Table cards
                     this.displayTablePiles(gamedatas.mytable);
-                    
+
                     //Save special Cards
                     this.luckCards = gamedatas.luckCards;
-                    
+
                     //Display of opponents' game tables
                     for (var playerId in gamedatas.tables) {
                         var table = gamedatas.tables[playerId];
@@ -96,16 +111,16 @@ define([
                         this.displayTablePiles(table);
                     }
                 },
-                
-                displayMyHand: function(){
+
+                displayMyHand: function () {
                     var myhand = $('myhand');
                     myhand.innerHTML = ``;
-                    for (var cardId in this.myHand) {               
+                    for (var cardId in this.myHand) {
                         var card = this.myHand[cardId];
                         this.displayCard(card, "myhand");
                     }
                 },
-                
+
                 /**
                  * This function get HTML code for connected player table (with hand container)
                  * @param {object} player
