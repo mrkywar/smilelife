@@ -88,7 +88,10 @@ define([
                             break;
                         case MODAL_TYPE_PAY_TRAVEL:
                             var isPilot = this.isMyJobPilot();
-                            if (isPilot) {
+                            var aviableWages = this.getUsableWages();
+                            if (aviableWages.length < 1) {
+                                this.showMessage(_('Not Enouth Wages Aviables'), "error");
+                            }else if (isPilot) {
                                 this.takeAction('playCard', this.playData);
                             } else {
                                 var id = this.generateModale(modalTitle, "special-container");
@@ -256,11 +259,9 @@ define([
                 },
 
                 generateTravelChoices: function (card, id) {
-//                    var travelProperties = {
-//                        price: card.dataset.price,
-//                        isPilot: this.isMyJobPilot(),
-//                        wages: this.getUsableWages()
-//                    }
+
+
+
 //
 //                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': travelProperties.price, due: (travelProperties.isPilot) ? 0 : travelProperties.price}), 'modal-selection-' + id);
 //                    dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
@@ -276,7 +277,7 @@ define([
 //                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'target-selection-' + id);
 //                    }
 //
-//                    this.debug('travel', travelProperties, this.myTable);
+                    this.debug('travel', travelProperties, this.myTable);
                 },
 
                 retrivePlayerAviableWages: function () {
