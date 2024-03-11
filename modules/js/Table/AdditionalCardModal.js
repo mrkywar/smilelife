@@ -90,16 +90,16 @@ define([
                             var isPilot = this.isMyJobPilot();
                             var aviableWages = this.getUsableWages();
                             var aviableAmount = this.getAviableAmount(aviableWages);
-                            this.debug('aviable',aviableAmount);
-                            
+                            this.debug('aviable', aviableAmount);
+
                             if (aviableWages.length < 1) {
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
-                            }else if (isPilot) {
+                            } else if (isPilot) {
                                 this.takeAction('playCard', this.playData);
                             } else {
                                 var id = this.generateModale(modalTitle, "special-container");
-//                            this.debug('PAY',card,requiredProperties);
-                                this.generateTravelChoices(card, id);
+                                dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
+                                this.generateCardSelection(aviableWages, card, id, this.onTravelBuyClick);
                             }
                             break;
                         default:
@@ -261,39 +261,42 @@ define([
                     return id;
                 },
 
-                generateTravelChoices: function (card, id) {
-
-
-
-//
-//                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': travelProperties.price, due: (travelProperties.isPilot) ? 0 : travelProperties.price}), 'modal-selection-' + id);
-//                    dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
-//                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalBuyClick');
-//
-//                    if (travelProperties.isPilot) {
-//                        dojo.place(this.format_block('jstpl_btn_free', {'id': id}), 'modal-btn-' + id);
-//                    }
-//
-//
-//                    for (var wageIndex in travelProperties.wages) {
-//                        var hCard = travelProperties.wages[wageIndex];
-//                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'target-selection-' + id);
-//                    }
-//
-//                    this.debug('travel', travelProperties, this.myTable);
-                },
-
-                retrivePlayerAviableWages: function () {
-                    this.debug(this.myTable);
-                },
-
-                retriveReducedPrice: function (card, category) {
-                    this.debug(card, this.myTable.job);
-//                    if(
-//                            null !== this.myTable.job &&                        //did I have a job 
-//                            card.id === this.myTable.job.id                     //is this job a pilot
-//                            )
-                },
+//                generateTravelChoices: function (card,aviableWages, id) {
+//                    this.generateCardSelection(aviableWages, card, id, callback);
+//                    
+////                    this.debug('gtc',card,aviableWages,id);
+////
+////                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
+//////                    dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
+//////                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalBuyClick');
+////
+////                    for (var wageIndex in aviableWages) {
+////                        var card = aviableWages[wageIndex];
+////                        card.idPrefix = "more_" + id + "_";
+////                        dojo.place(this.format_block('jstpl_visible_card', card), 'target-selection-' + id);
+////                        dojo.connect($('card_more_' + id + "_" + card.id), 'onclick', this, 'onTargetBuyClick');
+//////                        var searchedDiv = document.getElementById('card_more_' + id + "_" + hCard.id);
+////                        
+////                    }
+////
+////                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': travelProperties.price, due: (travelProperties.isPilot) ? 0 : travelProperties.price}), 'modal-selection-' + id);
+////                    dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
+////                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalBuyClick');
+////
+////                    if (travelProperties.isPilot) {
+////                        dojo.place(this.format_block('jstpl_btn_free', {'id': id}), 'modal-btn-' + id);
+////                    }
+////
+////
+////                    for (var wageIndex in travelProperties.wages) {
+////                        var hCard = travelProperties.wages[wageIndex];
+////                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'target-selection-' + id);
+////                    }
+////
+////                    this.debug('travel', travelProperties, this.myTable);
+//                },
+//                
+                
 
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
@@ -450,6 +453,10 @@ define([
                         });
                     }
 
+                },
+                
+                onTravelBuyClick: function(player, card, id){
+                    this.debug("otbc",player, card, id);
                 },
 
             }
