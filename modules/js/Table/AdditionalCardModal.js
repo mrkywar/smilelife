@@ -296,7 +296,7 @@ define([
 ////                    this.debug('travel', travelProperties, this.myTable);
 //                },
 //                
-                
+
 
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
@@ -368,7 +368,7 @@ define([
                         var data = {
                             card: additionalCard.id
                         };
-                        this.takeAction('luckChoice', data)
+                        this.takeAction('luckChoice', data);
                     }
 
                     return false;
@@ -454,9 +454,18 @@ define([
                     }
 
                 },
-                
-                onTravelBuyClick: function(player, card, id){
-                    this.debug("otbc",player, card, id);
+
+                onTravelBuyClick: function (player, card, id) {
+                    this.debug("otbc", player, card, id);
+                    var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
+//                    if()
+                    if(clickedCard.classList.contains("selected")){
+                        clickedCard.classList.remove("selected");
+                    }else{
+                        clickedCard.classList.add("selected");
+                    }
+//                    this.debug("CC", "card_" + card.idPrefix + card.id, clickedCard, clickedCard.classList.contains("selected"));
+
                 },
 
             }
