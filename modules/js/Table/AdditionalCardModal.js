@@ -92,10 +92,10 @@ define([
                             var aviableAmount = this.getAviableAmount(aviableWages);
                             this.debug('aviable', aviableAmount);
 
-                            if (aviableWages.length < 1) {
-                                this.showMessage(_('Not Enouth Wages Aviables'), "error");
-                            } else if (isPilot) {
+                            if (isPilot) {
                                 this.takeAction('playCard', this.playData);
+                            } else if (aviableWages.length < 1) {
+                                this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
                                 var id = this.generateModale(modalTitle, "special-container");
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);

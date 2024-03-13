@@ -40,7 +40,22 @@ class TravelTestInitializer extends TestGameInitializer {
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $this->cardManager->add([$card, $wage]);
+                $wage2 = new \SmileLife\Card\Category\Wage\WageLevel2();
+                $wage2->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+                $wage1 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+                $wage4 = new \SmileLife\Card\Category\Wage\WageLevel4();
+                $wage4->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+                $this->cardManager->add([$card, $wage, $wage2, $wage1, $wage4]);
                 $this->playWaitingCards($oTable);
             }
         }
@@ -50,7 +65,7 @@ class TravelTestInitializer extends TestGameInitializer {
         $jobPilote = new \SmileLife\Card\Category\Job\Job\AirlinePilot();
         $jobPilote->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $this->cardManager->add($jobPilote);
         $this->playWaitingCards($table);
 
