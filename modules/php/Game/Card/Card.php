@@ -179,8 +179,6 @@ abstract class Card extends Model {
 
     abstract public function getCriterionFactory(): CardCriterionFactory;
 
-    abstract public function getAdditionalsDatas(): ?array;
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Getters & Setters 
      * ---------------------------------------------------------------------- */
@@ -337,7 +335,6 @@ abstract class Card extends Model {
             "text2" => $this->getText2(),
             "isFlipped" => $this->getIsFlipped(),
             "isUsed" => $this->getIsUsed(),
-            "additionalsDatas" => $this->getAdditionalsDatas(),
             "usedClass" => ($this->getIsUsed()) ? "usedcard" : "",
         ];
     }

@@ -48,7 +48,7 @@ define([
 
                 moveNewCard: function (destinationDivId, fromDivId, card) {
                     card.idPrefix = 'temp_';
-                    
+
                     var newCardDiv = this.generateCardHTML(destinationDivId, card);
                     newCardDiv.classList.add('movedcard');
 
@@ -61,9 +61,9 @@ define([
 
                 createNewCard: function (destinationDivId, card) {
                     card.idPrefix = "";
-                    
+
                     var newCardDiv = this.generateCardHTML(destinationDivId, card);
-                    
+
                     this.updateDiscard();
                     dojo.connect(newCardDiv, 'onclick', (evt) => {
                         evt.preventDefault();
@@ -71,21 +71,28 @@ define([
                         this.onCardClick(card);
                     });
                 },
-                
+
                 generateCardHTML: function (destinationDivId, card) {
                     var newCardDiv = null;
                     if (card.type && !card.isFlipped) {
                         newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), destinationDivId);
-                        if (typeof card.price != 'undefined') {
-                            newCardDiv.dataset.price = card.price
-                        }
+                        this.addAdditionnalProperties(newCardDiv, card);
                     } else {
                         newCardDiv = dojo.place(this.format_block('jstpl_hidden_card', card), destinationDivId);
                     }
                     return newCardDiv;
+                },
+
+                addAdditionnalProperties: function (cardDiv, card) {
+                    if (typeof card.price !== 'undefined') {
+                        cardDiv.dataset.price = card.price;
+                    }
+                    if (typeof card.amount !== 'undefined') {
+                        cardDiv.dataset.amount = card.amount;
+                    }
                 }
-                
-                
+
+
 
             }
     );

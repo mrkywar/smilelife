@@ -119,7 +119,7 @@
     `;
     var jstpl_buy_aquisition = `
         <div class="price_info_container">
-            <div class="price_info price_selected"></div>
+            <div class="price_info price_selected" id="wages_modal_total_spent"></div>
             <div class="price_info price_base">Price : \${price}</div>
         </div>
     `;

@@ -35,7 +35,8 @@ define([
                                     var hCard = requiredProperties[playerId][hCardKey];
                                     hCard.idPrefix = "more_" + id + "_";
 
-                                    dojo.place(this.format_block('jstpl_visible_card', hCard), 'target_card_' + player.id);
+                                    var newCardDiv = dojo.place(this.format_block('jstpl_visible_card', hCard), 'target_card_' + player.id);
+                                    this.addAdditionnalProperties(newCardDiv, hCard);
                                 }
                             }
                             $("more_cancel_button_" + id).innerHTML = _('ok');
@@ -130,7 +131,8 @@ define([
                         var hCard = selectableCards[hCardKey];
                         hCard.idPrefix = "more_" + id + "_";
 
-                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
+                        var newCardDiv = dojo.place(this.format_block('jstpl_visible_card', hCard), 'modal-selection-' + id);
+                        this.addAdditionnalProperties(newCardDiv, hCard);
                         var searchedDiv = document.getElementById('card_more_' + id + "_" + hCard.id);
 
                         // Utilisation d'une fonction immédiate pour encapsuler les valeurs
@@ -161,8 +163,8 @@ define([
                 generateTargetSelectionCard: function (card, player, id) {
                     if (null !== card) {
                         card.idPrefix = "more_" + id + "_";
-                        dojo.place(this.format_block('jstpl_visible_card', card), 'target_card_' + player.id);
-
+                        var newCardDiv = dojo.place(this.format_block('jstpl_visible_card', card), 'target_card_' + player.id);
+                        this.addAdditionnalProperties(newCardDiv, card);
                     }
                 },
 
@@ -455,16 +457,43 @@ define([
 
                 },
 
-                onTravelBuyClick: function (player, card, id) {
-                    this.debug("otbc", player, card, id);
+                onTravelBuyClick: function (playedCard, card, id) {
+//                    this.debug("otbc", card, playedCard.dataset.price, id);
                     var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
+                    var price = playedCard.dataset.price;
+                    var wageAmount = clickedCard.dataset.amount;
+
+                    this.debug('P : ', price);
+                    this.debug('W : ', wageAmount, clickedCard);
+
+
+                    var wagesSelected = new ebg.counter();
+                    wagesSelected.create("wages_modal_total_spent");
+
+
 //                    if()
-                    if(clickedCard.classList.contains("selected")){
+                    if (clickedCard.classList.contains("selected")) {
                         clickedCard.classList.remove("selected");
-                    }else{
+                    } else if (wageAmount < price) {
                         clickedCard.classList.add("selected");
+                        //-- TODO compute total
+
+                        var total = 0;
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            this.debug("OW", element);
+                        });
+                        clickedCard.classList.add("selected");
+                    } else {
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            dojo.removeClass(element, "selected");
+                        });
+                        clickedCard.classList.add("selected");
+
+                        wagesSelected.setValue(wageAmount);
                     }
-//                    this.debug("CC", "card_" + card.idPrefix + card.id, clickedCard, clickedCard.classList.contains("selected"));
+//                    this.debug("CC", clickedCard);
 
                 },
 

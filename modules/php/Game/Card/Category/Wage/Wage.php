@@ -51,10 +51,6 @@ abstract class Wage extends Card {
         return 0;
     }
 
-    public function getAdditionalsDatas(): ?array {
-        return null;
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
@@ -62,14 +58,13 @@ abstract class Wage extends Card {
     public function __toString() {
         return $this->getTitle();
     }
-
+    
     public function __toArray(): array {
         return array_merge(
                 parent::__toArray(),
                 [
-                    'wageAmount' => $this->getAmount()
+                    'amount' => $this->getAmount()
                 ]
         );
     }
-
 }

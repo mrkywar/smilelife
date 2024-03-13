@@ -29,12 +29,6 @@ abstract class Acquisition extends Card {
         return 0;
     }
 
-    public function getAdditionalsDatas(): ?array {
-        return [
-            "action" => CardData::ACTION_CHOOSE_WAGE,
-        ];
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
