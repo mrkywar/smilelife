@@ -458,33 +458,23 @@ define([
                 },
 
                 onTravelBuyClick: function (playedCard, card, id) {
-//                    this.debug("otbc", card, playedCard.dataset.price, id);
                     var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
                     var price = playedCard.dataset.price;
                     var wageAmount = clickedCard.dataset.amount;
 
-                    this.debug('P : ', price);
-                    this.debug('W : ', wageAmount, clickedCard);
-
-
                     var wagesSelected = new ebg.counter();
                     wagesSelected.create("wages_modal_total_spent");
 
-
-//                    if()
                     if (clickedCard.classList.contains("selected")) {
                         clickedCard.classList.remove("selected");
-                    } else if (wageAmount < price) {
-                        clickedCard.classList.add("selected");
-                        //-- TODO compute total
-
                         var total = 0;
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
                         targetSelectionElements.forEach(function (element) {
-                            this.debug("OW", element);
+                            total = parseInt(element.dataset.amount);
                         });
-                        clickedCard.classList.add("selected");
-                    } else {
+                        
+                        wagesSelected.setValue(total);
+                    } else if (wageAmount >= price) {
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
                         targetSelectionElements.forEach(function (element) {
                             dojo.removeClass(element, "selected");
@@ -492,8 +482,22 @@ define([
                         clickedCard.classList.add("selected");
 
                         wagesSelected.setValue(wageAmount);
+                    } else {
+                        //-- TODO compute total
+
+                        var total = 0;
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            total = parseInt(element.dataset.amount);
+                        });
+                        if (total >= price) {
+                            this.showMessage(_('You have already chosen enough salary to buy this'), "error");
+                        } else {
+                            clickedCard.classList.add("selected");
+                            total += parseInt(wageAmount);
+                        }
+                        wagesSelected.setValue(total);
                     }
-//                    this.debug("CC", clickedCard);
 
                 },
 
