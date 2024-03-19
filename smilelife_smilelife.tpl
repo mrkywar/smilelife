@@ -96,7 +96,9 @@
             </div>
         </div>
     `;
+    
     var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button_\${id}">valid</a>`;
+    var jstpl_btn_reset = `<a href="#" class="action-button bgabutton bgabutton_gray" onclick="return false;" id="more_reset_button_\${id}">reset</a>`;
     var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_nobonus_button_\${id}">play without bonus</a>`;
     var jstpl_target_with_card = `
         <div id="target_\${targetId}_\${id}" class="target_selection target_\${targetId}">
@@ -119,7 +121,7 @@
     `;
     var jstpl_buy_aquisition = `
         <div class="price_info_container">
-            <div class="price_info price_selected" id="wages_modal_total_spent"></div>
+            <div class="price_info price_selected" id="wages_modal_total_spent">0</div>
             <div class="price_info price_base">Price : \${price}</div>
         </div>
     `;

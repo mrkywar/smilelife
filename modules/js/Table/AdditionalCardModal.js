@@ -99,7 +99,17 @@ define([
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
                                 var id = this.generateModale(modalTitle, "special-container");
+
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
+                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
+                                dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
+                                    this.onModalBuyClick(card, id);
+                                }.bind(this));
+                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
+                                dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
+                                    this.onResetBuyClick(id);
+                                }.bind(this));
+
                                 this.generateCardSelection(aviableWages, card, id, this.onTravelBuyClick);
                             }
                             break;
@@ -456,7 +466,15 @@ define([
                     }
 
                 },
-
+                onModalBuyClick: function (card, id) {
+                    this.debug("OMBC", card, id);
+                },
+                onResetBuyClick: function (id) {
+                    var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                    targetSelectionElements.forEach(function (element) {
+                        dojo.removeClass(element, "selected");
+                    });
+                },
                 onTravelBuyClick: function (playedCard, card, id) {
                     var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
                     var price = playedCard.dataset.price;
@@ -472,7 +490,7 @@ define([
                         targetSelectionElements.forEach(function (element) {
                             total = parseInt(element.dataset.amount);
                         });
-                        
+
                         wagesSelected.setValue(total);
                     } else if (wageAmount >= price) {
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
