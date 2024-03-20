@@ -19,7 +19,10 @@ trait PlayCardTrait {
             "id" => self::getCurrentPlayerId()
         ]);
         $target = $targetId;
-        $cardsId = explode(",", $additionalIds);
+        $cardsId = null;
+        if ($additionalIds !== "") {
+            $cardsId = explode(",", $additionalIds);
+        }
 
         if (null !== $targetId) {
             $target = $this->playerManager->findOne([
@@ -28,7 +31,7 @@ trait PlayCardTrait {
         }
         // before [sc-137] was $additionalCards = $additionalIds;
         $additionalCards = $cardsId;
-        if (null !== $additionalIds && !empty($additionalCards)) {
+        if (null !== $additionalIds && !empty($cardsId)) {
             $cm = new CardManager();
 
             $this->cardManager->getSerializer()->setIsForcedArray(true);

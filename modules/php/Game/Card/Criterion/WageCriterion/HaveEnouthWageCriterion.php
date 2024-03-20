@@ -34,7 +34,7 @@ class HaveEnouthWageToBuyCriterion extends PlayerTableCriterion {
 
     public function isValided(): bool {
         $total = 0;
-
+        
         foreach ($this->wages as $wage) {
             $total += $wage->getAmount();
         }
