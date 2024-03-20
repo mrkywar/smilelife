@@ -26,8 +26,9 @@ trait PlayCardTrait {
                 "id" => $targetId
             ]);
         }
-        $additionalCards = $additionalIds;
-        if (null !== $additionalIds) {
+        // before [sc-137] was $additionalCards = $additionalIds;
+        $additionalCards = $cardsId;
+        if (null !== $additionalIds && !empty($additionalCards)) {
             $cm = new CardManager();
 
             $this->cardManager->getSerializer()->setIsForcedArray(true);

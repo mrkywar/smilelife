@@ -468,6 +468,22 @@ define([
                 },
                 onModalBuyClick: function (card, id) {
                     this.debug("OMBC", card, id);
+                    var selectedIds = [];
+                    var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                    targetSelectionElements.forEach(function (element) {
+//                        dojo.removeClass(element, "selected");
+                        selectedIds.push(element.dataset.id);
+                    });
+
+                    var data = {
+                        additionalCards: selectedIds.toString(),
+                        card: card.dataset.id
+                    };
+                    if ('discard' === card.dataset.location) {
+                        this.takeAction('playFromDiscard', data);
+                    } else {
+                        this.takeAction('playCard', data);
+                    }
                 },
                 onResetBuyClick: function (id) {
                     var targetSelectionElements = dojo.query("#modal_" + id + " .selected");

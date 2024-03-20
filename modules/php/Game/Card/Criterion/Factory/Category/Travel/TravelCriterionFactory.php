@@ -9,6 +9,7 @@ use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Criterion\WageCriterion\HaveEnouthWageToBuyCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -29,9 +30,20 @@ class TravelCriterionFactory extends CardCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
 
-        $criterion = new CriterionGroup([$isPilotCriterion], CriterionGroup::OR_OPERATOR);
-        $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
+        if (null === $complementaryCards) {
+            $isPilotCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                    ->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
 
-        return $criterion;
+            return $isPilotCriterion;
+        } else {
+            $hasEnoutWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards);
+
+            $hasEnoutWagesToSpent->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
+
+            $criterion = new CriterionGroup([$isPilotCriterion, $hasEnoutWagesToSpent], CriterionGroup::OR_OPERATOR);
+            $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
+
+            return $criterion;
+        }
     }
 }
