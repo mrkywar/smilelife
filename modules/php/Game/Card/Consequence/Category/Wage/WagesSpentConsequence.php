@@ -18,7 +18,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class WageBetedConsequence extends PlayerTableConsequence {
+class WagesSpentConsequence extends PlayerTableConsequence {
 
     /**
      * @var Wage[]
@@ -62,7 +62,7 @@ class WageBetedConsequence extends PlayerTableConsequence {
         $this->cardManager->update($wages);
 
         $notification->setType("wagesSpentNotification")
-                ->setText(clienttranslate('${player_name} spent ${amount} with ${number} wage(s)'))
+                ->setText(clienttranslate('${player_name} spent ${amount} with ${number} wage(s) to buy the card'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('number', count($this->cards))
@@ -76,6 +76,6 @@ class WageBetedConsequence extends PlayerTableConsequence {
      * @return Wage[]
      */
     protected function getCards(): array {
-        return $this->card;
+        return $this->cards;
     }
 }
