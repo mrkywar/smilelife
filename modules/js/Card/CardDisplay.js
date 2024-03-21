@@ -17,7 +17,7 @@ define([
                         card = {};
                     }
 
-                    this.debug('DISPLAY : ', card);
+//                    this.debug('DISPLAY : ', card);
                     var searchedDiv = $('card_' + card.id);
                     if (searchedDiv && fromDivId) {
                         //-- Move Request

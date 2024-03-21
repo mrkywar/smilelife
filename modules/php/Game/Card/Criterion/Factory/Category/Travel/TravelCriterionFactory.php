@@ -42,8 +42,10 @@ class TravelCriterionFactory extends CardCriterionFactory {
             $hasEnounthWagesToSpent->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
 
             $criterion = new CriterionGroup([$isPilotCriterion, $hasEnounthWagesToSpent], CriterionGroup::OR_OPERATOR);
-            $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
-                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards));
+            $criterion
+                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
+                    ->addConsequence(new GenericCardPlayedConsequence($card, $table))
+            ;
 
             return $criterion;
         }
