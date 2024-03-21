@@ -3,10 +3,10 @@ html{
 }
 * {
     /* Ensure that the text in game cannot be highlighted */
-    -webkit-user-select: none; /* Safari */        
+    -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */	
+    user-select: none; /* Standard */
 }
 
 /*--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ html{
     flex-wrap: nowrap;
 }
 .player_counters .player_conter_item *{
-    display: flex;    
+    display: flex;
     align-content: space-around;
     flex-wrap: wrap;
 }
@@ -166,7 +166,7 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; 
+    z-index: 9999;
     text-align: center
 }
 .modal-overlay h2{
@@ -195,11 +195,11 @@ html{
     box-shadow: 1px 2px 1px 1px rgb(0 0 0 / 44%);
 }
 .modal-overlay .bgabutton_gray{
-    /*background-color: #d8d8d833;*/
+    background-color: #d8d8d8;
     border:0;
 }
 .modal-overlay .bgabutton_gray:hover{
-    background-color: #d8d8d866;
+    background-color: #d8d8d8;
 }
 
 .modal-overlay .modal-header{
@@ -223,9 +223,6 @@ html{
     border-radius: 50%;
     margin: 0;
     margin-bottom: 5px;
-}
-.modal-overlay .modal-body{
-    padding: 10px 0;
 }
 .modal-overlay .modal-body a{
     margin: 5px 5px;
@@ -309,6 +306,24 @@ html{
 #modals .cardontable{
     margin-left: 5px;
 }
+
+#modals .price_info_container{
+    display: flex;
+    justify-content: space-evenly;
+    justify-items: stretch;
+    width: 100%;
+}
+#modals .price_info_container .price_info{
+    width: 50%;
+    padding: 5px 0;
+}
+#modals .price_info_container .price_info:first-child{
+    background-color: #878787;
+}
+#modals .price_info_container .price_info:last-child{
+    background-color: #179bd7;
+}
+
 /*-----------------------------------------------------------------------------
                  BEGIN - Tables
 ------------------------------------------------------------------------------*/
@@ -455,7 +470,7 @@ html{
     background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
 }
 #pile_casino{
-    
+
 }
 /*--------------------------------------------------------------------------
                 BEGIN - CARD Standard
@@ -545,7 +560,7 @@ html{
     text-transform: uppercase;
 }
 .cardontable[data-category="adultery"] .card_text,
-.cardontable[data-category="special"] .card_text1, 
+.cardontable[data-category="special"] .card_text1,
 .cardontable[data-category="special"] .card_title,
 .cardontable[data-category="child"] .card_text1,
 .cardontable[data-category="powered_job"] .card_text1,
@@ -630,7 +645,7 @@ html{
 --------------------------------------------------------------------------*/
 #casino_button{
     background: green;
-    
+
 }
 
 /*-----------------------------------------------------------------------------

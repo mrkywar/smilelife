@@ -31,10 +31,6 @@ abstract class Attack extends Card {
         return $this->getTitle();
     }
 
-    public function getAdditionalsDatas(): ?array {
-        return null;
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

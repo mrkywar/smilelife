@@ -51,12 +51,6 @@ class HeadOfSales extends Job implements BaseGame {
         return CardType::JOB_HEAD_OF_SALES;
     }
 
-    public function getAdditionalsDatas(): ?array {
-        return [
-            "action" => CardData::ACTION_ONE_HAND_CARD,
-        ];
-    }
-
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract - Overwride
      * ---------------------------------------------------------------------- */
