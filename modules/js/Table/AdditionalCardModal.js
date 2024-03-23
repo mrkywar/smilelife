@@ -95,7 +95,7 @@ define([
                             } else if (aviableWages.length < 1) {
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
-                                var id = this.generateModale(modalTitle, "special-container");
+                                var id = this.generateModale(modalTitle, "more-container");
 
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
                                 dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
