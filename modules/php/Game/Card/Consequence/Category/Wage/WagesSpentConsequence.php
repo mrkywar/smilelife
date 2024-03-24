@@ -60,19 +60,14 @@ class WagesSpentConsequence extends PlayerTableConsequence {
             $wageAmount += $wage->getAmount();
         }
         $this->cardManager->update($wages);
-      
-//        $allPlayerWages = $this->cardManager->findBy([
-//            "location" => 
-//        ])
-//        
-//        var_dump($wages);
 
         $notification->setType("wagesSpentNotification")
                 ->setText(clienttranslate('${player_name} spent ${amount} with ${number} wage(s) to buy the card'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('number', count($this->cards))
-                ->add('amount', $wageAmount);
+                ->add('amount', $wageAmount)
+                ->add("wages", $this->cardDecorator->decorate($this->table->getWages()));
 
         $response->addNotification($notification);
     }

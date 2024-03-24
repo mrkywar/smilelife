@@ -43,8 +43,8 @@ class TravelCriterionFactory extends CardCriterionFactory {
 
             $criterion = new CriterionGroup([$isPilotCriterion, $hasEnounthWagesToSpent], CriterionGroup::OR_OPERATOR);
             $criterion
-                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
                     ->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
             ;
 
             return $criterion;
