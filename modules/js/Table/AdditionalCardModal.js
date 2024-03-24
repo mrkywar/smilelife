@@ -91,7 +91,7 @@ define([
                             var aviableWages = this.getUsableWages();
 
                             if (isPilot) {
-                                this.takeAction('playCard', this.playData);
+                                this.onModalValidClick();
                             } else if (aviableWages.length < 1) {
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {

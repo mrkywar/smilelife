@@ -78,6 +78,11 @@ class TravelTestInitializer extends TestGameInitializer {
             }
         }
 
+        $discarded = array_shift($travels);
+        $discarded->setLocation(CardLocation::DISCARD)
+                ->setLocationArg(1);
+        $this->cardManager->add($discarded);
+
         $i = random_int(0, count($oTables) - 1);
         $table = $oTables[array_keys($oTables)[$i]];
         $jobPilote = new \SmileLife\Card\Category\Job\Job\AirlinePilot();
