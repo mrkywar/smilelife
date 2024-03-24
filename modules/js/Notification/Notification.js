@@ -83,12 +83,13 @@ define([
                         ['showCardsNotification', ANNIMATION_TIMER],
                         ['showPlayerCardsNotification', ANNIMATION_TIMER],
                         ['scoreNotification', 0],
-                        ['studiesLevelUpdate', 0],                        
+                        ['studiesLevelUpdate', 0],
                         ['noOtherBetNotification', ANNIMATION_TIMER],
                         ['turnpassNotification', ANNIMATION_TIMER * 2.5],
                         ['trocNotification', ANNIMATION_TIMER],
                         ['usedFlirtNotification', ANNIMATION_TIMER],
-                        ['wageLevelUpdate', 0]
+                        ['wageLevelUpdate', 0],
+                        ['wagesSpentNotification', ANNIMATION_TIMER]
 
                     ]
                     notifs.forEach(function (notif) {

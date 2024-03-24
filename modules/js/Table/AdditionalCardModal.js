@@ -62,7 +62,6 @@ define([
                                     requiredProperties = this.filterProperty(requiredProperties, fictiveCard);
 
                                 }
-                                this.debug('ACM-MTC', requiredProperties);
                                 if (0 === requiredProperties.length) {
                                     dojo.place(`<h3>` + _('No eligible cards, play the card anyway') + `</h3>`, 'modal-selection-' + id);
                                 } else {
@@ -90,15 +89,13 @@ define([
                         case MODAL_TYPE_PAY_TRAVEL:
                             var isPilot = this.isMyJobPilot();
                             var aviableWages = this.getUsableWages();
-                            var aviableAmount = this.getAviableAmount(aviableWages);
-                            this.debug('aviable', aviableAmount);
 
                             if (isPilot) {
                                 this.takeAction('playCard', this.playData);
                             } else if (aviableWages.length < 1) {
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
-                                var id = this.generateModale(modalTitle, "special-container");
+                                var id = this.generateModale(modalTitle, "more-container");
 
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
                                 dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
@@ -271,48 +268,11 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
-                },
-
-//                generateTravelChoices: function (card,aviableWages, id) {
-//                    this.generateCardSelection(aviableWages, card, id, callback);
-//                    
-////                    this.debug('gtc',card,aviableWages,id);
-////
-////                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
-//////                    dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
-//////                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalBuyClick');
-////
-////                    for (var wageIndex in aviableWages) {
-////                        var card = aviableWages[wageIndex];
-////                        card.idPrefix = "more_" + id + "_";
-////                        dojo.place(this.format_block('jstpl_visible_card', card), 'target-selection-' + id);
-////                        dojo.connect($('card_more_' + id + "_" + card.id), 'onclick', this, 'onTargetBuyClick');
-//////                        var searchedDiv = document.getElementById('card_more_' + id + "_" + hCard.id);
-////                        
-////                    }
-////
-////                    dojo.place(this.format_block('jstpl_buy_aquisition', {'price': travelProperties.price, due: (travelProperties.isPilot) ? 0 : travelProperties.price}), 'modal-selection-' + id);
-////                    dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
-////                    dojo.connect($("more_valid_button_" + id), 'onclick', this, 'onModalBuyClick');
-////
-////                    if (travelProperties.isPilot) {
-////                        dojo.place(this.format_block('jstpl_btn_free', {'id': id}), 'modal-btn-' + id);
-////                    }
-////
-////
-////                    for (var wageIndex in travelProperties.wages) {
-////                        var hCard = travelProperties.wages[wageIndex];
-////                        dojo.place(this.format_block('jstpl_visible_card', hCard), 'target-selection-' + id);
-////                    }
-////
-////                    this.debug('travel', travelProperties, this.myTable);
-//                },
-//                
+                },                
 
 
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
-//                    var additionalCard = dojo.query("#more-container .selected");
 
                     var data = this.playData;
                     if (null === data) {
@@ -467,7 +427,6 @@ define([
 
                 },
                 onModalBuyClick: function (card, id) {
-                    this.debug("OMBC", card, id);
                     var selectedIds = [];
                     var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
                     targetSelectionElements.forEach(function (element) {

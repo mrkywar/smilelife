@@ -42,7 +42,7 @@ class WagesSpentConsequence extends PlayerTableConsequence {
      * @param PlayerTable $table
      * @param Wage[] $cards
      */
-    public function __construct(PlayerTable $table, array $cards) {
+    public function __construct(PlayerTable &$table, array $cards) {
         parent::__construct($table);
         $this->cards = $cards;
         $this->cardDecorator = new CardDecorator();
@@ -55,7 +55,7 @@ class WagesSpentConsequence extends PlayerTableConsequence {
 
         $wages = $this->getCards();
         $wageAmount = 0;
-        foreach ($wages as $wage) {
+        foreach ($wages as &$wage) {
             $wage->setIsFlipped(true);
             $wageAmount += $wage->getAmount();
         }
@@ -66,7 +66,8 @@ class WagesSpentConsequence extends PlayerTableConsequence {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('number', count($this->cards))
-                ->add('amount', $wageAmount);
+                ->add('amount', $wageAmount)
+                ->add("wages", $this->cardDecorator->decorate($this->table->getWages()));
 
         $response->addNotification($notification);
     }
