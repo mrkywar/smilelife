@@ -14,6 +14,8 @@ define([
                 notif_wagesSpentNotification: function (notif) {
                     this.myTable.wages = notif.args.wages;
                     var cardDest = "pile_wage_" + notif.args.playerId;
+                    
+                    this.aviableWagesCounters[notif.args.playerId].setValue(this.aviableWagesCounters[notif.args.playerId].getValue() - notif.args.amount)
 
                     for (var kWage in notif.args.wages) {
                         var hCard = notif.args.wages[kWage];

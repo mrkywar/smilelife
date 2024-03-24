@@ -20,7 +20,7 @@ trait PlayCardTrait {
         ]);
         $target = $targetId;
         $cardsId = null;
-        if ($additionalIds !== "") {
+        if (null!== $additionalIds && ""!== $additionalIds) {
             $cardsId = explode(",", $additionalIds);
         }
 

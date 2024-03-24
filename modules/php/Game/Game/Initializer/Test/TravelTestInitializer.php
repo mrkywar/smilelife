@@ -44,9 +44,27 @@ class TravelTestInitializer extends TestGameInitializer {
                 $wage2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $wage2_2 = new \SmileLife\Card\Category\Wage\WageLevel2();
+                $wage2_2->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
 
                 $wage1 = new \SmileLife\Card\Category\Wage\WageLevel1();
                 $wage1->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $wage1_2 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1_2->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+                $wage1_3 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1_3->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+                $wage1_4 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1_4->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
@@ -55,10 +73,15 @@ class TravelTestInitializer extends TestGameInitializer {
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $this->cardManager->add([$card, $wage, $wage2, $wage1, $wage4]);
+                $this->cardManager->add([$card, $wage, $wage2, $wage1, $wage1_2, $wage1_3, $wage1_4, $wage4, $wage2_2]);
                 $this->playWaitingCards($oTable);
             }
         }
+
+        $discarded = array_shift($travels);
+        $discarded->setLocation(CardLocation::DISCARD)
+                ->setLocationArg(1);
+        $this->cardManager->add($discarded);
 
         $i = random_int(0, count($oTables) - 1);
         $table = $oTables[array_keys($oTables)[$i]];

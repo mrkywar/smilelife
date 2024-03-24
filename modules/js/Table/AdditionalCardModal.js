@@ -91,7 +91,7 @@ define([
                             var aviableWages = this.getUsableWages();
 
                             if (isPilot) {
-                                this.takeAction('playCard', this.playData);
+                                this.onModalValidClick();
                             } else if (aviableWages.length < 1) {
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
@@ -463,7 +463,7 @@ define([
                         var total = 0;
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
                         targetSelectionElements.forEach(function (element) {
-                            total = parseInt(element.dataset.amount);
+                            total += parseInt(element.dataset.amount);
                         });
 
                         wagesSelected.setValue(total);
@@ -481,7 +481,7 @@ define([
                         var total = 0;
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
                         targetSelectionElements.forEach(function (element) {
-                            total = parseInt(element.dataset.amount);
+                            total += parseInt(element.dataset.amount);
                         });
                         if (total >= price) {
                             this.showMessage(_('You have already chosen enough salary to buy this'), "error");
