@@ -6,6 +6,7 @@ const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
 const MODAL_TYPE_LUCK_CHOICE = "luckChoice";
 const MODAL_TYPE_PAY_TRAVEL = "payTravel";
+const MODAL_TYPE_PAY_HOUSE = "payHouse";
 
 define([
     "dojo",
@@ -109,6 +110,11 @@ define([
 
                                 this.generateCardSelection(aviableWages, card, id, this.onTravelBuyClick);
                             }
+                            break;
+                        case MODAL_TYPE_PAY_HOUSE:
+                            this.debug("House", modalTitle, choiceType, card, requiredProperties, optionnalProperties);
+                            this.playData = {'initialPrice': parseInt(card.dataset.price), 'price': (null !== this.getMyMarriage)?card.dataset.price/2:card.dataset.price};
+                            this.debug("Price", this.playData);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
@@ -268,8 +274,7 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
-                },                
-
+                },
 
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");

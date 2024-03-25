@@ -74,6 +74,10 @@ define([
                             card.id === this.myTable.marriage.id                //is this card the same of my marriage
                             );
                 },
+                
+                getMyMarriage: function(){
+                    return this.myTable.marriage;
+                },
 
                 /**
                  * This function is the main code for displaying all Tables for 

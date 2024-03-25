@@ -129,7 +129,16 @@ define([
                             var modalTitle = _('CHOOSE_PAYEMENT');
                             var category = playedCard.dataset.category;
                             this.openModal(modalTitle, MODAL_TYPE_PAY_TRAVEL, playedCard, category);
-                            break
+                            break;
+                        case CARD_TYPE_HOUSE_SMALL_1 :
+                        case CARD_TYPE_HOUSE_SMALL_2 :
+                        case CARD_TYPE_HOUSE_MEDIUM_1 :
+                        case CARD_TYPE_HOUSE_MEDIUM_2 :
+                        case CARD_TYPE_HOUSE_BIG :
+                            var modalTitle = _('CHOOSE_PAYEMENT');
+                            var category = playedCard.dataset.category;
+                            this.openModal(modalTitle, MODAL_TYPE_PAY_HOUSE, playedCard, category);
+                            break;
                             //--- BEGIN CASES : Specific Card (no modale)       
                         case CARD_TYPE_JAIL:
                             this.jailPlayed(playedCard);
@@ -141,6 +150,7 @@ define([
                             var displayAll = true;
                             this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, wageCards, displayAll);
                             break;
+
                         default:
                             this.debug('PC-CP-DEFAULT - OLD  MODAL');
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {
