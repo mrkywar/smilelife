@@ -4,7 +4,7 @@ namespace SmileLife\Card\Category\Acquisition\House;
 
 use SmileLife\Card\Category\Acquisition\Acquisition;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NotImplementedCritertionFactory;
+use SmileLife\Card\Criterion\Factory\Category\House\HouseCriterionFactory;
 
 /**
  * Description of House
@@ -30,7 +30,7 @@ abstract class House extends Acquisition {
     }
 
     public function getCriterionFactory(): CardCriterionFactory {
-        return new NotImplementedCritertionFactory();
+        return new HouseCriterionFactory();
     }
 
     public function getDisplayedName(): string {

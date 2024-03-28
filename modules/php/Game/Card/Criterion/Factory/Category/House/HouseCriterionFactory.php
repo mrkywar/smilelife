@@ -1,0 +1,73 @@
+<?php
+
+namespace SmileLife\Card\Criterion\Factory\Category\House;
+
+use SmileLife\Card\Card;
+use SmileLife\Card\Category\Job\Job\AirlinePilot;
+use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Wage\WagesSpentConsequence;
+use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
+use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Criterion\WageCriterion\HaveEnouthWageToBuyCriterion;
+use SmileLife\Table\PlayerTable;
+
+/**
+ * Description of HouseCriterionFactory
+ *
+ * @author Mr_Kywar mr_kywar@gmail.com
+ */
+class HouseCriterionFactory extends CardCriterionFactory {
+
+    /**
+     * 
+     * @param PlayerTable $table : Game table of the player who plays
+     * @param Card $card : The card that is played
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
+     * @return CriterionInterface
+     */
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+        $isMarried = new \SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion($table);
+        $initialPrice = $this->retriveInitialPrice($card);
+        $priceReduction = ($isMarried->isValided()) ? 0.5 : null;
+
+        if(is_array($complementaryCards)){
+            $hasEnounthWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards, $priceReduction);
+            $hasEnounthWagesToSpent->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'))
+                    ->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards));
+            
+            return $hasEnounthWagesToSpent;
+        }else{
+            
+            die ('NIYE');
+        }
+
+//        $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
+//
+//        if (null === $complementaryCards) {
+//            $isPilotCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+//                    ->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
+//
+//            return $isPilotCriterion;
+//        } else {
+//            $hasEnounthWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards);
+//
+//            $hasEnounthWagesToSpent->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
+//
+//            $criterion = new CriterionGroup([$isPilotCriterion, $hasEnounthWagesToSpent], CriterionGroup::OR_OPERATOR);
+//            $criterion
+//                    ->addConsequence(new GenericCardPlayedConsequence($card, $table))
+//                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
+//            ;
+//
+//            return $criterion;
+//        }
+    }
+
+    private function retriveInitialPrice(\SmileLife\Card\Category\Acquisition\House\House $card) {
+        return $card->getPrice();
+    }
+}
