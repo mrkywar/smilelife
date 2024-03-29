@@ -26,18 +26,25 @@ class HaveEnouthWageToBuyCriterion extends PlayerTableCriterion {
      */
     private array $wages;
 
-    public function __construct(PlayerTable $table, Acquisition $cardToBuy, array $wages = null) {
+    /**
+     * 
+     * @var float
+     */
+    private float $priceReduction;
+
+    public function __construct(PlayerTable $table, Acquisition $cardToBuy, array $wages = null, float $priceReduction = null) {
         parent::__construct($table);
         $this->card = $cardToBuy;
         $this->wages = $wages;
+        $this->priceReduction = (null === $priceReduction) ? 1 : $priceReduction;
     }
 
     public function isValided(): bool {
         $total = 0;
-        
+
         foreach ($this->wages as $wage) {
             $total += $wage->getAmount();
         }
-        return $this->card->getPrice() <= $total;
+        return ($this->card->getPrice() * $this->priceReduction) <= $total;
     }
 }

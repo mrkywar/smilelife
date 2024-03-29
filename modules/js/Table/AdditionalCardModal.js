@@ -6,6 +6,7 @@ const MODAL_TYPE_DISPLAY_MULTI = "displayPlayer";
 const MODAL_TYPE_TROC = "troc";
 const MODAL_TYPE_LUCK_CHOICE = "luckChoice";
 const MODAL_TYPE_PAY_TRAVEL = "payTravel";
+const MODAL_TYPE_PAY_HOUSE = "payHouse";
 
 define([
     "dojo",
@@ -17,6 +18,7 @@ define([
             {
                 constructor: function () {
                     this.playData = null;
+                    this.houseData = null;
                     this.forcedTarget = false;
                     this.oCard = null;
                 },
@@ -93,6 +95,8 @@ define([
                             if (isPilot) {
                                 this.onModalValidClick();
                             } else if (aviableWages.length < 1) {
+                                // -- TODO : Calcul si le mini est atteint (prix du voyage / argent dispo)
+
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
                                 var id = this.generateModale(modalTitle, "more-container");
@@ -109,6 +113,30 @@ define([
 
                                 this.generateCardSelection(aviableWages, card, id, this.onTravelBuyClick);
                             }
+                            break;
+                        case MODAL_TYPE_PAY_HOUSE:
+                            this.debug("House", modalTitle, choiceType, card, requiredProperties, optionnalProperties);
+                            var aviableWages = this.getUsableWages();
+                            this.houseDatas = {'initialPrice': parseInt(card.dataset.price), 'price': (null !== this.getMyMarriage) ? card.dataset.price / 2 : card.dataset.price};
+                            if (aviableWages.length < 1) {
+                                // -- TODO : Calcul si le mini est atteint (prix du voyage / argent dispo)
+                                this.showMessage(_('Not Enouth Wages Aviables'), "error");
+                            } else {
+                                var id = this.generateModale(modalTitle, "more-container");
+
+                                dojo.place(this.format_block('jstpl_buy_aquisition', {'price': this.houseDatas.price}), 'modal-selection-' + id);
+                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
+                                dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
+                                    this.onModalBuyClick(card, id);
+                                }.bind(this));
+                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
+                                dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
+                                    this.onResetBuyClick(id);
+                                }.bind(this));
+
+                                this.generateCardSelection(aviableWages, card, id, this.onHouseBuyClick);
+                            }
+                            this.debug("Price", this.houseDatas);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");
@@ -268,8 +296,7 @@ define([
                     dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
-                },                
-
+                },
 
                 onModalValidClick: function () {
                     var playedCard = dojo.query("#game_container .selected");
@@ -476,8 +503,6 @@ define([
 
                         wagesSelected.setValue(wageAmount);
                     } else {
-                        //-- TODO compute total
-
                         var total = 0;
                         var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
                         targetSelectionElements.forEach(function (element) {
@@ -493,7 +518,50 @@ define([
                     }
 
                 },
+                onHouseBuyClick: function (playedCard, card, id) {
+                    var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
+                    this.debug('ohbc', this.houseDatas, clickedCard);
+                    var price = this.houseDatas.price;
+                    var wageAmount = clickedCard.dataset.amount;
+                    var wagesSelected = new ebg.counter();
+                    wagesSelected.create("wages_modal_total_spent");
+                    
+                    //-- TODO factorize this with travel 
+                    if (clickedCard.classList.contains("selected")) {
+                        this.debug("ohbn - unselect");
+                        clickedCard.classList.remove("selected");
+                        var total = 0;
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            total += parseInt(element.dataset.amount);
+                        });
 
+                        wagesSelected.setValue(total);
+                    } else if (wageAmount >= price) {
+                        this.debug("ohbn - WA", wageAmount, price);
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            dojo.removeClass(element, "selected");
+                        });
+                        clickedCard.classList.add("selected");
+
+                        wagesSelected.setValue(wageAmount);
+                    } else {
+                        var total = 0;
+                        var targetSelectionElements = dojo.query("#modal_" + id + " .selected");
+                        targetSelectionElements.forEach(function (element) {
+                            total += parseInt(element.dataset.amount);
+                        });
+                        this.debug("ohbn - Add", total, price);
+                        if (total >= price) {
+                            this.showMessage(_('You have already chosen enough salary to buy this'), "error");
+                        } else {
+                            clickedCard.classList.add("selected");
+                            total += parseInt(wageAmount);
+                        }
+                        wagesSelected.setValue(total);
+                    }
+                },
             }
 
     );
