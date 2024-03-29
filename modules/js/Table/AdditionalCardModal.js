@@ -527,6 +527,17 @@ define([
                 },
                 onModalArchitectBuyClick: function (playedCard, card, id) {
                     this.debug('omabc', playedCard, card, id);
+
+                    var data = {
+                        additionalCards: (null !== this.myTable.job) ? this.myTable.job.id : null,
+                        card: playedCard.dataset.id
+                    };
+
+                    if ('discard' === playedCard.dataset.location) {
+                        this.takeAction('playFromDiscard', data);
+                    } else {
+                        this.takeAction('playCard', data);
+                    }
                 },
                 onHouseBuyClick: function (playedCard, card, id) {
                     var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
