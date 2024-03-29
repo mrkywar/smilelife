@@ -115,7 +115,8 @@ define([
                             }
                             break;
                         case MODAL_TYPE_PAY_HOUSE:
-                            this.debug("House", modalTitle, choiceType, card, requiredProperties, optionnalProperties);
+                            var isArchitetUsable = this.isMyJobAchitectUsable();
+                            this.debug("House", isArchitetUsable);
                             var aviableWages = this.getUsableWages();
                             this.houseDatas = {'initialPrice': parseInt(card.dataset.price), 'price': (null !== this.getMyMarriage) ? card.dataset.price / 2 : card.dataset.price};
                             if (aviableWages.length < 1) {
@@ -524,6 +525,7 @@ define([
                     var price = this.houseDatas.price;
                     var wageAmount = clickedCard.dataset.amount;
                     var wagesSelected = new ebg.counter();
+//                    var isArchitetUsable = this.isMyJobAchitectUsable();
                     wagesSelected.create("wages_modal_total_spent");
                     
                     //-- TODO factorize this with travel 

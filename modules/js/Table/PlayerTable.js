@@ -35,6 +35,14 @@ define([
                             this.myTable.job.type === CARD_TYPE_AIRLINE_PILOT
                             );
                 },
+                
+                isMyJobAchitectUsable:function(){
+                    this.debug(this.myTable.job);
+                    return (
+                                null !== this.myTable.job && //did I have a job 
+                                this.myTable.job.type === CARD_TYPE_ARCHITECT
+                            )
+                },
 
                 getUsableWages: function () {
                     var cards = [];
