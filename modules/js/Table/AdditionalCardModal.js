@@ -116,10 +116,10 @@ define([
                             break;
                         case MODAL_TYPE_PAY_HOUSE:
                             var isArchitetUsable = this.isMyJobAchitectUsable();
-                            this.debug("House", isArchitetUsable);
+                            this.debug("House", isArchitetUsable, this.getMyMarriage());
                             var aviableWages = this.getUsableWages();
-                            this.houseDatas = {'initialPrice': parseInt(card.dataset.price), 'price': (null !== this.getMyMarriage) ? card.dataset.price / 2 : card.dataset.price};
-                            if (aviableWages.length < 1) {
+                            this.houseDatas = {'initialPrice': parseInt(card.dataset.price), 'price': (null !== this.getMyMarriage()) ? card.dataset.price / 2 : card.dataset.price};
+                            if (aviableWages.length < 1 && !isArchitetUsable) {
                                 // -- TODO : Calcul si le mini est atteint (prix du voyage / argent dispo)
                                 this.showMessage(_('Not Enouth Wages Aviables'), "error");
                             } else {
@@ -130,6 +130,12 @@ define([
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
                                     this.onModalBuyClick(card, id);
                                 }.bind(this));
+                                if (isArchitetUsable) {
+                                    dojo.place(this.format_block('jstpl_btn_achitect', {'id': id}), 'modal-btn-' + id);
+                                    dojo.connect($("more_architect_button_" + id), 'onclick', this, function () {
+                                        this.onModalArchitectBuyClick(card, id);
+                                    }.bind(this));
+                                }
                                 dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
                                 dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
                                     this.onResetBuyClick(id);
@@ -519,6 +525,9 @@ define([
                     }
 
                 },
+                onModalArchitectBuyClick: function (playedCard, card, id) {
+                    this.debug('omabc', playedCard, card, id);
+                },
                 onHouseBuyClick: function (playedCard, card, id) {
                     var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
                     this.debug('ohbc', this.houseDatas, clickedCard);
@@ -527,7 +536,7 @@ define([
                     var wagesSelected = new ebg.counter();
 //                    var isArchitetUsable = this.isMyJobAchitectUsable();
                     wagesSelected.create("wages_modal_total_spent");
-                    
+
                     //-- TODO factorize this with travel 
                     if (clickedCard.classList.contains("selected")) {
                         this.debug("ohbn - unselect");

@@ -97,7 +97,8 @@
         </div>
     `;
     
-    var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_valid_button_\${id}">valid</a>`;
+    var jstpl_btn_valid = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_valid_button_\${id}">valid</a>`;
+    var jstpl_btn_achitect = `<a href="#" class="action-button bgabutton bgabutton_blue" onclick="return false;" id="more_architect_button_\${id}">use architect's power</a>`;
     var jstpl_btn_reset = `<a href="#" class="action-button bgabutton bgabutton_gray" onclick="return false;" id="more_reset_button_\${id}">reset</a>`;
     var jstpl_btn_nobonus = `<a href="#" class="action-button bgabutton bgabutton_green" onclick="return false;" id="more_nobonus_button_\${id}">play without bonus</a>`;
     var jstpl_target_with_card = `
