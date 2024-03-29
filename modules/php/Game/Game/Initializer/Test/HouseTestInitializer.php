@@ -35,46 +35,74 @@ class HouseTestInitializer extends TestGameInitializer {
             if (null !== $card) {
                 $card->setLocation(CardLocation::PLAYER_HAND)
                         ->setLocationArg($oTable->getId());
+                
+                $cards = [$card];
+                
+                if($oTable->getId()%3 === 0){
+                    $forcedJob = new \SmileLife\Card\Category\Job\Job\Architect();
+                    $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsUsed(true); //change if needed
+                    $cards[]= $forcedJob;
+                    
+                    
+                    $forcedFlirt = new \SmileLife\Card\Category\Love\Flirt\Hotel();
+                    $forcedFlirt->setLocation(CardLocation::PLAYER_BOARD)
+                        ->setLocationArg($oTable->getId())
+                        ->setIsUsed(true); //change if needed
+                    
+                    $cards[]= $forcedFlirt;
+                }
 
                 $wage = new \SmileLife\Card\Category\Wage\WageLevel3();
                 $wage->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage;
 
                 $wage2 = new \SmileLife\Card\Category\Wage\WageLevel2();
                 $wage2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage2;
+               
                 $wage2_2 = new \SmileLife\Card\Category\Wage\WageLevel2();
                 $wage2_2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage2_2;
 
                 $wage1 = new \SmileLife\Card\Category\Wage\WageLevel1();
                 $wage1->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage1;
+                
                 $wage1_2 = new \SmileLife\Card\Category\Wage\WageLevel1();
                 $wage1_2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage1_2;
 
                 $wage1_3 = new \SmileLife\Card\Category\Wage\WageLevel1();
                 $wage1_3->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage1_3;
 
                 $wage1_4 = new \SmileLife\Card\Category\Wage\WageLevel1();
                 $wage1_4->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage1_4;
 
                 $wage4 = new \SmileLife\Card\Category\Wage\WageLevel4();
                 $wage4->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
+                $cards[]= $wage4;
 
-                $this->cardManager->add([$card, $wage, $wage2, $wage1, $wage1_2, $wage1_3, $wage1_4, $wage4, $wage2_2]);
+                $this->cardManager->add($cards);
                 $this->playWaitingCards($oTable);
             }
         }

@@ -495,20 +495,30 @@ html{
 .cardontable[data-type="40"].usedcard::after,
 .cardontable[data-type="38"].usedcard::after,
 .cardontable[data-type="40"].usedcard::before,
-.cardontable[data-type="38"].usedcard::before{
+.cardontable[data-type="38"].usedcard::before,
+.cardontable[data-type="16"].usedcard::after,
+.cardontable[data-type="16"].usedcard::before{
     content: '';
     position: absolute;
     background-color: #000;
     transform-origin: center center;
 }
 .cardontable[data-type="40"].usedcard::after,
-.cardontable[data-type="38"].usedcard::after{
+.cardontable[data-type="38"].usedcard::after
+{
     transform: rotate(45deg);
 }
 .cardontable[data-type="40"].usedcard::before,
 .cardontable[data-type="38"].usedcard::before{
     transform: rotate(-45deg);
 }
+.cardontable[data-type="16"].usedcard::after{
+    transform: rotate(20deg);
+}
+.cardontable[data-type="16"].usedcard::before{
+    transform: rotate(-20deg);
+}
+
 .cardontable.movedcard{
     z-index: 10;
 }
