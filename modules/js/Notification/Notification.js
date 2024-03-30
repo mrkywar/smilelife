@@ -11,6 +11,7 @@ define([
     g_gamethemeurl + 'modules/js/Notification/Play.js',
     g_gamethemeurl + 'modules/js/Notification/Resign.js',
     g_gamethemeurl + 'modules/js/Notification/Score.js',
+    g_gamethemeurl + 'modules/js/Notification/UseCard.js',
     g_gamethemeurl + 'modules/js/Notification/VolontaryDivorce.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Casino.js',
     g_gamethemeurl + 'modules/js/Notification/Card/Flirts.js',
@@ -30,6 +31,7 @@ define([
                 smilelife.notification.play,
                 smilelife.notification.resign,
                 smilelife.notification.score,
+                smilelife.notification.useCard,
                 smilelife.notification.volontaryDivorce,
 
                 smilelife.notification.card.casino,
@@ -87,7 +89,7 @@ define([
                         ['noOtherBetNotification', ANNIMATION_TIMER],
                         ['turnpassNotification', ANNIMATION_TIMER * 2.5],
                         ['trocNotification', ANNIMATION_TIMER],
-                        ['usedFlirtNotification', ANNIMATION_TIMER],
+                        ['usedCardNotification',ANNIMATION_TIMER],
                         ['wageLevelUpdate', 0],
                         ['wagesSpentNotification', ANNIMATION_TIMER]
 

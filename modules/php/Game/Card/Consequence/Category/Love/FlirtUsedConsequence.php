@@ -31,7 +31,7 @@ class FlirtUsedConsequence extends CardUsedConsequence {
         $player = $this->table->getPlayer();
 
         $notification = new Notification();
-        $notification->setType("usedFlirtNotification")
+        $notification->setType("usedCardNotification")
                 ->setText(clienttranslate('${player_name} gave birth to ${cardName} during his flirtation'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())

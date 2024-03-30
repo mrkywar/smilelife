@@ -23,7 +23,7 @@ class JobUsedConsequence extends CardUsedConsequence {
         $player = $this->table->getPlayer();
 
         $notification = new Notification();
-        $notification->setType("usedJobNotification")
+        $notification->setType("usedCardNotification")
                 ->setText(clienttranslate('${player_name} use ${cardName} power'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
