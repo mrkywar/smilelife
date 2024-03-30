@@ -42,16 +42,9 @@ class HouseTestInitializer extends TestGameInitializer {
                     $forcedJob = new \SmileLife\Card\Category\Job\Job\Architect();
                     $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
-                        ->setIsUsed(true); //change if needed
+                        ->setIsUsed(false); //change if needed
                     $cards[]= $forcedJob;
-                    
-                    
-                    $forcedFlirt = new \SmileLife\Card\Category\Love\Flirt\Hotel();
-                    $forcedFlirt->setLocation(CardLocation::PLAYER_BOARD)
-                        ->setLocationArg($oTable->getId())
-                        ->setIsUsed(true); //change if needed
-                    
-                    $cards[]= $forcedFlirt;
+
                 }
 
                 $wage = new \SmileLife\Card\Category\Wage\WageLevel3();

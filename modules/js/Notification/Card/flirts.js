@@ -6,12 +6,6 @@ define([
             "smilelife.notification.card.flirts",
             [],
             {
-                notif_usedFlirtNotification: function (notif)
-                {
-                    var card = notif.args.card;
-                    var cardDest = "pile_" + card.pile + "_" + notif.args.playerId;
-                    this.displayCard(card, cardDest, "playerpanel_" + notif.args.playerId);
-                },
                 
                 notif_doublonFlirtNotification: function (notif) {
                     var card = notif.args.card;

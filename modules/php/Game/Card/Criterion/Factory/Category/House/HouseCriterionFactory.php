@@ -3,13 +3,16 @@
 namespace SmileLife\Card\Criterion\Factory\Category\House;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Job\AirlinePilot;
+use SmileLife\Card\Category\Acquisition\House\House;
+use SmileLife\Card\Category\Job\Job\Architect;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Card\Consequence\Category\Job\JobUsedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WagesSpentConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
+use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
 use SmileLife\Card\Criterion\WageCriterion\HaveEnouthWageToBuyCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -29,21 +32,27 @@ class HouseCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $isMarried = new \SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion($table);
+        $isMarried = new IsMarriedCriterion($table);
         $initialPrice = $this->retriveInitialPrice($card);
         $priceReduction = ($isMarried->isValided()) ? 0.5 : null;
+        $architect = $this->retriveGivenArchitect($complementaryCards);
 
-        if(is_array($complementaryCards)){
-            $hasEnounthWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards, $priceReduction);
-            $hasEnounthWagesToSpent->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'))
+        if (is_array($complementaryCards) && !empty($complementaryCards) && null === $architect) {
+            $criterion = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards, $priceReduction);
+            $criterion->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'))
                     ->addConsequence(new GenericCardPlayedConsequence($card, $table))
                     ->addConsequence(new WagesSpentConsequence($table, $complementaryCards));
-            
-            return $hasEnounthWagesToSpent;
-        }else{
-            
-            die ('NIYE');
+        } elseif (null !== $architect) {
+            $criterion  = new NullCriterion();
+            $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+                    ->addConsequence(new JobUsedConsequence($architect, $table));
+        } else {
+            // not possible to valid a complementary card is required !
+            $criterion = new InversedCriterion(new NullCriterion());
+            $criterion->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
         }
+        
+        return $criterion;
 
 //        $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
 //
@@ -67,7 +76,16 @@ class HouseCriterionFactory extends CardCriterionFactory {
 //        }
     }
 
-    private function retriveInitialPrice(\SmileLife\Card\Category\Acquisition\House\House $card) {
+    private function retriveGivenArchitect(array $complementaryCards = null): ?Architect {
+        foreach ($complementaryCards as $givenCard) {
+            if ($givenCard instanceof Architect) {
+                return $givenCard;
+            }
+        }
+        return null;
+    }
+
+    private function retriveInitialPrice(House $card) {
         return $card->getPrice();
     }
 }

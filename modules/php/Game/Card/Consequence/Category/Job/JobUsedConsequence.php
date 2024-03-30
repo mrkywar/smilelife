@@ -1,10 +1,9 @@
 <?php
 
-namespace SmileLife\Card\Consequence\Category\Love;
+namespace SmileLife\Card\Consequence\Category\Job;
 
 use Core\Notification\Notification;
-use SmileLife\Card\Category\Child\Child;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Consequence\Category\Generic\CardUsedConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -13,18 +12,11 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtUsedConsequence extends CardUsedConsequence {
+class JobUsedConsequence extends CardUsedConsequence {
 
-    /**
-     * 
-     * @var Child
-     */
-    private $child;
 
-    public function __construct(Child $card, ?Flirt $flirt = null, PlayerTable $table) {
-        parent::__construct($flirt, $table);
-
-        $this->child = $card;
+    public function __construct(Job $job, PlayerTable $table) {
+        parent::__construct($job, $table);
     }
 
     protected function generateNotification(): Notification {
@@ -32,10 +24,10 @@ class FlirtUsedConsequence extends CardUsedConsequence {
 
         $notification = new Notification();
         $notification->setType("usedCardNotification")
-                ->setText(clienttranslate('${player_name} gave birth to ${cardName} during his flirtation'))
+                ->setText(clienttranslate('${player_name} use ${cardName} power'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('cardName', $this->child->getText1())
+                ->add('cardName', $this->card->getName())
                 ->add('card', $this->cardDecorator->decorate($this->getCard()));
 
         return $notification;
