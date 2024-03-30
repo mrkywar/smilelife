@@ -150,7 +150,9 @@ define([
                             var displayAll = true;
                             this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, wageCards, displayAll);
                             break;
-
+                        case CARD_TYPE_BIRTHDAY:
+                        
+                            break;
                         default:
                             this.debug('PC-CP-DEFAULT - OLD  MODAL');
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {

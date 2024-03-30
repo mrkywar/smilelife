@@ -32,10 +32,6 @@ class Birthday extends Special implements BaseGame {
         return self::class;
     }
 
-    public function getEffect(): Effect {
-        throw new CardException("C-Birthday-01 : Not implemented yet");
-    }
-
     public function getType(): int {
         return CardType::SPECIAL_BIRTHDAY;
     }
