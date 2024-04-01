@@ -13,9 +13,7 @@ trait CardRequiermentTrait {
 
     public function cardRequirement($cardId) {
         self::checkAction('playCard');
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
+        $player = $this->getActualPlayer();
         $card = $this->cardManager->findBy([
             "id" => $cardId
         ]);

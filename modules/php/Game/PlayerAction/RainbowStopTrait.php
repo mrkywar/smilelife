@@ -13,16 +13,8 @@ trait RainbowStopTrait {
 
     public function actionRainbowStop() {
         self::checkAction('rainbowStop');
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
-//        die('STOP-ARS');
-//
-//        $card = $this->cardManager->findBy(["id"=>$cardId]);
-//        if (null === $card) {
-//            throw new \BgaUserException("No card selected");
-//        } 
-//        
+        $player = $this->getActualPlayer();
+
         try {
             $request = new RainbowStopRequest($player);
             $response = $this->requester->send($request);

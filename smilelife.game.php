@@ -3,6 +3,7 @@
 use Core\Event\EventDispatcher\EventDispatcher;
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
+use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Requester;
 use Core\Requester\Response\Response;
@@ -268,6 +269,12 @@ class SmileLife extends Table {
         } else {
             self::notifyPlayer($notification->getTargetedPlayer()->getId(), $notification->getType(), $notification->getText(), $notification->getParams());
         }
+    }
+    
+    protected function getActualPlayer(): Player {
+        return $this->playerManager->findOne([
+            "id" => self::getCurrentPlayerId()
+        ]);
     }
 
 //-- Traits for Initial Player choices (Resign, Draw) 

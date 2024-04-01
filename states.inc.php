@@ -140,7 +140,7 @@ $playerActionsGameStates = [
         "description" => clienttranslate('${actplayer} should choose a wage to offer'),
         "descriptionmyturn" => clienttranslate('${you} should choose a wage to offer'),
         'action' => 'stBirthdayInit',
-        'args' => 'argActualPlayer',
+        'args' => 'getActualPlayer',
         "possibleactions" => [
             "offerWage"
         ]

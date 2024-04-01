@@ -14,9 +14,7 @@ trait PlayFromDiscardTrait {
 
     public function actionPlayFromDiscard($targetId = null, $additionalIds = null) {
         self::checkAction('playFormDiscard');
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
+        $player = $this->getActualPlayer();
 
         $card = $this->cardManager->getLastDiscardedCard();
         if (null === $card) {

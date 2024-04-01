@@ -12,11 +12,7 @@ trait VolontaryDivorceTrait {
 
     public function actionDivorceVoluntry() {
         self::checkAction('vonlontaryDivorce');
-        $playerId = self::getCurrentPlayerId();
-
-        $player = $this->playerManager->findOne([
-            "id" => $playerId
-        ]);
+        $player = $this->getActualPlayer();
         
         $request = new VolontaryDivorceRequest($player);
         $response = $this->requester->send($request);

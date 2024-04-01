@@ -15,12 +15,10 @@ use SmileLife\Game\Request\PlayCardRequest;
 trait PlayCardTrait {
 
     protected function doPlayCard(Card $card, $targetId = null, $additionalIds = null) {
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
+        $player = $this->getActualPlayer();
         $target = $targetId;
         $cardsId = null;
-        if (null!== $additionalIds && ""!== $additionalIds) {
+        if (null !== $additionalIds && "" !== $additionalIds) {
             $cardsId = explode(",", $additionalIds);
         }
 

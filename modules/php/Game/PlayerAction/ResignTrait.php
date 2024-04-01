@@ -14,11 +14,7 @@ trait ResignTrait {
 
     public function actionResign() {
         self::checkAction('resign');
-        $playerId = self::getCurrentPlayerId();
-
-        $player = $this->playerManager->findOne([
-            "id" => $playerId
-        ]);
+        $player = $this->getActualPlayer();
         $request = new ResignRequest($player);
 
         $response = $this->requester->send($request);

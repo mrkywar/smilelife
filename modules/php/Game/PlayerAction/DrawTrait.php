@@ -12,16 +12,12 @@ trait DrawTrait {
 
     public function actionDraw() {
         self::checkAction('drawCard');
-        $playerId = self::getCurrentPlayerId();
-        $player = $this->playerManager->findOne([
-            "id" => $playerId
-        ]);
 
+        $player = $this->getActualPlayer();
         $request = new DrawCardRequest($player);
 
         $response = $this->requester->send($request);
-     
-        $this->applyResponse($response);     
-    }
 
+        $this->applyResponse($response);
+    }
 }
