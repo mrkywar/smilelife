@@ -13,9 +13,7 @@ trait CasinoBetTrait {
     public function casinoBet($cardId) {
         self::checkAction('casinoBet');
 
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
+        $player = $this->getActualPlayer();
 
         $card = $this->cardManager->findBy(["id" => $cardId]);
         if (null === $card) {

@@ -12,11 +12,7 @@ trait ResignAdulteryTrait {
 
     public function actionAdulteryResign() {
         self::checkAction('resignAdultery');
-        $playerId = self::getCurrentPlayerId();
-
-        $player = $this->playerManager->findOne([
-            "id" => $playerId
-        ]);
+        $player = $this->getActualPlayer();
 
         $request = new ResignAdulteryRequest($player);
         $response = $this->requester->send($request);

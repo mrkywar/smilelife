@@ -3,6 +3,7 @@
 use Core\Event\EventDispatcher\EventDispatcher;
 use Core\Logger\Logger;
 use Core\Managers\PlayerManager;
+use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Requester;
 use Core\Requester\Response\Response;
@@ -15,6 +16,7 @@ use SmileLife\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Traits\PlayerJumpTrait;
 use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
+use SmileLife\PlayerAction\BirthdayTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
 use SmileLife\PlayerAction\CasinoBetTrait;
 use SmileLife\PlayerAction\DrawTrait;
@@ -148,7 +150,7 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\HouseTestInitializer();
+        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\BirthdayTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
 
@@ -237,11 +239,11 @@ class SmileLife extends Table {
         if (null === $response) {
             return;
         }
-//        echo "<pre>";
+
         foreach ($response->getNotifications() as $notification) {
             $this->sendNotification($notification);
         }
-//        die('sl');
+
         if (null !== $response->get('playerJump')) {
             $curent = self::getCurrentPlayerId();
             $jump = $response->get('playerJump');
@@ -253,21 +255,22 @@ class SmileLife extends Table {
         }
 
         Logger::log($response->get('nextState'), "SMG-info");
-//        var_dump($response->get('nextState'), $this->getGameStateValue('playerJump'), $this->getGameStateValue('playerNext'));
-//        die;
-//        echo '<pre>';
-//        var_dump($currentState = $this->gamestate->state(), $response->get('nextState'));
-//        die;
+
         $this->gamestate->nextState($response->get('nextState'));
     }
 
     protected function sendNotification(Notification $notification) {
-//        var_dump($notification->getType());
         if ($notification->isPublic()) {
             self::notifyAllPlayers($notification->getType(), $notification->getText(), $notification->getParams());
         } else {
             self::notifyPlayer($notification->getTargetedPlayer()->getId(), $notification->getType(), $notification->getText(), $notification->getParams());
         }
+    }
+    
+    protected function getActualPlayer(): Player {
+        return $this->playerManager->findOne([
+            "id" => self::getCurrentPlayerId()
+        ]);
     }
 
 //-- Traits for Initial Player choices (Resign, Draw) 
@@ -284,6 +287,7 @@ class SmileLife extends Table {
     use LuckChoiceTrait;
     use RainbowStopTrait;
     use CasinoBetTrait;
+    use BirthdayTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments

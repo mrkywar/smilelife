@@ -315,7 +315,7 @@ class PlayerTable extends Model {
         return $this;
     }
 
-    public function getWages() {
+    public function getWages(): array {
         if (empty($this->getWageIds())) {
             return [];
         }
@@ -331,6 +331,17 @@ class PlayerTable extends Model {
                 ->setIsForcedArray(false);
 
         return $cards;
+    }
+
+    public function getAviableWages(): array {
+        $wages = $this->getWages();
+        $aviableWages = [];
+        foreach ($wages as $wage) {
+            if (!$wage->getIsFlipped()) {
+                $aviableWages[] = $wage;
+            }
+        }
+        return $aviableWages;
     }
 
     public function getLastWage(): ?Wage {
@@ -503,12 +514,12 @@ class PlayerTable extends Model {
             return $flirts[sizeof($flirts) - 1];
         }
     }
-    
-    public function getRainbow():?Rainbow {
-        foreach ($this->getSpecials() as $card){
-           if($card instanceof Rainbow){
-               return $card;
-           }
+
+    public function getRainbow(): ?Rainbow {
+        foreach ($this->getSpecials() as $card) {
+            if ($card instanceof Rainbow) {
+                return $card;
+            }
         }
         return null;
     }
@@ -806,5 +817,4 @@ class PlayerTable extends Model {
         $this->specialsIds = $specialsIds;
         return $this;
     }
-
 }

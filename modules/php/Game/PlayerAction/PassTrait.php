@@ -15,9 +15,7 @@ trait PassTrait {
 
     public function actionDiscard($cardId) {
         self::checkAction('discardCard');
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
+        $player = $this->getActualPlayer();
         $card = $this->cardManager->findBy([
             "id" => $cardId
         ]);

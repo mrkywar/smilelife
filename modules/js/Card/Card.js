@@ -17,6 +17,7 @@ define([
     "dojo/_base/declare",
 
     g_gamethemeurl + 'modules/js/Card/CardDisplay.js',
+    g_gamethemeurl + 'modules/js/Card/CardType.js',
     g_gamethemeurl + 'modules/js/Card/CardSize.js',
 ], function (dojo, declare) {
     return declare(

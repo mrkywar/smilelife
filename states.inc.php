@@ -93,6 +93,7 @@ $playerActionsGameStates = [
             "zombiePass" => ST_NEXT_PLAYER,
             "luckAction" => ST_PLAYER_SPECIAL_LUCK,
             "rainbowAction" => ST_PLAYER_SPECIAL_RAINBOW,
+            "birthdayAction" => ST_PLAYER_SPECIAL_BIRTHDAY
         ]
     ],
     ST_PLAYER_SPECIAL_LUCK => [
@@ -133,6 +134,20 @@ $playerActionsGameStates = [
             "playPass" => ST_GAME_PLAYER_JUMP
         ]
     ],
+    ST_PLAYER_SPECIAL_BIRTHDAY => [
+        "name" => "birthdayConsequence",
+        "type" => "multipleactiveplayer",
+        "description" => clienttranslate('${actplayer} should choose a wage to offer'),
+        "descriptionmyturn" => clienttranslate('${you} should choose a wage to offer'),
+        'action' => 'stBirthdayInit',
+
+        "possibleactions" => [
+            "offerWage"
+        ],
+        "transitions" => [
+            "nextPlayer" => ST_NEXT_PLAYER,
+        ]
+    ]
 ];
 
 $gameGameStates = [

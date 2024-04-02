@@ -13,9 +13,7 @@ trait LuckChoiceTrait {
 
     public function actionLuckChoice($cardId) {
         self::checkAction('luckChoice');
-        $player = $this->playerManager->findOne([
-            "id" => self::getCurrentPlayerId()
-        ]);
+        $player = $this->getActualPlayer();
 
         $card = $this->cardManager->findBy(["id"=>$cardId]);
         if (null === $card) {
