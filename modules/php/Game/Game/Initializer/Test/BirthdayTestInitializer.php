@@ -3,7 +3,7 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\Category\Special\Birthday;
-use SmileLife\Card\Category\Special\Troc;
+use SmileLife\Card\Category\Wage\WageLevel3;
 use SmileLife\Card\Core\CardLocation;
 
 /**
@@ -18,20 +18,24 @@ class BirthdayTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $forcedCards = [];
-        
-        $troc = new Birthday();
-        $troc->setLocation(CardLocation::DECK)
-                ->setLocationArg(0); // forced a troc card first card of the deck
-        $forcedCards[] = $troc;
-        
         foreach ($oTables as $oTable) {
-            $card = new Troc();
-            $card->setLocation(CardLocation::PLAYER_HAND)
-                    ->setLocationArg($oTable->getId());
-            $forcedCards[] = $card;
+            $forcedCards = [];
+
+            $wage = new WageLevel3();
+            $wage->setLocation(CardLocation::PLAYER_BOARD)
+                    ->setLocationArg($oTable->getId())
+                    ->setIsFlipped($oTable->getId() % 2 >= 1);
+
+            $forcedCards[] = $wage;
+
+            $this->cardManager->add($forcedCards);
+            $this->playWaitingCards($oTable);
         }
-        $this->cardManager->add($forcedCards);
+        $birth = new Birthday();
+        $birth->setLocation(CardLocation::DECK)
+                ->setLocationArg(1); // forced a troc card first card of the deck
+
+        $this->cardManager->add($birth);
 
         reset($oTables);
 
@@ -40,5 +44,4 @@ class BirthdayTestInitializer extends TestGameInitializer {
 
         return $case1Table->getId();
     }
-
 }

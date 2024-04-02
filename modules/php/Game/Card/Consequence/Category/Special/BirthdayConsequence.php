@@ -27,7 +27,7 @@ class BirthdayConsequence extends SpecialNextStateConsequence {
 
         $notification = new Notification();
         $notification->setType("bithdayNotification")
-                ->setText(clienttranslate('${player_name} celebrates his birthday each player must offer him a salary'))
+                ->setText(clienttranslate('${player_name} celebrates his birthday each player must offer him a wage'))
                 ->add('player_name', $player->getName());
         $response->addNotification($notification);
        
