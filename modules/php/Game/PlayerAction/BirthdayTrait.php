@@ -29,4 +29,22 @@ trait BirthdayTrait {
         $wages = $table->getAviableWages();
         return (!empty($wages) && $activePlayer->getId() !== $table->getId());
     }
+    
+    public function offerWage($cardId) {
+        self::checkAction('offerWage');
+
+        $player = $this->getActualPlayer();
+
+        $card = $this->cardManager->findBy(["id" => $cardId]);
+        if (null === $card) {
+            throw new \BgaUserException("No card selected");
+        }
+
+        var_dump($card);die;
+//        $request = new CasinoBetRequest($player, $card);
+//
+//        $response = $this->requester->send($request);
+//
+//        $this->applyResponse($response);
+    }
 }

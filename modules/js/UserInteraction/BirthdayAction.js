@@ -18,6 +18,7 @@ define([
                 doBirthdayOpenModal: function () {
                     var modalTitle = _('Choose the wage to offer');
                     var id = this.openModal(modalTitle, MODAL_TYPE_BIRTHDAY, null, this.getUsableWages());
+                    
                 },
 
                 onWageBirthdayClick: function (playedCard, card, id) {
@@ -25,7 +26,7 @@ define([
                     this.debug(playedCard, clickedCard,clickedCard.classList,playedCard, id);
                     
                     if (clickedCard.classList.contains("selected")) {
-                        clickedCard.classList.remove("selected");
+                        this.takeAction('offerWage', {card: card.id});
                     } else {
                         this.onResetBuyClick(id);
                         clickedCard.classList.add("selected");
