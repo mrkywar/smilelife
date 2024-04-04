@@ -3,6 +3,7 @@
 namespace SmileLife\PlayerAction;
 
 use Core\Models\Player;
+use SmileLife\Game\Request\OfferWageRequest;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -39,12 +40,10 @@ trait BirthdayTrait {
         if (null === $card) {
             throw new \BgaUserException("No card selected");
         }
+        $request = new OfferWageRequest($player, $card);
 
-        var_dump($card);die;
-//        $request = new CasinoBetRequest($player, $card);
-//
-//        $response = $this->requester->send($request);
-//
-//        $this->applyResponse($response);
+        $response = $this->requester->send($request);
+
+        $this->applyResponse($response);
     }
 }

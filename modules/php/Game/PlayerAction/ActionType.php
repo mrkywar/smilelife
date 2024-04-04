@@ -20,6 +20,7 @@ abstract class ActionType {
     const ACTION_SPECIAL_LUCK = "luckChoice";
     const ACTION_SPECIAL_STOP_RAINBOW = "stopRainbow";
     const ACTION_SPECIAL_CASINO = "casinoBet";
+    const ACTION_SPECIAL_BIRTHDAY = "offerWage";
     
     
     const REQUIREMENT_REQUEST = "requirementRequest";
