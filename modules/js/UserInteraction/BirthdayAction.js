@@ -20,8 +20,16 @@ define([
                     var id = this.openModal(modalTitle, MODAL_TYPE_BIRTHDAY, null, this.getUsableWages());
                 },
 
-                onWageBirthdayClick: function (playedCard, additionalCard, id) {
-                    this.debug(playedCard, additionalCard, id);
+                onWageBirthdayClick: function (playedCard, card, id) {
+                    var clickedCard = document.getElementById("card_" + card.idPrefix + card.id);
+                    this.debug(playedCard, clickedCard,clickedCard.classList,playedCard, id);
+                    
+                    if (clickedCard.classList.contains("selected")) {
+                        clickedCard.classList.remove("selected");
+                    } else {
+                        this.onResetBuyClick(id);
+                        clickedCard.classList.add("selected");
+                    }
                 }
             }
 
