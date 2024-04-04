@@ -47,7 +47,7 @@ class Medium extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_MEDIUM;
+        return CardType::CARD_TYPE_MEDIUM;
     }
     
     /* -------------------------------------------------------------------------

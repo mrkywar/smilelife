@@ -36,7 +36,7 @@ class Gardener extends Interim implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_GARDENER;
+        return CardType::CARD_TYPE_GARDENER;
     }
 
     /* -------------------------------------------------------------------------

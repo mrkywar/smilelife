@@ -3,6 +3,7 @@
 namespace SmileLife\PlayerAction;
 
 use Core\Models\Player;
+use SmileLife\Card\CardType;
 use SmileLife\Game\Request\OfferWageRequest;
 use SmileLife\Table\PlayerTable;
 
@@ -37,6 +38,7 @@ trait BirthdayTrait {
         $player = $this->getActualPlayer();
 
         $card = $this->cardManager->findBy(["id" => $cardId]);
+        
         if (null === $card) {
             throw new \BgaUserException("No card selected");
         }
@@ -44,6 +46,11 @@ trait BirthdayTrait {
 
         $response = $this->requester->send($request);
 
-        $this->applyResponse($response);
+//        $this->applyResponse($response); dont use this for this method !
+        foreach ($response->getNotifications() as $notification) {
+            $this->sendNotification($notification);
+        }
+        
+        $this->gamestate->setPlayerNonMultiactive($player->getId(), "nextPlayer");
     }
 }

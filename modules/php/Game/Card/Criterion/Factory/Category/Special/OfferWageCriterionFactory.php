@@ -20,7 +20,7 @@ class OfferWageCriterionFactory extends NullCriterionFactory {
      * 
      * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
-     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (the gift here)
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */

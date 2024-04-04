@@ -39,7 +39,7 @@ class Guru extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_GURU;
+        return CardType::CARD_TYPE_GURU;
     }
 
     /* -------------------------------------------------------------------------

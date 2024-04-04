@@ -46,7 +46,7 @@ class Policeman extends Official implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_POLICEMEN;
+        return CardType::CARD_TYPE_POLICEMEN;
     }
     
     /* -------------------------------------------------------------------------

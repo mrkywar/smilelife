@@ -42,7 +42,7 @@ class Casino extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_CASINO;
+        return CardType::CARD_TYPE_CASINO;
     }
     
     public function getCriterionFactory(): CardCriterionFactory {

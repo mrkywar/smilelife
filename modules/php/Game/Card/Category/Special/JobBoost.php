@@ -31,7 +31,7 @@ class JobBoost extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_JOB_BOOST;
+        return CardType::CARD_TYPE_JOB_BOOST;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

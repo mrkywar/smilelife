@@ -57,7 +57,7 @@ class Surgeon extends Job implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_SURGEON;
+        return CardType::CARD_TYPE_SURGEON;
     }
 
     /**

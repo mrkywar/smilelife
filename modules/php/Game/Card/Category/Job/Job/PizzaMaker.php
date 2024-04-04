@@ -37,7 +37,7 @@ class PizzaMaker extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_PIZZA_MAKER;
+        return CardType::CARD_TYPE_PIZZA_MAKER;
     }
 
     /* -------------------------------------------------------------------------

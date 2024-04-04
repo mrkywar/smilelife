@@ -48,7 +48,7 @@ class HeadOfSales extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_HEAD_OF_SALES;
+        return CardType::CARD_TYPE_HEAD_OF_SALES;
     }
 
     /* -------------------------------------------------------------------------

@@ -36,7 +36,7 @@ class Revenge extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_REVENGE;
+        return CardType::CARD_TYPE_REVENGE;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

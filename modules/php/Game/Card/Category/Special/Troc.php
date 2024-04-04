@@ -31,7 +31,7 @@ class Troc extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_TROC;
+        return CardType::CARD_TYPE_TROC;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

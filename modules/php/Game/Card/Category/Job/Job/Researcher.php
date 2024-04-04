@@ -47,7 +47,7 @@ class Researcher extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_RESEARCHER;
+        return CardType::CARD_TYPE_RESEARCHER;
     }
 
     /* -------------------------------------------------------------------------

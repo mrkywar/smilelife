@@ -32,7 +32,7 @@ class Luck extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_LUCK;
+        return CardType::CARD_TYPE_LUCK;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

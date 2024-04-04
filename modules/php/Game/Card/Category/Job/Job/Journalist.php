@@ -48,7 +48,7 @@ class Journalist extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_JOURNALIST;
+        return CardType::CARD_TYPE_JOURNALIST;
     }
 
     /* -------------------------------------------------------------------------

@@ -31,7 +31,7 @@ class Birthday extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_BIRTHDAY;
+        return CardType::CARD_TYPE_BIRTHDAY;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {
