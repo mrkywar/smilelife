@@ -23,7 +23,7 @@ class Cairo extends Travel implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::TRAVEL_CAIRO;
+        return CardType::CARD_TYPE_TRAVEL_CAIRO;
     }
 
     public function getClass(): string {

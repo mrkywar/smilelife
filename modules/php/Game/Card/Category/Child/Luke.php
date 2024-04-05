@@ -23,7 +23,7 @@ class Luke extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_LUKE;
+        return CardType::CARD_TYPE_CHILD_LUKE;
     }
 
     public function getClass(): string {

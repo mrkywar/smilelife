@@ -27,7 +27,7 @@ class BougMadame extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_BOURG_MADAME;
+        return CardType::CARD_TYPE_MARRIAGE_BOURG_MADAME;
     }
 
     /* -------------------------------------------------------------------------

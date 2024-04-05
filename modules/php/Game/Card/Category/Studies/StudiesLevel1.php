@@ -24,7 +24,7 @@ class StudiesLevel1 extends Studies implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::STUDY_SINGLE;
+        return CardType::CARD_TYPE_STUDY_SINGLE;
     }
 
     /* -------------------------------------------------------------------------

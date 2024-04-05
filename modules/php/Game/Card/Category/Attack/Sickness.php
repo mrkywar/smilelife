@@ -32,7 +32,7 @@ class Sickness extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_SICKNESS;
+        return CardType::CARD_TYPE_SICKNESS;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

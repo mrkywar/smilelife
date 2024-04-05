@@ -31,7 +31,7 @@ class Camping extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_CAMPING;
+        return CardType::CARD_TYPE_FLIRT_CAMPING;
     }
 
     /* -------------------------------------------------------------------------

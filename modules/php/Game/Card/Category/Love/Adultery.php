@@ -40,7 +40,7 @@ class Adultery extends Card implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ADULTERY;
+        return CardType::CARD_TYPE_ADULTERY;
     }
 
     public function getCategory(): string {

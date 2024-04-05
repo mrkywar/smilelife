@@ -31,8 +31,9 @@ class BirthdayCriterionFactory extends NullCriterionFactory {
 
         $criterion
                 ->setErrorMessage(clienttranslate("You don't select a birthday"))
+                ->addConsequence(new GenericCardPlayedConsequence($card, $table))
                 ->addConsequence(new BirthdayConsequence($table))
-                ->addConsequence(new GenericCardPlayedConsequence($card, $table));
+                ;
 
         return $criterion;
     }

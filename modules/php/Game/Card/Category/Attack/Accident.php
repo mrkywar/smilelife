@@ -31,7 +31,7 @@ class Accident extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_ACCIDENT;
+        return CardType::CARD_TYPE_ACCIDENT;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

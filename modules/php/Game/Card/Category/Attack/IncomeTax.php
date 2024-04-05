@@ -31,7 +31,7 @@ class IncomeTax extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_INCOME_TAX;
+        return CardType::CARD_TYPE_INCOME_TAX;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

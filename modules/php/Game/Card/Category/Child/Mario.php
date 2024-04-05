@@ -23,7 +23,7 @@ class Mario extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_MARIO;
+        return CardType::CARD_TYPE_CHILD_MARIO;
     }
 
     public function getClass(): string {

@@ -31,7 +31,7 @@ class GradeRepetition extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_GRADE_REPETITION;
+        return CardType::CARD_TYPE_GRADE_REPETITION;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

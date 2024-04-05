@@ -23,7 +23,7 @@ class RioDeJaneiro extends Travel implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::TRAVEL_RIO;
+        return CardType::CARD_TYPE_TRAVEL_RIO;
     }
 
     public function getClass(): string {

@@ -23,7 +23,7 @@ class Leia extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_LEIA;
+        return CardType::CARD_TYPE_CHILD_LEIA;
     }
 
     public function getClass(): string {

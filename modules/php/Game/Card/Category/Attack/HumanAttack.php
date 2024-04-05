@@ -31,7 +31,7 @@ class HumanAttack extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_HUMAN_ATTACK;
+        return CardType::CARD_TYPE_ATTENTAT;
     }
     
     public function getCriterionFactory(): CardCriterionFactory {

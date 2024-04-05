@@ -27,7 +27,7 @@ class Montcuq extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_MONTCUQ;
+        return CardType::CARD_TYPE_MARRIAGE_MONTCUQ;
     }
 
     /* -------------------------------------------------------------------------

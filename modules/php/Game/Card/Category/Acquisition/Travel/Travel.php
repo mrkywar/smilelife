@@ -13,7 +13,7 @@ use SmileLife\Card\Criterion\Factory\Category\Travel\TravelCriterionFactory;
  */
 abstract class Travel extends Acquisition {
 
-    private const TRAVEL_PRICE = 3;
+    private const CARD_TYPE_TRAVEL_PRICE = 3;
     private const SMILE_POINTS = 1;
 
     public function __construct() {
@@ -28,7 +28,7 @@ abstract class Travel extends Acquisition {
      * ---------------------------------------------------------------------- */
 
     public function getPrice(): int {
-        return self::TRAVEL_PRICE;
+        return self::CARD_TYPE_TRAVEL_PRICE;
     }
 
     public function getSmilePoints(): int {

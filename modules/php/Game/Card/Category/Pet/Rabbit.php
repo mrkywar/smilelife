@@ -23,7 +23,7 @@ class Rabbit extends Pet implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::PET_RABBIT;
+        return CardType::CARD_TYPE_PET_RABBIT;
     }
 
     public function getClass(): string {

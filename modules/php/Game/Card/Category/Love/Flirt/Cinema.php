@@ -31,7 +31,7 @@ class Cinema extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_CINEMA;
+        return CardType::CARD_TYPE_FLIRT_CINEMA;
     }
 
     /* -------------------------------------------------------------------------

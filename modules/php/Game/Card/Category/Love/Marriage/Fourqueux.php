@@ -27,7 +27,7 @@ class Fourqueux extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_FOURQUEUX;
+        return CardType::CARD_TYPE_MARRIAGE_FOURQUEUX;
     }
 
     /* -------------------------------------------------------------------------

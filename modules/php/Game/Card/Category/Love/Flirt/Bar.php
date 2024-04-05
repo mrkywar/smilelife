@@ -31,7 +31,7 @@ class Bar extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_BAR;
+        return CardType::CARD_TYPE_FLIRT_BAR;
     }
 
     /* -------------------------------------------------------------------------

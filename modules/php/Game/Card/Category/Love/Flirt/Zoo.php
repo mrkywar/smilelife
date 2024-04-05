@@ -31,7 +31,7 @@ class Zoo extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_ZOO;
+        return CardType::CARD_TYPE_FLIRT_ZOO;
     }
 
     /* -------------------------------------------------------------------------

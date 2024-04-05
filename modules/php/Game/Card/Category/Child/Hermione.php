@@ -23,7 +23,7 @@ class Hermione extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_HERMIONE;
+        return CardType::CARD_TYPE_CHILD_HERMIONE;
     }
 
     public function getClass(): string {

@@ -23,7 +23,7 @@ class Luigi extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_LUIGI;
+        return CardType::CARD_TYPE_CHILD_LUIGI;
     }
 
     public function getClass(): string {
