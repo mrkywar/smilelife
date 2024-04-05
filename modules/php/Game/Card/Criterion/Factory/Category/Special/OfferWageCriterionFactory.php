@@ -3,6 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Consequence\Category\Wage\WageGiftConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
@@ -26,20 +27,9 @@ class OfferWageCriterionFactory extends NullCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = new InversedCriterion(new IsUsedWageCriterion($card));
-        $criterion->setErrorMessage(clienttranslate("You must choose a unsued salary"));
-        
-//        $criterion = new CriterionGroup([
-//            $wageCriterion,
-//            $casinoCriterion
-//                ], CriterionGroup::AND_OPERATOR);
-//
-//        $resolvableCriterion = new CasinoResolvableCriterion();
-//
-//        if ($resolvableCriterion->isValided()) {
-//            $criterion->addConsequence(new CasinoResolveConsequence($table, $card));
-//        }
-//        $criterion->addConsequence(new WageBetedConsequence($table, $card));
-//        
-//        return $criterion;
+        $criterion->setErrorMessage(clienttranslate("You must choose a unsued salary"))
+                ->addConsequence(new WageGiftConsequence($table, $card, $opponentTable));
+ 
+        return $criterion;
     }
 }

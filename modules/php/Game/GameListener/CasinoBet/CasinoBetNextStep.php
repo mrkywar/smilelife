@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Game\GameListener\Discard;
+namespace SmileLife\Game\GameListener\CasinoBet;
 
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;

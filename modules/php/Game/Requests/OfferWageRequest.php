@@ -10,6 +10,7 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\CardTypeException;
 use SmileLife\Card\Category\Special\Birthday;
 use SmileLife\PlayerAction\ActionType;
+use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -55,23 +56,22 @@ class OfferWageRequest extends Request {
         return ActionType::ACTION_SPECIAL_BIRTHDAY;
     }
 
-    public function getBirthdayOwnerTable() {
+    public function getBirthdayOwnerTable(): PlayerTable {
         return $this->get("birthdayOwnerTable");
     }
 
-    private function retriveBirthdayOwnerTable() {
+    private function retriveBirthdayOwnerTable(): PlayerTable {
         $this->cardManager->getSerializer()->setIsForcedArray(false);
         $card = $this->cardManager->findBy(['type' => CardType::CARD_TYPE_BIRTHDAY], 1);
         $this->cardManager->getSerializer()->setIsForcedArray(true);
 
-        if(! $card instanceof Birthday){
+        if (!$card instanceof Birthday) {
             throw new CardTypeException("OWR-64 : Something go wrong with birthday !");
         }
         $this->tableManager->getSerializer()->setIsForcedArray(false);
-        $playerOwner = $this->tableManager->findBy(["id"=>$card->getLocationArg()]) ;
+        $playerOwner = $this->tableManager->findBy(["id" => $card->getLocationArg()]);
         $this->tableManager->getSerializer()->setIsForcedArray(true);
-        echo "<pre>";
-        var_dump($playerOwner,$card->getLocationArg(),$card);
-        die;
+
+        return $playerOwner;
     }
 }

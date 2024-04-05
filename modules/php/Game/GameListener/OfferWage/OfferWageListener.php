@@ -6,8 +6,8 @@ use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
-use SmileLife\Card\Criterion\Factory\Category\Special\CasinoBetCriterionFactory;
-use SmileLife\Game\Request\CasinoBetRequest;
+use SmileLife\Card\Criterion\Factory\Category\Special\OfferWageCriterionFactory;
+use SmileLife\Game\Request\OfferWageRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
 
@@ -30,27 +30,27 @@ class OfferWageListener extends EventListener {
      */
     private $tableManager;
     
-//    /**
-//     * 
-//     * @var CasinoBetCriterionFactory
-//     */
-//    private $criterionFactory;
+    /**
+     * 
+     * @var OfferWageCriterionFactory
+     */
+    private $criterionFactory;
 
     public function __construct() {
         $this->setMethod("onOfferWage");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
-//        $this->criterionFactory = new CasinoBetCriterionFactory();
+        $this->criterionFactory = new OfferWageCriterionFactory();
         
     }
 
-    public function onCasinoBet(\SmileLife\Game\Request\OfferWageRequest &$request, Response &$response) {
+    public function onOfferWage(OfferWageRequest &$request, Response &$response) {
         $card = $request->getCard();
         $player = $request->getPlayer();
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
 
-        $criterion = $this->criterionFactory->create($table, $card);
+        $criterion = $this->criterionFactory->create($table, $card, $request->getBirthdayOwnerTable());
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criterion);
@@ -64,7 +64,6 @@ class OfferWageListener extends EventListener {
         $response->set('player', $player)
                 ->set('card', $card)
                 ->set("table", $table)
-                ->set('consequences', null)
                 ->set('consequences', $criterion->getConsequences());
     }
 
