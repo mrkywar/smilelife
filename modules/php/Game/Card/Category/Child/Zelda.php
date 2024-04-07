@@ -23,7 +23,7 @@ class Zelda extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_ZELDA;
+        return CardType::CARD_TYPE_CHILD_ZELDA;
     }
 
     public function getClass(): string {

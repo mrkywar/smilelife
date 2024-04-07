@@ -13,7 +13,7 @@ use SmileLife\Card\Module\BaseGame;
 class PinkDoorClassicHouse extends ClassicHouse implements BaseGame {
 
     public function getType(): int {
-        return CardType::HOUSE_SMALL_2;
+        return CardType::CARD_TYPE_HOUSE_SMALL_2;
     }
 
     public function getClass(): string {

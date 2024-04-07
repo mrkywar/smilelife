@@ -31,7 +31,7 @@ class Inheritance extends Wage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_INHERITANCE;
+        return CardType::CARD_TYPE_INHERITANCE;
     }
     
     public function getCriterionFactory(): CardCriterionFactory {

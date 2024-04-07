@@ -56,7 +56,7 @@ class Mechanic extends Job implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_MECHANIC;
+        return CardType::CARD_TYPE_MECHANIC;
     }
 
     /**

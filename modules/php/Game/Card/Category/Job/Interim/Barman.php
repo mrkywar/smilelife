@@ -46,7 +46,7 @@ class Barman extends Interim implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_BARMAN;
+        return CardType::CARD_TYPE_BARMAN;
     }
 
     /* -------------------------------------------------------------------------

@@ -23,7 +23,7 @@ class London extends Travel implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::TRAVEL_LONDON;
+        return CardType::CARD_TYPE_TRAVEL_LONDON;
     }
 
     public function getClass(): string {

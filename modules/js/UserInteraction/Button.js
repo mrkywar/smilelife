@@ -7,6 +7,7 @@ define([
     g_gamethemeurl + 'modules/js/UserInteraction/LuckAction.js',
     g_gamethemeurl + 'modules/js/UserInteraction/RainbowAction.js',
     g_gamethemeurl + 'modules/js/UserInteraction/DiscardAction.js',
+    g_gamethemeurl + 'modules/js/UserInteraction/BirthdayAction.js',
 ], function (dojo, declare) {
     return declare(
             "smilelife.ui.button",
@@ -16,6 +17,7 @@ define([
                 smilelife.ui.luckAction,
                 smilelife.ui.rainbowAction,
                 smilelife.ui.discardAction,
+                smilelife.ui.birthdayAction
             ],
             {
                 constructor: function () {
@@ -38,7 +40,7 @@ define([
                 //
                 onLeavingState: function (stateName)
                 {
-                    
+
                     dojo.query(".selected").removeClass("selected");
                     if (this.isCurrentPlayerActive())
                     {
@@ -47,7 +49,7 @@ define([
                             case "playCard":
                                 this.onModalCloseClick();
                                 break;
-                                
+
                         }
                     }
                     this.actualState = null;
@@ -57,7 +59,8 @@ define([
                 //                        action status bar (ie: the HTML links in the status bar).
                 //        
                 onUpdateActionButtons: function (stateName, args)
-                {                    
+                {
+                    this.debug('state', stateName, this.isCurrentPlayerActive());
                     if (this.isCurrentPlayerActive())
                     {
                         this.playData = null;
@@ -77,8 +80,11 @@ define([
                                 break;
                             case "researcherDiscard":
                                 this.addDiscardInteraction();
-                                break; 
-                                
+                                break;
+                            case "birthdayConsequence":
+                                this.addBirthdayInteraction();
+                                break;
+
                         }
                     }
                 },

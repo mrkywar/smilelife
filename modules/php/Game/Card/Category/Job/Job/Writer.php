@@ -37,7 +37,7 @@ class Writer extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_WRITER;
+        return CardType::CARD_TYPE_WRITER;
     }
 
     /* -------------------------------------------------------------------------

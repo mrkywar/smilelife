@@ -61,7 +61,7 @@ class Bandit extends Job implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_BANDIT;
+        return CardType::CARD_TYPE_BANDIT;
     }
 
     /**

@@ -36,7 +36,7 @@ class Stripteaser extends Interim implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_STRIPTEASER;
+        return CardType::CARD_TYPE_STRIPTEASER;
     }
 
     /* -------------------------------------------------------------------------

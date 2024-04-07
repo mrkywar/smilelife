@@ -31,7 +31,7 @@ class Hotel extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_HOTEL;
+        return CardType::CARD_TYPE_FLIRT_HOTEL;
     }
 
     /* -------------------------------------------------------------------------

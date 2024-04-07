@@ -37,7 +37,7 @@ class GrandProfessor extends Teacher implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::JOB_GRAND_PROF;
+        return CardType::CARD_TYPE_GRAND_PROF;
     }
 
     public function getClass(): string {

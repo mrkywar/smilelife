@@ -32,7 +32,7 @@ class BurnOut extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_BURN_OUT;
+        return CardType::CARD_TYPE_BURN_OUT;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

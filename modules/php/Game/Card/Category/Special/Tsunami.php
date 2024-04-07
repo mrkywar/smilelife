@@ -30,7 +30,7 @@ class Tsunami extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_TSUNAMI;
+        return CardType::CARD_TYPE_TSUNAMI;
     }
     
     public function getCriterionFactory(): CardCriterionFactory {

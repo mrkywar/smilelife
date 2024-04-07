@@ -55,7 +55,7 @@ class Military extends Official implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_MILITARY;
+        return CardType::CARD_TYPE_MILITARY;
     }
 
     /**

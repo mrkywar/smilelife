@@ -56,7 +56,7 @@ class Lawyer extends Job implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_LAWYER;
+        return CardType::CARD_TYPE_LAWYER;
     }
 
     /**

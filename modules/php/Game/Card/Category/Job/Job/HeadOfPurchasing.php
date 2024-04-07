@@ -48,7 +48,7 @@ class HeadOfPurchasing extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_HEAD_OF_PURCHASING;
+        return CardType::CARD_TYPE_HEAD_OF_PURCHASING;
     }
     
     /* -------------------------------------------------------------------------

@@ -36,7 +36,7 @@ class FreedomMedal extends Reward implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::REWARD_FREEDOM_MEDAL;
+        return CardType::CARD_TYPE_FREEDOM_MEDAL;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

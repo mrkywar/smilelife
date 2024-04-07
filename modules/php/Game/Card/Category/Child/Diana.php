@@ -23,7 +23,7 @@ class Diana extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_DIANA;
+        return CardType::CARD_TYPE_CHILD_DIANA;
     }
 
     public function getClass(): string {

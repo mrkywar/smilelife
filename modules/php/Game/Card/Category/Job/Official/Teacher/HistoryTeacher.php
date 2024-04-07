@@ -36,7 +36,7 @@ class HistoryTeacher extends Teacher implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_HISTORY_TEACHER;
+        return CardType::CARD_TYPE_HISTORY_TEACHER;
     }
 
     /* -------------------------------------------------------------------------

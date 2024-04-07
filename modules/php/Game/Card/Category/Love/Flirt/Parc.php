@@ -31,7 +31,7 @@ class Parc extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_PARC;
+        return CardType::CARD_TYPE_FLIRT_PARC;
     }
 
     /* -------------------------------------------------------------------------

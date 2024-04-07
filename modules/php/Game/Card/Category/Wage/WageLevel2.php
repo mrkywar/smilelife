@@ -32,7 +32,7 @@ class WageLevel2 extends Wage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::WAGE_LEVEL_2;
+        return CardType::CARD_TYPE_WAGE_LEVEL_2;
     }
 
     /* -------------------------------------------------------------------------

@@ -47,7 +47,7 @@ class Astronaut extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_ASTRONAUT;
+        return CardType::CARD_TYPE_ASTRONAUT;
     }
     
     /* -------------------------------------------------------------------------

@@ -37,7 +37,7 @@ class ShootingStar extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_SHOOTING_STAR;
+        return CardType::CARD_TYPE_SHOOTING_STAR;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

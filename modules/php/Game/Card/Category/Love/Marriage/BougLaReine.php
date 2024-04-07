@@ -27,7 +27,7 @@ class BougLaReine extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_BOURG_LA_REINE;
+        return CardType::CARD_TYPE_MARRIAGE_BOURG_LA_REINE;
     }
 
     /* -------------------------------------------------------------------------

@@ -31,7 +31,7 @@ class Rainbow extends Special implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::SPECIAL_RAINBOW;
+        return CardType::CARD_TYPE_RAINBOW;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

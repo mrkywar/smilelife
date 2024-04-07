@@ -34,7 +34,7 @@ class Jail extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_JAIL;
+        return CardType::CARD_TYPE_JAIL;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

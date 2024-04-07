@@ -36,7 +36,7 @@ class Waiter extends Interim implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_WAITER;
+        return CardType::CARD_TYPE_WAITER;
     }
 
     /* -------------------------------------------------------------------------

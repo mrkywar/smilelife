@@ -14,7 +14,7 @@ use SmileLife\Card\Module\BaseGame;
 class BigHouse extends House implements BaseGame {
 
     public function getType(): int {
-        return CardType::HOUSE_BIG;
+        return CardType::CARD_TYPE_HOUSE_BIG;
     }
 
     public function getClass(): string {

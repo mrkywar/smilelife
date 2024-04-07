@@ -24,7 +24,7 @@ class NewYork extends Travel implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::TRAVEL_NEW_YORK;
+        return CardType::CARD_TYPE_TRAVEL_NEW_YORK;
     }
 
     public function getClass(): string {

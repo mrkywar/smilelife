@@ -23,7 +23,7 @@ class Lara extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_LARA;
+        return CardType::CARD_TYPE_CHILD_LARA;
     }
 
     public function getClass(): string {

@@ -56,7 +56,7 @@ class Pharmacist extends Job implements BaseGame, CardEffectInterface {
     }
 
     public function getType(): int {
-        return CardType::JOB_PHARMACIST;
+        return CardType::CARD_TYPE_PHARMACIST;
     }
 
     /**

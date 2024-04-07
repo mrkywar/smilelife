@@ -45,7 +45,7 @@ class Architect extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_ARCHTECT;
+        return CardType::CARD_TYPE_ARCHITECT;
     }
 
     /* -------------------------------------------------------------------------

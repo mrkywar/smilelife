@@ -31,7 +31,7 @@ class Theater extends Flirt implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::FLIRT_THEATER;
+        return CardType::CARD_TYPE_FLIRT_THEATER;
     }
 
     /* -------------------------------------------------------------------------

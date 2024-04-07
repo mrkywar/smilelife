@@ -28,7 +28,7 @@ class Unicorn extends Pet implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::PET_UNICORN;
+        return CardType::CARD_TYPE_PET_UNICORN;
     }
 
     /* -------------------------------------------------------------------------

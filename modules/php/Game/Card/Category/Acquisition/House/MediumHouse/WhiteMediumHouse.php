@@ -13,7 +13,7 @@ use SmileLife\Card\Module\BaseGame;
 class WhiteMediumHouse extends MediumHouse implements BaseGame {
 
     public function getType(): int {
-        return CardType::HOUSE_MEDIUM_2;
+        return CardType::CARD_TYPE_HOUSE_MEDIUM_2;
     }
 
     public function getClass(): string {

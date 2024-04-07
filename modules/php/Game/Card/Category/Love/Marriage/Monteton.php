@@ -27,7 +27,7 @@ class Monteton extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_MONTETON;
+        return CardType::CARD_TYPE_MARRIAGE_MONTETON;
     }
 
     /* -------------------------------------------------------------------------

@@ -23,7 +23,7 @@ class Harry extends Child implements BaseGame {
      * ---------------------------------------------------------------------- */
 
     public function getType(): int {
-        return CardType::CHILD_HARRY;
+        return CardType::CARD_TYPE_CHILD_HARRY;
     }
 
     public function getClass(): string {

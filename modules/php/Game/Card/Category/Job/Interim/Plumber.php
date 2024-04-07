@@ -36,7 +36,7 @@ class Plumber extends Interim implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_PLUMBER;
+        return CardType::CARD_TYPE_PLUMBER;
     }
 
     /* -------------------------------------------------------------------------

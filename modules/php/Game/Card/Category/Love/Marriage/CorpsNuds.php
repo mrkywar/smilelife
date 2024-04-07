@@ -27,7 +27,7 @@ class CorpsNuds extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_CORPS_NUDS;
+        return CardType::CARD_TYPE_MARRIAGE_CORPS_NUDS;
     }
 
     /* -------------------------------------------------------------------------

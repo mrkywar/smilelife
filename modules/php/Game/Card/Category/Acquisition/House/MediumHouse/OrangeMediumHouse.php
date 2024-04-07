@@ -17,7 +17,7 @@ class OrangeMediumHouse extends MediumHouse implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::HOUSE_MEDIUM_1;
+        return CardType::CARD_TYPE_HOUSE_MEDIUM_1;
     }
 
     /* -------------------------------------------------------------------------

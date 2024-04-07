@@ -32,7 +32,7 @@ class Dismissal extends Attack implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::ATTACK_DISMISSAL;
+        return CardType::CARD_TYPE_DISMISSAL;
     }
 
     public function getCriterionFactory(): CardCriterionFactory {

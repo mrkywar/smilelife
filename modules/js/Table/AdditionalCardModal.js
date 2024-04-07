@@ -7,6 +7,7 @@ const MODAL_TYPE_TROC = "troc";
 const MODAL_TYPE_LUCK_CHOICE = "luckChoice";
 const MODAL_TYPE_PAY_TRAVEL = "payTravel";
 const MODAL_TYPE_PAY_HOUSE = "payHouse";
+const MODAL_TYPE_BIRTHDAY = "offerWage";
 
 define([
     "dojo",
@@ -144,6 +145,11 @@ define([
                                 this.generateCardSelection(aviableWages, card, id, this.onHouseBuyClick);
                             }
                             this.debug("Price", this.houseDatas);
+                            break;
+                        case MODAL_TYPE_BIRTHDAY:
+                            var id = this.generateModale(modalTitle, "more-container");
+                            this.generateCardSelection(requiredProperties, null, id, this.onWageBirthdayClick);
+                            this.debug(requiredProperties);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");

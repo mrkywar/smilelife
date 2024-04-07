@@ -28,7 +28,7 @@ class SainteVerge extends Marriage implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::MARRIAGE_SAINTE_VERGE;
+        return CardType::CARD_TYPE_MARRIAGE_SAINTE_VERGE;
     }
 
     /* -------------------------------------------------------------------------

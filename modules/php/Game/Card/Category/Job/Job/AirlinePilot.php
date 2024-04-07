@@ -45,7 +45,7 @@ class AirlinePilot extends Job implements BaseGame {
     }
 
     public function getType(): int {
-        return CardType::JOB_AIRLINE_PILOT;
+        return CardType::CARD_TYPE_AIRLINE_PILOT;
     }
 
     /* -------------------------------------------------------------------------
