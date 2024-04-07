@@ -49,8 +49,9 @@ class OfferWageListener extends EventListener {
         $card = $request->getCard();
         $player = $request->getPlayer();
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
+        $opponent = $request->getBirthdayOwnerTable();
 
-        $criterion = $this->criterionFactory->create($table, $card, $request->getBirthdayOwnerTable());
+        $criterion = $this->criterionFactory->create($table, $card, $opponent);
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criterion);

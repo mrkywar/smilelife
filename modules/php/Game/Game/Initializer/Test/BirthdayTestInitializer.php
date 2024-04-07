@@ -31,11 +31,15 @@ class BirthdayTestInitializer extends TestGameInitializer {
             $this->cardManager->add($forcedCards);
             $this->playWaitingCards($oTable);
         }
-        $birth = new Birthday();
-        $birth->setLocation(CardLocation::DECK)
-                ->setLocationArg(1); // forced a troc card first card of the deck
-
-        $this->cardManager->add($birth);
+//        $birth = new Birthday();
+        $this->cardManager->getSerializer()->setIsForcedArray(false);
+        $birth = $this->cardManager->findBy(['type' => CardType::CARD_TYPE_BIRTHDAY], 1);
+        $this->cardManager->getSerializer()->setIsForcedArray(true);
+        if (CardLocation::PLAYER_HAND !== $birth->getLocation()) {
+            $birth->setLocation(CardLocation::DECK)
+                    ->setLocationArg(1); // forced a troc card first card of the deck
+            $this->cardManager->add($birth);
+        }
 
         reset($oTables);
 
