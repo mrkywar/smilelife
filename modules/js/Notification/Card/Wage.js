@@ -14,12 +14,21 @@ define([
                 notif_wagesSpentNotification: function (notif) {
                     this.myTable.wages = notif.args.wages;
                     var cardDest = "pile_wage_" + notif.args.playerId;
-                    
+
                     this.aviableWagesCounters[notif.args.playerId].setValue(this.aviableWagesCounters[notif.args.playerId].getValue() - notif.args.amount)
 
                     for (var kWage in notif.args.wages) {
                         var hCard = notif.args.wages[kWage];
                         this.displayCard(hCard, cardDest, cardDest);
+                    }
+                },
+
+                notif_wageOfferNotification: function (notif)
+                {
+                    this.debug('wof', notif.args);
+                    if (parseInt(notif.args.playerId) === this.player_id) {
+                        $('more-container').innerHTML = "";
+                        $('modal-container').innerHTML = "";
                     }
                 }
             }

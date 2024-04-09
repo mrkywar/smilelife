@@ -89,8 +89,9 @@ define([
                         ['noOtherBetNotification', ANNIMATION_TIMER],
                         ['turnpassNotification', ANNIMATION_TIMER * 2.5],
                         ['trocNotification', ANNIMATION_TIMER],
-                        ['usedCardNotification',ANNIMATION_TIMER],
+                        ['usedCardNotification', ANNIMATION_TIMER],
                         ['wageLevelUpdate', 0],
+                        ['wageOfferNotification', ANNIMATION_TIMER],
                         ['wagesSpentNotification', ANNIMATION_TIMER]
 
                     ]
