@@ -26,10 +26,14 @@ define([
                 notif_wageOfferNotification: function (notif)
                 {
                     this.debug('wof', notif.args);
+
+
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         $('more-container').innerHTML = "";
                         $('modal-container').innerHTML = "";
                     }
+                    
+                    this.doSteelCard(notif);
                 }
             }
     );
