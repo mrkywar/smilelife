@@ -38,7 +38,7 @@ class BirthdayTestInitializer extends TestGameInitializer {
         if (CardLocation::PLAYER_HAND !== $birth->getLocation()) {
             $birth->setLocation(CardLocation::DECK)
                     ->setLocationArg(1); // forced a troc card first card of the deck
-            $this->cardManager->add($birth);
+            $this->cardManager->update($birth);
         }
 
         reset($oTables);
