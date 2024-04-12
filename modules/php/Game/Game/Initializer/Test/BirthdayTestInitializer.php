@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Special\Birthday;
+use SmileLife\Card\CardType;
 use SmileLife\Card\Category\Wage\WageLevel3;
 use SmileLife\Card\Core\CardLocation;
 
