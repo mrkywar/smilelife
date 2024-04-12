@@ -29,8 +29,15 @@ define([
                         $('more-container').innerHTML = "";
                         $('modal-container').innerHTML = "";
                     }
+                    this.debug(notif.args);
                     
-                    this.doSteelCard(notif);
+                    var seelNotif = {
+                        card : notif.args.card,
+                        playerId : notif.args.targetId,
+                        targetId : notif.args.playerId
+                    }
+                    
+                    this.doSteelCard({args:seelNotif});
                 }
             }
     );
