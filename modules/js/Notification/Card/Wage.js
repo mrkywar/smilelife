@@ -38,6 +38,11 @@ define([
                     }
                     
                     this.doSteelCard({args:seelNotif});
+                                        
+                    this.aviableWagesCounters[notif.args.playerId].setValue(this.aviableWagesCounters[notif.args.playerId].getValue() - notif.args.card.amount);
+                    this.wagesCounters[notif.args.playerId].setValue(this.wagesCounters[notif.args.playerId].getValue() - notif.args.card.amount);
+                    this.aviableWagesCounters[notif.args.targetId].setValue(this.aviableWagesCounters[notif.args.targetId].getValue() + notif.args.card.amount);
+                    this.wagesCounters[notif.args.targetId].setValue(this.wagesCounters[notif.args.targetId].getValue() + notif.args.card.amount);
                 }
             }
     );
