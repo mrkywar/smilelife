@@ -112,7 +112,7 @@ trait NextPlayerTrait {
     }
 
     private function getCasinoCard(): ?Casino {
-        $cards = $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
+        $cards = $this->cardManager->findBy(["type" => CardType::CARD_TYPE_CASINO, "location" => CardLocation::SPECIAL_CASINO]);
         if (empty($cards)) {
             return null;
         } else {
