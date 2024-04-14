@@ -38,10 +38,11 @@ class OfferWageRequest extends Request {
         $this->cardManager = new CardManager();
 
         $this->tableManager = new PlayerTableManager();
+        $owner = $this->retriveBirthdayOwnerTable();
 
         $this->set("player", $player)
                 ->set("card", $card)
-                ->set("birthdayOwnerTable", $this->retriveBirthdayOwnerTable());
+                ->set("birthdayOwnerTable", $owner);
     }
 
     public function getPlayer(): Player {

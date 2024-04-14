@@ -33,14 +33,15 @@ define([
                 onEnteringState: function (stateName, args)
                 {
                     this.actualState = stateName;
+//                    this.debug("OES-B-36", stateName, args, this.isCurrentPlayerActive());
                 },
 
                 // onLeavingState: this method is called each time we are leaving a game state.
                 //                 You can use this method to perform some user interface changes at this moment.
                 //
-                onLeavingState: function (stateName)
+                onLeavingState: function (stateName, args)
                 {
-
+//                    this.debug("OLS-44", stateName, args);
                     dojo.query(".selected").removeClass("selected");
                     if (this.isCurrentPlayerActive())
                     {
@@ -60,7 +61,15 @@ define([
                 //        
                 onUpdateActionButtons: function (stateName, args)
                 {
-                    this.debug('state', stateName, this.isCurrentPlayerActive());
+//                    this.debug("OUA-64", stateName, args, this.isCurrentPlayerActive());
+//                    this.debug('state', stateName, this.isCurrentPlayerActive());
+                    switch (stateName)
+                    {
+                        case "birthdayConsequence":
+                            $('more-container').innerHTML = "";
+                            $('modal-container').innerHTML = "";
+                            break;
+                    }
                     if (this.isCurrentPlayerActive())
                     {
                         this.playData = null;
