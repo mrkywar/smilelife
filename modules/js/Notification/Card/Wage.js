@@ -29,7 +29,6 @@ define([
                         $('more-container').innerHTML = "";
                         $('modal-container').innerHTML = "";
                     }
-                    this.debug(notif.args);
                     
                     var seelNotif = {
                         card : notif.args.card,

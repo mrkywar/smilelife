@@ -48,5 +48,4 @@ class PlayConsequence extends EventListener {
     public function eventName(): string {
         return ActionType::ACTION_PLAY;
     }
-
 }

@@ -64,11 +64,10 @@ class PlayListener extends EventListener {
         }
 
         $response->set("from", $card->getLocation());
-
+        
         $response->set('player', $player)
                 ->set('card', $card)
                 ->set("table", $table)
-                ->set('consequences', null)
                 ->set('consequences', $criteria->getConsequences());
 
         return $response;
