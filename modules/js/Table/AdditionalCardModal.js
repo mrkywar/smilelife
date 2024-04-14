@@ -144,12 +144,10 @@ define([
 
                                 this.generateCardSelection(aviableWages, card, id, this.onHouseBuyClick);
                             }
-                            this.debug("Price", this.houseDatas);
                             break;
                         case MODAL_TYPE_BIRTHDAY:
                             var id = this.generateModale(modalTitle, "more-container");
                             this.generateCardSelection(requiredProperties, null, id, this.onWageBirthdayClick);
-                            this.debug(requiredProperties);
                             break;
                         default:
                             this.showMessage(_('Unsupported call : ') + choiceType, "error");

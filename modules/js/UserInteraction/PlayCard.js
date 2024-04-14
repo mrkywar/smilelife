@@ -150,9 +150,30 @@ define([
                             var displayAll = true;
                             this.openModal(modalTitle, MODAL_TYPE_CARD, playedCard, wageCards, displayAll);
                             break;
-//                        case CARD_TYPE_BIRTHDAY:
-//                        
-//                            break;
+                        case CARD_TYPE_BIRTHDAY:
+                            var totalAviable = 0;
+                            
+                            for (var kPlayerCounter in this.aviableWagesCounters){
+                                if(this.player_id !== kPlayerCounter){
+                                    totalAviable+=this.aviableWagesCounters[kPlayerCounter].getValue();
+                                }
+                            }
+                            
+                            this.debug('test ',totalAviable, typeof(totalAviable));
+                            if(totalAviable >= 0 ){
+                                this.onModalValidClick();
+                            }else{
+                                this.addActionButton('nobonus_button', _('play without bonus'), 'onModalValidClick', null, false, 'gray');
+                            }
+                            
+//                            this.aviableWagesCounters[notif.args.playerId].setValue(this.aviableWagesCounters[notif.args.playerId].getValue() - notif.args.amount)
+//
+//                    for (var kWage in notif.args.wages) {
+//                        var hCard = notif.args.wages[kWage];
+//                        this.displayCard(hCard, cardDest, cardDest);
+//                    }
+                            
+                            break;
                         default:
                             this.debug('PC-CP-DEFAULT - OLD  MODAL');
                             if ('attack' === playedCard.dataset.category && CARD_TYPE_ATTENTAT != playedCard.dataset.type) {

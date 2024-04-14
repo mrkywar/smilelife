@@ -55,12 +55,12 @@ define([
                         }, duration + delay);
                     });
                 },
-                
-                isCardType(card, typeSearched){
+
+                isCardType(card, typeSearched) {
                     return this.getCardType(card) === typeSearched;
                 },
-                
-                getCardType(card){
+
+                getCardType(card) {
                     return parseInt(card.dataset.type);
                 },
 
@@ -87,13 +87,19 @@ define([
                                 } else if (this.isMyMarriage(card)) {
                                     //volontary divorce
                                     this.doDivorce();
-                                }  else if ('discard' === card.location) {
+                                } else if ('discard' === card.location) {
                                     //Play From Discard
                                     this.doPlayFromDiscard();
                                 }
                                 break;
                             case 'playCard':
                             case 'rainbowAction':
+                                var btn_element = $('nobonus_button');
+                                if (btn_element) {
+                                    // Si l'élément existe, le supprimer
+                                    dojo.destroy(btn_element);
+                                }
+                                
                                 if (!searchedDiv.classList.contains("selected")) {
                                     //select card
                                     if ('hand' === card.location) {
@@ -108,7 +114,7 @@ define([
                                     this.doPlay();
                                 }
                                 break;
-                                
+
                             case 'researcherDiscard':
                                 if (!searchedDiv.classList.contains("selected")) {
                                     //select card
