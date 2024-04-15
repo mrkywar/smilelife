@@ -27,7 +27,9 @@ class CardPlayableCriterion extends CardCriterion {
         $factory = $this->getCard()->getCriterionFactory();
         $criterion = $factory->create($this->table, $this->getCard());
 
-        return $criterion->isValided();
-    }
+        $inHand = new CardInHandCriterion($this->card, $this->table);
+        $lastDiscard = new CardIsLastDiscardedCriterion($this->card, $this->table);
 
+        return parent::isValided() && ($inHand->isValided() || $lastDiscard->isValided()) && $criterion->isValided();
+    }
 }

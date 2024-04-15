@@ -6,7 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Special\LuckConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CardPlayableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -14,7 +14,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class LuckCriterionFactory extends NullCriterionFactory {
+class LuckCriterionFactory extends CardPlayableCriterion {
 
     /**
      * 

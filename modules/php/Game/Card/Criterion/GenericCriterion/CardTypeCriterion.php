@@ -2,18 +2,14 @@
 
 namespace SmileLife\Card\Criterion\GenericCriterion;
 
-use Core\Models\Player;
 use SmileLife\Card\Card;
-use SmileLife\Card\CardManager;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of CardOffsidedCriterion
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardTypeCriterion extends CardCriterion {
+class CardTypeCriterion extends CardPlayableCriterion {
 
     /**
      * 

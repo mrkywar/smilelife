@@ -36,9 +36,7 @@ class TestGameInitializer extends GameInitializer {
             $table->addCard($card);
         }
 
-        $this->playerTableManager->setIsDebug(true);
         $this->playerTableManager->updateTable($table);
-        $this->playerTableManager->setIsDebug(false);
     }
 
 }

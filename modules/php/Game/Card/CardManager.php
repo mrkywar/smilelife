@@ -118,7 +118,6 @@ class CardManager extends SuperManager {
             foreach ($cards as &$card) {
                 $card->setLocation(CardLocation::PLAYER_HAND)
                         ->setLocationArg($player->getId());
-                $this->setIsDebug(true);
             }
 
             $this->update($cards);
