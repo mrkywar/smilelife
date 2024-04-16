@@ -14,14 +14,8 @@ trait PlayFromDiscardTrait {
 
     public function actionPlayFromDiscard($targetId = null, $additionalIds = null) {
         self::checkAction('playFormDiscard');
-        $player = $this->getActualPlayer();
 
         $card = $this->cardManager->getLastDiscardedCard();
-        if (null === $card) {
-            throw new \BgaUserException("No card in discard");
-        } else if ($card->getDiscarderId() === $player->getId()) {
-            throw new \BgaUserException("Last discarded card is yours");
-        }
 
         $this->doPlayCard($card, $targetId, $additionalIds);
     }

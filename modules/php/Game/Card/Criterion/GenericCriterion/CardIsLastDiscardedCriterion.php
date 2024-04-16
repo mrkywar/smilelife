@@ -13,11 +13,12 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardIsLastDiscardedCriterion extends CardCriterion {
+
     /**
      * @var PlayerTable
      */
     private $table;
-    
+
     /**
      * 
      * @var CardManager
@@ -30,14 +31,13 @@ class CardIsLastDiscardedCriterion extends CardCriterion {
         $this->table = $table;
         $this->cardManager = new CardManager();
     }
-    
+
     public function isValided(): bool {
         $card = $this->cardManager->getLastDiscardedCard();
-        if (null === $card) {
-            throw new \BgaUserException("No card in discard");
-        } else if ($card->getDiscarderId() === $player->getId()) {
-            throw new \BgaUserException("Last discarded card is yours");
+        if (CardLocation::DISCARD !== $this->getCard()->getLocation()) {
+            return false;
+        } else {
+            return ($card->getDiscarderId() === $player->getId() && $card->getId() === $this->getCard()->getId()) && parent::isValided();
         }
-        return parent::isValided();
     }
 }

@@ -17,13 +17,15 @@ class CardInHandCriterion extends CardCriterion {
      */
     private $table;
 
-    public function __construct(Card $card = null, PlayerTable $table) {
+    public function __construct(Card $card, PlayerTable $table) {
         parent::__construct($card);
 
         $this->table = $table;
     }
     
     public function isValided(): bool {
+        $card = $this->getCard();
+        $player = $this->table->getPlayer();
         return parent::isValided() && (CardLocation::PLAYER_HAND === $card->getLocation() && $player->getId() === $card->getLocationArg());
     }
 }

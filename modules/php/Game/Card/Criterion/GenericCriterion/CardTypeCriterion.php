@@ -9,7 +9,7 @@ use SmileLife\Card\Card;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardTypeCriterion extends CardPlayableCriterion {
+class CardTypeCriterion extends CardCriterion {
 
     /**
      * 

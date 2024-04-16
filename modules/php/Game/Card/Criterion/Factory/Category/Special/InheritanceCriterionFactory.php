@@ -6,7 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageLevelIncriseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\GenericCriterion\CardPlayableCriterion;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -14,7 +14,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class InheritanceCriterionFactory extends CardPlayableCriterion {
+class InheritanceCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

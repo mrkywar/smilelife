@@ -18,7 +18,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PlayFromDiscardCriterionFactory extends CardPlayableCriterion {
+class PlayFromDiscardCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
