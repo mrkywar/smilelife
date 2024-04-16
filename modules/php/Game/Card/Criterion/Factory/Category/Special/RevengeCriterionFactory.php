@@ -6,7 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
@@ -18,7 +18,7 @@ use SmileLife\Table\PlayerTableManager;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class RevengeCriterionFactory extends NullCriterionFactory {
+class RevengeCriterionFactory extends CardPlayableCriterionFactory {
     
     
 

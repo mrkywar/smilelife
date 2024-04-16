@@ -65,12 +65,12 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $player = $this->table->getPlayer();
 
         $this->origin = $this->card->getLocation();
-        
-        $this->generateNotification($response);
-        
+
         $this->cardManager->playCard($player, $this->card);
         $this->table->addCard($this->card);
         $this->tableManager->updateTable($this->table);
+        
+        $this->generateNotification($response);
     }
 
     /* -------------------------------------------------------------------------

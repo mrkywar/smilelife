@@ -4,14 +4,14 @@ namespace SmileLife\Card\Criterion\Factory\Category\Pet;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Table\PlayerTable;
 /**
  * Description of PetCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PetCriterionFactory extends NullCriterionFactory{
+class PetCriterionFactory extends CardPlayableCriterionFactory{
    /**
      * 
      * @param PlayerTable $table : Game table of the player who plays (useless here)

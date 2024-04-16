@@ -5,7 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Special;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Wage\WageGiftConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\WageCriterion\IsUsedWageCriterion;
 use SmileLife\Table\PlayerTable;
@@ -15,7 +15,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class OfferWageCriterionFactory extends NullCriterionFactory {
+class OfferWageCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

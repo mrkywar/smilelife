@@ -8,6 +8,7 @@ define([
             {
                 updateDiscard: function () {
                     var finded = false;
+
                     if (null !== this.discard) {
                         for (var kCard = 0; kCard < this.discard.length - 1; kCard++) {
                             var card = this.discard[kCard];
@@ -22,6 +23,7 @@ define([
                         if (!finded && this.discard.length > 0) {
                             var card = this.discard[this.discard.length - 1];
                             var lastVisible = dojo.query('#card_' + card.id);
+                            this.debug('UC LAS', card, lastVisible);
 
                             if (0 === lastVisible.length) {
                                 this.displayCard(card, 'pile_discard');

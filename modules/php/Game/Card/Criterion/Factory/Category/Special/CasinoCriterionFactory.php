@@ -7,7 +7,7 @@ use SmileLife\Card\Consequence\Category\Generic\PlayerDrawConsequence;
 use SmileLife\Card\Consequence\Category\Special\CasinoPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -15,7 +15,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CasinoCriterionFactory extends NullCriterionFactory {
+class CasinoCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

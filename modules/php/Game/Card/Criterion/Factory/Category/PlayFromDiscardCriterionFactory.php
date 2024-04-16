@@ -7,17 +7,18 @@ use SmileLife\Card\Category\Special\ShootingStar;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CardPlayableCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of NullCriterionFactory
+ * Description of PlayFromDiscardCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class PlayFromDiscardCriterionFactory extends NullCriterionFactory {
+class PlayFromDiscardCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

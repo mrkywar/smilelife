@@ -19,11 +19,9 @@ define([
 
                     var cardDest = "pile_" + card.pile + "_" + notif.args.targetId;
 
-
                     this.discard = notif.args.discard;
                     this.updateDiscard();
 
-                    this.debug(parseInt(notif.args.playerId), this.player_id, parseInt(notif.args.playerId) === this.player_id);
                     if (parseInt(notif.args.playerId) === this.player_id) {
                         this.displayCard(card, cardDest, "myhand");
                         dojo.query(".selected").removeClass("selected");

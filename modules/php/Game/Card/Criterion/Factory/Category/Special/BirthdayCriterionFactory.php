@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Special\Birthday;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Special\BirthdayConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -16,7 +16,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class BirthdayCriterionFactory extends NullCriterionFactory {
+class BirthdayCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

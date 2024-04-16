@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Consequence\Category\Special\CasinoResolveConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\NullCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
@@ -20,7 +20,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CasinoBetCriterionFactory extends NullCriterionFactory {
+class CasinoBetCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

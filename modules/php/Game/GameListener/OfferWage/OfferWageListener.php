@@ -41,7 +41,7 @@ class OfferWageListener extends EventListener {
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
-        $this->criterionFactory = new OfferWageCriterionFactory();
+        $this->criterionFactory = null; 
         
     }
 
@@ -49,6 +49,9 @@ class OfferWageListener extends EventListener {
         $card = $request->getCard();
         $player = $request->getPlayer();
         $table = $this->tableManager->findBy(["id" => $player->getId()]);
+        
+        $this->criterionFactory =  new OfferWageCriterionFactory($card,$table);
+        
         $opponent = $request->getBirthdayOwnerTable();
 
         $criterion = $this->criterionFactory->create($table, $card, $opponent);

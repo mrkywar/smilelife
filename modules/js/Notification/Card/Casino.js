@@ -32,7 +32,6 @@ define([
 
                 notif_casinoPlayedNotification: function (notif) {
                     var card = notif.args.casino;
-                    this.debug('OPEN', notif.args, notif.args.card);
                     if (null === this.casino) {
                         this.casino = [card];
                     } else {

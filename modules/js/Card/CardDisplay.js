@@ -64,7 +64,6 @@ define([
 
                     var newCardDiv = this.generateCardHTML(destinationDivId, card);
 
-                    this.updateDiscard();
                     dojo.connect(newCardDiv, 'onclick', (evt) => {
                         evt.preventDefault();
                         evt.stopPropagation();

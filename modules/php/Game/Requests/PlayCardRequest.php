@@ -2,9 +2,11 @@
 
 namespace SmileLife\Game\Request;
 
+use Core\Logger\Logger;
 use Core\Models\Player;
 use Core\Requester\Request\Request;
 use SmileLife\Card\Card;
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\PlayerAction\ActionType;
 
 /**
@@ -46,5 +48,4 @@ class PlayCardRequest extends Request {
     public function getType(): string {
         return ActionType::ACTION_PLAY;
     }
-
 }

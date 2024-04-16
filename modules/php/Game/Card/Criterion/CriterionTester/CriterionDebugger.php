@@ -34,15 +34,19 @@ class CriterionDebugger {
     private function debugOne(CriterionInterface $criterion, $level = 0) {
 
         if ($criterion instanceof CriterionGroup) {
-            echo " GROUP ( ";
+//            echo "<pre>";
+//            var_dump($criterion);die;
+//            
+            echo " GROUP ( <br/>";
             $subCriteria = $criterion->getCriteria();
             for ($i = 0; $i < sizeof($subCriteria); $i++) {
                 $this->debugOne($subCriteria[$i], $level + 1);
                 if ($i < sizeof($subCriteria) - 1) {
-                    echo " " . $criterion->getOperator() . " ";
+                    echo "<br/>  " . $criterion->getOperator() . " ";
                 }
             }
-            echo ") " . $this->displayResult($criterion);
+            echo "<br/>) " . $this->displayResult($criterion);
+            echo " >> ".$criterion->getErrorMessage();
         } elseif ($criterion instanceof InversedCriterion) {
             echo " " . $level . " INVERSED " . get_class($criterion->getCriterion()) . " " . $this->displayResult($criterion);
             ;
