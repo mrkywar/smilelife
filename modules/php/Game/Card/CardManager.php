@@ -194,7 +194,7 @@ class CardManager extends SuperManager {
 
     public function getLastDiscardedCard() {
         $cards = $this->getAllCardsInDiscard();
-        if (null === $cards) {
+        if (null === $cards || empty($cards)) {
             return null;
         }
         return $cards[sizeof($cards) - 1];

@@ -84,7 +84,7 @@ class CriterionGroup extends Criterion {
 
     public function getErrorMessage() {
         foreach ($this->criteria as $criterion) {
-            if (null !== $criterion->getErrorMessage() && !$criterion->isValided()) {
+            if (null !== $criterion->getErrorMessage() && !$criterion->isValided() && ""!== $criterion->getErrorMessage()) {
 //                echo"<br/>";var_dump($criterion);echo"<br/>";
                 return $criterion->getErrorMessage();
             }
@@ -104,5 +104,4 @@ class CriterionGroup extends Criterion {
             echo "(-->" . (get_class($consequence));
         }
     }
-
 }

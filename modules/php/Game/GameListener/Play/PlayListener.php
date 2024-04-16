@@ -58,14 +58,13 @@ class PlayListener extends EventListener {
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
+        
+//        $debuger = new CriterionDebugger($criteria);
+//        $debuger->debug();
 
         if (!$testRestult->isValided()) {
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
-        
-        $debugCriterion = new CriterionDebugger($criteria);
-        $debugCriterion->debug();
-        die("PL");
 
         $response->set("from", $card->getLocation());
         

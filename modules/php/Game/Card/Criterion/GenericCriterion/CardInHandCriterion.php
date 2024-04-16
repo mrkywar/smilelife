@@ -26,6 +26,7 @@ class CardInHandCriterion extends CardCriterion {
     public function isValided(): bool {
         $card = $this->getCard();
         $player = $this->table->getPlayer();
+        
         return parent::isValided() && (CardLocation::PLAYER_HAND === $card->getLocation() && $player->getId() === $card->getLocationArg());
     }
 }
