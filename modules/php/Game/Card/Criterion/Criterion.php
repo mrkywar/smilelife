@@ -24,8 +24,15 @@ abstract class Criterion implements CriterionInterface {
      */
     private $consequences;
 
+    /**
+     * 
+     * @var Consequence[]
+     */
+    private $invalidConsequences;
+
     public function __construct() {
         $this->consequences = [];
+        $this->invalidConsequences = [];
         $this->errorMessage = "";
     }
 
@@ -43,8 +50,13 @@ abstract class Criterion implements CriterionInterface {
         return (empty($this->consequences));
     }
 
-    public function addConsequence(Consequence $consequence):CriterionInterface {
+    public function addConsequence(Consequence $consequence): CriterionInterface {
         $this->consequences[] = $consequence;
+        return $this;
+    }
+
+    public function addInvalidConsequence(Consequence $consequence): CriterionInterface {
+        $this->invalidConsequences[] = $consequence;
         return $this;
     }
 
@@ -69,9 +81,16 @@ abstract class Criterion implements CriterionInterface {
         return $this->consequences;
     }
 
+    /**
+     * 
+     * @return ?Consequence[]
+     */
+    public function getInvalidConsequences(): ?array {
+        return $this->invalidConsequences;
+    }
+
     public function setConsequences(array $consequences) {
         $this->consequences = $consequences;
         return $this;
     }
-
 }
