@@ -30,6 +30,7 @@ class CheaterDetectionConsequence extends PlayerTableConsequence {
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
         Logger::log($player->getName()." (".$player->getId().") try to play ".$this->card->getName().' ('.$this->card->getId().")", "CHEAT");
+
         return $response;
     }
 }

@@ -5,7 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Criterion\CriterionTester\CriterionDebugger;
+use SmileLife\Card\Consequence\Consequence;
 use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
@@ -52,28 +52,38 @@ class PlayListener extends EventListener {
             $opponentTable->setPlayer($target);
         }
         $additionalCards = $request->getAdditionalCards();
- 
+
         $criteriaFactory = $card->getCriterionFactory();
         $criteria = $criteriaFactory->create($table, $card, $opponentTable, $additionalCards);
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
-        
-//        $debuger = new CriterionDebugger($criteria);
-//        $debuger->debug();
 
         if (!$testRestult->isValided()) {
-            throw new \BgaUserException($testRestult->getErrorMessage());
+            $consequences = $criteria->getInvalidConsequences();
+
+            if (null !== $consequences && !empty($consequences)) {
+                foreach ($consequences as $consequence) {
+                    $this->applyInvalidConsequence($consequence, $request, $response);
+                }
+            }
+
+            echo $testRestult->getErrorMessage();
+            $response->setIsValid(false);
+        } else {
+            $response->set("from", $card->getLocation());
+
+            $response->set('player', $player)
+                    ->set('card', $card)
+                    ->set("table", $table)
+                    ->set('consequences', $criteria->getConsequences());
         }
 
-        $response->set("from", $card->getLocation());
-        
-        $response->set('player', $player)
-                ->set('card', $card)
-                ->set("table", $table)
-                ->set('consequences', $criteria->getConsequences());
-
         return $response;
+    }
+
+    private function applyInvalidConsequence(Consequence $consequence, PlayCardRequest &$request, Response &$response) {
+        $consequence->execute($response);
     }
 
     public function eventName(): string {

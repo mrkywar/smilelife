@@ -31,7 +31,7 @@ class PlayConsequence extends EventListener {
 
     public function onPlay(PlayCardRequest &$request, Response &$response) {
         $consequences = $response->get('consequences');
-
+        
         foreach (array_reverse($consequences) as $consequence) {
             $this->applyConsequence($consequence, $request, $response);
         }
