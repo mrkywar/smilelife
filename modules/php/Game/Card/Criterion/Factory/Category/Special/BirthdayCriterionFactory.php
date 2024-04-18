@@ -9,6 +9,7 @@ use SmileLife\Card\Consequence\Category\Special\BirthdayConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -35,6 +36,9 @@ class BirthdayCriterionFactory extends CardPlayableCriterionFactory {
                 ->addConsequence(new BirthdayConsequence($table))
                 ;
 
-        return $criterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criterion
+        ], CriterionGroup::AND_OPERATOR);
     }
 }

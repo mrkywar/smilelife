@@ -6,6 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Wage\WageGiftConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\WageCriterion\IsUsedWageCriterion;
 use SmileLife\Table\PlayerTable;
@@ -30,6 +31,9 @@ class OfferWageCriterionFactory extends CardPlayableCriterionFactory {
         $criterion->setErrorMessage(clienttranslate("You must choose a unsued salary"))
                 ->addConsequence(new WageGiftConsequence($table, $card, $opponentTable));
  
-        return $criterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criterion
+        ], CriterionGroup::AND_OPERATOR);
     }
 }

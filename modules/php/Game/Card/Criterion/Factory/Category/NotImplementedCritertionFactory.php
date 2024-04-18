@@ -13,7 +13,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class NotImplementedCritertionFactory extends CardCriterionFactory {
+class NotImplementedCritertionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

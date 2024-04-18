@@ -8,7 +8,7 @@ use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Studies\StudieLevelDecreaseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\UsedCardCriterion;
@@ -21,7 +21,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class GradeRepetitionCriterionFactory extends CardCriterionFactory {
+class GradeRepetitionCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -44,6 +44,7 @@ class GradeRepetitionCriterionFactory extends CardCriterionFactory {
         $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is protected"));
 
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $noJobCriterion,
             $haveStudieCriterion,
             $lastStudieCriterion

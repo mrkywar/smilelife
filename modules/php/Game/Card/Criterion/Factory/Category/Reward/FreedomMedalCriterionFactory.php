@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Attack\HumanAttack;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Consequence\Category\Reward\FreedomMedalPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardOffsidedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
@@ -19,7 +19,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FreedomMedalCriterionFactory extends CardCriterionFactory {
+class FreedomMedalCriterionFactory extends CardPlayableCriterionFactory {
 
     public function __construct() {
         $fakeBandit = new Bandit();
@@ -46,6 +46,7 @@ class FreedomMedalCriterionFactory extends CardCriterionFactory {
         $attentatCriterion->setErrorMessage(clienttranslate('You have played an ' . $humanAttack->getTitle() . ' you can\'t be rewarded by ' . $card->getTitle()));
 
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $banditCriterion,
             $attentatCriterion
                 ], CriterionGroup::AND_OPERATOR);

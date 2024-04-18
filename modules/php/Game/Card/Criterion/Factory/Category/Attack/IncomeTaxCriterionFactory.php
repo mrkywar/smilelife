@@ -8,7 +8,7 @@ use SmileLife\Card\Consequence\Category\Attack\DiscardLastWageConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageLevelDecreaseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
@@ -23,7 +23,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class IncomeTaxCriterionFactory extends CardCriterionFactory {
+class IncomeTaxCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -51,6 +51,7 @@ class IncomeTaxCriterionFactory extends CardCriterionFactory {
         $jobGroupImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
 
         $criteria = new CriterionGroup([
+                parent::create($table, $card, $opponentTable, $complementaryCards),
                 $haveWageCriterion,
                 $lastWageCriterion,
                 $jobGroupImmuneCriterion

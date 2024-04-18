@@ -37,12 +37,12 @@ class GuruAndBanditCriterionFactory extends JobCriterionFactory {
         $policemanCriterion->setErrorMessage(clienttranslate("There's a policman watching, you can't play this work safely"));
         $parentCriterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
-        $criteria = new CriterionGroup([
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $policemanCriterion,
             $parentCriterion
-                ], CriterionGroup::AND_OPERATOR);
+        ], CriterionGroup::AND_OPERATOR);
 
-        return $criteria;
     }
 
 }

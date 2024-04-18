@@ -7,7 +7,8 @@ use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -16,7 +17,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class JailCriterionFactory extends CardCriterionFactory {
+class JailCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -36,7 +37,10 @@ class JailCriterionFactory extends CardCriterionFactory {
         $banditCriterion->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                 ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
                 
-        return $banditCriterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $banditCriterion
+        ], CriterionGroup::AND_OPERATOR);
         
     }
     

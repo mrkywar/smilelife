@@ -7,7 +7,8 @@ use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
 
@@ -16,7 +17,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class GrandProfCriterionFactory extends CardCriterionFactory {
+class GrandProfCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -27,7 +28,6 @@ class GrandProfCriterionFactory extends CardCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-//        $table = $this->getTable();
         $criterion = new JobTypeCriterion($table, Teacher::class);
 
         $criterion->setErrorMessage(clienttranslate('You must have a Teacher Job for this Promotion'));
@@ -39,8 +39,10 @@ class GrandProfCriterionFactory extends CardCriterionFactory {
             ;
         }
 
-
-        return $criterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criterion
+        ], CriterionGroup::AND_OPERATOR);
     }
 
 }

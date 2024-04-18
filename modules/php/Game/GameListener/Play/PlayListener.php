@@ -59,31 +59,35 @@ class PlayListener extends EventListener {
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
 
+        $debuger = new \SmileLife\Card\Criterion\CriterionTester\CriterionDebugger($criteria);
+        $debuger->debug();
+        
+        var_dump($testRestult->isValided());die;
+        
         if (!$testRestult->isValided()) {
+//            $this->trace("Invalid  : ");
+
             $consequences = $criteria->getInvalidConsequences();
+            $response->setIsValid(false);
 
             if (null !== $consequences && !empty($consequences)) {
                 foreach ($consequences as $consequence) {
-                    $this->applyInvalidConsequence($consequence, $request, $response);
+                    $consequence->execute($response);
+
                 }
             }
 
-            echo $testRestult->getErrorMessage();
-            $response->setIsValid(false);
-        } else {
-            $response->set("from", $card->getLocation());
-
-            $response->set('player', $player)
-                    ->set('card', $card)
-                    ->set("table", $table)
-                    ->set('consequences', $criteria->getConsequences());
+            throw new \BgaUserException($testRestult->getErrorMessage());
         }
 
-        return $response;
-    }
+        $response->set("from", $card->getLocation());
 
-    private function applyInvalidConsequence(Consequence $consequence, PlayCardRequest &$request, Response &$response) {
-        $consequence->execute($response);
+        $response->set('player', $player)
+                ->set('card', $card)
+                ->set("table", $table)
+                ->set('consequences', $criteria->getConsequences());
+
+        return $response;
     }
 
     public function eventName(): string {

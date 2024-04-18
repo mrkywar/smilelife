@@ -2,6 +2,7 @@
 namespace Core\Logger;
 
 use Core\Managers\LogManager;
+use SmileLife;
 
 /**
  * Description of Logger
@@ -31,6 +32,7 @@ abstract class Logger {
      * ---------------------------------------------------------------------- */
 
     static public function log($message, $category = null) {
+        SmileLife::getInstance()->trace("[".$category."] : ".$message);
         return self::getManager()->doLog($message, $category);
     }
 

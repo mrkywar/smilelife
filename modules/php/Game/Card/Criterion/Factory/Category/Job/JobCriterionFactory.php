@@ -4,10 +4,9 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Generic\HandUpdateConsequence;
 use SmileLife\Card\Consequence\Category\Special\JobBoostUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobBoostReadyCriterion;
@@ -20,7 +19,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class JobCriterionFactory extends CardCriterionFactory {
+class JobCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -43,6 +42,7 @@ class JobCriterionFactory extends CardCriterionFactory {
         $jobStudieCriterion = new JobStudiesCriterion($table, $card);
 
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $noJobCriterion,
             new CriterionGroup([
                     $jobStudieCriterion,

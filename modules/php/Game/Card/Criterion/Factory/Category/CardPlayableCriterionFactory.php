@@ -5,7 +5,6 @@ namespace SmileLife\Card\Criterion\Factory\Category;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\CheaterDetectionConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardInHandCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CardIsLastDiscardedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -16,7 +15,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardPlayableCriterionFactory extends CardCriterionFactory {
+class CardPlayableCriterionFactory extends CardPlayableCriterionFactory {
     /**
      * 
      * @param PlayerTable $table : Game table of the player who plays (useless here)

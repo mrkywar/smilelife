@@ -211,6 +211,7 @@ class SmileLife extends Table {
 
     protected function getAllDatas() {
         // !! We must only return informations visible by this player !!
+        $this->trace('test');
         $result = $this->dataRetriver->retrive(self::getCurrentPlayerId());
 
         return $result;

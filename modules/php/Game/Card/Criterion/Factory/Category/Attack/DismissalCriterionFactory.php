@@ -8,7 +8,7 @@ use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DisardJobConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -20,7 +20,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DismissalCriterionFactory extends CardCriterionFactory{
+class DismissalCriterionFactory extends CardPlayableCriterionFactory{
 
     /**
      * 
@@ -39,6 +39,7 @@ class DismissalCriterionFactory extends CardCriterionFactory{
         $officialCriterion->setErrorMessage(clienttranslate("The targeted player works as a civil servant and therefore cannot be fired"));
 
         $criteria = new CriterionGroup([
+                parent::create($table, $card, $opponentTable, $complementaryCards),
                 $jobCriterion,
                 $officialCriterion
             ], CriterionGroup::AND_OPERATOR);

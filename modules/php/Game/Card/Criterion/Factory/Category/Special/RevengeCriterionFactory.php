@@ -71,49 +71,6 @@ class RevengeCriterionFactory extends CardPlayableCriterionFactory {
                 $subCriterion
                     ], CriterionGroup::AND_OPERATOR);
             
-//            var_dump($table->getPlayer(), $opponentTable->getPlayer());
-//            die;
-//            for ($i = 0; $i < sizeof($complementaryCards); $i++) {
-//                $complementaryCard = $complementaryCards[$i];
-//                $newComplementaryCard = null;
-//                $factory = $this->getComplemataryCardCriterionFactory($complementaryCard);
-//                if (isset($complementaryCards[$i + 1])) {
-//                    // the next Complementary card should be for the active 
-//                    $newComplementaryCard = [$complementaryCards[$i + 1]];
-//                }
-//
-//                $subCriterion = $factory->create($table, $complementaryCard, $opponentTable, $newComplementaryCard);
-//                $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
-//
-//                $criterion = new CriterionGroup([
-//                    $criterion,
-//                    $subCriterion
-//                        ], CriterionGroup::AND_OPERATOR);
-//            }
-//
-//            $criterion
-//                    ->addConsequence(new GenericCardPlayedConsequence($card, $table));
-//
-//            return $criterion;
-//            $factory = $this->getComplemataryCardCriterionFactory($complementaryCards[0]);
-//
-//            $subCriterion = $factory->create($table, $complementaryCards[0], $opponentTable);
-//            $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
-//
-//            if ($complementaryCards[0] instanceof Attack) {
-//                $criterion
-//                        ->addConsequence(new GenericAttackPlayedConsequence($complementaryCards[0], $table, $opponentTable));
-//            } else {
-//                $criterion
-//                        ->addConsequence(new GenericCardPlayedConsequence($complementaryCards[0], $table));
-//            }
-//            $criterion
-//                        ->addConsequence(new GenericCardPlayedConsequence($card, $table));
-//
-//            return new CriterionGroup([
-//                $criterion,
-//                $subCriterion
-//                    ], CriterionGroup::AND_OPERATOR);
         }
     }
 
