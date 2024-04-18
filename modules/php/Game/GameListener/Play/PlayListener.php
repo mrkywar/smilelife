@@ -58,14 +58,8 @@ class PlayListener extends EventListener {
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
-
-        $debuger = new \SmileLife\Card\Criterion\CriterionTester\CriterionDebugger($criteria);
-        $debuger->debug();
-        
-        var_dump($testRestult->isValided());die;
-        
+ 
         if (!$testRestult->isValided()) {
-//            $this->trace("Invalid  : ");
 
             $consequences = $criteria->getInvalidConsequences();
             $response->setIsValid(false);

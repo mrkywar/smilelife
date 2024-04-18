@@ -70,8 +70,6 @@ class CriterionGroup extends Criterion {
         $consequences = parent::getConsequences();
         foreach ($this->criteria as $criterion) {
             if ($criterion->isValided()) {
-                $tconsequences = $criterion->getConsequences();
-
                 $consequences = array_merge($consequences ?? [], $criterion->getConsequences() ?? []);
                 //-- I think is an XOR case
                 if (self::OR_OPERATOR === $this->operator) {
@@ -81,6 +79,18 @@ class CriterionGroup extends Criterion {
         }
         return $consequences;
     }
+    
+    public function getInvalidConsequences(): ?array  {
+        $consequences = parent::getInvalidConsequences();
+        foreach ($this->criteria as $criterion) {
+            if (!$criterion->isValided()) {
+                $consequences = array_merge($consequences ?? [], $criterion->getInvalidConsequences() ?? []);
+            }
+        }
+        return $consequences;
+    }
+
+    
 
     public function getErrorMessage() {
         foreach ($this->criteria as $criterion) {

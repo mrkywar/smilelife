@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Child\Child;
 use SmileLife\Card\Consequence\Category\Attack\OffsideConsequence;
 use SmileLife\Card\Consequence\Category\Child\AllChildOffsideConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
