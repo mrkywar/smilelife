@@ -5,7 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Love;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Love\AdulteryPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\HaveAdulteryCriterion;
@@ -17,7 +17,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class AdulteryCriterionFactory extends CardCriterionFactory {
+class AdulteryCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -35,9 +35,10 @@ class AdulteryCriterionFactory extends CardCriterionFactory {
         $marriageAdultery->setErrorMessage(clienttranslate('Before starting an adulterous relationship, you must be married.'));
 
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $noAdulteryCriterion,
             $marriageAdultery
-                ], CriterionGroup::AND_OPERATOR);
+        ], CriterionGroup::AND_OPERATOR);
         
         $criteria->addConsequence(new AdulteryPlayedConsequence($card, $table));
         

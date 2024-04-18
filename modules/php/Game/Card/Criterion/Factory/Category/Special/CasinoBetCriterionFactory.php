@@ -43,6 +43,7 @@ class CasinoBetCriterionFactory extends CardPlayableCriterionFactory {
         $casinoCriterion->setErrorMessage(clienttranslate("Casino isn't oppened"));
 
         $criterion = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $wageCriterion,
             $casinoCriterion
                 ], CriterionGroup::AND_OPERATOR);

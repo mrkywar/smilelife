@@ -9,7 +9,8 @@ use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Job\JobUsedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WagesSpentConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
@@ -21,7 +22,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class HouseCriterionFactory extends CardCriterionFactory {
+class HouseCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -52,28 +53,10 @@ class HouseCriterionFactory extends CardCriterionFactory {
             $criterion->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
         }
         
-        return $criterion;
-
-//        $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
-//
-//        if (null === $complementaryCards) {
-//            $isPilotCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
-//                    ->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
-//
-//            return $isPilotCriterion;
-//        } else {
-//            $hasEnounthWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards);
-//
-//            $hasEnounthWagesToSpent->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
-//
-//            $criterion = new CriterionGroup([$isPilotCriterion, $hasEnounthWagesToSpent], CriterionGroup::OR_OPERATOR);
-//            $criterion
-//                    ->addConsequence(new GenericCardPlayedConsequence($card, $table))
-//                    ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
-//            ;
-//
-//            return $criterion;
-//        }
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criterion
+        ], CriterionGroup::AND_OPERATOR);
     }
 
     private function retriveGivenArchitect(array $complementaryCards = null): ?Architect {

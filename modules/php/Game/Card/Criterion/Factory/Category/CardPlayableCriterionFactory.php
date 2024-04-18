@@ -31,7 +31,7 @@ class CardPlayableCriterionFactory extends CardCriterionFactory {
         
        $criterion = new CriterionGroup([$inHandCriterion,$isLastDiscardedCriterion], CriterionGroup::OR_OPERATOR);
        $criterion->setErrorMessage(clienttranslate("Impossible to play this card now !"))
-               ->addConsequence(new CheaterDetectionConsequence($card, $table));
+               ->addInvalidConsequence(new CheaterDetectionConsequence($card, $table));
        
        return $criterion;
     }

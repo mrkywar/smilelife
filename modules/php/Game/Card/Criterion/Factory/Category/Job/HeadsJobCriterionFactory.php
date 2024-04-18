@@ -42,7 +42,10 @@ class HeadsJobCriterionFactory extends JobCriterionFactory {
             $criterion->addConsequence(new TrocWithProtectedCardConsequence($table, $opponentTable, $complementaryCards[0]));
         }
 
-        return $criterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criterion
+        ], CriterionGroup::AND_OPERATOR);
     }
 
 }

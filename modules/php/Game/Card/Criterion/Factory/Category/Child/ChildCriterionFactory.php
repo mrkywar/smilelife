@@ -6,7 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Child\ChildPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Love\FlirtUsedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\LoveCriterion\FlirtPlayedCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
@@ -17,7 +17,7 @@ use SmileLife\Table\PlayerTable;
  * Description of ChildCriterionFactory
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class ChildCriterionFactory extends CardCriterionFactory {
+class ChildCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -34,14 +34,19 @@ class ChildCriterionFactory extends CardCriterionFactory {
         $lastFlirtCriterion = new LastFlirtGenerateChildCiterion($table);
         $lastFlirtCriterion->setErrorMessage(clienttranslate('Your last flirtation does not allow you to conceive a child'))
                 ->addConsequence(new FlirtUsedConsequence($card, $table->getLastFlirt(), $table));
-
+        
+        
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            new CriterionGroup([
                 $isMarriedCriterion,
                 new CriterionGroup([
                     $haveFlirtCriterion,
                     $lastFlirtCriterion
                 ], CriterionGroup::AND_OPERATOR)
-            ],CriterionGroup::OR_OPERATOR);
+            ],CriterionGroup::OR_OPERATOR)
+        ], CriterionGroup::AND_OPERATOR);
+
         $criteria->setErrorMessage("You didn't have active Marriage or any flirt")
                 ->addConsequence(new ChildPlayedConsequence($card, $table));
 

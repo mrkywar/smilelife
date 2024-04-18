@@ -7,7 +7,7 @@ use SmileLife\Card\Consequence\Category\Studies\LimitlessStudieConsequence;
 use SmileLife\Card\Consequence\Category\Studies\StudieLevelIncriseConsequence;
 use SmileLife\Card\Consequence\Category\Studies\StudiePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -22,7 +22,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class StudiesCriterionFactory extends CardCriterionFactory {
+class StudiesCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -72,7 +72,10 @@ class StudiesCriterionFactory extends CardCriterionFactory {
 
         $criteria->addConsequence(new StudiePlayedConsequence($card, $table));
 
-        return $criteria;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criteria
+        ], CriterionGroup::AND_OPERATOR);
     }
 
 }

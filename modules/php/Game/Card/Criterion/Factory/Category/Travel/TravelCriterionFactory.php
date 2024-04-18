@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Job\Job\AirlinePilot;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WagesSpentConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Card\Criterion\WageCriterion\HaveEnouthWageToBuyCriterion;
@@ -18,7 +18,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class TravelCriterionFactory extends CardCriterionFactory {
+class TravelCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -30,12 +30,16 @@ class TravelCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
+        $parentCriterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
         if (null === $complementaryCards) {
             $isPilotCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
                     ->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
 
-            return $isPilotCriterion;
+            return new CriterionGroup([
+                $parentCriterion,
+                $isPilotCriterion
+            ], CriterionGroup::AND_OPERATOR);
         } else {
             $hasEnounthWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards);
 
@@ -47,7 +51,10 @@ class TravelCriterionFactory extends CardCriterionFactory {
                     ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
             ;
 
-            return $criterion;
+            return new CriterionGroup([
+                $parentCriterion,
+                $criterion
+            ],CriterionGroup::AND_OPERATOR);
         }
     }
 }

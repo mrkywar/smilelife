@@ -9,7 +9,7 @@ use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
 use SmileLife\Card\Consequence\Category\Reward\NationalMedalPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
 use SmileLife\Table\PlayerTable;
@@ -19,7 +19,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class NationalMedalCriterionFactory extends CardCriterionFactory {
+class NationalMedalCriterionFactory extends CardPlayableCriterionFactory {
 
     private $message;
 
@@ -57,7 +57,10 @@ class NationalMedalCriterionFactory extends CardCriterionFactory {
 
         $criterion->addConsequence(new NationalMedalPlayedConsequence($card, $table));
         
-        return $criterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criterion
+        ], CriterionGroup::AND_OPERATOR);
     }
 
 }

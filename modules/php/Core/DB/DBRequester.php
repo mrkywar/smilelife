@@ -33,6 +33,8 @@ class DBRequester extends \APP_DbObject {
         $queryString = QueryStatementFactory::create($qb);
         $qb->reset();
 
+        
+        
         if ($this->isDebug) {
 //            var_dump($queryString);die;
             Logger::log($queryString, "DBRequest");

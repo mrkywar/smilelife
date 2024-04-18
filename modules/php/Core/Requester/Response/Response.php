@@ -13,14 +13,20 @@ use Traversable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class Response extends ParamsContainer {
-    
+
+    /**
+     * 
+     * @var bool
+     */
+    private bool $isValid;
+
     public function __construct() {
         parent::__construct();
-        
+
         $this->notifications = new NotificationCollection();
+        $this->isValid = true;
     }
 
-    
     /* -------------------------------------------------------------------------
      *                  BEGIN - Notification
      * ---------------------------------------------------------------------- */
@@ -37,4 +43,16 @@ class Response extends ParamsContainer {
         return $this->notifications->addNotification($notification);
     }
 
+    /* -------------------------------------------------------------------------
+     *                  BEGIN - Getters & Setters 
+     * ---------------------------------------------------------------------- */
+
+    public function getIsValid(): bool {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid) {
+        $this->isValid = $isValid;
+        return $this;
+    }
 }

@@ -24,9 +24,12 @@ class EventDispatcher {
             throw new EventDispatcherException("No listener registered for $name");
         }
         ksort($this->listeners[$name]);
-        
+
         foreach ($this->listeners[$name] as $sortedListeners) {
-            foreach ($sortedListeners as $listener) {
+            $totalListeners = count($sortedListeners);
+            $index = 0;
+            while ($index < $totalListeners && $response->getIsValid()) {
+                $listener = $sortedListeners[$index];
                 if (null === $listener->getMethod()) {
                     $listener->onEvent($request, $response);
                 } else {
@@ -45,5 +48,4 @@ class EventDispatcher {
     public function getListeners() {
         return $this->listeners;
     }
-
 }

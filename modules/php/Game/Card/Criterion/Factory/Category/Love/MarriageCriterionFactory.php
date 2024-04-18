@@ -5,7 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Love;
 use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Love\MarriagePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\FlirtPlayedCriterion;
@@ -17,7 +17,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class MarriageCriterionFactory extends CardCriterionFactory {
+class MarriageCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -35,9 +35,10 @@ class MarriageCriterionFactory extends CardCriterionFactory {
         $flirtCriterion->setErrorMessage(clienttranslate('You must have at least one flirtation before marriage'));
 
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $notMarried,
             $flirtCriterion
-                ], CriterionGroup::AND_OPERATOR);
+        ], CriterionGroup::AND_OPERATOR);
         
         $criteria->addConsequence(new MarriagePlayedConsequence($card, $table));
         

@@ -7,7 +7,7 @@ use SmileLife\Card\Consequence\Category\Love\FlirtDoublonDectectionConcequence;
 use SmileLife\Card\Consequence\Category\Love\FlirtOnAdulteryConsequence;
 use SmileLife\Card\Consequence\Category\Love\FlirtPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
@@ -21,7 +21,7 @@ use SmileLife\Table\PlayerTable;
  * Description of FlirtCriterionFactory
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class FlirtCriterionFactory extends CardCriterionFactory {
+class FlirtCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -43,7 +43,6 @@ class FlirtCriterionFactory extends CardCriterionFactory {
 
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 
-        
         $finalCriterion = new CriterionGroup([
             //-- Adultery Criterion
             $adulteryCriterion,
@@ -63,7 +62,9 @@ class FlirtCriterionFactory extends CardCriterionFactory {
                 ->addConsequence(new FlirtPlayedConsequence($card, $table))
                 ->addConsequence(new FlirtDoublonDectectionConcequence($card, $table));
 
-        return $finalCriterion;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $finalCriterion
+        ], CriterionGroup::AND_OPERATOR);
     }
-
 }

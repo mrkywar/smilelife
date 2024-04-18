@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Child\Child;
 use SmileLife\Card\Consequence\Category\Attack\OffsideConsequence;
 use SmileLife\Card\Consequence\Category\Child\AllChildOffsideConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
@@ -21,7 +21,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class AttentatCriterionFactory extends CardCriterionFactory {
+class AttentatCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -43,6 +43,7 @@ class AttentatCriterionFactory extends CardCriterionFactory {
         $noImmunityInGame->setErrorMessage(clienttranslate("There's a soldier watching, you can't plant a bomb safely"));
 
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $cardOnTableCiterion,
             $noImmunityInGame
                 ], CriterionGroup::AND_OPERATOR

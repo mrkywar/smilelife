@@ -7,6 +7,7 @@ use SmileLife\Card\Category\Reward\NationalMedal;
 use SmileLife\Card\Consequence\Category\Wage\WageLevelIncriseConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WagePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -19,7 +20,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class WageCriterionFactory extends NationalMedalCriterionFactory {
+class WageCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -37,10 +38,11 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $wageCriterion->setErrorMessage(clienttranslate('Your job does not allow you to collect a salary of this amount'));
 
         //-- NationalMedalCriterion
-        $nationalJobCriterion = parent::create($table, $card);
+        $nationalJobFactory = new NationalMedalCriterionFactory();
+        $nationalJobCriterion = $nationalJobFactory->create($table, $card, $opponentTable, $complementaryCards);
         $nationalJobCriterion->setErrorMessage(null); //-- we didn't want see any message in this case
         $nationalMedalCardCriterion = new CardOnTableCriterion($table, NationalMedal::class);
-
+        
         $criteria = new CriterionGroup([
             //-- Classic criterion
             new CriterionGroup([
@@ -57,7 +59,10 @@ class WageCriterionFactory extends NationalMedalCriterionFactory {
         $criteria->addConsequence(new WagePlayedConsequence($card, $table))
                 ->addConsequence(new WageLevelIncriseConsequence($card, $table));
         
-        return $criteria;
+        return new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $criteria
+        ], CriterionGroup::AND_OPERATOR);
         
     }
 

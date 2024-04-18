@@ -8,7 +8,7 @@ use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\Attack\HaveDoublonAttackActiveCriterion;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -21,7 +21,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class AccidentCriterionFactory extends CardCriterionFactory {
+class AccidentCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -54,6 +54,7 @@ class AccidentCriterionFactory extends CardCriterionFactory {
         $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
 //        
         $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             $jobCriterion,
             $doublonCriterion,
                 ], CriterionGroup::AND_OPERATOR);

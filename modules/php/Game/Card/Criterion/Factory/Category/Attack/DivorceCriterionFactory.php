@@ -10,7 +10,7 @@ use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryChildsConsequenc
 use SmileLife\Card\Consequence\Category\Attack\DivorceOnAdulteryFlirtsConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
@@ -25,7 +25,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DivorceCriterionFactory extends CardCriterionFactory {
+class DivorceCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -48,19 +48,22 @@ class DivorceCriterionFactory extends CardCriterionFactory {
         $jobCriterion = new HaveJobCriterion($opponentTable);
         $notDivorseImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, DivorceImuneEffect::class));
         $notDivorseImmuneCriterion->setErrorMessage(clienttranslate("Targeted player is immune to divorce"));
-
+        
         $criteria = new CriterionGroup([
-            $haveAdultery,
+            parent::create($table, $card, $opponentTable, $complementaryCards),
             new CriterionGroup([
-                $isMarriedCriterion,
-                $noJobCriterion
-                    ], CriterionGroup::AND_OPERATOR),
-            new CriterionGroup([
-                $isMarriedCriterion,
-                $jobCriterion,
-                $notDivorseImmuneCriterion
-                    ], CriterionGroup::AND_OPERATOR)
-                ], CriterionGroup::OR_OPERATOR);
+                $haveAdultery,
+                new CriterionGroup([
+                    $isMarriedCriterion,
+                    $noJobCriterion
+                ], CriterionGroup::AND_OPERATOR),
+                new CriterionGroup([
+                    $isMarriedCriterion,
+                    $jobCriterion,
+                    $notDivorseImmuneCriterion
+                ], CriterionGroup::AND_OPERATOR)
+            ], CriterionGroup::OR_OPERATOR)
+        ], CriterionGroup::AND_OPERATOR);
 
         $targetedMarriage = $opponentTable->getMarriage();
         if (null !== $targetedMarriage) {
