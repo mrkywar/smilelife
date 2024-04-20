@@ -34,11 +34,12 @@ class CardIsLastDiscardedCriterion extends CardCriterion {
 
     public function isValided(): bool {
         $card = $this->cardManager->getLastDiscardedCard();
-        
+        $player = $this->table->getPlayer();
+
         if (null === $card || CardLocation::DISCARD !== $this->getCard()->getLocation()) {
             return false;
         } else {
-            return ($card->getDiscarderId() === $player->getId() && $card->getId() === $this->getCard()->getId()) && parent::isValided();
+            return ($card->getDiscarderId() !== $player->getId() && $card->getId() === $this->getCard()->getId()) && parent::isValided();
         }
     }
 }
