@@ -15,7 +15,8 @@ class StudieLevelIncriseConsequence extends CardPlayedConsequence {
 
     protected function generateNotification(): Notification {
         $notif = parent::generateNotification();
-        $notif->add("level", $this->getStudies()->getLevel());
+        $notif->add("level", $this->getStudies()->getLevel())
+                ->add("studiesLevel",true);
         return $notif;
     }
 
@@ -26,7 +27,7 @@ class StudieLevelIncriseConsequence extends CardPlayedConsequence {
     private function getStudies(): Studies {
         $card = $this->card;
         if (!$card instanceof Studies) {
-            throw new \BgaUserException("Invalid Card Type - SLIC-43");
+            throw new \BgaUserException("Invalid Card Type - SLIC-30");
         }
         return $card;
     }

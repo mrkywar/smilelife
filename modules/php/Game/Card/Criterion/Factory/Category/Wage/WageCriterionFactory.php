@@ -56,8 +56,7 @@ class WageCriterionFactory extends CardPlayableCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR),
                 ], CriterionGroup::OR_OPERATOR);
         
-        $criteria->addConsequence(new WagePlayedConsequence($card, $table))
-                ->addConsequence(new WageLevelIncriseConsequence($card, $table));
+        $criteria->addConsequence(new WageLevelIncriseConsequence($card, $table));
         
         return new CriterionGroup([
             parent::create($table, $card, $opponentTable, $complementaryCards),
