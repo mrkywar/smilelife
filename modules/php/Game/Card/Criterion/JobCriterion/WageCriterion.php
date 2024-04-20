@@ -30,6 +30,9 @@ class WageCriterion extends JobCriterion {
     }
 
     public function isValided(): bool {
+        if(null === $this->getJob()){
+            return false;
+        }
         return ($this->getCard()->getAmount() <= $this->getJob()->getMaxSalary());
     }
 
