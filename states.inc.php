@@ -53,7 +53,6 @@ $playerActionsGameStates = [
         "descriptionmyturn" => clienttranslate('${you} must choose an action'),
         "type" => "activeplayer",
 //        "args" => "argTakeCards",
-        "updateGameProgression" => true,
         "possibleactions" => [
             "resign",
             "drawCard",
@@ -156,6 +155,7 @@ $gameGameStates = [
         "description" => "",
         "type" => "game",
         "action" => "stNextPlayer",
+        "updateGameProgression" => true,
         "transitions" => [
             "newTurn" => ST_PLAYER_TAKE_CARD,
             "playerPass" => ST_NEXT_PLAYER,
