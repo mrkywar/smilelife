@@ -62,6 +62,10 @@ define([
                             this.displayCard(cardJob, jobDest, jobDest);
                         }
                     }
+                    if (typeof notif.args.level !== 'undefined') {
+                        this.notif_studiesLevelUpdate(notif);
+                    }
+                    
 
                     this.discard = notif.args.discard;
 

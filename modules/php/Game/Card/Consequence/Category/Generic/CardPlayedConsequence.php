@@ -70,14 +70,14 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $this->table->addCard($this->card);
         $this->tableManager->updateTable($this->table);
         
-        $this->generateNotification($response);
+        $response->addNotification($this->generateNotification());
     }
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract
      * ---------------------------------------------------------------------- */
 
-    protected function generateNotification(Response &$response) {
+    protected function generateNotification(): Notification {
         $notification = new Notification();
         $player = $this->table->getPlayer();
         $from = $this->origin;
@@ -97,25 +97,14 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
                 ->add('cardText1', $this->card->getText1())
                 ->add('cardText2', $this->card->getText2())
                 ->add('fromHand', CardLocation::PLAYER_HAND === $from)
-                ->add('discard', $this->cardDecorator->decorate($discardedCards));
+                ->add('discard', $this->cardDecorator->decorate($discardedCards))
+                ;
 
         if (null !== $this->table->getJob()) {
             $notification->add('jobName', $this->table->getJob()->getTitle());
         }
 
-        $response->addNotification($notification);
-
-        $cards = $this->cardManager->getPlayerCards($player);
-
-        $pNotification = new PersonnalNotification($player);
-
-        $pNotification->setType("handUpdateNotification")
-                ->setText(clienttranslate('Your Hand was updated'))
-                ->set('myHand', $this->cardDecorator->decorate($cards));
-
-        $response->addNotification($pNotification);
-
-        return $response;
+        return $notification;
     }
 
     abstract protected function getNotificationText();

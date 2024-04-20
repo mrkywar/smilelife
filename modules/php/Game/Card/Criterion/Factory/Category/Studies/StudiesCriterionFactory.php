@@ -56,12 +56,10 @@ class StudiesCriterionFactory extends CardPlayableCriterionFactory {
         $studieLevelCriterion = new StudiesLevelCriterion($table, $card);
         $studieLevelCriterion->setErrorMessage(clienttranslate('You cannot exceed 6 grades of studies'));
 
-        //-- Classic Criterion
         $classicCriterion = new CriterionGroup([
-                $noJobCriterion,
-                $studieLevelCriterion
-            ], CriterionGroup::AND_OPERATOR);
-        $classicCriterion->addConsequence(new StudieLevelIncriseConsequence($card, $table));
+            $noJobCriterion,
+            $studieLevelCriterion
+                ], CriterionGroup::AND_OPERATOR);
 
         $criteria = new CriterionGroup([
             //-- Limitless Studie
@@ -70,12 +68,15 @@ class StudiesCriterionFactory extends CardPlayableCriterionFactory {
             $classicCriterion
                 ], CriterionGroup::OR_OPERATOR);
 
-        $criteria->addConsequence(new StudiePlayedConsequence($card, $table));
+        if ($classicCriterion->isValided()) {
+            $criteria->addConsequence(new StudieLevelIncriseConsequence($card, $table));
+        } else {
+            $criteria->addConsequence(new StudiePlayedConsequence($card, $table));
+        }
 
         return new CriterionGroup([
             parent::create($table, $card, $opponentTable, $complementaryCards),
             $criteria
-        ], CriterionGroup::AND_OPERATOR);
+                ], CriterionGroup::AND_OPERATOR);
     }
-
 }

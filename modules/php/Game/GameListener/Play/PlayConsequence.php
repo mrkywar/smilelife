@@ -32,9 +32,14 @@ class PlayConsequence extends EventListener {
     public function onPlay(PlayCardRequest &$request, Response &$response) {
         $consequences = $response->get('consequences');
         
+//        var_dump($consequences);die;
+        
+        
         foreach (array_reverse($consequences) as $consequence) {
+//            echo get_class($consequence)."<br/>";
             $this->applyConsequence($consequence, $request, $response);
         }
+//        die;
     }
 
     private function applyConsequence(Consequence $consequence, PlayCardRequest &$request, Response &$response) {
