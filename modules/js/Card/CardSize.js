@@ -166,8 +166,7 @@ define([
                     
                     /*------           USED   ARCHITECT                   ----*/
                     .cardontable[data-type="16"].usedcard::after,
-                    .cardontable[data-type="16"].usedcard::before,
-                    .cardontable[data-type="38"].usedcard::before{
+                    .cardontable[data-type="16"].usedcard::before{
                         width: 70%;
                         height: ` + (10 * size.ratio) + `px;
                         bottom: ` + (50 * size.ratio) + `px;
