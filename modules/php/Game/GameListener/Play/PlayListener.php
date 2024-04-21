@@ -60,17 +60,15 @@ class PlayListener extends EventListener {
         $testRestult = $criteriaTester->test($criteria);
  
         if (!$testRestult->isValided()) {
-
             $consequences = $criteria->getInvalidConsequences();
             $response->setIsValid(false);
-
             if (null !== $consequences && !empty($consequences)) {
                 foreach ($consequences as $consequence) {
+                    
                     $consequence->execute($response);
 
                 }
             }
-
             throw new \BgaUserException($testRestult->getErrorMessage());
         }
 

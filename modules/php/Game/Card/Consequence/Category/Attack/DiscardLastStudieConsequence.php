@@ -18,11 +18,4 @@ class DiscardLastStudieConsequence extends DiscardConsequence {
         parent::__construct($card, $table);
     }
 
-    public function execute(Response &$response) {
-        $this->table->removeCard($this->card);
-        $this->tableManager->update($this->table);
-
-        return parent::execute($response);
-    }
-
 }
