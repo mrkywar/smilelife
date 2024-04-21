@@ -292,8 +292,11 @@ define([
                 generatePropertiesChoices: function (properties, table, player, id) {
                     for (var kProperty in properties) {
                         var property = properties[kProperty];
-
                         var pCard = this.getPropertyValue(table, property);
+                        
+                        if("wages" === property && pCard!==null && CARD_TYPE_INHERITANCE=== pCard.type){
+                            pCard = null;
+                        }
 
                         this.generateTargetSelectionCard(pCard, player, id);
                     }

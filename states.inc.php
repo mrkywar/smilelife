@@ -69,6 +69,9 @@ $playerActionsGameStates = [
             "drawCard" => ST_PLAYER_PLAY_CARD,
             "playCard" => ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
+            "luckAction" => ST_PLAYER_SPECIAL_LUCK,
+            "rainbowAction" => ST_PLAYER_SPECIAL_RAINBOW,
+            "birthdayAction" => ST_PLAYER_SPECIAL_BIRTHDAY
         ]
     ],
     ST_PLAYER_PLAY_CARD => [

@@ -27,7 +27,7 @@ class InheritanceCriterionFactory extends CardPlayableCriterionFactory {
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
-        $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+        $criterion
                 ->addConsequence(new WageLevelIncriseConsequence($card, $table));
 
         return $criterion;

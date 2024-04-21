@@ -3,12 +3,14 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\Category\Special\Inheritance;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastWageConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WageLevelDecreaseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
@@ -41,6 +43,9 @@ class IncomeTaxCriterionFactory extends CardPlayableCriterionFactory {
         $lastWageCriterion = new IsNotFlippedCardCriterion($lastWage);
         $lastWageCriterion->setErrorMessage(clienttranslate("Last player's Wage is flipped"));
         
+        $notInheritanceCriterion = new InversedCriterion(new CardTypeCriterion($lastWage, Inheritance::class));
+        $notInheritanceCriterion->setErrorMessage(clienttranslate("You can't attack Inheritance"));
+        
         $haveNoJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $incomeImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, IncomeTaxImuneEffect::class));
         
@@ -53,6 +58,7 @@ class IncomeTaxCriterionFactory extends CardPlayableCriterionFactory {
         $criteria = new CriterionGroup([
                 parent::create($table, $card, $opponentTable, $complementaryCards),
                 $haveWageCriterion,
+                $notInheritanceCriterion,
                 $lastWageCriterion,
                 $jobGroupImmuneCriterion
             ], CriterionGroup::AND_OPERATOR);

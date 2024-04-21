@@ -20,7 +20,7 @@ class WagePlayedConsequence extends CardPlayedConsequence {
     }
 
 
-    protected function generateNotification(Response &$response) {
+    protected function generateNotification(): Notification {
         $notification = new Notification();
         $player = $this->table->getPlayer();
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
@@ -42,7 +42,7 @@ class WagePlayedConsequence extends CardPlayedConsequence {
                 ->add('discard', $this->cardDecorator->decorate($discardedCards))
                 ->add('wageAmount', $this->getCard()->getAmount());
 
-        $response->addNotification($notification);
+        return $notification;
     }
 
     protected function getNotificationText() {
