@@ -16,12 +16,12 @@ class WageLevelIncriseConsequence extends CardPlayedConsequence {
     protected function generateNotification(): Notification {
         $notif = parent::generateNotification();
         $notif->add("level", $this->getWage()->getAmount())
-                ->add("WageLevel", true);
+                ->add("wageLevel", true);
         return $notif;
     }
 
     protected function getNotificationText() {
-        return clienttranslate('${player_name} play ${cardTitle} ${cardText2} from ${from} ');
+        return clienttranslate('${player_name} play ${cardTitle} ${cardText2} from ${from} and add ${level} to his available amount');
     }
 
     private function getWage(): Wage {

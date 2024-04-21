@@ -37,9 +37,9 @@ define([
                     this.debug("pcn", card, notif.args);
 
                     //-- UPDATE Counters
-                    if("discard" === notif.args.from){
+                    if ("discard" === notif.args.from) {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
-                    }else{
+                    } else {
                         this.boardCounter[card.locationArg][card.pile].setValue(this.boardCounter[card.locationArg][card.pile].getValue() - 1);
                     }
 //                    if ("discard" === card.location) {
@@ -64,8 +64,10 @@ define([
                     }
                     if (typeof notif.args.studiesLevel !== 'undefined') {
                         this.notif_studiesLevelUpdate(notif);
+                    } else if (typeof notif.args.wageLevel !== 'undefined') {
+                        this.notif_wageLevelUpdate(notif);
                     }
-                    
+
 
                     this.discard = notif.args.discard;
 
