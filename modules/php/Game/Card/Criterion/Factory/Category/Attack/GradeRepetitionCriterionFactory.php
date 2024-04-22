@@ -6,7 +6,6 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastStudieConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Studies\StudieLevelDecreaseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
@@ -53,7 +52,6 @@ class GradeRepetitionCriterionFactory extends CardPlayableCriterionFactory {
         if(null !== $lastStudies){
             $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                     ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
-                    ->addConsequence(new StudieLevelDecreaseConsequence($lastStudies, $opponentTable))
                     ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
         }
 

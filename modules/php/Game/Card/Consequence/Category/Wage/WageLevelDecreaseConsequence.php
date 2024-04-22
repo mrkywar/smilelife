@@ -6,7 +6,7 @@ use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 
 /**
- * Description of StudieLevelIncriseConsequence
+ * Description of WageLevelDecreaseConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
