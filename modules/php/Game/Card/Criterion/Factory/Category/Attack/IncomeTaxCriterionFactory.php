@@ -7,7 +7,6 @@ use SmileLife\Card\Category\Special\Inheritance;
 use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
 use SmileLife\Card\Consequence\Category\Attack\DiscardLastWageConsequence;
 use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Wage\WageLevelDecreaseConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
@@ -66,7 +65,6 @@ class IncomeTaxCriterionFactory extends CardPlayableCriterionFactory {
         if(null !== $lastWage){
             $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                     ->addConsequence(new DiscardLastWageConsequence($lastWage,$opponentTable))
-                    ->addConsequence(new WageLevelDecreaseConsequence($lastWage, $opponentTable))
                     ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
         }
         

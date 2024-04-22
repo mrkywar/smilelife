@@ -26,25 +26,22 @@ class DiscardLastWageConsequence extends DiscardConsequence {
         return parent::execute($response);
     }
     
+    private function getWage(): Wage {
+        if(! $this->card instanceof Wage){
+            throw new CardException("Card isn't a Wage");
+        }
+        return $this->card;
+    }
     
-    protected function addNotification(Response &$response){
-        $notification = new Notification();
-        $player = $this->table->getPlayer();
+    protected function generateNotification(): Notification {
+        $notif = parent::generateNotification();
 
-        $discardedCards = $this->cardManager->getAllCardsInDiscard();
-
-        $notification->setType("discardNotification")
-                ->setText(clienttranslate('${player_name} discard ${cardName} of value ${cardValue}'))
-                ->add('player_name', $player->getName())
-                ->add('playerId', $player->getId())
-                ->add('card', $this->cardDecorator->decorate($this->card))
-                ->add('cardName', (string) $this->card)
-                ->add('cardValue', $this->card->getAmount())
-                ->add('discard', $this->cardDecorator->decorate($discardedCards))
-                ->add('table', $this->tableDecorator->decorate($this->table));
-        ;
-
-        $response->addNotification($notification);
+        $notif->setText(clienttranslate('${player_name} discard ${cardName} and remove ${displayLevel} to his available amount'))
+                ->add('displayLevel', $this->getWage()->getAmount())
+                ->add('level', - $this->getWage()->getAmount())
+                ->add('wageLevel',true);
+        
+        return $notif;
     }
 
 }

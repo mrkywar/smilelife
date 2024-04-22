@@ -35,24 +35,24 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
 
         reset($oTables);
 //
-//        //-- case1 : No Wages (not playable) (nothing to do)
-//        //-- case2 : One Wage (playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case2Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->oneWageCase($case2Table);
+        //-- case1 : No Wages (not playable) (nothing to do)
+        //-- case2 : One Wage (playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case2Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->oneWageCase($case2Table);
 //
-//        //-- case3 : One Wage + one classic Job ( playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case3Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->classicJobCase($case3Table);
-//
-//       //-- case4 : One Wage + immune Job (not playable)
-//        $i = random_int(0, count($oTables) - 1);
-//        $case4Table = $oTables[array_keys($oTables)[$i]];
-//        unset($oTables[$i]);
-//        $this->immuneJobCase($case4Table);
+        //-- case3 : One Wage + one classic Job ( playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case3Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->classicJobCase($case3Table);
+
+       //-- case4 : One Wage + immune Job (not playable)
+        $i = random_int(0, count($oTables) - 1);
+        $case4Table = $oTables[array_keys($oTables)[$i]];
+        unset($oTables[$i]);
+        $this->immuneJobCase($case4Table);
         
         //-- case5 : One Flipped Wage (not playable)
         $i = random_int(0, count($oTables) - 1);
