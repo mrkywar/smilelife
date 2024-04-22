@@ -45,6 +45,7 @@ trait PlayCardTrait {
         try {
             $request = new PlayCardRequest($player, $card, $target, $additionalCards);
             $response = $this->requester->send($request);
+
             $this->applyResponse($response);
         } catch (CardException $e) {
             throw new \BgaVisibleSystemException($e->getMessage());

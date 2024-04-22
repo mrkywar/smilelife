@@ -21,6 +21,9 @@ define([
                     } else {
                         this.gamedatas.tables[notif.args.playerId] = notif.args.table;
                     }
+                    if (typeof notif.args.studiesLevel !== 'undefined') {
+                        this.notif_studiesLevelUpdate(notif);
+                    }
 
                     this.discardCounter.setValue(this.discardCounter.getValue() + 1);
                     this.boardCounter[notif.args.playerId][notif.args.card.pile].setValue(this.boardCounter[notif.args.playerId][notif.args.card.pile].getValue() - 1);

@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Consequence\Category\Generic\CardPlayedConsequence;
 
 /**
- * Description of StudieLevelIncriseConsequence
+ * Description of WageLevelIncriseConsequence
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */

@@ -68,13 +68,14 @@ class DiscardConsequence extends Consequence {
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
         $this->cardManager->discardCard($this->card, $player);
+        
+        $notif = $this->generateNotification();
+        $response->addNotification($notif);
 
-        $this->addNotification($response);
-
-        return $this;
+        return $response;
     }
 
-    protected function addNotification(Response &$response) {
+    protected function generateNotification(): Notification {
         $notification = new Notification();
         $player = $this->table->getPlayer();
 
@@ -89,7 +90,7 @@ class DiscardConsequence extends Consequence {
                 ->add('discard', $this->cardDecorator->decorate($discardedCards))
                 ->add('table', $this->tableDecorator->decorate($this->table));
         ;
-
-        $response->addNotification($notification);
+        
+        return $notification;
     }
 }

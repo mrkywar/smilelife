@@ -22,7 +22,6 @@ trait PassTrait {
 
         $request = new PassRequest($player, $card);
         $response = $this->requester->send($request);
-
         $this->applyResponse($response);
     }
 }

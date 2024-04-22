@@ -2,9 +2,10 @@
 
 namespace SmileLife\Card\Consequence\Category\Attack;
 
-use Core\Requester\Response\Response;
+use Core\Notification\Notification;
 use SmileLife\Card\Category\Studies\Studies;
 use SmileLife\Card\Consequence\Category\Generic\DiscardConsequence;
+use SmileLife\Card\Core\Exception\CardException;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -18,11 +19,22 @@ class DiscardLastStudieConsequence extends DiscardConsequence {
         parent::__construct($card, $table);
     }
 
-    public function execute(Response &$response) {
-        $this->table->removeCard($this->card);
-        $this->tableManager->update($this->table);
-
-        return parent::execute($response);
+    private function getStudies(): Studies {
+        if(! $this->card instanceof Studies){
+            throw new CardException("Card isn't a Studies");
+        }
+        return $this->card;
     }
 
+
+    protected function generateNotification(): Notification {
+        $notif = parent::generateNotification();
+
+        $notif->setText(clienttranslate('${player_name} discard ${cardName} and  decrease her sudy level by ${displayLevel} '))
+                ->add('displayLevel', $this->getStudies()->getLevel())
+                ->add('level', - $this->getStudies()->getLevel())
+                ->add('studiesLevel',true);
+        
+        return $notif;
+    }
 }
