@@ -21,10 +21,12 @@ define([
                     this.playData = null;
                     this.houseData = null;
                     this.forcedTarget = false;
+                    this.checkWage = false;
                     this.oCard = null;
                 },
 
                 openModal: function (modalTitle, choiceType, card, requiredProperties, optionnalProperties) {
+                    this.checkWage = false;
                     switch (choiceType) {
                         case MODAL_TYPE_DISPLAY_MULTI:
                             var id = this.generateModale(modalTitle, "special-container");
@@ -50,6 +52,7 @@ define([
                             $("more_cancel_button_" + id).innerHTML = _('ok');
                             break;
                         case MODAL_TYPE_TARGET:
+                            this.checkWage = true;
                             var id = this.generateModale(modalTitle);
                             this.generateTargetStatSelection(requiredProperties, optionnalProperties, card, id);
                             return id;
@@ -294,7 +297,7 @@ define([
                         var property = properties[kProperty];
                         var pCard = this.getPropertyValue(table, property);
                         
-                        if("wages" === property && pCard!==null && CARD_TYPE_INHERITANCE=== pCard.type){
+                        if("wages" === property && pCard!==null && (CARD_TYPE_INHERITANCE=== pCard.type || pCard.isFlipped)){
                             pCard = null;
                         }
 
