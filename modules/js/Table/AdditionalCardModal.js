@@ -105,7 +105,7 @@ define([
                             } else {
                                 var id = this.generateModale(modalTitle, "more-container");
 
-                                dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
+                                dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3, 'TXT_LABEL': _('Price')}), 'modal-selection-' + id);
                                 dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL': _('Valid')}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
                                     this.onModalBuyClick(card, id);

@@ -45,6 +45,7 @@
 </div>
 
 <script type="text/javascript">
+    //<span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
     var jstpl_visible_card = `
         <div id="card_\${idPrefix}\${id}" class="cardontable selectable \${usedClass}" data-type="\${type}" data-id="\${id}" data-category="\${category}" data-location="\${location}" data-points="\${smilePoints}" data-name="\${name}">
             <div class="card_sides">
@@ -53,7 +54,7 @@
                     <span class="card_text card_subtitle">\${subtitle}</span>
                     <span class="card_text card_text1">\${text1}</span>
                     <span class="card_text card_text2">\${text2}</span>
-                    <span class="debug">\${id} / \${type} - S : \${smilePoints}</span>
+                    
                 </div>
                 <div class="card-side back"></div>
             </div>
@@ -123,7 +124,7 @@
     var jstpl_buy_aquisition = `
         <div class="price_info_container">
             <div class="price_info price_selected" id="wages_modal_total_spent">0</div>
-            <div class="price_info price_base">Price : \${price}</div>
+            <div class="price_info price_base">\${TXT_LABEL} : \${price}</div>
         </div>
     `;
 
