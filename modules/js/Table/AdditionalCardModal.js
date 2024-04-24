@@ -76,7 +76,7 @@ define([
                                 }
 
                                 if (CARD_TYPE_ASTRONAUT === parseInt(card.dataset.type) || CARD_TYPE_CASINO) {
-                                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
+                                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id,'BTN_LABEL':_('Play without bonus')}), 'modal-btn-' + id);
                                     dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
                                 }
                                 return id;
@@ -105,12 +105,12 @@ define([
                             } else {
                                 var id = this.generateModale(modalTitle, "more-container");
 
-                                dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
-                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3, 'TXT_LABEL': _('Price')}), 'modal-selection-' + id);
+                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL': _('Valid')}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
                                     this.onModalBuyClick(card, id);
                                 }.bind(this));
-                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id, 'BTN_LABEL': _('Reset')}), 'modal-btn-' + id);
                                 dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
                                     this.onResetBuyClick(id);
                                 }.bind(this));
@@ -130,17 +130,17 @@ define([
                                 var id = this.generateModale(modalTitle, "more-container");
 
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': this.houseDatas.price}), 'modal-selection-' + id);
-                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL': _('Valid')}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
                                     this.onModalBuyClick(card, id);
                                 }.bind(this));
                                 if (isArchitetUsable) {
-                                    dojo.place(this.format_block('jstpl_btn_achitect', {'id': id}), 'modal-btn-' + id);
+                                    dojo.place(this.format_block('jstpl_btn_achitect', {'id': id, 'BTN_LABEL': _('use architect\'s power')}), 'modal-btn-' + id);
                                     dojo.connect($("more_architect_button_" + id), 'onclick', this, function () {
                                         this.onModalArchitectBuyClick(card, id);
                                     }.bind(this));
                                 }
-                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id, 'BTN_LABEL': _('Reset')}), 'modal-btn-' + id);
                                 dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
                                     this.onResetBuyClick(id);
                                 }.bind(this));
@@ -296,8 +296,8 @@ define([
                     for (var kProperty in properties) {
                         var property = properties[kProperty];
                         var pCard = this.getPropertyValue(table, property);
-                        
-                        if("wages" === property && pCard!==null && (CARD_TYPE_INHERITANCE=== pCard.type || pCard.isFlipped)){
+
+                        if ("wages" === property && pCard !== null && (CARD_TYPE_INHERITANCE === pCard.type || pCard.isFlipped)) {
                             pCard = null;
                         }
 
@@ -310,7 +310,7 @@ define([
                         destination = 'modal-container';
                     }
                     var id = this.generateUniqueId();
-                    dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id}), destination);
+                    dojo.place(this.format_block('jstpl_modal_v2', {'title': title, 'id': id, 'BTN_LABEL_CANCEL': _('Cancel')}), destination);
                     dojo.connect($("more_cancel_button_" + id), 'onclick', this, 'onModalCancelClick');
                     return id;
                 },
