@@ -464,7 +464,7 @@ html{
 .pile_adultery .pile_counter{
     background: black;
 }
-#pile_discard, #pile_offside{
+#pile_discard, #pile_offside, #pile_deck{
     border-radius: 4px;
     box-shadow: none !important;
     background-image: repeating-linear-gradient(-45deg, transparent 0 40px, #ffffff40 40px 80px);
