@@ -76,7 +76,7 @@ define([
                                 }
 
                                 if (CARD_TYPE_ASTRONAUT === parseInt(card.dataset.type) || CARD_TYPE_CASINO) {
-                                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id}), 'modal-btn-' + id);
+                                    dojo.place(this.format_block('jstpl_btn_nobonus', {'id': id,'BTN_LABEL':_('Play without bonus')}), 'modal-btn-' + id);
                                     dojo.connect($("more_nobonus_button_" + id), 'onclick', this, 'onModalValidClick');
                                 }
                                 return id;
@@ -106,11 +106,11 @@ define([
                                 var id = this.generateModale(modalTitle, "more-container");
 
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': 3}), 'modal-selection-' + id);
-                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL_VALID': _('Valid')}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL': _('Valid')}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
                                     this.onModalBuyClick(card, id);
                                 }.bind(this));
-                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id, 'BTN_LABEL': _('Reset')}), 'modal-btn-' + id);
                                 dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
                                     this.onResetBuyClick(id);
                                 }.bind(this));
@@ -130,17 +130,17 @@ define([
                                 var id = this.generateModale(modalTitle, "more-container");
 
                                 dojo.place(this.format_block('jstpl_buy_aquisition', {'price': this.houseDatas.price}), 'modal-selection-' + id);
-                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL_VALID': _('Valid')}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_valid', {'id': id, 'BTN_LABEL': _('Valid')}), 'modal-btn-' + id);
                                 dojo.connect($("more_valid_button_" + id), 'onclick', this, function () {
                                     this.onModalBuyClick(card, id);
                                 }.bind(this));
                                 if (isArchitetUsable) {
-                                    dojo.place(this.format_block('jstpl_btn_achitect', {'id': id}), 'modal-btn-' + id);
+                                    dojo.place(this.format_block('jstpl_btn_achitect', {'id': id, 'BTN_LABEL': _('use architect\'s power')}), 'modal-btn-' + id);
                                     dojo.connect($("more_architect_button_" + id), 'onclick', this, function () {
                                         this.onModalArchitectBuyClick(card, id);
                                     }.bind(this));
                                 }
-                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id}), 'modal-btn-' + id);
+                                dojo.place(this.format_block('jstpl_btn_reset', {'id': id, 'BTN_LABEL': _('Reset')}), 'modal-btn-' + id);
                                 dojo.connect($("more_reset_button_" + id), 'onclick', this, function () {
                                     this.onResetBuyClick(id);
                                 }.bind(this));
