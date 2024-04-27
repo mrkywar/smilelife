@@ -31,7 +31,7 @@ class FlirtCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         $adulteryCriterion = new HaveAdulteryCriterion($table);
         $adulteryCriterion->addConsequence(new FlirtOnAdulteryConsequence($card, $table));
 
@@ -43,7 +43,7 @@ class FlirtCriterionFactory extends CardPlayableCriterionFactory {
 
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessFlirt::class);
 
-        $finalCriterion = new CriterionGroup([
+        $criterion = new CriterionGroup([
             //-- Adultery Criterion
             $adulteryCriterion,
             //-- Classic Criterion
@@ -58,13 +58,10 @@ class FlirtCriterionFactory extends CardPlayableCriterionFactory {
                     ], CriterionGroup::AND_OPERATOR)
                 ], CriterionGroup::OR_OPERATOR);
 
-        $finalCriterion
+        $criterion
                 ->addConsequence(new FlirtPlayedConsequence($card, $table))
                 ->addConsequence(new FlirtDoublonDectectionConcequence($card, $table));
 
-        return new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
-            $finalCriterion
-        ], CriterionGroup::AND_OPERATOR);
+        return $criterion;
     }
 }

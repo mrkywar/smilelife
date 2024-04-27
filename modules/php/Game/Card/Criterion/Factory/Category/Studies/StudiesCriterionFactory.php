@@ -44,7 +44,7 @@ class StudiesCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessStudiesEffect::class);
         $limitlessCriterion->addConsequence(new LimitlessStudieConsequence($card, $table));
 
@@ -74,9 +74,6 @@ class StudiesCriterionFactory extends CardPlayableCriterionFactory {
             $criteria->addConsequence(new StudiePlayedConsequence($card, $table));
         }
 
-        return new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
-            $criteria
-                ], CriterionGroup::AND_OPERATOR);
+        return $criteria;
     }
 }

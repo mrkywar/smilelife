@@ -16,12 +16,13 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class CardPlayableCriterionFactory extends CardCriterionFactory {
+abstract class CardPlayableCriterionFactory extends CardCriterionFactory {
+    
     /**
      * 
-     * @param PlayerTable $table : Game table of the player who plays (useless here)
+     * @param PlayerTable $table : Game table of the player who plays
      * @param Card $card : The card that is played
-     * @param PlayerTable $opponentTable : Game table of player targeted by attack (useless here)
+     * @param PlayerTable $opponentTable : Game table of player targeted by attack (required here)
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
@@ -32,7 +33,12 @@ class CardPlayableCriterionFactory extends CardCriterionFactory {
        $criterion = new CriterionGroup([$inHandCriterion,$isLastDiscardedCriterion], CriterionGroup::OR_OPERATOR);
        $criterion->setErrorMessage(clienttranslate("Impossible to play this card now !"))
                ->addInvalidConsequence(new CheaterDetectionConsequence($card, $table));
-       
-       return $criterion;
+        
+        $criteria = new CriterionGroup([
+            $criterion,
+            $this->getCardCriterion($table, $card, $opponentTable, $complementaryCards)
+                ], CriterionGroup::AND_OPERATOR);
+
+        return $criteria;
     }
 }

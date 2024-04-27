@@ -30,8 +30,8 @@ class RevengeCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
+        $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
 
         if (empty($complementaryCards) || null === $complementaryCards[0]) {
             // not possible to valid a complementary card is required !
@@ -57,7 +57,7 @@ class RevengeCriterionFactory extends CardPlayableCriterionFactory {
         } else {
             $factory = $this->getComplemataryCardCriterionFactory($complementaryCards[0]);
             
-            $subCriterion = $factory->create($table, $complementaryCards[0], $opponentTable);
+            $subCriterion = $factory->getCardCriterion($table, $complementaryCards[0], $opponentTable);
             $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
             
             $table->removeAttack($complementaryCards[0]);

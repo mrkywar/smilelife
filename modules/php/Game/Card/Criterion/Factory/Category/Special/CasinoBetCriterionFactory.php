@@ -30,7 +30,7 @@ class CasinoBetCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         $wageCriterion = new CardTypeCriterion($card, Wage::class);
         $casinoOpened = new CasinoOpenedCriterion($table);
         $wagesAllreadyBet = new CasinoWagePlayedCriterion();
@@ -39,14 +39,13 @@ class CasinoBetCriterionFactory extends CardPlayableCriterionFactory {
         $casinoCriterion = new CriterionGroup([
             $casinoOpened,
             $wagesAllreadyBet
-                ], CriterionGroup::OR_OPERATOR);
+        ], CriterionGroup::OR_OPERATOR);
         $casinoCriterion->setErrorMessage(clienttranslate("Casino isn't oppened"));
 
         $criterion = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $wageCriterion,
             $casinoCriterion
-                ], CriterionGroup::AND_OPERATOR);
+        ], CriterionGroup::AND_OPERATOR);
 
         $resolvableCriterion = new CasinoResolvableCriterion();
 
@@ -54,7 +53,7 @@ class CasinoBetCriterionFactory extends CardPlayableCriterionFactory {
             $criterion->addConsequence(new CasinoResolveConsequence($table, $card));
         }
         $criterion->addConsequence(new WageBetedConsequence($table, $card));
-        
+
         return $criterion;
     }
 }

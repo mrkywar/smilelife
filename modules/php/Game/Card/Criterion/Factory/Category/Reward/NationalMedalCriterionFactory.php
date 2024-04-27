@@ -45,7 +45,7 @@ class NationalMedalCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
 
         $criterion = new CriterionGroup([
                 new JobTypeCriterion($table, Writer::class),
@@ -57,10 +57,7 @@ class NationalMedalCriterionFactory extends CardPlayableCriterionFactory {
 
         $criterion->addConsequence(new NationalMedalPlayedConsequence($card, $table));
         
-        return new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
-            $criterion
-        ], CriterionGroup::AND_OPERATOR);
+        return $criterion;
     }
 
 }

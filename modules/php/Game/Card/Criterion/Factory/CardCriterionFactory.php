@@ -31,5 +31,5 @@ abstract class CardCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example
      * @return CriterionInterface
      */
-    abstract public function getCardCriterionOnly(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface;
+    abstract  public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface;
 }

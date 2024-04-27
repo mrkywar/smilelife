@@ -10,7 +10,6 @@ use SmileLife\Card\Consequence\Category\Job\JobUsedConsequence;
 use SmileLife\Card\Consequence\Category\Wage\WagesSpentConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
 use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
@@ -32,7 +31,7 @@ class HouseCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         $isMarried = new IsMarriedCriterion($table);
         $initialPrice = $this->retriveInitialPrice($card);
         $priceReduction = ($isMarried->isValided()) ? 0.5 : null;
@@ -53,10 +52,8 @@ class HouseCriterionFactory extends CardPlayableCriterionFactory {
             $criterion->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
         }
         
-        return new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
-            $criterion
-        ], CriterionGroup::AND_OPERATOR);
+        return $criterion;
+     
     }
 
     private function retriveGivenArchitect(array $complementaryCards = null): ?Architect {

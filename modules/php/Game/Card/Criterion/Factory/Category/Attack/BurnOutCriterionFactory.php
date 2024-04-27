@@ -29,7 +29,7 @@ class BurnOutCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         $jobCriterion = new HaveJobCriterion($opponentTable);
         $jobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
 
@@ -37,15 +37,13 @@ class BurnOutCriterionFactory extends CardPlayableCriterionFactory {
         $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
 
         $criterias = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $jobCriterion,
             $doublonCriterion
-        ], CriterionGroup::AND_OPERATOR);
+                ], CriterionGroup::AND_OPERATOR);
 
         $criterias->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                 ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
 
         return $criterias;
     }
-
 }

@@ -15,7 +15,7 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class TrocCriterionFactory extends CardPlayableCriterionFactory {
-    
+
     /**
      * 
      * @param PlayerTable $table : Game table of the player who plays
@@ -24,14 +24,11 @@ class TrocCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
-        
-        $criterion
-                ->addConsequence(new TrocConsequence($table, $opponentTable))
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
+        $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
+
+        $criterion->addConsequence(new TrocConsequence($table, $opponentTable))
                 ->addConsequence(new GenericCardPlayedConsequence($card, $table));
-                
-                
 
         return $criterion;
     }

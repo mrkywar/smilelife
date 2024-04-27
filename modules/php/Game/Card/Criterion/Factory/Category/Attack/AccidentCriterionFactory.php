@@ -31,18 +31,7 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-
-//        
-        $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
-            $this->getCardCriterionOnly($table, $card, $opponentTable, $complementaryCards)
-                ], CriterionGroup::AND_OPERATOR);
-
-        return $criteria;
-    }
-
-    public function getCardCriterionOnly(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         //case 1-1 : No immune Job
         $havejobCriterion = new HaveJobCriterion($opponentTable);
         $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));

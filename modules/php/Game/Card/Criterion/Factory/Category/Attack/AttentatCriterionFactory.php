@@ -31,7 +31,7 @@ class AttentatCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         $cardOnTableCiterion = new AllPlayerTablesCriterion(new CardOnTableCriterion($table, Child::class));
         $cardOnTableCiterion->setErrorMessage(clienttranslate("No child on game"));
 
@@ -55,5 +55,4 @@ class AttentatCriterionFactory extends CardPlayableCriterionFactory {
 
         return $criteria;
     }
-
 }
