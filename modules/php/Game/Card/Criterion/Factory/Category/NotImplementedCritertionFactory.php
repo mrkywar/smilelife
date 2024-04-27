@@ -26,7 +26,7 @@ class NotImplementedCritertionFactory extends CardPlayableCriterionFactory {
         throw new CriterionException("NICF- Unimpemented Factory for ".get_class($card));
     }
 
-    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         return $this->create($table, $card);
     }
 }

@@ -26,7 +26,7 @@ class OfferWageCriterionFactory extends CardOfferableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = new InversedCriterion(new IsUsedWageCriterion($card));
         $criterion->setErrorMessage(clienttranslate("You must choose a unsued salary"))
                 ->addConsequence(new WageGiftConsequence($table, $card, $opponentTable));
