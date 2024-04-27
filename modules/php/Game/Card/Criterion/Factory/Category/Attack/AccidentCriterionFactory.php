@@ -32,12 +32,23 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+
+//        
+        $criteria = new CriterionGroup([
+            parent::create($table, $card, $opponentTable, $complementaryCards),
+            $this->getCardCriterionOnly($table, $card, $opponentTable, $complementaryCards)
+                ], CriterionGroup::AND_OPERATOR);
+
+        return $criteria;
+    }
+
+    public function getCardCriterionOnly(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, Card $complementaryCards = null): CriterionInterface {
         //case 1-1 : No immune Job
         $havejobCriterion = new HaveJobCriterion($opponentTable);
         $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));
         $jobImmuneCriterion = new CriterionGroup([
-                    $havejobCriterion,
-                    $jobEffectCriterion
+            $havejobCriterion,
+            $jobEffectCriterion
                 ], CriterionGroup::AND_OPERATOR);
         $jobImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
         //case 1-1 : No Job
@@ -45,8 +56,8 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
 
         //case 1 : Job criterion
         $jobCriterion = new CriterionGroup([
-                    $nojobCriterion,
-                    $jobImmuneCriterion
+            $nojobCriterion,
+            $jobImmuneCriterion
                 ], CriterionGroup::OR_OPERATOR);
 
         //case 2 : No Doublon
@@ -54,7 +65,6 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
         $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
 //        
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $jobCriterion,
             $doublonCriterion,
                 ], CriterionGroup::AND_OPERATOR);
@@ -64,5 +74,4 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
 
         return $criteria;
     }
-
 }
