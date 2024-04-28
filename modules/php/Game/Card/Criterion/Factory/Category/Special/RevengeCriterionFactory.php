@@ -32,27 +32,10 @@ class RevengeCriterionFactory extends CardPlayableCriterionFactory {
      */
      public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
          
-         var_dump($complementaryCards);die;
-        $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
-
-        if (empty($complementaryCards) || null === $complementaryCards[0]) {
-            // not possible to valid a complementary card is required !
-            $invalidedCriterion = new InversedCriterion(new NullCriterion());
-            $criteria = new CriterionGroup([
-                $criterion,
-                $invalidedCriterion
-                    ], CriterionGroup::AND_OPERATOR);
-            $criteria->setErrorMessage(clienttranslate('no card selected'));
-
-            return $criteria;
-        } else if (sizeof($complementaryCards) > 1) {
+        if (empty($complementaryCards) || null === $complementaryCards[0] || sizeof($complementaryCards) > 1) {
             // not possible to valid only one complementary card is required !
-            $invalidedCriterion = new InversedCriterion(new NullCriterion());
+            $criteria = new InversedCriterion(new NullCriterion());
             
-            $criteria = new CriterionGroup([
-                $criterion,
-                $invalidedCriterion
-                    ], CriterionGroup::AND_OPERATOR);
             $criteria->setErrorMessage(clienttranslate('invalid selection'));
 
             return $criteria;
@@ -66,12 +49,9 @@ class RevengeCriterionFactory extends CardPlayableCriterionFactory {
             $tableManager = new PlayerTableManager();
             $tableManager->update($table);
 
-            $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
+            $subCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
 
-            return new CriterionGroup([
-                $criterion,
-                $subCriterion
-                    ], CriterionGroup::AND_OPERATOR);
+            return $subCriterion;
             
         }
     }

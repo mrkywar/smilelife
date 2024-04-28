@@ -38,7 +38,8 @@ class FallingStarRevengeTestInitializer extends TestGameInitializer {
             $attack = new \SmileLife\Card\Category\Attack\Accident();
             $attack->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($oTable->getId())
-                    ->setIsUsed(true);
+                    ->setIsUsed(true)
+                    ->setPassTurn(0);
 
             $this->cardManager->add([$attack]);
             $this->playWaitingCards($oTable);

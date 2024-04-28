@@ -37,7 +37,12 @@ define([
                     this.debug("pcn", card, notif.args);
 
                     //-- UPDATE Counters
-                    if ("discard" === notif.args.from) {
+                    if(CARD_TYPE_REVENGE === card.type){
+                        if ("discard" !== notif.args.from) {
+                            this.boardCounter[card.locationArg][card.pile].setValue(this.boardCounter[card.locationArg][card.pile].getValue() - 1);
+                        }
+                        this.boardCounter[card.locationArg]["attack"].setValue(this.boardCounter[card.locationArg]["attack"].getValue() - 1);
+                    }else if ("discard" === notif.args.from) {
                         this.discardCounter.setValue(this.discardCounter.getValue() - 1);
                     } else if (card.locationArg !== notif.args.targetId) {
                         this.boardCounter[card.locationArg][card.pile].setValue(this.boardCounter[card.locationArg][card.pile].getValue() - 1);

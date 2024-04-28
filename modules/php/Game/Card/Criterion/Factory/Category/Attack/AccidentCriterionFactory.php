@@ -58,8 +58,9 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
             $doublonCriterion,
                 ], CriterionGroup::AND_OPERATOR);
 
-        $criteria = $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+        $criteria = $criteria->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable))
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+        ;
 
         return $criteria;
     }
