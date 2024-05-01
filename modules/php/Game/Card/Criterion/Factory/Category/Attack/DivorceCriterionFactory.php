@@ -35,7 +35,7 @@ class DivorceCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //-- Case 1 : Adultery
         $haveAdultery = new HaveAdulteryCriterion($opponentTable);
 
@@ -48,22 +48,21 @@ class DivorceCriterionFactory extends CardPlayableCriterionFactory {
         $jobCriterion = new HaveJobCriterion($opponentTable);
         $notDivorseImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, DivorceImuneEffect::class));
         $notDivorseImmuneCriterion->setErrorMessage(clienttranslate("Targeted player is immune to divorce"));
-        
+
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             new CriterionGroup([
                 $haveAdultery,
                 new CriterionGroup([
                     $isMarriedCriterion,
                     $noJobCriterion
-                ], CriterionGroup::AND_OPERATOR),
+                        ], CriterionGroup::AND_OPERATOR),
                 new CriterionGroup([
                     $isMarriedCriterion,
                     $jobCriterion,
                     $notDivorseImmuneCriterion
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR)
-        ], CriterionGroup::AND_OPERATOR);
+                        ], CriterionGroup::AND_OPERATOR)
+                    ], CriterionGroup::OR_OPERATOR)
+                ], CriterionGroup::AND_OPERATOR);
 
         $targetedMarriage = $opponentTable->getMarriage();
         if (null !== $targetedMarriage) {
@@ -74,7 +73,7 @@ class DivorceCriterionFactory extends CardPlayableCriterionFactory {
             if (null !== $adultery) {
                 $criteria->addConsequence(new DiscardAdulteryConsequence($adultery, $opponentTable))
                         ->addConsequence(new DiscardMarriageConsequence($targetedMarriage, $opponentTable));
-                if(!empty($opponentTable->getChildIds())){
+                if (!empty($opponentTable->getChildIds())) {
                     $criteria->addConsequence(new DivorceOnAdulteryChildsConsequence($opponentTable));
                 }
                 if (!empty($opponentTable->getAdulteryFlirtIds())) {
@@ -86,5 +85,4 @@ class DivorceCriterionFactory extends CardPlayableCriterionFactory {
         }
         return $criteria;
     }
-
 }

@@ -34,7 +34,7 @@ class FreedomMedalCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //-- case 1 : Not a bandit
         $fakeBandit = new Bandit();
         $banditCriterion = new InversedCriterion(new JobTypeCriterion($table, Bandit::class));
@@ -46,7 +46,6 @@ class FreedomMedalCriterionFactory extends CardPlayableCriterionFactory {
         $attentatCriterion->setErrorMessage(clienttranslate('You have played an ' . $humanAttack->getTitle() . ' you can\'t be rewarded by ' . $card->getTitle()));
 
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $banditCriterion,
             $attentatCriterion
                 ], CriterionGroup::AND_OPERATOR);

@@ -30,7 +30,8 @@ class GradeRepetitionCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+
 
         $noJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $noJobCriterion->setErrorMessage(clienttranslate("Targeted player has an active Job"));
@@ -43,13 +44,12 @@ class GradeRepetitionCriterionFactory extends CardPlayableCriterionFactory {
         $lastStudieCriterion->setErrorMessage(clienttranslate("Last player's studies is protected"));
 
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $noJobCriterion,
             $haveStudieCriterion,
             $lastStudieCriterion
                 ], CriterionGroup::AND_OPERATOR);
 
-        if(null !== $lastStudies){
+        if (null !== $lastStudies) {
             $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                     ->addConsequence(new DiscardLastStudieConsequence($lastStudies, $opponentTable))
                     ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
@@ -57,5 +57,4 @@ class GradeRepetitionCriterionFactory extends CardPlayableCriterionFactory {
 
         return $criteria;
     }
-
 }

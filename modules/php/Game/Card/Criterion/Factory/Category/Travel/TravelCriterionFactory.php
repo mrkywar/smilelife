@@ -28,18 +28,14 @@ class TravelCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
-        $parentCriterion = parent::create($table, $card, $opponentTable, $complementaryCards);
 
         if (null === $complementaryCards) {
-            $isPilotCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
+            $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table))
                     ->setErrorMessage(clienttranslate('You have not chosen the sufficient salary amount'));
 
-            return new CriterionGroup([
-                $parentCriterion,
-                $isPilotCriterion
-            ], CriterionGroup::AND_OPERATOR);
+            return $criterion;
         } else {
             $hasEnounthWagesToSpent = new HaveEnouthWageToBuyCriterion($table, $card, $complementaryCards);
 
@@ -51,10 +47,7 @@ class TravelCriterionFactory extends CardPlayableCriterionFactory {
                     ->addConsequence(new WagesSpentConsequence($table, $complementaryCards))
             ;
 
-            return new CriterionGroup([
-                $parentCriterion,
-                $criterion
-            ],CriterionGroup::AND_OPERATOR);
+            return $criterion;
         }
     }
 }

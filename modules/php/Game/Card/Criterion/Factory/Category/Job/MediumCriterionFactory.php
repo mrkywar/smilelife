@@ -36,7 +36,7 @@ class MediumCriterionFactory extends JobCriterionFactory {
     protected $cardDecorator;
 
     public function __construct() {
-        
+
         $this->tableManager = new PlayerTableManager();
         $this->cardManager = new CardManager();
         $this->cardDecorator = new CardDecorator();
@@ -50,12 +50,11 @@ class MediumCriterionFactory extends JobCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criteria = parent::create($table, $card, $opponentTable, $complementaryCards);
-        
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+        $criteria = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
+
         $criteria->addConsequence(new MediumVisionConsequence($card, $table));
-        
+
         return $criteria;
     }
-
 }

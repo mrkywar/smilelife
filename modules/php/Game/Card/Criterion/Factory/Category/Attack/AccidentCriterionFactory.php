@@ -31,13 +31,13 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //case 1-1 : No immune Job
         $havejobCriterion = new HaveJobCriterion($opponentTable);
         $jobEffectCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, AccidentImuneEffect::class));
         $jobImmuneCriterion = new CriterionGroup([
-                    $havejobCriterion,
-                    $jobEffectCriterion
+            $havejobCriterion,
+            $jobEffectCriterion
                 ], CriterionGroup::AND_OPERATOR);
         $jobImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are imune to accident"));
         //case 1-1 : No Job
@@ -45,8 +45,8 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
 
         //case 1 : Job criterion
         $jobCriterion = new CriterionGroup([
-                    $nojobCriterion,
-                    $jobImmuneCriterion
+            $nojobCriterion,
+            $jobImmuneCriterion
                 ], CriterionGroup::OR_OPERATOR);
 
         //case 2 : No Doublon
@@ -54,15 +54,14 @@ class AccidentCriterionFactory extends CardPlayableCriterionFactory {
         $doublonCriterion->setErrorMessage(clienttranslate('The target player must already suffer a card of the same type'));
 //        
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $jobCriterion,
             $doublonCriterion,
                 ], CriterionGroup::AND_OPERATOR);
 
-        $criteria = $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
+        $criteria = $criteria->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable))
+                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
+        ;
 
         return $criteria;
     }
-
 }

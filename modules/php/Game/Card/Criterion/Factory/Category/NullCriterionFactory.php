@@ -27,4 +27,7 @@ class NullCriterionFactory extends CardCriterionFactory {
         return new NullCriterion();
     }
 
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+        return new NullCriterion();
+    }
 }

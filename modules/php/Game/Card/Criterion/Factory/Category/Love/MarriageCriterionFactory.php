@@ -27,7 +27,7 @@ class MarriageCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $notMarried = new InversedCriterion(new IsMarriedCriterion($table));
         $notMarried->setErrorMessage(clienttranslate('You are already married'));
 
@@ -35,14 +35,12 @@ class MarriageCriterionFactory extends CardPlayableCriterionFactory {
         $flirtCriterion->setErrorMessage(clienttranslate('You must have at least one flirtation before marriage'));
 
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $notMarried,
             $flirtCriterion
-        ], CriterionGroup::AND_OPERATOR);
-        
+                ], CriterionGroup::AND_OPERATOR);
+
         $criteria->addConsequence(new MarriagePlayedConsequence($card, $table));
-        
+
         return $criteria;
     }
-
 }

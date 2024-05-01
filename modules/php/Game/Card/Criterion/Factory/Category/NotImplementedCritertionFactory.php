@@ -5,7 +5,6 @@ namespace SmileLife\Card\Criterion\Factory\Category;
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\CriterionException;
 use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -25,5 +24,9 @@ class NotImplementedCritertionFactory extends CardPlayableCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         throw new CriterionException("NICF- Unimpemented Factory for ".get_class($card));
+    }
+
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+        return $this->create($table, $card);
     }
 }

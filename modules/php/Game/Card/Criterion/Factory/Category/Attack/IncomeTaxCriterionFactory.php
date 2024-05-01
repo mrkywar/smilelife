@@ -34,41 +34,40 @@ class IncomeTaxCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+
         $haveWageCriterion = new HaveUnusedWageCriterion($opponentTable);
         $haveWageCriterion->setErrorMessage(clienttranslate("Targeted player has no Wage"));
 
         $lastWage = $opponentTable->getLastWage();
         $lastWageCriterion = new IsNotFlippedCardCriterion($lastWage);
         $lastWageCriterion->setErrorMessage(clienttranslate("Last player's Wage is flipped"));
-        
+
         $notInheritanceCriterion = new InversedCriterion(new CardTypeCriterion($lastWage, Inheritance::class));
         $notInheritanceCriterion->setErrorMessage(clienttranslate("You can't attack Inheritance"));
-        
+
         $haveNoJobCriterion = new InversedCriterion(new HaveJobCriterion($opponentTable));
         $incomeImmuneCriterion = new InversedCriterion(new JobEffectCriteria($opponentTable, IncomeTaxImuneEffect::class));
-        
+
         $jobGroupImmuneCriterion = new CriterionGroup([
-                $haveNoJobCriterion,
-                $incomeImmuneCriterion
-            ],CriterionGroup::OR_OPERATOR);
+            $haveNoJobCriterion,
+            $incomeImmuneCriterion
+                ], CriterionGroup::OR_OPERATOR);
         $jobGroupImmuneCriterion->setErrorMessage(clienttranslate("Targeted player are immune to income tax"));
 
         $criteria = new CriterionGroup([
-                parent::create($table, $card, $opponentTable, $complementaryCards),
-                $haveWageCriterion,
-                $notInheritanceCriterion,
-                $lastWageCriterion,
-                $jobGroupImmuneCriterion
-            ], CriterionGroup::AND_OPERATOR);
-        
-        if(null !== $lastWage){
+            $haveWageCriterion,
+            $notInheritanceCriterion,
+            $lastWageCriterion,
+            $jobGroupImmuneCriterion
+                ], CriterionGroup::AND_OPERATOR);
+
+        if (null !== $lastWage) {
             $criteria->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
-                    ->addConsequence(new DiscardLastWageConsequence($lastWage,$opponentTable))
+                    ->addConsequence(new DiscardLastWageConsequence($lastWage, $opponentTable))
                     ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
         }
-        
+
         return $criteria;
     }
-
 }

@@ -19,7 +19,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class JobCriterionFactory extends CardPlayableCriterionFactory {
+abstract class JobCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 

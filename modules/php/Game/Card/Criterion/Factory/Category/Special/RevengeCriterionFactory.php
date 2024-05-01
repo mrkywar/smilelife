@@ -30,46 +30,28 @@ class RevengeCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterion = parent::create($table, $card, $opponentTable, $complementaryCards);
-
-        if (empty($complementaryCards) || null === $complementaryCards[0]) {
-            // not possible to valid a complementary card is required !
-            $invalidedCriterion = new InversedCriterion(new NullCriterion());
-            $criteria = new CriterionGroup([
-                $criterion,
-                $invalidedCriterion
-                    ], CriterionGroup::AND_OPERATOR);
-            $criteria->setErrorMessage(clienttranslate('no card selected'));
-
-            return $criteria;
-        } else if (sizeof($complementaryCards) > 1) {
+     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+         
+        if (empty($complementaryCards) || null === $complementaryCards[0] || sizeof($complementaryCards) > 1) {
             // not possible to valid only one complementary card is required !
-            $invalidedCriterion = new InversedCriterion(new NullCriterion());
+            $criteria = new InversedCriterion(new NullCriterion());
             
-            $criteria = new CriterionGroup([
-                $criterion,
-                $invalidedCriterion
-                    ], CriterionGroup::AND_OPERATOR);
             $criteria->setErrorMessage(clienttranslate('invalid selection'));
 
             return $criteria;
         } else {
             $factory = $this->getComplemataryCardCriterionFactory($complementaryCards[0]);
             
-            $subCriterion = $factory->create($table, $complementaryCards[0], $opponentTable);
+            $subCriterion = $factory->getCardCriterion($table, $complementaryCards[0], $opponentTable);
             $subCriterion->setErrorMessage(clienttranslate('the chosen card cannot be played'));
             
             $table->removeAttack($complementaryCards[0]);
             $tableManager = new PlayerTableManager();
             $tableManager->update($table);
 
-            $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
+            $subCriterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
 
-            return new CriterionGroup([
-                $criterion,
-                $subCriterion
-                    ], CriterionGroup::AND_OPERATOR);
+            return $subCriterion;
             
         }
     }

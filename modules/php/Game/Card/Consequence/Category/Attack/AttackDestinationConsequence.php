@@ -37,7 +37,7 @@ class AttackDestinationConsequence extends PlayerTableConsequence {
 
     public function __construct(Attack $card, PlayerTable $table) {
         parent::__construct($table);
-        
+
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
         $this->card = $card;
@@ -45,7 +45,7 @@ class AttackDestinationConsequence extends PlayerTableConsequence {
 
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
-        
+
         $this->card->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($player->getId())
                 ->setOwnerId($player->getId())
@@ -53,11 +53,10 @@ class AttackDestinationConsequence extends PlayerTableConsequence {
                 ->setPassTurn($this->card->getDefaultPassTurn());
 
         $this->cardManager->moveCard($this->card);
-        
+
         $this->table->addCard($this->card);
         $this->tableManager->update($this->table);
 
         return $this;
     }
-
 }

@@ -27,7 +27,8 @@ class JailCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+
         $banditCriterion = new JobTypeCriterion($opponentTable, Bandit::class);
         $banditCriterion->setErrorMessage(clienttranslate("Targeted player isn't Bandit"));
 //                ->addConsequence(new AttackDestinationConsequence($card, $opponentTable->getPlayer()))
@@ -36,12 +37,9 @@ class JailCriterionFactory extends CardPlayableCriterionFactory {
 //                ;
         $banditCriterion->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
                 ->addConsequence(new GenericAttackPlayedConsequence($card, $table, $opponentTable));
-                
+
         return new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $banditCriterion
-        ], CriterionGroup::AND_OPERATOR);
-        
+                ], CriterionGroup::AND_OPERATOR);
     }
-    
 }

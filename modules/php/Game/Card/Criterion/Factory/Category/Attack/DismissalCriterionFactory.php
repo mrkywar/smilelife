@@ -20,7 +20,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class DismissalCriterionFactory extends CardPlayableCriterionFactory{
+class DismissalCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -30,7 +30,7 @@ class DismissalCriterionFactory extends CardPlayableCriterionFactory{
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface{
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
 
         $jobCriterion = new HaveJobCriterion($opponentTable);
         $jobCriterion->setErrorMessage(clienttranslate("Targeted player has no Job"));
@@ -39,10 +39,9 @@ class DismissalCriterionFactory extends CardPlayableCriterionFactory{
         $officialCriterion->setErrorMessage(clienttranslate("The targeted player works as a civil servant and therefore cannot be fired"));
 
         $criteria = new CriterionGroup([
-                parent::create($table, $card, $opponentTable, $complementaryCards),
-                $jobCriterion,
-                $officialCriterion
-            ], CriterionGroup::AND_OPERATOR);
+            $jobCriterion,
+            $officialCriterion
+        ], CriterionGroup::AND_OPERATOR);
 
         $criteria->addConsequence(new DisardJobConsequence($opponentTable->getJob(), $opponentTable))
                 ->addConsequence(new AttackDestinationConsequence($card, $opponentTable))
@@ -50,5 +49,4 @@ class DismissalCriterionFactory extends CardPlayableCriterionFactory{
 
         return $criteria;
     }
-
 }
