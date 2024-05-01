@@ -25,7 +25,7 @@ trait PlayersScoresTrait {
         $scores = [];
 
         foreach ($playersTables as $table) {
-            $scores[$table->getId()] = $this->computeScore($table);
+            $scores[$table->getId()] = mt_rand(0, 100);//$this->computeScore($table);
         }
 
         $notification = new Notification();
@@ -35,7 +35,7 @@ trait PlayersScoresTrait {
 
         $this->sendNotification($notification);
 
-        $this->gamestate->nextState("endGame");
+        $this->gamestate->nextState();
     }
 
     private function computeScore(PlayerTable $table) {
