@@ -5,6 +5,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 /**
  * Description of PetCriterionFactory
@@ -21,7 +22,7 @@ class PetCriterionFactory extends CardPlayableCriterionFactory{
      * @return CriterionInterface
      */
      public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
+        $criterion = new NullCriterion();
         
         $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));
         
