@@ -162,9 +162,9 @@ $gameGameStates = [
         "transitions" => [
             "newTurn" => ST_PLAYER_TAKE_CARD,
             "playerPass" => ST_NEXT_PLAYER,
-            "endOfGame" => ST_GAME_END,
+            "endGame" => ST_GAME_END,
         ],
-    ]
+    ],
 ];
 
 $machinestates = $basicGameStates + $playerActionsGameStates + $gameGameStates;

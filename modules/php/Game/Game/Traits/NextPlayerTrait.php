@@ -35,12 +35,13 @@ trait NextPlayerTrait {
         $tableDecorator = new PlayerTableDecorator();
 
         //--- TODO remove force end
-        if (1==1 || 0 === count($deckCard)) {
-            $this->gamestate->nextState("gameScore");
+        if (1 == 1 || 0 === count($deckCard)) {
+            $this->computePlayerScores();
+            $this->gamestate->nextState("endGame");
         } else {
             //-- Casino Open case !
             $casino = $this->getCasinoCard();
-            if (null!== $casino && $casino->getOwnerId() === $playerId) {
+            if (null !== $casino && $casino->getOwnerId() === $playerId) {
 
                 if (0 === $casino->getPassTurn()) {
                     $casino->setOwnerId(null); //auto open casino
@@ -123,9 +124,9 @@ trait NextPlayerTrait {
 
     private function getLastBettedWage(): ?Wage {
         $casinoCards = $this->cardManager->getAllCardsInCasino();
-        
-        foreach ($casinoCards as $card){
-            if($card instanceof Wage){
+
+        foreach ($casinoCards as $card) {
+            if ($card instanceof Wage) {
                 return $card;
             }
         }
@@ -203,6 +204,31 @@ trait NextPlayerTrait {
                 ->add('table', $tableDecorator->decorate($table))
                 ->add('discard', $cardDecorator->decorate($discardedCards));
         ;
+        $this->sendNotification($notification);
+    }
+
+    public function computePlayerScores() {
+        $playersTables = $this->tableManager->findBy();
+//        $this->scoreCalculator = new ScoreCalculator();
+
+        $scores = [];
+        $players = [];
+
+        foreach ($playersTables as $table) {
+            $score = mt_rand(0, 100);
+            $scores[$table->getId()] = $score; //$this->computeScore($table);
+            $player = $table->getPlayer();
+            $player->setScore($score);
+            $players[] = $player;
+        }
+
+        $this->playerManager->update($players);
+
+        $notification = new Notification();
+        $notification->setType("scoreNotification")
+                ->setText(clienttranslate('Finals score is computed'))
+                ->add("scores", $scores);
+
         $this->sendNotification($notification);
     }
 }
