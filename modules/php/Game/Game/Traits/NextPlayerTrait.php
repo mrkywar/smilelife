@@ -35,7 +35,7 @@ trait NextPlayerTrait {
         $tableDecorator = new PlayerTableDecorator();
 
         if (0 === count($deckCard)) {
-            $this->
+            $this->gamestate->nextState("endOfGame");
         } else {
             //-- Casino Open case !
             $casino = $this->getCasinoCard();
@@ -204,7 +204,4 @@ trait NextPlayerTrait {
         ;
         $this->sendNotification($notification);
     }
-    
-    
-
 }
