@@ -162,15 +162,8 @@ $gameGameStates = [
         "transitions" => [
             "newTurn" => ST_PLAYER_TAKE_CARD,
             "playerPass" => ST_NEXT_PLAYER,
-            "gameScore" => ST_GAME_SCORE,
+            "endOfGame" => ST_GAME_END,
         ],
-    ],
-    ST_GAME_SCORE => [
-        "name" => "gameScore",
-        "description" => "",
-        "type" => "game",
-        "action" => "stGamePlayersScores",
-        "transitions" => ["endGame" => ST_GAME_END]
     ]
 ];
 
