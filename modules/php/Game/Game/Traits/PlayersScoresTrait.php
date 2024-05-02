@@ -23,10 +23,17 @@ trait PlayersScoresTrait {
         $this->scoreCalculator = new ScoreCalculator();
 
         $scores = [];
+        $players = [];
 
         foreach ($playersTables as $table) {
-            $scores[$table->getId()] = mt_rand(0, 100);//$this->computeScore($table);
+            $score = mt_rand(0, 100);
+            $scores[$table->getId()] = $score; //$this->computeScore($table);
+            $player = $table->getPlayer();
+            $player->setScore($score);
+            $players[] = $player;
         }
+
+        $this->playerManager->update($players);
 
         $notification = new Notification();
         $notification->setType("scoreNotification")
@@ -47,5 +54,4 @@ trait PlayersScoresTrait {
 
         return $score;
     }
-
 }

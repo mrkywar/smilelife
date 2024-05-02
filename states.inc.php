@@ -162,7 +162,7 @@ $gameGameStates = [
         "transitions" => [
             "newTurn" => ST_PLAYER_TAKE_CARD,
             "playerPass" => ST_NEXT_PLAYER,
-            "endOfGame" => ST_GAME_SCORE,
+            "gameScore" => ST_GAME_SCORE,
         ],
     ],
     ST_GAME_SCORE => [
