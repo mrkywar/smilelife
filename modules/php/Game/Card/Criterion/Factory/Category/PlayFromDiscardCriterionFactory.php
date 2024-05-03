@@ -7,7 +7,6 @@ use SmileLife\Card\Category\Special\ShootingStar;
 use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CardPlayableCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
 use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
@@ -29,7 +28,7 @@ class PlayFromDiscardCriterionFactory extends CardPlayableCriterionFactory {
      * @return CriterionInterface
      */
     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
+        $criterion = new NullCriterion();
 
         if (empty($complementaryCards)) {
             // No complementary card given
