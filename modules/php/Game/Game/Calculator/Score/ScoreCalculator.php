@@ -28,9 +28,10 @@ class ScoreCalculator {
             $cardsScore += $this->computeOne($card);
         }
 
+        $aux = count($table->getAttackIds());
         $score = new Score();
-        $score->setScore($cardsScore)
-                ->setScoreAux(count($table->getAttackIds()));
+        $score->setScore($cardsScore);
+//                ->setScoreAux((null === $aux) ? 0 : $aux);
 
         return $score;
     }

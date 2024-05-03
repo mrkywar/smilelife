@@ -12,7 +12,7 @@ use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
 use SmileLife\Game\Calculator\Score\Score;
-use SmileLife\Game\Calculator\Score\ScoreCalculator;
+use SmileLife\Game\Calculator\Score\ScoreDecorator;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 
@@ -38,20 +38,31 @@ trait NextPlayerTrait {
 
         //--- TODO remove force end
         if (1 == 1 || 0 === count($deckCard)) {
+            $scoreDecorator = new ScoreDecorator();
             $playerTables = $this->tableManager->findBy();
 
             $scores = [];
 
             foreach ($playerTables as $table) {
                 $score = $this->retriveScore($table);
-                $scores[$table->getId()] = $score;
+                $scores[$table->getId()] = $scoreDecorator->decorate($score);
 
                 $player = $table->getPlayer();
                 $player->setScore($score->getScore())
                         ->setScoreTieBreaker($score->getScoreAux());
-              
+
                 $this->playerManager->update($player);
             }
+
+//            var_dump($scores);die;
+            $notification = new Notification();
+            $notification->setType("gameResults")
+                    ->setText(clienttranslate('Finals score is computed'))
+                    ->add("scores", $scores)
+            //->add("scores", $scores)
+            ;
+
+            $this->sendNotification($notification);
 
             $this->gamestate->nextState("endGame");
         } else {

@@ -8,6 +8,7 @@ use Core\Notification\Notification;
 use Core\Requester\Requester;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Game\Calculator\Score\ScoreCalculator;
 use SmileLife\Game\DataRetriver\DataRetriver;
 use SmileLife\Game\GameProgressionRetriver;
 use SmileLife\Game\Initializer\GameInitializer;
@@ -136,6 +137,12 @@ class SmileLife extends Table {
      * @var Requester
      */
     private $requester;
+    
+    /**
+     * 
+     * @var ScoreCalculator
+     */
+    private $scoreCalculator;
 
     /**
      * 
@@ -152,6 +159,7 @@ class SmileLife extends Table {
         $this->gameInitializer = new \SmileLife\Game\Initializer\Test\FallingStarRevengeTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
+        $this->scoreCalculator = new ScoreCalculator();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
