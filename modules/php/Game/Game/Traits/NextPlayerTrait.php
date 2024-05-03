@@ -11,6 +11,8 @@ use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Calculator\Score\Score;
+use SmileLife\Game\Calculator\Score\ScoreCalculator;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 
@@ -36,15 +38,18 @@ trait NextPlayerTrait {
 
         //--- TODO remove force end
         if (1 == 1 || 0 === count($deckCard)) {
-//            $this->computePlayerScores();
             $playerTables = $this->tableManager->findBy();
 
+            $scores = [];
+
             foreach ($playerTables as $table) {
-                $score = mt_rand(0, 100);
-                $scores[$table->getId()] = $score; //$this->computeScore($table);
+                $score = $this->retriveScore($table);
+                $scores[$table->getId()] = $score;
+
                 $player = $table->getPlayer();
-                $player->setScore($score);
-                
+                $player->setScore($score->getScore())
+                        ->setScoreTieBreaker($score->getScoreAux());
+              
                 $this->playerManager->update($player);
             }
 
@@ -133,6 +138,10 @@ trait NextPlayerTrait {
         }
     }
 
+    private function retriveScore(PlayerTable $table): Score {
+        return $this->scoreCalculator->compute($table);
+    }
+
     private function getLastBettedWage(): ?Wage {
         $casinoCards = $this->cardManager->getAllCardsInCasino();
 
@@ -215,31 +224,6 @@ trait NextPlayerTrait {
                 ->add('table', $tableDecorator->decorate($table))
                 ->add('discard', $cardDecorator->decorate($discardedCards));
         ;
-        $this->sendNotification($notification);
-    }
-
-    public function computePlayerScores() {
-        $playersTables = $this->tableManager->findBy();
-//        $this->scoreCalculator = new ScoreCalculator();
-
-        $scores = [];
-        $players = [];
-
-        foreach ($playersTables as $table) {
-            $score = mt_rand(0, 100);
-            $scores[$table->getId()] = $score; //$this->computeScore($table);
-            $player = $table->getPlayer();
-            $player->setScore($score);
-            $players[] = $player;
-        }
-
-        $this->playerManager->update($players);
-
-        $notification = new Notification();
-        $notification->setType("scoreNotification")
-                ->setText(clienttranslate('Finals score is computed'))
-                ->add("scores", $scores);
-
         $this->sendNotification($notification);
     }
 }

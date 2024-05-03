@@ -14,7 +14,6 @@ use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Traits\PlayerJumpTrait;
-use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\BirthdayTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
@@ -318,7 +317,6 @@ class SmileLife extends Table {
 ////////////
     use NextPlayerTrait;
     use PlayerJumpTrait;
-    use PlayersScoresTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
       The action method of state X is called everytime the current game state is set to X.
