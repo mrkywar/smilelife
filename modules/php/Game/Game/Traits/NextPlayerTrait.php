@@ -36,7 +36,7 @@ trait NextPlayerTrait {
 
         //--- TODO remove force end
         if (1 == 1 || 0 === count($deckCard)) {
-            $this->computePlayerScores();
+//            $this->computePlayerScores();
             $this->gamestate->nextState("endGame");
         } else {
             //-- Casino Open case !
@@ -230,5 +230,7 @@ trait NextPlayerTrait {
                 ->add("scores", $scores);
 
         $this->sendNotification($notification);
+        
+        
     }
 }

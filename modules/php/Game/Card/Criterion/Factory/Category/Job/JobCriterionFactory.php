@@ -19,7 +19,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class JobCriterionFactory extends CardPlayableCriterionFactory {
+class JobCriterionFactory extends CardPlayableCriterionFactory {
 
     /**
      * 
@@ -29,7 +29,7 @@ abstract class JobCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $pistonCriterion = new HaveJobBoostReadyCriterion($table);
         $jobBoost = $table->getJobBoost();
         if (null !== $jobBoost) {
@@ -42,7 +42,6 @@ abstract class JobCriterionFactory extends CardPlayableCriterionFactory {
         $jobStudieCriterion = new JobStudiesCriterion($table, $card);
 
         $criteria = new CriterionGroup([
-            parent::create($table, $card, $opponentTable, $complementaryCards),
             $noJobCriterion,
             new CriterionGroup([
                     $jobStudieCriterion,
