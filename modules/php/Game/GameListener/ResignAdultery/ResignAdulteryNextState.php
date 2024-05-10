@@ -27,9 +27,8 @@ class ResignAdulteryNextState extends EventListener {
     }
 
     public function onResignAdultery(ResignAdulteryRequest &$request, Response &$response) {
-        $response->set("nextState", "resignAndPlay");
+        $response->set("nextState", NEXT_STATE_RESIGN_AND_PLAY);
 
         return $response;
     }
-
 }

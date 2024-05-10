@@ -31,8 +31,8 @@ $basicGameStates = [
         "type" => "manager",
         "action" => "stGamePlayerJump",
         "transitions" => [
-            "discard" => ST_PLAYER_RESEARCHER_DISCARD,
-            "backToNormal" => ST_PLAYER_TAKE_CARD
+            NEXT_STATE_DISCARD_CARD => ST_PLAYER_RESEARCHER_DISCARD,
+            NEXT_STATE_NEXT_PLAYER => ST_PLAYER_TAKE_CARD
         ]
     ],
     // Final state.
@@ -61,8 +61,8 @@ $playerActionsGameStates = [
             "playFormDiscard"
         ],
         "transitions" => [
-            "resignAndPlay" => ST_PLAYER_TAKE_CARD,
-            "resignAndPass" => ST_NEXT_PLAYER,
+            NEXT_STATE_RESIGN_AND_PLAY => ST_PLAYER_TAKE_CARD,
+            NEXT_STATE_RESIGN_AND_PASS => ST_NEXT_PLAYER,
             "attackAndDiscard" => ST_GAME_PLAYER_JUMP,
             "resignAndDiscard" => ST_PLAYER_RESEARCHER_DISCARD,
             "volontryDivorse" => ST_NEXT_PLAYER,
@@ -87,7 +87,7 @@ $playerActionsGameStates = [
             "casinoBet"
         ],
         "transitions" => [
-            "resignAndPlay" => ST_PLAYER_PLAY_CARD,
+            NEXT_STATE_RESIGN_AND_PLAY => ST_PLAYER_PLAY_CARD,
             "playAgain" => ST_PLAYER_PLAY_CARD,
             "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
             "playCard" => ST_NEXT_PLAYER,

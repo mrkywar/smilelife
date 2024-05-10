@@ -34,9 +34,9 @@ class ResignNextState extends EventListener {
     public function onResign(ResignRequest &$request, Response &$response) {
         $job = $this->extractJob($response);
         if ($job->isTemporary()) {
-            $response->set("nextState", "resignAndPlay");
+            $response->set("nextState", NEXT_STATE_RESIGN_AND_PLAY);
         } elseif (null === $response->get("nextState")) {
-            $response->set("nextState", "resignAndPass");
+            $response->set("nextState", NEXT_STATE_RESIGN_AND_PASS);
         }
 
         return $response;

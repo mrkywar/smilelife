@@ -61,7 +61,13 @@ define('ST_PLAYER_SPECIAL_BIRTHDAY',43);
 define('ST_PLAYER_RESEARCHER_DISCARD',50);
 
 
-
+/**
+ * Game transition (states.inc.php)
+ */
+define('NEXT_STATE_DISCARD_CARD','discardCard');
+define('NEXT_STATE_NEXT_PLAYER','nextPlayer');
+define('NEXT_STATE_RESIGN_AND_PASS','resignAndPass');
+define('NEXT_STATE_RESIGN_AND_PLAY','resignAndPlay');
 
 
 //define('ST_GAME_SETUP', 1);

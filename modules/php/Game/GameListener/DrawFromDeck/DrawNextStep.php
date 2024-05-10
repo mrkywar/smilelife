@@ -28,7 +28,6 @@ class DrawNextStep extends EventListener {
 
     public function onDraw(DrawCardRequest &$request, Response &$response) {
         $response->set("nextState", "drawCard");
-        // $response->set("nextState", "resignAndPlay"); //TODO : remove it - it's for test only !
 
         return $response;
     }
