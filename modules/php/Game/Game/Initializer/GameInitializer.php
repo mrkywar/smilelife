@@ -5,7 +5,7 @@ namespace SmileLife\Game\Initializer;
 use Core\DB\QueryString;
 use Core\Managers\PlayerManager;
 use SmileLife\Card\CardManager;
-use SmileLife\Game\Calculator\ScoreCalculator;
+use SmileLife\Game\Calculator\Score\ScoreCalculator;
 use SmileLife\Game\GameManager;
 use SmileLife\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Table\PlayerTableManager;
@@ -79,7 +79,8 @@ class GameInitializer {
         foreach ($oTables as $table) {
             $player = $table->getPlayer();
             $cardsInHand = $this->cardManager->getPlayerCards($player);
-            $scores[$player->getId()] = $this->scoreCalculator->compute($table);
+            $scoreModel = $this->scoreCalculator->compute($table);
+            $scores[$player->getId()] = $scoreModel->getScore();
         }
         
         arsort($scores);

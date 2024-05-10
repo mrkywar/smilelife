@@ -8,13 +8,13 @@ use Core\Notification\Notification;
 use Core\Requester\Requester;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
+use SmileLife\Game\Calculator\Score\ScoreCalculator;
 use SmileLife\Game\DataRetriver\DataRetriver;
 use SmileLife\Game\GameProgressionRetriver;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Game\SmileLifeRequester;
 use SmileLife\Game\Traits\NextPlayerTrait;
 use SmileLife\Game\Traits\PlayerJumpTrait;
-use SmileLife\Game\Traits\PlayersScoresTrait;
 use SmileLife\Game\Traits\ZombieTrait;
 use SmileLife\PlayerAction\BirthdayTrait;
 use SmileLife\PlayerAction\CardRequiermentTrait;
@@ -137,6 +137,12 @@ class SmileLife extends Table {
      * @var Requester
      */
     private $requester;
+    
+    /**
+     * 
+     * @var ScoreCalculator
+     */
+    private $scoreCalculator;
 
     /**
      * 
@@ -150,9 +156,10 @@ class SmileLife extends Table {
         self::$instance = $this;
 
 //        $this->gameInitializer = new GameInitializer();
-        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\FallingStarRevengeTestInitializer();
+        $this->gameInitializer = new \SmileLife\Game\Initializer\Test\EndGameUniconTestInitializer();
         $this->progressionRetriver = new GameProgressionRetriver();
         $this->dataRetriver = new DataRetriver();
+        $this->scoreCalculator = new ScoreCalculator();
 
         $this->tableManager = $this->dataRetriver->getPlayerTableManager();
         $this->cardManager = $this->dataRetriver->getCardManager();
@@ -318,7 +325,6 @@ class SmileLife extends Table {
 ////////////
     use NextPlayerTrait;
     use PlayerJumpTrait;
-    use PlayersScoresTrait;
     /*
       Here, you can create methods defined as "game state actions" (see "action" property in states.inc.php).
       The action method of state X is called everytime the current game state is set to X.

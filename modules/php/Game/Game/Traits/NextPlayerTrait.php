@@ -11,6 +11,8 @@ use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Category\Wage\Wage;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Game\Calculator\Score\Score;
+use SmileLife\Game\Calculator\Score\ScoreDecorator;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 
@@ -34,12 +36,39 @@ trait NextPlayerTrait {
         $cardDecorator = new CardDecorator();
         $tableDecorator = new PlayerTableDecorator();
 
-        if (0 === count($deckCard)) {
-            $this->gamestate->nextState("endOfGame");
+        //--- TODO remove force end
+        if (1 == 1 || 0 === count($deckCard)) {
+            $scoreDecorator = new ScoreDecorator();
+            $playerTables = $this->tableManager->findBy();
+
+            $scores = [];
+
+            foreach ($playerTables as $table) {
+                $score = $this->retriveScore($table);
+                $scores[$table->getId()] = $scoreDecorator->decorate($score);
+
+                $player = $table->getPlayer();
+                $player->setScore($score->getScore())
+                        ->setScoreTieBreaker($score->getScoreAux());
+
+                $this->playerManager->update($player);
+            }
+
+//            var_dump($scores);die;
+            $notification = new Notification();
+            $notification->setType("gameResults")
+                    ->setText(clienttranslate('Finals score is computed'))
+                    ->add("scores", $scores)
+            //->add("scores", $scores)
+            ;
+
+            $this->sendNotification($notification);
+
+            $this->gamestate->nextState("endGame");
         } else {
             //-- Casino Open case !
             $casino = $this->getCasinoCard();
-            if (null!== $casino && $casino->getOwnerId() === $playerId) {
+            if (null !== $casino && $casino->getOwnerId() === $playerId) {
 
                 if (0 === $casino->getPassTurn()) {
                     $casino->setOwnerId(null); //auto open casino
@@ -120,11 +149,15 @@ trait NextPlayerTrait {
         }
     }
 
+    private function retriveScore(PlayerTable $table): Score {
+        return $this->scoreCalculator->compute($table);
+    }
+
     private function getLastBettedWage(): ?Wage {
         $casinoCards = $this->cardManager->getAllCardsInCasino();
-        
-        foreach ($casinoCards as $card){
-            if($card instanceof Wage){
+
+        foreach ($casinoCards as $card) {
+            if ($card instanceof Wage) {
                 return $card;
             }
         }
