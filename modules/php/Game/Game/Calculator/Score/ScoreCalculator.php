@@ -3,6 +3,9 @@
 namespace SmileLife\Game\Calculator\Score;
 
 use SmileLife\Card\Card;
+use SmileLife\Card\CardManager;
+use SmileLife\Card\CardType;
+use SmileLife\Card\Core\CardLocation;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -11,6 +14,17 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class ScoreCalculator {
+    
+    /**
+     * 
+     * @var CardManager
+     */
+    private $cardManager;
+
+
+    public function __construct() {
+        $this->cardManager = new CardManager();
+    }
 
     /**
      * 
@@ -25,7 +39,7 @@ class ScoreCalculator {
         $cardsScore = 0;
 
         foreach ($cards as $card) {
-            $cardsScore += $this->computeOne($card);
+            $cardsScore += $this->computeOne($card, $table);
         }
 
         $aux = count($table->getAttackIds());
@@ -36,7 +50,16 @@ class ScoreCalculator {
         return $score;
     }
 
-    private function computeOne(Card $card) {
+    private function computeOne(Card $card, PlayerTable $table) {
+        if (CardType::CARD_TYPE_PET_UNICORN === $card->getType()) {
+            $cardsBonus = $this->cardManager->findBy([
+                'location' => CardLocation::PLAYER_BOARD,
+                'locationArg' => $table->getId(),
+                'type' => [CardType::CARD_TYPE_RAINBOW, CardType::CARD_TYPE_SHOOTING_STAR]
+            ]);
+            
+            return (2 === sizeof($cardsBonus))?(2*$card->getSmilePoints()):$card->getSmilePoints();
+        }
         return $card->getSmilePoints();
     }
 }
