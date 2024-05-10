@@ -88,6 +88,7 @@ $playerActionsGameStates = [
         ],
         "transitions" => [
             "resignAndPlay" => ST_PLAYER_PLAY_CARD,
+            "playAgain" => ST_PLAYER_PLAY_CARD,
             "resignAndDiscard" => ST_GAME_PLAYER_JUMP,
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
