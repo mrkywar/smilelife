@@ -27,7 +27,7 @@ class EndGameUniconTestInitializer extends TestGameInitializer {
             $card->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($unicornTable->getId());
             if($card instanceof ShootingStar){
-                $card->setPassTurn(0);
+                $card->setPassTurn(2);
             }
         }
         $this->cardManager->update($cards);

@@ -73,7 +73,7 @@ define([
                         ['doublonFlirtNotification', ANNIMATION_TIMER / 1.2],
                         ['drawNotification', ANNIMATION_TIMER],
                         ['flirtsAdultery', ANNIMATION_TIMER],
-                        ['gameResults', ANNIMATION_TIMER],
+                        ['gameResults', ANNIMATION_TIMER * 3],
                         ['handChangedNotification', ANNIMATION_TIMER],
                         ['handUpdateNotification', ANNIMATION_TIMER],
                         ['luckNotification', ANNIMATION_TIMER],
