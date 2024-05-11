@@ -93,6 +93,7 @@ $playerActionsGameStates = [
             "playCard" => ST_NEXT_PLAYER,
             "playPass" => ST_NEXT_PLAYER,
             "casinoBet" => ST_NEXT_PLAYER,
+            "stopBonus"=>ST_NEXT_PLAYER,
             "zombiePass" => ST_NEXT_PLAYER,
             "luckAction" => ST_PLAYER_SPECIAL_LUCK,
             "rainbowAction" => ST_PLAYER_SPECIAL_RAINBOW,

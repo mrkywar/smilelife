@@ -36,7 +36,8 @@ trait NextPlayerTrait {
         $cardDecorator = new CardDecorator();
         $tableDecorator = new PlayerTableDecorator();
 
-        if ( 0 === count($deckCard)) {
+        //--- TODO remove force end
+        if (1 == 1 || 0 === count($deckCard)) {
             $scoreDecorator = new ScoreDecorator();
             $playerTables = $this->tableManager->findBy();
 
