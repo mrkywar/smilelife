@@ -9,11 +9,11 @@ define([
             ],
             {
 
-                notif_scoreNotification: function (notif) {
+                notif_gameResults: function (notif) {
                     for (var playerId in notif.args.scores) {
                         var score = notif.args.scores[playerId];
-                        this.displayScoring("player_score_" + playerId, '000000', score, 20);
-//                        this.scoreCtrl[playerId].toValue(score);
+                        this.displayScoring("player_score_" + playerId, '000000', score.score, ANNIMATION_TIMER);
+                        this.scoreCtrl[playerId].toValue(score.score);
                     }
                 },
 

@@ -34,14 +34,18 @@ define([
                         var card = {
                             id: Date.now(),
                         };
-                        this.displayCard(card, "playerpanel_" + notif.args.playerId, "card_deck");
+                        this.displayCard(card, "playerpanel_" + notif.args.playerId, "pile_deck");
                     }
-                    this.deckCounter.setValue(this.deckCounter.getValue() - 1);
+                    this.debug('draw', notif.args);
+                    this.deckCounter.setValue(notif.args.deck);
+                    if (0 <= notif.args.deck) {
+                        dojo.destroy('card_deck');
+                    }
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() + 1);
                 },
 
                 drawDisplayCard: function (card) {
-                    this.displayCard(card, "myhand", "card_deck");
+                    this.displayCard(card, "myhand", "pile_deck");
                 }
 
 
