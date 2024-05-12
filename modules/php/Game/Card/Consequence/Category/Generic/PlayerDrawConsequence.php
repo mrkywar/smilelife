@@ -43,8 +43,9 @@ class PlayerDrawConsequence extends PlayerTableConsequence {
 
         $card->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($player->getId());
-
-        $this->cardManager->moveCard($card);
+        
+        $this->cardManager->update($card);
+        $deck = $this->cardManager->getAllCardsInDeck();
 
         $notification = new Notification();
 
@@ -52,6 +53,7 @@ class PlayerDrawConsequence extends PlayerTableConsequence {
                 ->setText(clienttranslate('${player_name} draw a card from the deck by external event'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
+                ->add('deck', count($deck))
                 ->add('card', $this->cardDecorator->decorate($card))
         ;
 

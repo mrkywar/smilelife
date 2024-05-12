@@ -14,9 +14,10 @@ define([
 
                     //--- display Deck infos
                     var drawCard = {
-                        id: "deck"
+                        id: "deck",
                     };
                     this.displayCard(drawCard, "pile_deck");
+                    $("card_deck").dataset.size=this.deck;
                     var pileDeckCounter = new ebg.counter();
                     pileDeckCounter.create('pile_deck_count');
                     pileDeckCounter.setValue(this.gamedatas.deck);

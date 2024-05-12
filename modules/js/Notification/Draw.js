@@ -36,7 +36,7 @@ define([
                         };
                         this.displayCard(card, "playerpanel_" + notif.args.playerId, "card_deck");
                     }
-                    this.deckCounter.setValue(this.deckCounter.getValue() - 1);
+                    this.deckCounter.setValue(notif.args.deck);
                     this.handCounters[notif.args.playerId].setValue(this.handCounters[notif.args.playerId].getValue() + 1);
                 },
 

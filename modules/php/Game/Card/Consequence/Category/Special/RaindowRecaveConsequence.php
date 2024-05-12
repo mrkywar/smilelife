@@ -62,6 +62,7 @@ class RaindowRecaveConsequence extends PlayerTableConsequence {
                     ->setLocationArg($player->getId());
         }
         $this->cardManager->update($drawCards);
+        $deck = $this->cardManager->getAllCardsInDeck();
 
         $notification = new Notification();
         $notification->setType("drawNotification")
@@ -69,6 +70,7 @@ class RaindowRecaveConsequence extends PlayerTableConsequence {
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
                 ->add('count', $countCardsToDraw)
+                ->add('deck', count($deck))
                 ->add('cards', $this->cardDecorator->decorate($drawCards));
 
         $response->addNotification($notification);

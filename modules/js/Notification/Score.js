@@ -10,10 +10,8 @@ define([
             {
 
                 notif_gameResults: function (notif) {
-                    this.debug("score",notif.args);
                     for (var playerId in notif.args.scores) {
                         var score = notif.args.scores[playerId];
-                        this.debug('score for '+playerId, score);
                         this.displayScoring("player_score_" + playerId, '000000', score.score, ANNIMATION_TIMER);
                         this.scoreCtrl[playerId].toValue(score.score);
                     }

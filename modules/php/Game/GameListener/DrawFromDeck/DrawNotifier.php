@@ -56,11 +56,13 @@ class DrawNotifier extends EventListener {
         $card = $this->extractCard($response);
         
         $notification = new Notification();
+        $deck = $this->cardManager->getAllCardsInDeck();
 
         $notification->setType("drawNotification")
                 ->setText(clienttranslate('${player_name} draw a card from the deck'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
+                ->add('deck', count($deck))
                 ->add('card', $this->cardDecorator->decorate($card))
         ;
 
