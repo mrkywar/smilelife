@@ -53,7 +53,7 @@ class PlayerDrawConsequence extends PlayerTableConsequence {
                 ->setText(clienttranslate('${player_name} draw a card from the deck by external event'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('deck', count($deck))
+                ->add('deck', sizeof($deck))
                 ->add('card', $this->cardDecorator->decorate($card))
         ;
 
