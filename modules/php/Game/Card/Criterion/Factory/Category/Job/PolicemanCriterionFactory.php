@@ -6,7 +6,7 @@ use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Category\Job\Job\Bandit;
 use SmileLife\Card\Category\Job\Job\Guru;
-use SmileLife\Card\Consequence\Category\Attack\IllegalJobDiscardConsequence;
+use SmileLife\Consequence\Category\Attack\IllegalJobDiscardConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;

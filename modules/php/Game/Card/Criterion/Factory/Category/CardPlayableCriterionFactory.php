@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Generic\CheaterDetectionConsequence;
+use SmileLife\Consequence\Category\Generic\CheaterDetectionConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardInHandCriterion;

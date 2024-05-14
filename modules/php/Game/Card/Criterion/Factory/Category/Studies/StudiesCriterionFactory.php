@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Studies;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Studies\LimitlessStudieConsequence;
-use SmileLife\Card\Consequence\Category\Studies\StudieLevelIncriseConsequence;
-use SmileLife\Card\Consequence\Category\Studies\StudiePlayedConsequence;
+use SmileLife\Consequence\Category\Studies\LimitlessStudieConsequence;
+use SmileLife\Consequence\Category\Studies\StudieLevelIncriseConsequence;
+use SmileLife\Consequence\Category\Studies\StudiePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

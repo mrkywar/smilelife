@@ -4,9 +4,9 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Official\Official;
-use SmileLife\Card\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Card\Consequence\Category\Attack\DisardJobConsequence;
-use SmileLife\Card\Consequence\Category\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Consequence\Category\Attack\AttackDestinationConsequence;
+use SmileLife\Consequence\Category\Attack\DisardJobConsequence;
+use SmileLife\Consequence\Category\Generic\GenericAttackPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

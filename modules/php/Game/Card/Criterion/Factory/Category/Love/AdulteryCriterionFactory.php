@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Love\AdulteryPlayedConsequence;
+use SmileLife\Consequence\Category\Love\AdulteryPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

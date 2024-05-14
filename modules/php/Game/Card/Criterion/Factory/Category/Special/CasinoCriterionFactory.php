@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Generic\PlayerDrawConsequence;
-use SmileLife\Card\Consequence\Category\Special\CasinoPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
+use SmileLife\Consequence\Category\Generic\PlayerDrawConsequence;
+use SmileLife\Consequence\Category\Special\CasinoPlayedConsequence;
+use SmileLife\Consequence\Category\Wage\WageBetedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Table\PlayerTable;

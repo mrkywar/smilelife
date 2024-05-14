@@ -4,8 +4,8 @@ namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Consequence\Category\Generic\MaxCardUpdateConsequence;
-use SmileLife\Card\Consequence\Category\Generic\PlayerDrawConsequence;
+use SmileLife\Consequence\Category\Generic\MaxCardUpdateConsequence;
+use SmileLife\Consequence\Category\Generic\PlayerDrawConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;

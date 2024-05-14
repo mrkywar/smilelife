@@ -5,7 +5,7 @@ namespace SmileLife\Criterion\Factory\ShowPile;
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Criterion\Factory\CriterionFactory;
-use SmileLife\Criterion\ShowPile\IsCardPileShowableCriterion;
+use SmileLife\Criterion\ShowPile\CardPileShowableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -24,7 +24,7 @@ class ShowPileCriterionFactory implements CriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface{
-        $criterion = new IsCardPileShowableCriterion($table, $card, $pilename);
+        $criterion = new CardPileShowableCriterion($table, $card, $pilename);
         
         return $criterion;
     }

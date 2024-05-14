@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Special\TrocWithProtectedCardConsequence;
+use SmileLife\Consequence\Category\Special\TrocWithProtectedCardConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
 use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;

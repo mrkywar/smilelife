@@ -4,8 +4,8 @@ namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Card\Consequence\Category\Special\CasinoResolveConsequence;
-use SmileLife\Card\Consequence\Category\Wage\WageBetedConsequence;
+use SmileLife\Consequence\Category\Special\CasinoResolveConsequence;
+use SmileLife\Consequence\Category\Wage\WageBetedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;

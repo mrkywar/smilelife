@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Special\ShuffleHandAgainConsequence;
+use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Consequence\Category\Special\ShuffleHandAgainConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Table\PlayerTable;

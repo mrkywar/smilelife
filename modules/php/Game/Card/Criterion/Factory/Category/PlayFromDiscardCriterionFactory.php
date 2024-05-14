@@ -4,7 +4,7 @@ namespace SmileLife\Card\Criterion\Factory\Category;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Special\ShootingStar;
-use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

@@ -4,8 +4,8 @@ namespace SmileLife\Card\Criterion\Factory\Category\Travel;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Job\Job\AirlinePilot;
-use SmileLife\Card\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Consequence\Category\Wage\WagesSpentConsequence;
+use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
+use SmileLife\Consequence\Category\Wage\WagesSpentConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

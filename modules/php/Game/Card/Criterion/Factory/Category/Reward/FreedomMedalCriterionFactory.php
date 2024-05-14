@@ -5,7 +5,7 @@ namespace SmileLife\Card\Criterion\Factory\Category\Reward;
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Attack\HumanAttack;
 use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Consequence\Category\Reward\FreedomMedalPlayedConsequence;
+use SmileLife\Consequence\Category\Reward\FreedomMedalPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CardOffsidedCriterion;

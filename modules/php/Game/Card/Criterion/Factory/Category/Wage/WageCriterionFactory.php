@@ -4,8 +4,8 @@ namespace SmileLife\Card\Criterion\Factory\Category\Wage;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Reward\NationalMedal;
-use SmileLife\Card\Consequence\Category\Wage\WageLevelIncriseConsequence;
-use SmileLife\Card\Consequence\Category\Wage\WagePlayedConsequence;
+use SmileLife\Consequence\Category\Wage\WageLevelIncriseConsequence;
+use SmileLife\Consequence\Category\Wage\WagePlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;

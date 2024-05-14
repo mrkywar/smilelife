@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Love\FlirtDoublonDectectionConcequence;
-use SmileLife\Card\Consequence\Category\Love\FlirtOnAdulteryConsequence;
-use SmileLife\Card\Consequence\Category\Love\FlirtPlayedConsequence;
+use SmileLife\Consequence\Category\Love\FlirtDoublonDectectionConcequence;
+use SmileLife\Consequence\Category\Love\FlirtOnAdulteryConsequence;
+use SmileLife\Consequence\Category\Love\FlirtPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

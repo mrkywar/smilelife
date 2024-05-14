@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory\Category\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Consequence\Category\Wage\WageGiftConsequence;
+use SmileLife\Consequence\Category\Wage\WageGiftConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardOfferableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;

@@ -4,8 +4,8 @@ namespace SmileLife\Card\Criterion\Factory\Category\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Category\Child\Child;
-use SmileLife\Card\Consequence\Category\Attack\OffsideConsequence;
-use SmileLife\Card\Consequence\Category\Child\AllChildOffsideConsequence;
+use SmileLife\Consequence\Category\Attack\OffsideConsequence;
+use SmileLife\Consequence\Category\Child\AllChildOffsideConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;

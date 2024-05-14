@@ -7,7 +7,7 @@ use SmileLife\Card\Category\Job\Job;
 use SmileLife\Card\Category\Job\Job\Journalist;
 use SmileLife\Card\Category\Job\Job\Researcher;
 use SmileLife\Card\Category\Job\Job\Writer;
-use SmileLife\Card\Consequence\Category\Reward\NationalMedalPlayedConsequence;
+use SmileLife\Consequence\Category\Reward\NationalMedalPlayedConsequence;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
