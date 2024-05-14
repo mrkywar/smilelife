@@ -54,6 +54,7 @@ $playerActionsGameStates = [
         "type" => "activeplayer",
 //        "args" => "argTakeCards",
         "possibleactions" => [
+            "showPile",
             "resign",
             "drawCard",
             "vonlontaryDivorce",
@@ -81,6 +82,7 @@ $playerActionsGameStates = [
         "type" => "activeplayer",
 //        "args" => "argChooseCard",  
         "possibleactions" => [
+            "showPile",
             "playCard",
             "resignAdultery",
             "discardCard",
@@ -106,6 +108,7 @@ $playerActionsGameStates = [
         "descriptionmyturn" => clienttranslate('${you} play chance and must choose a card to keep'),
         "type" => "activeplayer",
         "possibleactions" => [
+            "showPile",
             "luckChoice"
         ],
         "transitions" => [
@@ -118,6 +121,7 @@ $playerActionsGameStates = [
         "descriptionmyturn" => clienttranslate('${you} play up to three cards'),
         "type" => "activeplayer",
         "possibleactions" => [
+            "showPile",
             "playCard",
             "rainbowStop"
         ],
@@ -132,6 +136,7 @@ $playerActionsGameStates = [
         "descriptionmyturn" => clienttranslate('${you} should discard a card'),
         "type" => "activeplayer",
         "possibleactions" => [
+            "showPile",
             "discardCard"
         ],
         "transitions" => [
@@ -146,6 +151,7 @@ $playerActionsGameStates = [
         'action' => 'stBirthdayInit',
 
         "possibleactions" => [
+            "showPile",
             "offerWage"
         ],
         "transitions" => [

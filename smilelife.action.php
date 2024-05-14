@@ -143,4 +143,15 @@ class action_smilelife extends APP_GameAction {
 
         self::ajaxResponse();
     }
+    
+     public function showPile() {
+        self::setAjaxMode();
+        
+        $cardId = self::getArg("card", AT_posint, true);
+        $pileName = self::getArg("pile",AT_alphanum , true);
+        
+        $this->game->showPileAction($cardId, $pileName);
+
+        self::ajaxResponse();
+    }
 }

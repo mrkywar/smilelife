@@ -107,7 +107,12 @@ define([
                                         searchedDiv.classList.add("selected");
 
                                     } else {
-                                        this.debug('CC-PC01');
+                                        var data={
+                                            pile : card.pile,
+                                            card : card.id
+                                        };
+                                        this.takeAction('showPile', data);
+//                                        this.debug('CC-PC01',card);
                                     }
                                 } else if ('hand' === card.location) {
                                     // play from hand
@@ -123,7 +128,7 @@ define([
                                         searchedDiv.classList.add("selected");
 
                                     } else {
-                                        this.debug('CC-PC01');
+                                        this.debug('CC-RC01');
                                     }
                                 } else if ('hand' === card.location) {
                                     // Discard fromHand

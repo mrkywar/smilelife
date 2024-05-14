@@ -27,6 +27,7 @@ use SmileLife\PlayerAction\PlayFromDiscardTrait;
 use SmileLife\PlayerAction\RainbowStopTrait;
 use SmileLife\PlayerAction\ResignAdulteryTrait;
 use SmileLife\PlayerAction\ResignTrait;
+use SmileLife\PlayerAction\ShowPileTrait;
 use SmileLife\PlayerAction\VolontaryDivorceTrait;
 use SmileLife\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Table\PlayerTableManager;
@@ -296,6 +297,7 @@ class SmileLife extends Table {
     use RainbowStopTrait;
     use CasinoBetTrait;
     use BirthdayTrait;
+    use ShowPileTrait;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
