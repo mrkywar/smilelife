@@ -1,19 +1,20 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory;
+namespace SmileLife\Criterion\Factory\ShowPile;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Criterion\Factory\CriterionFactory;
+use SmileLife\Criterion\ShowPile\IsCardPileShowableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
- * Description of CardCriterionFactory
+ * Description of ShowPileCriterionFactory
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class CardCriterionFactory implements CriterionFactory{
-
+class ShowPileCriterionFactory implements CriterionFactory {
+  
     /**
      * 
      * @param PlayerTable $table : Game table of the player who plays
@@ -22,5 +23,9 @@ abstract class CardCriterionFactory implements CriterionFactory{
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example
      * @return CriterionInterface
      */
-    abstract  public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface;
+    public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface{
+        $criterion = new IsCardPileShowableCriterion($table, $card, $pilename);
+        
+        return $criterion;
+    }
 }
