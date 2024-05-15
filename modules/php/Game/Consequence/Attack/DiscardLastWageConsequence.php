@@ -4,7 +4,8 @@ namespace SmileLife\Consequence\Attack;
 
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Core\Exception\CardException;
+use SmileLife\Card\Wage\Wage;
 use SmileLife\Consequence\Generic\DiscardConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -25,23 +26,22 @@ class DiscardLastWageConsequence extends DiscardConsequence {
 
         return parent::execute($response);
     }
-    
+
     private function getWage(): Wage {
-        if(! $this->card instanceof Wage){
+        if (!$this->card instanceof Wage) {
             throw new CardException("Card isn't a Wage");
         }
         return $this->card;
     }
-    
+
     protected function generateNotification(): Notification {
         $notif = parent::generateNotification();
 
         $notif->setText(clienttranslate('${player_name} discard ${cardName} and remove ${displayLevel} to his available amount'))
                 ->add('displayLevel', $this->getWage()->getAmount())
                 ->add('level', - $this->getWage()->getAmount())
-                ->add('wageLevel',true);
-        
+                ->add('wageLevel', true);
+
         return $notif;
     }
-
 }

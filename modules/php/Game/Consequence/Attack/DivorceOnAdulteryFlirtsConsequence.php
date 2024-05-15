@@ -5,10 +5,9 @@ namespace SmileLife\Consequence\Attack;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Consequence\Consequence;
 use SmileLife\Table\PlayerTable;
-use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -74,5 +73,4 @@ class DivorceOnAdulteryFlirtsConsequence extends Consequence {
 
         $response->addNotification($notificationFlirt);
     }
-
 }

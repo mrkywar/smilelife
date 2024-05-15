@@ -36,5 +36,4 @@ class OffsideConsequence extends DiscardConsequence {
 
         return $this;
     }
-
 }

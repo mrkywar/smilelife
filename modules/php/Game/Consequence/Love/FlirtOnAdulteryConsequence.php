@@ -4,9 +4,9 @@ namespace SmileLife\Consequence\Love;
 
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardPile;
+use SmileLife\Card\Love\Flirt\Flirt;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -39,5 +39,4 @@ class FlirtOnAdulteryConsequence extends PlayerTableConsequence {
         $card->setPileName(CardPile::PILE_ADULTERY);
         $card = $response->set("card", $card);
     }
-
 }

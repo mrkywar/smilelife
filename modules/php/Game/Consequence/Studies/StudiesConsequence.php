@@ -2,7 +2,7 @@
 
 namespace SmileLife\Consequence\Studies;
 
-use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Studies\Studies;
 use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -27,5 +27,4 @@ abstract class StudiesConsequence extends PlayerTableConsequence {
     public function getStudies(): Studies {
         return $this->studies;
     }
-
 }

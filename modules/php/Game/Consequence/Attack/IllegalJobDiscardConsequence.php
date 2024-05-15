@@ -4,8 +4,8 @@ namespace SmileLife\Consequence\Attack;
 
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Official\Policeman;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Job\Official\Policeman;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -29,7 +29,7 @@ class IllegalJobDiscardConsequence extends DisardJobConsequence {
     protected function addNotification(Response &$response) {
         $notification = new Notification();
         $player = $this->table->getPlayer();
-        
+
 //        var_dump($player->getName(), $this->card->getTitle());die;
 
         $discardedCards = $this->cardManager->getAllCardsInDiscard();
@@ -42,10 +42,10 @@ class IllegalJobDiscardConsequence extends DisardJobConsequence {
                 ->add('cardName', (string) $this->card)
                 ->add('policemanName', (string) $this->policeman)
                 ->add('discard', $this->cardDecorator->decorate($discardedCards))
-                ->add('table', $this->tableDecorator->decorate($this->table));;
+                ->add('table', $this->tableDecorator->decorate($this->table));
+        ;
         ;
 
         $response->addNotification($notification);
     }
-
 }

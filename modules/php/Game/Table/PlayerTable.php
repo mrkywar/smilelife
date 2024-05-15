@@ -5,22 +5,22 @@ namespace SmileLife\Table;
 use Core\Managers\PlayerManager;
 use Core\Models\Core\Model;
 use Core\Models\Player;
+use SmileLife\Card\Acquisition\Acquisition;
+use SmileLife\Card\Attack\Attack;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Acquisition\Acquisition;
-use SmileLife\Card\Category\Attack\Attack;
-use SmileLife\Card\Category\Child\Child;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Love\Adultery;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Category\Love\Marriage\Marriage;
-use SmileLife\Card\Category\Pet\Pet;
-use SmileLife\Card\Category\Reward\Reward;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Special\Rainbow;
-use SmileLife\Card\Category\Special\Special;
-use SmileLife\Card\Category\Studies\Studies;
-use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Child\Child;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Love\Adultery;
+use SmileLife\Card\Love\Flirt\Flirt;
+use SmileLife\Card\Love\Marriage\Marriage;
+use SmileLife\Card\Pet\Pet;
+use SmileLife\Card\Reward\Reward;
+use SmileLife\Card\Special\JobBoost;
+use SmileLife\Card\Special\Rainbow;
+use SmileLife\Card\Special\Special;
+use SmileLife\Card\Studies\Studies;
+use SmileLife\Card\Wage\Wage;
 
 /**
  * Description of Game

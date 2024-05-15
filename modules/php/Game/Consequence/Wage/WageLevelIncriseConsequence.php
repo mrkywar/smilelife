@@ -3,7 +3,7 @@
 namespace SmileLife\Consequence\Wage;
 
 use Core\Notification\Notification;
-use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Wage\Wage;
 use SmileLife\Consequence\Generic\CardPlayedConsequence;
 
 /**

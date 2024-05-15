@@ -14,5 +14,4 @@ class ChildPlayedConsequence extends CardPlayedConsequence {
     protected function getNotificationText() {
         return clienttranslate('${player_name} play ${cardText1} from ${from}');
     }
-
 }

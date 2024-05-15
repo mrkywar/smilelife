@@ -20,7 +20,7 @@ class CheaterDetectionConsequence extends PlayerTableConsequence {
      * @var Card
      */
     protected $card;
-    
+
     /**
      * 
      * @var SmileLife

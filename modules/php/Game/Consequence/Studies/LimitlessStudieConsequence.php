@@ -4,7 +4,6 @@ namespace SmileLife\Consequence\Studies;
 
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\ConsequenceException;
 
 /**
  * Description of LimitlessStudieConsequence
@@ -22,5 +21,4 @@ class LimitlessStudieConsequence extends StudiesConsequence {
 
         $response->set("card", $card);
     }
-
 }

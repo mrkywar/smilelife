@@ -4,9 +4,6 @@ namespace SmileLife\Consequence\Special;
 
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
-use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Special\Rainbow;
-use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -30,7 +27,7 @@ class BirthdayConsequence extends SpecialNextStateConsequence {
                 ->setText(clienttranslate('${player_name} celebrates his birthday each player must offer him a wage'))
                 ->add('player_name', $player->getName());
         $response->addNotification($notification);
-       
+
         return $response;
     }
 }

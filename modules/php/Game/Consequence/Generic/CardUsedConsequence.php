@@ -6,8 +6,8 @@ use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**

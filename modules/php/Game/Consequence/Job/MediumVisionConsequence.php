@@ -5,9 +5,9 @@ namespace SmileLife\Consequence\Job;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Job\Job\Medium;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Job\Job\Medium;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -54,11 +54,10 @@ class MediumVisionConsequence extends PlayerTableConsequence {
                 ->setText(clienttranslate('${player_name} show ${count} cards from draw'))
                 ->add('player_name', $player->getName())
                 ->add('playerId', $player->getId())
-                ->add('count',count($cardsToDisplay))
+                ->add('count', count($cardsToDisplay))
                 ->add('cards', $this->cardDecorator->decorate($cardsToDisplay));
 
         $response->addNotification($notification);
         return $response;
     }
-
 }

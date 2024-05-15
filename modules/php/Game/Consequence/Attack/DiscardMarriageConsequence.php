@@ -4,7 +4,7 @@ namespace SmileLife\Consequence\Attack;
 
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Love\Marriage\Marriage;
+use SmileLife\Card\Love\Marriage\Marriage;
 use SmileLife\Consequence\Generic\DiscardConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -25,9 +25,8 @@ class DiscardMarriageConsequence extends DiscardConsequence {
 
         return parent::execute($response);
     }
-    
-    
-    protected function addNotification(Response &$response){
+
+    protected function addNotification(Response &$response) {
         $notification = new Notification();
         $player = $this->table->getPlayer();
 
@@ -46,5 +45,4 @@ class DiscardMarriageConsequence extends DiscardConsequence {
 
         $response->addNotification($notification);
     }
-
 }

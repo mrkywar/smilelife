@@ -2,15 +2,13 @@
 
 namespace SmileLife\Consequence\Special;
 
-use Core\Managers\PlayerManager;
-use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Wage\Wage;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;

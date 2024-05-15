@@ -7,9 +7,9 @@ use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
@@ -108,5 +108,4 @@ class GenericAttackPlayedConsequence extends PlayerTableConsequence {
 
         $response->addNotification($pNotification);
     }
-
 }

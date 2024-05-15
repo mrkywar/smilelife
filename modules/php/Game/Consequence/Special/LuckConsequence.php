@@ -43,9 +43,9 @@ class LuckConsequence extends SpecialNextStateConsequence {
             $card->setLocation(CardLocation::SPECIAL_LUCK)
                     ->setLocationArg($this->table->getId());
         }
-        
+
         $this->cardManager->update($cardsToShow);
-        
+
         $notification = new Notification();
         $notification->setType("luckNotification")
                 ->setText(clienttranslate('${player_name} chooses a card from the three drawn and will play again'))
@@ -54,7 +54,6 @@ class LuckConsequence extends SpecialNextStateConsequence {
                 ->add('vision', $this->cardDecorator->decorate($cardsToShow));
 
         $response->addNotification($notification);
-        
 
         return $response;
     }

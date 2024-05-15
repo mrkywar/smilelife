@@ -2,13 +2,7 @@
 
 namespace SmileLife\Consequence\Special;
 
-use Core\Models\Player;
-use Core\Notification\PersonnalNotification;
-use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
-use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Consequence;
-use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -32,11 +26,10 @@ class TrocWithProtectedCardConsequence extends TrocConsequence {
     protected function getGivableCards() {
         $cards = [];
         foreach ($this->cardManager->getPlayerCards($this->getPlayer()) as $card) {
-            if($this->protectedCard->getId() !== $card->getId()){
+            if ($this->protectedCard->getId() !== $card->getId()) {
                 $cards[] = $card;
             }
         }
         return $cards;
     }
-
 }

@@ -3,8 +3,8 @@
 namespace SmileLife\Consequence\Special;
 
 use Core\Notification\Notification;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Special\JobBoost;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Special\JobBoost;
 use SmileLife\Consequence\Generic\CardUsedConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -41,5 +41,4 @@ class JobBoostUsedConsequence extends CardUsedConsequence {
 
         return $notification;
     }
-
 }

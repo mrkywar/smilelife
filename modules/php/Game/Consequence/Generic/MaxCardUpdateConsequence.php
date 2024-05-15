@@ -21,7 +21,7 @@ class MaxCardUpdateConsequence extends PlayerTableConsequence {
      * @var PlayerAttributesManager
      */
     private $attributesManager;
-    
+
     /**
      * 
      * @var int
@@ -38,11 +38,11 @@ class MaxCardUpdateConsequence extends PlayerTableConsequence {
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
         $attribute = $this->attributesManager->findBy([
-            "id" =>$player->getId()
+            "id" => $player->getId()
         ]);
         $this->updateAttribute($attribute);
         $this->attributesManager->update($attribute);
-        
+
         $notification = new Notification();
 
         $notification->setType("maxCardUpdateNotification")
@@ -55,10 +55,9 @@ class MaxCardUpdateConsequence extends PlayerTableConsequence {
         $response->addNotification($notification);
 
         return $response;
-        
     }
-    
-    private function updateAttribute(PlayerAttributes &$attribute){
+
+    private function updateAttribute(PlayerAttributes &$attribute) {
         $attribute->setMaxCards($attribute->getMaxCards() + $this->increment);
     }
 }

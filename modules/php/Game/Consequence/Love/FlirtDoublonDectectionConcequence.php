@@ -6,10 +6,10 @@ use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardPile;
+use SmileLife\Card\Love\Flirt\Flirt;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
@@ -60,7 +60,7 @@ class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
         foreach ($tables as $table) {
             if ($table->getId() !== $this->table->getId() && null === $doublon) {
                 $doublon = $this->checkTableDoublonFlirt($table);
-                
+
                 $targetTable = $table;
             }
         }
@@ -68,7 +68,7 @@ class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
         if (null !== $doublon) {
             $player = $this->table->getPlayer();
             $targetPlayer = $targetTable->getPlayer();
-            
+
             $this->moveDoublon($doublon, $this->table, $player);
 
             $notification = new Notification();
@@ -85,7 +85,7 @@ class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
 
             $targetTable->removeCard($doublon);
             $this->tableManager->updateTable($targetTable);
-            
+
             $this->card->setLocationArg($player->getId());
             $this->table->addCard($doublon);
             $this->tableManager->updateTable($this->table);
@@ -93,7 +93,7 @@ class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
     }
 
     private function checkTableDoublonFlirt(PlayerTable $table): ?Flirt {
-        if(null !== $table->getMarriage()){
+        if (null !== $table->getMarriage()) {
             return null;
         }
         $classic = $this->getDoublonFlirt($table->getLastFlirt());
@@ -113,12 +113,11 @@ class FlirtDoublonDectectionConcequence extends PlayerTableConsequence {
         return null;
     }
 
-    private function moveDoublon(Flirt &$doublon, PlayerTable $targetTable, Player $player){
+    private function moveDoublon(Flirt &$doublon, PlayerTable $targetTable, Player $player) {
         $doublon->setLocationArg($player->getId());
-        if(null !== $targetTable->getAdultery()){
+        if (null !== $targetTable->getAdultery()) {
             $doublon->setLocation(CardPile::PILE_ADULTERY)
                     ->setPileName(CardPile::PILE_ADULTERY);
-            
         }
         $this->cardManager->update($doublon);
     }

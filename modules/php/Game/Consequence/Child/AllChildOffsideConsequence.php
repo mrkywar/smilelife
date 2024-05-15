@@ -5,8 +5,8 @@ namespace SmileLife\Consequence\Child;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Consequence\Consequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
@@ -58,7 +58,7 @@ class AllChildOffsideConsequence extends Consequence {
             $ids[] = $child->getId();
         }
         $this->tableManager->update($table);
-        
+
         if (!empty($ids)) {
             $notification = new Notification();
 
@@ -72,9 +72,8 @@ class AllChildOffsideConsequence extends Consequence {
                     ->add('cardcount', count($ids))
                     ->add('offside', $this->cardDecorator->decorate($discardedCards));
             ;
-            
+
             $response->addNotification($notification);
         }
     }
-
 }

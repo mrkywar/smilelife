@@ -3,10 +3,9 @@
 namespace SmileLife\Consequence\Wage;
 
 use Core\Notification\Notification;
-use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Consequence\Generic\CardPlayedConsequence;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Wage\Wage;
+use SmileLife\Consequence\Generic\CardPlayedConsequence;
 
 /**
  * Description of WagePlayedConsequence
@@ -18,7 +17,6 @@ class WagePlayedConsequence extends CardPlayedConsequence {
     private function getCard(): Wage {
         return $this->card;
     }
-
 
     protected function generateNotification(): Notification {
         $notification = new Notification();
@@ -48,5 +46,4 @@ class WagePlayedConsequence extends CardPlayedConsequence {
     protected function getNotificationText() {
         return clienttranslate('${player_name} play ${cardTitle} value of ${wageAmount}');
     }
-
 }

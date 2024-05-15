@@ -2,13 +2,12 @@
 
 namespace SmileLife\Consequence\Job;
 
-use Core\Models\Player;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Job\Job\Journalist;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Job\Job\Journalist;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
@@ -74,5 +73,4 @@ class JournalistVisionConsequence extends PlayerTableConsequence {
 
         return $response;
     }
-
 }

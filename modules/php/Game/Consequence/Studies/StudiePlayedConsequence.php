@@ -9,10 +9,9 @@ use SmileLife\Consequence\Generic\CardPlayedConsequence;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-class StudiePlayedConsequence extends CardPlayedConsequence{
-    
+class StudiePlayedConsequence extends CardPlayedConsequence {
+
     protected function getNotificationText() {
         return clienttranslate('${player_name} play ${cardTitle} ${cardText2} from ${from}');
     }
-
 }

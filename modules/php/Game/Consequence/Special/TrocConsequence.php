@@ -3,12 +3,13 @@
 namespace SmileLife\Consequence\Special;
 
 use Core\Models\Player;
+use Core\Notification\Notification;
 use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Consequence\Consequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -41,7 +42,6 @@ class TrocConsequence extends Consequence {
      * @var CardDecorator
      */
     protected $cardDecorator;
-    
 
     public function __construct(PlayerTable $table, PlayerTable $opponentTable) {
         $this->table = $table;
@@ -69,11 +69,11 @@ class TrocConsequence extends Consequence {
         $response->addNotification($activeNotif);
         $opponentNotif = $this->generateNotification($opponent, $player, $givenCard, $recivedCard);
         $response->addNotification($opponentNotif);
-        
-        $this->cardManager->update([$recivedCard,$givenCard]);
+
+        $this->cardManager->update([$recivedCard, $givenCard]);
     }
 
-    private function generateNotification(Player $player, Player $opponent, Card $recivedCard, Card $givenCard): \Core\Notification\Notification {
+    private function generateNotification(Player $player, Player $opponent, Card $recivedCard, Card $givenCard): Notification {
         $notification = new PersonnalNotification($player);
 
         $notification->setType('trocNotification')
@@ -93,13 +93,12 @@ class TrocConsequence extends Consequence {
         $randomIndex = mt_rand(0, count($cards) - 1);
         return $cards[$randomIndex];
     }
-    
+
     protected function getGivableCards() {
         return $this->cardManager->getPlayerCards($this->getPlayer());
     }
-    
-    protected function getPlayer():Player {
+
+    protected function getPlayer(): Player {
         return $this->table->getPlayer();
     }
-
 }

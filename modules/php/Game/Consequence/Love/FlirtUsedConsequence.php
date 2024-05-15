@@ -3,8 +3,8 @@
 namespace SmileLife\Consequence\Love;
 
 use Core\Notification\Notification;
-use SmileLife\Card\Category\Child\Child;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Child\Child;
+use SmileLife\Card\Love\Flirt\Flirt;
 use SmileLife\Consequence\Generic\CardUsedConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -40,5 +40,4 @@ class FlirtUsedConsequence extends CardUsedConsequence {
 
         return $notification;
     }
-
 }

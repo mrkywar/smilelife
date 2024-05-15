@@ -3,7 +3,7 @@
 namespace SmileLife\Consequence\Attack;
 
 use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Love\Adultery;
+use SmileLife\Card\Love\Adultery;
 use SmileLife\Consequence\Generic\DiscardConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -24,6 +24,4 @@ class DiscardAdulteryConsequence extends DiscardConsequence {
 
         return parent::execute($response);
     }
-   
-
 }

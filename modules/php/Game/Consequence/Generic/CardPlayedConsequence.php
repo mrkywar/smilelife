@@ -3,13 +3,12 @@
 namespace SmileLife\Consequence\Generic;
 
 use Core\Notification\Notification;
-use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
@@ -69,7 +68,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
         $this->cardManager->playCard($player, $this->card);
         $this->table->addCard($this->card);
         $this->tableManager->updateTable($this->table);
-        
+
         $response->addNotification($this->generateNotification());
     }
 
@@ -98,7 +97,7 @@ abstract class CardPlayedConsequence extends PlayerTableConsequence {
                 ->add('cardText2', $this->card->getText2())
                 ->add('fromHand', CardLocation::PLAYER_HAND === $from)
                 ->add('discard', $this->cardDecorator->decorate($discardedCards))
-                ;
+        ;
 
         if (null !== $this->table->getJob()) {
             $notification->add('jobName', $this->table->getJob()->getTitle());

@@ -5,9 +5,9 @@ namespace SmileLife\Consequence\Wage;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Wage\Wage;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 
@@ -65,10 +65,10 @@ class WageGiftConsequence extends PlayerTableConsequence {
         $this->tableManager->update($this->table);
         $this->tableManager->update($this->recipientTable);
         $this->cardManager->update($this->card);
-        
+
         $player = $this->table->getPlayer();
         $targetPlayer = $this->recipientTable->getPlayer();
-        
+
         $notification = new Notification();
         $notification->setType("wageOfferNotification")
                 ->setText(clienttranslate('${player_name} offers a wage for ${target_name} \'s birthday'))

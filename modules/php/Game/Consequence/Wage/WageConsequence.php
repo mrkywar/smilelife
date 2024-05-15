@@ -2,7 +2,7 @@
 
 namespace SmileLife\Consequence\Wage;
 
-use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Wage\Wage;
 use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -27,5 +27,4 @@ abstract class WageConsequence extends PlayerTableConsequence {
     public function getWage(): Wage {
         return $this->wage;
     }
-
 }

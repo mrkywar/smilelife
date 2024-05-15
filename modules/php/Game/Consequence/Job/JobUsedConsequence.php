@@ -3,7 +3,7 @@
 namespace SmileLife\Consequence\Job;
 
 use Core\Notification\Notification;
-use SmileLife\Card\Category\Job\Job;
+use SmileLife\Card\Job\Job;
 use SmileLife\Consequence\Generic\CardUsedConsequence;
 use SmileLife\Table\PlayerTable;
 
@@ -13,7 +13,6 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class JobUsedConsequence extends CardUsedConsequence {
-
 
     public function __construct(Job $job, PlayerTable $table) {
         parent::__construct($job, $table);
@@ -32,5 +31,4 @@ class JobUsedConsequence extends CardUsedConsequence {
 
         return $notification;
     }
-
 }

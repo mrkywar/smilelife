@@ -6,8 +6,8 @@ use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Consequence\Consequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableDecorator;
 use SmileLife\Table\PlayerTableManager;
@@ -68,7 +68,7 @@ class DiscardConsequence extends Consequence {
     public function execute(Response &$response) {
         $player = $this->table->getPlayer();
         $this->cardManager->discardCard($this->card, $player);
-        
+
         $notif = $this->generateNotification();
         $response->addNotification($notif);
 
@@ -90,7 +90,7 @@ class DiscardConsequence extends Consequence {
                 ->add('discard', $this->cardDecorator->decorate($discardedCards))
                 ->add('table', $this->tableDecorator->decorate($this->table));
         ;
-        
+
         return $notification;
     }
 }

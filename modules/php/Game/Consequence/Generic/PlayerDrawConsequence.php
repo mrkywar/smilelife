@@ -5,9 +5,9 @@ namespace SmileLife\Consequence\Generic;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -43,7 +43,7 @@ class PlayerDrawConsequence extends PlayerTableConsequence {
 
         $card->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($player->getId());
-        
+
         $this->cardManager->update($card);
         $deck = $this->cardManager->getAllCardsInDeck();
 
@@ -61,5 +61,4 @@ class PlayerDrawConsequence extends PlayerTableConsequence {
 
         return $response;
     }
-
 }

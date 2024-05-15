@@ -6,9 +6,9 @@ use Core\Notification\PersonnalNotification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Consequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Consequence\Consequence;
 use SmileLife\PlayerAttributes\PlayerAttributes;
 use SmileLife\PlayerAttributes\PlayerAttributesManager;
 use SmileLife\Table\PlayerTable;
@@ -74,7 +74,6 @@ class ShuffleHandAgainConsequence extends Consequence {
 
             $response->addNotification($notification);
         }
-        
     }
 
     private function redistributeCards(array &$cards, PlayerTable $table, PlayerAttributes $attribute) {
@@ -96,5 +95,4 @@ class ShuffleHandAgainConsequence extends Consequence {
         $this->cardManager->update($givedCard);
         return $givedCard;
     }
-
 }

@@ -3,11 +3,10 @@
 namespace SmileLife\Consequence\Attack;
 
 use Core\Requester\Response\Response;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Researcher;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Job\Job\Researcher;
 use SmileLife\Consequence\Generic\DiscardConsequence;
 use SmileLife\Consequence\Generic\MaxCardUpdateConsequence;
-use SmileLife\Game\GameState\GameStateParamManager;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -28,7 +27,6 @@ class DisardJobConsequence extends DiscardConsequence {
         if ($this->card instanceof Researcher) {
             $complementaryConsequence = new MaxCardUpdateConsequence($this->table, -1);
             $complementaryConsequence->execute($response);
-           
 
             $response->set('playerJump', $this->table->getId())
                     ->set("nextState", "attackAndDiscard");

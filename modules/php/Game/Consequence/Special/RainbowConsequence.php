@@ -5,8 +5,8 @@ namespace SmileLife\Consequence\Special;
 use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Special\Rainbow;
 use SmileLife\Card\Core\CardDecorator;
+use SmileLife\Card\Special\Rainbow;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -54,7 +54,7 @@ class RainbowConsequence extends SpecialNextStateConsequence {
                 ->setText(clienttranslate('${player_name} play rainbow and can play more than up to three card'))
                 ->add('player_name', $player->getName());
         $response->addNotification($notification);
-       
+
         return $response;
     }
 }

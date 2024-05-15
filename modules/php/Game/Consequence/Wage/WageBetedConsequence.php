@@ -6,11 +6,11 @@ use Core\Notification\Notification;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Special\Casino;
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardDecorator;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Casino;
+use SmileLife\Card\Wage\Wage;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -71,6 +71,6 @@ class WageBetedConsequence extends PlayerTableConsequence {
     }
 
     protected function getCasino($cardsOnCasino): Casino {
-        return $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
+        return $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO]);
     }
 }

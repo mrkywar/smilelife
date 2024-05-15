@@ -3,7 +3,7 @@
 namespace SmileLife\Consequence\Studies;
 
 use Core\Notification\Notification;
-use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Studies\Studies;
 use SmileLife\Consequence\Generic\CardPlayedConsequence;
 
 /**

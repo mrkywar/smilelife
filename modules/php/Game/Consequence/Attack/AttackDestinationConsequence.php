@@ -3,10 +3,10 @@
 namespace SmileLife\Consequence\Attack;
 
 use Core\Requester\Response\Response;
+use SmileLife\Card\Attack\Attack;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Attack\Attack;
-use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Consequence\PlayerTableConsequence;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 

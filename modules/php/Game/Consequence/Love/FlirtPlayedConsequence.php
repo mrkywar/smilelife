@@ -2,7 +2,6 @@
 
 namespace SmileLife\Consequence\Love;
 
-use SmileLife\Card\Category\Love\Flirt\Web;
 use SmileLife\Consequence\Generic\CardPlayedConsequence;
 
 /**
@@ -15,5 +14,4 @@ class FlirtPlayedConsequence extends CardPlayedConsequence {
     protected function getNotificationText() {
         return clienttranslate('${player_name} play ${cardTitle} ${cardText1} from ${from}');
     }
-
 }
