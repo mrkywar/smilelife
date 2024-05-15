@@ -3,10 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\AccidentCriterionFactory;
-use SmileLife\Card\Effect\PassTurnInterface;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\AccidentCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Accident
@@ -49,5 +48,4 @@ class Accident extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 5;
     }
-
 }

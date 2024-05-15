@@ -21,5 +21,4 @@ abstract class ClassicHouse extends House {
     public function getSmilePoints(): int {
         return 1;
     }
-
 }

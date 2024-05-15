@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Acquisition\House;
 
 use SmileLife\Card\Acquisition\Acquisition;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\House\HouseCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\House\HouseCriterionFactory;
 
 /**
  * Description of House
@@ -44,5 +44,4 @@ abstract class House extends Acquisition {
     public function getBaseCardCount(): int {
         return 1;
     }
-
 }

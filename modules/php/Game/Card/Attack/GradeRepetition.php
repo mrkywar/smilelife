@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\GradeRepetitionCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\GradeRepetitionCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of GradeRepetition
@@ -49,5 +49,4 @@ class GradeRepetition extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 5;
     }
-
 }

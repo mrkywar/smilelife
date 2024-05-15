@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Special;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Special\TrocCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Special\TrocCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Troc
@@ -37,7 +37,7 @@ class Troc extends Special implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new TrocCriterionFactory;
     }
-    
+
     public function getCategory(): string {
         return "attack";
     }

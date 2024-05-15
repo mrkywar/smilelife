@@ -3,14 +3,14 @@
 namespace SmileLife\Card\Job\Job;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Job\Job;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Job\GuruAndBanditCriterionFactory;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\DismissalImuneEffect;
 use SmileLife\Card\Effect\Category\IncomeTaxImuneEffect;
 use SmileLife\Card\Effect\Effect;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Card\Job\Job;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Job\GuruAndBanditCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Bandit

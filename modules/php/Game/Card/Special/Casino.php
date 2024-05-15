@@ -4,10 +4,10 @@ namespace SmileLife\Card\Special;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Special\CasinoCriterionFactory;
 use SmileLife\Card\Effect\Effect;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Special\CasinoCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Casino
@@ -32,7 +32,7 @@ class Casino extends Special implements BaseGame {
     public function getClass(): string {
         return self::class;
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 1;
     }
@@ -44,7 +44,7 @@ class Casino extends Special implements BaseGame {
     public function getType(): int {
         return CardType::CARD_TYPE_CASINO;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new CasinoCriterionFactory();
     }

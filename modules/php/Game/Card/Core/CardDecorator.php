@@ -59,5 +59,4 @@ class CardDecorator extends DisplayModelDecorator {
     protected function decorateOne(Model $model): array {
         return $this->decorateCard($model);
     }
-
 }

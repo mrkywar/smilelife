@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Job\Official;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Job\PolicemanCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Job\PolicemanCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Policeman
@@ -48,11 +48,11 @@ class Policeman extends Official implements BaseGame {
     public function getType(): int {
         return CardType::CARD_TYPE_POLICEMEN;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract - Overwride
      * ---------------------------------------------------------------------- */
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new PolicemanCriterionFactory();
     }

@@ -2,10 +2,10 @@
 
 namespace SmileLife\Card\Love\Flirt;
 
-use SmileLife\Card\Love\Love;
 use SmileLife\Card\Core\CardPile;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Love\FlirtCriterionFactory;
+use SmileLife\Card\Love\Love;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Love\FlirtCriterionFactory;
 
 /**
  * Description of Flirt
@@ -61,7 +61,7 @@ abstract class Flirt extends Love {
         $this->pileName = $pileName;
         return $this;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
@@ -69,5 +69,4 @@ abstract class Flirt extends Love {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

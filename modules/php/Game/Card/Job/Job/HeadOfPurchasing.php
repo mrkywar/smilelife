@@ -2,12 +2,11 @@
 
 namespace SmileLife\Card\Job\Job;
 
-use SmileLife\Card\CardData;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Job\Job;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Job\HeadsJobCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Job\HeadsJobCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of HeadOfPurchasing
@@ -50,15 +49,14 @@ class HeadOfPurchasing extends Job implements BaseGame {
     public function getType(): int {
         return CardType::CARD_TYPE_HEAD_OF_PURCHASING;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Abstract - Overwride
      * ---------------------------------------------------------------------- */
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new HeadsJobCriterionFactory();
     }
-
 
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Job

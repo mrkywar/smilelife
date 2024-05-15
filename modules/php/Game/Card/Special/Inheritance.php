@@ -4,9 +4,9 @@ namespace SmileLife\Card\Special;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Wage\Wage;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Special\InheritanceCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Special\InheritanceCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Inheritance
@@ -33,7 +33,7 @@ class Inheritance extends Wage implements BaseGame {
     public function getType(): int {
         return CardType::CARD_TYPE_INHERITANCE;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new InheritanceCriterionFactory();
     }
@@ -45,7 +45,7 @@ class Inheritance extends Wage implements BaseGame {
     public function getAmount(): int {
         return 3;
     }
-    
+
     public function getPileName(): string {
         return "special";
     }

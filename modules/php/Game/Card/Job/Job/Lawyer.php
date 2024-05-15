@@ -3,11 +3,11 @@
 namespace SmileLife\Card\Job\Job;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Job\Job;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\DivorceImuneEffect;
 use SmileLife\Card\Effect\Effect;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Card\Job\Job;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Lawyer

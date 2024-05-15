@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\AttentatCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\AttentatCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of HumanAttack
@@ -33,11 +33,11 @@ class HumanAttack extends Attack implements BaseGame {
     public function getType(): int {
         return CardType::CARD_TYPE_ATTENTAT;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new AttentatCriterionFactory();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 0;
     }
@@ -49,5 +49,4 @@ class HumanAttack extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 1;
     }
-
 }

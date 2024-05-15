@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Pet;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of DogPet
@@ -33,7 +33,7 @@ class Rabbit extends Pet implements BaseGame {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Pet 
      * ---------------------------------------------------------------------- */
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

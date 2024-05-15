@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Pet;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of UnicornPet
@@ -42,7 +42,7 @@ class Unicorn extends Pet implements BaseGame {
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame is in Pet 
      * ---------------------------------------------------------------------- */
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */

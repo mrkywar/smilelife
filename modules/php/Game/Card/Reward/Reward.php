@@ -3,7 +3,6 @@
 namespace SmileLife\Card\Reward;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Core\Exception\CardException;
 
 /**
  * Description of Reward
@@ -20,7 +19,7 @@ abstract class Reward extends Card {
     }
 
     public function getPileName(): string {
-        return 'special';
+        return "special";
     }
 
     public function getDefaultPassTurn(): int {
@@ -34,5 +33,4 @@ abstract class Reward extends Card {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

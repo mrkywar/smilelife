@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Child;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Rocky

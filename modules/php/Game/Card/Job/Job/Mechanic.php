@@ -3,11 +3,11 @@
 namespace SmileLife\Card\Job\Job;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Job\Job;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\AccidentImuneEffect;
 use SmileLife\Card\Effect\Effect;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Card\Job\Job;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Mechanic
@@ -27,7 +27,7 @@ class Mechanic extends Job implements BaseGame, CardEffectInterface {
 
         $this->setTitle(clienttranslate('Mechanic'))
                 ->setText1(clienttranslate('You never have accidents'));
-        
+
         $this->effects = [new AccidentImuneEffect()];
     }
 

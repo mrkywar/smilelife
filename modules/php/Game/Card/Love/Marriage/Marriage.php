@@ -2,10 +2,10 @@
 
 namespace SmileLife\Card\Love\Marriage;
 
-use SmileLife\Card\Love\Love;
 use SmileLife\Card\Core\CardPile;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Love\MarriageCriterionFactory;
+use SmileLife\Card\Love\Love;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Love\MarriageCriterionFactory;
 
 /**
  * Description of Marriage
@@ -41,7 +41,7 @@ abstract class Marriage extends Love {
     public function getPileName(): string {
         return CardPile::PILE_LOVE;
     }
-    
+
     public function getCriterionFactory(): CardCriterionFactory {
         return new MarriageCriterionFactory();
     }
@@ -53,7 +53,7 @@ abstract class Marriage extends Love {
     public function getBaseCardCount(): int {
         return 1;
     }
-    
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
@@ -61,5 +61,4 @@ abstract class Marriage extends Love {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

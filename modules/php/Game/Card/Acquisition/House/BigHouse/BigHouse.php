@@ -2,9 +2,9 @@
 
 namespace SmileLife\Card\Acquisition\House\BigHouse;
 
-use SmileLife\Card\CardType;
 use SmileLife\Card\Acquisition\House\House;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Card\CardType;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of BigHouse

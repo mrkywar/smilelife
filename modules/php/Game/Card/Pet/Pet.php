@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Pet;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Pet\PetCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Pet\PetCriterionFactory;
 
 /**
  * Description of Pet
@@ -50,5 +50,4 @@ abstract class Pet extends Card {
     public function getBaseCardCount(): int {
         return 1;
     }
-
 }

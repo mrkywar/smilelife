@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Wage;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of WageLevel1
@@ -35,12 +35,7 @@ class WageLevel1 extends Wage implements BaseGame {
         return CardType::CARD_TYPE_WAGE_LEVEL_1;
     }
 
-    /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame
+/* -------------------------------------------------------------------------
+     *                  BEGIN - Implement BaseGame is in Wage 
      * ---------------------------------------------------------------------- */
-
-    public function getBaseCardCount(): int {
-        return 10;
-    }
-
 }

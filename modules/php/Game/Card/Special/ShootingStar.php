@@ -4,10 +4,10 @@ namespace SmileLife\Card\Special;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\Exception\CardException;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Special\ShootingStarCriterionFactory;
 use SmileLife\Card\Effect\Effect;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Special\ShootingStarCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of ShootingStar

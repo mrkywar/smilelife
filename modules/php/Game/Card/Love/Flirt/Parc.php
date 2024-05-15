@@ -3,10 +3,10 @@
 namespace SmileLife\Card\Love\Flirt;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
- * Description of ParcFlirt
+ * Description of Parc (Flirt)
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
@@ -41,5 +41,4 @@ class Parc extends Flirt implements BaseGame {
     public function getBaseCardCount(): int {
         return 2;
     }
-
 }

@@ -6,7 +6,7 @@ use SmileLife\Card\CardType;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Card\Effect\Category\LimitlessFlirt;
 use SmileLife\Card\Effect\Effect;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Barman

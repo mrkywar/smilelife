@@ -4,10 +4,10 @@ namespace SmileLife\Card\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Job\Job;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
- * Description of Author
+ * Description of Writer
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */

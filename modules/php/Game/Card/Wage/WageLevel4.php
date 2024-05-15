@@ -36,11 +36,6 @@ class WageLevel4 extends Wage implements BaseGame {
     }
 
     /* -------------------------------------------------------------------------
-     *                  BEGIN - Implement BaseGame
+     *                  BEGIN - Implement BaseGame is in Wage 
      * ---------------------------------------------------------------------- */
-
-    public function getBaseCardCount(): int {
-        return 10;
-    }
-
 }

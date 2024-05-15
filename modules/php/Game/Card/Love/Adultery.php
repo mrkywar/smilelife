@@ -5,9 +5,9 @@ namespace SmileLife\Card\Love;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardType;
 use SmileLife\Card\Core\CardPile;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Love\AdulteryCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Love\AdulteryCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Adultery
@@ -54,7 +54,7 @@ class Adultery extends Card implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new AdulteryCriterionFactory();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 0;
     }
@@ -74,5 +74,4 @@ class Adultery extends Card implements BaseGame {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

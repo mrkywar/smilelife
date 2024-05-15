@@ -3,10 +3,9 @@
 namespace SmileLife\Card\Reward;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Reward\Reward;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Reward\FreedomMedalCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Reward\FreedomMedalCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of FreedomMedal
@@ -50,5 +49,4 @@ class FreedomMedal extends Reward implements BaseGame {
     public function getBaseCardCount(): int {
         return 1;
     }
-
 }

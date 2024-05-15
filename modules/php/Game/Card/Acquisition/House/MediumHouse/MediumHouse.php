@@ -21,5 +21,4 @@ abstract class MediumHouse extends House {
     public function getSmilePoints(): int {
         return 2;
     }
-
 }

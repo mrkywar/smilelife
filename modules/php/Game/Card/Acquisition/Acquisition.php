@@ -3,7 +3,6 @@
 namespace SmileLife\Card\Acquisition;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\CardData;
 
 /**
  * Description of Acquisition
@@ -45,5 +44,4 @@ abstract class Acquisition extends Card {
                 ]
         );
     }
-
 }

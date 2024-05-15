@@ -1,9 +1,9 @@
 <?php
+
 namespace SmileLife\Card\Acquisition\Travel;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Acquisition\Travel\Travel;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of RioDeJaneiroTravel

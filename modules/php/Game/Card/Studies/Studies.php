@@ -3,9 +3,8 @@
 namespace SmileLife\Card\Studies;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Studies\StudiesCriterionFactory;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Studies\StudiesCriterionFactory;
 
 /**
  * Description of Studies
@@ -68,5 +67,4 @@ abstract class Studies extends Card {
     public function __toString() {
         return $this->getTitle() . " " . $this->getText2();
     }
-
 }

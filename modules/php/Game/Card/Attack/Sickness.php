@@ -3,11 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Attack\Attack;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\SicknessCriterionFactory;
-use SmileLife\Card\Effect\PassTurnInterface;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\SicknessCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of IncomeTax
@@ -50,5 +48,4 @@ class Sickness extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 5;
     }
-
 }

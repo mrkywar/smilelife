@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Acquisition\Travel;
 
 use SmileLife\Card\Acquisition\Acquisition;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Travel\TravelCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Travel\TravelCriterionFactory;
 
 /**
  * Description of Travel
@@ -62,5 +62,4 @@ abstract class Travel extends Acquisition {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

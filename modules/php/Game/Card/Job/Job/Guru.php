@@ -4,9 +4,9 @@ namespace SmileLife\Card\Job\Job;
 
 use SmileLife\Card\CardType;
 use SmileLife\Card\Job\Job;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Job\GuruAndBanditCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Job\GuruAndBanditCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Guru

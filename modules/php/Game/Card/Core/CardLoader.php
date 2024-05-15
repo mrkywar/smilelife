@@ -12,13 +12,10 @@ use Core\ClassLoader\RecursiveDirectoryClassesLoader;
 class CardLoader extends RecursiveDirectoryClassesLoader {
 
     private const CARD_BASEPATH = "/Card";
-    private const CARD_CATEGORY_PATH = "/Category";
 
     protected function getNamespace(): string {
         $namespace = substr(dirname(__FILE__), 0, strrpos(dirname(__FILE__), self::CARD_BASEPATH) + strlen(self::CARD_BASEPATH));
-        $namespace .= self::CARD_CATEGORY_PATH;
 
         return $namespace;
     }
-
 }

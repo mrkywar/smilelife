@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Studies;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of StudiesLevel1
@@ -34,5 +34,4 @@ class StudiesLevel1 extends Studies implements BaseGame {
     public function getBaseCardCount(): int {
         return 22;
     }
-
 }

@@ -5,9 +5,8 @@ namespace SmileLife\Card\Job;
 use SmileLife\Card\Card;
 use SmileLife\Card\Job\Interim\Interim;
 use SmileLife\Card\Job\Official\Official;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Job\JobCriterionFactory;
-use SmileLife\Game\Calculator\StudiesLevelCalculator;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Job\JobCriterionFactory;
 
 /**
  * Description of Job
@@ -18,12 +17,8 @@ abstract class Job extends Card {
 
     private const SMILE_POINTS = 2;
 
-    private $studiesLevelCalculator;
-
     public function __construct() {
         parent::__construct();
-
-        $this->studiesLevelCalculator = new StudiesLevelCalculator();
     }
 
     /* -------------------------------------------------------------------------
@@ -113,5 +108,4 @@ abstract class Job extends Card {
                 ]
         );
     }
-
 }

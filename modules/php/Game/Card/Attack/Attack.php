@@ -38,5 +38,4 @@ abstract class Attack extends Card {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

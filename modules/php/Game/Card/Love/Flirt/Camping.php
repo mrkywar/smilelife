@@ -3,10 +3,10 @@
 namespace SmileLife\Card\Love\Flirt;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
- * Description of CampingFlirt
+ * Description of Camping (Flirt)
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
@@ -41,5 +41,4 @@ class Camping extends Flirt implements BaseGame {
     public function getBaseCardCount(): int {
         return 2;
     }
-
 }

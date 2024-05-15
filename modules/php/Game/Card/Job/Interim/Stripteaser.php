@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Job\Interim;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Stripteaser

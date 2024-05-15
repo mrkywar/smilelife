@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Wage;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Wage\WageCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Wage\WageCriterionFactory;
 
 /**
  * Description of Wage
@@ -52,13 +52,21 @@ abstract class Wage extends Card {
     }
 
     /* -------------------------------------------------------------------------
+     *                  BEGIN - Implement BaseGame (1 card in each type)
+     * ---------------------------------------------------------------------- */
+
+    public function getBaseCardCount(): int {
+        return 10;
+    }
+
+/* -------------------------------------------------------------------------
      *                  BEGIN - Display
      * ---------------------------------------------------------------------- */
 
     public function __toString() {
         return $this->getTitle();
     }
-    
+
     public function __toArray(): array {
         return array_merge(
                 parent::__toArray(),

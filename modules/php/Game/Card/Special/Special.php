@@ -3,8 +3,6 @@
 namespace SmileLife\Card\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Effect\CardEffectInterface;
-use SmileLife\Table\PlayerTable;
 
 /**
  * Description of Special
@@ -51,5 +49,4 @@ abstract class Special extends Card {
     public function __toString() {
         return $this->getTitle();
     }
-
 }

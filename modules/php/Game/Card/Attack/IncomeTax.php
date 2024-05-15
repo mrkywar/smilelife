@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\IncomeTaxCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\IncomeTaxCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of IncomeTax
@@ -41,6 +41,7 @@ class IncomeTax extends Attack implements BaseGame {
     public function getDefaultPassTurn(): int {
         return 0;
     }
+
     /* -------------------------------------------------------------------------
      *                  BEGIN - Implement BaseGame
      * ---------------------------------------------------------------------- */
@@ -48,5 +49,4 @@ class IncomeTax extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 5;
     }
-
 }

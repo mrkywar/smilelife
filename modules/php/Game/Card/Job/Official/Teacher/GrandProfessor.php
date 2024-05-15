@@ -3,13 +3,12 @@
 namespace SmileLife\Card\Job\Official\Teacher;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Job\Official\Teacher\Teacher;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Job\GrandProfCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Job\GrandProfCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
- * Description of MathTeacher
+ * Description of GrandProfessor
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */

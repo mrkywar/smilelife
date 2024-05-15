@@ -3,8 +3,8 @@
 namespace SmileLife\Card\Child;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Child\ChildCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Child\ChildCriterionFactory;
 
 /**
  * Description of Child
@@ -58,5 +58,4 @@ abstract class Child extends Card {
     public function __toString() {
         return $this->getText1();
     }
-
 }

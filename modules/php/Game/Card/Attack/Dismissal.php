@@ -3,10 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Attack\Attack;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\DismissalCriterionFactory;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\DismissalCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Accident
@@ -38,7 +37,7 @@ class Dismissal extends Attack implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new DismissalCriterionFactory();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return 0;
     }
@@ -50,5 +49,4 @@ class Dismissal extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 5;
     }
-
 }

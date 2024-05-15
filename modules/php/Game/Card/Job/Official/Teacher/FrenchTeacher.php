@@ -3,10 +3,10 @@
 namespace SmileLife\Card\Job\Official\Teacher;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
- * Description of MathTeacher
+ * Description of FrenchTeacher
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */

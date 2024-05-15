@@ -24,5 +24,4 @@ abstract class Official extends Job {
     public function getCategory(): string {
         return "official_" . parent::getCategory();
     }
-
 }

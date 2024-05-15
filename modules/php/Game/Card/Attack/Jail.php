@@ -3,10 +3,9 @@
 namespace SmileLife\Card\Attack;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Attack\JailCriterionFactory;
-use SmileLife\Card\Effect\PassTurnInterface;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Criterion\Factory\Attack\JailCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Module\BaseGame;
 
 /**
  * Description of Jail
@@ -40,7 +39,7 @@ class Jail extends Attack implements BaseGame {
     public function getCriterionFactory(): CardCriterionFactory {
         return new JailCriterionFactory();
     }
-    
+
     public function getDefaultPassTurn(): int {
         return self::TURN_PASSED;
     }
@@ -52,5 +51,4 @@ class Jail extends Attack implements BaseGame {
     public function getBaseCardCount(): int {
         return 1;
     }
-
 }

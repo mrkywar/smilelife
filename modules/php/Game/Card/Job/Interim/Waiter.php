@@ -3,10 +3,10 @@
 namespace SmileLife\Card\Job\Interim;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Module\BaseGame;
+use SmileLife\Module\BaseGame;
 
 /**
- * Description of Stripteaser
+ * Description of Waiter
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
