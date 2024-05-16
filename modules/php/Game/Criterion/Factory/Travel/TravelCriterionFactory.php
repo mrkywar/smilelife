@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Travel;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Job\Job\AirlinePilot;
 use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
 use SmileLife\Consequence\Wage\WagesSpentConsequence;

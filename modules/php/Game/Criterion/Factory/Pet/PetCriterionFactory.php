@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Pet;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
 use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Criterion\NullCriterion;

@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Child;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Consequence\Child\ChildPlayedConsequence;
 use SmileLife\Consequence\Love\FlirtUsedConsequence;
 use SmileLife\Criterion\Card\Love\FlirtPlayedCriterion;

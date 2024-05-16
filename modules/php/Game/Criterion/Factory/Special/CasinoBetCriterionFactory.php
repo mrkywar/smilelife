@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Wage\Wage;
 use SmileLife\Consequence\Special\CasinoResolveConsequence;
 use SmileLife\Consequence\Wage\WageBetedConsequence;

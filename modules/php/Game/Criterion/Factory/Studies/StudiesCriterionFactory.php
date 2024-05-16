@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Studies;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Consequence\Studies\LimitlessStudieConsequence;
 use SmileLife\Consequence\Studies\StudieLevelIncriseConsequence;

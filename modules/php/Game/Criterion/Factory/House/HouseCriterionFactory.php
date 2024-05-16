@@ -4,7 +4,7 @@ namespace SmileLife\Criterion\Factory\House;
 
 use SmileLife\Card\Acquisition\House\House;
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Job\Job\Architect;
 use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
 use SmileLife\Consequence\Job\JobUsedConsequence;

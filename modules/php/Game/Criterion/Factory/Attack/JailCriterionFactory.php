@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Job\Job\Bandit;
 use SmileLife\Consequence\Attack\AttackDestinationConsequence;
 use SmileLife\Consequence\Generic\GenericAttackPlayedConsequence;

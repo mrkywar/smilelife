@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Wage;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Reward\NationalMedal;
 use SmileLife\Consequence\Wage\WageLevelIncriseConsequence;
 use SmileLife\Criterion\Card\Job\HaveJobCriterion;

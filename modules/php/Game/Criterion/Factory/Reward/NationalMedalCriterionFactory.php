@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Reward;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Job\Job;
 use SmileLife\Card\Job\Job\Journalist;
 use SmileLife\Card\Job\Job\Researcher;

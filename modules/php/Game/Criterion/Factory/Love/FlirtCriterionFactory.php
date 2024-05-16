@@ -3,7 +3,6 @@
 namespace SmileLife\Criterion\Factory\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
 use SmileLife\Card\Effect\Category\LimitlessFlirt;
 use SmileLife\Consequence\Love\FlirtDoublonDectectionConcequence;
 use SmileLife\Consequence\Love\FlirtOnAdulteryConsequence;
@@ -14,6 +13,7 @@ use SmileLife\Criterion\Card\Love\HaveAdulteryCriterion;
 use SmileLife\Criterion\Card\Love\IsMarriedCriterion;
 use SmileLife\Criterion\CriterionGroup;
 use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 

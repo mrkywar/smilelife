@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Consequence\Love\AdulteryPlayedConsequence;
 use SmileLife\Criterion\Card\Love\HaveAdulteryCriterion;
 use SmileLife\Criterion\Card\Love\IsMarriedCriterion;

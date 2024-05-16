@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Job\Official\Teacher\Teacher;
 use SmileLife\Consequence\Generic\DiscardConsequence;
 use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SmileLife\Card\Criterion\Factory\Category;
+namespace SmileLife\Criterion\Factory\Card;
 
 use SmileLife\Card\Card;
 use SmileLife\Consequence\Generic\CheaterDetectionConsequence;

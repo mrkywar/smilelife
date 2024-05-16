@@ -4,7 +4,7 @@ namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Attack\Sickness;
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Effect\Category\SicknessImunueEffect;
 use SmileLife\Consequence\Attack\AttackDestinationConsequence;
 use SmileLife\Consequence\Generic\GenericAttackPlayedConsequence;

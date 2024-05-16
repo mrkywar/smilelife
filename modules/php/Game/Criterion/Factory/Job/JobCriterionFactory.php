@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
 use SmileLife\Consequence\Special\JobBoostUsedConsequence;
 use SmileLife\Criterion\Card\Job\HaveJobBoostReadyCriterion;

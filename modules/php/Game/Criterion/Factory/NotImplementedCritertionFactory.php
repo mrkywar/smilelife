@@ -3,7 +3,7 @@
 namespace SmileLife\Card\Criterion\Factory;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Criterion\CriterionException;
 use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;

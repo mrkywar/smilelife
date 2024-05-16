@@ -5,8 +5,8 @@ namespace SmileLife\Criterion\Factory\Special;
 use SmileLife\Card\Card;
 use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
 use SmileLife\Consequence\Category\Special\RainbowConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**

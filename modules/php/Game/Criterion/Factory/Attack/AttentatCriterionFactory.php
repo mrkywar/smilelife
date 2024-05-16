@@ -4,7 +4,7 @@ namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Child\Child;
-use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Effect\Category\AttentatProtectionEffect;
 use SmileLife\Consequence\Attack\OffsideConsequence;
 use SmileLife\Consequence\Child\AllChildOffsideConsequence;
