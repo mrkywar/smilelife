@@ -4,12 +4,12 @@ namespace SmileLife\Game\Initializer\Test;
 
 use Core\DB\QueryString;
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Child\Diana;
-use SmileLife\Card\Category\Child\Harry;
-use SmileLife\Card\Category\Child\Hermione;
-use SmileLife\Card\Category\Love\Flirt\Hotel;
-use SmileLife\Card\Category\Love\Flirt\Zoo;
+use SmileLife\Card\Child\Diana;
+use SmileLife\Card\Child\Harry;
+use SmileLife\Card\Child\Hermione;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Love\Flirt\Hotel;
+use SmileLife\Card\Love\Flirt\Zoo;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
@@ -103,7 +103,7 @@ class ChildTestsInitializer extends GameInitializer {
     }
 
     private function specialFlirtNotLastCase(PlayerTable $table) {
-        $this->baseCase($table);//add Child
+        $this->baseCase($table); //add Child
         $forcedFlirt = new Hotel();
         $forcedFlirt->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
@@ -144,5 +144,4 @@ class ChildTestsInitializer extends GameInitializer {
 
         $this->playerTableManager->updateTable($table);
     }
-
 }

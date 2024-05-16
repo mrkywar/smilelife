@@ -3,11 +3,11 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Special\Casino;
-use SmileLife\Card\Category\Wage\WageLevel1;
-use SmileLife\Card\Category\Wage\WageLevel2;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Interim\Barman;
+use SmileLife\Card\Special\Casino;
+use SmileLife\Card\Wage\WageLevel1;
+use SmileLife\Card\Wage\WageLevel2;
 
 /**
  * Description of AccidentTestInitializer
@@ -40,32 +40,31 @@ class CasinoTestInitializer extends TestGameInitializer {
 
         return $this->casionPlayTests($oTables);
     }
-    
-    private function casionPlayTests($oTables){
+
+    private function casionPlayTests($oTables) {
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
-        
-        $casino = $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
+
+        $casino = $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO]);
         $casino->setLocation(CardLocation::PLAYER_HAND)
                 ->setLocationArg($case1Table->getId());
-        
+
         $this->cardManager->update($casino);
-        
+
         return $case1Table->getId();
-        
     }
-    
-    private function firstBetTests($oTables){
+
+    private function firstBetTests($oTables) {
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
-        
-        $casinoPlayed = $this->cardManager->findBy(["type"=> CardType::SPECIAL_CASINO]);
+
+        $casinoPlayed = $this->cardManager->findBy(["type" => CardType::SPECIAL_CASINO]);
 
         $casinoPlayed->setLocation(CardLocation::SPECIAL_CASINO)
                 ->setPassTurn(0)
                 ->setLocationArg(99)
                 ->setOwnerId($case1Table->getId());
-        
+
         $this->cardManager->update($casinoPlayed);
 
         return $case1Table->getId();

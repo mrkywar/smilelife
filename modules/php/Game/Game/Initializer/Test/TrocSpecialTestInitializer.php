@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Special\Troc;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Troc;
 
 /**
  * Description of TrocSpecialTestInitializer
@@ -18,12 +18,12 @@ class TrocSpecialTestInitializer extends TestGameInitializer {
         $oTables = $this->playerTableManager->findBy();
 
         $forcedCards = [];
-        
+
         $troc = new Troc();
         $troc->setLocation(CardLocation::DECK)
                 ->setLocationArg(0); // forced a troc card first card of the deck
         $forcedCards[] = $troc;
-        
+
         foreach ($oTables as $oTable) {
             $card = new Troc();
             $card->setLocation(CardLocation::PLAYER_HAND)
@@ -39,5 +39,4 @@ class TrocSpecialTestInitializer extends TestGameInitializer {
 
         return $case1Table->getId();
     }
-
 }

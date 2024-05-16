@@ -3,8 +3,8 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Reward\NationalMedal;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Reward\NationalMedal;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
@@ -37,13 +37,13 @@ class GrandPrixTestInitializer extends GameInitializer {
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->writerJobCase($case3Table);
-        
+
         //-- Case 4 Writer(playable)
         $i = random_int(0, count($oTables) - 1);
         $case4Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->resarcherJobCase($case4Table);
-        
+
         //-- Case 5 Journalist(playable)
         $i = random_int(0, count($oTables) - 1);
         $case5Table = $oTables[array_keys($oTables)[$i]];
@@ -82,7 +82,7 @@ class GrandPrixTestInitializer extends GameInitializer {
 
         $this->noJobCase($table);
     }
-    
+
     private function resarcherJobCase(PlayerTable $table) {
         $job = $this->cardManager->findBy(
                 ["type" => CardType::JOB_RESEARCHER], 1
@@ -93,7 +93,7 @@ class GrandPrixTestInitializer extends GameInitializer {
 
         $this->noJobCase($table);
     }
-    
+
     private function journalistJobCase(PlayerTable $table) {
         $job = $this->cardManager->findBy(
                 ["type" => CardType::JOB_JOURNALIST], 1
@@ -104,5 +104,4 @@ class GrandPrixTestInitializer extends GameInitializer {
 
         $this->noJobCase($table);
     }
-
 }

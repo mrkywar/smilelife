@@ -2,12 +2,12 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Dismissal;
-use SmileLife\Card\Category\Job\Job\Designer;
-use SmileLife\Card\Category\Job\Official\Teacher\FrenchTeacher;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
-use SmileLife\Card\Category\Wage\WageLevel1;
+use SmileLife\Card\Attack\Dismissal;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Designer;
+use SmileLife\Card\Job\Official\Teacher\FrenchTeacher;
+use SmileLife\Card\Studies\StudiesLevel1;
+use SmileLife\Card\Wage\WageLevel1;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -68,7 +68,7 @@ class DismissalV2TestInitializer extends TestGameInitializer {
             $wage->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($table->getId())
                     ->setIsUsed(($j < 2));
-            
+
             $forcedCards[] = $wage;
         }
 //
@@ -79,12 +79,12 @@ class DismissalV2TestInitializer extends TestGameInitializer {
 
     private function officialJobCase(PlayerTable $table) {
         $forcedCards = [];
-        
+
         $forcedJob = new FrenchTeacher();
         $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
-         $forcedCards[] = $forcedJob;
+
+        $forcedCards[] = $forcedJob;
         for ($i = 0; $i < $forcedJob->getRequiredStudies(); $i++) {
             $studie = new StudiesLevel1();
             $studie->setLocation(CardLocation::PLAYER_BOARD)
@@ -96,7 +96,7 @@ class DismissalV2TestInitializer extends TestGameInitializer {
             $wage->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($table->getId())
                     ->setIsUsed(($j > 2));
-            
+
             $forcedCards[] = $wage;
         }
 
@@ -104,5 +104,4 @@ class DismissalV2TestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

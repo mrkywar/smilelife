@@ -2,9 +2,9 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Job\Journalist;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Journalist;
+use SmileLife\Card\Studies\StudiesLevel1;
 
 /**
  * Description of JournalistTestInitializer
@@ -41,5 +41,4 @@ class JournalistTestInitializer extends TestGameInitializer {
         $case1Table = $oTables[array_keys($oTables)[$i]];
         return $case1Table->getId();
     }
-
 }

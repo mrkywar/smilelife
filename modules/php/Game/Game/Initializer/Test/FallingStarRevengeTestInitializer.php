@@ -2,15 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Job\Interim\Stripteaser;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Journalist;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
+use SmileLife\Card\Attack\Accident;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Special\Revenge;
+use SmileLife\Card\Special\ShootingStar;
 
 /**
  * Description of FallingStarRevengeTestInitializer
@@ -24,18 +19,18 @@ class FallingStarRevengeTestInitializer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        $revenge = new \SmileLife\Card\Category\Special\Revenge();
+        $revenge = new Revenge();
         $revenge->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(1);
 
         $forcedCards = [$revenge];
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Special\ShootingStar();
+            $card = new ShootingStar();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
 
-            $attack = new \SmileLife\Card\Category\Attack\Accident();
+            $attack = new Accident();
             $attack->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($oTable->getId())
                     ->setIsUsed(true)

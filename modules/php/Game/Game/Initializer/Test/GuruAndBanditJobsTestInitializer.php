@@ -2,12 +2,12 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Job\Guru;
-use SmileLife\Card\Category\Job\Official\Policeman;
-use SmileLife\Card\Category\Special\JobBoost;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Card\Job\Job\Guru;
+use SmileLife\Card\Job\Official\Policeman;
+use SmileLife\Card\Special\JobBoost;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -46,7 +46,7 @@ class GuruAndBanditJobsTestInitializer extends TestGameInitializer {
         $case1Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->jobInGameCase($case1Table);
-        
+
         //-- case3 : Policman in game (not playable) (optionnal)
         $i = random_int(0, count($oTables) - 1);
         $case2Table = $oTables[array_keys($oTables)[$i]];
@@ -69,15 +69,14 @@ class GuruAndBanditJobsTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-    
+
     private function policamInGameCase(PlayerTable $table) {
         $policeman = new Policeman();
         $policeman->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
         $this->cardManager->add([$policeman]);
-        
+
         $this->playWaitingCards($table);
     }
-
 }

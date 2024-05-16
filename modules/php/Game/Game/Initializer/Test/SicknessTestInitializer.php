@@ -2,11 +2,11 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Sickness;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Doctor;
-use SmileLife\Card\Category\Love\Flirt\Bar;
+use SmileLife\Card\Attack\Sickness;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\Doctor;
+use SmileLife\Card\Love\Flirt\Bar;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -57,7 +57,7 @@ class SicknessTestInitializer extends TestGameInitializer {
         unset($oTables[$i]);
         $this->immunejobCase($case5Table);
 
-        return $case4Table->getId(); 
+        return $case4Table->getId();
     }
 
     private function doublonCase(PlayerTable $table) {
@@ -86,16 +86,16 @@ class SicknessTestInitializer extends TestGameInitializer {
         $forcedCard = new Astronaut();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $flirt = new Bar();
         $flirt->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $this->cardManager->add([$forcedCard,$flirt]);
+        $this->cardManager->add([$forcedCard, $flirt]);
 
         $this->playWaitingCards($table);
     }
-    
+
     private function immunejobCase(PlayerTable $table) {
         $forcedCard = new Doctor();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
@@ -105,5 +105,4 @@ class SicknessTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

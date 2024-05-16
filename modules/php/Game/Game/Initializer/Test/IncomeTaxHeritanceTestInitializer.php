@@ -2,10 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\IncomeTax;
-use SmileLife\Card\Category\Special\Inheritance;
-use SmileLife\Card\Category\Wage\WageLevel1;
+use SmileLife\Card\Attack\IncomeTax;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Inheritance;
+use SmileLife\Card\Wage\WageLevel1;
 
 /**
  * Description of IncomeTaxHeritanceTestInitializer

@@ -2,11 +2,11 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Dismissal;
-use SmileLife\Card\Category\Attack\GradeRepetition;
-use SmileLife\Card\Category\Job\Job\Medium;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
+use SmileLife\Card\Attack\Dismissal;
+use SmileLife\Card\Attack\GradeRepetition;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Medium;
+use SmileLife\Card\Studies\StudiesLevel1;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -139,5 +139,4 @@ class GradeRepetitionTestInitializer extends TestGameInitializer {
         $this->cardManager->add($forcedCard);
         $this->playWaitingCards($table);
     }
-
 }

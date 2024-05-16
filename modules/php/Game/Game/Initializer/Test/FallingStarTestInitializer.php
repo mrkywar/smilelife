@@ -2,15 +2,9 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Job\Interim\Stripteaser;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Journalist;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Special\ShootingStar;
 
 /**
  * Description of FallingStarTestInitializer
@@ -28,7 +22,7 @@ class FallingStarTestInitializer extends TestGameInitializer {
 
         $forcedCards = [];
         foreach ($oTables as $oTable) {
-            $card = new \SmileLife\Card\Category\Special\ShootingStar();
+            $card = new ShootingStar();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
@@ -36,12 +30,10 @@ class FallingStarTestInitializer extends TestGameInitializer {
         $this->cardManager->add($forcedCards);
 
         reset($oTables);
-        
+
         $i = random_int(0, count($oTables) - 1);
         $case1Table = $oTables[array_keys($oTables)[$i]];
-        
+
         return $case1Table->getId();
     }
-
- 
 }

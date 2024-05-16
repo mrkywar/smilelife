@@ -2,10 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Jail;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Attack\Jail;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Card\Job\Official\Teacher\EnglishTeacher;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -37,13 +37,13 @@ class JailTestInitializer extends TestGameInitializer {
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->classicjobCase($case2Table);
-        
+
         //-- case3 : Bandit Job (playable)
         $i = random_int(0, count($oTables) - 1);
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->banditjobCase($case3Table);
-        
+
         return $case2Table->getId();
     }
 
@@ -56,7 +56,7 @@ class JailTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-    
+
     private function banditjobCase(PlayerTable $table) {
         $forcedCard = new Bandit();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
@@ -66,5 +66,4 @@ class JailTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

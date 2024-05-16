@@ -3,9 +3,9 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
-use SmileLife\Card\Category\Studies\StudiesLevel2;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Studies\StudiesLevel1;
+use SmileLife\Card\Studies\StudiesLevel2;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
@@ -20,14 +20,14 @@ class StudieTestInitializer extends GameInitializer {
         parent::init($players, $options);
 
         $oTables = $this->playerTableManager->findBy();
-        
+
         $forcedCards = [];
         foreach ($oTables as $oTable) {
             $card = new StudiesLevel1();
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
-            
+
             $card2 = new StudiesLevel2();
             $card2->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
@@ -247,5 +247,4 @@ class StudieTestInitializer extends GameInitializer {
 
         $this->addStudiesInHand($table);
     }
-
 }

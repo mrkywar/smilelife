@@ -2,14 +2,14 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Divorce;
-use SmileLife\Card\Category\Child\Hermione;
-use SmileLife\Card\Category\Child\Rocky;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Lawyer;
-use SmileLife\Card\Category\Love\Adultery;
-use SmileLife\Card\Category\Love\Marriage\Fourqueux;
+use SmileLife\Card\Attack\Divorce;
+use SmileLife\Card\Child\Hermione;
+use SmileLife\Card\Child\Rocky;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\Lawyer;
+use SmileLife\Card\Love\Adultery;
+use SmileLife\Card\Love\Marriage\Fourqueux;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -116,5 +116,4 @@ class DivorceTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

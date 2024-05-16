@@ -3,11 +3,11 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Love\Flirt\Bar;
-use SmileLife\Card\Category\Love\Flirt\Theater;
-use SmileLife\Card\Category\Love\Marriage\BougMadame;
-use SmileLife\Card\Category\Love\Marriage\Fourqueux;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Love\Flirt\Bar;
+use SmileLife\Card\Love\Flirt\Theater;
+use SmileLife\Card\Love\Marriage\BougMadame;
+use SmileLife\Card\Love\Marriage\Fourqueux;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
@@ -39,7 +39,7 @@ class MarriageTestsInitializer extends GameInitializer {
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->fiveFlirtCase($case3Table);
-        
+
         //-- Case 4 (10 FLirt)
         $i = random_int(0, count($oTables) - 1);
         $case4Table = $oTables[array_keys($oTables)[$i]];
@@ -103,7 +103,6 @@ class MarriageTestsInitializer extends GameInitializer {
         $this->cardManager->add($forcedMarriage);
     }
 
-    
     private function tenFlirtCase(PlayerTable $table) {
         $nfilrts = [];
         for ($i = 0; $i < 10; $i++) {

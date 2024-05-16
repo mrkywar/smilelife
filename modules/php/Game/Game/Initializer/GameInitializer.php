@@ -82,11 +82,8 @@ class GameInitializer {
             $scoreModel = $this->scoreCalculator->compute($table);
             $scores[$player->getId()] = $scoreModel->getScore();
         }
-        
+
         arsort($scores);
         return array_key_first($scores);
-
-        
     }
-
 }

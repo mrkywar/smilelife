@@ -2,9 +2,9 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Accident;
-use SmileLife\Card\Category\Special\Revenge;
+use SmileLife\Card\Attack\Accident;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Revenge;
 
 /**
  * Description of RevengeTestInitializer
@@ -44,5 +44,4 @@ class RevengeTestInitializer extends TestGameInitializer {
 
         return $case1Table->getId();
     }
-
 }

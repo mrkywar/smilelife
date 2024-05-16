@@ -2,15 +2,15 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Interim\Stripteaser;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Job\Guru;
-use SmileLife\Card\Category\Job\Official\Policeman;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Interim\Stripteaser;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Card\Job\Job\Guru;
+use SmileLife\Card\Job\Official\Policeman;
+use SmileLife\Card\Special\JobBoost;
+use SmileLife\Card\Studies\StudiesLevel1;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -47,7 +47,7 @@ class PolicemanTestInitializer extends TestGameInitializer {
     }
 
     private function applyCase(&$oTables, $case) {
-        
+
         switch ($case) {
             case 1:
                 //-- case1 : Job in game (not playable)
@@ -122,7 +122,7 @@ class PolicemanTestInitializer extends TestGameInitializer {
                 $this->BanditCase($opponentTable);
 
                 return $case8Table->getId();
-            
+
             default:
                 die("Unsupported Case $case");
         }

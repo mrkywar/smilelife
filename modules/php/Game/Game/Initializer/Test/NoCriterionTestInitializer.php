@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Special\Troc;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Troc;
 
 /**
  * Description of NoCriterionTestInitializer
@@ -33,5 +33,4 @@ class NoCriterionTestInitializer extends TestGameInitializer {
 
         return $case1Table->getId();
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Special\Tsunami;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Tsunami;
 
 /**
  * Description of TsunamiTestInitializer
@@ -30,9 +30,7 @@ class TsunamiTestInitializer extends TestGameInitializer {
 
         $i = random_int(0, count($oTables) - 1);
         $case2Table = $oTables[array_keys($oTables)[$i]];
-       
-        return $case2Table->getId(); 
+
+        return $case2Table->getId();
     }
-
-
 }

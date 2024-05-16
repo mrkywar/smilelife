@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Special\Rainbow;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\Rainbow;
 
 /**
  * Description of RainbowTestInitializer

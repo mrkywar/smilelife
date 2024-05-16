@@ -2,14 +2,14 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\IncomeTax;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Job\Mechanic;
-use SmileLife\Card\Category\Wage\WageLevel1;
-use SmileLife\Card\Category\Wage\WageLevel2;
-use SmileLife\Card\Category\Wage\WageLevel3;
-use SmileLife\Card\Category\Wage\WageLevel4;
+use SmileLife\Card\Attack\IncomeTax;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Card\Job\Job\Mechanic;
+use SmileLife\Card\Wage\WageLevel1;
+use SmileLife\Card\Wage\WageLevel2;
+use SmileLife\Card\Wage\WageLevel3;
+use SmileLife\Card\Wage\WageLevel4;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -48,18 +48,17 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         unset($oTables[$i]);
         $this->classicJobCase($case3Table);
 
-       //-- case4 : One Wage + immune Job (not playable)
+        //-- case4 : One Wage + immune Job (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case4Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->immuneJobCase($case4Table);
-        
+
         //-- case5 : One Flipped Wage (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->flippedWageCase($case5Table);
-        
 
         return $case5Table->getId();
     }
@@ -71,22 +70,21 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $forcedCard2 = new WageLevel2();
         $forcedCard2->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        $this->cardManager->add([$forcedCard,$forcedCard2]);
+        $this->cardManager->add([$forcedCard, $forcedCard2]);
 
         $this->playWaitingCards($table);
     }
-    
+
     private function classicJobCase(PlayerTable $table) {
         $forcedCard = new WageLevel2();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
-         $forcedJob= new Mechanic();
+
+        $forcedJob = new Mechanic();
         $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
-        
-        $this->cardManager->add([$forcedCard,$forcedJob]);
+
+        $this->cardManager->add([$forcedCard, $forcedJob]);
 
         $this->playWaitingCards($table);
     }
@@ -95,17 +93,16 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $forcedCard = new WageLevel3();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
-         $forcedJob= new Bandit();
+
+        $forcedJob = new Bandit();
         $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
-        
-        $this->cardManager->add([$forcedCard,$forcedJob]);
+
+        $this->cardManager->add([$forcedCard, $forcedJob]);
 
         $this->playWaitingCards($table);
     }
-    
+
     private function flippedWageCase(PlayerTable $table) {
         $forcedCard = new WageLevel4();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
@@ -119,8 +116,8 @@ class IncomeTaxTestInitializer extends TestGameInitializer {
         $forcedCard2->setLocation(CardLocation::PLAYER_BOARD)
                 ->setIsFlipped(true)
                 ->setLocationArg($table->getId());
-        
-        $this->cardManager->add([$forcedCard,$forcedCard2,$forcedCard3]);
+
+        $this->cardManager->add([$forcedCard, $forcedCard2, $forcedCard3]);
 
         $this->playWaitingCards($table);
     }

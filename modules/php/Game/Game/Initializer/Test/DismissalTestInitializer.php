@@ -2,10 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Dismissal;
-use SmileLife\Card\Category\Job\Job\Designer;
-use SmileLife\Card\Category\Job\Official\Teacher\FrenchTeacher;
+use SmileLife\Card\Attack\Dismissal;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Designer;
+use SmileLife\Card\Job\Official\Teacher\FrenchTeacher;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -44,7 +44,6 @@ class DismissalTestInitializer extends TestGameInitializer {
         unset($oTables[$i]);
         $this->officialJobCase($case3Table);
 
-
         return $case3Table->getId();
     }
 
@@ -57,16 +56,14 @@ class DismissalTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-    
+
     private function officialJobCase(PlayerTable $table) {
         $forcedJob = new FrenchTeacher();
         $forcedJob->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
         $this->cardManager->add($forcedJob);
-        
-        $this->playWaitingCards($table);
-        
-    }
 
+        $this->playWaitingCards($table);
+    }
 }

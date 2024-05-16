@@ -38,5 +38,4 @@ class TestGameInitializer extends GameInitializer {
 
         $this->playerTableManager->updateTable($table);
     }
-
 }

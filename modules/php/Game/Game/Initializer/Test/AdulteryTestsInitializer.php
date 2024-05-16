@@ -3,8 +3,9 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Love\Adultery;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Love\Adultery;
+use SmileLife\Card\Love\Marriage\Fourqueux;
 use SmileLife\Game\Initializer\GameInitializer;
 use SmileLife\Table\PlayerTable;
 
@@ -47,7 +48,7 @@ class AdulteryTestsInitializer extends GameInitializer {
         $forcedAdultery->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $forcedMarriage = new \SmileLife\Card\Category\Love\Marriage\Fourqueux();
+        $forcedMarriage = new Fourqueux();
         $forcedMarriage->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
@@ -92,5 +93,4 @@ class AdulteryTestsInitializer extends GameInitializer {
                 ->setLocationArg($table->getId());
         $this->cardManager->add($forcedAdultery2);
     }
-
 }

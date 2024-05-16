@@ -2,11 +2,11 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\HumanAttack;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
-use SmileLife\Card\Category\Reward\FreedomMedal;
+use SmileLife\Card\Attack\HumanAttack;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Card\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Reward\FreedomMedal;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -38,7 +38,7 @@ class FreedomMedalTestInitializer extends TestGameInitializer {
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->attentatPlayedCase($case2Table);
-        
+
         //-- case3 : Classic job (playable)
         $i = random_int(0, count($oTables) - 1);
         $case3Table = $oTables[array_keys($oTables)[$i]];
@@ -83,5 +83,4 @@ class FreedomMedalTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

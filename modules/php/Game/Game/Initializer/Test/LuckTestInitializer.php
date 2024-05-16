@@ -2,9 +2,9 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Special\Luck;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Special\Luck;
 
 /**
  * Description of ChanceTestInitializer

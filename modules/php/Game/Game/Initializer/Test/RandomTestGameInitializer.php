@@ -56,5 +56,4 @@ class RandomTestGameInitializer extends TestGameInitializer {
 
         return $oPlayers[0]->getId();
     }
-
 }

@@ -2,12 +2,17 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Special\Casino;
-use SmileLife\Card\Category\Wage\WageLevel1;
-use SmileLife\Card\Category\Wage\WageLevel2;
+use SmileLife\Card\Acquisition\Travel\Cairo;
+use SmileLife\Card\Acquisition\Travel\London;
+use SmileLife\Card\Acquisition\Travel\NewYork;
+use SmileLife\Card\Acquisition\Travel\RioDeJaneiro;
+use SmileLife\Card\Acquisition\Travel\Sydney;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\AirlinePilot;
+use SmileLife\Card\Wage\WageLevel1;
+use SmileLife\Card\Wage\WageLevel2;
+use SmileLife\Card\Wage\WageLevel3;
+use SmileLife\Card\Wage\WageLevel4;
 
 /**
  * Description of TravelTestInitializer
@@ -22,11 +27,11 @@ class TravelTestInitializer extends TestGameInitializer {
         $oTables = $this->playerTableManager->findBy();
 
         $travels = [
-            new \SmileLife\Card\Category\Acquisition\Travel\Cairo(),
-            new \SmileLife\Card\Category\Acquisition\Travel\London(),
-            new \SmileLife\Card\Category\Acquisition\Travel\NewYork(),
-            new \SmileLife\Card\Category\Acquisition\Travel\RioDeJaneiro(),
-            new \SmileLife\Card\Category\Acquisition\Travel\Sydney()
+            new Cairo(),
+            new London(),
+            new NewYork(),
+            new RioDeJaneiro(),
+            new Sydney()
         ];
 
         foreach ($oTables as $oTable) {
@@ -35,40 +40,40 @@ class TravelTestInitializer extends TestGameInitializer {
                 $card->setLocation(CardLocation::PLAYER_HAND)
                         ->setLocationArg($oTable->getId());
 
-                $wage = new \SmileLife\Card\Category\Wage\WageLevel3();
+                $wage = new WageLevel3();
                 $wage->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $wage2 = new \SmileLife\Card\Category\Wage\WageLevel2();
+                $wage2 = new WageLevel2();
                 $wage2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
-                $wage2_2 = new \SmileLife\Card\Category\Wage\WageLevel2();
+                $wage2_2 = new WageLevel2();
                 $wage2_2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $wage1 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1 = new WageLevel1();
                 $wage1->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
-                $wage1_2 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1_2 = new WageLevel1();
                 $wage1_2->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $wage1_3 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1_3 = new WageLevel1();
                 $wage1_3->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $wage1_4 = new \SmileLife\Card\Category\Wage\WageLevel1();
+                $wage1_4 = new WageLevel1();
                 $wage1_4->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
 
-                $wage4 = new \SmileLife\Card\Category\Wage\WageLevel4();
+                $wage4 = new WageLevel4();
                 $wage4->setLocation(CardLocation::PLAYER_BOARD)
                         ->setLocationArg($oTable->getId())
                         ->setIsFlipped($oTable->getId() % 2 >= 1);
@@ -85,7 +90,7 @@ class TravelTestInitializer extends TestGameInitializer {
 
         $i = random_int(0, count($oTables) - 1);
         $table = $oTables[array_keys($oTables)[$i]];
-        $jobPilote = new \SmileLife\Card\Category\Job\Job\AirlinePilot();
+        $jobPilote = new AirlinePilot();
         $jobPilote->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 

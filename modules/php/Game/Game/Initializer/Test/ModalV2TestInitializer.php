@@ -2,15 +2,15 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Dismissal;
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Job\Interim\Stripteaser;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\HeadOfSales;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
+use SmileLife\Card\Attack\Dismissal;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Interim\Barman;
+use SmileLife\Card\Job\Interim\Stripteaser;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\HeadOfSales;
+use SmileLife\Card\Special\JobBoost;
+use SmileLife\Card\Studies\StudiesLevel1;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -33,12 +33,12 @@ class ModalV2TestInitializer extends TestGameInitializer {
             $card->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card;
-            
+
             $card2 = new HeadOfSales();
             $card2->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
             $forcedCards[] = $card2;
-            
+
             $card3 = new Dismissal();
             $card3->setLocation(CardLocation::PLAYER_HAND)
                     ->setLocationArg($oTable->getId());
@@ -72,8 +72,8 @@ class ModalV2TestInitializer extends TestGameInitializer {
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->usedJobBoostCase($case5Table);
-        
-       //-- case6 : Job (interim) in game (not playable but can dismiss & play)
+
+        //-- case6 : Job (interim) in game (not playable but can dismiss & play)
         $i = random_int(0, count($oTables) - 1);
         $case6Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
@@ -86,7 +86,7 @@ class ModalV2TestInitializer extends TestGameInitializer {
         $forcedCard = new Barman();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $jobBoost = new JobBoost();
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
@@ -118,7 +118,7 @@ class ModalV2TestInitializer extends TestGameInitializer {
                 ->setLocationArg($table->getId());
 
 //        $this->enouthStudieCase($table, new Surgeon());   
-                
+
         $this->cardManager->add([$jobBoost]);
 
         $this->playWaitingCards($table);

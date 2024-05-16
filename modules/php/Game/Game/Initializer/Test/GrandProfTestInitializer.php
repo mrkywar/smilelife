@@ -2,11 +2,11 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Job\AirlinePilot;
-use SmileLife\Card\Category\Job\Job\Journalist;
-use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
-use SmileLife\Card\Category\Job\Official\Teacher\GrandProfessor;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\AirlinePilot;
+use SmileLife\Card\Job\Job\Journalist;
+use SmileLife\Card\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Job\Official\Teacher\GrandProfessor;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -44,7 +44,7 @@ class GrandProfTestInitializer extends TestGameInitializer {
         $case2Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->classicJobCase($case2Table);
-        
+
         //-- case3 : Teacher Job (playable)
         $i = random_int(0, count($oTables) - 1);
         $case3Table = $oTables[array_keys($oTables)[$i]];
@@ -58,20 +58,19 @@ class GrandProfTestInitializer extends TestGameInitializer {
         $forcedCard = new Journalist();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $this->cardManager->add([$forcedCard]);
 
         $this->playWaitingCards($table);
     }
-    
+
     private function teatcherJobCase(PlayerTable $table) {
         $forcedCard = new EnglishTeacher();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $this->cardManager->add([$forcedCard]);
 
         $this->playWaitingCards($table);
     }
-
 }

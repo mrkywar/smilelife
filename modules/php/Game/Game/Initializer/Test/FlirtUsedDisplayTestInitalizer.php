@@ -2,16 +2,9 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Love\Flirt\Bar;
-use SmileLife\Card\Category\Love\Flirt\Camping;
-use SmileLife\Card\Category\Love\Flirt\Cinema;
-use SmileLife\Card\Category\Love\Flirt\Hotel;
-use SmileLife\Card\Category\Love\Flirt\Restaurant;
-use SmileLife\Card\Category\Love\Flirt\Web;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Table\PlayerTable;
+use SmileLife\Card\Love\Flirt\Camping;
+use SmileLife\Card\Love\Flirt\Hotel;
 
 /**
  * Description of FlirtUsedDisplayTestInitalizer

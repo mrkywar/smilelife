@@ -16,7 +16,7 @@ class InheritanceTestInitializer extends TestGameInitializer {
         parent::init($players, $options);
 
         $oTables = $this->playerTableManager->findBy();
-        
+
         $this->cardManager->getSerializer()->setIsForcedArray(false);
         $card = $this->cardManager->findBy(['type' => CardType::CARD_TYPE_INHERITANCE], 1);
         $this->cardManager->getSerializer()->setIsForcedArray(true);
@@ -33,6 +33,4 @@ class InheritanceTestInitializer extends TestGameInitializer {
 
         return $case1Table->getId();
     }
-
-    
 }

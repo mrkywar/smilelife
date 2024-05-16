@@ -2,15 +2,15 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Interim\Barman;
-use SmileLife\Card\Category\Job\Interim\Stripteaser;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\PizzaMaker;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Special\ShootingStar;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Interim\Barman;
+use SmileLife\Card\Job\Interim\Stripteaser;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\PizzaMaker;
+use SmileLife\Card\Special\JobBoost;
+use SmileLife\Card\Special\ShootingStar;
+use SmileLife\Card\Studies\StudiesLevel1;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -50,7 +50,7 @@ class AstronautJobTestInitializerV2 extends TestGameInitializer {
         $otherJob->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(1);
         $forcedCards[] = $otherJob;
-        
+
         $this->cardManager->add($forcedCards);
 
         reset($oTables);

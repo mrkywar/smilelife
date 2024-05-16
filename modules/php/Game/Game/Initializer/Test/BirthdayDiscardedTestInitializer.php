@@ -3,8 +3,8 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Wage\WageLevel3;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Wage\WageLevel3;
 
 /**
  * Description of BirthdayDiscardedTestInitializer

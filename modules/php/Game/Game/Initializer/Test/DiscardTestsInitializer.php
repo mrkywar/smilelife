@@ -2,11 +2,11 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\BurnOut;
-use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
-use SmileLife\Card\Category\Love\Flirt\Hotel;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
+use SmileLife\Card\Attack\BurnOut;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Love\Flirt\Hotel;
+use SmileLife\Card\Studies\StudiesLevel1;
 use SmileLife\Game\Initializer\GameInitializer;
 
 /**
@@ -21,20 +21,19 @@ class DiscardTestsInitializer extends GameInitializer {
         $job = new EnglishTeacher();
         $job->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(1);
-        
+
         $burnOut = new BurnOut();
         $burnOut->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(2);
-        
+
         $studie = new StudiesLevel1();
         $studie->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(3);
-        
+
         $flirt = new Hotel();
         $flirt->setLocation(CardLocation::DISCARD)
                 ->setLocationArg(4);
-        
-        
+
 //        $forcedDiscard = [$job, $burnOut, $flirt, $studie];
 //        $this->cardManager->add($forcedDiscard);
 
@@ -44,5 +43,4 @@ class DiscardTestsInitializer extends GameInitializer {
 
         return $case1Table->getId();
     }
-
 }

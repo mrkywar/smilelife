@@ -2,14 +2,14 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Interim\Stripteaser;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Job\Researcher;
-use SmileLife\Card\Category\Job\Job\Surgeon;
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Studies\StudiesLevel1;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Interim\Stripteaser;
+use SmileLife\Card\Job\Job;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Job\Researcher;
+use SmileLife\Card\Job\Job\Surgeon;
+use SmileLife\Card\Special\JobBoost;
+use SmileLife\Card\Studies\StudiesLevel1;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -61,8 +61,8 @@ class SurgeonJobTestInitializer extends TestGameInitializer {
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->usedJobBoostCase($case5Table);
-        
-       //-- case6 : Job (interim) in game (not playable but can dismiss & play)
+
+        //-- case6 : Job (interim) in game (not playable but can dismiss & play)
         $i = random_int(0, count($oTables) - 1);
         $case6Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
@@ -75,7 +75,7 @@ class SurgeonJobTestInitializer extends TestGameInitializer {
         $forcedCard = new Astronaut();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $jobBoost = new JobBoost();
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
@@ -106,8 +106,8 @@ class SurgeonJobTestInitializer extends TestGameInitializer {
         $jobBoost->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
 
-        $this->enouthStudieCase($table, new Surgeon());   
-                
+        $this->enouthStudieCase($table, new Surgeon());
+
         $this->cardManager->add([$jobBoost]);
 
         $this->playWaitingCards($table);

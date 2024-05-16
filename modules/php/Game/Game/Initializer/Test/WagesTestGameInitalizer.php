@@ -3,11 +3,11 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Wage\WageLevel1;
-use SmileLife\Card\Category\Wage\WageLevel2;
-use SmileLife\Card\Category\Wage\WageLevel3;
-use SmileLife\Card\Category\Wage\WageLevel4;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Wage\WageLevel1;
+use SmileLife\Card\Wage\WageLevel2;
+use SmileLife\Card\Wage\WageLevel3;
+use SmileLife\Card\Wage\WageLevel4;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -22,7 +22,6 @@ class WagesTestGameInitalizer extends TestGameInitializer {
 
         $oTables = $this->playerTableManager->findBy();
 
-        
         $forcedCards = [];
         foreach ($oTables as $oTable) {
             $card1 = new WageLevel1();
@@ -43,11 +42,7 @@ class WagesTestGameInitalizer extends TestGameInitializer {
             $forcedCards[] = $card4;
         }
         $this->cardManager->add($forcedCards);
-        
-        
-        
-        
-        
+
         //-- Case 1 No Job (not playable)(nothing to do)
         //-- Case 2 Bandit (playable)
         $i = random_int(0, count($oTables) - 1);
@@ -66,7 +61,7 @@ class WagesTestGameInitalizer extends TestGameInitializer {
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->searcherCase($case5Table);
-        
+
         //-- Case 6 Writer & wage > 1 ( Playable)
         $i = random_int(0, count($oTables) - 1);
         $case6Table = $oTables[array_keys($oTables)[$i]];
@@ -75,8 +70,6 @@ class WagesTestGameInitalizer extends TestGameInitializer {
 
         return $case3Table->getId();
     }
-
-
 
     private function normalCase(PlayerTable $table) {
         $bandit = $this->cardManager->findBy(
@@ -105,21 +98,20 @@ class WagesTestGameInitalizer extends TestGameInitializer {
         $table->addCard($job);
         $this->playerTableManager->updateTable($table);
     }
-    
+
     private function writerCase(PlayerTable $table) {
         $job = $this->cardManager->findBy(
                 ["type" => CardType::JOB_WRITER], 1
         );
         $this->cardManager->playCard($table->getPlayer(), $job);
         $table->addCard($job);
-        
+
         $grandPrix = $this->cardManager->findBy(
                 ["type" => CardType::REWARD_NATIONAL_MEDAL], 1
         );
         $this->cardManager->playCard($table->getPlayer(), $grandPrix);
         $table->addCard($grandPrix);
-        
+
         $this->playerTableManager->updateTable($table);
     }
-
 }

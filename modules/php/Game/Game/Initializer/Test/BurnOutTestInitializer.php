@@ -2,11 +2,11 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\BurnOut;
-use SmileLife\Card\Category\Job\Job\Astronaut;
-use SmileLife\Card\Category\Job\Official\Military;
-use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Attack\BurnOut;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Astronaut;
+use SmileLife\Card\Job\Official\Military;
+use SmileLife\Card\Job\Official\Teacher\EnglishTeacher;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -58,7 +58,7 @@ class BurnOutTestInitializer extends TestGameInitializer {
         $forcedCard = new EnglishTeacher();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $this->cardManager->add($forcedCard);
 
         $this->playWaitingCards($table);
@@ -93,5 +93,4 @@ class BurnOutTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

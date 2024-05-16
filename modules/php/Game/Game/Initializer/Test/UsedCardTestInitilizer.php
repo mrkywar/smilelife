@@ -2,14 +2,14 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\BurnOut;
-use SmileLife\Card\Category\Attack\GradeRepetition;
-use SmileLife\Card\Category\Attack\IncomeTax;
-use SmileLife\Card\Category\Attack\Sickness;
-use SmileLife\Card\Category\Love\Flirt\Camping;
-use SmileLife\Card\Category\Love\Flirt\Hotel;
-use SmileLife\Card\Category\Love\Flirt\Web;
+use SmileLife\Card\Attack\BurnOut;
+use SmileLife\Card\Attack\GradeRepetition;
+use SmileLife\Card\Attack\IncomeTax;
+use SmileLife\Card\Attack\Sickness;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Love\Flirt\Camping;
+use SmileLife\Card\Love\Flirt\Hotel;
+use SmileLife\Card\Love\Flirt\Web;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -43,14 +43,14 @@ class UsedCardTestInitilizer extends TestGameInitializer {
         $case3Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->classicFlirtCase($case3Table);
-        
+
         //-- case4 : Used Flirt with child (display test)
         //--         + Tax used
         $i = random_int(0, count($oTables) - 1);
         $case4Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->otherChildFlirtCase($case4Table);
-        
+
         return $case1Table->getId();
     }
 
@@ -95,21 +95,20 @@ class UsedCardTestInitilizer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-    
+
     private function otherChildFlirtCase(PlayerTable $table) {
         $usedFlirt = new Camping();
         $usedFlirt->setIsUsed(true)
                 ->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $usedAttack = new IncomeTax();
         $usedAttack->setIsUsed(true)
                 ->setLocation(CardLocation::PLAYER_BOARD)
                 ->setLocationArg($table->getId());
-        
+
         $this->cardManager->add([$usedFlirt, $usedAttack]);
 
         $this->playWaitingCards($table);
     }
-
 }

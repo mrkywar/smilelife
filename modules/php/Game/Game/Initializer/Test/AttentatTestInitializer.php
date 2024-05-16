@@ -2,12 +2,12 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\HumanAttack;
-use SmileLife\Card\Category\Child\Diana;
-use SmileLife\Card\Category\Child\Hermione;
-use SmileLife\Card\Category\Child\Zelda;
-use SmileLife\Card\Category\Job\Official\Military;
+use SmileLife\Card\Attack\HumanAttack;
+use SmileLife\Card\Child\Diana;
+use SmileLife\Card\Child\Hermione;
+use SmileLife\Card\Child\Zelda;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Official\Military;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -111,5 +111,4 @@ class AttentatTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

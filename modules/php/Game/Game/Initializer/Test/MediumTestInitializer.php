@@ -2,8 +2,8 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Job\Job\Medium;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Medium;
 
 /**
  * Description of MediumTestInitializer
@@ -30,5 +30,4 @@ class MediumTestInitializer extends TestGameInitializer {
         $case1Table = $oTables[array_keys($oTables)[$i]];
         return $case1Table->getId();
     }
-
 }

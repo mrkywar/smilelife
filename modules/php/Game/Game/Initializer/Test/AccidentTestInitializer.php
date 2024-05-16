@@ -2,10 +2,10 @@
 
 namespace SmileLife\Game\Initializer\Test;
 
-use SmileLife\Card\Category\Attack\Accident;
-use SmileLife\Card\Category\Job\Job\Mechanic;
-use SmileLife\Card\Category\Job\Official\Teacher\EnglishTeacher;
+use SmileLife\Card\Attack\Accident;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Job\Job\Mechanic;
+use SmileLife\Card\Job\Official\Teacher\EnglishTeacher;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -49,14 +49,14 @@ class AccidentTestInitializer extends TestGameInitializer {
         $case4Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->classicjobCase($case4Table);
-        
+
         //-- case5 : immune job (not playable)
         $i = random_int(0, count($oTables) - 1);
         $case5Table = $oTables[array_keys($oTables)[$i]];
         unset($oTables[$i]);
         $this->immunejobCase($case5Table);
 
-        return $case2Table->getId(); 
+        return $case2Table->getId();
     }
 
     private function doublonCase(PlayerTable $table) {
@@ -90,7 +90,7 @@ class AccidentTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-    
+
     private function immunejobCase(PlayerTable $table) {
         $forcedCard = new Mechanic();
         $forcedCard->setLocation(CardLocation::PLAYER_BOARD)
@@ -100,5 +100,4 @@ class AccidentTestInitializer extends TestGameInitializer {
 
         $this->playWaitingCards($table);
     }
-
 }

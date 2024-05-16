@@ -3,8 +3,8 @@
 namespace SmileLife\Game\Initializer\Test;
 
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Special\ShootingStar;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Card\Special\ShootingStar;
 
 /**
  * Description of EndGameUniconTestInitializer
@@ -23,10 +23,10 @@ class EndGameUniconTestInitializer extends TestGameInitializer {
         $cards = $this->cardManager->findBy([
             'type' => [CardType::CARD_TYPE_RAINBOW, CardType::CARD_TYPE_SHOOTING_STAR, CardType::CARD_TYPE_PET_UNICORN]
         ]);
-        foreach ($cards as &$card){
+        foreach ($cards as &$card) {
             $card->setLocation(CardLocation::PLAYER_BOARD)
                     ->setLocationArg($unicornTable->getId());
-            if($card instanceof ShootingStar){
+            if ($card instanceof ShootingStar) {
                 $card->setPassTurn(2);
             }
         }
