@@ -3,15 +3,15 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Consequence\Category\Special\JobBoostUsedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobBoostReadyCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobStudiesCriterion;
+use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
+use SmileLife\Consequence\Special\JobBoostUsedConsequence;
+use SmileLife\Criterion\Card\Job\HaveJobBoostReadyCriterion;
+use SmileLife\Criterion\Card\Job\HaveJobCriterion;
+use SmileLife\Criterion\Card\Job\JobStudiesCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -44,15 +44,14 @@ class JobCriterionFactory extends CardPlayableCriterionFactory {
         $criteria = new CriterionGroup([
             $noJobCriterion,
             new CriterionGroup([
-                    $jobStudieCriterion,
-                    $pistonCriterion
-                ], CriterionGroup::OR_OPERATOR)
-            ], CriterionGroup::AND_OPERATOR);
+                $jobStudieCriterion,
+                $pistonCriterion
+                    ], CriterionGroup::OR_OPERATOR)
+                ], CriterionGroup::AND_OPERATOR);
 
         $criteria->addConsequence(new GenericCardPlayedConsequence($card, $table))
                 ->setErrorMessage(clienttranslate('You do not have enough study points to perform this job'));
 
         return $criteria;
     }
-
 }

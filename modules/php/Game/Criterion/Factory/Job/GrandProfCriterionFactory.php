@@ -3,13 +3,12 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Official\Teacher\Teacher;
-use SmileLife\Consequence\Category\Generic\DiscardConsequence;
-use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Job\Official\Teacher\Teacher;
+use SmileLife\Consequence\Generic\DiscardConsequence;
+use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
+use SmileLife\Criterion\Card\Job\JobTypeCriterion;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**

@@ -2,16 +2,16 @@
 
 namespace SmileLife\Criterion\Factory\Attack;
 
+use SmileLife\Card\Attack\BurnOut;
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Attack\BurnOut;
-use SmileLife\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Criterion\Attack\HaveDoublonAttackActiveCriterion;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
+use SmileLife\Consequence\Attack\AttackDestinationConsequence;
+use SmileLife\Consequence\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Criterion\Card\Attack\HaveDoublonAttackActiveCriterion;
+use SmileLife\Criterion\Card\Job\HaveJobCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

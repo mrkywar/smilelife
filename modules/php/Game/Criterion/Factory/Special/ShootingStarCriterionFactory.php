@@ -1,10 +1,11 @@
 <?php
+
 namespace SmileLife\Criterion\Factory\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\PlayFromDiscardCriterionFactory;
+use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\PlayFromDiscardCriterionFactory;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -22,7 +23,7 @@ class ShootingStarCriterionFactory extends PlayFromDiscardCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
 
         $criterion->addConsequence(new GenericCardPlayedConsequence($card, $table));

@@ -3,13 +3,11 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Official\Policeman;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Criterion\Factory\Job\JobCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Job\Official\Policeman;
+use SmileLife\Criterion\Card\Job\JobTypeCriterion;
+use SmileLife\Criterion\Card\PlayerTable\AllPlayerTablesCriterion;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

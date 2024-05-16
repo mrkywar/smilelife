@@ -3,14 +3,14 @@
 namespace SmileLife\Criterion\Factory\Child;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Child\ChildPlayedConsequence;
-use SmileLife\Consequence\Category\Love\FlirtUsedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\LoveCriterion\FlirtPlayedCriterion;
-use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
-use SmileLife\Card\Criterion\LoveCriterion\LastFlirtGenerateChildCiterion;
+use SmileLife\Consequence\Child\ChildPlayedConsequence;
+use SmileLife\Consequence\Love\FlirtUsedConsequence;
+use SmileLife\Criterion\Card\Love\FlirtPlayedCriterion;
+use SmileLife\Criterion\Card\Love\IsMarriedCriterion;
+use SmileLife\Criterion\Card\Love\LastFlirtGenerateChildCiterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -41,9 +41,9 @@ class ChildCriterionFactory extends CardPlayableCriterionFactory {
                 new CriterionGroup([
                     $haveFlirtCriterion,
                     $lastFlirtCriterion
-                ], CriterionGroup::AND_OPERATOR)
-            ], CriterionGroup::OR_OPERATOR)
-        ], CriterionGroup::AND_OPERATOR);
+                        ], CriterionGroup::AND_OPERATOR)
+                    ], CriterionGroup::OR_OPERATOR)
+                ], CriterionGroup::AND_OPERATOR);
 
         $criteria->setErrorMessage("You didn't have active Marriage or any flirt")
                 ->addConsequence(new ChildPlayedConsequence($card, $table));

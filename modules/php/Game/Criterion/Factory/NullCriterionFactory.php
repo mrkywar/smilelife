@@ -3,9 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+use SmileLife\Criterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

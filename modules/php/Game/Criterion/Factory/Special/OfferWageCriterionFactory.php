@@ -3,12 +3,11 @@
 namespace SmileLife\Criterion\Factory\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Wage\WageGiftConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\CardOfferableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\WageCriterion\IsUsedWageCriterion;
+use SmileLife\Consequence\Wage\WageGiftConsequence;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\CardOfferableCriterionFactory;
+use SmileLife\Criterion\InversedCriterion;
+use SmileLife\Criterion\Wage\IsUsedWageCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -26,11 +25,11 @@ class OfferWageCriterionFactory extends CardOfferableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = new InversedCriterion(new IsUsedWageCriterion($card));
         $criterion->setErrorMessage(clienttranslate("You must choose a unsued salary"))
                 ->addConsequence(new WageGiftConsequence($table, $card, $opponentTable));
- 
+
         return $criterion;
     }
 }

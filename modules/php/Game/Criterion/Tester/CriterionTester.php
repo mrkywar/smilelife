@@ -2,9 +2,8 @@
 
 namespace SmileLife\Criterion\Tester;
 
-use SmileLife\Card\Criterion\Criterion;
-use SmileLife\Card\Criterion\CriterionException;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Criterion\CriterionException;
+use SmileLife\Criterion\CriterionInterface;
 
 /**
  * Description of CriterionTester
@@ -65,5 +64,4 @@ class CriterionTester {
         $this->errorMessage = $errorMessage;
         return $this;
     }
-
 }

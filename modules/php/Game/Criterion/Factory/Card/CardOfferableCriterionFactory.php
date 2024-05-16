@@ -3,12 +3,11 @@
 namespace SmileLife\Criterion\Factory\Card;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CardOnPlayerTableCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
+use SmileLife\Criterion\Card\Generic\IsNotFlippedCardCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Generic\CardOnPlayerTableCriterion;
+use SmileLife\Criterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

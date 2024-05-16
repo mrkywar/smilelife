@@ -3,20 +3,20 @@
 namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Special\Inheritance;
-use SmileLife\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Consequence\Category\Attack\DiscardLastWageConsequence;
-use SmileLife\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\IsNotFlippedCardCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
-use SmileLife\Card\Criterion\WageCriterion\HaveUnusedWageCriterion;
 use SmileLife\Card\Effect\Category\IncomeTaxImuneEffect;
+use SmileLife\Card\Special\Inheritance;
+use SmileLife\Consequence\Attack\AttackDestinationConsequence;
+use SmileLife\Consequence\Attack\DiscardLastWageConsequence;
+use SmileLife\Consequence\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Criterion\Card\Generic\CardTypeCriterion;
+use SmileLife\Criterion\Card\Generic\IsNotFlippedCardCriterion;
+use SmileLife\Criterion\Card\Job\HaveJobCriterion;
+use SmileLife\Criterion\Card\Job\JobEffectCriteria;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
+use SmileLife\Criterion\Wage\HaveUnusedWageCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

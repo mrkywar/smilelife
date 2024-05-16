@@ -2,10 +2,6 @@
 
 namespace SmileLife\Criterion;
 
-use SmileLife\Card\Criterion\Criterion;
-use SmileLife\Card\Criterion\CriterionException;
-use SmileLife\Card\Criterion\CriterionInterface;
-
 /**
  * Description of CriterionGroup
  *
@@ -79,8 +75,8 @@ class CriterionGroup extends Criterion {
         }
         return $consequences;
     }
-    
-    public function getInvalidConsequences(): ?array  {
+
+    public function getInvalidConsequences(): ?array {
         $consequences = parent::getInvalidConsequences();
         foreach ($this->criteria as $criterion) {
             if (!$criterion->isValided()) {
@@ -90,11 +86,9 @@ class CriterionGroup extends Criterion {
         return $consequences;
     }
 
-    
-
     public function getErrorMessage() {
         foreach ($this->criteria as $criterion) {
-            if (null !== $criterion->getErrorMessage() && !$criterion->isValided() && ""!== $criterion->getErrorMessage()) {
+            if (null !== $criterion->getErrorMessage() && !$criterion->isValided() && "" !== $criterion->getErrorMessage()) {
 //                echo"<br/>";var_dump($criterion);echo"<br/>";
                 return $criterion->getErrorMessage();
             }

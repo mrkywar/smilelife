@@ -3,10 +3,10 @@
 namespace SmileLife\Criterion\Factory\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Consequence\Category\Special\TrocConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
+use SmileLife\Consequence\Special\TrocConsequence;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**

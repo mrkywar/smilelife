@@ -3,13 +3,13 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\Category\PlayFromDiscardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
+use SmileLife\Card\Job\Job;
+use SmileLife\Criterion\Card\Generic\CardTypeCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\PlayFromDiscardCriterionFactory;
+use SmileLife\Criterion\InversedCriterion;
+use SmileLife\Criterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -52,6 +52,6 @@ class AstronautCriterionFactory extends JobCriterionFactory {
         return new CriterionGroup([
             $powerCriteria,
             $complementaryCriterion
-        ], CriterionGroup::AND_OPERATOR);
+                ], CriterionGroup::AND_OPERATOR);
     }
 }

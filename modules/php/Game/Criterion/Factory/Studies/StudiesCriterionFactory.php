@@ -3,17 +3,17 @@
 namespace SmileLife\Criterion\Factory\Studies;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Studies\LimitlessStudieConsequence;
-use SmileLife\Consequence\Category\Studies\StudieLevelIncriseConsequence;
-use SmileLife\Consequence\Category\Studies\StudiePlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
-use SmileLife\Card\Criterion\StudiesCriterion\StudiesLevelCriterion;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
+use SmileLife\Consequence\Studies\LimitlessStudieConsequence;
+use SmileLife\Consequence\Studies\StudieLevelIncriseConsequence;
+use SmileLife\Consequence\Studies\StudiePlayedConsequence;
+use SmileLife\Criterion\Card\Job\HaveJobCriterion;
+use SmileLife\Criterion\Card\Job\JobEffectCriteria;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
+use SmileLife\Criterion\Studies\StudiesLevelCriterion;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 
@@ -44,7 +44,7 @@ class StudiesCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $limitlessCriterion = new JobEffectCriteria($table, LimitlessStudiesEffect::class);
         $limitlessCriterion->addConsequence(new LimitlessStudieConsequence($card, $table));
 

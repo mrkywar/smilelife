@@ -2,16 +2,15 @@
 
 namespace SmileLife\Criterion\Factory\Reward;
 
+use SmileLife\Card\Attack\HumanAttack;
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Attack\HumanAttack;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Consequence\Category\Reward\FreedomMedalPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CardOffsidedCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Consequence\Reward\FreedomMedalPlayedConsequence;
+use SmileLife\Criterion\Card\Job\JobTypeCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -34,7 +33,7 @@ class FreedomMedalCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         //-- case 1 : Not a bandit
         $fakeBandit = new Bandit();
         $banditCriterion = new InversedCriterion(new JobTypeCriterion($table, Bandit::class));
@@ -49,11 +48,9 @@ class FreedomMedalCriterionFactory extends CardPlayableCriterionFactory {
             $banditCriterion,
             $attentatCriterion
                 ], CriterionGroup::AND_OPERATOR);
-        
-        
+
         $criteria->addConsequence(new FreedomMedalPlayedConsequence($card, $table));
 
         return $criteria;
     }
-
 }

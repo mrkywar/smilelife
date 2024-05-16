@@ -3,16 +3,15 @@
 namespace SmileLife\Criterion\Factory\Wage;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Reward\NationalMedal;
-use SmileLife\Consequence\Category\Wage\WageLevelIncriseConsequence;
-use SmileLife\Consequence\Category\Wage\WagePlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\Factory\Category\Reward\NationalMedalCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Criterion\JobCriterion\WageCriterion;
-use SmileLife\Card\Criterion\PlayerTableCriterion\CardOnTableCriterion;
+use SmileLife\Card\Reward\NationalMedal;
+use SmileLife\Consequence\Wage\WageLevelIncriseConsequence;
+use SmileLife\Criterion\Card\Job\HaveJobCriterion;
+use SmileLife\Criterion\Card\Job\WageCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Reward\NationalMedalCriterionFactory;
+use SmileLife\Criterion\Generic\CardOnTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -30,7 +29,7 @@ class WageCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $jobCriterion = new HaveJobCriterion($table);
         $jobCriterion->setErrorMessage(clienttranslate('You must have a job to collect a salary'));
 
@@ -42,7 +41,7 @@ class WageCriterionFactory extends CardPlayableCriterionFactory {
         $nationalJobCriterion = $nationalJobFactory->create($table, $card, $opponentTable, $complementaryCards);
         $nationalJobCriterion->setErrorMessage(null); //-- we didn't want see any message in this case
         $nationalMedalCardCriterion = new CardOnTableCriterion($table, NationalMedal::class);
-        
+
         $criteria = new CriterionGroup([
             //-- Classic criterion
             new CriterionGroup([
@@ -55,11 +54,9 @@ class WageCriterionFactory extends CardPlayableCriterionFactory {
                 $nationalMedalCardCriterion
                     ], CriterionGroup::AND_OPERATOR),
                 ], CriterionGroup::OR_OPERATOR);
-        
-        $criteria->addConsequence(new WageLevelIncriseConsequence($card, $table));
-        
-        return $criteria;
-        
-    }
 
+        $criteria->addConsequence(new WageLevelIncriseConsequence($card, $table));
+
+        return $criteria;
+    }
 }

@@ -3,8 +3,9 @@
 namespace SmileLife\Card\Criterion\Factory;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\CriterionException;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Criterion\CriterionException;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -23,7 +24,7 @@ class NotImplementedCritertionFactory extends CardPlayableCriterionFactory {
      * @return CriterionInterface
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
-        throw new CriterionException("NICF- Unimpemented Factory for ".get_class($card));
+        throw new CriterionException("NICF- Unimpemented Factory for " . get_class($card));
     }
 
     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {

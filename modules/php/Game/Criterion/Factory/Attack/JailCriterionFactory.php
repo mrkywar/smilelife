@@ -3,13 +3,13 @@
 namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Consequence\Attack\AttackDestinationConsequence;
+use SmileLife\Consequence\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Criterion\Card\Job\JobTypeCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**

@@ -3,13 +3,13 @@
 namespace SmileLife\Criterion\Factory\Card;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Special\ShootingStar;
-use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
+use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Card\Special\ShootingStar;
+use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
+use SmileLife\Criterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

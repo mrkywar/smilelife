@@ -3,16 +3,16 @@
 namespace SmileLife\Criterion\Factory\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Consequence\Category\Special\CasinoResolveConsequence;
-use SmileLife\Consequence\Category\Wage\WageBetedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CardTypeCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\SpecialCriterion\CasinoOpenedCriterion;
-use SmileLife\Card\Criterion\SpecialCriterion\CasinoResolvableCriterion;
-use SmileLife\Card\Criterion\SpecialCriterion\CasinoWagePlayedCriterion;
+use SmileLife\Card\Wage\Wage;
+use SmileLife\Consequence\Special\CasinoResolveConsequence;
+use SmileLife\Consequence\Wage\WageBetedConsequence;
+use SmileLife\Criterion\Card\Generic\CardTypeCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Special\CasinoOpenedCriterion;
+use SmileLife\Criterion\Special\CasinoResolvableCriterion;
+use SmileLife\Criterion\Special\CasinoWagePlayedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -39,13 +39,13 @@ class CasinoBetCriterionFactory extends CardPlayableCriterionFactory {
         $casinoCriterion = new CriterionGroup([
             $casinoOpened,
             $wagesAllreadyBet
-        ], CriterionGroup::OR_OPERATOR);
+                ], CriterionGroup::OR_OPERATOR);
         $casinoCriterion->setErrorMessage(clienttranslate("Casino isn't oppened"));
 
         $criterion = new CriterionGroup([
             $wageCriterion,
             $casinoCriterion
-        ], CriterionGroup::AND_OPERATOR);
+                ], CriterionGroup::AND_OPERATOR);
 
         $resolvableCriterion = new CasinoResolvableCriterion();
 

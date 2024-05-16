@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Factory\Card;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Criterion\Factory\CriterionFactory;
 use SmileLife\Table\PlayerTable;
 
@@ -12,7 +12,7 @@ use SmileLife\Table\PlayerTable;
  *
  * @author Mr_Kywar mr_kywar@gmail.com
  */
-abstract class CardCriterionFactory implements CriterionFactory{
+abstract class CardCriterionFactory implements CriterionFactory {
 
     /**
      * 
@@ -22,5 +22,5 @@ abstract class CardCriterionFactory implements CriterionFactory{
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example
      * @return CriterionInterface
      */
-    abstract  public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface;
+    abstract public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface;
 }

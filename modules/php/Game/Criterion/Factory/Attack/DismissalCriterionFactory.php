@@ -3,16 +3,16 @@
 namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Official\Official;
-use SmileLife\Consequence\Category\Attack\AttackDestinationConsequence;
-use SmileLife\Consequence\Category\Attack\DisardJobConsequence;
-use SmileLife\Consequence\Category\Generic\GenericAttackPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
+use SmileLife\Card\Job\Official\Official;
+use SmileLife\Consequence\Attack\AttackDestinationConsequence;
+use SmileLife\Consequence\Attack\DisardJobConsequence;
+use SmileLife\Consequence\Generic\GenericAttackPlayedConsequence;
+use SmileLife\Criterion\Card\Job\HaveJobCriterion;
+use SmileLife\Criterion\Card\Job\JobTypeCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -41,7 +41,7 @@ class DismissalCriterionFactory extends CardPlayableCriterionFactory {
         $criteria = new CriterionGroup([
             $jobCriterion,
             $officialCriterion
-        ], CriterionGroup::AND_OPERATOR);
+                ], CriterionGroup::AND_OPERATOR);
 
         $criteria->addConsequence(new DisardJobConsequence($opponentTable->getJob(), $opponentTable))
                 ->addConsequence(new AttackDestinationConsequence($card, $opponentTable))

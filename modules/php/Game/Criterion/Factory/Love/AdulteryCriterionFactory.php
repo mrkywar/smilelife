@@ -3,13 +3,13 @@
 namespace SmileLife\Criterion\Factory\Love;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Love\AdulteryPlayedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\LoveCriterion\HaveAdulteryCriterion;
-use SmileLife\Card\Criterion\LoveCriterion\IsMarriedCriterion;
+use SmileLife\Consequence\Love\AdulteryPlayedConsequence;
+use SmileLife\Criterion\Card\Love\HaveAdulteryCriterion;
+use SmileLife\Criterion\Card\Love\IsMarriedCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

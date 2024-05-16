@@ -4,9 +4,9 @@ namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Consequence\Category\Job\JournalistVisionConsequence;
 use SmileLife\Card\Core\CardDecorator;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Consequence\Job\JournalistVisionConsequence;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 

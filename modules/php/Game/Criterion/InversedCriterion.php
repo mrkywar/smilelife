@@ -2,9 +2,6 @@
 
 namespace SmileLife\Criterion;
 
-use SmileLife\Card\Criterion\Criterion;
-use SmileLife\Card\Criterion\CriterionInterface;
-
 /**
  * Description of InversedCriterion
  *
@@ -29,5 +26,4 @@ class InversedCriterion extends Criterion {
     public function getCriterion(): CriterionInterface {
         return $this->criterion;
     }
-
 }

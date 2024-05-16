@@ -4,11 +4,11 @@ namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Job\Job\Bandit;
-use SmileLife\Card\Category\Job\Job\Guru;
-use SmileLife\Consequence\Category\Attack\IllegalJobDiscardConsequence;
 use SmileLife\Card\Core\CardDecorator;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Job\Job\Bandit;
+use SmileLife\Card\Job\Job\Guru;
+use SmileLife\Consequence\Attack\IllegalJobDiscardConsequence;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 use SmileLife\Table\PlayerTableManager;
 

@@ -3,14 +3,14 @@
 namespace SmileLife\Criterion\Factory\Travel;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Job\Job\AirlinePilot;
-use SmileLife\Consequence\Category\Generic\GenericCardPlayedConsequence;
-use SmileLife\Consequence\Category\Wage\WagesSpentConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\JobCriterion\JobTypeCriterion;
-use SmileLife\Card\Criterion\WageCriterion\HaveEnouthWageToBuyCriterion;
+use SmileLife\Card\Job\Job\AirlinePilot;
+use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
+use SmileLife\Consequence\Wage\WagesSpentConsequence;
+use SmileLife\Criterion\Card\Job\JobTypeCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Wage\HaveEnouthWageToBuyCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -28,7 +28,7 @@ class TravelCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $isPilotCriterion = new JobTypeCriterion($table, AirlinePilot::class);
 
         if (null === $complementaryCards) {

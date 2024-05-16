@@ -4,7 +4,7 @@ namespace SmileLife\Criterion\ShowPile;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -19,7 +19,6 @@ class CardPileShowableCriterion extends PlayerTableCriterion {
      * @var Card
      */
     private $card;
-    
     private $pileName;
 
     public function __construct(PlayerTable $table, Card $card, string $pilename) {

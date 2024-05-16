@@ -2,9 +2,9 @@
 
 namespace SmileLife\Criterion\Tester;
 
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
 
 /**
  * Description of CriterionDebugger
@@ -46,7 +46,7 @@ class CriterionDebugger {
                 }
             }
             echo "<br/>) " . $this->displayResult($criterion);
-            echo " >> ".$criterion->getErrorMessage();
+            echo " >> " . $criterion->getErrorMessage();
         } elseif ($criterion instanceof InversedCriterion) {
             echo " " . $level . " INVERSED " . get_class($criterion->getCriterion()) . " " . $this->displayResult($criterion);
             ;
@@ -59,5 +59,4 @@ class CriterionDebugger {
     private function displayResult(CriterionInterface $criterion) {
         return " -> V " . ($criterion->isValided() ? "True" : "False") . " | C " . count($criterion->getConsequences() ?? []);
     }
-
 }

@@ -3,17 +3,17 @@
 namespace SmileLife\Criterion\Factory\Attack;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Child\Child;
-use SmileLife\Consequence\Category\Attack\OffsideConsequence;
-use SmileLife\Consequence\Category\Child\AllChildOffsideConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Card\Child\Child;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
-use SmileLife\Card\Criterion\GenericCriterion\AllPlayerTablesCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\JobCriterion\JobEffectCriteria;
-use SmileLife\Card\Criterion\PlayerTableCriterion\CardOnTableCriterion;
 use SmileLife\Card\Effect\Category\AttentatProtectionEffect;
+use SmileLife\Consequence\Attack\OffsideConsequence;
+use SmileLife\Consequence\Child\AllChildOffsideConsequence;
+use SmileLife\Criterion\Card\Job\JobEffectCriteria;
+use SmileLife\Criterion\Card\PlayerTable\AllPlayerTablesCriterion;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Generic\CardOnTableCriterion;
+use SmileLife\Criterion\InversedCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

@@ -3,11 +3,11 @@
 namespace SmileLife\Criterion\Factory\Special;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Generic\PlayerDrawConsequence;
-use SmileLife\Consequence\Category\Special\CasinoPlayedConsequence;
-use SmileLife\Consequence\Category\Wage\WageBetedConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
 use SmileLife\Card\Criterion\Factory\Category\CardPlayableCriterionFactory;
+use SmileLife\Consequence\Generic\PlayerDrawConsequence;
+use SmileLife\Consequence\Special\CasinoPlayedConsequence;
+use SmileLife\Consequence\Wage\WageBetedConsequence;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -25,7 +25,7 @@ class CasinoCriterionFactory extends CardPlayableCriterionFactory {
      * @param Card[] $complementaryCards : Other cards chosen as part of purchase by example(useless here)
      * @return CriterionInterface
      */
-     public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
+    public function getCardCriterion(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $criterion = parent::getCardCriterion($table, $card, $opponentTable, $complementaryCards);
 
         $criterion->addConsequence(new CasinoPlayedConsequence($table, $card));

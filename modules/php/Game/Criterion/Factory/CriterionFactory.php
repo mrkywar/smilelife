@@ -1,8 +1,9 @@
 <?php
+
 namespace SmileLife\Criterion\Factory;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\CriterionInterface;
+use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -11,6 +12,7 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 interface CriterionFactory {
+
     /**
      * 
      * @param PlayerTable $table : Game table of the player who plays

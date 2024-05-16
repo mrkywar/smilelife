@@ -3,11 +3,11 @@
 namespace SmileLife\Criterion\Factory\Job;
 
 use SmileLife\Card\Card;
-use SmileLife\Consequence\Category\Special\TrocWithProtectedCardConsequence;
-use SmileLife\Card\Criterion\CriterionInterface;
-use SmileLife\Card\Criterion\GenericCriterion\CriterionGroup;
-use SmileLife\Card\Criterion\GenericCriterion\InversedCriterion;
-use SmileLife\Card\Criterion\GenericCriterion\NullCriterion;
+use SmileLife\Consequence\Special\TrocWithProtectedCardConsequence;
+use SmileLife\Criterion\CriterionGroup;
+use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\InversedCriterion;
+use SmileLife\Criterion\NullCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -34,7 +34,7 @@ class HeadsJobCriterionFactory extends JobCriterionFactory {
             $criteria = new CriterionGroup([
                 $criterion,
                 $invalidedCriterion
-            ], CriterionGroup::AND_OPERATOR);
+                    ], CriterionGroup::AND_OPERATOR);
             $criteria->setErrorMessage(clienttranslate('Please select Targeted Player'));
 
             return $criteria;
