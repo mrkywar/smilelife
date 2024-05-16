@@ -2,8 +2,8 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Card\Job\Job;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of JobCriterion
@@ -15,5 +15,4 @@ abstract class JobCriterion extends PlayerTableCriterion {
     final public function getJob(): ?Job {
         return $this->getTable()->getJob();
     }
-
 }

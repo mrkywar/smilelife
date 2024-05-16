@@ -1,8 +1,8 @@
 <?php
 
-namespace SmileLife\Criterion\Studies;
+namespace SmileLife\Criterion\Card\Studies;
 
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of HaveStudiesCriterion
@@ -18,5 +18,4 @@ class HaveStudiesCriterion extends PlayerTableCriterion {
                 sizeof($studies) > 0
                 );
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace SmileLife\Criterion\Card\Love;
 
-use SmileLife\Card\Category\Love\Marriage\Marriage;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Card\Love\Marriage\Marriage;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of IsMarriedCriterion
@@ -15,5 +15,4 @@ class IsMarriedCriterion extends PlayerTableCriterion {
     public function isValided(): bool {
         return ($this->getTable()->getMarriage() instanceof Marriage);
     }
-
 }

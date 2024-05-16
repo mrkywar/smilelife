@@ -2,7 +2,7 @@
 
 namespace SmileLife\Criterion\Card\PlayerTable;
 
-use SmileLife\Card\Criterion\Criterion;
+use SmileLife\Criterion\Criterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -30,5 +30,4 @@ abstract class PlayerTableCriterion extends Criterion {
         $this->table = $table;
         return $this;
     }
-
 }

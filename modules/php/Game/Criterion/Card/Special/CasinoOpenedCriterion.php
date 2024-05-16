@@ -4,9 +4,9 @@ namespace SmileLife\Criterion\Special;
 
 use SmileLife\Card\CardManager;
 use SmileLife\Card\CardType;
-use SmileLife\Card\Category\Special\Casino;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Card\Special\Casino;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

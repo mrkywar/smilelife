@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Special;
 
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Criterion\Criterion;
+use SmileLife\Criterion\Criterion;
 
 /**
  * Description of CasinoWagePlayedCriterion

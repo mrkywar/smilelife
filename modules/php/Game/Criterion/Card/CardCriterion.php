@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Card;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Criterion\Criterion;
+use SmileLife\Criterion\Criterion;
 
 /**
  * Description of CardCriterion

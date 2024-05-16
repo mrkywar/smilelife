@@ -1,9 +1,9 @@
 <?php
 
-namespace SmileLife\Criterion\Studies;
+namespace SmileLife\Criterion\Card\Studies;
 
-use SmileLife\Card\Category\Studies\Studies;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Card\Studies\Studies;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -28,5 +28,4 @@ abstract class StudiesCriterion extends PlayerTableCriterion {
     public function getCard(): Studies {
         return $this->card;
     }
-
 }

@@ -2,8 +2,7 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Criterion\JobCriterion\JobCriterion;
+use SmileLife\Card\Job\Job;
 
 /**
  * Description of HaveJobCriterion
@@ -15,5 +14,4 @@ class HaveJobCriterion extends JobCriterion {
     public function isValided(): bool {
         return ($this->getJob() instanceof Job);
     }
-
 }

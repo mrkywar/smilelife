@@ -5,6 +5,7 @@ namespace SmileLife\Criterion\Card\Generic;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
 use SmileLife\Card\Core\CardLocation;
+use SmileLife\Criterion\Card\CardCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

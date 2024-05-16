@@ -6,7 +6,8 @@ use Core\Models\Core\Model;
 use Core\Models\Player;
 use SmileLife;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Card\Criterion\Factory\CardCriterionFactory;
+use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
+
 
 /**
  * Description of Card

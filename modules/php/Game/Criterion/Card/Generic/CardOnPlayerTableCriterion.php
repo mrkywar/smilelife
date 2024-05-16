@@ -4,7 +4,7 @@ namespace SmileLife\Criterion\Generic;
 
 use SmileLife\Card\Card;
 use SmileLife\Card\Core\CardLocation;
-use SmileLife\Criterion\PlayerTable\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**

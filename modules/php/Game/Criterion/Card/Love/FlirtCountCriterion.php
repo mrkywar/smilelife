@@ -2,7 +2,7 @@
 
 namespace SmileLife\Criterion\Card\Love;
 
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Game\Calculator\FlirtCountCalculator;
 use SmileLife\Table\PlayerTable;
 
@@ -30,8 +30,7 @@ class FlirtCountCriterion extends PlayerTableCriterion {
     public function isValided(): bool {
         $flirts = $this->getTable()->getFlirts();
         $actualCount = $this->flirtCounter->compute($flirts);
-        
+
         return (self::MAX_COUNT > $actualCount);
     }
-
 }

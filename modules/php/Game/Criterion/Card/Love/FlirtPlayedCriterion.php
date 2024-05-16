@@ -2,7 +2,7 @@
 
 namespace SmileLife\Criterion\Card\Love;
 
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of FlirtPlayedCriterion

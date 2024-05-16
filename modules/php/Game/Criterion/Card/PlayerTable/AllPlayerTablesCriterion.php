@@ -2,8 +2,7 @@
 
 namespace SmileLife\Criterion\Card\PlayerTable;
 
-use SmileLife\Card\Criterion\Criterion;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Criterion;
 use SmileLife\Table\PlayerTableManager;
 
 /**
@@ -18,6 +17,7 @@ class AllPlayerTablesCriterion extends Criterion {
      * @var PlayerTableCriterion
      */
     private $criterion;
+
     /**
      * 
      * @var PlayerTableManager
@@ -39,5 +39,4 @@ class AllPlayerTablesCriterion extends Criterion {
         }
         return false;
     }
-
 }

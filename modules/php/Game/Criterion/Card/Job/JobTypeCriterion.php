@@ -2,7 +2,6 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Criterion\JobCriterion\JobCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -27,5 +26,4 @@ class JobTypeCriterion extends JobCriterion {
     public function isValided(): bool {
         return ($this->getJob() instanceof $this->className);
     }
-
 }

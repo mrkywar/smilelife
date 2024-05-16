@@ -3,7 +3,7 @@
 namespace SmileLife\Criterion\Card\Love;
 
 use SmileLife\Card\Category\Love\Flirt\Flirt;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of LastFlirtGenerateChildCiterion

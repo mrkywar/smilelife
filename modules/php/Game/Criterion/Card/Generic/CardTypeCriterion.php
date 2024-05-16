@@ -3,6 +3,7 @@
 namespace SmileLife\Criterion\Card\Generic;
 
 use SmileLife\Card\Card;
+use SmileLife\Criterion\Card\CardCriterion;
 
 /**
  * Description of CardOffsidedCriterion

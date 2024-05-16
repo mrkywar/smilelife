@@ -3,6 +3,7 @@
 namespace SmileLife\Criterion\Generic;
 
 use SmileLife\Card\CardManager;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -40,5 +41,4 @@ class CardOnTableCriterion extends PlayerTableCriterion {
         }
         return false;
     }
-
 }

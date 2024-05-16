@@ -13,6 +13,7 @@ use SmileLife\Table\PlayerTable;
  * @author Mr_Kywar mr_kywar@gmail.com
  */
 class CardInHandCriterion extends CardCriterion {
+
     /**
      * @var PlayerTable
      */
@@ -23,11 +24,11 @@ class CardInHandCriterion extends CardCriterion {
 
         $this->table = $table;
     }
-    
+
     public function isValided(): bool {
         $card = $this->getCard();
         $player = $this->table->getPlayer();
-        
+
         return parent::isValided() && (CardLocation::PLAYER_HAND === $card->getLocation() && $player->getId() === $card->getLocationArg());
     }
 }

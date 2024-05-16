@@ -2,8 +2,8 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Category\Job\Job;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Card\Job\Job;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 
@@ -41,5 +41,4 @@ class JobStudiesCriterion extends PlayerTableCriterion {
         $actualStudieLevel = $this->studiesLevelCalculator->compute($this->getTable()->getStudies());
         return $actualStudieLevel >= $this->getJob()->getRequiredStudies();
     }
-
 }

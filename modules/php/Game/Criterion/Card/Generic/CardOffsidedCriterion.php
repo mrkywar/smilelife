@@ -5,7 +5,7 @@ namespace SmileLife\Criterion\Card\Generic;
 use Core\Models\Player;
 use SmileLife\Card\Card;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -51,5 +51,4 @@ class OffsidedCardCriterion extends PlayerTableCriterion {
                 $card instanceof $this->className
                 );
     }
-
 }

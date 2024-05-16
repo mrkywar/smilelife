@@ -1,9 +1,8 @@
 <?php
 
-namespace SmileLife\Criterion\Wage;
+namespace SmileLife\Criterion\Card\Wage;
 
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of HaveUnusedWageCriterion

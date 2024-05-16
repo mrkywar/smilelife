@@ -2,9 +2,7 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Category\Special\JobBoost;
-use SmileLife\Card\Category\Special\Special;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 
 /**
  * Description of HaveJobBoostReadyCriterion
@@ -20,5 +18,4 @@ class HaveJobBoostReadyCriterion extends PlayerTableCriterion {
                 !$jobBoost->getIsUsed()
                 );
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Criterion\JobCriterion\HaveJobCriterion;
 use SmileLife\Card\Effect\CardEffectInterface;
 use SmileLife\Table\PlayerTable;
 
@@ -42,5 +41,4 @@ class JobEffectCriteria extends HaveJobCriterion {
 
         return false;
     }
-
 }

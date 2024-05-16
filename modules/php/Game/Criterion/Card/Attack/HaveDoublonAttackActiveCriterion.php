@@ -2,8 +2,8 @@
 
 namespace SmileLife\Criterion\Card\Attack;
 
-use SmileLife\Card\Category\Attack\Attack;
-use SmileLife\Card\Criterion\PlayerTableCriterion\PlayerTableCriterion;
+use SmileLife\Card\Attack\Attack;
+use SmileLife\Criterion\Card\PlayerTable\PlayerTableCriterion;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -37,5 +37,4 @@ class HaveDoublonAttackActiveCriterion extends PlayerTableCriterion {
     private function checkAttack(Attack $card) {
         return (!$card->getIsUsed());
     }
-
 }

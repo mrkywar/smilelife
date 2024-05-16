@@ -2,8 +2,7 @@
 
 namespace SmileLife\Criterion\Card\Job;
 
-use SmileLife\Card\Category\Wage\Wage;
-use SmileLife\Card\Criterion\JobCriterion\JobCriterion;
+use SmileLife\Card\Wage\Wage;
 use SmileLife\Table\PlayerTable;
 
 /**
@@ -30,10 +29,9 @@ class WageCriterion extends JobCriterion {
     }
 
     public function isValided(): bool {
-        if(null === $this->getJob()){
+        if (null === $this->getJob()) {
             return false;
         }
         return ($this->getCard()->getAmount() <= $this->getJob()->getMaxSalary());
     }
-
 }

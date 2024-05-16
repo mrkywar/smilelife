@@ -1,9 +1,8 @@
 <?php
 
-namespace SmileLife\Criterion\Studies;
+namespace SmileLife\Criterion\Card\Studies;
 
-use SmileLife\Card\Category\Studies\Studies;
-use SmileLife\Card\Criterion\StudiesCriterion\StudiesCriterion;
+use SmileLife\Card\Studies\Studies;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 
@@ -32,5 +31,4 @@ class StudiesLevelCriterion extends StudiesCriterion {
         $actualLevel = $this->studiesLevelCalculator->compute($this->getTable()->getStudies());
         return (self::MAX_STUDIES_LEVEL >= ($actualLevel + $this->getCard()->getLevel()));
     }
-
 }
