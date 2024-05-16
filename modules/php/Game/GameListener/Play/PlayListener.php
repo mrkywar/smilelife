@@ -5,8 +5,7 @@ namespace SmileLife\Game\GameListener\Discard;
 use Core\Event\EventListener\EventListener;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Consequence\Consequence;
-use SmileLife\Card\Criterion\CriterionTester\CriterionTester;
+use SmileLife\Criterion\Tester\CriterionTester;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTableManager;
@@ -58,15 +57,14 @@ class PlayListener extends EventListener {
 
         $criteriaTester = new CriterionTester();
         $testRestult = $criteriaTester->test($criteria);
- 
+
         if (!$testRestult->isValided()) {
             $consequences = $criteria->getInvalidConsequences();
             $response->setIsValid(false);
             if (null !== $consequences && !empty($consequences)) {
                 foreach ($consequences as $consequence) {
-                    
-                    $consequence->execute($response);
 
+                    $consequence->execute($response);
                 }
             }
             throw new \BgaUserException($testRestult->getErrorMessage());

@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Calculator;
 
-use SmileLife\Card\Category\Wage\Wage;
+use SmileLife\Card\Wage\Wage;
 
 /**
  * Description of TotalWageCalculator
@@ -28,5 +28,4 @@ class TotalWageCalculator {
     protected function computeOne(Wage $card) {
         return $card->getAmount();
     }
-
 }

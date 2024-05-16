@@ -51,7 +51,7 @@ class ScoreCalculator {
     }
 
     private function computeOne(Card $card, PlayerTable $table) {
-        if (CardType::CARD_TYPE_PET_UNICORN === $card->getType()) {
+        if (CardType::CARD_TYPE_PET_UNICORN === $card->getType()) { //-- instanceof works to
             $cardsBonus = $this->cardManager->findBy([
                 'location' => CardLocation::PLAYER_BOARD,
                 'locationArg' => $table->getId(),

@@ -5,6 +5,7 @@ namespace SmileLife\Criterion\Factory\Card;
 use SmileLife\Card\Card;
 use SmileLife\Consequence\Generic\CheaterDetectionConsequence;
 use SmileLife\Criterion\Card\Generic\CardInHandCriterion;
+use SmileLife\Criterion\Card\Generic\LastDiscardedCardCriterion;
 use SmileLife\Criterion\CriterionGroup;
 use SmileLife\Criterion\CriterionInterface;
 use SmileLife\Criterion\Factory\Card\CardCriterionFactory;
@@ -27,7 +28,7 @@ abstract class CardPlayableCriterionFactory extends CardCriterionFactory {
      */
     public function create(PlayerTable $table, Card $card, PlayerTable $opponentTable = null, array $complementaryCards = null): CriterionInterface {
         $inHandCriterion = new CardInHandCriterion($card, $table);
-        $isLastDiscardedCriterion = new CardIsLastDiscardedCriterion($card, $table);
+        $isLastDiscardedCriterion = new LastDiscardedCardCriterion($card, $table);
 
         $criterion = new CriterionGroup([$inHandCriterion, $isLastDiscardedCriterion], CriterionGroup::OR_OPERATOR);
         $criterion->setErrorMessage(clienttranslate("Impossible to play this card now !"))

@@ -6,8 +6,8 @@ use Core\Event\EventListener\EventListener;
 use Core\Models\Player;
 use Core\Requester\Response\Response;
 use SmileLife\Card\CardManager;
-use SmileLife\Card\Category\Special\Rainbow;
-use SmileLife\Card\Consequence\Category\Special\RaindowRecaveConsequence;
+use SmileLife\Card\Special\Rainbow;
+use SmileLife\Consequence\Special\RaindowRecaveConsequence;
 use SmileLife\Game\Request\PlayCardRequest;
 use SmileLife\PlayerAction\ActionType;
 use SmileLife\Table\PlayerTable;
@@ -32,14 +32,11 @@ class RainbowSpecialStateDectector extends EventListener {
      */
     private $tableManager;
 
-
-
     public function __construct() {
         $this->setMethod("onPlay");
 
         $this->cardManager = new CardManager();
         $this->tableManager = new PlayerTableManager();
- 
     }
 
     public function onPlay(PlayCardRequest &$request, Response &$response) {
@@ -76,6 +73,4 @@ class RainbowSpecialStateDectector extends EventListener {
     public function getPriority(): int {
         return 10;
     }
-
-    
 }

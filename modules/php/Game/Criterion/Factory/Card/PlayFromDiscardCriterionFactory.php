@@ -3,7 +3,6 @@
 namespace SmileLife\Criterion\Factory\Card;
 
 use SmileLife\Card\Card;
-use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Special\ShootingStar;
 use SmileLife\Consequence\Generic\GenericCardPlayedConsequence;
 use SmileLife\Criterion\CriterionGroup;

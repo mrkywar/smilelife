@@ -2,7 +2,7 @@
 
 namespace SmileLife\Game\Calculator;
 
-use SmileLife\Card\Category\Studies\Studies;
+use SmileLife\Card\Studies\Studies;
 
 /**
  * Description of StudiesLevelCalculator
@@ -29,5 +29,4 @@ class StudiesLevelCalculator {
     private function computeOne(Studies $card) {
         return (!$card->getIsUsed()) ? $card->getLevel() : 0;
     }
-
 }

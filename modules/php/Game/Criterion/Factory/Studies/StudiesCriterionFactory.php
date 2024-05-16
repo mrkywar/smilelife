@@ -3,17 +3,17 @@
 namespace SmileLife\Criterion\Factory\Studies;
 
 use SmileLife\Card\Card;
-use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Card\Effect\Category\LimitlessStudiesEffect;
 use SmileLife\Consequence\Studies\LimitlessStudieConsequence;
 use SmileLife\Consequence\Studies\StudieLevelIncriseConsequence;
 use SmileLife\Consequence\Studies\StudiePlayedConsequence;
 use SmileLife\Criterion\Card\Job\HaveJobCriterion;
 use SmileLife\Criterion\Card\Job\JobEffectCriteria;
+use SmileLife\Criterion\Card\Studies\StudiesLevelCriterion;
 use SmileLife\Criterion\CriterionGroup;
 use SmileLife\Criterion\CriterionInterface;
+use SmileLife\Criterion\Factory\Card\CardPlayableCriterionFactory;
 use SmileLife\Criterion\InversedCriterion;
-use SmileLife\Criterion\Studies\StudiesLevelCriterion;
 use SmileLife\Game\Calculator\StudiesLevelCalculator;
 use SmileLife\Table\PlayerTable;
 

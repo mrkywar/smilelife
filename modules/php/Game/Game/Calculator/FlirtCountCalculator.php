@@ -3,7 +3,7 @@
 namespace SmileLife\Game\Calculator;
 
 use SmileLife\Card\Card;
-use SmileLife\Card\Category\Love\Flirt\Flirt;
+use SmileLife\Card\Love\Flirt\Flirt;
 
 /**
  * Description of FlirtCountCalculator
